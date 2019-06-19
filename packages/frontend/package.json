@@ -1,0 +1,18 @@
+{
+  "name": "ucurtma-frontend",
+  "version": "0.1.0",
+  "description": "Frontend workspace for Ucurtma app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

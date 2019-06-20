@@ -12,6 +12,9 @@ function Index() {
       </Head>
       <style global jsx>
         {`
+          :root {
+            --text-color: #6f6f6f;
+          }
           body {
             font-family: "Dosis", -apple-system, BlinkMacSystemFont, "Segoe UI",
               Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,

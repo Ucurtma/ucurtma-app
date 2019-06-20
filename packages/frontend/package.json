@@ -6,14 +6,23 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "lint-staged"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.6",
     "next": "^8.1.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "eslint --ext ./pages ./components",
+    "*.{js,jsx,json,css,scss}": [
+      "pretty-quick --staged"
+    ]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
@@ -25,6 +34,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "7.11.0",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "prettier": "^1.18.2"
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1"
   }
 }

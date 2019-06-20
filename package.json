@@ -7,8 +7,14 @@
   "scripts": {
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
+    "lint": "lerna run lint --parallel",
     "start:frontend": "lerna run --scope ucurtma-frontend dev",
     "bootstrap": "lerna bootstrap"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
   "workspaces": [
     "packages/*"
@@ -21,6 +27,7 @@
     "url": "https://github.com/Ucurtma/ucurtma-app/issues"
   },
   "devDependencies": {
+    "husky": "^2.4.1",
     "lerna": "^3.15.0"
   }
 }

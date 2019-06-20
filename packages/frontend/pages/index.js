@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Card from "../components/card";
 import "../normalize.css";
 
 function Index() {
@@ -16,8 +15,10 @@ function Index() {
         {`
           :root {
             --text-color: #6f6f6f;
+            --title-color: #4F4F4F;
             --body-bg: #f3f3f3;
-            --shadow: 0 0 36px rgba(155, 201, 255, 0.16);
+            --card-bg; #f7f7f7;
+            --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
           }
           body {
             font-family: "Dosis", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -30,7 +31,6 @@ function Index() {
         `}
       </style>
       Welcome to Uçurtma, initial project setup!
-      <Card>There will be card</Card>
     </div>
   );
 }

@@ -20,7 +20,7 @@
     "react-dom": "^16.8.6"
   },
   "lint-staged": {
-    "*.{js,jsx}": "eslint --ext ./pages ./components",
+    "*.{js,jsx}": "eslint --ext",
     "*.{js,jsx,json,css,scss}": [
       "pretty-quick --staged"
     ]

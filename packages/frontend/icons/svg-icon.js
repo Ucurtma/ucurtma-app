@@ -1,10 +1,10 @@
-import cls from "classnames";
+import cls from 'classnames';
 
 function SvgIcon({ children, className, viewBox, ...otherProps }) {
   return (
     <svg
-      className={cls("icon", className)}
-      viewBox={viewBox || "0 0 24 24"}
+      className={cls('icon', className)}
+      viewBox={viewBox || '0 0 24 24'}
       {...otherProps}
     >
       <style jsx>

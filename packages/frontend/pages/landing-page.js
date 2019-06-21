@@ -1,11 +1,10 @@
-import Logo from '../icons/logo';
+import Header from '../components/header';
 
 function LandingPage() {
   return (
-    <p>
-      <Logo />
-      hello, there will be a landing page.
-    </p>
+    <div>
+      <Header />
+    </div>
   );
 }
 

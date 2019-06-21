@@ -47,6 +47,7 @@ Button.defaultProps = {
   tag: 'button',
   className: '',
   color: '#39baba',
+  outlined: false,
 };
 
 Button.propTypes = {
@@ -54,6 +55,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   color: PropTypes.string,
+  outlined: PropTypes.bool,
 };
 
 export default Button;

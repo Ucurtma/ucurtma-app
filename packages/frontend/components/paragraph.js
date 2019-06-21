@@ -18,12 +18,15 @@ function Paragraph({ children, type, className }) {
           }
           .font-small {
             font-size: 1rem;
+            line-height: 1.5rem;
           }
           .font-normal {
             font-size: 1.125rem;
+            line-height: 1.75rem;
           }
           .font-big {
             font-size: 1.25rem;
+            line-height: 2rem;
           }
         `}
       </style>

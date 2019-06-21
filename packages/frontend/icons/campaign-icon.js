@@ -1,4 +1,4 @@
-import SvgIcon from "./svg-icon";
+import SvgIcon from './svg-icon';
 
 function CampaignIcon({ ...otherProps }) {
   return (

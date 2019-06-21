@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import cls from "classnames";
+import PropTypes from 'prop-types';
+import cls from 'classnames';
 
 function Card({ title, icon, children }) {
   const Icon = icon;
   return (
-    <div className={cls("card")}>
+    <div className={cls('card')}>
       <style jsx>
         {`
           .card {
@@ -45,14 +45,14 @@ function Card({ title, icon, children }) {
 }
 
 Card.defaultProps = {
-  icon: "",
-  children: ""
+  icon: '',
+  children: '',
 };
 
 Card.propTypes = {
   icon: PropTypes.node,
   children: PropTypes.node,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default Card;

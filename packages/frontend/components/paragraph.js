@@ -1,15 +1,15 @@
-import PropTypes from "prop-types";
-import cls from "classnames";
+import PropTypes from 'prop-types';
+import cls from 'classnames';
 
 function Paragraph({ children, type, className }) {
   const fontType = {
-    xs: "font-small",
-    normal: "font-normal",
-    lg: "font-big"
+    xs: 'font-small',
+    normal: 'font-normal',
+    lg: 'font-big',
   };
 
   return (
-    <p className={cls(fontType[type], "paragraph", className)}>
+    <p className={cls(fontType[type], 'paragraph', className)}>
       <style jsx>
         {`
           .paragraph {
@@ -33,15 +33,15 @@ function Paragraph({ children, type, className }) {
 }
 
 Paragraph.defaultProps = {
-  children: "",
-  type: "normal",
-  className: ""
+  children: '',
+  type: 'normal',
+  className: '',
 };
 
 Paragraph.propTypes = {
   children: PropTypes.node,
-  type: PropTypes.oneOf(["xs", "normal", "lg"]),
-  className: PropTypes.string
+  type: PropTypes.oneOf(['xs', 'normal', 'lg']),
+  className: PropTypes.string,
 };
 
 export default Paragraph;

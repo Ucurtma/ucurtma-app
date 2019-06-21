@@ -1,5 +1,5 @@
-import Head from "next/head";
-import "../normalize.css";
+import Head from 'next/head';
+import '../normalize.css';
 
 function Index() {
   return (

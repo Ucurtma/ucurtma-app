@@ -10,42 +10,19 @@ function Header() {
     { href: '/login', content: <Button outlined>Sign up</Button> },
   ];
   return (
-    <header className="container main-header">
-      <style jsx>{`
-        .main-header {
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 50px;
-        }
-        .logo {
-          width: 155px;
-          cursor: pointer;
-        }
-        .navbar {
-          list-style: none;
-          display: flex;
-          align-items: center;
-          margin: 0;
-        }
-        .navbar li {
-          margin-left: 1.5rem;
-        }
-        .navbar li a {
-          color: var(--navbar-link);
-          font-weight: 600;
-          text-decoration: none;
-        }
-      `}</style>
-      <div className="logo">
+    <header className="flex justify-between items-center">
+      <div className="w-40 cursor-pointer">
         <Link href="/">
           <Logo />
         </Link>
       </div>
-      <ul className="navbar">
+      <ul className="list-none flex items-center m-0">
         {navbarElements.map((element, i) => (
-          <li key={i.toString()}>
+          <li className="mr-6" key={i.toString()}>
             <Link href={element.href}>
-              <a>{element.content}</a>
+              <a className="text-navbar-link font-bold no-underline">
+                {element.content}
+              </a>
             </Link>
           </li>
         ))}

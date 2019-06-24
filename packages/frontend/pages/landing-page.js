@@ -3,12 +3,14 @@ import AboutUs from '../components/about-us';
 
 function LandingPage() {
   return (
-    <div>
-      <Header />
-      <div className="container">
+    <>
+      <div className="container mx-auto mt-8">
+        <Header />
+      </div>
+      <div className="container mx-auto">
         <AboutUs />
       </div>
-    </div>
+    </>
   );
 }
 

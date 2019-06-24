@@ -13,7 +13,6 @@ function Paragraph({ children, type, className }) {
       <style jsx>
         {`
           .paragraph {
-            margin: 0;
             color: var(--text-color);
           }
           .font-small {

@@ -5,6 +5,7 @@
 :root {
   --text-color: #6f6f6f;
   --title-color: #4f4f4f;
+  --disabled-title: #c9c9c9;
   --navbar-link: #111d27;
   --big-desc: #373737;
   --body-bg: #f3f3f3;

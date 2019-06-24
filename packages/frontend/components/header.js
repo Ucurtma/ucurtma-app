@@ -7,7 +7,7 @@ function Header() {
   const navbarElements = [
     { href: '/login', content: <SearchIcon /> },
     { href: '/login', content: 'Log in' },
-    { href: '/login', content: <Button outlined>Sign up</Button> },
+    { href: '/login', content: <Button>Sign up</Button> },
   ];
   return (
     <header className="flex justify-between items-center">

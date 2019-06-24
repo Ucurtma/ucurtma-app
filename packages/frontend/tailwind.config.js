@@ -30,6 +30,7 @@ module.exports = {
       '5': '1.25rem',
       '6': '1.5rem',
       '8': '2rem',
+      '9': '2.25rem',
       '10': '2.5rem',
       '12': '3rem',
       '16': '4rem',
@@ -67,6 +68,7 @@ module.exports = {
       sm: '0.125rem',
       default: '0.25rem',
       lg: '0.5rem',
+      '2': '2rem',
       full: '9999px',
     },
     borderWidth: {
@@ -140,6 +142,7 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
+      '52': '52px',
       screen: '100vh',
     }),
     inset: {
@@ -191,11 +194,13 @@ module.exports = {
     },
     minHeight: {
       '0': '0',
+      '100': '100px',
       full: '100%',
       screen: '100vh',
     },
     minWidth: {
       '0': '0',
+      '190': '190px',
       full: '100%',
     },
     opacity: {
@@ -257,6 +262,7 @@ module.exports = {
       '10/12': '83.333333%',
       '11/12': '91.666667%',
       full: '100%',
+      '52': '52px',
       screen: '100vw',
     }),
     zIndex: {

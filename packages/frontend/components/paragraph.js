@@ -3,32 +3,13 @@ import cls from 'classnames';
 
 function Paragraph({ children, type, className }) {
   const fontType = {
-    xs: 'font-small',
-    normal: 'font-normal',
-    lg: 'font-big',
+    xs: 'text-base leading-normal',
+    normal: 'text-lg leading-relaxed',
+    lg: 'text-xl leading-loose',
   };
 
   return (
-    <p className={cls(fontType[type], 'paragraph', className)}>
-      <style jsx>
-        {`
-          .paragraph {
-            color: var(--text-color);
-          }
-          .font-small {
-            font-size: 1rem;
-            line-height: 1.5rem;
-          }
-          .font-normal {
-            font-size: 1.125rem;
-            line-height: 1.75rem;
-          }
-          .font-big {
-            font-size: 1.25rem;
-            line-height: 2rem;
-          }
-        `}
-      </style>
+    <p className={cls(fontType[type], 'text-text-color', className)}>
       {children}
     </p>
   );

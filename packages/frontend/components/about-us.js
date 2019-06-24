@@ -18,9 +18,7 @@ function AboutUs() {
           explain it as a front-end developer for now but I guess there will
           something good that writed by marketing team am I right?
         </Paragraph>
-        <Button color="#6F6F6F" outlined>
-          LEARN MORE
-        </Button>
+        <Button color="#6F6F6F">LEARN MORE</Button>
       </div>
       <div className="w-3/5 text-center">
         {/*

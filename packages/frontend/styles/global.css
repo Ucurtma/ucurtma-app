@@ -11,3 +11,20 @@
   --card-bg: #f7f7f7;
   --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
 }
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px blue;
+}

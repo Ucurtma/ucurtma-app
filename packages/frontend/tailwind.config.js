@@ -19,6 +19,7 @@ module.exports = {
       'big-desc': 'var(--big-desc)',
       'body-bg': 'var(--body-bg)',
       'card-bg': 'var(--card-bg)',
+      'disabled-title': 'var(--disabled-title)',
     },
     spacing: {
       px: '1px',
@@ -29,6 +30,7 @@ module.exports = {
       '4': '1rem',
       '5': '1.25rem',
       '6': '1.5rem',
+      '7': '1.75rem',
       '8': '2rem',
       '9': '2.25rem',
       '10': '2.5rem',
@@ -191,6 +193,7 @@ module.exports = {
       '5xl': '64rem',
       '6xl': '72rem',
       full: '100%',
+      '80': '80px',
     },
     minHeight: {
       '0': '0',

@@ -1,24 +1,17 @@
 import cls from 'classnames';
 
-function SvgIcon({ children, className, viewBox, ...otherProps }) {
+function SvgIcon({ children, className, viewBox, size, ...otherProps }) {
+  const style = size ? { width: size, height: size } : undefined;
   return (
     <svg
-      className={cls('icon', className)}
+      className={cls(
+        'select-none inline-block fill-current flex-shrink: 0',
+        className
+      )}
       viewBox={viewBox || '0 0 24 24'}
+      style={style}
       {...otherProps}
     >
-      <style jsx>
-        {`
-          .icon {
-            user-select: none;
-            min-height: 2rem;
-            min-width: 2rem;
-            display: inline-block;
-            fill: currentColor;
-            flex-shrink: 0;
-          }
-        `}
-      </style>
       {children}
     </svg>
   );

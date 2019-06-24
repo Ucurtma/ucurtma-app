@@ -3,6 +3,7 @@ module "non-prod-app-deployment" {
   bucket       = "non-prod-ucurtma-app"
   region       = "eu-west-2"
   remote_state = "${var.remote_state}"
+  web_page_user = "deployment-user"
 }
 
 variable "remote_state" {

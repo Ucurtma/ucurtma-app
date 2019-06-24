@@ -18,6 +18,7 @@ function Index() {
             --text-color: #6f6f6f;
             --title-color: #4f4f4f;
             --navbar-link: #111d27;
+            --big-desc: #373737;
             --body-bg: #f3f3f3;
             --card-bg: #f7f7f7;
             --shadow: 0 0 24px rgba(155, 201, 255, 0.24);

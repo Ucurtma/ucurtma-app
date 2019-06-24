@@ -24,9 +24,14 @@ function Button({ tag, children, outlined, color, className, ...otherProps }) {
           color: inherit;
           font: inherit;
           cursor: pointer;
+          font-weight: 600;
+        }
+        button:focus {
+          outline: none;
+          box-shadow: 0px 0px 2px blue;
         }
         .button-common {
-          padding: 0.5em 1.5rem;
+          padding: 0.75em 1.5rem;
         }
         .button-outlined {
           border: 2px solid ${color};

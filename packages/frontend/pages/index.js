@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import '../normalize.css';
+import LandingPage from './landing-page';
+import '../styles/global.css';
 
 function Index() {
   return (
@@ -7,30 +8,12 @@ function Index() {
       <Head>
         <title>Uçurtma</title>
         <link
+          href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=latin-ext"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Dosis:400,600,700&display=swap&subset=latin-ext"
         />
+        <body className="bg-body-bg font-normal" />
       </Head>
-      <style global jsx>
-        {`
-          :root {
-            --text-color: #6f6f6f;
-            --title-color: #4F4F4F;
-            --body-bg: #f3f3f3;
-            --card-bg; #f7f7f7;
-            --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
-          }
-          body {
-            font-family: "Dosis", -apple-system, BlinkMacSystemFont, "Segoe UI",
-              Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-              "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-              "Noto Color Emoji";
-            background: var(--body-bg);
-            margin: 0;
-          }
-        `}
-      </style>
-      Welcome to Uçurtma, initial project setup!
+      <LandingPage />
     </div>
   );
 }

@@ -28,13 +28,14 @@ Card.defaultProps = {
   icon: '',
   children: '',
   className: '',
+  title: '',
   noPadding: false,
 };
 
 Card.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   children: PropTypes.node,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   className: PropTypes.string,
   noPadding: PropTypes.bool,
 };

@@ -27,7 +27,11 @@ function AboutUs() {
             Today, I am using a illustrator that downloaded from dribbble.
             I will change it later.
           */}
-        <img src="static/about-us.png" alt="About Us" />
+        <img
+          className="pointer-events-none -z-1"
+          src="static/img/about-us.png"
+          alt="About Us"
+        />
       </div>
     </div>
   );

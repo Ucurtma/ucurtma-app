@@ -18,14 +18,20 @@ function WhyInvest() {
         {/* TODO: add link here */}
         <Button color="#6F6F6F">READ MORE</Button>
       </div>
-      <div className="w-4/6 text-center">
+      <div className="w-4/6 flex justify-center relative">
         {/*
         TODO: Using PNG in here isn't make sense,
         We should create a SVG file later.
         Today, I am using a illustrator that downloaded from dribbble.
         I will change it later.
+        Also, this image is seems like pixel pixel because of remove.bg.
       */}
-        <img src="static/about-us.png" alt="About Us" />
+        <img
+          className="absolute w-full -z-1"
+          style={{ top: -170 }}
+          src="static/img/why-invest.png"
+          alt="About Us"
+        />
       </div>
     </div>
   );

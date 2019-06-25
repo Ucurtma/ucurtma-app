@@ -1,5 +1,5 @@
-import Paragraph from './paragraph';
-import Button from './button';
+import Paragraph from './ui/paragraph';
+import Button from './ui/button';
 
 function AboutUs() {
   return (

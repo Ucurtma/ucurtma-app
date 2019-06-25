@@ -96,7 +96,9 @@ function Workflows() {
             key={i.toString()}
             className={cls('w-1/3 mx-3')}
           >
-            <Paragraph>{cardItem.desc}</Paragraph>
+            <Paragraph className="text-lg leading-relaxed w-full mt-6">
+              {cardItem.desc}
+            </Paragraph>
           </Card>
         ))}
       </div>

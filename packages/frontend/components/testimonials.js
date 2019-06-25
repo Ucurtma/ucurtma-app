@@ -7,9 +7,10 @@ function Testimonials() {
       <div className="mb-10">
         <Title>Who uses us?</Title>
       </div>
-      <div>
-        <Card noPadding>deneme</Card>
-      </div>
+      <Card className="flex" noPadding>
+        <div className="card-image w-4/12">there will be image</div>
+        <div className="card-content w-8/12">there will be content</div>
+      </Card>
     </>
   );
 }

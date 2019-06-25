@@ -11,20 +11,15 @@ function Card({ title, icon, children, noPadding, className }) {
         className
       )}
     >
-      <div className="flex items-end">
-        {icon && <Icon className="mr-9 w-52 h-52" />}
-        <h2 className="m-0 text-title-color text-2xl font-bold">{title}</h2>
-      </div>
-      {children && (
-        <div
-          className={cls(
-            'text-lg leading-relaxed',
-            noPadding ? 'mt-0' : 'mt-6'
+      {title && (
+        <div className="flex items-end">
+          {icon && <Icon className="mr-9 w-52 h-52" />}
+          {title && (
+            <h2 className="m-0 text-title-color text-2xl font-bold">{title}</h2>
           )}
-        >
-          {children}
         </div>
       )}
+      {children}
     </div>
   );
 }

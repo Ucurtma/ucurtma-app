@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Logo from '../icons/logo';
 import SearchIcon from '../icons/search';
-import Button from './button';
+import Button from './ui/button';
 
 function Header() {
   const navbarElements = [

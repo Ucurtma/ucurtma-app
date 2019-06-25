@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import cls from 'classnames';
-import Button from './button';
+import Button from './ui/button';
 import ChevronDown from '../icons/chevron-down';
-import Card from './card';
+import Card from './ui/card';
 import CampaignIcon from '../icons/campaign-icon';
 import WalletIcon from '../icons/wallet-icon';
 import SuccessIcon from '../icons/success-icon';
-import Paragraph from './paragraph';
+import Paragraph from './ui/paragraph';
 
 function Workflows() {
   const [activeItem, setActiveItem] = useState(0);

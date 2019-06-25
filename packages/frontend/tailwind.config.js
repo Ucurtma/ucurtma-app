@@ -144,6 +144,7 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
+      md: '28rem',
       '52': '52px',
       screen: '100vh',
     }),
@@ -198,6 +199,8 @@ module.exports = {
     minHeight: {
       '0': '0',
       '100': '100px',
+      md: '28rem',
+      lg: '32rem',
       full: '100%',
       screen: '100vh',
     },

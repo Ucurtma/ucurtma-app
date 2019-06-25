@@ -7,7 +7,9 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "lint-staged"
+    "export": "next export",
+    "lint": "lint-staged",
+    "deploy-staging": "aws s3 sync out/ s3://non-prod-ucurtma-app --delete"
   },
   "author": "",
   "license": "ISC",

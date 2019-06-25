@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install yarn -g
+      - yarn
+      - yarn bootstrap
+  pre_build:
+    commands:
+      - yarn lint
+  build:
+    commands:
+      - yarn build
+artifacts:
+  files:
+    - "**/*"
+  base-directory: "packages/frontend/out"

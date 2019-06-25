@@ -1,5 +1,6 @@
 import Paragraph from './ui/paragraph';
 import Button from './ui/button';
+import Title from './ui/title';
 
 function AboutUs() {
   return (
@@ -9,15 +10,14 @@ function AboutUs() {
           <h2 className="m-0 leading-tight text-2xl font-bold text-text-color">
             For People,
           </h2>
-          <h1 className="m-0 leading-tight text-3xl font-bold text-big-desc">
-            From People.
-          </h1>
+          <Title>From People.</Title>
         </div>
         <Paragraph className="border-l border-solid border-text-color pl-3 mb-10">
           We’re creating something beautiful, something wonderful. So, I can’t
           explain it as a front-end developer for now but I guess there will
           something good that writed by marketing team am I right?
         </Paragraph>
+        {/* TODO: add link here */}
         <Button color="#6F6F6F">LEARN MORE</Button>
       </div>
       <div className="w-3/5 text-center">

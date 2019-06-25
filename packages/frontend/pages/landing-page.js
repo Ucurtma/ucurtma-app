@@ -1,6 +1,7 @@
 import Header from '../components/header';
 import AboutUs from '../components/about-us';
 import Workflows from '../components/workflows';
+import WhyInvest from '../components/why-invest';
 
 function LandingPage() {
   return (
@@ -13,6 +14,9 @@ function LandingPage() {
       </div>
       <div className="container mx-auto">
         <Workflows />
+      </div>
+      <div className="container mx-auto">
+        <WhyInvest />
       </div>
     </>
   );

@@ -10,7 +10,8 @@
     "lint": "lerna run lint --parallel",
     "start:frontend": "lerna run --scope ucurtma-frontend dev",
     "deploy-staging": "lerna run deploy-staging",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "export": "lerna run export"
   },
   "husky": {
     "hooks": {

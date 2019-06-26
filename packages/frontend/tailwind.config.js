@@ -84,6 +84,7 @@ module.exports = {
     },
     boxShadow: {
       default: '0 0 24px rgba(155, 201, 255, 0.24)',
+      light: '0 0 12px rgba(155, 201, 255, 0.16)',
       none: 'none',
     },
     container: {},

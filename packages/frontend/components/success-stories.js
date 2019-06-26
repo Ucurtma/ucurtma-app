@@ -70,18 +70,23 @@ function SuccessStories() {
 
   return (
     <>
-      <div className="mb-10">
+      <div className="mb-4 sm:mb-10 p-4 sm:p-0">
         <Title>Who uses us?</Title>
       </div>
-      <Card className="flex mb-13 min-h-md" noPadding>
+      <Card
+        className="flex p-4 sm:p-0 sm:ml-0 sm:mr-0 mr-4 ml-4 mb-4 sm:mb-13 min-h-md"
+        noPadding
+      >
         {activeStory && (
           <>
             <div
               className="bg-cover w-5/12 rounded-l-2 overflow-hidden bg-no-repeat"
               style={{ backgroundImage: `url(${activeStory.imagePath})` }}
             />
-            <div className="w-7/12 p-18 flex justify-center flex-col">
-              <Title className="w-9/12 mb-4">{activeStory.title}</Title>
+            <div className="w-full sm:w-7/12 p-4 sm:p-18 flex justify-center flex-col">
+              <Title className="w-full sm:w-9/12 mb-4">
+                {activeStory.title}
+              </Title>
               <article>
                 <Paragraph className="mb-4">{activeStory.content}</Paragraph>
               </article>
@@ -95,13 +100,14 @@ function SuccessStories() {
           </>
         )}
       </Card>
-      <div className="flex mb-8">
+      <div className="flex flex-wrap justify-between sm:flex-no-wrap mb-4 sm:mb-0 mb-8 p-4 sm:p-0">
         {stories.map(story => (
           <Button
             type="bg"
-            className="shadow-light stories-button mx-4 w-full"
+            className="shadow-light stories-button mt-4 h-72 w-5/12 sm:w-full"
             color={story.id === activeStoryIndex ? '#F7F7F7' : '#f1f1f1'}
             key={story.id}
+            style={{ height: '72px' }}
             onClick={() => setActiveStoryIndex(story.id)}
           >
             {story.user.company.logo ? (
@@ -117,7 +123,7 @@ function SuccessStories() {
         ))}
         <Button
           type="bg"
-          className="shadow-light stories-button mx-4 w-full"
+          className="shadow-light stories-button mt-4 h-72 w-5/12 sm:w-full"
           color="#F4F4F4"
         >
           SEE MORE

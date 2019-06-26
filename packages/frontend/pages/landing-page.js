@@ -19,7 +19,7 @@ function LandingPage() {
       <div className="container mx-auto">
         <WhyInvest />
       </div>
-      <div className="container mx-auto mt-24">
+      <div className="container mx-auto mt-8 sm:mt-24">
         <SuccessStories />
       </div>
     </>

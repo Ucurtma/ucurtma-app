@@ -4,8 +4,8 @@ import Title from './ui/title';
 
 function AboutUs() {
   return (
-    <div className="pt-32 flex justify-start">
-      <div className="w-2/5">
+    <div className="pt-12 sm:pt-32 flex justify-start">
+      <div className="w-full p-4 sm:w-2/5 sm:p-0">
         <div className="mb-10">
           <h2 className="m-0 leading-tight text-2xl font-bold text-text-color">
             For People,
@@ -20,7 +20,7 @@ function AboutUs() {
         {/* TODO: add link here */}
         <Button color="#6F6F6F">LEARN MORE</Button>
       </div>
-      <div className="w-3/5 text-center">
+      <div className="hidden sm:block w-3/5 text-center">
         {/*
             TODO: Using PNG in here isn't make sense,
             We should create a SVG file later.

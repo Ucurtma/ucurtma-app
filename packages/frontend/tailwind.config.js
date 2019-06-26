@@ -150,6 +150,7 @@ module.exports = {
       md: '28rem',
       lg: '32rem',
       '52': '52px',
+      '72': '72px',
       screen: '100vh',
     }),
     inset: {

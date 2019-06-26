@@ -35,10 +35,13 @@ a {
   cursor: pointer;
 }
 
-.stories-button:first-child {
+.stories-button:first-child,
+.workflow-card:first-child {
   margin-left: 0;
 }
 
-.stories-button:last-child {
+.stories-button:last-child,
+.workflow-card:last-child {
   margin-right: 0;
+  margin-bottom: 0;
 }

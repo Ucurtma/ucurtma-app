@@ -29,4 +29,4 @@ We are using [Storybook](https://storybook.js.org/) as a component documentation
   yarn start:storybook
 ```
 
-This command will start our documentation page.
+This command will start our documentation page after waiting 10 seconds.

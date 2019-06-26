@@ -63,3 +63,6 @@ out
 
 # terraform
 .terraform
+
+# storybook
+storybook-static

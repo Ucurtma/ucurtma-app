@@ -87,14 +87,14 @@ function Workflows() {
           </Button>
         ))}
       </div>
-      <div className="flex mr-auto ml-auto my-16 divider h-px bg-text-color max-w-80" />
-      <div className="flex mb-16">
+      <div className="flex mr-auto ml-auto my-4 sm:my-16 divider h-px bg-text-color max-w-80" />
+      <div className="flex flex-col md:flex-row mb-4 sm:mb-16 p-4 sm:p-0">
         {workflows[activeItem].card.map((cardItem, i) => (
           <Card
             title={cardItem.title}
             icon={cardItem.icon}
             key={i.toString()}
-            className={cls('w-1/3 mx-3')}
+            className={cls('w-full md:w-1/3 mr-6 mb-6 workflow-card')}
           >
             <Paragraph className="text-lg leading-relaxed w-full mt-6">
               {cardItem.desc}
@@ -102,7 +102,7 @@ function Workflows() {
           </Card>
         ))}
       </div>
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-8 p-4 sm:p-0">
         <Button type="bg" color="#FCFCFC">
           CREATE A JOURNEY
         </Button>

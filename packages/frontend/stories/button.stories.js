@@ -10,7 +10,7 @@ storiesOf('Button', module)
     <Button
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
-      className={text('Classname', '')}
+      className={text('Classname', 'mt-10 ml-10')}
       color={color('Color')}
       textColor={color('Text Color')}
       type={select('Type', ['outlined', 'flat', 'bg'], 'outlined')}
@@ -22,7 +22,7 @@ storiesOf('Button', module)
     <Button
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
-      className={text('Classname', '')}
+      className={text('Classname', 'mt-10 ml-10')}
       color={color('Color')}
       textColor={color('Text Color')}
       type={select('Type', ['outlined', 'flat', 'bg'], 'flat')}
@@ -34,7 +34,7 @@ storiesOf('Button', module)
     <Button
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
-      className={text('Classname', '')}
+      className={text('Classname', 'mt-10 ml-10')}
       color={color('Color')}
       textColor={color('Text Color')}
       type={select('Type', ['outlined', 'flat', 'bg'], 'bg')}

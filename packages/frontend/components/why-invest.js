@@ -5,7 +5,7 @@ import Title from './ui/title';
 function WhyInvest() {
   return (
     <div className="pt-32 flex">
-      <div className="w-2/6">
+      <div className="w-3/12">
         <div className="mb-10">
           <Title>Why Invest?</Title>
         </div>
@@ -18,7 +18,7 @@ function WhyInvest() {
         {/* TODO: add link here */}
         <Button color="#6F6F6F">READ MORE</Button>
       </div>
-      <div className="w-4/6 flex justify-center relative">
+      <div className="w-9/12 flex justify-center relative">
         {/*
         TODO: Using PNG in here isn't make sense,
         We should create a SVG file later.
@@ -28,7 +28,7 @@ function WhyInvest() {
       */}
         <img
           className="absolute w-full -z-1"
-          style={{ top: -170 }}
+          style={{ bottom: -20 }}
           src="static/img/why-invest.png"
           alt="About Us"
         />

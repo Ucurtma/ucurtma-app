@@ -2,7 +2,7 @@ import SvgIcon from './svg-icon';
 
 function Logo({ ...otherProps }) {
   return (
-    <SvgIcon viewBox="0 0 155 52" {...otherProps}>
+    <SvgIcon noSize viewBox="0 0 155 52" {...otherProps}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -4,6 +4,19 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+references:
+  bootstrap_lerna: &bootstrap_lerna
+    run:
+      name: Bootstrap Lerna
+      command: yarn && yarn bootstrap
+  install_aws_cli: &install_aws_cli
+    run:
+      name: Install AWS CLI
+      command: sudo apt-get -y -qq install awscli
+  build_deploy_to_aws: &build_deploy_to_aws
+    run:
+      name: Build and deploy to AWS
+      command: yarn build && yarn deploy-staging
 jobs:
   build:
     docker:
@@ -16,18 +29,11 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: yarn
-      - run: yarn bootstrap
+      - *bootstrap_lerna
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # run tests!
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
-      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
-      - run: sudo python get-pip.py
-      - run: sudo pip install awscli --upgrade
-      - run: aws --version
-      - run: aws s3 ls
-      - run: yarn build
-      - run: yarn deploy-staging
+      - *install_aws_cli
+      - *build_deploy_to_aws
+

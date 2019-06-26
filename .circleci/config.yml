@@ -4,6 +4,27 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+references:
+  bootstrap_lerna: &bootstrap_lerna
+    run:
+      name: Bootstrap Lerna
+      command: yarn && yarn bootstrap
+  install_aws_cli: &install_aws_cli
+    run:
+      name: Install AWS CLI
+      command: |
+            sudo su -c "printf 'deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main' > /etc/apt/sources.list"
+            sudo apt-get update
+            sudo apt-get install -y python-software-properties python3-pip
+            sudo pip3 install awscli
+  deploy_to_non_prod: &deploy_to_non_prod
+    run:
+      name: Deploy to AWS non-prod bucket
+      command: aws s3 sync ./packages/frontend/out/ s3://non-prod-ucurtma-app --delete
+  build_static_bundle: &build_static_bundle
+    run:
+      name: Export the application bundle
+      command: yarn build && yarn export
 jobs:
   build:
     docker:
@@ -16,18 +37,12 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: yarn
-      - run: yarn bootstrap
+      - *bootstrap_lerna
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # run tests!
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
-      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
-      - run: sudo python get-pip.py
-      - run: sudo pip install awscli --upgrade
-      - run: aws --version
-      - run: aws s3 ls
-      - run: yarn build
-      - run: yarn deploy-staging
+      - *install_aws_cli
+      - *build_static_bundle
+      - *deploy_to_non_prod
+

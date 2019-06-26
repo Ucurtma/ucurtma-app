@@ -12,7 +12,11 @@ references:
   install_aws_cli: &install_aws_cli
     run:
       name: Install AWS CLI
-      command: sudo apt-get -y -qq install awscli
+      command: |
+            sudo su -c "printf 'deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main' > /etc/apt/sources.list"
+            sudo apt-get update
+            sudo apt-get install -y python-software-properties python3-pip
+            sudo pip3 install awscli
   deploy_to_non_prod: &deploy_to_non_prod
     run:
       name: Deploy to AWS non-prod bucket

@@ -1,13 +1,22 @@
+import React from 'react';
 import cls from 'classnames';
 import { darken } from 'polished';
 import PropTypes from 'prop-types';
 
-function Button({ tag, children, type, color, className, ...otherProps }) {
+function Button({
+  tag,
+  children,
+  type,
+  color,
+  className,
+  textColor,
+  ...otherProps
+}) {
   const Tag = tag;
 
   const buttonType = {
     outlined: 'button-outlined border-2 border-solid',
-    flat: 'p-0 m-0',
+    flat: 'button-flat p-0 m-0',
     bg: 'button-bg',
   };
 
@@ -20,19 +29,28 @@ function Button({ tag, children, type, color, className, ...otherProps }) {
       )}
       {...otherProps}
     >
+      {/* TODO: Change hex colors with css variables. */}
       <style jsx>{`
+        .button-flat {
+          color: ${textColor || '#111d27'};
+        }
+        .button-flat:hover {
+          color: ${darken(0.1, textColor || '#111d27')};
+        }
         .button-bg {
           background: ${color};
+          color: ${textColor || '#111d27'};
         }
         .button-bg:hover {
           background: ${darken(0.1, color)};
+          color: ${darken(0.1, textColor || '#111d27')};
         }
         .button-outlined {
-          color: ${color};
+          color: ${textColor || color};
         }
         .button-outlined:hover {
-          border: 2px solid ${darken(0.1, color)};
-          color: ${darken(0.1, color)};
+          border: 2px solid ${darken(0.1, textColor || color)};
+          color: ${darken(0.1, textColor || color)};
         }
       `}</style>
       {children}
@@ -44,6 +62,7 @@ Button.defaultProps = {
   tag: 'button',
   className: '',
   color: '#39baba',
+  textColor: '',
   type: 'outlined',
 };
 
@@ -52,6 +71,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   color: PropTypes.string,
+  textColor: PropTypes.string,
   type: PropTypes.oneOf(['outlined', 'flat', 'bg']),
 };
 

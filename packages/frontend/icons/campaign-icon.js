@@ -1,3 +1,4 @@
+import React from 'react';
 import SvgIcon from './svg-icon';
 
 function CampaignIcon({ ...otherProps }) {

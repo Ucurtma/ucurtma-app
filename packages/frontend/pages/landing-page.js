@@ -2,7 +2,7 @@ import Header from '../components/header';
 import AboutUs from '../components/about-us';
 import Workflows from '../components/workflows';
 import WhyInvest from '../components/why-invest';
-import Testimonials from '../components/testimonials';
+import SuccessStories from '../components/success-stories';
 
 function LandingPage() {
   return (
@@ -20,7 +20,7 @@ function LandingPage() {
         <WhyInvest />
       </div>
       <div className="container mx-auto mt-24">
-        <Testimonials />
+        <SuccessStories />
       </div>
     </>
   );

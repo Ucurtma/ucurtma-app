@@ -1,7 +1,17 @@
+import PropTypes from 'prop-types';
 import cls from 'classnames';
 
-function SvgIcon({ children, className, viewBox, size, ...otherProps }) {
-  const style = size ? { width: size, height: size } : undefined;
+function SvgIcon({
+  children,
+  className,
+  viewBox,
+  size,
+  noSize,
+  ...otherProps
+}) {
+  const style = noSize
+    ? undefined
+    : { width: `${size}px`, height: `${size}px` };
   return (
     <svg
       className={cls(
@@ -16,5 +26,15 @@ function SvgIcon({ children, className, viewBox, size, ...otherProps }) {
     </svg>
   );
 }
+
+SvgIcon.defaultProps = {
+  size: '24',
+  noSize: false,
+};
+
+SvgIcon.propTypes = {
+  size: PropTypes.string,
+  noSize: PropTypes.bool,
+};
 
 export default SvgIcon;

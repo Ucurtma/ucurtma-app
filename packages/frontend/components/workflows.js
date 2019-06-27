@@ -103,7 +103,7 @@ function Workflows() {
         ))}
       </div>
       <div className="flex justify-center mb-8 p-4 sm:p-0">
-        <Button type="bg" color="#FCFCFC">
+        <Button type="custom" color="#FCFCFC">
           CREATE A JOURNEY
         </Button>
         <div className="count border-l border-solid border-text-color ml-8 pl-8 opacity-50">

@@ -11,9 +11,9 @@ storiesOf('Button', module)
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
       className={text('Classname', 'mt-10 ml-10')}
-      color={color('Color')}
       textColor={color('Text Color')}
-      type={select('Type', ['outlined', 'flat', 'bg'], 'outlined')}
+      color={color('Color')}
+      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'outlined')}
     >
       {text('Button Text', 'Click Here')}
     </Button>
@@ -23,9 +23,9 @@ storiesOf('Button', module)
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
       className={text('Classname', 'mt-10 ml-10')}
-      color={color('Color')}
       textColor={color('Text Color')}
-      type={select('Type', ['outlined', 'flat', 'bg'], 'flat')}
+      color={color('Color')}
+      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'flat')}
     >
       {text('Button Text', 'Click Here')}
     </Button>
@@ -35,9 +35,21 @@ storiesOf('Button', module)
       onClick={action('clicked')}
       tag={select('Tag', ['a', 'button'], 'button')}
       className={text('Classname', 'mt-10 ml-10')}
-      color={color('Color')}
       textColor={color('Text Color')}
-      type={select('Type', ['outlined', 'flat', 'bg'], 'bg')}
+      color={color('Color')}
+      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'bg')}
+    >
+      {text('Button Text', 'Click Here')}
+    </Button>
+  ))
+  .add('Custom Button', () => (
+    <Button
+      onClick={action('clicked')}
+      tag={select('Tag', ['a', 'button'], 'button')}
+      className={text('Classname', 'mt-10 ml-10')}
+      textColor={color('Text Color')}
+      color={color('Color')}
+      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'custom')}
     >
       {text('Button Text', 'Click Here')}
     </Button>

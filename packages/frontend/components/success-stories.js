@@ -103,9 +103,9 @@ function SuccessStories() {
       <div className="flex flex-wrap justify-between sm:flex-no-wrap mb-4 mb-8 p-4 sm:p-0">
         {stories.map(story => (
           <Button
-            type="bg"
+            type="custom"
             className="shadow-light stories-button mt-4 h-72 w-5/12 sm:h-auto sm:mr-8"
-            color={story.id === activeStoryIndex ? '#F7F7F7' : '#f1f1f1'}
+            color={story.id === activeStoryIndex ? '#FFF' : '#F5F5F5'}
             key={story.id}
             style={{ height: '72px' }}
             onClick={() => setActiveStoryIndex(story.id)}
@@ -122,8 +122,8 @@ function SuccessStories() {
           </Button>
         ))}
         <Button
-          type="bg"
-          className="shadow-light stories-button mt-4 h-72 sm:h-auto  sm:mr-8 w-5/12"
+          type="custom"
+          className="shadow-light stories-button mt-4 h-72 sm:h-auto sm:mr-8 w-5/12"
           color="#F4F4F4"
         >
           SEE MORE

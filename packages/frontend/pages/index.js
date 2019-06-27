@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import LandingPage from './landing-page';
-import '../styles/normalize.css';
 import '../styles/global.css';
 
 function Index() {

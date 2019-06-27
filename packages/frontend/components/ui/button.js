@@ -23,13 +23,17 @@ function Button({
   return (
     <Tag
       className={cls(
-        'font-bold py-3 px-6 rounded-full',
+        'font-bold text-sm sm:text-base py-2 sm:py-3 px-6 rounded-full',
         buttonType[type],
         className
       )}
       {...otherProps}
     >
-      {/* TODO: Change hex colors with css variables. */}
+      {/* TODO: Change hex colors with css variables.
+        Also, change style jsx with tailwind.
+        Style jsx adds <style> tag to body everytime that you use button in somewhere.
+        If you use 4 buttons, body has 4 style.
+      */}
       <style jsx>{`
         .button-flat {
           color: ${textColor || '#111d27'};

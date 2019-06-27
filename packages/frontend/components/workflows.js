@@ -14,7 +14,7 @@ function Workflows() {
   const workflows = [
     {
       id: 0,
-      title: 'Investor Workflow',
+      title: 'I am Investor',
       card: [
         {
           icon: CampaignIcon,
@@ -38,7 +38,7 @@ function Workflows() {
     },
     {
       id: 1,
-      title: 'Student Workflow',
+      title: 'I am Student',
       card: [
         {
           icon: CampaignIcon,
@@ -66,14 +66,14 @@ function Workflows() {
 
   return (
     <>
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center mt-4 sm:mt-16">
         {workflows.map((workflow, i) => (
           <Button
             type="flat"
             key={i.toString()}
             onClick={() => setActiveItem(workflow.id)}
             className={cls(
-              'font-light text-2xl',
+              'font-light text-base sm:text-2xl',
               'flex items-center',
               activeItem === workflow.id
                 ? 'text-title-color'

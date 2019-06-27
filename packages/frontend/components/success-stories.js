@@ -80,10 +80,10 @@ function SuccessStories() {
         {activeStory && (
           <>
             <div
-              className="bg-cover w-5/12 rounded-l-2 overflow-hidden bg-no-repeat"
+              className="bg-cover w-3/12 sm:w-5/12 rounded-l-2 overflow-hidden bg-no-repeat bg-center"
               style={{ backgroundImage: `url(${activeStory.imagePath})` }}
             />
-            <div className="w-full sm:w-7/12 p-4 sm:p-18 flex justify-center flex-col">
+            <div className="w-full w-9/12 sm:w-7/12 p-4 sm:p-18 flex justify-center flex-col">
               <Title className="w-full sm:w-9/12 mb-4">
                 {activeStory.title}
               </Title>
@@ -100,11 +100,11 @@ function SuccessStories() {
           </>
         )}
       </Card>
-      <div className="flex flex-wrap justify-between sm:flex-no-wrap mb-4 sm:mb-0 mb-8 p-4 sm:p-0">
+      <div className="flex flex-wrap justify-between sm:flex-no-wrap mb-4 mb-8 p-4 sm:p-0">
         {stories.map(story => (
           <Button
             type="bg"
-            className="shadow-light stories-button mt-4 h-72 w-5/12 sm:w-full"
+            className="shadow-light stories-button mt-4 h-72 w-5/12 sm:h-auto sm:mr-8"
             color={story.id === activeStoryIndex ? '#F7F7F7' : '#f1f1f1'}
             key={story.id}
             style={{ height: '72px' }}
@@ -123,7 +123,7 @@ function SuccessStories() {
         ))}
         <Button
           type="bg"
-          className="shadow-light stories-button mt-4 h-72 w-5/12 sm:w-full"
+          className="shadow-light stories-button mt-4 h-72 sm:h-auto  sm:mr-8 w-5/12"
           color="#F4F4F4"
         >
           SEE MORE

@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Ucurtma/ucurtma-app.svg?style=svg)](https://circleci.com/gh/Ucurtma/ucurtma-app)
+
 # Uçurtma
 
 There will be a good description/readme later. But now, this repository is here just for development purposes.

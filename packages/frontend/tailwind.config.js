@@ -20,6 +20,7 @@ module.exports = {
       'body-bg': 'var(--body-bg)',
       'card-bg': 'var(--card-bg)',
       'disabled-title': 'var(--disabled-title)',
+      'default-button': 'var(--default-button)',
     },
     spacing: {
       px: '1px',

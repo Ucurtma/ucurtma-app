@@ -6,7 +6,7 @@ function Title({ children, className }) {
   return (
     <h1
       className={cls(
-        'm-0 leading-tight text-xl sm:text-3xl font-bold text-big-desc',
+        'm-0 leading-tight text-3xl font-bold text-big-desc',
         className
       )}
     >

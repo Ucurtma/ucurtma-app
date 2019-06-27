@@ -4,12 +4,12 @@ import Title from './ui/title';
 
 function WhyInvest() {
   return (
-    <div className="pt-4 sm:pt-32 flex p-4 sm:p-0">
+    <div className="pt-4 sm:pt-32 sm:flex p-4 sm:p-0">
       <div className="w-full sm:w-3/12">
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <Title>Why Invest?</Title>
         </div>
-        <Paragraph className="border-l border-solid border-text-color pl-3 mb-10">
+        <Paragraph className="border-l border-solid border-text-color pl-3 mb-6 sm:mb-10">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In iaculis
           leo arcu, quis placerat risus sodales eget. Phasellus ut turpis
           consequat, laoreet lectus eu, cursus sem. Etiam vestibulum efficitur
@@ -18,7 +18,7 @@ function WhyInvest() {
         {/* TODO: add link here */}
         <Button color="#6F6F6F">READ MORE</Button>
       </div>
-      <div className="w-9/12 hidden sm:block flex justify-center relative">
+      <div className="w-full sm:w-9/12 flex justify-center relative">
         {/*
         TODO: Using PNG in here isn't make sense,
         We should create a SVG file later.
@@ -27,7 +27,7 @@ function WhyInvest() {
         Also, this image is seems like pixel pixel because of remove.bg.
       */}
         <img
-          className="absolute w-full -z-1"
+          className="sm:absolute w-full -z-1"
           style={{ bottom: -20 }}
           src="static/img/why-invest.png"
           alt="About Us"

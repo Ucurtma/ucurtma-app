@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import cls from 'classnames';
 import Button from './ui/button';
 import ChevronDown from '../icons/chevron-down';
@@ -104,7 +105,11 @@ function Workflows() {
       </div>
       <div className="flex justify-center mb-8 p-4 sm:p-0">
         <Button type="custom" color="#FCFCFC">
-          CREATE A JOURNEY
+          <Link href="/create-journey">
+            <a className="text-navbar-link font-bold no-underline">
+              CREATE A JOURNEY
+            </a>
+          </Link>
         </Button>
         <div className="count border-l border-solid border-text-color ml-8 pl-8 opacity-50">
           <p className="font-light text-text-color">We have</p>

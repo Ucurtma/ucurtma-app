@@ -25,7 +25,7 @@ function IntroduceSteps() {
         path: 'static/img/step-02-upload.png',
         alt: 'Upload Documents',
       },
-      className: 'flex-row-reverse',
+      className: 'sm:flex-row-reverse',
       title: 'Upload documents, Verify yourself.',
       children: (
         <>

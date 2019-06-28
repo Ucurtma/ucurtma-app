@@ -66,7 +66,7 @@ module.exports = {
     },
     borderColor: theme => ({
       ...theme('colors'),
-      default: theme('colors.gray.300', 'currentColor'),
+      input: 'var(--input-border)',
     }),
     borderRadius: {
       none: '0',
@@ -243,7 +243,10 @@ module.exports = {
     stroke: {
       current: 'currentColor',
     },
-    textColor: theme => theme('colors'),
+    textColor: theme => ({
+      ...theme('colors'),
+      label: 'var(--label-color)',
+    }),
     width: theme => ({
       auto: 'auto',
       ...theme('spacing'),

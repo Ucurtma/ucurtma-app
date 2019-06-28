@@ -5,8 +5,10 @@
 :root {
   --text-color: #6f6f6f;
   --title-color: #4f4f4f;
+  --label-color: #b4b4b4;
   --disabled-title: #c9c9c9;
   --navbar-link: #111d27;
+  --input-border: #eaeaea;
   --big-desc: #373737;
   --body-bg: #f3f3f3;
   --card-bg: #fcfcfc;
@@ -45,4 +47,9 @@ a {
 .workflow-card:last-child {
   margin-right: 0;
   margin-bottom: 0;
+}
+
+input:disabled {
+  background: var(--input-border);
+  cursor: not-allowed;
 }

@@ -4,8 +4,13 @@ import Title from '../ui/title';
 
 function StepInfo({ img, title, step, children, className }) {
   return (
-    <div className={cls('flex items-center mt-32', className)}>
-      <div className="flex justify-center items-center w-full sm:w-6/12">
+    <div
+      className={cls(
+        'flex flex-col sm:flex-row items-center mt-8 sm:mt-32 p-4 sm:p-0',
+        className
+      )}
+    >
+      <div className="flex justify-center items-center w-full mb-12 sm:mb-0 sm:w-6/12">
         {/* TODO: trim step-01-signup.png when you have a photo editor,
           there is too much padding on bottom  */}
         <img className="pointer-events-none" src={img.path} alt={img.alt} />

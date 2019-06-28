@@ -61,7 +61,7 @@ function IntroduceSteps() {
   ];
   return (
     <div>
-      <Title type="small" className="w-full mt-6 sm:mt-18 sm:w-5/12">
+      <Title type="small" className="w-full mt-6 p-4 sm:p-0 sm:mt-18 sm:w-5/12">
         Hey! Let me intruduce our journey steps before you start!
       </Title>
       {steps.map(step => (

@@ -7,7 +7,7 @@ function IntroduceSteps() {
     {
       step: '01',
       img: {
-        path: 'static/img/step-01-signup.png',
+        path: '/static/img/step-01-signup.png',
         alt: 'Sign up',
       },
       title: 'Sign up and introduce your self to us.',
@@ -22,7 +22,7 @@ function IntroduceSteps() {
     {
       step: '02',
       img: {
-        path: 'static/img/step-02-upload.png',
+        path: '/static/img/step-02-upload.png',
         alt: 'Upload Documents',
       },
       className: 'sm:flex-row-reverse',
@@ -46,7 +46,7 @@ function IntroduceSteps() {
     {
       step: '03',
       img: {
-        path: 'static/img/step-03-wait-for-approval.png',
+        path: '/static/img/step-03-wait-for-approval.png',
         alt: 'Wait for Approval',
       },
       title: 'Wait for approval.',

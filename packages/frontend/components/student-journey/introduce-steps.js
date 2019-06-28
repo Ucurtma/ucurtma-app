@@ -66,6 +66,7 @@ function IntroduceSteps() {
       </Title>
       {steps.map(step => (
         <StepInfo
+          key={step.step}
           img={step.img}
           step={step.step}
           title={step.title}

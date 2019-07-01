@@ -59,6 +59,7 @@ function IntroduceSteps() {
       ),
     },
   ];
+
   return (
     <div>
       <Title type="small" className="w-full mt-6 p-4 sm:p-0 sm:mt-18 sm:w-5/12">

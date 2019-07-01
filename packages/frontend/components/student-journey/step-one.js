@@ -6,7 +6,7 @@ import Card from '../ui/card';
 function StepOne() {
   return (
     <div className="flex">
-      <div className="px-4 w-full sm:w-6/12">
+      <div className="px-4 w-full flex items-center sm:w-6/12">
         <img src="/static/img/plane.png" alt="Signup" />
       </div>
       <div className="w-full sm:w-6/12 px-4">

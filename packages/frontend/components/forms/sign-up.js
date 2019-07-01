@@ -76,14 +76,19 @@ function Signup() {
             errors={touched.passwordConfirmation && errors.passwordConfirmation}
             onChange={handleChange}
           />
-          <Button
-            isSubmit
-            disabled={isSubmitting}
-            className="w-full sm:w-auto"
-            color="#6F6F6F"
-          >
-            LEARN MORE
-          </Button>
+          <div className="flex">
+            {/* add checkbox here after pr comes. */}
+            <Button
+              type="custom"
+              textColor="#FFF"
+              color="#66E5B8"
+              isSubmit
+              disabled={isSubmitting}
+              className="w-full sm:w-auto ml-auto"
+            >
+              SIGN UP
+            </Button>
+          </div>
         </form>
       )}
     </Formik>

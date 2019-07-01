@@ -10,6 +10,7 @@ function Button({
   color,
   textColor,
   style,
+  isSubmit,
   ...otherProps
 }) {
   const Tag = tag;
@@ -39,6 +40,7 @@ function Button({
         buttonType[type],
         className
       )}
+      type={isSubmit ? 'submit' : 'button'}
       style={color ? { ...customStyle, ...style } : undefined}
       {...otherProps}
     >
@@ -53,6 +55,7 @@ Button.defaultProps = {
   textColor: '',
   color: '',
   type: 'outlined',
+  isSubmit: false,
 };
 
 Button.propTypes = {
@@ -62,6 +65,7 @@ Button.propTypes = {
   color: PropTypes.string,
   textColor: PropTypes.string,
   type: PropTypes.oneOf(['outlined', 'flat', 'bg', 'custom']),
+  isSubmit: PropTypes.bool,
 };
 
 export default Button;

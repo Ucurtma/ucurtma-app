@@ -21,6 +21,8 @@ module.exports = {
       'card-bg': 'var(--card-bg)',
       'disabled-title': 'var(--disabled-title)',
       'default-button': 'var(--default-button)',
+      danger: 'var(--danger)',
+      success: 'var(--success)',
     },
     spacing: {
       px: '1px',

@@ -21,6 +21,9 @@ module.exports = {
       'card-bg': 'var(--card-bg)',
       'disabled-title': 'var(--disabled-title)',
       'default-button': 'var(--default-button)',
+      'label-color': 'var(--label-color)',
+      'success-color': 'var(--success-color)',
+      'error-color': 'var(--error-color)',
     },
     spacing: {
       px: '1px',

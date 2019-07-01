@@ -14,6 +14,9 @@
   --card-bg: #fcfcfc;
   --default-button: #39baba;
   --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
+  --label-color: #b4b4b4;
+  --success-color: #66e6b8;
+  --error-color: #e66666;
 }
 
 button {

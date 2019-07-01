@@ -5,7 +5,7 @@ import Button from '../components/ui/button';
 import StepOne from '../components/student-journey/step-one';
 
 function CreateJourney() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
     <div className="container mx-auto mt-8">

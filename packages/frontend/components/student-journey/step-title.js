@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import cls from 'classnames';
 import Title from '../ui/title';
 
-function StepTitle({ step, title, children, className }) {
+function StepTitle({ step, title, children, fullWidth, className }) {
   return (
-    <div className={cls('w-full sm:w-6/12', className)}>
+    <div className={cls('w-full', !fullWidth && 'sm:w-6/12', className)}>
       <h4>STEP {step}</h4>
       <Title className="mb-4 w-6/12" type="small">
         {title}
@@ -17,6 +17,7 @@ function StepTitle({ step, title, children, className }) {
 StepTitle.defaultProps = {
   children: undefined,
   className: '',
+  fullWidth: false,
 };
 
 StepTitle.propTypes = {
@@ -24,6 +25,7 @@ StepTitle.propTypes = {
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
+  fullWidth: PropTypes.bool,
 };
 
 export default StepTitle;

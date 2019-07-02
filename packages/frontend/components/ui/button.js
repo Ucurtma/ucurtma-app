@@ -26,6 +26,12 @@ function Button({
     color: textColor || color,
   };
 
+  if (type === 'flat') {
+    customStyle = {
+      color: textColor,
+    };
+  }
+
   if (type === 'custom') {
     customStyle = {
       background: color,
@@ -41,7 +47,7 @@ function Button({
         className
       )}
       type={isSubmit ? 'submit' : 'button'}
-      style={color ? { ...customStyle, ...style } : undefined}
+      style={color || textColor ? { ...customStyle, ...style } : undefined}
       {...otherProps}
     >
       {children}

@@ -2,6 +2,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
 import Button from '../ui/button';
+import Paragraph from '../ui/paragraph';
+
+// TODO: implement reCAPTCHA to here.
 
 const signupScheme = Yup.object().shape({
   email: Yup.string()
@@ -76,8 +79,18 @@ function Signup() {
             errors={touched.passwordConfirmation && errors.passwordConfirmation}
             onChange={handleChange}
           />
-          <div className="flex">
-            {/* add checkbox here after pr comes. */}
+          {/* TODO: add checkbox here after pr comes. */}
+          <div className="flex mt-6">
+            <Paragraph>
+              Already have an account?{' '}
+              <Button
+                textColor="#66E5B8"
+                className="py-0 px-0 sm:py-0 sm:px-0"
+                type="flat"
+              >
+                Log in
+              </Button>
+            </Paragraph>
             <Button
               type="custom"
               textColor="#FFF"

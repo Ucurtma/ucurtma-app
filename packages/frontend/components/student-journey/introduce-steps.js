@@ -1,3 +1,4 @@
+import React from 'react';
 import Title from '../ui/title';
 import Paragraph from '../ui/paragraph';
 import StepInfo from './step-info';

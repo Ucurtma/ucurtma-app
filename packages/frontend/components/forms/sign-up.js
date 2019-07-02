@@ -1,3 +1,4 @@
+import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
@@ -15,10 +16,9 @@ const signupScheme = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   password: Yup.string().required('Password is required'),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match'
-  ),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Required'),
 });
 
 function Signup() {
@@ -33,7 +33,7 @@ function Signup() {
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values, null, 2));
+          console.log(values);
           setSubmitting(false);
         }, 400);
       }}

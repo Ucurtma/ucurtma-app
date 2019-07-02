@@ -17,7 +17,7 @@ storiesOf('Checkbox', module)
   .add('Empty checkbox with label', () => (
     <div className="my-10 mx-10">
       <Checkbox
-        label="Label"
+        label="This is a label"
         disabled={boolean('Disabled Status', false)}
         required={boolean('Required Status', false)}
       />
@@ -27,7 +27,7 @@ storiesOf('Checkbox', module)
     <div className="my-10 mx-10">
       <Checkbox
         checked
-        isDangerous={boolean('Dangerous Status', false)}
+        type="success"
         disabled={boolean('Disabled Status', false)}
         required={boolean('Required Status', false)}
         onChange={action('change value')}
@@ -37,8 +37,8 @@ storiesOf('Checkbox', module)
   .add('Checked checkbox with label', () => (
     <div className="my-10 mx-10">
       <Checkbox
-        label="Label"
-        isDangerous={boolean('Dangerous Status', false)}
+        label="This is a label"
+        type="success"
         disabled={boolean('Disabled Status', false)}
         required={boolean('Required Status', false)}
         checked
@@ -53,18 +53,18 @@ storiesOf('Checkbox', module)
         required={boolean('Required Status', false)}
         onChange={action('change value')}
         checked
-        isDangerous={boolean('Dangerous Status', true)}
+        type="danger"
       />
     </div>
   ))
   .add('Dangerous checkbox with label', () => (
     <div className="my-10 mx-10">
       <Checkbox
-        label="Dangerous Label"
+        label="This is a label"
         disabled={boolean('Disabled Status', false)}
         required={boolean('Required Status', false)}
         checked
-        isDangerous={boolean('Dangerous Status', true)}
+        type="danger"
         onChange={action('change value')}
       />
     </div>

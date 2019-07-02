@@ -5,7 +5,7 @@ import cls from 'classnames';
 function Checkbox({
   name,
   checked,
-  isDangerous,
+  type,
   disabled,
   className,
   value,
@@ -21,29 +21,29 @@ function Checkbox({
   }
 
   let customStyleName = '';
-  if (checked && !isDangerous) {
+  if (checked && type === 'success') {
     customStyleName = 'success-check-box';
-  } else if (checked && isDangerous) {
-    customStyleName = 'error-check-box';
+  } else if (checked && type === 'danger') {
+    customStyleName = 'danger-check-box';
   }
 
   return (
-    <div className={`flex items-center default-check-box ${customStyleName}`}>
+    <div className="flex items-center">
       <input
         id={name}
         name={name}
         type="checkbox"
         checked={checked}
-        className={cls(
-          'mr-2 w-5 text-lg rounded-lg shadow-light border border-solid border-input',
-          className
-        )}
+        className={cls(`default-check-box ${customStyleName}`, className)}
         disabled={disabled}
         onChange={e => changeValue(e.currentTarget.checked)}
         required={required}
         {...otherProps}
       />
-      <label htmlFor={name} className="text-label-color text-base font-normal">
+      <label
+        htmlFor={name}
+        className="text-label-color text-base font-normal checkbox-label"
+      >
         {label}
         {required && <span className="ml-1">*</span>}
       </label>
@@ -56,6 +56,7 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   required: false,
+  type: '',
   label: '',
 };
 
@@ -66,6 +67,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   label: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default Checkbox;

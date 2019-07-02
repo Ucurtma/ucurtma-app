@@ -5,7 +5,7 @@ import Title from '../ui/title';
 function StepTitle({ step, title, children, fullWidth, className }) {
   return (
     <div className={cls('w-full', !fullWidth && 'sm:w-6/12', className)}>
-      <h4>STEP {step}</h4>
+      <h4 className="font-bold">STEP {step}</h4>
       <Title className="mb-4 w-6/12" type="small">
         {title}
       </Title>

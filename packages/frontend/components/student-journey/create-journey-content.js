@@ -3,6 +3,7 @@ import Header from '../header';
 import IntroduceSteps from './introduce-steps';
 import Button from '../ui/button';
 import StepOne from './step-one';
+import StepTwo from './step-two';
 import { CreateJourneyCtx } from '../../pages/create-journey';
 
 function CreateJourneyContent() {
@@ -26,6 +27,7 @@ function CreateJourneyContent() {
           </>
         )}
         {state.activeStep === 1 && <StepOne />}
+        {state.activeStep === 2 && <StepTwo />}
       </div>
     </div>
   );

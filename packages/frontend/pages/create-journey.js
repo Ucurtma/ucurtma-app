@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
-import CreateJourneyContent from '../components/student-journey/create-journey';
+import CreateJourneyContent from '../components/student-journey/create-journey-content';
 
 /*
   TODO / DISCUSS: i had create reducers folder and make all files related with context before this one.

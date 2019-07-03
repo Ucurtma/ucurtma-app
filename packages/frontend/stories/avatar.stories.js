@@ -26,6 +26,6 @@ storiesOf('Avatar', module)
       image="/img/placeholder-image-02.jpg"
     />
   ))
-  .add('Haven"t got Image Avatar', () => (
+  .add('Avatar without Image', () => (
     <Avatar className={text('Classname')} type="lg" />
   ));

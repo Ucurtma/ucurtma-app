@@ -21,6 +21,7 @@ module.exports = {
       'card-bg': 'var(--card-bg)',
       'disabled-title': 'var(--disabled-title)',
       'default-button': 'var(--default-button)',
+      'label-color': 'var(--label-color)',
       danger: 'var(--danger)',
       success: 'var(--success)',
     },

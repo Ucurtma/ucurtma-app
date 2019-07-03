@@ -55,3 +55,62 @@ input:disabled {
   background: var(--input-border);
   cursor: not-allowed;
 }
+
+.default-check-box {
+  position: absolute;
+  opacity: 0;
+}
+
+.default-check-box + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.default-check-box + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--input-border);
+  text-align: center;
+  vertical-align: middle;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 16px rgba(155, 201, 255, 0.16);
+  border-radius: 7px;
+}
+
+.danger-check-box:checked + label:before {
+  background: var(--danger);
+}
+
+.success-check-box:checked + label:before {
+  background: var(--success);
+}
+
+.default-check-box:disabled + label {
+  color: var(--input-border);
+  cursor: auto;
+}
+
+.default-check-box:disabled + label:before {
+  box-shadow: none;
+  background: var(--input-border);
+}
+
+.default-check-box:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 5px;
+  /*Make it a small rectangle so the border will create an L-shape*/
+  width: 7px;
+  height: 13px;
+  /*Add a white border on the bottom and left, creating that 'L' */
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  /*Rotate the L 45 degrees to turn it into a checkmark*/
+  transform: rotate(45deg);
+}

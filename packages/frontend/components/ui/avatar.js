@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 
-function Avatar({ type, className, image }) {
+function Avatar({ type, className, imagePath }) {
   const avatarType = {
     xs: 'w-8 h-8',
     normal: 'w-11 h-11',
@@ -17,10 +17,12 @@ function Avatar({ type, className, image }) {
         className
       )}
     >
-      {image ? (
-        <img
-          className="bg-no-repeat bg-center bg-contain"
-          src={image}
+      {imagePath ? (
+        <div
+          className="bg-no-repeat bg-center bg-cover w-full h-full"
+          style={{
+            backgroundImage: `url('${imagePath}')`,
+          }}
           alt="noopener norefferer"
         />
       ) : (
@@ -31,14 +33,14 @@ function Avatar({ type, className, image }) {
 }
 
 Avatar.defaultProps = {
-  image: '',
+  imagePath: '',
   type: 'normal',
   className: '',
 };
 
 Avatar.propTypes = {
   type: PropTypes.oneOf(['xs', 'normal', 'lg']),
-  image: PropTypes.string,
+  imagePath: PropTypes.string,
   className: PropTypes.string,
 };
 

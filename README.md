@@ -23,7 +23,7 @@ There is only front end package for now. If you want to run front-end using lern
 
 This will kick `yarn start` on front end package. You can go to `localhost:3000` after running command.
 
-## Storyboook
+## Storybook
 
 We are using [Storybook](https://storybook.js.org/) as a component documentation tool. If you want to see how to use our UI components:
 

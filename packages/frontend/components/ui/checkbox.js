@@ -14,12 +14,6 @@ function Checkbox({
   onChange,
   ...otherProps
 }) {
-  function changeValue(targetValue) {
-    if (onChange) {
-      onChange(targetValue);
-    }
-  }
-
   let customStyleName = '';
   if (checked && type === 'success') {
     customStyleName = 'success-check-box';
@@ -34,9 +28,9 @@ function Checkbox({
         name={name}
         type="checkbox"
         checked={checked}
-        className={cls(`default-check-box ${customStyleName}`, className)}
+        className={cls('default-check-box', customStyleName, className)}
         disabled={disabled}
-        onChange={e => changeValue(e.currentTarget.checked)}
+        onChange={onChange}
         required={required}
         {...otherProps}
       />
@@ -67,7 +61,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   label: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['success', 'danger']),
 };
 
 export default Checkbox;

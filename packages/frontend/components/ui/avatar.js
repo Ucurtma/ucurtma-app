@@ -24,7 +24,7 @@ function Avatar({ type, className, image }) {
           alt="noopener norefferer"
         />
       ) : (
-        <div className="w-full h-full" />
+        <div className="w-full h-full bg-text-color" />
       )}
     </div>
   );

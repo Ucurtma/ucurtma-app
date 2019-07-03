@@ -22,8 +22,8 @@ module.exports = {
       'disabled-title': 'var(--disabled-title)',
       'default-button': 'var(--default-button)',
       'label-color': 'var(--label-color)',
-      'success-color': 'var(--success-color)',
-      'error-color': 'var(--error-color)',
+      danger: 'var(--danger)',
+      success: 'var(--success)',
     },
     spacing: {
       px: '1px',

@@ -15,8 +15,8 @@
   --default-button: #39baba;
   --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
   --label-color: #b4b4b4;
-  --success-color: #66e6b8;
-  --error-color: #e66666;
+  --danger: #e56666;
+  --success: #66e5b8;
 }
 
 button {
@@ -84,11 +84,11 @@ input:disabled {
 }
 
 .danger-check-box:checked + label:before {
-  background: var(--error-color);
+  background: var(--danger);
 }
 
 .success-check-box:checked + label:before {
-  background: var(--success-color);
+  background: var(--success);
 }
 
 .default-check-box:disabled + label {

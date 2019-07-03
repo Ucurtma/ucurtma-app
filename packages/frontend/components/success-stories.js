@@ -11,7 +11,7 @@ function SuccessStories() {
   const stories = [
     {
       id: 0,
-      imagePath: 'static/img/me.jpg',
+      imagePath: '/static/img/me.jpg',
       title: "The guys who doesn't know anything about UI design",
       content: `Hey guys! I am looking for a front-end developer job in Ankara and
       abroad but I can’t say it anywhere on the “public internet”
@@ -27,7 +27,7 @@ function SuccessStories() {
     },
     {
       id: 1,
-      imagePath: 'static/img/placeholder-image-01.jpg',
+      imagePath: '/static/img/placeholder-image-01.jpg',
       title: 'Lets talk about something',
       content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta eius beatae aspernatur facilis, nihil labore aliquid ipsum ullam nostrum aliquam distinctio aut fugiat libero, accusamus inventore soluta vitae ipsam.`,
       user: {
@@ -40,7 +40,7 @@ function SuccessStories() {
     },
     {
       id: 2,
-      imagePath: 'static/img/placeholder-image-02.jpg',
+      imagePath: '/static/img/placeholder-image-02.jpg',
       title: 'They buy me a coffee',
       content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam asperiores quas officia, nulla architecto accusamus inventore nemo similique delectus libero eum dolores ipsa illum molestiae saepe debitis suscipit porro facere?`,
       user: {

@@ -13,15 +13,19 @@ function Avatar({ type, className, image }) {
     <div
       className={cls(
         avatarType[type],
-        'overflow-hidden rounded-full',
+        'flex align-center justify-center overflow-hidden',
         className
       )}
     >
-      <img
-        className="bg-no-repeat bg-center bg-contain"
-        src={image}
-        alt="noopener norefferer"
-      />
+      {image ? (
+        <img
+          className="bg-no-repeat bg-center bg-contain rounded-full"
+          src={image}
+          alt="noopener norefferer"
+        />
+      ) : (
+        <div className={cls(avatarType[type], 'bg-text-color', className)} />
+      )}
     </div>
   );
 }

@@ -1,31 +1,20 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, select } from '@storybook/addon-knobs';
 
 import { storiesOf } from '@storybook/react';
 import Avatar from '../components/ui/avatar';
 
 storiesOf('Avatar', module)
-  .add('Small Avatar', () => (
+  .add('Default Avatar', () => (
     <Avatar
       className={text('Classname')}
-      type="xs"
-      image="/img/placeholder-image-02.jpg"
-    />
-  ))
-  .add('Normal Avatar', () => (
-    <Avatar
-      className={text('Classname')}
-      type="normal"
-      image="/img/placeholder-image-02.jpg"
-    />
-  ))
-  .add('Large Avatar', () => (
-    <Avatar
-      className={text('Classname')}
-      type="lg"
-      image="/img/placeholder-image-02.jpg"
+      type={select('Type', ['xs', 'normal', 'lg'], 'normal')}
+      imagePath="/img/placeholder-image-02.jpg"
     />
   ))
   .add('Avatar without Image', () => (
-    <Avatar className={text('Classname')} type="lg" />
+    <Avatar
+      className={text('Classname')}
+      type={select('Type', ['xs', 'normal', 'lg'], 'normal')}
+    />
   ));

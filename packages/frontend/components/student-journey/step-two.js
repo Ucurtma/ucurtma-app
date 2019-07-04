@@ -1,6 +1,7 @@
 import StepTitle from './step-title';
 import Paragraph from '../ui/paragraph';
 import Card from '../ui/card';
+import DropBox from '../ui/drop-box';
 
 function StepTwo() {
   return (
@@ -17,8 +18,10 @@ function StepTwo() {
           </Paragraph>
         </StepTitle>
       </div>
-      <Card className="mt-8">
-        {/* todo: make drag n drop and file upload */}
+      <Card className="flex mt-8">
+        <DropBox />
+        <DropBox />
+        <DropBox />
       </Card>
     </div>
   );

@@ -10,7 +10,7 @@ import CreateJourneyContent from '../components/student-journey/create-journey-c
   we can discuss it later.
 */
 
-const initialState = { activeStep: 0 };
+const initialState = { activeStep: 2 };
 
 const reducer = (state, action) => {
   switch (action.type) {

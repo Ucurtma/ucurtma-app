@@ -70,6 +70,7 @@ module.exports = {
     borderColor: theme => ({
       ...theme('colors'),
       input: 'var(--input-border)',
+      'drop-box': 'var(--dropbox-border)',
     }),
     borderRadius: {
       none: '0',

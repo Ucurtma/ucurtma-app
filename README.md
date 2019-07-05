@@ -33,5 +33,6 @@ We are using [Storybook](https://storybook.js.org/) as a component documentation
 
 This command will start our documentation page after waiting 10 seconds.
 
-[Storybook Showcase](http://components.ucurtmaprojesi.com.s3-website.eu-west-2.amazonaws.com)
-[Non-production Environment](http://non-prod.ucurtmaprojesi.com.s3-website.eu-west-2.amazonaws.com)
+[Storybook Showcase](http://components.ucurtmaprojesi.com)
+
+[Non-production Environment](http://non-prod.ucurtmaprojesi.com)

@@ -34,9 +34,6 @@ function Signup() {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          // todo: delete console.log
-          // eslint-disable-next-line no-console
-          console.log(values);
           dispatch({ type: 'setActiveStep', step: 2 });
           setSubmitting(false);
         }, 400);

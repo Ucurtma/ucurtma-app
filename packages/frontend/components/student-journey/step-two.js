@@ -7,11 +7,8 @@ import DropBox from '../ui/drop-box';
 import IdCardIcon from '../../icons/id-card';
 
 function StepTwo() {
-  const onDrop = useCallback((acceptedFile, type) => {
-    // todo: change console.log after backend is ready.
-    // eslint-disable-next-line no-console
-    console.log(acceptedFile, type);
-  }, []);
+  // eslint-disable-next-line no-unused-vars
+  const onDrop = useCallback((acceptedFile, type) => {}, []);
 
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: file => onDrop(file, 'Others'),

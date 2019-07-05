@@ -1,14 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import StepTitle from './step-title';
 import Paragraph from '../ui/paragraph';
 import Card from '../ui/card';
 import DropBox from '../ui/drop-box';
 import IdCardIcon from '../../icons/id-card';
+import { CreateJourneyCtx } from '../../pages/create-journey';
 
 function StepTwo() {
+  const [, dispatch] = useContext(CreateJourneyCtx);
+
   // eslint-disable-next-line no-unused-vars
-  const onDrop = useCallback((acceptedFile, type) => {}, []);
+  const onDrop = useCallback((acceptedFile, type) => {
+    dispatch({ type: 'setActiveStep', step: 3 });
+  }, []);
 
   const { getRootProps, isDragActive } = useDropzone({
     onDrop: file => onDrop(file, 'Others'),

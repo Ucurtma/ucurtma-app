@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
+import { Field } from 'formik';
 
 function Checkbox({
   name,
@@ -14,30 +15,24 @@ function Checkbox({
   onChange,
   ...otherProps
 }) {
-  let customStyleName = '';
-  if (checked && type === 'success') {
-    customStyleName = 'success-check-box';
-  } else if (checked && type === 'danger') {
-    customStyleName = 'danger-check-box';
-  }
-
   return (
     <div className="flex items-center">
-      <input
+      <Field
         id={name}
         name={name}
         type="checkbox"
-        checked={checked}
-        className={cls('default-check-box', customStyleName, className)}
+        checked={checked || undefined}
+        className={cls(
+          'checkbox',
+          type === 'danger' ? 'checkbox-danger' : 'checkbox-success',
+          className
+        )}
         disabled={disabled}
         onChange={onChange}
         required={required}
         {...otherProps}
       />
-      <label
-        htmlFor={name}
-        className="text-label-color text-base font-normal checkbox-label"
-      >
+      <label htmlFor={name} className="text-label-color">
         {label}
         {required && <span className="ml-1">*</span>}
       </label>
@@ -50,7 +45,7 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   required: false,
-  type: '',
+  type: 'normal',
   label: '',
 };
 
@@ -61,7 +56,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   label: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.oneOf(['success', 'danger']),
+  type: PropTypes.oneOf(['normal', 'danger']),
 };
 
 export default Checkbox;

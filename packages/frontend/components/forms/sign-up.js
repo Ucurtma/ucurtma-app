@@ -1,8 +1,10 @@
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
 import Button from '../ui/button';
 import Paragraph from '../ui/paragraph';
+import { CreateJourneyCtx } from '../../pages/create-journey';
 
 // TODO: implement reCAPTCHA to here.
 
@@ -15,13 +17,13 @@ const signupScheme = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   password: Yup.string().required('Password is required'),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match'
-  ),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Required'),
 });
 
 function Signup() {
+  const [, dispatch] = useContext(CreateJourneyCtx);
   return (
     <Formik
       initialValues={{
@@ -32,8 +34,7 @@ function Signup() {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values, null, 2));
+          dispatch({ type: 'setActiveStep', step: 2 });
           setSubmitting(false);
         }, 400);
       }}

@@ -1,5 +1,5 @@
-import { Field } from 'formik';
 import React from 'react';
+import { Field } from 'formik';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 
@@ -41,7 +41,7 @@ function Input({
           className
         )}
         disabled={disabled}
-        value={value} // i delete undefined value in here because of formik.
+        value={value || undefined}
         onChange={onChange} // i guess giving onChange as a function isn't ok for formik.
         required={required}
         {...otherProps}

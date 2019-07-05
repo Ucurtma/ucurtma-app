@@ -29,7 +29,7 @@ function DropBox({ icon, type, onDrop, active }) {
     <div
       {...getRootProps()}
       className={cls(
-        'group drop-box w-full border-2 border-dashed rounded-2 min-h-88 mx-12 shadow-light transition',
+        'group drop-box w-full border-2 border-dashed rounded-2 min-h-88 mx-0 my-4 sm:my-0 sm:mx-12 shadow-light transition',
         classes.box
       )}
     >

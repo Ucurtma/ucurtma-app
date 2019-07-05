@@ -11,6 +11,7 @@ function Button({
   textColor,
   style,
   isSubmit,
+  noPadding,
   ...otherProps
 }) {
   const Tag = tag;
@@ -42,7 +43,8 @@ function Button({
   return (
     <Tag
       className={cls(
-        'font-bold text-sm sm:text-base py-2 sm:py-3 px-6 rounded-full',
+        'font-bold text-sm sm:text-base rounded-full',
+        noPadding ? 'py-0 sm:py-0 px-0' : 'py-2 sm:py-3 px-6',
         buttonType[type],
         className
       )}
@@ -62,6 +64,7 @@ Button.defaultProps = {
   color: '',
   type: 'outlined',
   isSubmit: false,
+  noPadding: false,
 };
 
 Button.propTypes = {
@@ -72,6 +75,7 @@ Button.propTypes = {
   textColor: PropTypes.string,
   type: PropTypes.oneOf(['outlined', 'flat', 'bg', 'custom']),
   isSubmit: PropTypes.bool,
+  noPadding: PropTypes.bool,
 };
 
 export default Button;

@@ -71,6 +71,7 @@ module.exports = {
       ...theme('colors'),
       input: 'var(--input-border)',
       'drop-box': 'var(--dropbox-border)',
+      'drop-box-disabled': 'var(--dropbox-border-disabled)',
     }),
     borderRadius: {
       none: '0',
@@ -190,6 +191,7 @@ module.exports = {
     }),
     maxHeight: {
       full: '100%',
+      '23': '5.75rem',
       screen: '100vh',
     },
     maxWidth: {
@@ -208,7 +210,8 @@ module.exports = {
     },
     minHeight: {
       '0': '0',
-      '100': '100px',
+      '25': '6.25rem',
+      '88': '22rem',
       md: '28rem',
       lg: '32rem',
       full: '100%',
@@ -250,6 +253,8 @@ module.exports = {
     textColor: theme => ({
       ...theme('colors'),
       label: 'var(--label-color)',
+      'drop-box': 'var(--dropbox-border)',
+      'drop-box-disabled': 'var(--dropbox-border-disabled)',
     }),
     width: theme => ({
       auto: 'auto',
@@ -339,7 +344,7 @@ module.exports = {
     minWidth: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
-    opacity: ['responsive'],
+    opacity: ['responsive', 'group-hover'],
     order: ['responsive'],
     outline: ['responsive', 'focus'],
     overflow: ['responsive'],
@@ -350,7 +355,7 @@ module.exports = {
     stroke: ['responsive'],
     tableLayout: ['responsive'],
     textAlign: ['responsive'],
-    textColor: ['responsive', 'hover', 'focus'],
+    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     textDecoration: ['responsive', 'hover', 'focus'],
     textTransform: ['responsive'],
     userSelect: ['responsive'],

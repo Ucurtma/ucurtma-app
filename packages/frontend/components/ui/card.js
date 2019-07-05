@@ -7,7 +7,7 @@ function Card({ title, icon, children, noPadding, className }) {
   return (
     <div
       className={cls(
-        'bg-card-bg shadow rounded-2 min-h-100 min-w-190',
+        'bg-card-bg shadow rounded-2 min-h-25 min-w-190',
         noPadding ? 'px-0 py-0' : 'px-6 py-10',
         className
       )}

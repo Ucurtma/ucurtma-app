@@ -1,9 +1,23 @@
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 import StepTitle from './step-title';
 import Paragraph from '../ui/paragraph';
 import Card from '../ui/card';
 import DropBox from '../ui/drop-box';
+import IdCardIcon from '../../icons/id-card';
 
 function StepTwo() {
+  const onDrop = useCallback((acceptedFile, type) => {
+    // todo: change console.log after backend is ready.
+    // eslint-disable-next-line no-console
+    console.log(acceptedFile, type);
+  }, []);
+
+  const { getRootProps, isDragActive } = useDropzone({
+    onDrop: file => onDrop(file, 'Others'),
+    noClick: true,
+  });
+
   return (
     <div className="flex flex-col">
       <div className="w-full sm:w-6/12 px-4 sm:px-0">
@@ -18,11 +32,26 @@ function StepTwo() {
           </Paragraph>
         </StepTitle>
       </div>
-      <Card className="flex mt-8">
-        <DropBox />
-        <DropBox />
-        <DropBox />
-      </Card>
+      <div {...getRootProps()} className="mt-8">
+        <Card className="flex">
+          <DropBox
+            icon={IdCardIcon}
+            type="ID Card"
+            onDrop={(file, type) => onDrop(file, type)}
+          />
+          <DropBox
+            icon={IdCardIcon}
+            type="Driving Licence"
+            onDrop={(file, type) => onDrop(file, type)}
+          />
+          <DropBox
+            icon={IdCardIcon}
+            type="Others"
+            onDrop={(file, type) => onDrop(file, type)}
+            active={isDragActive}
+          />
+        </Card>
+      </div>
     </div>
   );
 }

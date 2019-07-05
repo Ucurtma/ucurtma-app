@@ -16,7 +16,8 @@
   --shadow: 0 0 24px rgba(155, 201, 255, 0.24);
   --danger: #e56666;
   --success: #66e5b8;
-  --dropbox-border: #9bc9ff;
+  --dropbox-border: #57a4ff;
+  --dropbox-border-disabled: #deedff;
 }
 
 button {
@@ -42,13 +43,8 @@ a {
 }
 
 .stories-button:first-child,
-.drop-box:first-child,
 .workflow-card:first-child {
   margin-left: 0;
-}
-
-.drop-box:last-child {
-  margin-right: 0;
 }
 
 .stories-button:last-child,
@@ -121,4 +117,8 @@ input:disabled {
   border-width: 0 2px 2px 0;
   /*Rotate the L 45 degrees to turn it into a checkmark*/
   transform: rotate(45deg);
+}
+
+.transition {
+  transition: 0.2s ease all;
 }

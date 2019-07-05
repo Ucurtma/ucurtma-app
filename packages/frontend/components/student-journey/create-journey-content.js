@@ -5,6 +5,7 @@ import Button from '../ui/button';
 import StepOne from './step-one';
 import StepTwo from './step-two';
 import { CreateJourneyCtx } from '../../pages/create-journey';
+import StepThree from './step-three';
 
 function CreateJourneyContent() {
   const [state, dispatch] = useContext(CreateJourneyCtx);
@@ -28,6 +29,7 @@ function CreateJourneyContent() {
         )}
         {state.activeStep === 1 && <StepOne />}
         {state.activeStep === 2 && <StepTwo />}
+        {state.activeStep === 3 && <StepThree />}
       </div>
     </div>
   );

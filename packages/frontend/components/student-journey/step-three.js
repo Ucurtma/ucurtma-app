@@ -8,7 +8,7 @@ function StepThree() {
   return (
     <div className="flex flex-col items-center">
       <img
-        className="max-w-md mb-8"
+        className="sm:max-w-md mb-8"
         src="/static/img/step-03-wait-for-approval.png"
         alt="Success"
       />
@@ -23,13 +23,13 @@ function StepThree() {
           continue now, you can create “draft campaign.”
         </Paragraph>
       </StepTitle>
-      <div className="flex justify-center my-4 p-4 sm:p-0">
+      <div className="flex justify-center my-4 sm:p-0">
         <Link href="/">
           <Button type="custom" textColor="#E56666">
             <a>Go to homepage</a>
           </Button>
         </Link>
-        <div className="flex justify-center my-4 p-4 sm:p-0">
+        <div className="flex justify-center my-4 sm:p-0">
           <Button type="custom" color="#FCFCFC">
             CREATE DRAFT
           </Button>

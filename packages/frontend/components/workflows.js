@@ -106,7 +106,7 @@ function Workflows() {
       <div className="flex justify-center mb-8 p-4 sm:p-0">
         <Link href="/create-journey">
           <Button type="custom" color="#FCFCFC">
-            <a className="text-navbar-link font-bold no-underline">
+            <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
               CREATE A JOURNEY
             </a>
           </Button>

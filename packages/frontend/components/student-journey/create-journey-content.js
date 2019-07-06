@@ -21,6 +21,7 @@ function CreateJourneyContent() {
                 onClick={() => dispatch({ type: 'setActiveStep', step: 1 })}
                 type="custom"
                 color="#FCFCFC"
+                className="uc-onboarding-step1-continue-btn"
               >
                 CONTINUE
               </Button>

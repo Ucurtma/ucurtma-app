@@ -12,13 +12,14 @@
     "deploy-staging": "aws s3 sync out/ s3://non-prod-ucurtma-app --delete",
     "storybook": "start-storybook -s ./static -p 6006",
     "build-storybook": "build-storybook",
-    "e2e-test:chrome:local": "gherkin-testcafe chrome tests/features/**/*.js tests/step_definitions/**/*.js"
+    "e2e-test:chrome:local": "export BASE_URL=http://localhost:3000 && gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "autoprefixer": "^9.6.0",
+    "c21e": "1.1.9",
     "classnames": "^2.2.6",
     "cucumber": "^5.1.0",
     "formik": "^1.5.7",
@@ -33,6 +34,9 @@
     "tailwindcss": "^1.0.4",
     "testcafe": "^1.3.1",
     "yup": "^0.27.0"
+  },
+  "resolutions": {
+    "c21e": "1.1.9"
   },
   "lint-staged": {
     "*.{js,jsx}": [

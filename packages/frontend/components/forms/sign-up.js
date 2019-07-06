@@ -98,7 +98,7 @@ function Signup() {
               color="#66E5B8"
               isSubmit
               disabled={isSubmitting}
-              className="w-full sm:w-auto ml-auto"
+              className="w-full sm:w-auto ml-auto uc-onboarding-signup-button"
             >
               SIGN UP
             </Button>

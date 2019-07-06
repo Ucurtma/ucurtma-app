@@ -35,7 +35,7 @@ function StepTwo() {
         </StepTitle>
       </div>
       <div {...getRootProps()} className="mt-8">
-        <Card className="flex">
+        <Card className="flex flex-wrap sm:flex-no-wrap">
           <DropBox
             icon={IdCardIcon}
             type="ID Card"

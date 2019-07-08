@@ -56,3 +56,9 @@ This command will start our documentation page after waiting 10 seconds.
 [Storybook Showcase](http://components.ucurtmaprojesi.com)
 
 [Non-production Environment](http://non-prod.ucurtmaprojesi.com)
+
+---
+
+Cross-browser testing provided by:
+
+<a href="http://browserstack.com"><img height="70" src="images/browserstack-logo.png" alt="BrowserStack"></a>

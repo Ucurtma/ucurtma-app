@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Header from '../components/header';
 
 /* we're using class because react hooks isn't working in default configure pages yet */
 
@@ -20,6 +21,9 @@ class MyDocument extends Document {
           <body className="bg-body-bg font-normal font-sans" />
         </Head>
         <body>
+          <div className="container mx-auto mt-8">
+            <Header />
+          </div>
           <Main />
           <NextScript />
         </body>

@@ -13,7 +13,9 @@ function Header() {
     <header className="flex p-4 sm:p-0 justify-between items-center">
       <div className="w-40 cursor-pointer">
         <Link href="/">
-          <Logo />
+          <a className="w-full">
+            <Logo />
+          </a>
         </Link>
       </div>
       <ul className="list-none flex items-center m-0 hidden sm:flex">

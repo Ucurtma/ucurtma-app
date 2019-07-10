@@ -105,11 +105,11 @@ function Workflows() {
       </div>
       <div className="flex justify-center mb-8 p-4 sm:p-0">
         <Link href="/create-journey">
-          <Button type="custom" color="#FCFCFC">
-            <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
+          <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
+            <Button type="custom" color="#FCFCFC">
               CREATE A JOURNEY
-            </a>
-          </Button>
+            </Button>
+          </a>
         </Link>
         <div className="count border-l border-solid border-text-color ml-8 pl-8 opacity-50">
           <p className="font-light text-text-color">We have</p>

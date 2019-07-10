@@ -1,14 +1,32 @@
+/* eslint-disable react/no-danger */
+import { Fragment } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { gaTrackingId } from '../utils/ga-tag';
 
 /* we're using class because react hooks isn't working in default configure pages yet */
-
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
+    // check if in production
+    const isProduction = process.env.NODE_ENV === 'production';
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    // pass isProduction flag back through props
+    return { ...initialProps, isProduction };
   }
 
+  setGoogleTags = () => {
+    return {
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', ${gaTrackingId});
+      `,
+    };
+  };
+
   render() {
+    const { isProduction } = this.props;
     return (
       <Html>
         <Head>
@@ -22,6 +40,16 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          {isProduction && (
+            <Fragment>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+              />
+              {/* We call the function above to inject the contents of the script tag */}
+              <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+            </Fragment>
+          )}
         </body>
       </Html>
     );

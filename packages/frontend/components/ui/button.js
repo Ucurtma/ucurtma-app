@@ -12,6 +12,7 @@ function Button({
   style,
   isSubmit,
   noPadding,
+  disabled,
   ...otherProps
 }) {
   const Tag = tag;
@@ -50,6 +51,7 @@ function Button({
       )}
       type={isSubmit ? 'submit' : 'button'}
       style={color || textColor ? { ...customStyle, ...style } : undefined}
+      disabled={disabled}
       {...otherProps}
     >
       {children}
@@ -65,6 +67,8 @@ Button.defaultProps = {
   type: 'outlined',
   isSubmit: false,
   noPadding: false,
+  style: {},
+  disabled: false,
 };
 
 Button.propTypes = {
@@ -74,8 +78,12 @@ Button.propTypes = {
   color: PropTypes.string,
   textColor: PropTypes.string,
   type: PropTypes.oneOf(['outlined', 'flat', 'bg', 'custom']),
+  style: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
   isSubmit: PropTypes.bool,
   noPadding: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Button;

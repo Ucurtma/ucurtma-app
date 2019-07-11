@@ -11,11 +11,14 @@ import Paragraph from './ui/paragraph';
 
 function Workflows() {
   const [activeItem, setActiveItem] = useState(0);
+  const isStudentWorkflow = activeItem === 1;
+  const isStudentQuotaFull = true; // todo: we will get this parameter from sql or something like admin panel.
 
   const workflows = [
     {
       id: 0,
       title: 'I am Investor',
+      buttonText: 'Invest a Journey',
       card: [
         {
           icon: CampaignIcon,
@@ -40,6 +43,7 @@ function Workflows() {
     {
       id: 1,
       title: 'I am Student',
+      buttonText: 'Create a Journey',
       card: [
         {
           icon: CampaignIcon,
@@ -106,8 +110,12 @@ function Workflows() {
       <div className="flex justify-center mb-8 p-4 sm:p-0">
         <Link href="/create-journey">
           <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
-            <Button type="custom" color="#FCFCFC">
-              CREATE A JOURNEY
+            <Button
+              disabled={isStudentWorkflow && isStudentQuotaFull}
+              type="custom"
+              color="#FCFCFC"
+            >
+              {workflows[activeItem].buttonText.toUpperCase()}
             </Button>
           </a>
         </Link>

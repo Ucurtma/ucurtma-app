@@ -23,7 +23,6 @@
 .ui-button {
   border: none;
   margin: 0;
-  width: auto;
   overflow: visible;
   background: transparent;
   cursor: pointer;
@@ -42,7 +41,6 @@
 .stories-button:last-child,
 .workflow-card:last-child {
   margin-right: 0;
-  margin-bottom: 0;
 }
 
 input:disabled {

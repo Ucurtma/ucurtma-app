@@ -33,6 +33,12 @@
   box-shadow: 0px 0px 2px blue;
 }
 
+.ui-button:disabled,
+.ui-button[disabled] {
+  cursor: not-allowed;
+  background: var(--disabled-title);
+}
+
 .stories-button:first-child,
 .workflow-card:first-child {
   margin-left: 0;

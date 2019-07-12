@@ -12,7 +12,7 @@ import Paragraph from './ui/paragraph';
 function Workflows() {
   const [activeItem, setActiveItem] = useState(0);
   const isStudentWorkflow = activeItem === 1;
-  const isStudentQuotaFull = true; // todo: we will get this parameter from sql or something like admin panel.
+  const isStudentQuotaFull = false; // todo: we will get this parameter from sql or something like admin panel.
 
   const workflows = [
     {

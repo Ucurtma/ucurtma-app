@@ -19,6 +19,7 @@ function Workflows() {
       id: 0,
       title: 'I am Investor',
       buttonText: 'Invest a Journey',
+      href: '/create-journey',
       card: [
         {
           icon: CampaignIcon,
@@ -44,6 +45,7 @@ function Workflows() {
       id: 1,
       title: 'I am Student',
       buttonText: 'Create a Journey',
+      href: '/create-journey',
       card: [
         {
           icon: CampaignIcon,
@@ -108,16 +110,15 @@ function Workflows() {
         ))}
       </div>
       <div className="flex justify-center mb-8 p-4 sm:p-0">
-        <Link href="/create-journey">
-          <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
-            <Button
-              disabled={isStudentWorkflow && isStudentQuotaFull}
-              type="custom"
-              color="#FCFCFC"
-            >
-              {workflows[activeItem].buttonText.toUpperCase()}
-            </Button>
-          </a>
+        <Link href={workflows[activeItem].href}>
+          <Button
+            className="uc-create-journey-btn"
+            disabled={isStudentWorkflow && isStudentQuotaFull}
+            type="custom"
+            color="#FCFCFC"
+          >
+            {workflows[activeItem].buttonText.toUpperCase()}
+          </Button>
         </Link>
         <div className="count border-l border-solid border-text-color ml-8 pl-8 opacity-50">
           <p className="font-light text-text-color">We have</p>

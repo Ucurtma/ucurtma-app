@@ -16,6 +16,7 @@ function Button({
   ...otherProps
 }) {
   const Tag = tag;
+  const hasColor = color || textColor;
 
   const buttonType = {
     outlined: 'text-default-button border-2 border-solid',
@@ -23,34 +24,32 @@ function Button({
     bg: 'bg-default-button text-navbar-link',
   };
 
-  let customStyle = {
-    border: `2px solid ${color}`,
-    color: textColor || color,
-  };
-
-  if (type === 'flat') {
-    customStyle = {
+  const customStyles = {
+    outlined: {
+      border: `2px solid ${color}`,
+      color: textColor || color,
+    },
+    flat: {
       color: textColor,
-    };
-  }
-
-  if (type === 'custom') {
-    customStyle = {
+    },
+    custom: {
       background: color,
       color: textColor || '#111d27',
-    };
-  }
+    },
+  };
 
   return (
     <Tag
       className={cls(
-        'font-bold text-sm sm:text-base rounded-full',
+        'ui-button font-bold text-sm sm:text-base rounded-full',
         noPadding ? 'py-0 sm:py-0 px-0' : 'py-2 sm:py-3 px-6',
         buttonType[type],
         className
       )}
       type={isSubmit ? 'submit' : 'button'}
-      style={color || textColor ? { ...customStyle, ...style } : undefined}
+      style={
+        !disabled && hasColor ? { ...customStyles[type], ...style } : undefined
+      }
       disabled={disabled}
       {...otherProps}
     >
@@ -67,8 +66,8 @@ Button.defaultProps = {
   type: 'outlined',
   isSubmit: false,
   noPadding: false,
-  style: {},
   disabled: false,
+  style: {},
 };
 
 Button.propTypes = {

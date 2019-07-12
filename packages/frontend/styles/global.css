@@ -20,26 +20,18 @@
   --dropbox-border-disabled: #deedff;
 }
 
-button {
+.ui-button {
   border: none;
   margin: 0;
-  padding: 0;
   width: auto;
   overflow: visible;
   background: transparent;
-  color: inherit;
-  font: inherit;
   cursor: pointer;
 }
 
-button:focus {
+.ui-button:focus {
   outline: none;
   box-shadow: 0px 0px 2px blue;
-}
-
-a {
-  display: inline-block;
-  cursor: pointer;
 }
 
 .stories-button:first-child,

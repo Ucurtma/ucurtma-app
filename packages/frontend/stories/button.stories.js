@@ -13,7 +13,7 @@ storiesOf('Button', module)
       className={text('Classname', 'mt-10 ml-10')}
       textColor={color('Text Color')}
       color={color('Color')}
-      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'outlined')}
+      variant={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'outlined')}
     >
       {text('Button Text', 'Click Here')}
     </Button>
@@ -25,7 +25,7 @@ storiesOf('Button', module)
       className={text('Classname', 'mt-10 ml-10')}
       textColor={color('Text Color')}
       color={color('Color')}
-      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'flat')}
+      variant={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'flat')}
     >
       {text('Button Text', 'Click Here')}
     </Button>
@@ -37,7 +37,7 @@ storiesOf('Button', module)
       className={text('Classname', 'mt-10 ml-10')}
       textColor={color('Text Color')}
       color={color('Color')}
-      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'bg')}
+      variant={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'bg')}
     >
       {text('Button Text', 'Click Here')}
     </Button>
@@ -49,7 +49,7 @@ storiesOf('Button', module)
       className={text('Classname', 'mt-10 ml-10')}
       textColor={color('Text Color')}
       color={color('Color')}
-      type={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'custom')}
+      variant={select('Type', ['outlined', 'flat', 'bg', 'custom'], 'custom')}
     >
       {text('Button Text', 'Click Here')}
     </Button>

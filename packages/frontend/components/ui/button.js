@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Button({
   tag,
   children,
-  type,
+  variant,
   className,
   color,
   textColor,
@@ -13,6 +13,7 @@ function Button({
   isSubmit,
   noPadding,
   disabled,
+  type,
   ...otherProps
 }) {
   const Tag = tag;
@@ -43,12 +44,14 @@ function Button({
       className={cls(
         'ui-button font-bold text-sm sm:text-base rounded-full',
         noPadding ? 'py-0 sm:py-0 px-0' : 'py-2 sm:py-3 px-6',
-        buttonType[type],
+        buttonType[variant],
         className
       )}
-      type={isSubmit ? 'submit' : 'button'}
+      type={type}
       style={
-        !disabled && hasColor ? { ...customStyles[type], ...style } : undefined
+        !disabled && hasColor
+          ? { ...customStyles[variant], ...style }
+          : undefined
       }
       disabled={disabled}
       {...otherProps}
@@ -63,11 +66,12 @@ Button.defaultProps = {
   className: '',
   textColor: '',
   color: '',
-  type: 'outlined',
+  variant: 'outlined',
   isSubmit: false,
   noPadding: false,
   disabled: false,
   style: {},
+  type: 'button',
 };
 
 Button.propTypes = {
@@ -76,10 +80,11 @@ Button.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   textColor: PropTypes.string,
-  type: PropTypes.oneOf(['outlined', 'flat', 'bg', 'custom']),
+  variant: PropTypes.oneOf(['outlined', 'flat', 'bg', 'custom']),
   style: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),
+  type: PropTypes.string,
   isSubmit: PropTypes.bool,
   noPadding: PropTypes.bool,
   disabled: PropTypes.bool,

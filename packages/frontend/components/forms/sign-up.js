@@ -88,13 +88,13 @@ function Signup() {
                 textColor="#66E5B8"
                 className="py-0 px-0 sm:py-0 sm:px-0"
                 noPadding
-                type="flat"
+                variant="flat"
               >
                 Log in
               </Button>
             </Paragraph>
             <Button
-              type="custom"
+              variant="custom"
               textColor="#FFF"
               color="#66E5B8"
               isSubmit

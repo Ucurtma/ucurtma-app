@@ -76,7 +76,7 @@ function Workflows() {
       <div className="flex justify-center mt-4 sm:mt-16">
         {workflows.map((workflow, i) => (
           <Button
-            type="flat"
+            variant="flat"
             key={i.toString()}
             onClick={() => setActiveItem(workflow.id)}
             className={cls(
@@ -114,7 +114,7 @@ function Workflows() {
           <Button
             className="uc-create-journey-btn"
             disabled={isStudentWorkflow && isStudentQuotaFull}
-            type="custom"
+            variant="custom"
             color="#FCFCFC"
           >
             {workflows[activeItem].buttonText.toUpperCase()}

@@ -103,7 +103,7 @@ function SuccessStories() {
       <div className="flex flex-wrap justify-between sm:flex-no-wrap mb-4 mb-8 p-4 sm:p-0">
         {stories.map(story => (
           <Button
-            type="custom"
+            variant="custom"
             className="shadow-light stories-button mt-4 h-72 sm:h-auto sm:mr-8 w-full"
             color={story.id === activeStoryIndex ? '#FFF' : '#F5F5F5'}
             key={story.id}
@@ -122,7 +122,7 @@ function SuccessStories() {
           </Button>
         ))}
         <Button
-          type="custom"
+          variant="custom"
           className="shadow-light stories-button mt-4 h-72 sm:h-auto sm:mr-8 w-full"
           color="#F4F4F4"
         >

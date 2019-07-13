@@ -17,32 +17,6 @@ function Workflows() {
   const workflows = [
     {
       id: 0,
-      title: 'I am Investor',
-      buttonText: 'Invest a Journey',
-      href: '/create-journey',
-      card: [
-        {
-          icon: CampaignIcon,
-          title: "I didn't",
-          desc:
-            'Our team invented awesome campaign creator for you. Give us some details about you and your campaign. But this should little longer.',
-        },
-        {
-          icon: WalletIcon,
-          title: 'Think About',
-          desc:
-            'We have awesome system that creates digital wallet for you. Also, I have no words for saying in here. Lets call our marketing team.',
-        },
-        {
-          icon: SuccessIcon,
-          title: 'Investor Workflow',
-          desc:
-            'Success is key for everything. Taking good grades is a success for example. Go step by step, don’t be like me. I need marketing team I guess.',
-        },
-      ],
-    },
-    {
-      id: 1,
       title: 'I am Student',
       buttonText: 'Create a Journey',
       href: '/create-journey',
@@ -62,6 +36,32 @@ function Workflows() {
         {
           icon: SuccessIcon,
           title: 'Success',
+          desc:
+            'Success is key for everything. Taking good grades is a success for example. Go step by step, don’t be like me. I need marketing team I guess.',
+        },
+      ],
+    },
+    {
+      id: 1,
+      title: 'I am Investor',
+      buttonText: 'Invest a Journey',
+      href: '/create-journey',
+      card: [
+        {
+          icon: CampaignIcon,
+          title: "I didn't",
+          desc:
+            'Our team invented awesome campaign creator for you. Give us some details about you and your campaign. But this should little longer.',
+        },
+        {
+          icon: WalletIcon,
+          title: 'Think About',
+          desc:
+            'We have awesome system that creates digital wallet for you. Also, I have no words for saying in here. Lets call our marketing team.',
+        },
+        {
+          icon: SuccessIcon,
+          title: 'Investor Workflow',
           desc:
             'Success is key for everything. Taking good grades is a success for example. Go step by step, don’t be like me. I need marketing team I guess.',
         },

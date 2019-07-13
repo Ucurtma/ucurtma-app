@@ -10,7 +10,6 @@ function Button({
   color,
   textColor,
   style,
-  isSubmit,
   noPadding,
   disabled,
   type,
@@ -67,7 +66,6 @@ Button.defaultProps = {
   textColor: '',
   color: '',
   variant: 'outlined',
-  isSubmit: false,
   noPadding: false,
   disabled: false,
   style: {},
@@ -85,7 +83,6 @@ Button.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),
   type: PropTypes.string,
-  isSubmit: PropTypes.bool,
   noPadding: PropTypes.bool,
   disabled: PropTypes.bool,
 };

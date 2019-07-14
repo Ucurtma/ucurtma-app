@@ -25,12 +25,12 @@ function StepThree() {
       </StepTitle>
       <div className="flex justify-center my-4 sm:p-0">
         <Link href="/">
-          <Button type="custom" textColor="#E56666">
+          <Button variant="custom" textColor="#E56666">
             <a>Go to homepage</a>
           </Button>
         </Link>
         <div className="flex justify-center my-4 sm:p-0">
-          <Button type="custom" color="#FCFCFC">
+          <Button variant="custom" color="#FCFCFC">
             CREATE DRAFT
           </Button>
         </div>

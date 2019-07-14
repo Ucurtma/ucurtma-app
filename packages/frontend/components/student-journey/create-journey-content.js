@@ -17,7 +17,7 @@ function CreateJourneyContent() {
             <div className="flex justify-center my-12 p-4 sm:p-0">
               <Button
                 onClick={() => dispatch({ type: 'setActiveStep', step: 1 })}
-                type="custom"
+                variant="custom"
                 color="#FCFCFC"
                 className="uc-onboarding-step1-continue-btn"
               >

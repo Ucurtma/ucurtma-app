@@ -81,23 +81,23 @@ function Signup() {
             onChange={handleChange}
           />
           {/* TODO: add checkbox here after pr comes. */}
-          <div className="flex items-center mt-6">
+          <div className="flex justify-between items-center mt-6">
             <Paragraph>
               Already have an account?{' '}
               <Button
                 textColor="#66E5B8"
                 className="py-0 px-0 sm:py-0 sm:px-0"
                 noPadding
-                type="flat"
+                variant="flat"
               >
                 Log in
               </Button>
             </Paragraph>
             <Button
-              type="custom"
+              variant="custom"
               textColor="#FFF"
               color="#66E5B8"
-              isSubmit
+              type="submit"
               disabled={isSubmitting}
               className="w-full sm:w-auto ml-auto uc-onboarding-signup-button"
             >

@@ -11,35 +11,15 @@ import Paragraph from './ui/paragraph';
 
 function Workflows() {
   const [activeItem, setActiveItem] = useState(0);
+  const isStudentWorkflow = activeItem === 1;
+  const isStudentQuotaFull = false; // todo: we will get this parameter from sql or something like admin panel.
 
   const workflows = [
     {
       id: 0,
-      title: 'I am Investor',
-      card: [
-        {
-          icon: CampaignIcon,
-          title: "I didn't",
-          desc:
-            'Our team invented awesome campaign creator for you. Give us some details about you and your campaign. But this should little longer.',
-        },
-        {
-          icon: WalletIcon,
-          title: 'Think About',
-          desc:
-            'We have awesome system that creates digital wallet for you. Also, I have no words for saying in here. Lets call our marketing team.',
-        },
-        {
-          icon: SuccessIcon,
-          title: 'Investor Workflow',
-          desc:
-            'Success is key for everything. Taking good grades is a success for example. Go step by step, don’t be like me. I need marketing team I guess.',
-        },
-      ],
-    },
-    {
-      id: 1,
       title: 'I am Student',
+      buttonText: 'Create a Journey',
+      href: '/create-journey',
       card: [
         {
           icon: CampaignIcon,
@@ -61,6 +41,32 @@ function Workflows() {
         },
       ],
     },
+    {
+      id: 1,
+      title: 'I am Investor',
+      buttonText: 'Invest a Journey',
+      href: '/create-journey',
+      card: [
+        {
+          icon: CampaignIcon,
+          title: "I didn't",
+          desc:
+            'Our team invented awesome campaign creator for you. Give us some details about you and your campaign. But this should little longer.',
+        },
+        {
+          icon: WalletIcon,
+          title: 'Think About',
+          desc:
+            'We have awesome system that creates digital wallet for you. Also, I have no words for saying in here. Lets call our marketing team.',
+        },
+        {
+          icon: SuccessIcon,
+          title: 'Investor Workflow',
+          desc:
+            'Success is key for everything. Taking good grades is a success for example. Go step by step, don’t be like me. I need marketing team I guess.',
+        },
+      ],
+    },
   ];
 
   // TODO: add icons to front of titles.
@@ -70,7 +76,7 @@ function Workflows() {
       <div className="flex justify-center mt-4 sm:mt-16">
         {workflows.map((workflow, i) => (
           <Button
-            type="flat"
+            variant="flat"
             key={i.toString()}
             onClick={() => setActiveItem(workflow.id)}
             className={cls(
@@ -104,12 +110,15 @@ function Workflows() {
         ))}
       </div>
       <div className="flex justify-center mb-8 p-4 sm:p-0">
-        <Link href="/create-journey">
-          <a className="text-navbar-link font-bold no-underline uc-create-journey-btn">
-            <Button type="custom" color="#FCFCFC">
-              CREATE A JOURNEY
-            </Button>
-          </a>
+        <Link href={workflows[activeItem].href}>
+          <Button
+            className="uc-create-journey-btn"
+            disabled={isStudentWorkflow && isStudentQuotaFull}
+            variant="custom"
+            color="#FCFCFC"
+          >
+            {workflows[activeItem].buttonText.toUpperCase()}
+          </Button>
         </Link>
         <div className="count border-l border-solid border-text-color ml-8 pl-8 opacity-50">
           <p className="font-light text-text-color">We have</p>

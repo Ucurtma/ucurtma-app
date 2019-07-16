@@ -12,7 +12,7 @@
     "deploy-staging": "aws s3 sync out/ s3://non-prod-ucurtma-app --delete",
     "storybook": "start-storybook -s ./static -p 6006",
     "build-storybook": "build-storybook",
-    "e2e-test:chrome:local": "export BASE_URL=http://localhost:3000 && gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js"
+    "e2e-test:chrome:local": "set BASE_URL=http://localhost:3000&& gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js"
   },
   "author": "",
   "license": "ISC",

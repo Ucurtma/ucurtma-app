@@ -28,7 +28,8 @@ Then(/^I should see the "(.+)" journey step$/, async (t, [title]) => {
 });
 
 When('I fill the form correctly', async t => {
-  await createJourneyPage.fillNameField('Macaulay Culkin', t);
+  await createJourneyPage.fillNameField('Macaulay', t);
+  await createJourneyPage.fillSurnameField('Culkin', t);
   await createJourneyPage.fillEmailField('macaulay@homealone.com', t);
   await createJourneyPage.fillPasswordField('keepthehomesafe', t);
   await createJourneyPage.fillConfirmPasswordField('keepthehomesafe', t);

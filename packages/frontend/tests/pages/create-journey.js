@@ -22,6 +22,11 @@ class CreateJourneyPage {
     await t.typeText(nameField, text);
   }
 
+  async fillSurnameField(text, t) {
+    const surnameField = this.selector('[name="surname"]', t);
+    await t.typeText(surnameField, text);
+  }
+
   async fillEmailField(text, t) {
     const emailField = this.selector('[name="email"]', t);
     await t.typeText(emailField, text);

@@ -54,9 +54,9 @@ function Signup() {
         isSubmitting,
       }) => (
         <form onSubmit={handleSubmit}>
-          <div className="flex">
+          <div className="flex flex-wrap md:flex-no-wrap">
             <Input
-              containerClass="w-full pr-4"
+              containerClass="w-full md:w-6/12 md:pr-4"
               name="name"
               label="Name"
               value={values.name}
@@ -64,7 +64,7 @@ function Signup() {
               errors={touched.name && errors.name}
             />
             <Input
-              containerClass="w-full pl-4"
+              containerClass="w-full md:w-6/12 md:pl-4"
               name="surname"
               label="Surname"
               value={values.surname}

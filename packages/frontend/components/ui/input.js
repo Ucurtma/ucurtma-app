@@ -12,14 +12,16 @@ function Input({
   className,
   value,
   label,
+  // eslint-disable-next-line react/prop-types
   errors,
   labelClass,
   required,
   onChange,
+  containerClass,
   ...otherProps
 }) {
   return (
-    <div className="flex flex-col mb-4">
+    <div className={cls('flex flex-col mb-4', containerClass)}>
       <label
         htmlFor={name}
         className={cls(
@@ -55,6 +57,9 @@ Input.defaultProps = {
   value: '',
   disabled: false,
   required: false,
+  type: 'text',
+  containerClass: '',
+  labelClass: '',
 };
 
 Input.propTypes = {
@@ -64,6 +69,10 @@ Input.propTypes = {
   value: PropTypes.string,
   label: PropTypes.string.isRequired,
   required: PropTypes.bool,
+  containerClass: PropTypes.string,
+  labelClass: PropTypes.string,
+  type: PropTypes.string, // html input type
+  onChange: PropTypes.func,
 };
 
 export default Input;

@@ -3,8 +3,8 @@ import IntroduceSteps from './introduce-steps';
 import Button from '../ui/button';
 import StepOne from './step-one';
 import StepTwo from './step-two';
-import { CreateJourneyCtx } from '../../pages/create-journey';
 import StepThree from './step-three';
+import { CreateJourneyCtx } from '../../context/create-journey-context';
 
 function CreateJourneyContent() {
   const [state, dispatch] = useContext(CreateJourneyCtx);

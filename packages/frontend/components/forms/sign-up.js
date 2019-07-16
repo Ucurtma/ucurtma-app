@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import Input from '../ui/input';
 import Button from '../ui/button';
 import Paragraph from '../ui/paragraph';
-import { CreateJourneyCtx } from '../../pages/create-journey';
+import { CreateJourneyCtx } from '../../context/create-journey-context';
 
 // TODO: implement reCAPTCHA to here.
 
@@ -13,6 +13,10 @@ const signupScheme = Yup.object().shape({
     .email('Invalid email')
     .required('Required'),
   name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  surname: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
@@ -28,6 +32,7 @@ function Signup() {
     <Formik
       initialValues={{
         name: '',
+        surname: '',
         email: '',
         password: '',
         passwordConfirmation: '',
@@ -49,13 +54,24 @@ function Signup() {
         isSubmitting,
       }) => (
         <form onSubmit={handleSubmit}>
-          <Input
-            name="name"
-            label="Name"
-            value={values.name}
-            onChange={handleChange}
-            errors={touched.name && errors.name}
-          />
+          <div className="flex flex-wrap md:flex-no-wrap">
+            <Input
+              containerClass="w-full md:w-6/12 md:pr-4"
+              name="name"
+              label="Name"
+              value={values.name}
+              onChange={handleChange}
+              errors={touched.name && errors.name}
+            />
+            <Input
+              containerClass="w-full md:w-6/12 md:pl-4"
+              name="surname"
+              label="Surname"
+              value={values.surname}
+              onChange={handleChange}
+              errors={touched.surname && errors.surname}
+            />
+          </div>
           <Input
             type="email"
             name="email"

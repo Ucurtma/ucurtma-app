@@ -5,7 +5,7 @@ import Paragraph from '../ui/paragraph';
 import Card from '../ui/card';
 import DropBox from '../ui/drop-box';
 import IdCardIcon from '../../icons/id-card';
-import { CreateJourneyCtx } from '../../pages/create-journey';
+import { CreateJourneyCtx } from '../../context/create-journey-context';
 
 function StepTwo() {
   const [, dispatch] = useContext(CreateJourneyCtx);

@@ -20,14 +20,6 @@
   --dropbox-border-disabled: #deedff;
 }
 
-.ui-button {
-  border: none;
-  margin: 0;
-  overflow: visible;
-  background: transparent;
-  cursor: pointer;
-}
-
 .ui-button:focus {
   outline: none;
   box-shadow: 0px 0px 2px blue;

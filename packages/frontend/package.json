@@ -12,7 +12,11 @@
     "deploy-staging": "aws s3 sync out/ s3://non-prod-ucurtma-app --delete",
     "storybook": "start-storybook -s ./static -p 6006",
     "build-storybook": "build-storybook",
-    "e2e-test:chrome:local": "export BASE_URL=http://localhost:3000 && gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js"
+    "e2e-test:chrome:local": "export BASE_URL=http://localhost:3000 && gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js",
+    "e2e-test:chromium": "export BASE_URL=http://localhost:3000 && gherkin-testcafe 'chromium:headless' tests/features/**/*.feature tests/step_definitions/**/*.js -S -s tests/sreenshots --skip-js-errors -r json:tests/reports/report.json",
+    "e2e-test:testcafe": "export BASE_URL=http://www.google.com && testcafe 'firefox:headless' tests/google.js -S -s tests/sreenshots --skip-js-errors -r json:tests/reports/report.json",
+    "e2e-test:firefox": "export BASE_URL=http://localhost:3000 && gherkin-testcafe 'firefox:headless' tests/features/**/*.feature tests/step_definitions/**/*.js -r json:report.json",
+    "e2e-test:chromium-browser": "export BASE_URL=http://localhost:3000 && testcafe 'path:`/usr/bin/chromium-browser` --no-sandbox' tests/step_definitions/**/*.js -r json:report.json"
   },
   "author": "",
   "license": "ISC",

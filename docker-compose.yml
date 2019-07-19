@@ -1,0 +1,17 @@
+#docker-compose run -d --service-ports ucurtma-container yarn start:frontend
+#docker-compose run --rm ucurtma-container yarn bootstrap
+version: "3.1"
+services:
+  ucurtma-container:
+    build:
+      context: ./
+      dockerfile: ./docker/alpine/Dockerfile
+    container_name: ucurtma-container
+    environment:
+      - BROWSERSTACK_USER=0
+      - BROWSERSTACK_KEY=0
+      - REMOTE_FRONTEND_URL=http://non-prod.ucurtmaprojesi.com/
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app

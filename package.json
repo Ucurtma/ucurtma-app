@@ -11,6 +11,7 @@
     "start:frontend": "lerna run --scope ucurtma-frontend dev",
     "start:storybook": "lerna run --scope ucurtma-frontend storybook",
     "build:storybook": "lerna run --scope ucurtma-frontend build-storybook",
+    "e2e:testcafe": "lerna run --scope ucurtma-frontend e2e-test:testcafe",
     "deploy-staging": "lerna run deploy-staging",
     "bootstrap": "lerna bootstrap",
     "export": "lerna run export"

@@ -1,38 +1,36 @@
 {
-  "name": "ucurtma-app",
-  "private": true,
-  "version": "0.1.0",
-  "description": "Ucurtma App isn't have a description for now. We will add it later.",
-  "main": "index.js",
-  "scripts": {
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "lint": "lerna run lint --parallel",
-    "start:frontend": "lerna run --scope ucurtma-frontend dev",
-    "start:storybook": "lerna run --scope ucurtma-frontend storybook",
-    "build:storybook": "lerna run --scope ucurtma-frontend build-storybook",
-    "e2e:testcafe": "lerna run --scope ucurtma-frontend e2e-test:testcafe",
-    "deploy-staging": "lerna run deploy-staging",
-    "bootstrap": "lerna bootstrap",
-    "export": "lerna run export"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
-  },
-  "workspaces": [
-    "packages/*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ucurtma/ucurtma-app.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Ucurtma/ucurtma-app/issues"
-  },
-  "devDependencies": {
-    "husky": "^2.4.1",
-    "lerna": "^3.15.0"
-  }
+	"name": "ucurtma-app",
+	"private": true,
+	"version": "0.1.0",
+	"description": "Ucurtma App isn't have a description for now. We will add it later.",
+	"main": "index.js",
+	"scripts": {
+		"build": "lerna run build --parallel",
+		"dev": "lerna run dev --parallel",
+		"lint": "lerna run lint --parallel",
+		"start:frontend": "lerna run --scope ucurtma-frontend dev",
+		"start:storybook": "lerna run --scope ucurtma-frontend storybook",
+		"build:storybook": "lerna run --scope ucurtma-frontend build-storybook",
+		"e2e:bs": "lerna run --scope ucurtma-frontend e2e-test:bs",
+		"deploy-staging": "lerna run deploy-staging",
+		"bootstrap": "lerna bootstrap --concurrency=1",
+		"export": "lerna run export"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint"
+		}
+	},
+	"workspaces": [ "packages/*" ],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Ucurtma/ucurtma-app.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Ucurtma/ucurtma-app/issues"
+	},
+	"devDependencies": {
+		"husky": "^2.4.1",
+		"lerna": "^3.15.0"
+	}
 }

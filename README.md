@@ -64,7 +64,7 @@ This command will start our documentation page after waiting 10 seconds.
 ```
   docker-compose run --rm ucurtma-container yarn bootstrap
   docker-compose run -d --service-ports ucurtma-container yarn start:frontend
-  docker-compose run -d --service-ports ucurtma-container yarn e2e:testcafe
+  docker-compose run --rm --service-ports ucurtma-container yarn e2e-test:bs
   
 ```
 

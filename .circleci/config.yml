@@ -25,10 +25,10 @@ references:
     run:
       name: Deploy storybook to AWS
       command: aws s3 sync ./packages/frontend/storybook-static/ s3://components.ucurtmaprojesi.com --delete
-  e2etest_bs: &e2etest_bs
+  e2etest_browserstack: &e2etest_browserstack
     run:
-      name: e2e test process on non-prod.ucurtmaprojesi.com
-      command: yarn e2e:bs
+      name: e2e test process with browserstack on non-prod.ucurtmaprojesi.com
+      command: yarn e2e:browserstack
 jobs:
   build:
     docker:
@@ -78,7 +78,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - *e2etest_bs
+      - *e2etest_browserstack
 workflows:
   version: 2
   build-and-deploy-non-prod:

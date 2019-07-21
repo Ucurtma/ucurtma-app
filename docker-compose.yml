@@ -1,17 +1,14 @@
 version: "3.1"
 services:
-  ucurtma-container:
+  ucurtma-app:
     build:
       context: ./
-      dockerfile: ./docker/alpine/Dockerfile
+      #includes the packets needed for the ucurtma-app
+      dockerfile: ./docker/ucurtma-app/Dockerfile
     container_name: ucurtma-container
-    environment:
-      - BROWSERSTACK_USERNAME=0
-      - BROWSERSTACK_ACCESS_KEY=0
-      - BROWSERSTACK_USE_AUTOMATE=1
-      - BROWSERSTACK_DISPLAY_RESOLUTION=1280x1024
-      - REMOTE_FRONTEND_URL=http://non-prod.ucurtmaprojesi.com/
-      - BASE_URL=http://non-prod.ucurtmaprojesi.com/
+    env_file:
+      #please enter the required variables
+    - ./docker/ucurtma-app/.env
     ports:
       - "3000:3000"
     volumes:

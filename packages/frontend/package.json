@@ -13,7 +13,7 @@
 		"storybook": "start-storybook -s ./static -p 6006",
 		"build-storybook": "build-storybook",
 		"e2e-test:chrome:local": "export BASE_URL=http://localhost:3000 && gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js",
-		"e2e-test:bs": "gherkin-testcafe 'browserstack:chrome' tests/features/**/bs-*.feature tests/step_definitions/**/*.js -S -s tests/sreenshots --skip-js-errors",
+		"e2e-test:browserstack": "gherkin-testcafe 'browserstack:chrome' tests/features/**/browserstack-short-test-*.feature tests/step_definitions/**/*.js -S -s tests/sreenshots --skip-js-errors",
 		"e2e-test:firefox": "gherkin-testcafe 'firefox:headless' tests/features/**/*.feature tests/step_definitions/**/*.js -S -s tests/sreenshots --skip-js-errors -r json:tests/reports/report.json"
 	},
 	"author": "",
@@ -36,8 +36,14 @@
 		"c21e": "1.1.9"
 	},
 	"lint-staged": {
-		"*.{js,jsx}": [ "eslint --ext", "git add" ],
-		"*.{js,jsx,json,css,scss}": [ "pretty-quick --staged", "git add" ]
+		"*.{js,jsx}": [
+			"eslint --ext",
+			"git add"
+		],
+		"*.{js,jsx,json,css,scss}": [
+			"pretty-quick --staged",
+			"git add"
+		]
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",

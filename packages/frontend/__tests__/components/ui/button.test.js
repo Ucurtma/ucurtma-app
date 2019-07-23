@@ -11,8 +11,8 @@ describe('Button Tests', () => {
   });
 
   test('Has default classes', () => {
-    const wrapper = render(<Button>Click Here</Button>);
-    expect(wrapper.container.firstChild).toHaveClass(
+    const { container } = render(<Button>Click Here</Button>);
+    expect(container.firstChild).toHaveClass(
       'ui-button font-bold text-sm sm:text-base rounded-full'
     );
   });
@@ -27,17 +27,17 @@ describe('Button Tests', () => {
       { variant: 'bg', class: 'bg-default-button text-navbar-link' },
     ];
     types.forEach(type => {
-      const wrapper = render(
+      const { container } = render(
         <Button variant={type.variant}>Click Here</Button>
       );
-      expect(wrapper.container.firstChild).toHaveClass(type.class);
+      expect(container.firstChild).toHaveClass(type.class);
     });
   });
 
   test('Renders button without paddings', () => {
-    const wrapper = render(<Button noPadding>Click Here</Button>);
-    expect(wrapper.container.firstChild).toHaveClass('py-0 sm:py-0 px-0');
-    expect(wrapper.container.firstChild).not.toHaveClass('py-2 sm:py-3 px-6');
+    const { container } = render(<Button noPadding>Click Here</Button>);
+    expect(container.firstChild).toHaveClass('py-0 sm:py-0 px-0');
+    expect(container.firstChild).not.toHaveClass('py-2 sm:py-3 px-6');
   });
 
   test('Runs action on click', () => {

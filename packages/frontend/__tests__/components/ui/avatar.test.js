@@ -6,21 +6,21 @@ import Avatar from '../../../components/ui/avatar';
 describe('Avatar Tests', () => {
   const imagePath = 'imageUrl';
   test('Renders with default classes', () => {
-    const wrapper = render(<Avatar imagePath={imagePath} />);
+    const { container } = render(<Avatar imagePath={imagePath} />);
     const defaultClasses =
       'flex align-center justify-center overflow-hidden rounded-full';
-    expect(wrapper.container.firstChild).toHaveClass(defaultClasses);
+    expect(container.firstChild).toHaveClass(defaultClasses);
   });
 
   test('Renders right image', () => {
-    const wrapper = render(<Avatar imagePath={imagePath} />);
-    const content = wrapper.container.firstChild.firstChild;
+    const { container } = render(<Avatar imagePath={imagePath} />);
+    const content = container.firstChild.firstChild;
     expect(content).toHaveStyle(`background-image: url('${imagePath}'')`);
   });
 
   test('Renders empty circle if there is no imagePath', () => {
-    const wrapper = render(<Avatar />);
-    const content = wrapper.container.firstChild.firstChild;
+    const { container } = render(<Avatar />);
+    const content = container.firstChild.firstChild;
     const emptyCircleClasses = 'w-full h-full bg-text-color';
     expect(content).toHaveClass(emptyCircleClasses);
     expect(content).not.toHaveClass('w-11');
@@ -33,10 +33,10 @@ describe('Avatar Tests', () => {
       { variant: 'lg', class: 'w-14 h-14' },
     ];
     types.forEach(type => {
-      const wrapper = render(
+      const { container } = render(
         <Avatar imagePath={imagePath} variant={type.variant} />
       );
-      expect(wrapper.container.firstChild).toHaveClass(type.class);
+      expect(container.firstChild).toHaveClass(type.class);
     });
   });
 });

@@ -13,7 +13,7 @@ describe('Title Tests', () => {
   test('Renders different variants', () => {
     const types = [
       { variant: 'normal', class: 'text-3xl' },
-      { variant: 'small', class: 'text-2xl' },
+      { variant: 'xs', class: 'text-2xl' },
     ];
     types.forEach(type => {
       const { container } = render(

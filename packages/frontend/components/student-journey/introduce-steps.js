@@ -63,7 +63,7 @@ function IntroduceSteps() {
 
   return (
     <div>
-      <Title variant="small" className="w-full sm:w-5/12">
+      <Title variant="xs" className="w-full sm:w-5/12">
         Hey! Let me intruduce our journey steps before you start!
       </Title>
       {steps.map(step => (

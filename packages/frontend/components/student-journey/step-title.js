@@ -8,7 +8,7 @@ function StepTitle({ step, title, children, fullWidth, className }) {
       <h4 className="font-bold">STEP {step}</h4>
       <Title
         className="mb-4 w-6/12 uc-onboarding-journey-step-title"
-        variant="small"
+        variant="xs"
       >
         {title}
       </Title>

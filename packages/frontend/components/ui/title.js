@@ -5,11 +5,11 @@ import cls from 'classnames';
 function Title({ children, variant, className }) {
   const titleType = {
     normal: 'text-3xl',
-    small: 'text-2xl',
+    xs: 'text-2xl',
   };
 
   let Tag = 'h1';
-  if (variant === 'small') Tag = 'h2';
+  if (variant === 'xs') Tag = 'h2';
 
   return (
     <Tag
@@ -32,7 +32,7 @@ Title.defaultProps = {
 Title.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['normal', 'small']),
+  variant: PropTypes.oneOf(['normal', 'xs']),
 };
 
 export default Title;

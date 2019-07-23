@@ -8,7 +8,7 @@ storiesOf('Paragraph', module)
   .add('Default Paragraph', () => (
     <Paragraph
       className={text('Classname', 'mt-10 ml-10')}
-      type={select('Type', ['xs', 'normal', 'lg'], 'normal')}
+      variant={select('Type', ['xs', 'normal', 'lg'], 'normal')}
     >
       {text(
         'Text',
@@ -19,7 +19,7 @@ storiesOf('Paragraph', module)
   .add('Big Paragraph', () => (
     <Paragraph
       className={text('Classname', 'mt-10 ml-10')}
-      type={select('Type', ['xs', 'normal', 'lg'], 'lg')}
+      variant={select('Type', ['xs', 'normal', 'lg'], 'lg')}
     >
       {text(
         'Text',
@@ -30,7 +30,7 @@ storiesOf('Paragraph', module)
   .add('Small Paragraph', () => (
     <Paragraph
       className={text('Classname', 'mt-10 ml-10')}
-      type={select('Type', ['xs', 'normal', 'lg'], 'xs')}
+      variant={select('Type', ['xs', 'normal', 'lg'], 'xs')}
     >
       {text(
         'Text',

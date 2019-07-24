@@ -85,10 +85,3 @@ workflows:
   build-and-deploy-non-prod:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master

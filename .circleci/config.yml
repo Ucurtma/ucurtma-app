@@ -45,6 +45,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - *e2etest_browserstack
       - *build_static_bundle
       - *build_storybook
       - persist_to_workspace:
@@ -91,7 +92,3 @@ workflows:
             branches:
               only:
                 - master
-      - tests:
-          requires:
-            - build
-            - deploy

@@ -1,0 +1,5 @@
+.git
+.aws
+.circleci
+node_modules
+packages/*/node_modules

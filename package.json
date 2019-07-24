@@ -12,8 +12,9 @@
     "start:storybook": "lerna run --scope ucurtma-frontend storybook",
     "test:frontend": "lerna run --scope ucurtma-frontend test",
     "build:storybook": "lerna run --scope ucurtma-frontend build-storybook",
+    "e2e:browserstack": "lerna run --scope ucurtma-frontend e2e-test:browserstack",
     "deploy-staging": "lerna run deploy-staging",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --concurrency=1",
     "export": "lerna run export"
   },
   "husky": {

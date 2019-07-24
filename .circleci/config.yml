@@ -94,7 +94,4 @@ workflows:
       - tests:
           requires:
             - build
-          filters:
-            branches:
-              only:
-                - master
+            - deploy

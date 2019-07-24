@@ -15,9 +15,7 @@ function Card({ title, icon, children, noPadding, className }) {
       {title && (
         <div className="flex items-end">
           {icon && <Icon noSize className="mr-9 w-52 h-52" />}
-          {title && (
-            <h2 className="m-0 text-title-color text-2xl font-bold">{title}</h2>
-          )}
+          <h2 className="m-0 text-title-color text-2xl font-bold">{title}</h2>
         </div>
       )}
       {children}

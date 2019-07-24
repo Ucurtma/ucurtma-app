@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 
-function Paragraph({ children, type, className }) {
+function Paragraph({ children, variant, className }) {
   const fontType = {
     xs: 'text-base leading-normal',
     normal: 'text-lg leading-relaxed',
@@ -10,7 +10,7 @@ function Paragraph({ children, type, className }) {
   };
 
   return (
-    <p className={cls(fontType[type], 'text-text-color', className)}>
+    <p className={cls(fontType[variant], 'text-text-color', className)}>
       {children}
     </p>
   );
@@ -18,13 +18,13 @@ function Paragraph({ children, type, className }) {
 
 Paragraph.defaultProps = {
   children: '',
-  type: 'normal',
+  variant: 'normal',
   className: '',
 };
 
 Paragraph.propTypes = {
   children: PropTypes.node,
-  type: PropTypes.oneOf(['xs', 'normal', 'lg']),
+  variant: PropTypes.oneOf(['xs', 'normal', 'lg']),
   className: PropTypes.string,
 };
 

@@ -17,21 +17,27 @@ describe('Button Tests', () => {
     );
   });
 
-  test('Renders different variants', () => {
-    const types = [
-      {
-        variant: 'outlined',
-        class: 'text-default-button border-2 border-solid',
-      },
-      { variant: 'flat', class: 'button-flat p-0 m-0 text-navbar-link' },
-      { variant: 'bg', class: 'bg-default-button text-navbar-link' },
-    ];
-    types.forEach(type => {
-      const { container } = render(
-        <Button variant={type.variant}>Click Here</Button>
-      );
-      expect(container.firstChild).toHaveClass(type.class);
-    });
+  test('Renders outlined variant', () => {
+    const { container } = render(
+      <Button variant="outlined">Click Here</Button>
+    );
+    expect(container.firstChild).toHaveClass(
+      'text-default-button border-2 border-solid'
+    );
+  });
+
+  test('Renders flat variant', () => {
+    const { container } = render(<Button variant="flat">Click Here</Button>);
+    expect(container.firstChild).toHaveClass(
+      'button-flat p-0 m-0 text-navbar-link'
+    );
+  });
+
+  test('Renders backgrounded variant', () => {
+    const { container } = render(<Button variant="bg">Click Here</Button>);
+    expect(container.firstChild).toHaveClass(
+      'bg-default-button text-navbar-link'
+    );
   });
 
   test('Renders button without paddings', () => {

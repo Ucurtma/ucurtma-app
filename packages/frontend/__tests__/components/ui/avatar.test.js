@@ -26,17 +26,20 @@ describe('Avatar Tests', () => {
     expect(content).not.toHaveClass('w-11');
   });
 
-  test('Renders different variants', () => {
-    const types = [
-      { variant: 'xs', class: 'w-8 h-8' },
-      { variant: 'normal', class: 'w-11 h-11' },
-      { variant: 'lg', class: 'w-14 h-14' },
-    ];
-    types.forEach(type => {
-      const { container } = render(
-        <Avatar imagePath={imagePath} variant={type.variant} />
-      );
-      expect(container.firstChild).toHaveClass(type.class);
-    });
+  test('Renders small variant', () => {
+    const { container } = render(<Avatar imagePath={imagePath} variant="xs" />);
+    expect(container.firstChild).toHaveClass('w-8 h-8');
+  });
+
+  test('Renders normal variant', () => {
+    const { container } = render(
+      <Avatar imagePath={imagePath} variant="normal" />
+    );
+    expect(container.firstChild).toHaveClass('w-11 h-11');
+  });
+
+  test('Renders large variant', () => {
+    const { container } = render(<Avatar imagePath={imagePath} variant="lg" />);
+    expect(container.firstChild).toHaveClass('w-14 h-14');
   });
 });

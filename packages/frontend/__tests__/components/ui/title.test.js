@@ -10,16 +10,13 @@ describe('Title Tests', () => {
     expect(getByText(content)).toBeInTheDocument();
   });
 
-  test('Renders different variants', () => {
-    const types = [
-      { variant: 'normal', class: 'text-3xl' },
-      { variant: 'xs', class: 'text-2xl' },
-    ];
-    types.forEach(type => {
-      const { container } = render(
-        <Title variant={type.variant}>I am legend</Title>
-      );
-      expect(container.firstChild).toHaveClass(type.class);
-    });
+  test('Renders small variant', () => {
+    const { container } = render(<Title variant="xs">I am legend</Title>);
+    expect(container.firstChild).toHaveClass('text-2xl');
+  });
+
+  test('Renders normal variant', () => {
+    const { container } = render(<Title variant="normal">I am legend</Title>);
+    expect(container.firstChild).toHaveClass('text-3xl');
   });
 });

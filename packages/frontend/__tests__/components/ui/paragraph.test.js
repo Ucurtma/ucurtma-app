@@ -11,22 +11,39 @@ describe('Paragraph Tests', () => {
     expect(getByText(content)).toBeInTheDocument();
   });
 
-  test('Renders different variants', () => {
-    const types = [
-      { variant: 'xs', class: 'text-base leading-normal' },
-      { variant: 'normal', class: 'text-lg leading-relaxed' },
-      { variant: 'lg', class: 'text-xl leading-loose' },
-    ];
-    types.forEach(type => {
-      const { container } = render(
-        <Paragraph variant={type.variant}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-          obcaecati ab dolorum nesciunt iusto saepe aut assumenda dolore
-          architecto nulla numquam dolorem adipisci maxime magnam unde, fuga
-          blanditiis minima mollitia.
-        </Paragraph>
-      );
-      expect(container.firstChild).toHaveClass(type.class);
-    });
+  test('Renders small variant', () => {
+    const { container } = render(
+      <Paragraph variant="xs">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+        obcaecati ab dolorum nesciunt iusto saepe aut assumenda dolore
+        architecto nulla numquam dolorem adipisci maxime magnam unde, fuga
+        blanditiis minima mollitia.
+      </Paragraph>
+    );
+    expect(container.firstChild).toHaveClass('text-base leading-normal');
+  });
+
+  test('Renders normal variant', () => {
+    const { container } = render(
+      <Paragraph variant="normal">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+        obcaecati ab dolorum nesciunt iusto saepe aut assumenda dolore
+        architecto nulla numquam dolorem adipisci maxime magnam unde, fuga
+        blanditiis minima mollitia.
+      </Paragraph>
+    );
+    expect(container.firstChild).toHaveClass('text-lg leading-relaxed');
+  });
+
+  test('Renders large variant', () => {
+    const { container } = render(
+      <Paragraph variant="lg">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+        obcaecati ab dolorum nesciunt iusto saepe aut assumenda dolore
+        architecto nulla numquam dolorem adipisci maxime magnam unde, fuga
+        blanditiis minima mollitia.
+      </Paragraph>
+    );
+    expect(container.firstChild).toHaveClass('text-xl leading-loose');
   });
 });

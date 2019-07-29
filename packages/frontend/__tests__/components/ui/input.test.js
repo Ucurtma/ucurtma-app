@@ -83,6 +83,7 @@ describe('Input Tests', () => {
   });
 
   test('Dont change value if value defined', () => {
+    const handleInputChange = jest.fn();
     const { container, getByLabelText } = render(
       <Formik>
         <Input
@@ -90,7 +91,7 @@ describe('Input Tests', () => {
           label="defaultLabel"
           value="stateValue"
           labelClass="custom-label-class"
-          onChange={() => {}}
+          onChange={handleInputChange}
         />
       </Formik>
     );
@@ -98,6 +99,7 @@ describe('Input Tests', () => {
       target: { value: 'changedValue' },
     });
     const input = container.querySelector('input');
+    expect(handleInputChange).toHaveBeenCalledTimes(1);
     expect(input.value).toBe('stateValue');
   });
 });

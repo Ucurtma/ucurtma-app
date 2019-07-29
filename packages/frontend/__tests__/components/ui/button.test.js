@@ -47,18 +47,11 @@ describe('Button Tests', () => {
   });
 
   test('Runs action on click', () => {
-    let counter = 0;
+    const handleCountChange = jest.fn();
     const { getByText } = render(
-      <Button
-        onClick={() => {
-          counter += 1;
-        }}
-      >
-        Click Here
-      </Button>
+      <Button onClick={handleCountChange}>Click Here</Button>
     );
-    const isClickDone = fireEvent.click(getByText('Click Here'));
-    expect(counter).toBe(1);
-    expect(isClickDone).toBe(true);
+    fireEvent.click(getByText('Click Here'));
+    expect(handleCountChange).toHaveBeenCalledTimes(1);
   });
 });

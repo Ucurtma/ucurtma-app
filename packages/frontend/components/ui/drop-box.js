@@ -47,7 +47,7 @@ function DropBox({ icon, type, onDrop, active }) {
           ))}
         {type && (
           <Paragraph
-            type="lg"
+            variant="lg"
             className={cls(
               'text-center font-bold transition',
               classes.paragraph
@@ -65,6 +65,7 @@ DropBox.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   type: PropTypes.string.isRequired,
   onDrop: PropTypes.func.isRequired,
+  active: PropTypes.bool,
 };
 
 export default DropBox;

@@ -65,10 +65,11 @@ This command will start our documentation page after waiting 10 seconds.
   docker-compose run --rm ucurtma-app yarn bootstrap
   docker-compose run -d --service-ports ucurtma-app yarn start:frontend
   docker-compose run --rm --service-ports ucurtma-app yarn e2e:browserstack
-  
+
 ```
 
 ---
+
 Cross-browser testing provided by:
 
 <a href="http://browserstack.com"><img height="70" src="images/browserstack-logo.png" alt="BrowserStack"></a>

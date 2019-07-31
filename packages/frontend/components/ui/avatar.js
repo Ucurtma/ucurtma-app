@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 
-function Avatar({ type, className, imagePath }) {
+function Avatar({ variant, className, imagePath }) {
   const avatarType = {
     xs: 'w-8 h-8',
     normal: 'w-11 h-11',
@@ -12,7 +12,7 @@ function Avatar({ type, className, imagePath }) {
   return (
     <div
       className={cls(
-        avatarType[type],
+        avatarType[variant],
         'flex align-center justify-center overflow-hidden rounded-full',
         className
       )}
@@ -34,12 +34,12 @@ function Avatar({ type, className, imagePath }) {
 
 Avatar.defaultProps = {
   imagePath: '',
-  type: 'normal',
+  variant: 'normal',
   className: '',
 };
 
 Avatar.propTypes = {
-  type: PropTypes.oneOf(['xs', 'normal', 'lg']),
+  variant: PropTypes.oneOf(['xs', 'normal', 'lg']),
   imagePath: PropTypes.string,
   className: PropTypes.string,
 };

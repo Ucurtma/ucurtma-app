@@ -2,19 +2,22 @@ import React from 'react';
 import cls from 'classnames';
 import PropTypes from 'prop-types';
 
-function Button({
-  tag,
-  children,
-  variant,
-  className,
-  color,
-  textColor,
-  style,
-  noPadding,
-  disabled,
-  type,
-  ...otherProps
-}) {
+const Button = React.forwardRef(function Button(
+  {
+    tag,
+    children,
+    variant,
+    className,
+    color,
+    textColor,
+    style,
+    noPadding,
+    disabled,
+    type,
+    ...otherProps
+  },
+  ref
+) {
   const Tag = tag;
   const hasColor = color || textColor;
 
@@ -40,6 +43,7 @@ function Button({
 
   return (
     <Tag
+      ref={ref}
       className={cls(
         'ui-button font-bold text-sm sm:text-base rounded-full',
         noPadding ? 'py-0 sm:py-0 px-0' : 'py-2 sm:py-3 px-6',
@@ -58,7 +62,7 @@ function Button({
       {children}
     </Tag>
   );
-}
+});
 
 Button.defaultProps = {
   tag: 'button',

@@ -17,10 +17,14 @@
     "@chakra-ui/core": "^0.4.1",
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
+    "classnames": "^2.2.6",
     "emotion-theming": "^10.0.19",
+    "formik": "^2.0.3",
     "next": "^9.1.2",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "yup": "^0.27.0"
   },
   "lint-staged": {
     "*.{js,jsx}": [

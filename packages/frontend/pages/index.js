@@ -1,11 +1,5 @@
-import LandingPage from './landing-page';
-
-function Index() {
-  return (
-    <div>
-      <LandingPage />
-    </div>
-  );
+function Home() {
+  return <div>Welcome to Next.js!</div>;
 }
 
-export default Index;
+export default Home;

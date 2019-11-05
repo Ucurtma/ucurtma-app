@@ -17,18 +17,6 @@ references:
     run:
       name: Export the application bundle
       command: yarn build && yarn export
-  build_storybook: &build_storybook
-    run:
-      name: Build storybook components
-      command: yarn build:storybook
-  deploy_storybook_to_s3: &deploy_storybook_to_s3
-    run:
-      name: Deploy storybook to AWS
-      command: aws s3 sync ./packages/frontend/storybook-static/ s3://components.ucurtmaprojesi.com --delete
-  e2etest_browserstack: &e2etest_browserstack
-    run:
-      name: e2e test process with browserstack on non-prod.ucurtmaprojesi.com
-      command: yarn e2e:browserstack
   test_unit: &test_unit
     run:
       name: Make unit tests
@@ -54,12 +42,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - *build_static_bundle
-      - *build_storybook
-      - persist_to_workspace:
-          root: packages
-          paths:
-            - frontend/storybook-static
-            - frontend/out
   deploy:
     machine:
       enabled: true
@@ -69,8 +51,6 @@ jobs:
           at: ~/repo/packages/
       # deploy the bundle to non-prod s3 bucket
       - *deploy_to_non_prod
-      # deploy the storybook to s3 bucket
-      - *deploy_storybook_to_s3
   tests:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
@@ -88,7 +68,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - *lint_files
       - *test_unit
-      - *e2etest_browserstack
 workflows:
   version: 2
   build-and-deploy-non-prod:

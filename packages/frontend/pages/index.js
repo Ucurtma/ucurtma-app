@@ -1,11 +1,7 @@
-import LandingPage from './landing-page';
+import React from 'react';
 
-function Index() {
-  return (
-    <div>
-      <LandingPage />
-    </div>
-  );
+function Home() {
+  return <div>for now, there is a big silence.</div>;
 }
 
-export default Index;
+export default Home;

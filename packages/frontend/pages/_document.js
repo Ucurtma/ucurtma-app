@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-import { Fragment } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { gaTrackingId } from '../utils/ga-tag';
 
@@ -19,7 +18,6 @@ class MyDocument extends Document {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', ${gaTrackingId});
       `,
     };
@@ -35,20 +33,19 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=latin-ext"
             rel="stylesheet"
           />
-          <body className="bg-body-bg font-normal font-sans" />
         </Head>
         <body>
           <Main />
           <NextScript />
           {isProduction && (
-            <Fragment>
+            <>
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
               />
               {/* We call the function above to inject the contents of the script tag */}
               <script dangerouslySetInnerHTML={this.setGoogleTags()} />
-            </Fragment>
+            </>
           )}
         </body>
       </Html>

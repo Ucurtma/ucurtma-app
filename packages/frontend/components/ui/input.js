@@ -1,78 +1,35 @@
 import React from 'react';
-import { Field } from 'formik';
 import PropTypes from 'prop-types';
-import cls from 'classnames';
+import { Text, Input } from '@chakra-ui/core';
+import { useField } from 'formik';
 
-// TODO: choose a form-validation component for input.
-
-function Input({
-  name,
-  type,
-  disabled,
-  className,
-  value,
-  label,
-  // eslint-disable-next-line react/prop-types
-  errors,
-  labelClass,
-  required,
-  onChange,
-  containerClass,
-  ...otherProps
-}) {
+function InputA({ label, type, ...props }) {
+  const [field, meta] = useField(props);
   return (
-    <div className={cls('flex flex-col mb-4', containerClass)}>
-      <label
-        htmlFor={name}
-        className={cls(
-          'mb-1',
-          errors ? 'text-danger' : 'text-label',
-          labelClass
-        )}
-      >
-        {label}
-        {required && <span className="ml-1">*</span>}
-      </label>
-      <Field
-        id={name} // maybe we can change id with id later, but name should be ok for now.
-        name={name}
-        type={type}
-        className={cls(
-          'py-2 px-4 text-lg rounded-lg shadow-light border border-solid color-text-color',
-          errors ? 'border-danger' : 'border-input',
-          className
-        )}
-        disabled={disabled}
-        value={value || undefined}
-        onChange={onChange} // i guess giving onChange as a function isn't ok for formik.
-        required={required}
-        {...otherProps}
+    <>
+      {label && <Text mb="8px">{label}</Text>}
+      <Input
+        aria-label={label || field.name}
+        aria-describedby={label || field.name}
+        type={type || 'text'}
+        errorBorderColor="red.300"
+        isInvalid={meta.touched && !!meta.error}
+        {...field}
+        {...props}
       />
-    </div>
+      {meta.touched && meta.error ? (
+        <Text fontSize="sm" mt={1} color="red.300" className="error">
+          {meta.error}
+        </Text>
+      ) : null}
+    </>
   );
 }
 
-Input.defaultProps = {
-  className: '',
-  value: '',
-  disabled: false,
-  required: false,
-  type: 'text',
-  containerClass: '',
-  labelClass: '',
+InputA.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
 };
 
-Input.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
-  value: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  required: PropTypes.bool,
-  containerClass: PropTypes.string,
-  labelClass: PropTypes.string,
-  type: PropTypes.string, // html input type
-  onChange: PropTypes.func,
-};
-
-export default Input;
+export default InputA;

@@ -1,105 +1,83 @@
 /* eslint-env jest */
 import React from 'react';
 import { Formik } from 'formik';
-import { render, fireEvent } from '@testing-library/react';
+import * as Yup from 'yup';
+import { render, wait, fireEvent } from 'test-utils';
+import userEvent from '@testing-library/user-event';
 import Input from '../../../components/ui/input';
 
 describe('Input Tests', () => {
-  test('Renders Component', () => {
-    const { container } = render(
-      <Formik>
-        <Input name="defaultName" label="defaultLabel" />
-      </Formik>
-    );
-    const defaultClasses = 'flex flex-col mb-4';
-    expect(container.firstChild).toHaveClass(defaultClasses);
-  });
-
-  test('Renders with custom container classes', () => {
-    const { container } = render(
+  test('Renders Label', () => {
+    const { getByText } = render(
       <Formik>
         <Input
-          containerClass="custom-container-class"
-          name="defaultName"
-          label="defaultLabel"
+          label="Email"
+          type="email"
+          name="email"
+          placeholder="(ex. mail@mail.com)"
         />
       </Formik>
     );
-    const defaultClasses = 'flex flex-col mb-4';
-    expect(container.firstChild).toHaveClass(defaultClasses);
-    expect(container.firstChild).toHaveClass('custom-container-class');
+    expect(getByText('Email')).toBeInTheDocument();
   });
 
-  test('Renders label', () => {
-    const { container } = render(
+  test('Accessibility', () => {
+    const { getByLabelText } = render(
       <Formik>
-        <Input
-          name="defaultName"
-          label="defaultLabel"
-          labelClass="custom-label-class"
-        />
+        <Input type="email" name="email" placeholder="(ex. mail@mail.com)" />
       </Formik>
     );
-    const label = container.querySelector('label');
-    expect(label).toBeInTheDocument();
-    expect(label).toHaveClass('mb-1 text-label');
-    expect(label).toHaveClass('custom-label-class');
-    expect(label.innerHTML).toBe('defaultLabel');
+    const inputNode = getByLabelText('email');
+    expect(inputNode.getAttribute('aria-label')).toBe('email');
+    expect(inputNode.getAttribute('aria-describedby')).toBe('email');
   });
 
-  test('Renders input', () => {
-    const { container } = render(
+  test('Renders given type', () => {
+    const { getByLabelText } = render(
       <Formik>
-        <Input
-          name="defaultName"
-          label="defaultLabel"
-          labelClass="custom-label-class"
-        />
+        <Input type="email" name="email" placeholder="(ex. mail@mail.com)" />
       </Formik>
     );
-
-    const input = container.querySelector('input');
-    expect(input.name).toBe('defaultName');
-    expect(input).toHaveClass(
-      'py-2 px-4 text-lg rounded-lg shadow-light border border-solid color-text-color'
-    );
+    const inputNode = getByLabelText('email');
+    expect(inputNode.getAttribute('type')).toBe('email');
   });
 
-  test('Runs onChange function', () => {
-    const { container, getByLabelText } = render(
+  test('Renders text if type isnt defined', () => {
+    const { getByLabelText } = render(
       <Formik>
-        <Input
-          name="defaultName"
-          label="defaultLabel"
-          labelClass="custom-label-class"
-        />
+        <Input name="email" placeholder="(ex. mail@mail.com)" />
       </Formik>
     );
-    fireEvent.change(getByLabelText('defaultLabel'), {
-      target: { value: 'changedValue' },
+    const inputNode = getByLabelText('email');
+    expect(inputNode.getAttribute('type')).toBe('text');
+  });
+
+  test('Renders errors', async () => {
+    const signupSchema = Yup.object().shape({
+      email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
     });
-    const input = container.querySelector('input');
-    expect(input.value).toBe('changedValue');
-  });
 
-  test('Dont change value if value defined', () => {
-    const handleInputChange = jest.fn();
-    const { container, getByLabelText } = render(
-      <Formik>
-        <Input
-          name="defaultName"
-          label="defaultLabel"
-          value="stateValue"
-          labelClass="custom-label-class"
-          onChange={handleInputChange}
-        />
+    const { getByLabelText, queryByText } = render(
+      <Formik
+        initialValues={{
+          email: '',
+        }}
+        validationSchema={signupSchema}
+      >
+        <Input type="email" name="email" placeholder="(ex. mail@mail.com)" />
       </Formik>
     );
-    fireEvent.change(getByLabelText('defaultLabel'), {
-      target: { value: 'changedValue' },
-    });
-    const input = container.querySelector('input');
-    expect(handleInputChange).toHaveBeenCalledTimes(1);
-    expect(input.value).toBe('stateValue');
+    const inputNode = getByLabelText('email');
+    await fireEvent.blur(inputNode);
+    await userEvent.type(inputNode, 'mail');
+    await wait();
+    expect(inputNode).toHaveAttribute('value', 'mail');
+    expect(queryByText('Invalid email')).not.toBeNull();
+    await userEvent.type(inputNode, 'mail@mail.com');
+    await wait();
+    expect(inputNode).toHaveAttribute('value', 'mail@mail.com');
+    expect(queryByText('Invalid email')).toBeNull();
   });
 });

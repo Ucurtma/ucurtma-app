@@ -42,7 +42,7 @@ function SignupForm({ onSubmit, withTitle }) {
               <Input
                 label="Name"
                 name="name"
-                placeholder="(ex. Mustafa Turhan)"
+                placeholder="(ex. Harry Potter)"
               />
             </Box>
             <Box mb="1rem">
@@ -50,7 +50,7 @@ function SignupForm({ onSubmit, withTitle }) {
                 label="Email"
                 type="email"
                 name="email"
-                placeholder="(ex. mail@mail.com)"
+                placeholder="(ex. harry@potter.com)"
               />
             </Box>
             <Box mb="1rem">

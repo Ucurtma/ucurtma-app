@@ -4,7 +4,7 @@ import SignupForm from '../../components/forms/signup-form';
 import WaitingForYou from '../../components/illustrations/waiting-for-you';
 import Header from '../../components/header';
 
-// todo: if user logged in, we should redirect him/her to ucurtma.com/account/profile link.
+// todo: if user logged in, we should redirect him/her to ucurtmaprojesi.com/account/profile link.
 function Account() {
   return (
     <>

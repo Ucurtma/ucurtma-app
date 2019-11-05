@@ -71,13 +71,13 @@ describe('Input Tests', () => {
     );
     const inputNode = getByLabelText('email');
     await fireEvent.blur(inputNode);
-    await userEvent.type(inputNode, 'mustaphaturhan');
+    await userEvent.type(inputNode, 'mail');
     await wait();
-    expect(inputNode).toHaveAttribute('value', 'mustaphaturhan');
+    expect(inputNode).toHaveAttribute('value', 'mail');
     expect(queryByText('Invalid email')).not.toBeNull();
-    await userEvent.type(inputNode, 'mustaphaturhan@gmail.com');
+    await userEvent.type(inputNode, 'mail@mail.com');
     await wait();
-    expect(inputNode).toHaveAttribute('value', 'mustaphaturhan@gmail.com');
+    expect(inputNode).toHaveAttribute('value', 'mail@mail.com');
     expect(queryByText('Invalid email')).toBeNull();
   });
 });

@@ -32,8 +32,8 @@ describe('Signup Form Tests', () => {
     const passwordConfirmation = getByLabelText('Password Confirmation');
     const button = getByText('Create Account');
 
-    await userEvent.type(nameInput, 'Mustafa Turhan');
-    await userEvent.type(email, 'mustaphaturhan@gmail.com');
+    await userEvent.type(nameInput, 'Harry Potter');
+    await userEvent.type(email, 'harry@potter.com');
     await userEvent.type(password, '#49sd2YXBKX%XZ');
     await userEvent.type(passwordConfirmation, '#49sd2YXBKX%XZ');
     await wait();

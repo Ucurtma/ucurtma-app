@@ -80,19 +80,17 @@ function SignupForm() {
             Create Account
           </Button>
           <Text mt={4}>
-            By signing up, you agree to our{' '}
+            By signing up, you agree to our
             <Link color="linkBlue" href="#">
-              terms of use
+              terms of use,
             </Link>
-            ,{' '}
             <Link color="linkBlue" href="#">
-              privacy policy
+              privacy policy,
             </Link>
-            , and{' '}
+            and
             <Link color="linkBlue" href="#">
-              cookie policy
+              cookie policy.
             </Link>
-            .
           </Text>
         </Form>
       )}

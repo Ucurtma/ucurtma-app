@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box, Text, Link } from '@chakra-ui/core';
-import SignupForm from '../components/signup-form';
+import SignupForm from '../components/forms/signup-form';
 import WaitingForYou from '../components/illustrations/waiting-for-you';
 
 function Signup() {

@@ -1,15 +1,16 @@
 import React from 'react';
-import { Input, Text, Box, Button, Link } from '@chakra-ui/core';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Text, Box, Button, Link } from '@chakra-ui/core';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import Input from '../ui/input';
 
 const signupSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
   name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
+    .min(2, 'Too Short')
+    .max(50, 'Too Long')
     .required('Required'),
   password: Yup.string().required('Password is required'),
   passwordConfirmation: Yup.string()
@@ -36,44 +37,35 @@ function SignupForm() {
       {({ isSubmitting, errors }) => (
         <Form>
           <Box mb="1rem">
-            <Text mb="8px">Name</Text>
             <Input
-              type="text"
+              label="Name"
               name="name"
               placeholder="(ex. Mustafa Turhan)"
-              as={Field}
             />
-            <ErrorMessage name="name" component="div" />
           </Box>
           <Box mb="1rem">
-            <Text mb="8px">Email</Text>
             <Input
+              label="Email"
               type="email"
               name="email"
               placeholder="(ex. mail@mail.com)"
-              as={Field}
             />
-            <ErrorMessage name="email" component="div" />
           </Box>
           <Box mb="1rem">
-            <Text mb="8px">Password</Text>
             <Input
+              label="Password"
               type="password"
               name="password"
               placeholder="(ex. #49sd2YXBKX%XZ)"
-              as={Field}
             />
-            <ErrorMessage name="password" component="div" />
           </Box>
           <Box mb="1rem">
-            <Text mb="8px">Password Confirmation</Text>
             <Input
+              label="Password Confirmation"
               type="password"
               name="passwordConfirmation"
               placeholder="(ex. #49sd2YXBKX%XZ)"
-              as={Field}
             />
-            <ErrorMessage name="passwordConfirmation" component="div" />
           </Box>
           <Button
             width="100%"

@@ -43,4 +43,14 @@ describe('Signup Form Tests', () => {
     await wait();
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
+
+  test('Renders Title', () => {
+    const { queryByText } = render(<SignupForm withTitle />);
+    expect(queryByText('Sign up')).toBeInTheDocument();
+  });
+
+  test('Renders nothing as a title if there is no withTitle props', () => {
+    const { queryByText } = render(<SignupForm />);
+    expect(queryByText('Sign up')).not.toBeInTheDocument();
+  });
 });

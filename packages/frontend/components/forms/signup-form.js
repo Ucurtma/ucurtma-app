@@ -19,87 +19,91 @@ const signupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-function SignupForm({ onSubmit }) {
+function SignupForm({ onSubmit, withTitle }) {
   return (
-    <Formik
-      initialValues={{
-        name: '',
-        email: '',
-        password: '',
-        passwordConfirmation: '',
-      }}
-      validationSchema={signupSchema}
-      onSubmit={(values, actions) => {
-        actions.setSubmitting(false);
-        if (onSubmit) onSubmit(values);
-      }}
-    >
-      {({ isSubmitting, errors }) => (
-        <Form>
-          <Box mb="1rem">
-            <Input
-              label="Name"
-              name="name"
-              placeholder="(ex. Mustafa Turhan)"
-            />
-          </Box>
-          <Box mb="1rem">
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              placeholder="(ex. mail@mail.com)"
-            />
-          </Box>
-          <Box mb="1rem">
-            <Input
-              label="Password"
-              type="password"
-              name="password"
-              placeholder="(ex. #49sd2YXBKX%XZ)"
-            />
-          </Box>
-          <Box mb="1rem">
-            <Input
-              label="Password Confirmation"
-              type="password"
-              name="passwordConfirmation"
-              placeholder="(ex. #49sd2YXBKX%XZ)"
-            />
-          </Box>
-          <Button
-            width="100%"
-            bg="primaryButton"
-            fontWeight="regular"
-            type="submit"
-            size="lg"
-            mt={2}
-            isLoading={isSubmitting}
-            disabled={isSubmitting || Object.keys(errors).length > 0}
-          >
-            Create Account
-          </Button>
-          <Text mt={4}>
-            By signing up, you agree to our
-            <Link color="linkBlue" href="#">
-              terms of use,
-            </Link>
-            <Link color="linkBlue" href="#">
-              privacy policy,
-            </Link>
-            and
-            <Link color="linkBlue" href="#">
-              cookie policy.
-            </Link>
-          </Text>
-        </Form>
-      )}
-    </Formik>
+    <>
+      {withTitle && <Text fontSize="2xl">Sign up</Text>}
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+        }}
+        validationSchema={signupSchema}
+        onSubmit={(values, actions) => {
+          actions.setSubmitting(false);
+          if (onSubmit) onSubmit(values);
+        }}
+      >
+        {({ isSubmitting, errors }) => (
+          <Form>
+            <Box mb="1rem">
+              <Input
+                label="Name"
+                name="name"
+                placeholder="(ex. Mustafa Turhan)"
+              />
+            </Box>
+            <Box mb="1rem">
+              <Input
+                label="Email"
+                type="email"
+                name="email"
+                placeholder="(ex. mail@mail.com)"
+              />
+            </Box>
+            <Box mb="1rem">
+              <Input
+                label="Password"
+                type="password"
+                name="password"
+                placeholder="(ex. #49sd2YXBKX%XZ)"
+              />
+            </Box>
+            <Box mb="1rem">
+              <Input
+                label="Password Confirmation"
+                type="password"
+                name="passwordConfirmation"
+                placeholder="(ex. #49sd2YXBKX%XZ)"
+              />
+            </Box>
+            <Button
+              width="100%"
+              bg="primaryButton"
+              fontWeight="regular"
+              type="submit"
+              size="lg"
+              mt={2}
+              isLoading={isSubmitting}
+              disabled={isSubmitting || Object.keys(errors).length > 0}
+            >
+              Create Account
+            </Button>
+            <Text mt={4}>
+              By signing up, you agree to our
+              <Link ml={1} color="linkBlue" href="#">
+                terms of use,
+              </Link>
+              <Link ml={1} color="linkBlue" href="#">
+                privacy policy,
+              </Link>
+              and
+              <Link ml={1} color="linkBlue" href="#">
+                cookie policy.
+              </Link>
+            </Text>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 }
 
 SignupForm.propTypes = {
   onSubmit: PropTypes.func,
+  withTitle: PropTypes.bool,
 };
 
 export default SignupForm;

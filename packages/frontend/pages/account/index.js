@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Text, Link } from '@chakra-ui/core';
+import { Flex, Box, Link } from '@chakra-ui/core';
 import SignupForm from '../../components/forms/signup-form';
 import WaitingForYou from '../../components/illustrations/waiting-for-you';
 import Header from '../../components/header';
@@ -28,8 +28,7 @@ function Account() {
         >
           <Box w="100%" bg="white" borderRadius="md" boxShadow="cardLight">
             <Box py={8} px={10}>
-              <Text fontSize="2xl">Sign up</Text>
-              <SignupForm />
+              <SignupForm withTitle />
             </Box>
             <Box>
               <Flex align="center" pl={10} height="5rem" background="#FBFBFB">

@@ -23,7 +23,7 @@ function Header() {
     >
       <Flex justify="space-between" align="center">
         <Link href="/">
-          <a>
+          <a id="logo">
             <Logo name="logo" size="11rem" />
           </a>
         </Link>

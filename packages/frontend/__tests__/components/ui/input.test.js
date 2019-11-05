@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { render, wait, fireEvent } from '@testing-library/react';
+import { render, wait, fireEvent } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import Input from '../../../components/ui/input';
 

@@ -9,6 +9,7 @@
     "dev": "lerna run dev --parallel",
     "lint": "lerna run lint --parallel",
     "start:frontend": "lerna run --scope ucurtma-frontend dev",
+    "unit-test:frontend": "lerna run --scope ucurtma-frontend test",
     "deploy-staging": "lerna run deploy-staging",
     "bootstrap": "lerna bootstrap --concurrency=1",
     "export": "lerna run export"

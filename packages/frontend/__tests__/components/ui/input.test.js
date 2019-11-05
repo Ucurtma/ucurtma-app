@@ -1,7 +1,9 @@
 /* eslint-env jest */
 import React from 'react';
 import { Formik } from 'formik';
-import { render } from '@testing-library/react';
+import * as Yup from 'yup';
+import { render, wait, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Input from '../../../components/ui/input';
 
 describe('Input Tests', () => {
@@ -48,5 +50,34 @@ describe('Input Tests', () => {
     );
     const inputNode = getByLabelText('email');
     expect(inputNode.getAttribute('type')).toBe('text');
+  });
+
+  test('Renders errors', async () => {
+    const signupSchema = Yup.object().shape({
+      email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+    });
+
+    const { getByLabelText, queryByText } = render(
+      <Formik
+        initialValues={{
+          email: '',
+        }}
+        validationSchema={signupSchema}
+      >
+        <Input type="email" name="email" placeholder="(ex. mail@mail.com)" />
+      </Formik>
+    );
+    const inputNode = getByLabelText('email');
+    await fireEvent.blur(inputNode);
+    await userEvent.type(inputNode, 'mustaphaturhan');
+    await wait();
+    expect(inputNode).toHaveAttribute('value', 'mustaphaturhan');
+    expect(queryByText('Invalid email')).not.toBeNull();
+    await userEvent.type(inputNode, 'mustaphaturhan@gmail.com');
+    await wait();
+    expect(inputNode).toHaveAttribute('value', 'mustaphaturhan@gmail.com');
+    expect(queryByText('Invalid email')).toBeNull();
   });
 });

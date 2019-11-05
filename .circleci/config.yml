@@ -29,10 +29,10 @@ references:
   #   run:
   #     name: e2e test process with browserstack on non-prod.ucurtmaprojesi.com
   #     command: yarn e2e:browserstack
-  # test_unit: &test_unit
-  #   run:
-  #     name: Make unit tests
-  #     command: yarn test:frontend
+  test_unit: &test_unit
+    run:
+      name: Make unit tests
+      command: yarn unit-test:frontend
   lint_files: &lint_files
     run:
       name: Run linting tools
@@ -87,7 +87,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - *lint_files
-      # - *test_unit
+      - *test_unit
       # - *e2etest_browserstack
 workflows:
   version: 2

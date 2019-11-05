@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, Box, Button, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -18,7 +19,7 @@ const signupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-function SignupForm() {
+function SignupForm({ onSubmit }) {
   return (
     <Formik
       initialValues={{
@@ -28,10 +29,9 @@ function SignupForm() {
         passwordConfirmation: '',
       }}
       validationSchema={signupSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 400);
+      onSubmit={(values, actions) => {
+        actions.setSubmitting(false);
+        if (onSubmit) onSubmit(values);
       }}
     >
       {({ isSubmitting, errors }) => (
@@ -97,5 +97,9 @@ function SignupForm() {
     </Formik>
   );
 }
+
+SignupForm.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default SignupForm;

@@ -42,6 +42,10 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - *build_static_bundle
+      - persist_to_workspace:
+          root: packages
+          paths:
+            - frontend/out
   deploy:
     machine:
       enabled: true

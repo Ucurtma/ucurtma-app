@@ -5,28 +5,15 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
 
-const signupSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  name: Yup.string()
-    .min(2, 'Too Short')
-    .max(50, 'Too Long')
-    .required('Required'),
   password: Yup.string().required('Password is required'),
-  passwordConfirmation: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required'),
 });
 
-function SignupForm({ onSubmit, withTitle }) {
+function LoginForm({ onSubmit, withTitle }) {
   const inputElements = [
-    {
-      label: 'Name',
-      name: 'name',
-      type: 'text',
-      placeholder: '(ex. Harry Potter)',
-    },
     {
       label: 'Email',
       name: 'email',
@@ -39,29 +26,18 @@ function SignupForm({ onSubmit, withTitle }) {
       type: 'password',
       placeholder: '(ex. #49sd2YXBKX%XZ)',
     },
-    {
-      label: 'Password Confirmation',
-      name: 'passwordConfirmation',
-      type: 'password',
-      placeholder: '(ex. #49sd2YXBKX%XZ)',
-    },
   ];
 
   return (
     <>
       {withTitle && (
         <Text mb={4} fontSize="2xl">
-          Sign up
+          Log in
         </Text>
       )}
       <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
-        }}
-        validationSchema={signupSchema}
+        initialValues={{ email: '', password: '' }}
+        validationSchema={loginSchema}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
           if (onSubmit) onSubmit(values);
@@ -111,9 +87,9 @@ function SignupForm({ onSubmit, withTitle }) {
   );
 }
 
-SignupForm.propTypes = {
+LoginForm.propTypes = {
   onSubmit: PropTypes.func,
   withTitle: PropTypes.bool,
 };
 
-export default SignupForm;
+export default LoginForm;

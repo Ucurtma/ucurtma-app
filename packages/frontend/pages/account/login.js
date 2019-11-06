@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from '@chakra-ui/core';
 import NextLink from 'next/link';
-import WaitingForYou from '../../components/illustrations/waiting-for-you';
 import Header from '../../components/header';
 import LoginForm from '../../components/forms/login-form';
 import Container from '../../components/ui/container';
 import AccountFormTemplate from '../../components/ui/templates/account-form-template';
+import YouArePopular from '../../components/illustrations/you-are-popular';
 
 function Login() {
   return (
@@ -14,7 +14,7 @@ function Login() {
       <Container>
         <AccountFormTemplate
           form={<LoginForm withTitle />}
-          illustration={<WaitingForYou />}
+          illustration={<YouArePopular />}
         >
           Don&apos;t have an account?
           <NextLink href="/account/signup">

@@ -8,17 +8,14 @@ import Router from 'next/router';
   instead of showing blank page, we're redirecting user.
 */
 class Account extends React.Component {
-  static async getInitialProps({ res }) {
-    if (res) {
-      // todo: user should redirect to profile page if logged in to system.
-      res.writeHead(302, {
-        Location: '/account/signup',
-      });
-      res.end();
-    } else {
-      Router.push('/account/signup');
-    }
-    return {};
+  componentDidMount() {
+    // todo: redirect to profile page if user logged in.
+    // todo: res.writeHead isn't working on next export at the moment. ps: https://github.com/zeit/next.js/issues/8953
+    Router.push('/account/signup');
+  }
+
+  render() {
+    return <></>;
   }
 }
 

@@ -69,8 +69,8 @@ function SignupForm({ onSubmit, withTitle }) {
       >
         {({ isSubmitting, errors }) => (
           <Form>
-            {inputElements.map(element => (
-              <Box mb={4}>
+            {inputElements.map((element, i) => (
+              <Box mb={4} key={i.toString()}>
                 <Input
                   label={element.label}
                   name={element.name}

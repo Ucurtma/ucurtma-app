@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NextLink from 'next/link';
 import { Text, Box, Button, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -45,8 +46,8 @@ function LoginForm({ onSubmit, withTitle }) {
       >
         {({ isSubmitting, errors }) => (
           <Form>
-            {inputElements.map(element => (
-              <Box mb={4}>
+            {inputElements.map((element, i) => (
+              <Box mb={4} key={i.toString()}>
                 <Input
                   label={element.label}
                   name={element.name}
@@ -55,6 +56,15 @@ function LoginForm({ onSubmit, withTitle }) {
                 />
               </Box>
             ))}
+
+            <Text textAlign="right" mb={2}>
+              <NextLink href="/account/forgot-password">
+                <Link textAlign="right" color="linkBlue">
+                  Forgot password?
+                </Link>
+              </NextLink>
+            </Text>
+
             <Button
               width="100%"
               bg="primaryButton"
@@ -65,21 +75,8 @@ function LoginForm({ onSubmit, withTitle }) {
               isLoading={isSubmitting}
               disabled={isSubmitting || Object.keys(errors).length > 0}
             >
-              Create Account
+              Log in
             </Button>
-            <Text mt={4}>
-              By signing up, you agree to our
-              <Link ml={1} color="linkBlue" href="#">
-                terms of use,
-              </Link>
-              <Link ml={1} color="linkBlue" href="#">
-                privacy policy,
-              </Link>
-              and
-              <Link ml={1} color="linkBlue" href="#">
-                cookie policy.
-              </Link>
-            </Text>
           </Form>
         )}
       </Formik>

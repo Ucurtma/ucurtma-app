@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, Box, Link } from '@chakra-ui/core';
+import NextLink from 'next/link';
 import SignupForm from '../../components/forms/signup-form';
 import WaitingForYou from '../../components/illustrations/waiting-for-you';
 import Header from '../../components/header';
@@ -23,9 +24,11 @@ function Signup() {
               <Flex align="center" pl={10} height="5rem" background="#FBFBFB">
                 <Box>
                   Have an account?
-                  <Link pl={2} color="linkBlue" href="#">
-                    Log in.
-                  </Link>
+                  <NextLink href="/account/login">
+                    <Link ml={1} color="linkBlue">
+                      Log in.
+                    </Link>
+                  </NextLink>
                 </Box>
               </Flex>
             </Box>

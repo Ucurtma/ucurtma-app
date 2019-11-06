@@ -1,32 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NextLink from 'next/link';
 import { Text, Box, Button, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
 
-const signupSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  name: Yup.string()
-    .min(2, 'Too Short')
-    .max(50, 'Too Long')
-    .required('Required'),
   password: Yup.string().required('Password is required'),
-  passwordConfirmation: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required'),
 });
 
-function SignupForm({ onSubmit, withTitle }) {
+function LoginForm({ onSubmit, withTitle }) {
   const inputElements = [
-    {
-      label: 'Name',
-      name: 'name',
-      type: 'text',
-      placeholder: '(ex. Harry Potter)',
-    },
     {
       label: 'Email',
       name: 'email',
@@ -39,29 +27,18 @@ function SignupForm({ onSubmit, withTitle }) {
       type: 'password',
       placeholder: '(ex. #49sd2YXBKX%XZ)',
     },
-    {
-      label: 'Password Confirmation',
-      name: 'passwordConfirmation',
-      type: 'password',
-      placeholder: '(ex. #49sd2YXBKX%XZ)',
-    },
   ];
 
   return (
     <>
       {withTitle && (
         <Text mb={4} fontSize="2xl">
-          Sign up
+          Log in
         </Text>
       )}
       <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          passwordConfirmation: '',
-        }}
-        validationSchema={signupSchema}
+        initialValues={{ email: '', password: '' }}
+        validationSchema={loginSchema}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
           if (onSubmit) onSubmit(values);
@@ -79,6 +56,15 @@ function SignupForm({ onSubmit, withTitle }) {
                 />
               </Box>
             ))}
+
+            <Text textAlign="right" mb={2}>
+              <NextLink href="/account/forgot-password">
+                <Link textAlign="right" color="linkBlue">
+                  Forgot password?
+                </Link>
+              </NextLink>
+            </Text>
+
             <Button
               width="100%"
               bg="primaryButton"
@@ -89,21 +75,8 @@ function SignupForm({ onSubmit, withTitle }) {
               isLoading={isSubmitting}
               disabled={isSubmitting || Object.keys(errors).length > 0}
             >
-              Create Account
+              Log in
             </Button>
-            <Text mt={4}>
-              By signing up, you agree to our
-              <Link ml={1} color="linkBlue" href="#">
-                terms of use,
-              </Link>
-              <Link ml={1} color="linkBlue" href="#">
-                privacy policy,
-              </Link>
-              and
-              <Link ml={1} color="linkBlue" href="#">
-                cookie policy.
-              </Link>
-            </Text>
           </Form>
         )}
       </Formik>
@@ -111,9 +84,9 @@ function SignupForm({ onSubmit, withTitle }) {
   );
 }
 
-SignupForm.propTypes = {
+LoginForm.propTypes = {
   onSubmit: PropTypes.func,
   withTitle: PropTypes.bool,
 };
 
-export default SignupForm;
+export default LoginForm;

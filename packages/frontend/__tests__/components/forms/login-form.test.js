@@ -2,38 +2,34 @@
 import React from 'react';
 import { render, fireEvent, wait } from 'test-utils';
 import userEvent from '@testing-library/user-event';
-import SignupForm from '../../../components/forms/signup-form';
+import LoginForm from '../../../components/forms/login-form';
 
-describe('Signup Form Tests', () => {
+describe('Login Form Tests', () => {
   test('Renders Form', () => {
-    const { getByText } = render(<SignupForm />);
+    const { getByText } = render(<LoginForm />);
     expect(getByText('Email')).toBeInTheDocument();
   });
 
-  test('Create account button should disabled after onBlur', async () => {
-    const { getByText, getByLabelText } = render(<SignupForm />);
-    const button = getByText('Create Account');
+  test('Log in button should disabled after onBlur', async () => {
+    const { getByText, getByLabelText } = render(<LoginForm />);
+    const button = getByText('Log in');
     const inputNode = getByLabelText('Email');
     expect(button).toBeInTheDocument();
-    expect(inputNode).toBeInTheDocument();
     await fireEvent.blur(inputNode);
     await wait();
     expect(button).toHaveAttribute('disabled', '');
   });
 
-  test('Create account button shouldnt disabled after user entries inputs right', async () => {
+  test('Log in button shouldnt disabled after user entries inputs right', async () => {
     const onSubmit = jest.fn();
     const { getByText, getByLabelText } = render(
-      <SignupForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} />
     );
-
-    const button = getByText('Create Account');
+    const button = getByText('Log in');
 
     const inputs = [
-      { item: getByLabelText('Name'), value: 'Harry Potter' },
       { item: getByLabelText('Email'), value: 'harry@potter.com' },
       { item: getByLabelText('Password'), value: '123456' },
-      { item: getByLabelText('Password Confirmation'), value: '123456' },
     ];
 
     inputs.forEach(async input => {
@@ -48,17 +44,14 @@ describe('Signup Form Tests', () => {
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  test('Create account button shouldnt call func if onSubmit didnt defined', async () => {
+  test('Log in button shouldnt call func if onSubmit didnt defined', async () => {
     const onSubmit = jest.fn();
-    const { getByText, getByLabelText } = render(<SignupForm />);
-
-    const button = getByText('Create Account');
+    const { getByText, getByLabelText } = render(<LoginForm />);
+    const button = getByText('Log in');
 
     const inputs = [
-      { item: getByLabelText('Name'), value: 'Harry Potter' },
       { item: getByLabelText('Email'), value: 'harry@potter.com' },
       { item: getByLabelText('Password'), value: '123456' },
-      { item: getByLabelText('Password Confirmation'), value: '123456' },
     ];
 
     inputs.forEach(async input => {
@@ -73,12 +66,12 @@ describe('Signup Form Tests', () => {
   });
 
   test('Renders Title', () => {
-    const { queryByText } = render(<SignupForm withTitle />);
-    expect(queryByText('Sign up')).toBeInTheDocument();
+    const { queryAllByText } = render(<LoginForm withTitle />);
+    expect(queryAllByText('Log in')).toHaveLength(2);
   });
 
   test('Renders nothing as a title if there is no withTitle props', () => {
-    const { queryByText } = render(<SignupForm />);
-    expect(queryByText('Sign up')).not.toBeInTheDocument();
+    const { queryAllByText } = render(<LoginForm />);
+    expect(queryAllByText('Log in')).toHaveLength(1);
   });
 });

@@ -9,17 +9,6 @@ import customTheme from '../theme';
 /* we're using class because react hooks isn't working in default configure pages yet */
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-  }
-
-  // we can't use hooks because of this is next's default app.js file.
   componentDidMount() {
     Router.onRouteChangeComplete = url => {
       trackPageView(url);

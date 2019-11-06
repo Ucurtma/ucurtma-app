@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-import { Text, Box, Button, Link } from '@chakra-ui/core';
+import { Text, Box, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
@@ -44,7 +43,7 @@ function ForgotPasswordForm({ onSubmit, withTitle }) {
                 <Input
                   label={element.label}
                   name={element.name}
-                  type={element.label}
+                  type={element.type}
                   placeholder={element.placeholder}
                 />
               </Box>
@@ -60,7 +59,7 @@ function ForgotPasswordForm({ onSubmit, withTitle }) {
               isLoading={isSubmitting}
               disabled={isSubmitting || Object.keys(errors).length > 0}
             >
-              Send Reset Link
+              Reset Password
             </Button>
           </Form>
         )}

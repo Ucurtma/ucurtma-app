@@ -74,7 +74,7 @@ function SignupForm({ onSubmit, withTitle }) {
                 <Input
                   label={element.label}
                   name={element.name}
-                  type={element.label}
+                  type={element.type}
                   placeholder={element.placeholder}
                 />
               </Box>

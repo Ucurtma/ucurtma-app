@@ -2,7 +2,11 @@ import React from 'react';
 
 function WaitingForYou() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1055.52347 852.05558">
+    <svg
+      data-testid="waiting-for-you-svg"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1055.52347 852.05558"
+    >
       <ellipse
         cx="502.36284"
         cy="821.88969"

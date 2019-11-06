@@ -2,7 +2,11 @@ import React from 'react';
 
 function YouArePopular() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 875.64953 740.08191">
+    <svg
+      data-testid="you-are-popular-svg"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 875.64953 740.08191"
+    >
       <rect x="424.82477" y="111.04095" width="75" height="95" fill="#2f2e41" />
       <path
         d="M663,194c-6.71564,19.88332-17.01318,38-38,38s-36.8175-17.04652-38-38c-1.511-26.77437,16.529-38.1109,38-38C650.36444,156.131,670.96985,170.40334,663,194Z"

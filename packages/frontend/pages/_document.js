@@ -33,7 +33,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=latin-ext"
             rel="stylesheet"
           />
-          <title>Uçurtma</title>
         </Head>
         <body>
           <Main />

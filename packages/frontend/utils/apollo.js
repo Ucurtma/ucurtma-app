@@ -17,7 +17,7 @@ let apolloClient = null;
  * @param {Object} [config]
  * @param {Boolean} [config.ssr=true]
  */
-export function withApollo(PageComponent, { ssr = true } = {}) {
+export function withApollo(PageComponent, { ssr = false } = {}) {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const client = apolloClient || initApolloClient(apolloState);
     return (

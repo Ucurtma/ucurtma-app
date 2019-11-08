@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 import { Global } from '@emotion/core';
 import Router from 'next/router';
 import trackPageView from '../utils/ga-tag';
 import customTheme from '../theme';
-import { withApollo } from '../utils/apollo';
+
+Router.events.on('routeChangeComplete', path => trackPageView(path));
 
 // eslint-disable-next-line react/prop-types
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    Router.onRouteChangeComplete = url => {
-      trackPageView(url);
-    };
-  }, []);
-
   return (
     <ThemeProvider theme={customTheme}>
       <CSSReset />
@@ -33,4 +28,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default withApollo(MyApp);
+export default MyApp;

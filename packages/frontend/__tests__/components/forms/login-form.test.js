@@ -32,37 +32,15 @@ describe('Login Form Tests', () => {
       { item: getByLabelText('Password'), value: '123456' },
     ];
 
-    inputs.forEach(async input => {
-      await userEvent.type(input.item, input.value);
+    inputs.forEach(input => {
+      userEvent.type(input.item, input.value);
     });
-
-    await wait();
 
     expect(button).not.toHaveAttribute('disabled');
     userEvent.click(button);
     await wait();
+    expect.assertions(2);
     expect(onSubmit).toHaveBeenCalledTimes(1);
-  });
-
-  test('Log in button shouldnt call func if onSubmit didnt defined', async () => {
-    const onSubmit = jest.fn();
-    const { getByText, getByLabelText } = render(<LoginForm />);
-    const button = getByText('Log in');
-
-    const inputs = [
-      { item: getByLabelText('Email'), value: 'harry@potter.com' },
-      { item: getByLabelText('Password'), value: '123456' },
-    ];
-
-    inputs.forEach(async input => {
-      await userEvent.type(input.item, input.value);
-    });
-
-    await wait();
-
-    userEvent.click(button);
-    await wait();
-    expect(onSubmit).toHaveBeenCalledTimes(0);
   });
 
   test('Renders Title', () => {

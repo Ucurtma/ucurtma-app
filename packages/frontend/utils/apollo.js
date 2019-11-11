@@ -129,7 +129,7 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://api.graph.cool/simple/v1/ciyz901en4j590185wkmexyex', // Server URL (must be absolute)
+      uri: 'https://ucurtma-backend.herokuapp.com/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
     }),

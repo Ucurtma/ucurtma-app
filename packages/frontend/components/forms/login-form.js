@@ -1,17 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import NextLink from 'next/link';
-import { Text, Box, Button, Link } from '@chakra-ui/core';
+import { useMutation } from '@apollo/react-hooks';
+import { Text, Box, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
+import { withApollo } from '../../utils/apollo';
+import Button from '../ui/button';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  password: Yup.string().required('Password is required'),
+  password: Yup.string()
+    .min(6, 'Too Short')
+    .required('Password is required'),
 });
+
+const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      expiryDate
+    }
+  }
+`;
 
 function LoginForm({ onSubmit, withTitle }) {
   const inputElements = [
@@ -29,6 +44,8 @@ function LoginForm({ onSubmit, withTitle }) {
     },
   ];
 
+  const [login] = useMutation(LOGIN);
+
   return (
     <>
       {withTitle && (
@@ -39,9 +56,13 @@ function LoginForm({ onSubmit, withTitle }) {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={loginSchema}
-        onSubmit={(values, actions) => {
-          actions.setSubmitting(false);
-          if (onSubmit) onSubmit(values);
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(true);
+          if (onSubmit) await onSubmit(values);
+          await login({
+            variables: { email: values.email, password: values.password },
+          });
+          // todo: redirect to somewhere.
         }}
       >
         {({ isSubmitting, errors }) => (
@@ -66,11 +87,9 @@ function LoginForm({ onSubmit, withTitle }) {
             </Text>
 
             <Button
-              width="100%"
-              bg="primaryButton"
-              fontWeight="regular"
+              fullWidth
+              buttonType="primary"
               type="submit"
-              size="lg"
               mt={2}
               isLoading={isSubmitting}
               disabled={isSubmitting || Object.keys(errors).length > 0}
@@ -89,4 +108,4 @@ LoginForm.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default LoginForm;
+export default withApollo(LoginForm);

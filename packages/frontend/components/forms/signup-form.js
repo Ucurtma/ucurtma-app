@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Box, Button, Link } from '@chakra-ui/core';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { Text, Box, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../ui/input';
+import Button from '../ui/button';
+import { withApollo } from '../../utils/apollo';
 
 const signupSchema = Yup.object().shape({
   email: Yup.string()
@@ -13,11 +17,33 @@ const signupSchema = Yup.object().shape({
     .min(2, 'Too Short')
     .max(50, 'Too Long')
     .required('Required'),
-  password: Yup.string().required('Password is required'),
+  password: Yup.string()
+    .min(6, 'Too Short')
+    .required('Password is required'),
   passwordConfirmation: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .min(6, 'Too Short')
     .required('Required'),
 });
+
+const SIGNUP = gql`
+  mutation Register(
+    $name: String!
+    $email: String!
+    $password: String!
+    $repeatPassword: String!
+  ) {
+    register(
+      name: $name
+      email: $email
+      password: $password
+      repeatPassword: $repeatPassword
+    ) {
+      token
+      expiryDate
+    }
+  }
+`;
 
 function SignupForm({ onSubmit, withTitle }) {
   const inputElements = [
@@ -47,6 +73,8 @@ function SignupForm({ onSubmit, withTitle }) {
     },
   ];
 
+  const [signup] = useMutation(SIGNUP);
+
   return (
     <>
       {withTitle && (
@@ -62,9 +90,18 @@ function SignupForm({ onSubmit, withTitle }) {
           passwordConfirmation: '',
         }}
         validationSchema={signupSchema}
-        onSubmit={(values, actions) => {
-          actions.setSubmitting(false);
-          if (onSubmit) onSubmit(values);
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(true);
+          if (onSubmit) await onSubmit(values);
+          await signup({
+            variables: {
+              name: values.name,
+              email: values.email,
+              password: values.password,
+              repeatPassword: values.passwordConfirmation,
+            },
+          });
+          // todo: redirect to somewhere.
         }}
       >
         {({ isSubmitting, errors }) => (
@@ -80,11 +117,9 @@ function SignupForm({ onSubmit, withTitle }) {
               </Box>
             ))}
             <Button
-              width="100%"
-              bg="primaryButton"
-              fontWeight="regular"
+              fullWidth
+              buttonType="primary"
               type="submit"
-              size="lg"
               mt={2}
               isLoading={isSubmitting}
               disabled={isSubmitting || Object.keys(errors).length > 0}
@@ -116,4 +151,4 @@ SignupForm.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default SignupForm;
+export default withApollo(SignupForm);

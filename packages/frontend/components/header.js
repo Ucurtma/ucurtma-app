@@ -18,7 +18,7 @@ function Header({ loggedIn, showNav }) {
     { color: 'linkBlue', href: '/', label: 'Start a campaign' },
   ];
   return (
-    <Container mt={4}>
+    <Container mt={4} display="block">
       <Flex justify="space-between" align="center">
         <Link href="/">
           <a id="logo">
@@ -28,8 +28,8 @@ function Header({ loggedIn, showNav }) {
         <Flex width="100%" justify="space-between" align="center">
           {showNav && (
             <Flex ml={12}>
-              {navItems.map(navItem => (
-                <Link href={navItem.href}>
+              {navItems.map((navItem, i) => (
+                <Link href={navItem.href} key={i.toString()}>
                   <Button ml={4} color={navItem.color} variant="ghost">
                     {navItem.label}
                   </Button>

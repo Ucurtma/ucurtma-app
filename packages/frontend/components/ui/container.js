@@ -15,6 +15,7 @@ function Container({ children, ...otherProps }) {
       mx="auto"
       mt={12}
       p={4}
+      display="flex"
       {...otherProps}
     >
       {children}

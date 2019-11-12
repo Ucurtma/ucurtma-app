@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Router from 'next/router';
+import { getToken } from '../../utils/utils';
 
 /*
   this component is here because we should handle that
@@ -7,16 +8,18 @@ import Router from 'next/router';
   user would see a blank page without this file.
   instead of showing blank page, we're redirecting user.
 */
-class Account extends React.Component {
-  componentDidMount() {
-    // todo: redirect to profile page if user logged in.
+function Account() {
+  useEffect(() => {
     // todo: res.writeHead isn't working on next export at the moment. ps: https://github.com/zeit/next.js/issues/8953
-    Router.push('/account/signup');
-  }
+    const token = getToken();
+    if (token) {
+      Router.push('/account/my-account');
+    } else {
+      Router.push('/account/signup');
+    }
+  }, []);
 
-  render() {
-    return <></>;
-  }
+  return <></>;
 }
 
 export default Account;

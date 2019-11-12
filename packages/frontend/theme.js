@@ -17,6 +17,9 @@ const customTheme = {
     ...theme.colors,
     linkBlue: '#00C2FF',
     primaryButton: '#DAF888',
+    paragraph: '#7A7A7A',
+    danger: '#F88888',
+    bodyBg: '#F3F3F3',
   },
   icons: {
     ...theme.icons,

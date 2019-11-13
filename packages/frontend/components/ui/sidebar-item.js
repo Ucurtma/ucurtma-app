@@ -15,7 +15,7 @@ function SidebarItem({ active, icon, label, ...otherProps }) {
       justifyContent="flex-start"
       variant="ghost"
       borderRadius="0"
-      color="passiveParagraph"
+      color="passiveParagraph.500"
       fontWeight="400"
       mb={4}
       _hover={{ color: 'title' }}

@@ -5,8 +5,9 @@ import Header from '../../components/header';
 import Container from '../../components/ui/container';
 import Column from '../../components/ui/column';
 import SidebarItem from '../../components/ui/sidebar-item';
+import MyAccount from '../../components/view/my-account';
 
-function MyAccount() {
+function AccountSettings() {
   const [page, setPage] = useState();
   const router = useRouter();
   const navItems = [
@@ -42,7 +43,7 @@ function MyAccount() {
 
   return (
     <>
-      <Header />
+      <Header loggedIn />
       <Container>
         <Column colSize="30">
           {navItems.map(navItem => (
@@ -56,7 +57,7 @@ function MyAccount() {
           ))}
         </Column>
         <Column colSize="70">
-          {page === 'my-account' && <span>my-account</span>}
+          {page === 'my-account' && <MyAccount />}
           {page === 'sponsored-campaigns' && <span>sponsored campaigns</span>}
           {page === 'billing-methods' && <span>billing-methods</span>}
         </Column>
@@ -65,4 +66,4 @@ function MyAccount() {
   );
 }
 
-export default MyAccount;
+export default AccountSettings;

@@ -18,7 +18,11 @@ const customTheme = {
     linkBlue: '#00C2FF',
     primaryButton: '#DAF888',
     paragraph: '#7A7A7A',
-    passiveParagraph: '#ABABAB',
+    divider: '#F8F8F8',
+    passiveParagraph: {
+      500: '#ABABAB',
+      300: '#D8D8D8',
+    },
     title: '#4f4f4f',
     danger: '#F88888',
     bodyBg: '#F3F3F3',

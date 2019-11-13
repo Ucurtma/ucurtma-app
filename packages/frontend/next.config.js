@@ -4,8 +4,9 @@ module.exports = {
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       '/': { page: '/' },
-      '/account/sponsored-campaigns': { page: '/account/my-account' },
-      '/account/billing-methods': { page: '/account/my-account' },
+      '/account/my-account': { page: '/account/settings' },
+      '/account/sponsored-campaigns': { page: '/account/settings' },
+      '/account/billing-methods': { page: '/account/settings' },
     };
   },
 };

@@ -14,6 +14,7 @@ function InputA({ label, type, controlProps, ...props }) {
     <FormControl
       width="100%"
       isInvalid={meta.error && meta.touched}
+      mb={4}
       {...controlProps}
     >
       {label && <FormLabel color="paragraph">{label}</FormLabel>}

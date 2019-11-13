@@ -4,6 +4,7 @@ import Card from '../ui/card';
 import ProfileHeader from '../ui/profile/profile-header';
 import ChangeProfilePicture from '../ui/settings/change-profile-pic';
 import ChangePassword from '../ui/settings/change-password';
+import ChangeProfileInfo from '../ui/settings/change-profile-info';
 
 function MyAccount() {
   // todo: we will get user from state management library
@@ -39,6 +40,9 @@ function MyAccount() {
       </Box>
       <Box>
         <ChangePassword />
+      </Box>
+      <Box>
+        <ChangeProfileInfo />
       </Box>
     </Card>
   );

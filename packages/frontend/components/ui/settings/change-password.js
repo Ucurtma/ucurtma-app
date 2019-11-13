@@ -53,7 +53,7 @@ function ChangePassword({ withTitle }) {
                 type="password"
               />
             </SimpleGrid>
-            <Box textAlign="right" mt={4}>
+            <Box textAlign="right">
               <Button
                 variant="outline"
                 color="linkBlue"

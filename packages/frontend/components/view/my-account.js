@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/core';
 import Card from '../ui/card';
 import ProfileHeader from '../ui/profile/profile-header';
 import ChangeProfilePicture from '../ui/settings/change-profile-pic';
+import ChangePassword from '../ui/settings/change-password';
 
 function MyAccount() {
   // todo: we will get user from state management library
@@ -35,6 +36,9 @@ function MyAccount() {
           onChange={(e, type) => onAvatarChange(e, type)}
           isAvatarExist={!!user.avatarURL}
         />
+      </Box>
+      <Box>
+        <ChangePassword />
       </Box>
     </Card>
   );

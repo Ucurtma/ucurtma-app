@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box } from '@chakra-ui/core';
 import Card from '../ui/card';
 import ProfileHeader from '../ui/profile/profile-header';
 import ChangeProfilePicture from '../ui/settings/change-profile-pic';
 import ChangePassword from '../ui/settings/change-password';
 import ChangeProfileInfo from '../ui/settings/change-profile-info';
+import SocialLinkSettings from '../ui/settings/social-links';
 
 function MyAccount() {
   // todo: we will get user from state management library
@@ -32,18 +32,13 @@ function MyAccount() {
   return (
     <Card paddingType="default">
       <ProfileHeader isVerified={verificatedAccount} user={user} />
-      <Box>
-        <ChangeProfilePicture
-          onChange={(e, type) => onAvatarChange(e, type)}
-          isAvatarExist={!!user.avatarURL}
-        />
-      </Box>
-      <Box>
-        <ChangePassword />
-      </Box>
-      <Box>
-        <ChangeProfileInfo />
-      </Box>
+      <ChangeProfilePicture
+        onChange={(e, type) => onAvatarChange(e, type)}
+        isAvatarExist={!!user.avatarURL}
+      />
+      <ChangePassword />
+      <ChangeProfileInfo />
+      <SocialLinkSettings />
     </Card>
   );
 }

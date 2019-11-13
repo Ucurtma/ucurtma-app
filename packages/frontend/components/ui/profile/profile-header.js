@@ -65,11 +65,11 @@ ProfileHeader.defaultProps = {
 
 ProfileHeader.propTypes = {
   isVerified: PropTypes.bool,
-  count: PropTypes.objectOf({
+  count: PropTypes.shape({
     sponsorship: PropTypes.string,
     campaign: PropTypes.string,
   }),
-  user: PropTypes.objectOf({
+  user: PropTypes.shape({
     name: PropTypes.string,
     reputation: PropTypes.string,
     avatarURL: PropTypes.string,

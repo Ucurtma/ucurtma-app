@@ -29,7 +29,7 @@ Card.defaultProps = {
 
 Card.propTypes = {
   children: PropTypes.node,
-  paddingType: PropTypes.oneOf(['default']),
+  paddingType: PropTypes.oneOf(['default', 'none']),
 };
 
 export default Card;

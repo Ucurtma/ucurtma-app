@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Input } from '@chakra-ui/core';
+import {
+  Input,
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+} from '@chakra-ui/core';
 import { useField } from 'formik';
 
 function InputA({ label, type, ...props }) {
   const [field, meta] = useField(props);
   return (
-    <>
-      {label && <Text mb="8px">{label}</Text>}
+    <FormControl isInvalid={meta.error && meta.touched}>
+      {label && <FormLabel>{label}</FormLabel>}
       <Input
         aria-label={label || field.name}
         aria-describedby={label || field.name}
@@ -18,11 +23,9 @@ function InputA({ label, type, ...props }) {
         {...props}
       />
       {meta.touched && meta.error ? (
-        <Text fontSize="sm" mt={1} color="red.300" className="error">
-          {meta.error}
-        </Text>
+        <FormErrorMessage>{meta.error}</FormErrorMessage>
       ) : null}
-    </>
+    </FormControl>
   );
 }
 

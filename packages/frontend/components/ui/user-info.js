@@ -7,8 +7,10 @@ export function UserInfo({ name, withAvatar, avatarURL, reputation }) {
     <Box display="flex" alignItems="flex-end">
       {withAvatar && <Avatar size="lg" name={name} src={avatarURL} />}
       <Box ml={6}>
-        <Heading size="sm">{name}</Heading>
-        <Text>{reputation}</Text>
+        <Heading size="sm" color="paragraph">
+          {name}
+        </Heading>
+        <Text color="paragraph">{reputation}</Text>
       </Box>
     </Box>
   );

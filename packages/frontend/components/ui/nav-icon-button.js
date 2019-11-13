@@ -44,8 +44,9 @@ function NavButton({ icon, label, badge, children }) {
 }
 
 NavButton.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.func]),
-  label: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.func])
+    .isRequired,
+  label: PropTypes.string.isRequired,
   badge: PropTypes.number,
   children: PropTypes.node,
 };

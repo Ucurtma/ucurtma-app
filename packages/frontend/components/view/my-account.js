@@ -5,6 +5,7 @@ import ChangeProfilePicture from '../ui/settings/change-profile-pic';
 import ChangePassword from '../ui/settings/change-password';
 import ChangeProfileInfo from '../ui/settings/change-profile-info';
 import SocialLinkSettings from '../ui/settings/social-links';
+import VerificationSettings from '../ui/settings/verification-settings';
 
 function MyAccount() {
   // todo: we will get user from state management library
@@ -39,6 +40,7 @@ function MyAccount() {
       <ChangePassword />
       <ChangeProfileInfo />
       <SocialLinkSettings />
+      <VerificationSettings isVerified={verificatedAccount} />
     </Card>
   );
 }

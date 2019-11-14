@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CheckCircle, DollarSign, Umbrella } from 'react-feather';
 import { Flex, Box } from '@chakra-ui/core';
-import Column from '../column';
 import { UserInfo, UserInfoBadge } from '../user-info';
 
 function ProfileHeader({ isVerified, user, count }) {
@@ -12,16 +11,33 @@ function ProfileHeader({ isVerified, user, count }) {
       borderBottom="1px solid"
       borderColor="divider"
       pb={4}
+      flexWrap="wrap"
     >
-      <Column colSize="60" justifyContent="flex-end">
+      <Box
+        w={{
+          base: '100%',
+          lg: '60%',
+        }}
+        justifyContent="flex-end"
+      >
         <UserInfo
           withAvatar
           name={user.name}
           reputation={user.reputation}
           avatarURL={user.avatarURL}
         />
-      </Column>
-      <Column colSize="40" justifyContent="flex-end">
+      </Box>
+      <Box
+        w={{
+          base: '100%',
+          lg: '40%',
+        }}
+        justifyContent="flex-end"
+        mt={{
+          base: 4,
+          lg: 0,
+        }}
+      >
         <Box display="flex">
           <UserInfoBadge
             icon={CheckCircle}
@@ -45,7 +61,7 @@ function ProfileHeader({ isVerified, user, count }) {
             label="Campaign"
           />
         </Box>
-      </Column>
+      </Box>
     </Flex>
   );
 }

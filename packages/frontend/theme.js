@@ -27,6 +27,14 @@ const customTheme = {
     danger: '#F88888',
     bodyBg: '#F3F3F3',
   },
+  sizes: {
+    ...theme.sizes,
+    containers: {
+      ...theme.sizes.containers,
+      xs: '340px',
+      sm: '480px',
+    },
+  },
   icons: {
     ...theme.icons,
     logo: {

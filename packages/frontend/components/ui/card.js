@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/core';
 
 function Card({ children, paddingType, ...otherProps }) {
   const paddingTypes = {
-    default: { px: 10, py: 8 },
+    default: { px: { lg: 10, base: 6 }, py: { lg: 8, base: 4 } },
     none: { px: 0, py: 0 },
   };
 

@@ -14,6 +14,7 @@ function VerificationSettings({ withTitle, isVerified }) {
       )}
       <Flex alignItems="center">
         <Box
+          flexShrink={0}
           as={CheckCircle}
           size="24px"
           color={isVerified ? 'linkBlue' : 'paragraph'}

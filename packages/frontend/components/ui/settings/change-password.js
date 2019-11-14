@@ -45,7 +45,16 @@ function ChangePassword({ withTitle }) {
             <Box mb={4}>
               <Input label="Old Password" name="oldPassword" type="password" />
             </Box>
-            <SimpleGrid columns={2} spacing={16}>
+            <SimpleGrid
+              columns={{
+                base: 1,
+                lg: 2,
+              }}
+              spacing={{
+                base: 0,
+                lg: 16,
+              }}
+            >
               <Input label="Password" name="password" type="password" />
               <Input
                 label="Password Confirmation"

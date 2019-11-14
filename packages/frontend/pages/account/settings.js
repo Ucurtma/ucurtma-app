@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import { User, DollarSign, CreditCard } from 'react-feather';
+import { Box } from '@chakra-ui/core';
 import Header from '../../components/header';
 import Container from '../../components/ui/container';
-import Column from '../../components/ui/column';
 import SidebarItem from '../../components/ui/sidebar-item';
 import MyAccount from '../../components/view/my-account';
 
@@ -45,7 +45,12 @@ function AccountSettings() {
     <>
       <Header loggedIn />
       <Container>
-        <Column colSize="30">
+        <Box
+          w={{
+            base: '100%',
+            lg: '30%',
+          }}
+        >
           {navItems.map(navItem => (
             <SidebarItem
               icon={navItem.icon}
@@ -55,12 +60,17 @@ function AccountSettings() {
               onClick={() => changePage(navItem.slug, navItem.href)}
             />
           ))}
-        </Column>
-        <Column colSize="70">
+        </Box>
+        <Box
+          w={{
+            base: '100%',
+            lg: '70%',
+          }}
+        >
           {page === 'my-account' && <MyAccount />}
           {page === 'sponsored-campaigns' && <span>sponsored campaigns</span>}
           {page === 'billing-methods' && <span>billing-methods</span>}
-        </Column>
+        </Box>
       </Container>
     </>
   );

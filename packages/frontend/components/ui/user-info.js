@@ -5,12 +5,14 @@ import { Box, Avatar, Heading, Text } from '@chakra-ui/core';
 export function UserInfo({ name, withAvatar, avatarURL, reputation }) {
   return (
     <Box display="flex" alignItems="flex-end">
-      {withAvatar && <Avatar size="lg" name={name} src={avatarURL} />}
+      {withAvatar && (
+        <Avatar data-testid="avatar" size="lg" name={name} src={avatarURL} />
+      )}
       <Box ml={6}>
         <Heading size="sm" color="paragraph">
           {name}
         </Heading>
-        <Text color="paragraph">{reputation}</Text>
+        {reputation && <Text color="paragraph">{reputation}</Text>}
       </Box>
     </Box>
   );

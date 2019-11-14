@@ -10,7 +10,7 @@ import VerificationSettings from '../ui/settings/verification-settings';
 function MyAccount() {
   // todo: we will get user from state management library
   const [user, setUser] = useState({
-    name: 'Mustafa Turhan',
+    name: 'Rocksteady',
     reputation: 'New User',
     avatarURL: null,
   });

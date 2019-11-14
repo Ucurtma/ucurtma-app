@@ -12,7 +12,7 @@ describe('Profile Header Tests', () => {
 
   test('Renders Component', () => {
     const { getByText } = render(<ProfileHeader user={user} />);
-    expect(getByText('Mustafa Turhan')).toBeInTheDocument();
+    expect(getByText('Someone Random')).toBeInTheDocument();
     expect(getByText('New User')).toBeInTheDocument();
   });
 

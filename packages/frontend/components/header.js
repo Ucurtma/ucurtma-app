@@ -42,7 +42,7 @@ function Header({ loggedIn, showNav }) {
             {loggedIn && (
               <>
                 <NavButton icon={Bell} label="Notifications" badge={1} />
-                <Avatar name="Mustafa Turhan" src="broken-link" />
+                <Avatar name="Ash Ketchum" src="broken-link" />
               </>
             )}
           </Flex>

@@ -9,6 +9,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     'jest.config.js',
+    'next.config.js',
     'theme.js',
     '/coverage/',
     '/out/',

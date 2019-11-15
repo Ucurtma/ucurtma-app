@@ -18,7 +18,7 @@ function Login() {
         >
           Don&apos;t have an account?
           <NextLink href="/account/signup">
-            <Link ml={1} color="linkBlue">
+            <Link data-testid="signup-link" ml={1} color="linkBlue">
               Sign up.
             </Link>
           </NextLink>

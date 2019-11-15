@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Box } from '@chakra-ui/core';
+import Card from '../card';
 
 function AccountFormTemplate({ form, illustration, children }) {
   return (
@@ -9,7 +10,7 @@ function AccountFormTemplate({ form, illustration, children }) {
       align="center"
       direction={{ base: 'column', lg: 'row' }}
     >
-      <Box w="100%" bg="white" borderRadius="md" boxShadow="cardLight">
+      <Card>
         <Box py={8} px={10}>
           {form}
         </Box>
@@ -20,7 +21,7 @@ function AccountFormTemplate({ form, illustration, children }) {
             </Flex>
           </Box>
         )}
-      </Box>
+      </Card>
       {illustration && (
         <Box w="100%" pl={{ lg: 12, sm: 0 }} mt={{ lg: 0, sm: 4 }}>
           {illustration}

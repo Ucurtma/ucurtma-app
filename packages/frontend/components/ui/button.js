@@ -8,6 +8,7 @@ function ButtonA({ buttonType, fullWidth, children, ...otherProps }) {
   };
   return (
     <Button
+      data-testid="button"
       width={fullWidth ? '100%' : 'inherit'}
       bg={types[buttonType].bg}
       fontWeight={types[buttonType].fontWeight}

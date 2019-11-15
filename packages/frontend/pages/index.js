@@ -1,7 +1,13 @@
 import React from 'react';
+import Header from '../components/header';
 
 function Home() {
-  return <div>for now, there is a big silence. try one.</div>;
+  return (
+    <div>
+      <Header />
+      for now, there is a big silence. try one.
+    </div>
+  );
 }
 
 export default Home;

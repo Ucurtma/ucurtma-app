@@ -6,15 +6,17 @@ function Container({ children, ...otherProps }) {
   return (
     <Box
       width={{
-        base: 'containers.base',
+        base: 'containers.xs',
         sm: 'containers.sm',
         md: 'containers.md',
         lg: 'containers.lg',
-        xl: 'containers.lg',
+        xl: 'containers.xl',
       }}
       mx="auto"
       mt={12}
       p={4}
+      display="flex"
+      flexWrap="wrap"
       {...otherProps}
     >
       {children}

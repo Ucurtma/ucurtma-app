@@ -5,14 +5,14 @@ import ProfileHeader from '../../../../components/ui/profile/profile-header';
 
 describe('Profile Header Tests', () => {
   const user = {
-    name: 'Mustafa Turhan',
+    name: 'Ash Ketchum',
     reputation: 'New User',
     avatarURL: null,
   };
 
   test('Renders Component', () => {
     const { getByText } = render(<ProfileHeader user={user} />);
-    expect(getByText('Someone Random')).toBeInTheDocument();
+    expect(getByText('Ash Ketchum')).toBeInTheDocument();
     expect(getByText('New User')).toBeInTheDocument();
   });
 

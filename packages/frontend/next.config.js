@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
-  exportTrailingSlash: false,
+  exportTrailingSlash: true,
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
       '/': { page: '/' },

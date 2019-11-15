@@ -8,7 +8,7 @@ import SidebarItem from '../../components/ui/sidebar-item';
 import MyAccount from '../../components/view/my-account';
 
 function AccountSettings() {
-  const [page, setPage] = useState();
+  const [page, setPage] = useState('my-account');
   const router = useRouter();
   const navItems = [
     {
@@ -34,7 +34,10 @@ function AccountSettings() {
   useEffect(() => {
     const pathName = router.asPath;
     const path = pathName.split('/');
-    setPage(path[path.length - 1]);
+    const contentIndex = navItems.findIndex(navItem =>
+      path.find(pathItem => pathItem === navItem.slug)
+    );
+    setPage(navItems[contentIndex].slug);
   });
 
   const changePage = (slug, href) => {
@@ -67,6 +70,19 @@ function AccountSettings() {
             lg: '70%',
           }}
         >
+          {/*
+              todo: find a better way to render these things.
+              what is the problem? glad to ask.
+              there is no problem if user goes to http://url/account/my-account/
+              'cause defined "page" state is "my-account". but let think about something else.
+
+              if user goes to http://url/account/sponsored-campaigns/ in first place, our js is
+              rendering my-account.  we're setting our state after one or two second,
+              i mean, after component mounted. so, there is little waiting time for user which is bad.
+
+              there is a way to do that in react-router but i can't found how to do that in nextjs.
+              so, lets create a todo in here. we will make it happen later.
+           */}
           {page === 'my-account' && <MyAccount />}
           {page === 'sponsored-campaigns' && <span>sponsored campaigns</span>}
           {page === 'billing-methods' && <span>billing-methods</span>}

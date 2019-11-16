@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import { User, DollarSign, CreditCard } from 'react-feather';
 import { Box } from '@chakra-ui/core';
@@ -7,8 +8,8 @@ import Container from '../../components/ui/container';
 import SidebarItem from '../../components/ui/sidebar-item';
 import MyAccount from '../../components/view/my-account';
 
-function AccountSettings() {
-  const [page, setPage] = useState('my-account');
+function AccountSettings({ query }) {
+  const [page, setPage] = useState(query.slug);
   const router = useRouter();
   const navItems = [
     {
@@ -70,19 +71,6 @@ function AccountSettings() {
             lg: '70%',
           }}
         >
-          {/*
-              todo: find a better way to render these things.
-              what is the problem? glad to ask.
-              there is no problem if user goes to http://url/account/my-account/
-              'cause defined "page" state is "my-account". but let think about something else.
-
-              if user goes to http://url/account/sponsored-campaigns/ in first place, our js is
-              rendering my-account.  we're setting our state after one or two second,
-              i mean, after component mounted. so, there is little waiting time for user which is bad.
-
-              there is a way to do that in react-router but i can't found how to do that in nextjs.
-              so, lets create a todo in here. we will make it happen later.
-           */}
           {page === 'my-account' && <MyAccount />}
           {page === 'sponsored-campaigns' && <span>sponsored campaigns</span>}
           {page === 'billing-methods' && <span>billing-methods</span>}
@@ -91,5 +79,19 @@ function AccountSettings() {
     </>
   );
 }
+
+AccountSettings.getInitialProps = ({ query }) => {
+  return { query };
+};
+
+AccountSettings.propTypes = {
+  query: PropTypes.shape({
+    slug: PropTypes.oneOf([
+      'my-account',
+      'sponsored-campaigns',
+      'billing-methods',
+    ]),
+  }),
+};
 
 export default AccountSettings;

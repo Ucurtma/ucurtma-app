@@ -1,10 +1,10 @@
-module "dynamodb_table" {
+module "non-prod-app-profiles-database-table" {
   source            = "../../modules/dynamodb"
   namespace         = "uc"
   stage             = "non-prod"
   name              = "ucurtma-profiles-non-prod"
   hash_key          = "UserId"
-  hash_key_type     = "N"
+  hash_key_type     = "S"
   range_key         = "RangeKey"
   enable_autoscaler = false
 

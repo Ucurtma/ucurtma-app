@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Heading, Box, Button, Textarea } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import Input from '../input';
+import { withApollo } from '../../../utils/apollo';
 
 const profileInfoSchema = Yup.object().shape({
   name: Yup.string()
@@ -13,13 +16,34 @@ const profileInfoSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  countryOfResidence: Yup.string()
+  country: Yup.string()
     .min(2, 'Too Short')
     .max(50, 'Too Long'),
   aboutYou: Yup.string().min(2, 'Too Short'),
 });
 
+const CHANGE_PROFILE_INFO = gql`
+  mutation updateProfileInformation(
+    $userId: Int!
+    $name: String!
+    $email: String!
+    $country: String!
+    $aboutYou: String!
+  ) {
+    updateProfileInformation(
+      userId: $userId
+      name: $name
+      email: $email
+      country: $country
+      aboutYou: $aboutYou
+    ) {
+      name
+    }
+  }
+`;
+
 function ChangeProfileInfo({ withTitle }) {
+  const [changeProfileInfo] = useMutation(CHANGE_PROFILE_INFO);
   return (
     <>
       {withTitle && (
@@ -31,13 +55,21 @@ function ChangeProfileInfo({ withTitle }) {
         initialValues={{
           name: '',
           email: '',
-          countryOfResidence: '',
+          country: '',
           aboutYou: '',
         }}
         validationSchema={profileInfoSchema}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
-          // todo: change profile information.
+          await changeProfileInfo({
+            variables: {
+              userId: Math.floor(Math.random() * 100), // todo: get userID from db when it is ready
+              name: values.name,
+              email: values.email,
+              country: values.country,
+              aboutYou: values.aboutYou,
+            },
+          });
         }}
       >
         {({ isSubmitting, errors }) => (
@@ -45,11 +77,7 @@ function ChangeProfileInfo({ withTitle }) {
             <Input label="Name" name="name" type="text" />
             <Input label="Email" name="email" type="email" />
             {/* todo: make a select component for country of residence */}
-            <Input
-              label="Country of Residence"
-              name="countryOfResidence"
-              type="text"
-            />
+            <Input label="Country of Residence" name="country" type="text" />
             <Input
               as={Textarea}
               label="About You"
@@ -83,4 +111,4 @@ ChangeProfileInfo.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default ChangeProfileInfo;
+export default withApollo(ChangeProfileInfo);

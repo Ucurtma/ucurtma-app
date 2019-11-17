@@ -3,24 +3,53 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Heading, Box, SimpleGrid, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import Input from '../input';
+import { withApollo } from '../../../utils/apollo';
 
 const passwordChangeSchema = Yup.object().shape({
-  oldPassword: Yup.string()
+  currentPassword: Yup.string()
     .min(6, 'Too Short')
     .required('Password is required'),
-  password: Yup.string()
-    .notOneOf([Yup.ref('oldPassword'), null], 'Password is same with old one')
+  newPassword: Yup.string()
+    .notOneOf(
+      [Yup.ref('currentPassword'), null],
+      'Password is same with old one'
+    )
     .min(6, 'Too Short')
     .required('Password is required'),
-  passwordConfirmation: Yup.string()
-    .notOneOf([Yup.ref('oldPassword'), null], 'Password is same with old one')
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+  repeatNewPassword: Yup.string()
+    .notOneOf(
+      [Yup.ref('currentPassword'), null],
+      'Password is same with old one'
+    )
+    .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
     .min(6, 'Too Short')
     .required('Required'),
 });
 
+const CHANGE_PASSWORD = gql`
+  mutation updatePassword(
+    $userId: Int!
+    $currentPassword: String!
+    $newPassword: String!
+    $repeatNewPassword: String!
+  ) {
+    updatePassword(
+      userId: $userId
+      currentPassword: $currentPassword
+      newPassword: $newPassword
+      repeatNewPassword: $repeatNewPassword
+    ) {
+      token
+      expiryDate
+    }
+  }
+`;
+
 function ChangePassword({ withTitle }) {
+  const [changePassword] = useMutation(CHANGE_PASSWORD);
   return (
     <>
       {withTitle && (
@@ -30,20 +59,31 @@ function ChangePassword({ withTitle }) {
       )}
       <Formik
         initialValues={{
-          oldPassword: '',
-          password: '',
-          passwordConfirmation: '',
+          currentPassword: '',
+          newPassword: '',
+          repeatNewPassword: '',
         }}
         validationSchema={passwordChangeSchema}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
-          // todo: change password.
+          await changePassword({
+            variables: {
+              userId: Math.floor(Math.random() * 100), // todo: get userID from db when it is ready
+              currentPassword: values.currentPassword,
+              newPassword: values.newPassword,
+              repeatNewPassword: values.repeatNewPassword,
+            },
+          });
         }}
       >
         {({ isSubmitting, errors }) => (
           <Form>
             <Box mb={4}>
-              <Input label="Old Password" name="oldPassword" type="password" />
+              <Input
+                label="Current Password"
+                name="currentPassword"
+                type="password"
+              />
             </Box>
             <SimpleGrid
               columns={{
@@ -55,10 +95,10 @@ function ChangePassword({ withTitle }) {
                 lg: 16,
               }}
             >
-              <Input label="Password" name="password" type="password" />
+              <Input label="Password" name="newPassword" type="password" />
               <Input
                 label="Password Confirmation"
-                name="passwordConfirmation"
+                name="repeatNewPassword"
                 type="password"
               />
             </SimpleGrid>
@@ -88,4 +128,4 @@ ChangePassword.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default ChangePassword;
+export default withApollo(ChangePassword);

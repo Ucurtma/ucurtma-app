@@ -3,6 +3,7 @@ module.exports = {
   exportTrailingSlash: true,
   async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
     return {
+      ...defaultPathMap,
       '/': { page: '/' },
       '/account/my-account': {
         page: '/account/settings',

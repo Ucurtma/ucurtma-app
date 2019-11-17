@@ -9,14 +9,14 @@ describe('Change Password Tests', () => {
   test('Renders Component', () => {
     const { getByText } = render(<ChangePassword />);
     expect(getByText('Password Confirmation')).toBeInTheDocument();
-    expect(getByText('Old Password')).toBeInTheDocument();
+    expect(getByText('Current Password')).toBeInTheDocument();
     expect(getByText('Update Password')).toBeInTheDocument();
   });
 
   test('Update Password button should disabled after onBlur', async () => {
     const { getByText, getByLabelText } = render(<ChangePassword />);
     const button = getByText('Update Password');
-    const inputNode = getByLabelText('Old Password');
+    const inputNode = getByLabelText('Current Password');
     fireEvent.blur(inputNode);
     await wait();
     expect(button).toHaveAttribute('disabled', '');
@@ -28,7 +28,7 @@ describe('Change Password Tests', () => {
     const button = getByText('Update Password');
 
     const inputs = [
-      { item: getByLabelText('Old Password'), value: 'Harry Potter' },
+      { item: getByLabelText('Current Password'), value: 'Harry Potter' },
       { item: getByLabelText('Password'), value: '123456' },
       { item: getByLabelText('Password Confirmation'), value: '123456' },
     ];

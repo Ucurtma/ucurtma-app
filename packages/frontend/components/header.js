@@ -24,8 +24,18 @@ function Header({ loggedIn, showNav }) {
       },
     ],
     right: [
-      { color: 'paragraph', href: '/account/login', label: 'Log in' },
-      { color: 'linkBlue', href: '/account/signup', label: 'Start a campaign' },
+      {
+        color: 'paragraph',
+        href: '/account/login',
+        label: 'Log in',
+        condition: !loggedIn,
+      },
+      {
+        color: 'linkBlue',
+        href: '/account/signup',
+        label: 'Start a campaign',
+        condition: !loggedIn,
+      },
     ],
   };
   return (
@@ -67,7 +77,11 @@ function Header({ loggedIn, showNav }) {
               <>
                 <NavButton icon={Bell} label="Notifications" badge={1} />
                 {/* todo: get user from state management */}
-                <Avatar name="Ash Ketchum" src="broken-link" />
+                <Avatar
+                  data-testid="avatar"
+                  name="Ash Ketchum"
+                  src="broken-link"
+                />
               </>
             )}
           </Flex>

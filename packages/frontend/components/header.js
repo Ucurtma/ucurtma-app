@@ -13,10 +13,31 @@ const Logo = styled(Icon)`
 
 // todo: get loggedIn from token
 function Header({ loggedIn, showNav }) {
-  const navItems = [
-    { color: 'paragraph', href: '/', label: 'Explore' },
-    { color: 'linkBlue', href: '/', label: 'Start a campaign' },
-  ];
+  const navItems = {
+    left: [
+      { color: 'paragraph', href: '/', label: 'Explore' },
+      {
+        color: 'linkBlue',
+        href: '/',
+        label: 'Start a campaign',
+        condition: loggedIn,
+      },
+    ],
+    right: [
+      {
+        color: 'paragraph',
+        href: '/account/login',
+        label: 'Log in',
+        condition: !loggedIn,
+      },
+      {
+        color: 'linkBlue',
+        href: '/account/signup',
+        label: 'Start a campaign',
+        condition: !loggedIn,
+      },
+    ],
+  };
   return (
     <Container mt={4} display="block">
       <Flex justify="space-between" align="center">
@@ -28,21 +49,39 @@ function Header({ loggedIn, showNav }) {
         <Flex width="100%" justify="space-between" align="center">
           {showNav && (
             <Flex ml={12}>
-              {navItems.map((navItem, i) => (
-                <Link href={navItem.href} key={i.toString()}>
-                  <Button ml={4} color={navItem.color} variant="ghost">
-                    {navItem.label}
-                  </Button>
-                </Link>
-              ))}
+              {navItems.left.map(
+                (navItem, i) =>
+                  (navItem.condition || navItem.condition === undefined) && (
+                    <Link href={navItem.href} key={i.toString()}>
+                      <Button ml={4} color={navItem.color} variant="ghost">
+                        {navItem.label}
+                      </Button>
+                    </Link>
+                  )
+              )}
             </Flex>
           )}
           <Flex align="center">
             <NavButton icon={Search} label="Search" />
+            {navItems.right.map(
+              (navItem, i) =>
+                (navItem.condition || navItem.condition === undefined) && (
+                  <Link href={navItem.href} key={i.toString()}>
+                    <Button ml={4} color={navItem.color} variant="ghost">
+                      {navItem.label}
+                    </Button>
+                  </Link>
+                )
+            )}
             {loggedIn && (
               <>
                 <NavButton icon={Bell} label="Notifications" badge={1} />
-                <Avatar name="Ash Ketchum" src="broken-link" />
+                {/* todo: get user from state management */}
+                <Avatar
+                  data-testid="avatar"
+                  name="Ash Ketchum"
+                  src="broken-link"
+                />
               </>
             )}
           </Flex>

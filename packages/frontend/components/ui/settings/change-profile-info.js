@@ -9,7 +9,7 @@ import Input from '../input';
 import { withApollo } from '../../../utils/apollo';
 
 const profileInfoSchema = Yup.object().shape({
-  name: Yup.string()
+  fullname: Yup.string()
     .min(2, 'Too Short')
     .max(50, 'Too Long')
     .required('Required'),
@@ -25,19 +25,19 @@ const profileInfoSchema = Yup.object().shape({
 const CHANGE_PROFILE_INFO = gql`
   mutation updateProfileInformation(
     $userId: Int!
-    $name: String!
+    $fullname: String!
     $email: String!
     $country: String!
     $aboutYou: String!
   ) {
     updateProfileInformation(
       userId: $userId
-      name: $name
+      fullname: $name
       email: $email
       country: $country
       aboutYou: $aboutYou
     ) {
-      name
+      fullname
     }
   }
 `;
@@ -53,7 +53,7 @@ function ChangeProfileInfo({ withTitle }) {
       )}
       <Formik
         initialValues={{
-          name: '',
+          fullname: '',
           email: '',
           country: '',
           aboutYou: '',
@@ -64,7 +64,7 @@ function ChangeProfileInfo({ withTitle }) {
           await changeProfileInfo({
             variables: {
               userId: Math.floor(Math.random() * 100), // todo: get userID from db when it is ready
-              name: values.name,
+              fullname: values.fullname,
               email: values.email,
               country: values.country,
               aboutYou: values.aboutYou,
@@ -74,7 +74,7 @@ function ChangeProfileInfo({ withTitle }) {
       >
         {({ isSubmitting, errors }) => (
           <Form>
-            <Input label="Name" name="name" type="text" />
+            <Input label="Name" name="fullname" type="text" />
             <Input label="Email" name="email" type="email" />
             {/* todo: make a select component for country of residence */}
             <Input label="Country of Residence" name="country" type="text" />

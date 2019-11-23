@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
 import { Heading, Flex, Box, Text, Button } from '@chakra-ui/core';
 import { CheckCircle, ArrowRight } from 'react-feather';
+import Link from 'next/link';
 
 function VerificationSettings({ withTitle, isVerified }) {
   return (
     <>
       {withTitle && (
-        <>
-          <Heading mb={4} mt={8} size="sm" color="paragraph">
-            Verification
-          </Heading>
-        </>
+        <Heading mb={4} mt={8} size="sm" color="paragraph">
+          Verification
+        </Heading>
       )}
       <Flex alignItems="center">
         <Box
@@ -26,15 +25,17 @@ function VerificationSettings({ withTitle, isVerified }) {
         </Text>
       </Flex>
       {!isVerified && (
-        <Button
-          mt={2}
-          ml={4}
-          rightIcon={ArrowRight}
-          variant="ghost"
-          color="linkBlue"
-        >
-          Apply
-        </Button>
+        <Link href="/account/my-account/verification">
+          <Button
+            mt={2}
+            ml={4}
+            rightIcon={ArrowRight}
+            variant="ghost"
+            color="linkBlue"
+          >
+            Apply
+          </Button>
+        </Link>
       )}
     </>
   );

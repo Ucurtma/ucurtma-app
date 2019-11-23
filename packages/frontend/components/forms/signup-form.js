@@ -13,7 +13,7 @@ const signupSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
-  name: Yup.string()
+  fullname: Yup.string()
     .min(2, 'Too Short')
     .max(50, 'Too Long')
     .required('Required'),
@@ -28,13 +28,13 @@ const signupSchema = Yup.object().shape({
 
 const SIGNUP = gql`
   mutation Register(
-    $name: String!
+    $fullname: String!
     $email: String!
     $password: String!
     $repeatPassword: String!
   ) {
     register(
-      name: $name
+      fullname: $name
       email: $email
       password: $password
       repeatPassword: $repeatPassword
@@ -49,7 +49,7 @@ function SignupForm({ onSubmit, withTitle }) {
   const inputElements = [
     {
       label: 'Name',
-      name: 'name',
+      name: 'fullname',
       type: 'text',
       placeholder: '(ex. Harry Potter)',
     },
@@ -84,7 +84,7 @@ function SignupForm({ onSubmit, withTitle }) {
       )}
       <Formik
         initialValues={{
-          name: '',
+          fullname: '',
           email: '',
           password: '',
           passwordConfirmation: '',
@@ -95,7 +95,7 @@ function SignupForm({ onSubmit, withTitle }) {
           if (onSubmit) await onSubmit(values);
           await signup({
             variables: {
-              name: values.name,
+              fullname: values.fullname,
               email: values.email,
               password: values.password,
               repeatPassword: values.passwordConfirmation,

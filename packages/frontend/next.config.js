@@ -9,6 +9,10 @@ module.exports = {
         page: '/account/settings',
         query: { slug: 'my-account' },
       },
+      '/account/my-account/verification': {
+        page: '/account/settings',
+        query: { slug: 'verification' },
+      },
       '/account/sponsored-campaigns': {
         page: '/account/settings',
         query: { slug: 'sponsored-campaigns' },

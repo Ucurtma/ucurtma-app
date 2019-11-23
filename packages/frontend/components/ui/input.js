@@ -17,7 +17,11 @@ function InputA({ label, type, controlProps, ...props }) {
       mb={4}
       {...controlProps}
     >
-      {label && <FormLabel color="paragraph">{label}</FormLabel>}
+      {label && (
+        <FormLabel color="paragraph" htmlFor={field.name}>
+          {label}
+        </FormLabel>
+      )}
       <Input
         aria-label={label || field.name}
         aria-describedby={label || field.name}

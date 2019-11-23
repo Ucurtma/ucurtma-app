@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import { User, DollarSign, CreditCard } from 'react-feather';
@@ -7,6 +7,11 @@ import Header from '../../components/header';
 import Container from '../../components/ui/container';
 import SidebarItem from '../../components/ui/sidebar-item';
 import MyAccount from '../../components/view/my-account';
+import Verification from '../../components/view/verification';
+
+// todo: i have some questions about imports that we use above.
+// i guess, people are downloading verification page if they are not in verification page which they shouldn't.
+// can we use something like dynamic import for that? lets investigate it later.
 
 function AccountSettings({ query }) {
   const [page, setPage] = useState(query.slug);
@@ -32,17 +37,9 @@ function AccountSettings({ query }) {
     },
   ];
 
-  useEffect(() => {
-    const pathName = router.asPath;
-    const path = pathName.split('/');
-    const contentIndex = navItems.findIndex(navItem =>
-      path.find(pathItem => pathItem === navItem.slug)
-    );
-    setPage(navItems[contentIndex].slug);
-  });
-
   const changePage = (slug, href) => {
     router.push(Router.pathname, href, { shallow: 'true' });
+    setPage(slug);
   };
 
   return (
@@ -74,6 +71,7 @@ function AccountSettings({ query }) {
           {page === 'my-account' && <MyAccount />}
           {page === 'sponsored-campaigns' && <span>sponsored campaigns</span>}
           {page === 'billing-methods' && <span>billing-methods</span>}
+          {page === 'verification' && <Verification />}
         </Box>
       </Container>
     </>
@@ -90,6 +88,7 @@ AccountSettings.propTypes = {
       'my-account',
       'sponsored-campaigns',
       'billing-methods',
+      'verification',
     ]),
   }),
 };

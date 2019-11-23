@@ -31,13 +31,13 @@ const passwordChangeSchema = Yup.object().shape({
 
 const CHANGE_PASSWORD = gql`
   mutation updatePassword(
-    $userId: Int!
+    $email: String!
     $currentPassword: String!
     $newPassword: String!
     $repeatNewPassword: String!
   ) {
     updatePassword(
-      userId: $userId
+      email: $email
       currentPassword: $currentPassword
       newPassword: $newPassword
       repeatNewPassword: $repeatNewPassword
@@ -68,7 +68,7 @@ function ChangePassword({ withTitle }) {
           setSubmitting(true);
           await changePassword({
             variables: {
-              userId: Math.floor(Math.random() * 100), // todo: get userID from db when it is ready
+              email: Math.floor(Math.random() * 100), // todo: get email from db when it is ready
               currentPassword: values.currentPassword,
               newPassword: values.newPassword,
               repeatNewPassword: values.repeatNewPassword,

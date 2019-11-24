@@ -36,8 +36,8 @@ const verificationScheme = Yup.object().shape({
 });
 
 const UPLOAD_FILE = gql`
-  mutation uploadFile($type: FileType!, $file: Upload!) {
-    uploadFile(type: $type, file: $file) {
+  mutation uploadFile($type: FileType!, $file: Upload!, $userId: String!) {
+    uploadFile(type: $type, file: $file, userId: $userId) {
       fileId
       path
       type
@@ -70,7 +70,11 @@ function Verification() {
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
           await uploadFile({
-            variables: { type: 'PROOF_OF_EDUCATION', file: values.transcript },
+            variables: {
+              type: 'PROOF_OF_EDUCATION',
+              file: values.transcript,
+              userId: Math.floor(Math.random() * 100).toString(), // todo: get userID from db when it is ready
+            },
           });
         }}
       >

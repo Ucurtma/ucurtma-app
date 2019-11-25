@@ -7,11 +7,20 @@ import {
   VisuallyHidden,
   Flex,
   Button,
+  IconButton,
 } from '@chakra-ui/core';
 import { useField, useFormikContext } from 'formik';
-import { Upload, Edit } from 'react-feather';
+import { Upload, Edit, X } from 'react-feather';
 
-function FileInput({ label, type, controlProps, ...props }) {
+function FileInput({
+  label,
+  type,
+  controlProps,
+  customName,
+  withOutline,
+  onDelete,
+  ...props
+}) {
   const [field, meta] = useField(props);
   const { setFieldValue } = useFormikContext();
   return (
@@ -36,19 +45,38 @@ function FileInput({ label, type, controlProps, ...props }) {
         isInvalid={meta.touched && !!meta.error}
         name={field.name}
         onBlur={field.onBlur}
+        disabled={field.disabled}
         onChange={e => setFieldValue(field.name, e.currentTarget.files[0])}
         {...props}
       />
       <Flex flexDirection="column">
-        <FormLabel htmlFor={field.name}>
+        <FormLabel htmlFor={field.name} pr={0}>
           <Button
             as="span"
-            variant="ghost"
+            variant={withOutline ? 'outline' : 'ghost'}
             leftIcon={field.value ? Edit : Upload}
             color={field.value ? 'danger' : 'linkBlue'}
-            size="sm"
+            size="md"
+            justifyContent="flex-start"
+            cursor="pointer"
+            width={withOutline ? 'full' : 'inherit'}
           >
-            {field.value ? field.value.name : `Upload ${label || field.name}`}
+            {field.value
+              ? field.value.name || customName
+              : `Upload ${label || field.name}`}
+            {field.value && (
+              <IconButton
+                ml="auto"
+                icon={X}
+                variant="link"
+                onClick={e =>
+                  onDelete
+                    ? onDelete(field, e.currentTarget.parentElement.textContent)
+                    : setFieldValue(field.name, '')
+                }
+                aria-label="Cancel"
+              />
+            )}
           </Button>
         </FormLabel>
         {meta.touched && meta.error ? (
@@ -64,6 +92,9 @@ FileInput.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   controlProps: PropTypes.string,
+  withOutline: PropTypes.bool,
+  customName: PropTypes.string,
+  onDelete: PropTypes.func,
 };
 
 export default FileInput;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
-import { Text, Icon, Flex } from '@chakra-ui/core';
+import { Text, Icon, Flex, PseudoBox } from '@chakra-ui/core';
 
 function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -10,36 +10,41 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
   });
 
   return (
-    <Flex
+    <PseudoBox
+      opacity={isDragActive ? '1' : '0.5'}
+      as={Flex}
       width="full"
       my={4}
       mx={8}
       height="10rem"
       borderWidth="2px"
       borderStyle="dashed"
-      borderColor="#DEEDFF"
+      borderColor="linkBlue"
       borderRadius="30px"
       justifyContent="center"
       cursor="pointer"
-      {...getRootProps()}
+      _hover={{ opacity: '1' }}
+      _focus={{ opacity: '1' }}
       {...otherProps}
+      {...getRootProps()}
     >
-      <input {...getInputProps({ multiple: false })} />
+      <input
+        {...getInputProps({ multiple: true, accept: 'application/pdf' })}
+      />
 
       <Flex
         flexDirection="column"
         justifyContent="space-around"
         alignItems="center"
       >
-        {icon &&
-          (!isDragActive ? (
-            <Icon name={icon} fontSize="2.75rem" opacity="0.5" />
-          ) : (
-            <span>dropzone</span>
-          ))}
-        {type && <Text color="#57A4FF">{type}</Text>}
+        {icon && <Icon name={icon} fontSize="2.75rem" />}
+        {type && (
+          <Text color="linkBlue" fontWeight="500">
+            {type}
+          </Text>
+        )}
       </Flex>
-    </Flex>
+    </PseudoBox>
   );
 }
 

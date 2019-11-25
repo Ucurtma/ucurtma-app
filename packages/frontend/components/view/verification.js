@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import {
@@ -11,7 +11,6 @@ import {
   Flex,
 } from '@chakra-ui/core';
 import gql from 'graphql-tag';
-import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/react-hooks';
 import Card from '../ui/card';
 import Input from '../ui/input';
@@ -50,14 +49,11 @@ const UPLOAD_FILE = gql`
 function Verification() {
   const [uploadFile] = useMutation(UPLOAD_FILE);
 
-  const onDrop = useCallback((acceptedFile, type) => {
-    console.log(acceptedFile, type);
-  }, []);
-
-  const { getRootProps, isDragActive } = useDropzone({
-    onDrop: file => onDrop(file, 'Others'),
-    noClick: true,
-  });
+  const documentTypes = [
+    { icon: 'idCard', name: 'ID Card & Passport', otherProps: { ml: 0 } },
+    { icon: 'drivingLicence', name: 'Driving Licence' },
+    { icon: 'cloud', name: 'Others', otherProps: { mr: 0 } },
+  ];
 
   return (
     <Card paddingType="default">
@@ -76,7 +72,7 @@ function Verification() {
           transcript: '',
           address: '',
           studentEmail: '',
-          document: '',
+          verificationDocument: '',
         }}
         validationSchema={verificationScheme}
         onSubmit={async (values, { setSubmitting }) => {
@@ -90,7 +86,7 @@ function Verification() {
           });
         }}
       >
-        {({ isSubmitting, errors }) => (
+        {({ isSubmitting, errors, setFieldValue, values }) => (
           <Form>
             <Input label="Identification Number" name="idNumber" type="text" />
             <SimpleGrid
@@ -105,33 +101,58 @@ function Verification() {
               label="Transcript"
               name="transcript"
               accept="application/pdf"
+              withOutline
             />
             <Input label="Address" name="address" type="text" />
             <Input label="Student Email" name="studentEmail" type="email" />
             <FormLabel color="paragraph">Verification Document</FormLabel>
             <Flex
               justifyContent="space-between"
-              {...getRootProps()}
-              className="mt-8"
+              flexWrap={values.verificationDocument !== '' ? 'wrap' : 'no-wrap'}
             >
-              <Dropbox
-                icon="idCard"
-                type="ID Card"
-                onDrop={(file, type) => onDrop(file, type)}
-                ml={0}
-              />
-              <Dropbox
-                icon="drivingLicence"
-                type="Driving Licence"
-                onDrop={(file, type) => onDrop(file, type)}
-              />
-              <Dropbox
-                icon="cloud"
-                type="Others"
-                onDrop={(file, type) => onDrop(file, type)}
-                active={isDragActive}
-                mr={0}
-              />
+              {values.verificationDocument === ''
+                ? documentTypes.map((documentType, i) => (
+                    <Dropbox
+                      icon={documentType.icon}
+                      type={documentType.name}
+                      key={i.toString()}
+                      onDrop={(file, type) =>
+                        setFieldValue('verificationDocument', { file, type })
+                      }
+                      {...documentType.otherProps}
+                    />
+                  ))
+                : values.verificationDocument.file.map(fileInfo => (
+                    <FileInput
+                      name="verificationDocument"
+                      accept="application/pdf"
+                      customName={fileInfo.name}
+                      withOutline
+                      onDelete={(field, element) => {
+                        const files = values.verificationDocument.file;
+                        const deletedElementIndex = files.findIndex(
+                          file => file.name === element
+                        );
+
+                        if (deletedElementIndex > -1) {
+                          const result = [
+                            ...files.slice(0, deletedElementIndex),
+                            ...files.slice(deletedElementIndex + 1),
+                          ];
+
+                          let newData = {
+                            file: result,
+                            type: values.verificationDocument.type,
+                          };
+
+                          if (!result.length) newData = '';
+
+                          setFieldValue('verificationDocument', newData);
+                        }
+                      }}
+                      disabled
+                    />
+                  ))}
             </Flex>
             <Box textAlign="right" mt={4}>
               <Button

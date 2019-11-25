@@ -7,11 +7,9 @@ import {
   Box,
   Button,
   SimpleGrid,
-  VisuallyHidden,
   FormLabel,
   Flex,
 } from '@chakra-ui/core';
-import { Upload } from 'react-feather';
 import gql from 'graphql-tag';
 import { useDropzone } from 'react-dropzone';
 import { useMutation } from '@apollo/react-hooks';
@@ -20,6 +18,7 @@ import Input from '../ui/input';
 // import { checkID } from '../../utils/utils';
 import { withApollo } from '../../utils/apollo';
 import Dropbox from '../ui/dropbox';
+import FileInput from '../ui/file-input';
 
 // todo: refactor all file
 // todo: add required
@@ -90,7 +89,7 @@ function Verification() {
           });
         }}
       >
-        {({ setFieldValue, isSubmitting, values, errors }) => (
+        {({ isSubmitting, errors }) => (
           <Form>
             <Input label="Identification Number" name="idNumber" type="text" />
             <SimpleGrid
@@ -101,36 +100,11 @@ function Verification() {
               <Input label="School" name="school" type="text" />
               <Input label="Field" name="field" type="text" />
             </SimpleGrid>
-            {/* todo: make file input as a component */}
-            <VisuallyHidden
-              as="input"
-              accept="application/pdf"
-              id="text-button-file"
+            <FileInput
+              label="Transcript"
               name="transcript"
-              type="file"
-              onChange={e =>
-                setFieldValue('transcript', e.currentTarget.files[0])
-              }
+              accept="application/pdf"
             />
-            <Flex flexDirection="column">
-              <FormLabel color="paragraph">Transcript</FormLabel>
-              {values.transcript && (
-                <Text mb={2}>{values.transcript.name}</Text>
-              )}
-              {errors.transcript && <span>{errors.transcript}</span>}
-              <FormLabel htmlFor="text-button-file">
-                <Button
-                  as="span"
-                  variant="ghost"
-                  leftIcon={Upload}
-                  color={values.transcript ? 'danger' : 'linkBlue'}
-                  size="sm"
-                  mb={4}
-                >
-                  {values.transcript ? 'Change File' : 'Upload Transcript'}
-                </Button>
-              </FormLabel>
-            </Flex>
             <Input label="Address" name="address" type="text" />
             <Input label="Student Email" name="studentEmail" type="email" />
             <FormLabel color="paragraph">Verification Document</FormLabel>

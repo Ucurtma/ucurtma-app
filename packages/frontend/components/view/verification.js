@@ -58,6 +58,7 @@ function Verification() {
     onDrop: file => onDrop(file, 'Others'),
     noClick: true,
   });
+
   return (
     <Card paddingType="default">
       <Heading mb={4} size="sm" color="paragraph">

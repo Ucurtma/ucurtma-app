@@ -20,6 +20,7 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
       borderColor="#DEEDFF"
       borderRadius="30px"
       justifyContent="center"
+      cursor="pointer"
       {...getRootProps()}
       {...otherProps}
     >

@@ -182,7 +182,7 @@ const customTheme = {
           />
         </>
       ),
-      viewBox: '0 0 69 69',
+      viewBox: '0 0 71 71',
     },
     cloud: {
       path: (

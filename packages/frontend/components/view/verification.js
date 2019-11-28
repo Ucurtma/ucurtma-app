@@ -9,6 +9,9 @@ import {
   SimpleGrid,
   FormLabel,
   Flex,
+  Alert,
+  AlertIcon,
+  CloseButton,
 } from '@chakra-ui/core';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
@@ -18,6 +21,7 @@ import { checkID } from '../../utils/utils';
 import { withApollo } from '../../utils/apollo';
 import Dropbox from '../ui/dropbox';
 import FileInput from '../ui/file-input';
+import VerificationSuccess from '../ui/verification-success';
 
 // todo: refactor all file
 // todo: add required
@@ -57,6 +61,7 @@ const UPLOAD_FILE = gql`
 
 function Verification() {
   const [activeDocumentType, setActiveDocumentType] = useState('');
+  const [isSuccess, setIsSuccess] = useState(null);
   const [uploadFile] = useMutation(UPLOAD_FILE);
 
   const documentTypes = [
@@ -78,6 +83,19 @@ function Verification() {
       type: 'others',
     },
   ];
+
+  if (isSuccess) {
+    return (
+      <Card
+        display="flex"
+        flexDirection="column"
+        paddingType="default"
+        alignItems="center"
+      >
+        <VerificationSuccess />
+      </Card>
+    );
+  }
 
   return (
     <Card paddingType="default">
@@ -109,14 +127,18 @@ function Verification() {
               file: values.transcript,
               userId: Math.floor(Math.random() * 100).toString(), // todo: get userID from db when it is ready
             },
-          });
-          await uploadFile({
-            variables: {
-              type: activeDocumentType,
-              file: values.verificationDocument, // todo: make multiple file
-              userId: Math.floor(Math.random() * 100).toString(), // todo: get userID from db when it is ready
-            },
-          });
+          })
+            .then(() =>
+              uploadFile({
+                variables: {
+                  type: activeDocumentType, // todo: this value is going undefined, find why.
+                  file: values.verificationDocument, // todo: make multiple file
+                  userId: Math.floor(Math.random() * 100).toString(), // todo: get userID from db when it is ready
+                },
+              })
+            )
+            .then(() => setIsSuccess(true))
+            .catch(() => setIsSuccess(false));
         }}
       >
         {({ isSubmitting, errors, setFieldValue, values }) => (
@@ -166,8 +188,9 @@ function Verification() {
                       {...documentType.otherProps}
                     />
                   ))
-                : values.verificationDocument.file.map(fileInfo => (
+                : values.verificationDocument.file.map((fileInfo, i) => (
                     <FileInput
+                      key={i.toString()}
                       name="verificationDocument"
                       accept="application/pdf"
                       customName={fileInfo.name}
@@ -198,6 +221,18 @@ function Verification() {
                     />
                   ))}
             </Flex>
+            {isSuccess === false && (
+              <Alert status="error">
+                <AlertIcon />
+                There was an error processing your request
+                <CloseButton
+                  onClick={() => setIsSuccess(undefined)}
+                  position="absolute"
+                  right="8px"
+                  top="8px"
+                />
+              </Alert>
+            )}
             <Box textAlign="right" mt={4}>
               <Button
                 variant="outline"

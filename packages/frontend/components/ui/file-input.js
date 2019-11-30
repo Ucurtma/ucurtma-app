@@ -67,6 +67,7 @@ function FileInput({
             {field.value && (
               <IconButton
                 ml="auto"
+                data-testid="delete-button"
                 icon={X}
                 variant="link"
                 onClick={e =>

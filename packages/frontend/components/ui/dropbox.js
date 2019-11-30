@@ -49,9 +49,9 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
 }
 
 Dropbox.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   type: PropTypes.string.isRequired,
-  onDrop: PropTypes.func.isRequired,
+  onDrop: PropTypes.func,
   active: PropTypes.bool,
 };
 

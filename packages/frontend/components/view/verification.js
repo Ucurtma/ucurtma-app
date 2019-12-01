@@ -63,23 +63,35 @@ function Verification() {
   const [activeDocumentType, setActiveDocumentType] = useState('');
   const [isSuccess, setIsSuccess] = useState(null);
   const [uploadFile] = useMutation(UPLOAD_FILE);
-
   const documentTypes = [
     {
       icon: 'idCard',
       name: 'ID Card & Passport',
-      otherProps: { ml: 0 },
+      otherProps: {
+        ml: { base: 0, md: 0 },
+        mr: { base: 0, md: 0 },
+        mb: { base: 4, md: 0 },
+      },
       type: 'PASSPORT',
     },
     {
       icon: 'drivingLicence',
       name: 'Driving Licence',
+      otherProps: {
+        ml: { base: 0, md: 4 },
+        mr: { base: 0, md: 4 },
+        mb: { base: 4, md: 0 },
+      },
       type: 'DRIVING_LICENCE',
     },
     {
       icon: 'cloud',
       name: 'Others',
-      otherProps: { mr: 0 },
+      otherProps: {
+        ml: { base: 0, md: 0 },
+        mr: { base: 0, md: 0 },
+        mb: { base: 4, md: 0 },
+      },
       type: 'others',
     },
   ];
@@ -171,6 +183,7 @@ function Verification() {
             <Flex
               justifyContent="space-between"
               flexWrap={values.verificationDocument !== '' ? 'wrap' : 'no-wrap'}
+              flexDirection={{ base: 'column', md: 'row' }}
             >
               {values.verificationDocument === ''
                 ? documentTypes.map((documentType, i) => (

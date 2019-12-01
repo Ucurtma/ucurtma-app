@@ -14,9 +14,7 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
       opacity={isDragActive ? '1' : '0.5'}
       as={Flex}
       width="full"
-      my={4}
-      mx={8}
-      height="10rem"
+      height={{ base: '8rem', md: '10rem' }}
       borderWidth="2px"
       borderStyle="dashed"
       borderColor="linkBlue"

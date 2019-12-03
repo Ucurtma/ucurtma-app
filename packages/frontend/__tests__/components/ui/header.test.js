@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { render } from 'test-utils';
-import Header from '../../components/header';
+import Header from '../../../components/ui/header';
 
 describe('Header Tests', () => {
   test('Renders Header', () => {

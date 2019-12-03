@@ -6,7 +6,7 @@ function Container({ children, ...otherProps }) {
   return (
     <Box
       width={{
-        base: 'containers.xs',
+        base: '100%',
         sm: 'containers.sm',
         md: 'containers.md',
         lg: 'containers.lg',

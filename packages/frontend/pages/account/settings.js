@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import { User, DollarSign, CreditCard } from 'react-feather';
 import { Box } from '@chakra-ui/core';
-import Header from '../../components/header';
+import Header from '../../components/ui/header';
 import Container from '../../components/ui/container';
 import SidebarItem from '../../components/ui/sidebar-item';
 import MyAccount from '../../components/view/my-account';

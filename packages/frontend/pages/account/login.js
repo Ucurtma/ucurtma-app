@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@chakra-ui/core';
 import NextLink from 'next/link';
-import Header from '../../components/header';
+import Header from '../../components/ui/header';
 import LoginForm from '../../components/forms/login-form';
 import Container from '../../components/ui/container';
 import AccountFormTemplate from '../../components/ui/templates/account-form-template';

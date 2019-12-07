@@ -9,14 +9,19 @@ describe('Header Tests', () => {
     expect(container.querySelector('#logo')).not.toBeNull();
   });
 
+  test('Renders nothing related with menu item if showNav is not provided', () => {
+    const { queryByText } = render(<Header showNav={false} />);
+    expect(queryByText('Explore')).toBeNull();
+  });
+
   test('Show Navigation if showNav prop is provided', () => {
-    const { getByText } = render(<Header showNav />);
-    expect(getByText('Explore')).toBeInTheDocument();
+    const { queryByText } = render(<Header showNav />);
+    expect(queryByText('Explore')).toBeInTheDocument();
   });
 
   test('Show User Avatar if User is logged in', () => {
-    const { getByTestId, queryByText } = render(<Header showNav loggedIn />);
-    expect(getByTestId('avatar')).toBeInTheDocument();
+    const { queryByTestId, queryByText } = render(<Header showNav loggedIn />);
+    expect(queryByTestId('avatar')).toBeInTheDocument();
     expect(queryByText('Log in')).not.toBeInTheDocument();
   });
 });

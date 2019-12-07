@@ -83,7 +83,7 @@ function Header({ loggedIn, showNav }) {
                 label="Menu"
                 icon={Menu}
                 wrapperProps={{ mr: 0 }}
-                ref={btnRef}
+                innerRef={btnRef}
                 onClick={onOpen}
               />
               <Drawer

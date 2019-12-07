@@ -8,10 +8,11 @@ function NavButton({
   badge,
   children,
   wrapperProps,
+  innerRef,
   ...otherProps
 }) {
   return (
-    <Box position="relative" ml={4} {...wrapperProps}>
+    <Box ref={innerRef} position="relative" ml={4} {...wrapperProps}>
       <IconButton
         aria-label={label}
         icon={icon}
@@ -50,9 +51,9 @@ NavButton.propTypes = {
     .isRequired,
   label: PropTypes.string.isRequired,
   badge: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
   wrapperProps: PropTypes.object,
   children: PropTypes.node,
+  innerRef: PropTypes.object,
 };
 
 export default NavButton;

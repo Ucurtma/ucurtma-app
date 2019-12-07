@@ -1,22 +1,25 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { IconButton, Badge } from '@chakra-ui/core';
+import { IconButton, Badge, Box } from '@chakra-ui/core';
 
-const Wrapper = styled.div`
-  position: relative;
-  margin-right: 2rem;
-`;
-
-function NavButton({ icon, label, badge, children }) {
+function NavButton({
+  icon,
+  label,
+  badge,
+  children,
+  wrapperProps,
+  innerRef,
+  ...otherProps
+}) {
   return (
-    <Wrapper>
+    <Box ref={innerRef} position="relative" ml={4} {...wrapperProps}>
       <IconButton
         aria-label={label}
         icon={icon}
         fontSize="22px"
         variant="ghost"
         color="paragraph"
+        {...otherProps}
       />
       {badge && (
         <Badge
@@ -39,7 +42,7 @@ function NavButton({ icon, label, badge, children }) {
         </Badge>
       )}
       {children}
-    </Wrapper>
+    </Box>
   );
 }
 
@@ -48,7 +51,9 @@ NavButton.propTypes = {
     .isRequired,
   label: PropTypes.string.isRequired,
   badge: PropTypes.number,
+  wrapperProps: PropTypes.object,
   children: PropTypes.node,
+  innerRef: PropTypes.object,
 };
 
 export default NavButton;

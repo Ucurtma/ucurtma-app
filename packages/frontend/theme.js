@@ -1,7 +1,17 @@
+/* eslint-disable prefer-destructuring */
 import { theme } from '@chakra-ui/core';
+
+const breakpoints = ['576px', '768px', '992px', '1200px'];
+
+// aliases
+breakpoints.sm = breakpoints[0];
+breakpoints.md = breakpoints[1];
+breakpoints.lg = breakpoints[2];
+breakpoints.xl = breakpoints[3];
 
 const customTheme = {
   ...theme,
+  breakpoints,
   fonts: {
     ...theme.fonts,
     body:

@@ -13,6 +13,10 @@ references:
     run:
       name: Deploy to AWS non-prod bucket
       command: aws s3 sync ./packages/frontend/out/ s3://non-prod.ucurtmaprojesi.com --delete
+  deploy_to_prod: &deploy_to_prod
+    run:
+      name: Deploy to AWS production bucket
+      command: aws s3 sync ./packages/frontend/out/ s3://ucurtmaprojesi.com --delete
   build_static_bundle: &build_static_bundle
     run:
       name: Export the application bundle
@@ -55,6 +59,15 @@ jobs:
           at: ~/repo/packages/
       # deploy the bundle to non-prod s3 bucket
       - *deploy_to_non_prod
+  deploy-to-prod:
+    machine:
+      enabled: true
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo/packages/
+      # deploy the bundle to prod s3 bucket
+      - *deploy_to_prod
   tests:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
@@ -88,6 +101,15 @@ workflows:
           requires:
             - build
             - deploy
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-to-prod:
+          type: approval
+          requires:
+            - build
+            - tests
           filters:
             branches:
               only:

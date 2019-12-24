@@ -5,7 +5,7 @@ provider aws {
 terraform {
   backend "s3" {
     bucket = "ucurtma-app-state-production"
-    key    = "terraform/dev/terraform_dev.tfstate"
+    key    = "terraform/prod/terraform_prod.tfstate"
     region = "eu-west-2"
   }
 }

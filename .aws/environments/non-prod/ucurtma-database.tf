@@ -17,3 +17,13 @@ module "non-prod-app-files-database-table" {
   hash_key_type     = "S"
   enable_autoscaler = false
 }
+
+module "non-prod-app-applications-database-table" {
+  source            = "../../modules/dynamodb"
+  namespace         = "uc"
+  stage             = "non-prod"
+  name              = "ucurtma-applications-non-prod"
+  hash_key          = "fileId"
+  hash_key_type     = "S"
+  enable_autoscaler = false
+}

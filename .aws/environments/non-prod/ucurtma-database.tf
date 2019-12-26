@@ -23,7 +23,7 @@ module "non-prod-app-applications-database-table" {
   namespace         = "uc"
   stage             = "non-prod"
   name              = "ucurtma-applications-non-prod"
-  hash_key          = "fileId"
+  hash_key          = "applicationId"
   hash_key_type     = "S"
   enable_autoscaler = false
 }

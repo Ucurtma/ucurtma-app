@@ -11,6 +11,8 @@ import {
   Button,
   Link,
 } from '@chakra-ui/core';
+import Container from '../components/ui/container';
+import Card from '../components/ui/card';
 // import { Navigation } from 'react-feather';
 
 function Home() {
@@ -106,6 +108,62 @@ function Home() {
           {...(scrolled && scrolledIllustrationProps)}
         />
       </Grid>
+      <Container mt="0">
+        <Heading color="gray.600" size="lg" mt="4rem" mb="2rem" mx="auto">
+          Nasıl Çalışıyor?
+        </Heading>
+        <Grid
+          templateColumns={{
+            base: 'inherit',
+            md: '50% auto',
+            lg: '40% auto',
+            xl: 'repeat(3, 1fr)',
+          }}
+          width="full"
+          gap="28px"
+        >
+          <Card
+            px="2rem"
+            py="1.5rem"
+            borderRadius="2rem"
+            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
+          >
+            <Heading color="gray.600" size="md">
+              İncele
+            </Heading>
+            <Text mt="1.5rem" color="gray.500">
+              Öğrenci kampanyalarını incele, sana en doğru geleni bul.
+            </Text>
+          </Card>
+          <Card
+            px="2rem"
+            py="1.5rem"
+            borderRadius="2rem"
+            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
+          >
+            <Heading color="gray.600" size="md">
+              Destek Ol
+            </Heading>
+            <Text mt="1.5rem" color="gray.500">
+              Bağış Yap butonuna tıkla, referans kodunu al. Yönergeleri uygula,
+              destek ol.
+            </Text>
+          </Card>
+          <Card
+            px="2rem"
+            py="1.5rem"
+            borderRadius="2rem"
+            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
+          >
+            <Heading color="gray.600" size="md">
+              Takip Et
+            </Heading>
+            <Text mt="1.5rem" color="gray.500">
+              Destek olduğun öğrencinin gelişimini, başarımını takip et.
+            </Text>
+          </Card>
+        </Grid>
+      </Container>
     </>
   );
 }

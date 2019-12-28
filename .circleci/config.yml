@@ -9,14 +9,10 @@ references:
     run:
       name: Bootstrap Lerna
       command: yarn && yarn bootstrap
-  deploy_to_non_prod: &deploy_to_non_prod
+  deploy_to_bucket: &deploy_to_bucket
     run:
-      name: Deploy to AWS non-prod bucket
-      command: aws s3 sync ./packages/frontend/out/ s3://non-prod.ucurtmaprojesi.com --delete
-  deploy_to_prod: &deploy_to_prod
-    run:
-      name: Deploy to AWS production bucket
-      command: aws s3 sync ./packages/frontend/out/ s3://ucurtmaprojesi.com --delete
+      name: Deploy to AWS bucket
+      command: aws s3 sync ./packages/frontend/out/ s3://$BUCKET_NAME --delete
   build_static_bundle: &build_static_bundle
     run:
       name: Export the application bundle
@@ -29,6 +25,10 @@ references:
     run:
       name: Run linting tools
       command: yarn lint
+  invalidate_cloudfront_cache: &invalidate_cloudfront_cache
+    run:
+      name: Invalidate the cache in the environment
+      command: aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
 jobs:
   build:
     docker:
@@ -50,16 +50,23 @@ jobs:
           root: packages
           paths:
             - frontend/out
-  deploy:
+  deploy-to-non-prod:
     machine:
       enabled: true
     working_directory: ~/repo
+    environment:
+      DISTRIBUTION_ID: EQEMV77DP7EJW
+      BUCKET_NAME: non-prod.ucurtmaprojesi.com
     steps:
       - attach_workspace:
           at: ~/repo/packages/
       # deploy the bundle to non-prod s3 bucket
-      - *deploy_to_non_prod
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
   deploy-to-prod:
+    environment:
+      DISTRIBUTION_ID: E3BBA49PSH0YZ1
+      BUCKET_NAME: ucurtmaprojesi.com
     machine:
       enabled: true
     working_directory: ~/repo
@@ -67,7 +74,8 @@ jobs:
       - attach_workspace:
           at: ~/repo/packages/
       # deploy the bundle to prod s3 bucket
-      - *deploy_to_prod
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
   tests:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
@@ -90,7 +98,7 @@ workflows:
   build-and-deploy-non-prod:
     jobs:
       - build
-      - deploy:
+      - deploy-to-non-prod:
           requires:
             - build
           filters:
@@ -100,7 +108,7 @@ workflows:
       - tests:
           requires:
             - build
-            - deploy
+            - deploy-to-non-prod
           filters:
             branches:
               only:

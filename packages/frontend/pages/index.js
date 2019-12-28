@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Waypoint } from 'react-waypoint';
 import NextLink from 'next/link';
+import { ZoomIn, Gift, Bell } from 'react-feather';
 import {
   Grid,
   Box,
@@ -21,14 +22,34 @@ function Home() {
   const scrolledGridProps = {
     transform: 'scale(0.9)',
     bg: '#fff',
-    borderRadius: '2rem',
+    borderRadius: '0.5rem',
     boxShadow: '0 12px 48px rgba(0, 0, 0, 0.1)',
   };
+
   const scrolledIllustrationProps = {
-    borderBottomRightRadius: { base: '2rem', md: '2rem' },
-    borderBottomLeftRadius: { base: '2rem', md: '0' },
-    borderTopRightRadius: { md: '2rem' },
+    borderBottomRightRadius: { base: '0.5rem', md: '0.5rem' },
+    borderBottomLeftRadius: { base: '0.5rem', md: '0' },
+    borderTopRightRadius: { md: '0.5rem' },
   };
+
+  const cards = [
+    {
+      icon: ZoomIn,
+      title: 'İncele',
+      text: 'Öğrenci kampanyalarını incele, sana en doğru geleni bul.',
+    },
+    {
+      icon: Gift,
+      title: 'Destek Ol',
+      text:
+        'Bağış Yap butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
+    },
+    {
+      icon: Bell,
+      title: 'Takip Et',
+      text: 'Destek olduğun öğrencinin gelişimini, başarımını takip et.',
+    },
+  ];
 
   return (
     <>
@@ -114,7 +135,7 @@ function Home() {
         <Heading
           color="gray.600"
           size="lg"
-          mt={{ base: '1rem', md: '4rem' }}
+          mt={{ base: '1rem', md: scrolled ? '0' : '2rem' }}
           mb="2rem"
           mx="auto"
         >
@@ -130,46 +151,24 @@ function Home() {
           width="full"
           gap="28px"
         >
-          <Card
-            px="2rem"
-            py="1.5rem"
-            borderRadius="2rem"
-            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
-          >
-            <Heading color="gray.600" size="md">
-              İncele
-            </Heading>
-            <Text mt="1.5rem" color="gray.500">
-              Öğrenci kampanyalarını incele, sana en doğru geleni bul.
-            </Text>
-          </Card>
-          <Card
-            px="2rem"
-            py="1.5rem"
-            borderRadius="2rem"
-            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
-          >
-            <Heading color="gray.600" size="md">
-              Destek Ol
-            </Heading>
-            <Text mt="1.5rem" color="gray.500">
-              Bağış Yap butonuna tıkla, referans kodunu al. Yönergeleri uygula,
-              destek ol.
-            </Text>
-          </Card>
-          <Card
-            px="2rem"
-            py="1.5rem"
-            borderRadius="2rem"
-            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
-          >
-            <Heading color="gray.600" size="md">
-              Takip Et
-            </Heading>
-            <Text mt="1.5rem" color="gray.500">
-              Destek olduğun öğrencinin gelişimini, başarımını takip et.
-            </Text>
-          </Card>
+          {cards.map(card => (
+            <Card
+              px="2rem"
+              py="1.5rem"
+              borderRadius="0.5rem"
+              boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
+            >
+              <Flex alignItems="flex-end" color="gray.700">
+                <Icon color="blue.300" size="34px" as={card.icon} />
+                <Heading ml="1.25rem" size="md">
+                  {card.title}
+                </Heading>
+              </Flex>
+              <Text mt="1.5rem" color="gray.600">
+                {card.text}
+              </Text>
+            </Card>
+          ))}
         </Grid>
       </Container>
     </>

@@ -64,21 +64,23 @@ function Home() {
             </Link>
           </NextLink>
           <Box pr={{ base: '0', md: '3rem' }} mt={{ base: '4rem', md: '0' }}>
-            <Heading maxW="253px" lineHeight="1" color="gray.900">
-              İnsanlardan, insanlara.
+            <Heading maxW="280px" lineHeight="1" color="gray.900">
+              Uçurtma Projesi Nedir?
             </Heading>
             <Text mt="1.5rem" color="gray.500">
-              Daha iyi bir dünya yaratmak için birbirimize ihtiyacımız var.
-              Uçurtma, bizi birbirimize daha kolay ulaştırmak için var.
+              Başarılı, çalışkan ya da yetenekli öğrencilerin eğitim hayatları
+              sırasında hayal ettikleri hedefe ulaşmalarına yardımcı olacak
+              maddi desteği güvenli, denetlenebilir ve adil bir şekilde
+              sağlayacak bir araçtır.
             </Text>
             <Button
               float="right"
               variant="ghost"
               mt="1rem"
-              rightIcon="arrow-forward"
+              // rightIcon="arrow-forward"
               color="gray.500"
             >
-              Nasıl çalışıyor?
+              Çok Yakında Burada!
             </Button>
           </Box>
           {/* <Flex>

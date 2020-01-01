@@ -41,6 +41,7 @@ function HowItWorks() {
       >
         {cards.map(card => (
           <Card
+            key={card.title}
             px="2rem"
             py="1.5rem"
             borderRadius="0.5rem"

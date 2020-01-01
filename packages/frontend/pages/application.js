@@ -128,20 +128,21 @@ function Application() {
                     spacingX={{ base: 0, lg: 16 }}
                   >
                     <Box>
-                      {profileQuestions.map(question => {
+                      {profileQuestions.map((question, i) => {
                         if (question.length > 1) {
                           return (
                             <SimpleGrid
+                              key={i.toString()}
                               columns={{ base: 1, lg: question.length }}
                               spacingX={{ base: 0, lg: 5 }}
                             >
                               {question.map(item => (
-                                <Input {...item} />
+                                <Input key={item.name} {...item} />
                               ))}
                             </SimpleGrid>
                           );
                         }
-                        return <Input {...question} />;
+                        return <Input key={question.name} {...question} />;
                       })}
                     </Box>
                     <Box>
@@ -162,7 +163,12 @@ function Application() {
                     spacingX={{ base: 0, lg: 16 }}
                   >
                     {commonQuestions.map(question => (
-                      <Input as={Textarea} type="textarea" {...question} />
+                      <Input
+                        key={question.name}
+                        as={Textarea}
+                        type="textarea"
+                        {...question}
+                      />
                     ))}
                   </SimpleGrid>
                 </Box>

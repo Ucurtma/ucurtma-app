@@ -20,8 +20,20 @@ import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()
+    .required('Bu alan zorunludur.')
     .matches(/^[0-9]{11}$/, 'Kimlik numarası 11 haneli olmalıdır.')
     .test('ID', 'Hatalı kimlik numarası girdiniz.', val => val && checkID(val)),
+  name: Yup.string().required('Bu alan zorunludur.'),
+  surname: Yup.string().required('Bu alan zorunludur.'),
+  school: Yup.string().required('Bu alan zorunludur.'),
+  field: Yup.string().required('Bu alan zorunludur.'),
+  address: Yup.string().required('Bu alan zorunludur.'),
+  email: Yup.string()
+    .required('Bu alan zorunludur.')
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu/,
+      'Email adresiniz öğrenci maili olmalıdır.'
+    ),
 });
 
 function Application() {
@@ -30,8 +42,7 @@ function Application() {
   const onAvatarChange = (e, type) => {
     if (e.target.files && e.target.files[0]) {
       // now, we are settings our avatar locally which isn't ok because it is temporary.
-      // todo: add user to state management because we should change this avatar in everywhere
-      // todo: run change avatar query in here.
+      // upload it.
       const url = URL.createObjectURL(e.target.files[0]);
       setUser({ avatarURL: url });
     }
@@ -40,6 +51,43 @@ function Application() {
       setUser({ avatarURL: null });
     }
   };
+
+  const profileQuestions = [
+    { label: 'Kimlik Numarası', name: 'idNumber' },
+    [
+      { label: 'Adı', name: 'name' },
+      { label: 'Soyadı', name: 'surname' },
+    ],
+    [
+      { label: 'Okul', name: 'school' },
+      { label: 'Alan/Bölümü', name: 'field' },
+    ],
+    { label: 'Adres', name: 'address' },
+    { label: 'Öğrenci Emaili', name: 'email', type: 'email' },
+  ];
+
+  const commonQuestions = [
+    {
+      label: 'Geçmişinizdeki üç önemli başarınız neydi?',
+      name: 'historyAchievements',
+    },
+    {
+      label: 'Gelecekte hedeflediğiniz üç başarı ne olur?',
+      name: 'futureAchievements',
+    },
+    {
+      label: 'En uçuk hayaliniz nedir?',
+      name: 'dreams',
+    },
+    {
+      label: 'Burs alamazsanız ne olur?',
+      name: 'whatIf',
+    },
+    {
+      label: 'Siz olsaydınız, size neden burs verirdiniz?',
+      name: 'whyYou',
+    },
+  ];
 
   return (
     <Container>
@@ -80,23 +128,21 @@ function Application() {
                     spacingX={{ base: 0, lg: 16 }}
                   >
                     <Box>
-                      <Input label="Kimlik Numarası" name="idNumber" />
-                      <SimpleGrid
-                        columns={{ base: 1, lg: 2 }}
-                        spacingX={{ base: 0, lg: 5 }}
-                      >
-                        <Input label="Adı" name="name" />
-                        <Input label="Soyadı" name="surnamename" />
-                      </SimpleGrid>
-                      <SimpleGrid
-                        columns={{ base: 1, lg: 2 }}
-                        spacingX={{ base: 0, lg: 5 }}
-                      >
-                        <Input label="Okul" name="school" />
-                        <Input label="Alan/Bölümü" name="field" />
-                      </SimpleGrid>
-                      <Input label="Adres" name="address" />
-                      <Input label="Öğrenci Emaili" name="email" type="email" />
+                      {profileQuestions.map(question => {
+                        if (question.length > 1) {
+                          return (
+                            <SimpleGrid
+                              columns={{ base: 1, lg: question.length }}
+                              spacingX={{ base: 0, lg: 5 }}
+                            >
+                              {question.map(item => (
+                                <Input {...item} />
+                              ))}
+                            </SimpleGrid>
+                          );
+                        }
+                        return <Input {...question} />;
+                      })}
                     </Box>
                     <Box>
                       <ChangeProfilePicture
@@ -115,36 +161,9 @@ function Application() {
                     columns={{ base: 1, lg: 2 }}
                     spacingX={{ base: 0, lg: 16 }}
                   >
-                    <Input
-                      as={Textarea}
-                      label="Geçmişinizdeki üç önemli başarınız neydi?"
-                      name="historicAchievements"
-                      type="textarea"
-                    />
-                    <Input
-                      as={Textarea}
-                      label="Gelecekte hedeflediğiniz üç başarı ne olur?"
-                      name="futureAchievements"
-                      type="textarea"
-                    />
-                    <Input
-                      as={Textarea}
-                      label="En uçuk hayaliniz nedir?"
-                      name="dreams"
-                      type="textarea"
-                    />
-                    <Input
-                      as={Textarea}
-                      label="Burs alamazsanız ne olur?"
-                      name="whatIf"
-                      type="textarea"
-                    />
-                    <Input
-                      as={Textarea}
-                      label="Siz olsaydınız, size neden burs verirdiniz?"
-                      name="whyYou"
-                      type="textarea"
-                    />
+                    {commonQuestions.map(question => (
+                      <Input as={Textarea} type="textarea" {...question} />
+                    ))}
                   </SimpleGrid>
                 </Box>
 
@@ -156,7 +175,7 @@ function Application() {
                     isLoading={isSubmitting}
                     disabled={isSubmitting || Object.keys(errors).length > 0}
                   >
-                    Update Info
+                    Başvur
                   </Button>
                 </Box>
               </Form>

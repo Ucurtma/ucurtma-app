@@ -6,10 +6,17 @@ import {
   Heading,
   VisuallyHidden,
   FormLabel,
+  Avatar,
+  Box,
 } from '@chakra-ui/core';
 import { Upload, Trash } from 'react-feather';
 
-function ChangeProfilePicture({ onChange, withTitle, isAvatarExist }) {
+function ChangeProfilePicture({
+  onChange,
+  withTitle,
+  isAvatarExist,
+  avatarURL,
+}) {
   return (
     <>
       {withTitle && (
@@ -17,6 +24,9 @@ function ChangeProfilePicture({ onChange, withTitle, isAvatarExist }) {
           Profile Picture
         </Heading>
       )}
+      <Box mb={4}>
+        {avatarURL && <Avatar data-testid="avatar" size="lg" src={avatarURL} />}
+      </Box>
       <ButtonGroup spacing={4}>
         <VisuallyHidden
           as="input"
@@ -33,7 +43,7 @@ function ChangeProfilePicture({ onChange, withTitle, isAvatarExist }) {
             color="linkBlue"
             size="sm"
           >
-            {isAvatarExist ? 'Change ' : 'Add '} Profile Picture
+            {isAvatarExist ? 'Fotoğrafı Değiştir ' : 'Fotoğraf Ekle'}
           </Button>
         </FormLabel>
         {isAvatarExist && (
@@ -44,7 +54,7 @@ function ChangeProfilePicture({ onChange, withTitle, isAvatarExist }) {
             color="danger"
             size="sm"
           >
-            Delete Profile Picture
+            Fotoğrafı Sil
           </Button>
         )}
       </ButtonGroup>
@@ -60,6 +70,7 @@ ChangeProfilePicture.propTypes = {
   onChange: PropTypes.func,
   isAvatarExist: PropTypes.bool,
   withTitle: PropTypes.bool,
+  avatarURL: PropTypes.string,
 };
 
 export default ChangeProfilePicture;

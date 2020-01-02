@@ -52,7 +52,6 @@ const customTheme = {
         <>
           <path
             fillRule="evenodd"
-            clipCule="evenodd"
             d="M64.6437 0H48.4828H32.3218H16.1609H0V16.1609V32.3218V48.4828V64.6437H16.1609V48.4828H32.3218V32.3218H48.4828V16.1609H64.6437V0Z"
             fill="url(#paint0_linear)"
           />

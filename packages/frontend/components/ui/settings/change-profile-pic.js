@@ -21,7 +21,7 @@ function ChangeProfilePicture({
     <>
       {withTitle && (
         <Heading my={4} size="sm" color="paragraph">
-          Profile Picture
+          Fotoğraf
         </Heading>
       )}
       <Box mb={4}>

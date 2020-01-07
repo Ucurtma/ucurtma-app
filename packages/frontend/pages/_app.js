@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
               'Quicksand, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
           },
           body: {
-            backgroundColor: '#F3F3F3',
+            backgroundColor: '#fff',
           },
         }}
       />

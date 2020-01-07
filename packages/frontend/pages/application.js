@@ -31,6 +31,8 @@ const applicationSchema = Yup.object().shape({
   dreams: Yup.string().required('Bu alan zorunludur.'),
   whatIf: Yup.string().required('Bu alan zorunludur.'),
   whyYou: Yup.string().required('Bu alan zorunludur.'),
+  userPhoto: Yup.mixed().required('Bu alan zorunludur'),
+  studentIdentification: Yup.mixed().required('Bu alan zorunludur'),
 });
 
 const APPLY = gql`
@@ -83,7 +85,6 @@ function Application() {
     }
 
     if (type === 'delete') {
-      setUser({ avatarURL: null });
       if (documentType === 'photo') {
         setUserPhoto(undefined);
         setUser(undefined);
@@ -182,7 +183,7 @@ function Application() {
             }
           }}
         >
-          {({ isSubmitting, errors }) => (
+          {({ isSubmitting, errors, setFieldValue }) => (
             <Form>
               <Box>
                 <Heading my={4} size="sm" color="paragraph">
@@ -212,14 +213,32 @@ function Application() {
                   </Box>
                   <Box>
                     <ChangeProfilePicture
-                      onChange={(e, type) => onFileChange(e, type, 'photo')}
+                      onChange={(e, type) => {
+                        onFileChange(e, type, 'photo');
+                        if (type === 'delete') {
+                          setFieldValue('userPhoto', '', true);
+                        } else {
+                          setFieldValue('userPhoto', 'fileAdded', true);
+                        }
+                      }}
                       isFileExist={user && !!user.avatarURL}
                       avatarURL={user && user.avatarURL}
                       name="userPhoto"
                       accept="image/*"
                     />
                     <ChangeProfilePicture
-                      onChange={(e, type) => onFileChange(e, type, 'document')}
+                      onChange={(e, type) => {
+                        onFileChange(e, type, 'document');
+                        if (type === 'delete') {
+                          setFieldValue('studentIdentification', '', true);
+                        } else {
+                          setFieldValue(
+                            'studentIdentification',
+                            'fileAdded',
+                            true
+                          );
+                        }
+                      }}
                       title="Öğrenci Belgesi"
                       isFileExist={!!studentIdentification}
                       name="studentIdentification"

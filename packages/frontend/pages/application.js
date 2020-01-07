@@ -74,11 +74,11 @@ function Application() {
       const url = URL.createObjectURL(e.target.files[0]);
       if (documentType === 'photo') {
         setUser({ avatarURL: url });
-        setUserPhoto(e.target.files);
+        setUserPhoto(e.target.files[0]);
       }
 
       if (documentType === 'document') {
-        setStudentIdentification(e.target.files);
+        setStudentIdentification(e.target.files[0]);
       }
     }
 

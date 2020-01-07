@@ -11,15 +11,25 @@ function SplashScreen() {
         position="absolute"
         top="0"
         right="0"
-        w="50%"
-        h="100%"
+        w={{ base: '100%', md: '50%' }}
+        h={{ base: '250px', md: '100%' }}
         backgroundImage='url("/background.svg")'
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         backgroundPosition="center center"
       />
-      <Container height="100vh" m="0 auto" mt={0} overflow="hidden">
-        <Flex flexDir="column" justifyContent="center">
+      <Container
+        height={{ base: 'auto', md: '100vh' }}
+        m="0 auto"
+        mt={0}
+        overflow="hidden"
+        p={{ base: '2rem', md: 0 }}
+      >
+        <Flex
+          flexDir="column"
+          justifyContent={{ base: 'flex-start', md: 'center' }}
+          mt={{ base: '250px', md: 0 }}
+        >
           <NextLink href="/">
             <Link display="contents" id="logo">
               <Icon name="logo" size="4rem" />
@@ -28,10 +38,10 @@ function SplashScreen() {
           <Box
             zIndex="2"
             bg="white"
-            maxW="55%"
+            maxW={{ base: '100%', md: '55%' }}
             borderRadius="3px"
-            pr={{ base: '0', md: 12 }}
-            py={{ base: '0', md: 8 }}
+            py={{ base: 4, md: 8 }}
+            pr={{ md: 12 }}
             mt={{ base: '1rem' }}
           >
             <Heading size="2xl" maxW="320px" lineHeight="1" color="gray.600">

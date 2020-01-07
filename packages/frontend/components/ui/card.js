@@ -16,6 +16,7 @@ function Card({ children, paddingType, ...otherProps }) {
       boxShadow="cardLight"
       py={paddingTypes[paddingType].py}
       px={paddingTypes[paddingType].px}
+      mx={{ base: 4, md: 0 }}
       {...otherProps}
     >
       {children}

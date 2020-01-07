@@ -1,5 +1,5 @@
 const config = {
-  endpoint: 'https://ucurtma-backend.herokuapp.com/graphql',
+  endpoint: 'https://api.ucurtmaprojesi.com/graphql',
 };
 
 export default config;

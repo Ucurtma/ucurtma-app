@@ -43,6 +43,8 @@ const APPLY = gql`
     $address: String!
     $studentEmail: String!
     $questions: [Question!]!
+    $userPhoto: Upload!
+    $studentIdentification: Upload!
   ) {
     collectCampaignApplication(
       idNumber: $idNumber
@@ -53,6 +55,8 @@ const APPLY = gql`
       address: $address
       studentEmail: $studentEmail
       questions: $questions
+      userPhoto: $userPhoto
+      studentIdentification: $studentIdentification
     ) {
       name
     }
@@ -61,18 +65,33 @@ const APPLY = gql`
 
 function Application() {
   const [user, setUser] = useState({ avatarURL: null });
+  const [userPhoto, setUserPhoto] = useState();
+  const [studentIdentification, setStudentIdentification] = useState();
   const [status, setStatus] = useState('empty');
 
-  const onAvatarChange = (e, type) => {
+  const onFileChange = (e, type, documentType) => {
     if (e.target.files && e.target.files[0]) {
-      // now, we are settings our avatar locally which isn't ok because it is temporary.
-      // upload it.
       const url = URL.createObjectURL(e.target.files[0]);
-      setUser({ avatarURL: url });
+      if (documentType === 'photo') {
+        setUser({ avatarURL: url });
+        setUserPhoto(e.target.files);
+      }
+
+      if (documentType === 'document') {
+        setStudentIdentification(e.target.files);
+      }
     }
 
     if (type === 'delete') {
       setUser({ avatarURL: null });
+      if (documentType === 'photo') {
+        setUserPhoto(undefined);
+        setUser(undefined);
+      }
+
+      if (documentType === 'document') {
+        setStudentIdentification(undefined);
+      }
     }
   };
 
@@ -150,7 +169,12 @@ function Application() {
 
             try {
               await apply({
-                variables: { ...values, questions },
+                variables: {
+                  ...values,
+                  questions,
+                  userPhoto,
+                  studentIdentification,
+                },
               });
               setStatus(true);
             } catch (err) {
@@ -188,9 +212,18 @@ function Application() {
                   </Box>
                   <Box>
                     <ChangeProfilePicture
-                      onChange={(e, type) => onAvatarChange(e, type)}
-                      isAvatarExist={!!user.avatarURL}
-                      avatarURL={user.avatarURL}
+                      onChange={(e, type) => onFileChange(e, type, 'photo')}
+                      isFileExist={user && !!user.avatarURL}
+                      avatarURL={user && user.avatarURL}
+                      name="userPhoto"
+                      accept="image/*"
+                    />
+                    <ChangeProfilePicture
+                      onChange={(e, type) => onFileChange(e, type, 'document')}
+                      title="Öğrenci Belgesi"
+                      isFileExist={!!studentIdentification}
+                      name="studentIdentification"
+                      accept="application/pdf"
                     />
                   </Box>
                 </SimpleGrid>

@@ -14,14 +14,17 @@ import { Upload, Trash } from 'react-feather';
 function ChangeProfilePicture({
   onChange,
   withTitle,
-  isAvatarExist,
+  title,
+  accept,
+  isFileExist,
   avatarURL,
+  name,
 }) {
   return (
     <>
       {withTitle && (
         <Heading my={4} size="sm" color="paragraph">
-          Fotoğraf
+          {title}
         </Heading>
       )}
       <Box mb={4}>
@@ -30,12 +33,12 @@ function ChangeProfilePicture({
       <ButtonGroup spacing={4}>
         <VisuallyHidden
           as="input"
-          accept="image/*"
-          id="text-button-file"
+          accept={accept}
+          id={name}
           type="file"
           onChange={e => onChange(e)}
         />
-        <FormLabel htmlFor="text-button-file">
+        <FormLabel htmlFor={name}>
           <Button
             as="span"
             variant="ghost"
@@ -43,10 +46,10 @@ function ChangeProfilePicture({
             color="linkBlue"
             size="sm"
           >
-            {isAvatarExist ? 'Fotoğrafı Değiştir ' : 'Fotoğraf Ekle'}
+            {isFileExist ? 'Dosyayı Değiştir' : 'Dosya Ekle'}
           </Button>
         </FormLabel>
-        {isAvatarExist && (
+        {isFileExist && (
           <Button
             onClick={e => onChange(e, 'delete')}
             variant="ghost"
@@ -54,7 +57,7 @@ function ChangeProfilePicture({
             color="danger"
             size="sm"
           >
-            Fotoğrafı Sil
+            Dosyayı Sil
           </Button>
         )}
       </ButtonGroup>
@@ -64,13 +67,18 @@ function ChangeProfilePicture({
 
 ChangeProfilePicture.defaultProps = {
   withTitle: true,
+  title: 'Fotoğraf',
+  accept: 'image/*',
 };
 
 ChangeProfilePicture.propTypes = {
   onChange: PropTypes.func,
-  isAvatarExist: PropTypes.bool,
+  isFileExist: PropTypes.bool,
   withTitle: PropTypes.bool,
   avatarURL: PropTypes.string,
+  title: PropTypes.string,
+  accept: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default ChangeProfilePicture;

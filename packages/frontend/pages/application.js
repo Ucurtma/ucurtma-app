@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
+import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
-import { Heading, Box, Button, SimpleGrid, Textarea } from '@chakra-ui/core';
+import {
+  Heading,
+  Box,
+  Button,
+  SimpleGrid,
+  Textarea,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
+  Flex,
+} from '@chakra-ui/core';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Card from '../components/ui/card';
@@ -9,6 +22,7 @@ import Input from '../components/ui/input';
 import { checkID } from '../utils/utils';
 import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
 import { withApollo } from '../utils/apollo';
+import config from '../config';
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()
@@ -47,6 +61,7 @@ const APPLY = gql`
     $questions: [Question!]!
     $userPhoto: Upload!
     $studentIdentification: Upload!
+    $verificationCode: String
   ) {
     collectCampaignApplication(
       idNumber: $idNumber
@@ -59,6 +74,7 @@ const APPLY = gql`
       questions: $questions
       userPhoto: $userPhoto
       studentIdentification: $studentIdentification
+      verificationCode: $verificationCode
     ) {
       name
     }
@@ -66,10 +82,12 @@ const APPLY = gql`
 `;
 
 function Application() {
+  const [verified, setVerified] = useState(false);
   const [user, setUser] = useState({ avatarURL: null });
   const [userPhoto, setUserPhoto] = useState();
   const [studentIdentification, setStudentIdentification] = useState();
   const [status, setStatus] = useState('empty');
+  const captcha = useRef(null);
 
   const onFileChange = (e, type, documentType) => {
     if (e.target.files && e.target.files[0]) {
@@ -162,28 +180,30 @@ function Application() {
           validationSchema={applicationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
-
-            const questions = commonQuestions.map(question => ({
-              question: question.label,
-              answer: values[question.name],
-            }));
-
-            try {
-              await apply({
-                variables: {
-                  ...values,
-                  questions,
-                  userPhoto,
-                  studentIdentification,
-                },
-              });
-              setStatus(true);
-            } catch (err) {
-              setStatus(false);
+            await captcha.current.execute();
+            if (verified) {
+              const questions = commonQuestions.map(question => ({
+                question: question.label,
+                answer: values[question.name],
+              }));
+              try {
+                await apply({
+                  variables: {
+                    ...values,
+                    questions,
+                    userPhoto,
+                    studentIdentification,
+                    verificationCode: verified,
+                  },
+                });
+                setStatus(true);
+              } catch (err) {
+                setStatus(false);
+              }
             }
           }}
         >
-          {({ isSubmitting, errors, setFieldValue }) => (
+          {({ isSubmitting, errors, setFieldValue, handleSubmit }) => (
             <Form>
               <Box>
                 <Heading my={4} size="sm" color="paragraph">
@@ -266,10 +286,54 @@ function Application() {
                 </SimpleGrid>
               </Box>
 
-              <Box textAlign="right" mt={4}>
+              <Flex
+                justifyContent={
+                  status === 'empty' ? 'flex-end' : 'space-between'
+                }
+                alignItems="center"
+                textAlign="right"
+                mt={4}
+              >
+                <Box display="none">
+                  <Reaptcha
+                    ref={captcha}
+                    sitekey={config.recaptcha}
+                    onVerify={response => {
+                      setVerified(response);
+                      handleSubmit();
+                    }}
+                    size="invisible"
+                  />
+                </Box>
+                {status !== 'empty' && (
+                  <Alert
+                    pr={12}
+                    visibility={status === 'empty' ? 'invisible' : 'visible'}
+                    status={!status ? 'error' : 'success'}
+                  >
+                    <AlertIcon />
+                    <AlertTitle mr={2}>
+                      {!status
+                        ? 'Bir sorun oluştu.'
+                        : 'Başvurun için teşekkürler.'}
+                    </AlertTitle>
+                    <AlertDescription>
+                      {!status
+                        ? 'Lütfen tekrar dene.'
+                        : 'En kısa sürede geri dönüş yapacağız.'}
+                    </AlertDescription>
+                    <CloseButton
+                      type="button"
+                      onClick={() => setStatus('empty')}
+                      position="absolute"
+                      right="8px"
+                      top="8px"
+                    />
+                  </Alert>
+                )}
                 <Button
                   variant="outline"
-                  color={!status ? 'red.500' : 'linkBlue'}
+                  color="linkBlue"
                   type="submit"
                   isLoading={isSubmitting}
                   disabled={
@@ -278,12 +342,9 @@ function Application() {
                     Object.keys(errors).length > 0
                   }
                 >
-                  {!status && 'Bir sorun oluştu, tekrar dene.'}
-                  {status === 'empty' && 'Başvur'}
-                  {status === true &&
-                    'Başvurun için teşekkürler, en kısa sürede geri dönüş yapacağız.'}
+                  Başvur
                 </Button>
-              </Box>
+              </Flex>
             </Form>
           )}
         </Formik>

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
-import { Flex, Link, Icon, Box, Heading, Text } from '@chakra-ui/core';
+import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Application from '../../../pages/application';
 
@@ -53,10 +54,29 @@ function SplashScreen() {
               maddi desteği güvenli, denetlenebilir ve adil bir şekilde
               sağlayacak bir araçtır.
             </Text>
+            <Button
+              variant="solid"
+              mt="2rem"
+              ml="5px"
+              bg="gray.100"
+              h="66px"
+              w="115%"
+              flexShrink="0"
+              justifyContent="space-between"
+              boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
+              onClick={() =>
+                document
+                  .getElementById('application')
+                  .scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              Başvuru Yap
+              <Icon as={Navigation} size="28px" mr="0.5rem" />
+            </Button>
           </Box>
         </Flex>
       </Container>
-      <Flex flexDir="column" backgroundColor="gray.700">
+      <Flex id="application" flexDir="column" backgroundColor="gray.700">
         <Container mt="0">
           <Heading
             size="xl"

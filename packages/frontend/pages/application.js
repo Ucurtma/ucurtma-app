@@ -180,7 +180,7 @@ function Application() {
           validationSchema={applicationSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
-            await captcha.current.execute();
+            if (!verified) await captcha.current.execute();
             if (verified) {
               const questions = commonQuestions.map(question => ({
                 question: question.label,

@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
+import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
 import {
-  Flex,
-  Link,
-  Icon,
   Heading,
   Box,
   Button,
   SimpleGrid,
   Textarea,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
+  Flex,
 } from '@chakra-ui/core';
-import NextLink from 'next/link';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import Card from '../components/ui/card';
-import Container from '../components/ui/container';
 import Input from '../components/ui/input';
 import { checkID } from '../utils/utils';
 import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
+import { withApollo } from '../utils/apollo';
+import config from '../config';
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()
@@ -24,31 +30,87 @@ const applicationSchema = Yup.object().shape({
     .matches(/^[0-9]{11}$/, 'Kimlik numarası 11 haneli olmalıdır.')
     .test('ID', 'Hatalı kimlik numarası girdiniz.', val => val && checkID(val)),
   name: Yup.string().required('Bu alan zorunludur.'),
-  surname: Yup.string().required('Bu alan zorunludur.'),
-  school: Yup.string().required('Bu alan zorunludur.'),
-  field: Yup.string().required('Bu alan zorunludur.'),
+  lastname: Yup.string().required('Bu alan zorunludur.'),
+  schoolName: Yup.string().required('Bu alan zorunludur.'),
+  department: Yup.string().required('Bu alan zorunludur.'),
   address: Yup.string().required('Bu alan zorunludur.'),
-  email: Yup.string()
+  studentEmail: Yup.string()
     .required('Bu alan zorunludur.')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu/,
       'Email adresiniz öğrenci maili olmalıdır.'
     ),
+  historyAchievements: Yup.string().required('Bu alan zorunludur.'),
+  futureAchievements: Yup.string().required('Bu alan zorunludur.'),
+  dreams: Yup.string().required('Bu alan zorunludur.'),
+  whatIf: Yup.string().required('Bu alan zorunludur.'),
+  whyYou: Yup.string().required('Bu alan zorunludur.'),
+  userPhoto: Yup.mixed().required('Bu alan zorunludur'),
+  studentIdentification: Yup.mixed().required('Bu alan zorunludur'),
 });
 
-function Application() {
-  const [user, setUser] = useState({ avatarURL: null });
+const APPLY = gql`
+  mutation collectCampaignApplication(
+    $idNumber: String!
+    $name: String!
+    $lastname: String!
+    $schoolName: String!
+    $department: String!
+    $address: String!
+    $studentEmail: String!
+    $questions: [Question!]!
+    $userPhoto: Upload!
+    $studentIdentification: Upload!
+    $verificationCode: String
+  ) {
+    collectCampaignApplication(
+      idNumber: $idNumber
+      name: $name
+      lastname: $lastname
+      schoolName: $schoolName
+      department: $department
+      address: $address
+      studentEmail: $studentEmail
+      questions: $questions
+      userPhoto: $userPhoto
+      studentIdentification: $studentIdentification
+      verificationCode: $verificationCode
+    ) {
+      name
+    }
+  }
+`;
 
-  const onAvatarChange = (e, type) => {
+function Application() {
+  const [verified, setVerified] = useState(false);
+  const [user, setUser] = useState({ avatarURL: null });
+  const [userPhoto, setUserPhoto] = useState();
+  const [studentIdentification, setStudentIdentification] = useState();
+  const [status, setStatus] = useState('empty');
+  const captcha = useRef(null);
+
+  const onFileChange = (e, type, documentType) => {
     if (e.target.files && e.target.files[0]) {
-      // now, we are settings our avatar locally which isn't ok because it is temporary.
-      // upload it.
       const url = URL.createObjectURL(e.target.files[0]);
-      setUser({ avatarURL: url });
+      if (documentType === 'photo') {
+        setUser({ avatarURL: url });
+        setUserPhoto(e.target.files[0]);
+      }
+
+      if (documentType === 'document') {
+        setStudentIdentification(e.target.files[0]);
+      }
     }
 
     if (type === 'delete') {
-      setUser({ avatarURL: null });
+      if (documentType === 'photo') {
+        setUserPhoto(undefined);
+        setUser(undefined);
+      }
+
+      if (documentType === 'document') {
+        setStudentIdentification(undefined);
+      }
     }
   };
 
@@ -56,14 +118,14 @@ function Application() {
     { label: 'Kimlik Numarası', name: 'idNumber' },
     [
       { label: 'Adı', name: 'name' },
-      { label: 'Soyadı', name: 'surname' },
+      { label: 'Soyadı', name: 'lastname' },
     ],
     [
-      { label: 'Okul', name: 'school' },
-      { label: 'Alan/Bölümü', name: 'field' },
+      { label: 'Okul', name: 'schoolName' },
+      { label: 'Alan/Bölümü', name: 'department' },
     ],
     { label: 'Adres', name: 'address' },
-    { label: 'Öğrenci Emaili', name: 'email', type: 'email' },
+    { label: 'Öğrenci Emaili', name: 'studentEmail', type: 'email' },
   ];
 
   const commonQuestions = [
@@ -89,108 +151,206 @@ function Application() {
     },
   ];
 
+  const [apply] = useMutation(APPLY);
+
   return (
-    <Container>
-      <Card
-        pt={{ base: 8, md: 12 }}
-        pl={{ base: 8, md: 12 }}
-        pr={{ base: 8, md: 12 }}
-        pb={{ base: 8, md: 12 }}
-        mb={8}
-      >
-        <Flex
-          flexDir="column"
-          justifyContent={{ md: 'space-between' }}
-          bg="red"
+    <Card
+      pl={{ base: 8, md: 12 }}
+      pr={{ base: 8, md: 12 }}
+      pb={{ base: 8, md: 12 }}
+      mb={8}
+      bg="white"
+    >
+      <Box mt={8}>
+        <Formik
+          initialValues={{
+            idNumber: '',
+            name: '',
+            lastname: '',
+            schoolName: '',
+            department: '',
+            address: '',
+            studentEmail: '',
+            historyAchievements: '',
+            futureAchievements: '',
+            dreams: '',
+            whatIf: '',
+            whyYou: '',
+          }}
+          validationSchema={applicationSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            setSubmitting(true);
+            await captcha.current.execute();
+            if (verified) {
+              const questions = commonQuestions.map(question => ({
+                question: question.label,
+                answer: values[question.name],
+              }));
+              try {
+                await apply({
+                  variables: {
+                    ...values,
+                    questions,
+                    userPhoto,
+                    studentIdentification,
+                    verificationCode: verified,
+                  },
+                });
+                setStatus(true);
+              } catch (err) {
+                setStatus(false);
+              }
+            }
+          }}
         >
-          <NextLink href="/">
-            <Link display="contents" id="logo">
-              <Icon name="logo" size="4rem" />
-            </Link>
-          </NextLink>
-        </Flex>
-        <Box mt={16}>
-          <Formik
-            initialValues={{ idNumber: '' }}
-            validationSchema={applicationSchema}
-            onSubmit={async (values, { setSubmitting }) => {
-              setSubmitting(true);
-            }}
-          >
-            {({ isSubmitting, errors }) => (
-              <Form>
-                <Box>
-                  <Heading my={4} size="sm" color="paragraph">
-                    Profil
-                  </Heading>
-                  <SimpleGrid
-                    columns={{ base: 1, lg: 2 }}
-                    spacingX={{ base: 0, lg: 16 }}
-                  >
-                    <Box>
-                      {profileQuestions.map((question, i) => {
-                        if (question.length > 1) {
-                          return (
-                            <SimpleGrid
-                              key={i.toString()}
-                              columns={{ base: 1, lg: question.length }}
-                              spacingX={{ base: 0, lg: 5 }}
-                            >
-                              {question.map(item => (
-                                <Input key={item.name} {...item} />
-                              ))}
-                            </SimpleGrid>
+          {({ isSubmitting, errors, setFieldValue, handleSubmit }) => (
+            <Form>
+              <Box>
+                <Heading my={4} size="sm" color="paragraph">
+                  Profil
+                </Heading>
+                <SimpleGrid
+                  columns={{ base: 1, lg: 2 }}
+                  spacingX={{ base: 0, lg: 16 }}
+                >
+                  <Box>
+                    {profileQuestions.map((question, i) => {
+                      if (question.length > 1) {
+                        return (
+                          <SimpleGrid
+                            key={i.toString()}
+                            columns={{ base: 1, lg: question.length }}
+                            spacingX={{ base: 0, lg: 5 }}
+                          >
+                            {question.map(item => (
+                              <Input key={item.name} {...item} />
+                            ))}
+                          </SimpleGrid>
+                        );
+                      }
+                      return <Input key={question.name} {...question} />;
+                    })}
+                  </Box>
+                  <Box>
+                    <ChangeProfilePicture
+                      onChange={(e, type) => {
+                        onFileChange(e, type, 'photo');
+                        if (type === 'delete') {
+                          setFieldValue('userPhoto', '', true);
+                        } else {
+                          setFieldValue('userPhoto', 'fileAdded', true);
+                        }
+                      }}
+                      isFileExist={user && !!user.avatarURL}
+                      avatarURL={user && user.avatarURL}
+                      name="userPhoto"
+                      accept="image/*"
+                    />
+                    <ChangeProfilePicture
+                      onChange={(e, type) => {
+                        onFileChange(e, type, 'document');
+                        if (type === 'delete') {
+                          setFieldValue('studentIdentification', '', true);
+                        } else {
+                          setFieldValue(
+                            'studentIdentification',
+                            'fileAdded',
+                            true
                           );
                         }
-                        return <Input key={question.name} {...question} />;
-                      })}
-                    </Box>
-                    <Box>
-                      <ChangeProfilePicture
-                        onChange={(e, type) => onAvatarChange(e, type)}
-                        isAvatarExist={!!user.avatarURL}
-                        avatarURL={user.avatarURL}
-                      />
-                    </Box>
-                  </SimpleGrid>
-                </Box>
-                <Box>
-                  <Heading my={4} size="sm" color="paragraph">
-                    Genel Sorular
-                  </Heading>
-                  <SimpleGrid
-                    columns={{ base: 1, lg: 2 }}
-                    spacingX={{ base: 0, lg: 16 }}
-                  >
-                    {commonQuestions.map(question => (
-                      <Input
-                        key={question.name}
-                        as={Textarea}
-                        type="textarea"
-                        {...question}
-                      />
-                    ))}
-                  </SimpleGrid>
-                </Box>
+                      }}
+                      title="Öğrenci Belgesi"
+                      isFileExist={!!studentIdentification}
+                      name="studentIdentification"
+                      accept="application/pdf"
+                    />
+                  </Box>
+                </SimpleGrid>
+              </Box>
+              <Box>
+                <Heading my={4} size="sm" color="paragraph">
+                  Genel Sorular
+                </Heading>
+                <SimpleGrid
+                  columns={{ base: 1, lg: 2 }}
+                  spacingX={{ base: 0, lg: 16 }}
+                >
+                  {commonQuestions.map(question => (
+                    <Input
+                      key={question.name}
+                      as={Textarea}
+                      type="textarea"
+                      {...question}
+                    />
+                  ))}
+                </SimpleGrid>
+              </Box>
 
-                <Box textAlign="right" mt={4}>
-                  <Button
-                    variant="outline"
-                    color="linkBlue"
-                    type="submit"
-                    isLoading={isSubmitting}
-                    disabled={isSubmitting || Object.keys(errors).length > 0}
-                  >
-                    Başvur
-                  </Button>
+              <Flex
+                justifyContent={
+                  status === 'empty' ? 'flex-end' : 'space-between'
+                }
+                alignItems="center"
+                textAlign="right"
+                mt={4}
+              >
+                <Box display="none">
+                  <Reaptcha
+                    ref={captcha}
+                    sitekey={config.recaptcha}
+                    onVerify={response => {
+                      setVerified(response);
+                      handleSubmit();
+                    }}
+                    size="invisible"
+                  />
                 </Box>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </Card>
-    </Container>
+                {status !== 'empty' && (
+                  <Alert
+                    pr={12}
+                    visibility={status === 'empty' ? 'invisible' : 'visible'}
+                    status={!status ? 'error' : 'success'}
+                  >
+                    <AlertIcon />
+                    <AlertTitle mr={2}>
+                      {!status
+                        ? 'Bir sorun oluştu.'
+                        : 'Başvurun için teşekkürler.'}
+                    </AlertTitle>
+                    <AlertDescription>
+                      {!status
+                        ? 'Lütfen tekrar dene.'
+                        : 'En kısa sürede geri dönüş yapacağız.'}
+                    </AlertDescription>
+                    <CloseButton
+                      type="button"
+                      onClick={() => setStatus('empty')}
+                      position="absolute"
+                      right="8px"
+                      top="8px"
+                    />
+                  </Alert>
+                )}
+                <Button
+                  variant="outline"
+                  color="linkBlue"
+                  type="submit"
+                  isLoading={isSubmitting}
+                  disabled={
+                    (status && status !== 'empty') ||
+                    isSubmitting ||
+                    Object.keys(errors).length > 0
+                  }
+                >
+                  Başvur
+                </Button>
+              </Flex>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </Card>
   );
 }
 
-export default Application;
+export default withApollo(Application);

@@ -1,5 +1,6 @@
 const config = {
-  endpoint: 'https://ucurtma-backend.herokuapp.com/graphql',
+  endpoint: 'https://api.ucurtmaprojesi.com/graphql',
+  recaptcha: '6LdMmM0UAAAAAGk0QRoBV06-jmLTPOuj9xo5OTnz',
 };
 
 export default config;

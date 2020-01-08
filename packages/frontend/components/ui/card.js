@@ -11,11 +11,12 @@ function Card({ children, paddingType, ...otherProps }) {
   return (
     <Box
       w="100%"
-      bg="white"
+      bg="gray.100"
       borderRadius="md"
       boxShadow="cardLight"
       py={paddingTypes[paddingType].py}
       px={paddingTypes[paddingType].px}
+      mx={{ base: 4, md: 0 }}
       {...otherProps}
     >
       {children}

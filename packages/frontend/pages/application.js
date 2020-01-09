@@ -2,7 +2,11 @@ import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
-import Calendar from 'react-calendar';
+// Import no style version first.
+import Calendar from 'react-calendar/dist/Calendar';
+// Explicitly import the css style in order to bypass the less compilation
+// on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
+require('react-calendar/dist/Calendar.css');
 import dayjs from 'dayjs';
 import {
   Heading,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
 import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
@@ -6,6 +6,7 @@ import Container from '../../ui/container';
 import Application from '../../../pages/application';
 
 function SplashScreen() {
+  const application = useRef();
   return (
     <>
       <Box
@@ -60,14 +61,12 @@ function SplashScreen() {
               ml="5px"
               bg="gray.100"
               h="66px"
-              w="115%"
+              w={{ base: '100%', md: '115%' }}
               flexShrink="0"
               justifyContent="space-between"
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
               onClick={() =>
-                document
-                  .getElementById('application')
-                  .scrollIntoView({ behavior: 'smooth' })
+                application.current.scrollIntoView({ behavior: 'smooth' })
               }
             >
               Başvuru Yap
@@ -76,7 +75,7 @@ function SplashScreen() {
           </Box>
         </Flex>
       </Container>
-      <Flex id="application" flexDir="column" backgroundColor="gray.700">
+      <Flex ref={application} flexDir="column" backgroundColor="gray.700">
         <Container mt="0">
           <Heading
             size="xl"

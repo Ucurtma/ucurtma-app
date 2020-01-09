@@ -2,6 +2,12 @@ import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
+// Import no style version first.
+import Calendar from 'react-calendar/dist/Calendar';
+// Explicitly import the css style in order to bypass the less compilation
+// on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
+require('react-calendar/dist/Calendar.css');
+import dayjs from 'dayjs';
 import {
   Heading,
   Box,
@@ -45,6 +51,7 @@ const applicationSchema = Yup.object().shape({
   dreams: Yup.string().required('Bu alan zorunludur.'),
   whatIf: Yup.string().required('Bu alan zorunludur.'),
   whyYou: Yup.string().required('Bu alan zorunludur.'),
+  birthDate: Yup.string().required('Bu alan zorunludur.'),
   userPhoto: Yup.mixed().required('Bu alan zorunludur'),
   studentIdentification: Yup.mixed().required('Bu alan zorunludur'),
 });
@@ -62,6 +69,7 @@ const APPLY = gql`
     $userPhoto: Upload!
     $studentIdentification: Upload!
     $verificationCode: String
+    $birthDate: String!
   ) {
     collectCampaignApplication(
       idNumber: $idNumber
@@ -75,6 +83,7 @@ const APPLY = gql`
       userPhoto: $userPhoto
       studentIdentification: $studentIdentification
       verificationCode: $verificationCode
+      birthDate: $birthDate
     ) {
       name
     }
@@ -87,6 +96,8 @@ function Application() {
   const [userPhoto, setUserPhoto] = useState();
   const [studentIdentification, setStudentIdentification] = useState();
   const [status, setStatus] = useState('empty');
+  const [birthDate, setBirthDate] = useState(null);
+  const [displayCalendar, setDisplayCalendar] = useState(false);
   const captcha = useRef(null);
 
   const onFileChange = (e, type, documentType) => {
@@ -120,11 +131,12 @@ function Application() {
       { label: 'Adı', name: 'name' },
       { label: 'Soyadı', name: 'lastname' },
     ],
+    { label: 'Doğum Tarihi', name: 'birthDate', type: 'date' },
     [
-      { label: 'Okul', name: 'schoolName' },
-      { label: 'Alan/Bölümü', name: 'department' },
+      { label: 'Okulu', name: 'schoolName' },
+      { label: 'Alanı/Bölümü', name: 'department' },
     ],
-    { label: 'Adres', name: 'address' },
+    { label: 'Adresi', name: 'address' },
     { label: 'Öğrenci Emaili', name: 'studentEmail', type: 'email' },
   ];
 
@@ -161,6 +173,11 @@ function Application() {
       mb={8}
       bg="white"
     >
+      <style global jsx>{`
+        .react-calendar {
+          z-index: 2;
+        }
+      `}</style>
       <Box mt={8}>
         <Formik
           initialValues={{
@@ -176,6 +193,7 @@ function Application() {
             dreams: '',
             whatIf: '',
             whyYou: '',
+            birthDate: '',
           }}
           validationSchema={applicationSchema}
           onSubmit={async (values, { setSubmitting }) => {
@@ -215,6 +233,46 @@ function Application() {
                 >
                   <Box>
                     {profileQuestions.map((question, i) => {
+                      if (question.type === 'date') {
+                        return (
+                          <Box key={i.toString()} position="relative">
+                            <Input
+                              key={question.name}
+                              {...question}
+                              type="input"
+                              isReadOnly
+                              value={
+                                birthDate
+                                  ? dayjs(birthDate).format('DD.MM.YYYY')
+                                  : ''
+                              }
+                              onClick={() => setDisplayCalendar(true)}
+                            />
+                            {displayCalendar && (
+                              <Box position="absolute" right="0" zIndex="10">
+                                <Box
+                                  width="100vw"
+                                  height="100vh"
+                                  top="0"
+                                  left="0"
+                                  position="fixed"
+                                  onClick={() => setDisplayCalendar(false)}
+                                  zIndex="-1"
+                                />
+                                <Calendar
+                                  onChange={date => {
+                                    setFieldValue('birthDate', date);
+                                    setBirthDate(date);
+                                    setDisplayCalendar(false);
+                                  }}
+                                  maxDate={new Date('2006')}
+                                  value={birthDate || new Date('2006')}
+                                />
+                              </Box>
+                            )}
+                          </Box>
+                        );
+                      }
                       if (question.length > 1) {
                         return (
                           <SimpleGrid

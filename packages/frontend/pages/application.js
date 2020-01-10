@@ -366,6 +366,7 @@ function Application() {
                 {status !== 'empty' && (
                   <Alert
                     pr={12}
+                    mr={12}
                     visibility={status === 'empty' ? 'invisible' : 'visible'}
                     status={!status ? 'error' : 'success'}
                     mb={{ base: 4, md: 0 }}
@@ -384,7 +385,7 @@ function Application() {
                       <AlertDescription>
                         {!status
                           ? 'Lütfen tekrar dene.'
-                          : 'En kısa sürede geri dönüş yapacağız.'}
+                          : 'En kısa sürede geri dönüş yapacağız. Bu süre içerisinde mail kutunuzu, spam klasörü ile birlikte kontrol etmeyi unutmayın.'}
                       </AlertDescription>
                     </Box>
                     <CloseButton

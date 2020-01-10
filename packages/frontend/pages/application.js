@@ -22,6 +22,7 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Card from '../components/ui/card';
 import Input from '../components/ui/input';
+import Checkbox from '../components/ui/checkbox';
 import { checkID } from '../utils/utils';
 import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
 import { withApollo } from '../utils/apollo';
@@ -54,6 +55,10 @@ const applicationSchema = Yup.object().shape({
   birthDate: Yup.string().required('Bu alan zorunludur.'),
   userPhoto: Yup.mixed().required('Bu alan zorunludur'),
   studentIdentification: Yup.mixed().required('Bu alan zorunludur'),
+  applicationCheck: Yup.boolean().oneOf(
+    [true],
+    'Şartları onaylamanız gerekmektedir.'
+  ),
 });
 
 const APPLY = gql`
@@ -194,6 +199,7 @@ function Application() {
             whatIf: '',
             whyYou: '',
             birthDate: '',
+            applicationCheck: false,
           }}
           validationSchema={applicationSchema}
           onSubmit={async (values, { setSubmitting }) => {
@@ -343,7 +349,10 @@ function Application() {
                   ))}
                 </SimpleGrid>
               </Box>
-
+              <Checkbox name="applicationCheck">
+                Verilerimin saklanmasına ve BiLira ile paylaşılmasına izin
+                veriyorum.
+              </Checkbox>
               <Flex
                 justifyContent={
                   status === 'empty' ? 'flex-end' : 'space-between'

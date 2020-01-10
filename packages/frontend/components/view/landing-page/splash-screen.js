@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
+import Head from 'next/head';
 import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Application from '../../../pages/application';
@@ -9,6 +10,9 @@ function SplashScreen() {
   const application = useRef();
   return (
     <>
+      <Head>
+        <title>Uçurtma Projesi</title>
+      </Head>
       <Box
         position="absolute"
         top="0"
@@ -31,6 +35,7 @@ function SplashScreen() {
           flexDir="column"
           justifyContent={{ base: 'flex-start', md: 'center' }}
           mt={{ base: '250px', md: 0 }}
+          px="10px"
         >
           <NextLink href="/">
             <Link display="contents" id="logo">
@@ -58,8 +63,7 @@ function SplashScreen() {
             <Button
               variant="solid"
               mt="2rem"
-              ml="5px"
-              bg="gray.100"
+              bg={{ base: 'gray.100', md: 'white' }}
               h="66px"
               w={{ base: '100%', md: '115%' }}
               flexShrink="0"

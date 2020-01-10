@@ -4,9 +4,6 @@ import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
 // Import no style version first.
 import Calendar from 'react-calendar/dist/Calendar';
-// Explicitly import the css style in order to bypass the less compilation
-// on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
-require('react-calendar/dist/Calendar.css');
 import dayjs from 'dayjs';
 import {
   Heading,
@@ -29,6 +26,9 @@ import { checkID } from '../utils/utils';
 import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
 import { withApollo } from '../utils/apollo';
 import config from '../config';
+// Explicitly import the css style in order to bypass the less compilation
+// on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
+require('react-calendar/dist/Calendar.css');
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()
@@ -136,7 +136,7 @@ function Application() {
       { label: 'Okulu', name: 'schoolName' },
       { label: 'Alanı/Bölümü', name: 'department' },
     ],
-    { label: 'Adresi', name: 'address' },
+    { label: 'İkamet Ettiği Adres', name: 'address' },
     { label: 'Öğrenci Emaili', name: 'studentEmail', type: 'email' },
   ];
 
@@ -349,8 +349,8 @@ function Application() {
                   status === 'empty' ? 'flex-end' : 'space-between'
                 }
                 alignItems="center"
-                textAlign="right"
                 mt={4}
+                flexDirection={{ base: 'column', md: 'row' }}
               >
                 <Box display="none">
                   <Reaptcha
@@ -366,20 +366,28 @@ function Application() {
                 {status !== 'empty' && (
                   <Alert
                     pr={12}
+                    mr={12}
                     visibility={status === 'empty' ? 'invisible' : 'visible'}
                     status={!status ? 'error' : 'success'}
+                    mb={{ base: 4, md: 0 }}
+                    width={{ base: '100%', md: 'auto' }}
                   >
                     <AlertIcon />
-                    <AlertTitle mr={2}>
-                      {!status
-                        ? 'Bir sorun oluştu.'
-                        : 'Başvurun için teşekkürler.'}
-                    </AlertTitle>
-                    <AlertDescription>
-                      {!status
-                        ? 'Lütfen tekrar dene.'
-                        : 'En kısa sürede geri dönüş yapacağız.'}
-                    </AlertDescription>
+                    <Box
+                      display={{ base: 'block', md: 'flex' }}
+                      alignItems="center"
+                    >
+                      <AlertTitle mr={2}>
+                        {!status
+                          ? 'Bir sorun oluştu.'
+                          : 'Başvurun için teşekkürler.'}
+                      </AlertTitle>
+                      <AlertDescription>
+                        {!status
+                          ? 'Lütfen tekrar dene.'
+                          : 'En kısa sürede geri dönüş yapacağız. Bu süre içerisinde mail kutunuzu, spam klasörü ile birlikte kontrol etmeyi unutmayın.'}
+                      </AlertDescription>
+                    </Box>
                     <CloseButton
                       type="button"
                       onClick={() => setStatus('empty')}
@@ -399,6 +407,7 @@ function Application() {
                     isSubmitting ||
                     Object.keys(errors).length > 0
                   }
+                  width={{ base: '100%', md: 'auto' }}
                 >
                   Başvur
                 </Button>

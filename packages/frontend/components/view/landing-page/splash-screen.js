@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
+import Head from 'next/head';
 import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Application from '../../../pages/application';
@@ -9,6 +10,9 @@ function SplashScreen() {
   const application = useRef();
   return (
     <>
+      <Head>
+        <title>Uçurtma Projesi</title>
+      </Head>
       <Box
         position="absolute"
         top="0"

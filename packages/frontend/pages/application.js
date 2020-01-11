@@ -350,8 +350,9 @@ function Application() {
                 </SimpleGrid>
               </Box>
               <Checkbox name="applicationCheck">
-                Verilerimin saklanmasına ve BiLira ile paylaşılmasına izin
-                veriyorum.
+                Uçurtma ekibinin başvurumla ilgili benimle iletişime geçmesine
+                ve başvurum onaylanana kadar verilerimi güvenli bir şekilde
+                saklamasına izin veriyorum.
               </Checkbox>
               <Flex
                 justifyContent={

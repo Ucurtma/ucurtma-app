@@ -4,8 +4,12 @@ import { Global } from '@emotion/core';
 import Router from 'next/router';
 import trackPageView from '../utils/ga-tag';
 import customTheme from '../theme';
+import { isDevelopment } from '../config';
 
-Router.events.on('routeChangeComplete', path => trackPageView(path));
+Router.events.on(
+  'routeChangeComplete',
+  path => !isDevelopment && trackPageView(path)
+);
 
 // eslint-disable-next-line react/prop-types
 function MyApp({ Component, pageProps }) {

@@ -2,7 +2,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { gaTrackingId } from '../utils/ga-tag';
 
-/* we're using class because react hooks isn't working in default configure pages yet */
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     // check if in production

@@ -26,11 +26,11 @@ contract AbstractFundingContract is FundingContract, Ownable {
   constructor(uint256 _numberOfPlannedPayouts,
     uint256 _withdrawPeriod,
     uint256 _campaignEndTime,
-    address payable _owner) public {
+    address payable __owner) public {
 
     numberOfPlannedPayouts = _numberOfPlannedPayouts;
     withdrawPeriod = _withdrawPeriod;
-    owner = _owner;
+    _owner = __owner;
     totalNumberOfPayoutsLeft = numberOfPlannedPayouts;
 
     // consider the last withdraw date is the last day of campaign
@@ -69,7 +69,7 @@ contract AbstractFundingContract is FundingContract, Ownable {
     revert('This must be implemented in the inheriting class');
   }
 
-  function doDeposit(address donator, uint256 amount) internal { 
+  function doDeposit(address /* donator */, uint256 /* amount */) internal { 
     revert('This must be implemented in the inheriting class');
   }
 }

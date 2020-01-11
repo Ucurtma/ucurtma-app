@@ -1,7 +1,7 @@
 pragma solidity ^0.5.11;
 
 import './AbstractFundingContract.sol';
-import './zeppelin/token/IERC20.sol';
+import './zeppelin/token/ERC20/IERC20.sol';
 
 contract ERC20FundingContract is AbstractFundingContract {
 

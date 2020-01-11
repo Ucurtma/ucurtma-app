@@ -70,3 +70,4 @@ storybook-static
 
 # Deployment config for smart contracts
 .deployment.js
+build

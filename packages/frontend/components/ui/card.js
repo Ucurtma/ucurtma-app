@@ -10,7 +10,6 @@ function Card({ children, paddingType, ...otherProps }) {
 
   return (
     <PseudoBox
-      w="100%"
       bg="white"
       borderRadius="md"
       boxShadow="cardLight"

@@ -52,7 +52,7 @@ function HowItWorks() {
             xl: 'repeat(3, 1fr)',
           }}
           width="full"
-          gap={20}
+          gap={{ base: 8, md: 20 }}
         >
           {cards.map(card => (
             <Flex

@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }) {
           html: {
             fontFamily:
               'Quicksand, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+            fontSize: '18px',
           },
           body: {
             backgroundColor: '#fff',

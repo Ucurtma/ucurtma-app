@@ -1,65 +1,79 @@
 import React from 'react';
-import { Heading, Grid, Flex, Icon, Text } from '@chakra-ui/core';
-import { ZoomIn, Gift, Bell } from 'react-feather';
+import {
+  Heading,
+  Grid,
+  Flex,
+  Text,
+  Box,
+  Divider,
+  Image,
+} from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Card from '../../ui/card';
 
 function HowItWorks() {
   const cards = [
     {
-      icon: ZoomIn,
+      icon: '/icons/research.svg',
       title: 'İncele',
       text: 'Öğrenci kampanyalarını incele, sana en doğru geleni bul.',
     },
     {
-      icon: Gift,
+      icon: 'icons/donate.svg',
       title: 'Destek Ol',
       text:
         'Bağış Yap butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
     },
     {
-      icon: Bell,
+      icon: 'icons/follow.svg',
       title: 'Takip Et',
       text: 'Destek olduğun öğrencinin gelişimini, başarımını takip et.',
     },
   ];
 
   return (
-    <Container>
-      <Heading color="gray.600" size="lg" mb="2rem" mx="auto">
-        Nasıl Çalışıyor?
-      </Heading>
-      <Grid
-        templateColumns={{
-          base: 'inherit',
-          md: '50% auto',
-          lg: '40% auto',
-          xl: 'repeat(3, 1fr)',
-        }}
-        width="full"
-        gap="28px"
-      >
-        {cards.map(card => (
-          <Card
-            key={card.title}
-            px="2rem"
-            py="1.5rem"
-            borderRadius="0.5rem"
-            boxShadow="0 0 36px rgba(0, 0, 0, 0.1)"
-          >
-            <Flex alignItems="flex-end" color="gray.700">
-              <Icon color="blue.300" size="34px" as={card.icon} />
-              <Heading ml="1.25rem" size="md">
-                {card.title}
-              </Heading>
+    <Flex py={16}>
+      <Container mt={0}>
+        <Box width="full" mb={12} textAlign="center" color="gray.700">
+          <Heading size="xl">Nasıl Çalışır?</Heading>
+          <Text mt={4}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+            vero vel quos in deleniti voluptatem esse quod! Consectetur pariatur
+            nemo quaerat magni illum qui voluptatem nihil aliquid ex? Minus,
+            nihil!
+          </Text>
+          <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
+        </Box>
+        <Grid
+          templateColumns={{
+            base: 'inherit',
+            md: '50% auto',
+            lg: '40% auto',
+            xl: 'repeat(3, 1fr)',
+          }}
+          width="full"
+          gap={20}
+        >
+          {cards.map(card => (
+            <Flex
+              as={Card}
+              key={card.title}
+              px={8}
+              py={6}
+              borderRadius="0.5rem"
+              alignItems="center"
+              flexDir="column"
+            >
+              <Image src={card.icon} maxW={32} mb={8} />
+              <Heading size="lg">{card.title}</Heading>
+              <Text textAlign="center" mt={6} color="gray.600">
+                {card.text}
+              </Text>
             </Flex>
-            <Text mt="1.5rem" color="gray.600">
-              {card.text}
-            </Text>
-          </Card>
-        ))}
-      </Grid>
-    </Container>
+          ))}
+        </Grid>
+      </Container>
+    </Flex>
   );
 }
 

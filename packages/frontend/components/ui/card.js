@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '@chakra-ui/core';
+import { PseudoBox } from '@chakra-ui/core';
 
 function Card({ children, paddingType, ...otherProps }) {
   const paddingTypes = {
@@ -9,18 +9,21 @@ function Card({ children, paddingType, ...otherProps }) {
   };
 
   return (
-    <Box
+    <PseudoBox
       w="100%"
-      bg="gray.100"
+      bg="white"
       borderRadius="md"
       boxShadow="cardLight"
+      border="1px solid #eee"
       py={paddingTypes[paddingType].py}
       px={paddingTypes[paddingType].px}
       mx={{ base: 4, md: 0 }}
+      _hover={{ boxShadow: 'cardLightHover' }}
+      transition="0.2s ease all"
       {...otherProps}
     >
       {children}
-    </Box>
+    </PseudoBox>
   );
 }
 

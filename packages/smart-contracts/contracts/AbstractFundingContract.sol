@@ -12,6 +12,7 @@ contract AbstractFundingContract is FundingContract, Ownable {
   uint256 public campaignEndedAt;
   bool public cancelled;
   uint256 public totalNumberOfPayoutsLeft;
+  uint256 public withdrawLimit;
 
   modifier notCancelled {
     require(!cancelled, 'Campaign is cancelled');
@@ -30,7 +31,7 @@ contract AbstractFundingContract is FundingContract, Ownable {
 
     numberOfPlannedPayouts = _numberOfPlannedPayouts;
     withdrawPeriod = _withdrawPeriod;
-    _owner = __owner;
+    owner = __owner;
     totalNumberOfPayoutsLeft = numberOfPlannedPayouts;
 
     // consider the last withdraw date is the last day of campaign

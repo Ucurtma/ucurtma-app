@@ -9,133 +9,46 @@ import {
   Icon,
   Link,
   Stack,
+  Divider,
 } from '@chakra-ui/core';
 import { Linkedin, Twitter } from 'react-feather';
 import Container from '../../ui/container';
+import teamMembers from './team-members.json';
 
 function OurTeam() {
   return (
-    <Flex py={24} px={{ base: 4, md: 0 }} bg="gray.700" color="gray.100">
+    <Flex py={24} bg="gray.700" color="gray.100">
       <Container mt={0}>
+        <Box width="full" mb={12} textAlign="center">
+          <Heading size="xl">Ekibimiz</Heading>
+          <Divider maxW={24} marginX="auto" mt={8} />
+        </Box>
         <Grid
           templateColumns={{
-            base: 'inherit',
-            md: '50% auto',
-            lg: '30% auto',
+            base: 'repeat(1, 1fr)',
+            md: 'repeat(3, 1fr)',
           }}
           width="full"
           columnGap={{ base: 8, md: 12 }}
           rowGap={{ base: 8 }}
         >
-          <Box>
-            <Heading size="xl">Ekibimiz</Heading>
-            <Text mt={4}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-              vero vel quos in deleniti voluptatem esse quod! Consectetur
-              pariatur nemo quaerat magni illum qui voluptatem nihil aliquid ex?
-              Minus, nihil!
-            </Text>
-          </Box>
-          <Grid
-            templateColumns={{
-              base: 'repeat(1, 1fr)',
-              md: 'repeat(3, 1fr)',
-            }}
-            width="full"
-            columnGap={{ base: 8, md: 12 }}
-            rowGap={{ base: 8 }}
-          >
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
+          {teamMembers.map(member => (
+            <Box overflow="hidden" roundedTop="4px" px={10}>
+              <Image src={member.image} width="full" />
               <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
+                <Heading size="sm">{member.name}</Heading>
+                <Text>{member.title}</Text>
                 <Stack isInline spacing={2}>
-                  <Link href="#">
+                  <Link href={member.linkedIn}>
                     <Icon as={Linkedin} fill="#fff" />
                   </Link>
-                  <Link href="#">
+                  <Link href={member.twitter}>
                     <Icon as={Twitter} fill="#fff" />
                   </Link>
                 </Stack>
               </Box>
             </Box>
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
-              <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
-                <Stack isInline spacing={2}>
-                  <Link href="#">
-                    <Icon as={Linkedin} fill="#fff" />
-                  </Link>
-                  <Link href="#">
-                    <Icon as={Twitter} fill="#fff" />
-                  </Link>
-                </Stack>
-              </Box>
-            </Box>
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
-              <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
-                <Stack isInline spacing={2}>
-                  <Link href="#">
-                    <Icon as={Linkedin} fill="#fff" />
-                  </Link>
-                  <Link href="#">
-                    <Icon as={Twitter} fill="#fff" />
-                  </Link>
-                </Stack>
-              </Box>
-            </Box>
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
-              <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
-                <Stack isInline spacing={2}>
-                  <Link href="#">
-                    <Icon as={Linkedin} fill="#fff" />
-                  </Link>
-                  <Link href="#">
-                    <Icon as={Twitter} fill="#fff" />
-                  </Link>
-                </Stack>
-              </Box>
-            </Box>
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
-              <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
-                <Stack isInline spacing={2}>
-                  <Link href="#">
-                    <Icon as={Linkedin} fill="#fff" />
-                  </Link>
-                  <Link href="#">
-                    <Icon as={Twitter} fill="#fff" />
-                  </Link>
-                </Stack>
-              </Box>
-            </Box>
-            <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" width="full" />
-              <Box p={4} bg="gray.900">
-                <Heading size="sm">Mert Susur</Heading>
-                <Text>Founder</Text>
-                <Stack isInline spacing={2}>
-                  <Link href="#">
-                    <Icon as={Linkedin} fill="#fff" />
-                  </Link>
-                  <Link href="#">
-                    <Icon as={Twitter} fill="#fff" />
-                  </Link>
-                </Stack>
-              </Box>
-            </Box>
-          </Grid>
+          ))}
         </Grid>
       </Container>
     </Flex>

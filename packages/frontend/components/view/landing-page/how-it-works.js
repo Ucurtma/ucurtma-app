@@ -16,13 +16,14 @@ function HowItWorks() {
     {
       icon: '/icons/research.svg',
       title: 'İncele',
-      text: 'Öğrenci kampanyalarını incele, sana en uygun olanı bul.',
+      text:
+        'Öğrenci kampanyalarını incele, yardım etmek istediğin öğrenciyi seç.',
     },
     {
       icon: 'icons/donate.svg',
       title: 'Destek Ol',
       text:
-        'Bağış Yap butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
+        'Destek Ol butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
     },
     {
       icon: 'icons/follow.svg',
@@ -37,9 +38,8 @@ function HowItWorks() {
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">Nasıl Çalışır?</Heading>
           <Text mt={4}>
-            Bağışçı, burs talebi oluşturan öğrencileri inceleyebilir, destek
-            olmak istediği öğrenciye kolaylıkla bağışta bulunabilir ve destek
-            olduğu öğrencinin gelişimini takip edebilir.
+            Üç kolay adımda öğrencilerin hayallerini hayata geçirmelerine
+            yardımcı olabilirsiniz.
           </Text>
           <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
         </Box>

@@ -68,23 +68,13 @@ function SplashScreen() {
               Uçurtma Projesi Nedir?
             </Heading>
             <Text mt="2rem" color="gray.500">
-              Başarılı, çalışkan ya da yetenekli öğrencilerin eğitim hayatları
-              sırasında hayal ettikleri hedefe ulaşmalarına yardımcı olacak
-              maddi desteği güvenli, denetlenebilir ve adil bir şekilde
-              sağlayacak bir araçtır.
+              Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken
+              finansal desteği bulmalarına yardım etmeyi amaçlayan bir
+              platformdur.
             </Text>
-            <Text mt="2rem" fontSize="16px" color="gray.500">
-              Sizlere daha iyi bir deneyim sunmak için çalışırken, projemiz
-              hakkında bilgi almak istiyorsanız{' '}
-              <Link
-                ml={1}
-                color="linkBlue"
-                target="_blank"
-                href="https://medium.com/ucurtma-projesi/u%C3%A7urtma-projesi-tak%C4%B1m%C4%B1-ve-gelecek-planlar%C4%B1-eca53930c97f"
-              >
-                buraya tıklayabilirsiniz
-              </Link>
-              .
+            <Text mt="1rem" color="gray.500">
+              Bunu öğrencilerle yardımseverleri buluşturarak burs
+              alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.
             </Text>
             <Button
               variant="solid"

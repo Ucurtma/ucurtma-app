@@ -19,11 +19,15 @@ function ProblemSolution() {
         >
           <Image alignSelf="center" src="/icons/teamwork.svg" />
           <Box width="full">
-            <Heading size="xl">Blockchain ile yeni nesil bir çözüm</Heading>
+            <Heading size="xl">Blokzinciri ile yeni nesil bir çözüm</Heading>
             <Text mt={4}>
-              Bursveren ve öğrenci güvenilir, şeffaf ve otonom bir ortamda bir
-              araya gelmeli. Uçurtma bunu sağlamak için blockchain teknolojisini
-              kullanır.
+              Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla
+              öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla
+              burs toplayıp, her ay belirledikleri miktarda bursu banka
+              hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak
+              sağlar. Böylece burslarının kontrolü kendi ellerinde olurken,
+              yardımseverler de bu sürece dahil olarak şeffaf bir şekilde
+              öğrencinin durumunu platform üzerinden takip edebilir.
             </Text>
             <Box textAlign="left" mt={4}>
               <Flex>
@@ -32,25 +36,28 @@ function ProblemSolution() {
                     <Icon size="36px" as={Shield} mr={4} />
                     <Heading size="sm">Güvenli</Heading>
                   </Flex>
-                  Tüm işlemlerim kaydını değiştirilemez bir şekilde saklar.
+                  Tüm işlemler öğrencilere ait dijital cüzdanlarındaki eliptik
+                  eğri yöntemiyle şifrelenmiş dijital imzalarıyla gerçekleşir.
                 </Box>
                 <Box width={{ base: '100%', md: '50%' }}>
                   <Flex alignItems="center" my={4}>
                     <Icon size="36px" as={Droplet} mr={4} />
                     <Heading size="sm">Şeffaf</Heading>
                   </Flex>
-                  Para transferleri ve öğrencilerin seçimi şeffaflıkla
-                  gerçekleşir.
+                  Para transferlerinin tamamı şeffaf bir şekilde
+                  görüntülenebilir ve yardımseverler destek oldukları öğrencin
+                  başarımlarını platform üzerinden takip edebilirler.
                 </Box>
               </Flex>
               <Box mt={8}>
                 <Flex alignItems="center" my={4}>
                   <Icon size="36px" as={CloudLightning} mr={4} />
-                  <Heading size="sm">Otonom</Heading>
+                  <Heading size="sm">Hızlı</Heading>
                 </Flex>
-                Para transferi, bursveren-öğrenci eşleşmelerini ve süreç takip
-                işlemlerini akıllı kontratlar sayesinde full otonom bir şekilde
-                yapar.
+                Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir
+                işleme gerek duymadan bursları öğrencilere zamanında hızlı bir
+                şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı
+                için öğrenciler asla mağdur kalmaz.
               </Box>
             </Box>
           </Box>

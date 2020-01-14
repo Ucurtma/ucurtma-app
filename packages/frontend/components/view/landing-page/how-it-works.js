@@ -16,7 +16,7 @@ function HowItWorks() {
     {
       icon: '/icons/research.svg',
       title: 'İncele',
-      text: 'Öğrenci kampanyalarını incele, sana en doğru geleni bul.',
+      text: 'Öğrenci kampanyalarını incele, sana en uygun olanı bul.',
     },
     {
       icon: 'icons/donate.svg',
@@ -27,20 +27,19 @@ function HowItWorks() {
     {
       icon: 'icons/follow.svg',
       title: 'Takip Et',
-      text: 'Destek olduğun öğrencinin gelişimini, başarımını takip et.',
+      text: 'Destek olduğun öğrencinin gelişim ve başarımlarını takip et.',
     },
   ];
 
   return (
-    <Flex py={16}>
+    <Flex bg="gray.50" py={24}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">Nasıl Çalışır?</Heading>
           <Text mt={4}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            vero vel quos in deleniti voluptatem esse quod! Consectetur pariatur
-            nemo quaerat magni illum qui voluptatem nihil aliquid ex? Minus,
-            nihil!
+            Bağışçı, burs talebi oluşturan öğrencileri inceleyebilir, destek
+            olmak istediği öğrenciye kolaylıkla bağışta bulunabilir ve destek
+            olduğu öğrencinin gelişimini takip edebilir.
           </Text>
           <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
         </Box>

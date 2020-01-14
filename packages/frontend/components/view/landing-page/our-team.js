@@ -15,10 +15,19 @@ import Container from '../../ui/container';
 
 function OurTeam() {
   return (
-    <Flex py={16} bg="gray.700" color="gray.100">
+    <Flex py={24} px={{ base: 4, md: 0 }} bg="gray.700" color="gray.100">
       <Container mt={0}>
-        <Flex>
-          <Box maxW={{ md: '400px' }} mb={12} mr={8}>
+        <Grid
+          templateColumns={{
+            base: 'inherit',
+            md: '50% auto',
+            lg: '30% auto',
+          }}
+          width="full"
+          columnGap={{ base: 8, md: 12 }}
+          rowGap={{ base: 8 }}
+        >
+          <Box>
             <Heading size="xl">Ekibimiz</Heading>
             <Text mt={4}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
@@ -29,17 +38,15 @@ function OurTeam() {
           </Box>
           <Grid
             templateColumns={{
-              base: 'inherit',
-              md: '50% auto',
-              lg: '40% auto',
-              xl: 'repeat(3, 1fr)',
+              base: 'repeat(1, 1fr)',
+              md: 'repeat(3, 1fr)',
             }}
             width="full"
             columnGap={{ base: 8, md: 12 }}
             rowGap={{ base: 8 }}
           >
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -54,7 +61,7 @@ function OurTeam() {
               </Box>
             </Box>
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -69,7 +76,7 @@ function OurTeam() {
               </Box>
             </Box>
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -84,7 +91,7 @@ function OurTeam() {
               </Box>
             </Box>
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -99,7 +106,7 @@ function OurTeam() {
               </Box>
             </Box>
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -114,7 +121,7 @@ function OurTeam() {
               </Box>
             </Box>
             <Box overflow="hidden" roundedTop="3px">
-              <Image src="/team5.jpg" />
+              <Image src="/team5.jpg" width="full" />
               <Box p={4} bg="gray.900">
                 <Heading size="sm">Mert Susur</Heading>
                 <Text>Founder</Text>
@@ -129,7 +136,7 @@ function OurTeam() {
               </Box>
             </Box>
           </Grid>
-        </Flex>
+        </Grid>
       </Container>
     </Flex>
   );

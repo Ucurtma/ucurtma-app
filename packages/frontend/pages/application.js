@@ -20,7 +20,6 @@ import {
 } from '@chakra-ui/core';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import Card from '../components/ui/card';
 import Input from '../components/ui/input';
 import Checkbox from '../components/ui/checkbox';
 import { checkID } from '../utils/utils';
@@ -171,11 +170,10 @@ function Application() {
   const [apply] = useMutation(APPLY);
 
   return (
-    <Card
+    <Box
       pl={{ base: 8, md: 12 }}
       pr={{ base: 8, md: 12 }}
       pb={{ base: 8, md: 12 }}
-      mb={8}
       bg="white"
     >
       <style global jsx>{`
@@ -426,7 +424,7 @@ function Application() {
           )}
         </Formik>
       </Box>
-    </Card>
+    </Box>
   );
 }
 

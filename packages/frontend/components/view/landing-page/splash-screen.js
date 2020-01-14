@@ -2,11 +2,24 @@ import React, { useRef } from 'react';
 import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
 import Head from 'next/head';
-import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
+import {
+  Flex,
+  Link,
+  Icon,
+  Box,
+  Heading,
+  Text,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  useDisclosure,
+} from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Application from '../../../pages/application';
 
 function SplashScreen() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const application = useRef();
   return (
     <>
@@ -82,9 +95,7 @@ function SplashScreen() {
               flexShrink="0"
               justifyContent="space-between"
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-              onClick={() =>
-                application.current.scrollIntoView({ behavior: 'smooth' })
-              }
+              onClick={onOpen}
             >
               Başvuru Yap
               <Icon as={Navigation} size="28px" mr="0.5rem" />
@@ -92,20 +103,14 @@ function SplashScreen() {
           </Box>
         </Flex>
       </Container>
-      <Flex ref={application} flexDir="column" backgroundColor="gray.700">
-        <Container mt="0">
-          <Heading
-            size="xl"
-            margin="0 auto"
-            my={12}
-            lineHeight="1"
-            color="gray.100"
-          >
-            Burs için başvuru yap
-          </Heading>
-          <Application />
-        </Container>
-      </Flex>
+      <Modal size="5xl" onClose={onClose} isOpen={isOpen}>
+        <ModalOverlay />
+        <ModalContent>
+          <Flex ref={application} flexDir="column" backgroundColor="gray.700">
+            <Application />
+          </Flex>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

@@ -21,7 +21,8 @@ const customTheme = {
   },
   shadows: {
     ...theme.shadows,
-    cardLight: '0px 0px 36px rgba(0, 0, 0, 0.12)',
+    cardLight: '0 0 24px rgba(45, 55, 72, 0.1)',
+    cardLightHover: '0 0 12px rgba(45, 55, 72, 0.1)',
   },
   colors: {
     ...theme.colors,

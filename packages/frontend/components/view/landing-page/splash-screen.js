@@ -51,10 +51,10 @@ function SplashScreen() {
             pr={{ md: 12 }}
             mt={{ base: '1rem' }}
           >
-            <Heading size="2xl" maxW="320px" lineHeight="1" color="gray.600">
+            <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
               Uçurtma Projesi Nedir?
             </Heading>
-            <Text mt="2rem" fontSize="18px" color="gray.500">
+            <Text mt="2rem" color="gray.500">
               Başarılı, çalışkan ya da yetenekli öğrencilerin eğitim hayatları
               sırasında hayal ettikleri hedefe ulaşmalarına yardımcı olacak
               maddi desteği güvenli, denetlenebilir ve adil bir şekilde
@@ -77,7 +77,7 @@ function SplashScreen() {
               variant="solid"
               mt="2rem"
               bg={{ base: 'gray.100', md: 'white' }}
-              h="66px"
+              h={16}
               w={{ base: '100%', md: '115%' }}
               flexShrink="0"
               justifyContent="space-between"

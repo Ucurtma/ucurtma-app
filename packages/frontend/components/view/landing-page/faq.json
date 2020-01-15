@@ -1,47 +1,62 @@
 {
   "studentQuestions": [
-    { "question": "Uçurtma bana ne sağlayacak?", "answer": "Cevap" },
-    { "question": "Başvuru için ne yapmam gerekiyor?", "answer": "Cevap" },
-    { "question": "Başvurum nasıl değerlendirilecek?", "answer": "Cevap" },
+    {
+      "question": "Uçurtma bana ne sağlayacak?",
+      "answer": "Uçurtma yardıma ihtiyacı olan öğrencilerin eğitim masraflarını karşılamaları için destek topladıkları bir bağış platformudur. Bu platformu kullanarak güvenli bir şekilde destek toplayabilir, uzun vadede burs ihtiyacınızı karşılayabilirsiniz."
+    },
+    {
+      "question": "Başvuru için ne yapmam gerekiyor?",
+      "answer": "Başvuru yapmak için e-devletten ulaşabileceğin bir öğrenci belgesi, fotoğrafın ve bilgilerini doldurarak önbaşvuruda bulunabilirsin. Sonrasında başvurunla ilgili sana ulaşıp bu bilgilerin doğruluğunu onayladıktan sonra beraber destek toplayabileceğin kampanya sayfasını oluşturup destek toplamaya başlayabilirsin."
+    },
+    {
+      "question": "Başvurum nasıl değerlendirilecek?",
+      "answer": "Uçurtma ekibi olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya yaratmasına izin verilecektir."
+    },
     {
       "question": "Bursu nasıl alacağım?",
-      "answer": "Cevap"
+      "answer": "Burs ödemelerini her 28 günde bir akıllı kontratımızdan BiLira cüzdanına web sayfamızdaki arayüzden transfer edebileceksin. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
     },
-    { "question": "Ödemeler nasıl gerçeklesecek?", "answer": "Cevap" },
+    {
+      "question": "Ödemeler nasıl gerçeklesecek?",
+      "answer": "Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
+    },
     {
       "question": "Burs alabilmek icin kampanya sayfasina ihtiyacim var mi?",
-      "answer": "Cevap"
+      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebileceksin. Böylece halka açık alanlarda biz bunu yayınlamayacağız ama sen isterdiğin kişilerle paylaşıp onlardan uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
     },
     {
       "question": "Eğer burs alırsam, eğitimim bitene kadar sürecek mi?",
-      "answer": "Cevap"
+      "answer": "Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece burs almaya devam edeceksin. Burs için topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
     },
     {
       "question": "Burs hesabım kimin yönetiminde olacak",
-      "answer": "Cevap"
+      "answer": "Burs hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdanla sadece sen bu hesaptan para çekebileceksin. Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Bu yüzden eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
     }
   ],
   "donatorQuestions": [
-    { "question": "Uçurtma bana ne sağlayacak?", "answer": "Cevap" },
+    {
+      "question": "Uçurtma bana ne sağlayacak?",
+      "answer": "Uçurtma, destek olmak istediğiniz öğrencilere ulaşıp, onlara destek olurken aynı zamanda da gelişimlerini takip etmenizi sağlayacak bir araçtır."
+    },
     {
       "question": "Yardımları hangi odeme yöntemleriyle yapabilirim?",
-      "answer": "Cevap"
+      "answer": "Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
     },
     {
       "question": "Maksimum ve minimum yardım tutarları nedir?",
-      "answer": "Cevap"
+      "answer": "Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
     },
     {
       "question": "Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
-      "answer": "Cevap"
+      "answer": "Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
     },
     {
       "question": "Aynı anda birden fazla öğrenciye yardımı nasıl yapabiliriz?",
-      "answer": "Cevap"
+      "answer": "Aynı anda en toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
     },
     {
       "question": "Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
-      "answer": "Cevap"
+      "answer": "Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
     }
   ]
 }

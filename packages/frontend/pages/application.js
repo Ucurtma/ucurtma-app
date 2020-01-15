@@ -42,10 +42,7 @@ const applicationSchema = Yup.object().shape({
   address: Yup.string().required('Bu alan zorunludur.'),
   studentEmail: Yup.string()
     .required('Bu alan zorunludur.')
-    .matches(
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu/,
-      'Email adresiniz öğrenci maili olmalıdır.'
-    ),
+    .matches(/[^@]+@[^\.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
   historyAchievements: Yup.string().required('Bu alan zorunludur.'),
   futureAchievements: Yup.string().required('Bu alan zorunludur.'),
   dreams: Yup.string().required('Bu alan zorunludur.'),
@@ -141,7 +138,7 @@ function Application() {
       { label: 'Alanı/Bölümü', name: 'department' },
     ],
     { label: 'İkamet Ettiği Adres', name: 'address' },
-    { label: 'Öğrenci Emaili', name: 'studentEmail', type: 'email' },
+    { label: 'E-Posta Adresiniz', name: 'studentEmail', type: 'email' },
   ];
 
   const commonQuestions = [
@@ -321,7 +318,7 @@ function Application() {
                           );
                         }
                       }}
-                      title="Öğrenci Belgesi"
+                      title="E-Devlet Öğrenci Belgesi"
                       isFileExist={!!studentIdentification}
                       name="studentIdentification"
                       accept="application/pdf"

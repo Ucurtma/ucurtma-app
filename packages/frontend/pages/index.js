@@ -4,6 +4,7 @@ import HowItWorks from '../components/view/landing-page/how-it-works';
 import OurTeam from '../components/view/landing-page/our-team';
 import ProblemSolution from '../components/view/landing-page/problem-and-solution';
 import LandingFooter from '../components/view/landing-page/footer';
+import Faq from '../components/view/landing-page/faq';
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <ProblemSolution />
       <HowItWorks />
       <OurTeam />
+      <Faq />
       <LandingFooter />
     </>
   );

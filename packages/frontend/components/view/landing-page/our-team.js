@@ -5,7 +5,6 @@ import {
   Heading,
   Text,
   Grid,
-  Image,
   Icon,
   Link,
   Stack,
@@ -26,23 +25,39 @@ function OurTeam() {
         <Grid
           templateColumns={{
             base: 'repeat(1, 1fr)',
-            md: 'repeat(3, 1fr)',
+            md: 'repeat(5, 1fr)',
           }}
-          width="full"
-          columnGap={{ base: 8, md: 12 }}
-          rowGap={{ base: 8 }}
+          margin="0 auto"
+          columnGap={8}
+          rowGap={8}
         >
-          {teamMembers.map(member => (
-            <Box overflow="hidden" roundedTop="4px" px={10}>
-              <Image src={member.image} width="full" />
+          {teamMembers.map((member, i) => (
+            <Box overflow="hidden" roundedTop="4px" key={i.toString()}>
+              <Box
+                backgroundImage={`url(${member.image})`}
+                backgroundSize="cover"
+                pt="100%"
+              />
               <Box p={4} bg="gray.900">
-                <Heading size="sm">{member.name}</Heading>
-                <Text>{member.title}</Text>
+                <Heading
+                  size={{ base: 'sm', md: 'xs' }}
+                  whiteSpace={{ base: 'unset', md: 'nowrap' }}
+                >
+                  {member.name}
+                </Heading>
+                <Text
+                  fontSize="14px"
+                  whiteSpace={{ base: 'unset', md: 'nowrap' }}
+                  overflow={{ base: 'unset', md: 'hidden' }}
+                  textOverflow={{ base: 'unset', md: 'ellipsis' }}
+                >
+                  {member.title}
+                </Text>
                 <Stack isInline spacing={2}>
-                  <Link href={member.linkedIn}>
+                  <Link href={member.linkedIn} isExternal>
                     <Icon as={Linkedin} fill="#fff" />
                   </Link>
-                  <Link href={member.twitter}>
+                  <Link href={member.twitter} isExternal>
                     <Icon as={Twitter} fill="#fff" />
                   </Link>
                 </Stack>

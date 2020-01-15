@@ -39,10 +39,10 @@ function OurTeam() {
                 <Heading size="sm">{member.name}</Heading>
                 <Text>{member.title}</Text>
                 <Stack isInline spacing={2}>
-                  <Link href={member.linkedIn}>
+                  <Link href={member.linkedIn} target="_blank">
                     <Icon as={Linkedin} fill="#fff" />
                   </Link>
-                  <Link href={member.twitter}>
+                  <Link href={member.twitter} target="_blank">
                     <Icon as={Twitter} fill="#fff" />
                   </Link>
                 </Stack>

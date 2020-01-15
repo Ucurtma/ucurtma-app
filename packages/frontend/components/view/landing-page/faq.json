@@ -1,0 +1,47 @@
+{
+  "studentQuestions": [
+    { "question": "Uçurtma bana ne sağlayacak?", "answer": "Cevap" },
+    { "question": "Başvuru için ne yapmam gerekiyor?", "answer": "Cevap" },
+    { "question": "Başvurum nasıl değerlendirilecek?", "answer": "Cevap" },
+    {
+      "question": "Bursu nasıl alacağım?",
+      "answer": "Cevap"
+    },
+    { "question": "Ödemeler nasıl gerçeklesecek?", "answer": "Cevap" },
+    {
+      "question": "Burs alabilmek icin kampanya sayfasina ihtiyacim var mi?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Eğer burs alırsam, eğitimim bitene kadar sürecek mi?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Burs hesabım kimin yönetiminde olacak",
+      "answer": "Cevap"
+    }
+  ],
+  "donatorQuestions": [
+    { "question": "Uçurtma bana ne sağlayacak?", "answer": "Cevap" },
+    {
+      "question": "Yardımları hangi odeme yöntemleriyle yapabilirim?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Maksimum ve minimum yardım tutarları nedir?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Aynı anda birden fazla öğrenciye yardımı nasıl yapabiliriz?",
+      "answer": "Cevap"
+    },
+    {
+      "question": "Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
+      "answer": "Cevap"
+    }
+  ]
+}

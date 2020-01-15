@@ -2,41 +2,41 @@
   "studentQuestions": [
     {
       "question": "Uçurtma bana ne sağlayacak?",
-      "answer": "Uçurtma yardıma ihtiyacı olan öğrencilerin eğitim masraflarını karşılamaları için destek topladıkları bir bağış platformudur. Bu platformu kullanarak güvenli bir şekilde destek toplayabilir, uzun vadede burs ihtiyacınızı karşılayabilirsiniz."
+      "answer": "Uçurtma burs ihtiyacı olan öğrencilerin masraflarını karşılayabilmeleri için bağış toplayabildikleri bir platformdur. Platformu kullanarak güvenli bir şekilde bağış toplayabilir, uzun vadede burs ihtiyacınızı karşılayabilirsiniz."
     },
     {
-      "question": "Başvuru için ne yapmam gerekiyor?",
-      "answer": "Başvuru yapmak için e-devletten ulaşabileceğin bir öğrenci belgesi, fotoğrafın ve bilgilerini doldurarak önbaşvuruda bulunabilirsin. Sonrasında başvurunla ilgili sana ulaşıp bu bilgilerin doğruluğunu onayladıktan sonra beraber destek toplayabileceğin kampanya sayfasını oluşturup destek toplamaya başlayabilirsin."
+      "question": "Nasıl başvuru yapmalıyım?",
+      "answer": "Fotoğrafın, kişisel bilgilerin ve e-devletten ulaşabileceğin öğrenci belgesiyle birlikte ön başvuruda bulunabilirsin. Böylece biz bu bilgilerin doğruluğunu onaylayabilir ve sonrasında birlikte bağış toplayabileceğin kampanya sayfasını oluşturabiliriz."
     },
     {
       "question": "Başvurum nasıl değerlendirilecek?",
-      "answer": "Uçurtma ekibi olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya yaratmasına izin verilecektir."
+      "answer": "Uçurtma olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya oluşturmasına izin verilecektir."
     },
     {
       "question": "Bursu nasıl alacağım?",
-      "answer": "Burs ödemelerini her 28 günde bir akıllı kontratımızdan BiLira cüzdanına web sayfamızdaki arayüzden transfer edebileceksin. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
+      "answer": "Burs ödemelerin her 28 günde bir BiLira cüzdanınıza transfer edilir. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
     },
     {
-      "question": "Ödemeler nasıl gerçeklesecek?",
+      "question": "Ödemeler nasıl gerçekleşecek?",
       "answer": "Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
     },
     {
       "question": "Burs alabilmek icin kampanya sayfasina ihtiyacim var mi?",
-      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebileceksin. Böylece halka açık alanlarda biz bunu yayınlamayacağız ama sen isterdiğin kişilerle paylaşıp onlardan uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın tüm herkese değil sadece senin istediğin kişilerle paylaşılması ve onların uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
     },
     {
-      "question": "Eğer burs alırsam, eğitimim bitene kadar sürecek mi?",
+      "question": "Eğer burs alırsam, bursu eğitimim bitene almaya devam edecek miyim?",
       "answer": "Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece burs almaya devam edeceksin. Burs için topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
     },
     {
       "question": "Burs hesabım kimin yönetiminde olacak",
-      "answer": "Burs hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdanla sadece sen bu hesaptan para çekebileceksin. Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Bu yüzden eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
+      "answer": "Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Burs hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
     }
   ],
   "donatorQuestions": [
     {
       "question": "Uçurtma bana ne sağlayacak?",
-      "answer": "Uçurtma, destek olmak istediğiniz öğrencilere ulaşıp, onlara destek olurken aynı zamanda da gelişimlerini takip etmenizi sağlayacak bir araçtır."
+      "answer": "Uçurtma, burs vereceğin öğrencileri keşfetmene, bağışını; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
     },
     {
       "question": "Yardımları hangi odeme yöntemleriyle yapabilirim?",

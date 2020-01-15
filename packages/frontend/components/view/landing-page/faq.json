@@ -1,0 +1,62 @@
+{
+  "studentQuestions": [
+    {
+      "question": "Uçurtma bana ne sağlayacak?",
+      "answer": "Uçurtma burs ihtiyacı olan öğrencilerin masraflarını karşılayabilmeleri için bağış toplayabildikleri bir platformdur. Platformu kullanarak güvenli bir şekilde bağış toplayabilir, uzun vadede burs ihtiyacınızı karşılayabilirsiniz."
+    },
+    {
+      "question": "Nasıl başvuru yapmalıyım?",
+      "answer": "Fotoğrafın, kişisel bilgilerin ve e-devletten ulaşabileceğin öğrenci belgesiyle birlikte ön başvuruda bulunabilirsin. Böylece biz bu bilgilerin doğruluğunu onaylayabilir ve sonrasında birlikte bağış toplayabileceğin kampanya sayfasını oluşturabiliriz."
+    },
+    {
+      "question": "Başvurum nasıl değerlendirilecek?",
+      "answer": "Uçurtma olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya oluşturmasına izin verilecektir."
+    },
+    {
+      "question": "Bursu nasıl alacağım?",
+      "answer": "Burs ödemelerin her 28 günde bir BiLira cüzdanınıza transfer edilir. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
+    },
+    {
+      "question": "Ödemeler nasıl gerçekleşecek?",
+      "answer": "Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
+    },
+    {
+      "question": "Burs alabilmek icin kampanya sayfasina ihtiyacim var mi?",
+      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın tüm herkese değil sadece senin istediğin kişilerle paylaşılması ve onların uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+    },
+    {
+      "question": "Eğer burs alırsam, bursu eğitimim bitene almaya devam edecek miyim?",
+      "answer": "Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece burs almaya devam edeceksin. Burs için topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
+    },
+    {
+      "question": "Burs hesabım kimin yönetiminde olacak",
+      "answer": "Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Burs hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
+    }
+  ],
+  "donatorQuestions": [
+    {
+      "question": "Uçurtma bana ne sağlayacak?",
+      "answer": "Uçurtma, burs vereceğin öğrencileri keşfetmene, bağışını; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
+    },
+    {
+      "question": "Yardımları hangi odeme yöntemleriyle yapabilirim?",
+      "answer": "Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
+    },
+    {
+      "question": "Maksimum ve minimum yardım tutarları nedir?",
+      "answer": "Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
+    },
+    {
+      "question": "Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
+      "answer": "Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
+    },
+    {
+      "question": "Aynı anda birden fazla öğrenciye yardımı nasıl yapabiliriz?",
+      "answer": "Aynı anda en toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
+    },
+    {
+      "question": "Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
+      "answer": "Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
+    }
+  ]
+}

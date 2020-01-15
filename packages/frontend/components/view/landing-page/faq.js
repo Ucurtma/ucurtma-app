@@ -15,18 +15,11 @@ import {
   Button,
 } from '@chakra-ui/core';
 import Container from '../../ui/container';
+import FAQ from './faq.json';
 
-const studentQuestions = [
-  { question: 'Uçurtma bana ne sağlayacak?', answer: 'Cevap' },
-  { question: 'Başvuru için ne yapmam gerekiyor?', answer: 'Cevap' },
-  { question: 'Başvurum nasıl değerlendirilecek?', answer: 'Cevap' },
-];
+const studentQuestions = FAQ.studentQuestions;
 
-const investorQuestions = [
-  { question: 'Uçurtma bana ne sağlayacak?', answer: 'Cevap' },
-  { question: 'Neden yardımsever olmalıyım?', answer: 'Cevap' },
-  { question: 'Yardım tutarlarım vergi avantajı sağlar mı?', answer: 'Cevap' },
-];
+const donatorQuestions = FAQ.donatorQuestions;
 
 const CustomRadio = React.forwardRef((props, ref) => {
   const { isChecked, isDisabled, value, ...rest } = props;
@@ -53,9 +46,9 @@ CustomRadio.propTypes = {
 function Faq() {
   const [activeFaq, setActiveFaq] = React.useState('student');
   const questionType =
-    activeFaq === 'student' ? studentQuestions : investorQuestions;
+    activeFaq === 'student' ? studentQuestions : donatorQuestions;
   return (
-    <Flex bg="gray.50" py={24} mx={4}>
+    <Flex bg="gray.50" py={24} px={4}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">Sıkça Sorulan Sorular</Heading>
@@ -66,7 +59,7 @@ function Faq() {
             isInline
           >
             <CustomRadio value="student">Öğrenciyim</CustomRadio>
-            <CustomRadio value="investor">Yatırımcıyım</CustomRadio>
+            <CustomRadio value="investor">Destekçiyim</CustomRadio>
           </RadioButtonGroup>
           <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
         </Box>

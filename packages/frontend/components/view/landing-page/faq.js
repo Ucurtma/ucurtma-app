@@ -17,9 +17,7 @@ import {
 import Container from '../../ui/container';
 import FAQ from './faq.json';
 
-const studentQuestions = FAQ.studentQuestions;
-
-const donatorQuestions = FAQ.donatorQuestions;
+const { studentQuestions, donatorQuestions } = FAQ;
 
 const CustomRadio = React.forwardRef((props, ref) => {
   const { isChecked, isDisabled, value, ...rest } = props;

@@ -87,9 +87,13 @@ function SplashScreen() {
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
               onClick={onOpen}
             >
-              Başvuru Yap
+              Öğrenci Olarak Başvuru Yap
               <Icon as={Navigation} size="28px" mr="0.5rem" />
             </Button>
+            <Text mt="1rem" fontSize="14px" fontStyle="italic" color="gray.400">
+              Şu an için sadece burs başvuruları açıktır. Destekçi başvuruları
+              çok yakında aktif olacaktır.
+            </Text>
           </Box>
         </Flex>
       </Container>

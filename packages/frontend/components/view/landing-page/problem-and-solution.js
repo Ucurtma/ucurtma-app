@@ -31,7 +31,10 @@ function ProblemSolution() {
             </Text>
             <Box textAlign="left" mt={4}>
               <Flex>
-                <Box width={{ base: '100%', md: '50%' }}>
+                <Box
+                  width={{ base: '100%', md: '50%' }}
+                  pr={{ base: 4, md: 0 }}
+                >
                   <Flex alignItems="center" my={4}>
                     <Icon size="36px" as={Shield} mr={4} />
                     <Heading size="sm">Güvenli</Heading>

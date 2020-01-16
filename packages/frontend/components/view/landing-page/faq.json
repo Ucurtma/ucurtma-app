@@ -21,11 +21,11 @@
       "answer": "Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
     },
     {
-      "question": "Burs alabilmek icin kampanya sayfasina ihtiyacim var mi?",
-      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın tüm herkese değil sadece senin istediğin kişilerle paylaşılması ve onların uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+      "question": "Burs alabilmek icin kampanya sayfasına ihtiyacım var mı?",
+      "answer": "Evet, burs alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın tüm herkese değil sadece senin istediğin kişilerle paylaşılması ve onların Uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
     },
     {
-      "question": "Eğer burs alırsam, bursu eğitimim bitene almaya devam edecek miyim?",
+      "question": "Eğer burs alırsam, bursu eğitimim bitene kadar almaya devam edecek miyim?",
       "answer": "Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece burs almaya devam edeceksin. Burs için topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
     },
     {
@@ -39,7 +39,7 @@
       "answer": "Uçurtma, burs vereceğin öğrencileri keşfetmene, bağışını; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
     },
     {
-      "question": "Yardımları hangi odeme yöntemleriyle yapabilirim?",
+      "question": "Yardımları hangi ödeme yöntemleriyle yapabilirim?",
       "answer": "Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
     },
     {
@@ -51,7 +51,7 @@
       "answer": "Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
     },
     {
-      "question": "Aynı anda birden fazla öğrenciye yardımı nasıl yapabiliriz?",
+      "question": "Aynı anda birden fazla öğrenciye yardım yapabilir miyim?",
       "answer": "Aynı anda en toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
     },
     {

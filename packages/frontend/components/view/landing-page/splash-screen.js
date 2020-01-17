@@ -73,8 +73,8 @@ function SplashScreen() {
               platformdur.
             </Text>
             <Text mt="1rem" color="gray.500">
-              Bunu öğrencilerle yardımseverleri buluşturarak burs
-              alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.
+              Bunu öğrencilerle destekçileri buluşturarak burs alabilmelerinin
+              garantisini merkeziyetsiz bir şekilde sunar.
             </Text>
             <Button
               variant="solid"

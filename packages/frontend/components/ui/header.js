@@ -105,14 +105,12 @@ function Header({ withLogo, menuItems }) {
 }
 
 Header.defaultProps = {
-  showNav: true,
   loggedIn: false,
   withLogo: false,
 };
 
 Header.propTypes = {
   loggedIn: PropTypes.bool,
-  showNav: PropTypes.bool,
   withLogo: PropTypes.bool,
 };
 

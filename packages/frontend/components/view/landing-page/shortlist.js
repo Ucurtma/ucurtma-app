@@ -45,7 +45,7 @@ const APPLY = gql`
       fullName: $fullName
       email: $email
       phoneNumber: $phoneNumber
-      consentToReceiveNews: consentToReceiveNews
+      consentToReceiveNews: $consentToReceiveNews
     ) {
       fullName
     }

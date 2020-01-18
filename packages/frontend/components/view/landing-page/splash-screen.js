@@ -28,6 +28,7 @@ function SplashScreen() {
         <title>Uçurtma Projesi</title>
       </Head>
       <Box
+        id="splash-screen"
         position="absolute"
         top="0"
         right="0"
@@ -43,13 +44,13 @@ function SplashScreen() {
         m="0 auto"
         mt={0}
         overflow="hidden"
-        p={{ base: '2rem', md: 0 }}
+        p={{ base: 4, md: 0 }}
       >
         <Flex
           flexDir="column"
           justifyContent={{ base: 'flex-start', md: 'center' }}
           mt={{ base: '250px', md: 0 }}
-          px="10px"
+          px={{ base: '0', md: '10px' }}
         >
           <NextLink href="/">
             <Link display="contents" id="logo">

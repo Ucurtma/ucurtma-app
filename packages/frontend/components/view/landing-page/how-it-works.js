@@ -33,7 +33,7 @@ function HowItWorks() {
   ];
 
   return (
-    <Flex bg="gray.50" py={24}>
+    <Flex bg="gray.50" py={24} id="how-it-works">
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">Nasıl Çalışır?</Heading>

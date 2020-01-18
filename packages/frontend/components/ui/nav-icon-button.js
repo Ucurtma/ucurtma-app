@@ -12,7 +12,7 @@ function NavButton({
   ...otherProps
 }) {
   return (
-    <Box ref={innerRef} position="relative" ml={4} {...wrapperProps}>
+    <Box ref={innerRef} position="relative" {...wrapperProps}>
       <IconButton
         aria-label={label}
         icon={icon}

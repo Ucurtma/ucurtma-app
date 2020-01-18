@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
 import {
-  Heading,
   Box,
   Button,
   SimpleGrid,
@@ -97,9 +96,6 @@ function Shorlist() {
           {({ isSubmitting, errors, handleSubmit }) => (
             <Form>
               <Box>
-                <Heading my={4} size="sm" color="paragraph">
-                  Profil
-                </Heading>
                 <SimpleGrid columns={1} spacingX={{ base: 0, lg: 16 }}>
                   <Box>
                     {profileQuestions.map((question, i) => {

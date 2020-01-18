@@ -26,7 +26,7 @@ function ProblemSolution() {
               burs toplayıp, her ay belirledikleri miktarda bursu banka
               hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak
               sağlar. Böylece burslarının kontrolü kendi ellerinde olurken,
-              yardımseverler de bu sürece dahil olarak şeffaf bir şekilde
+              destekçiler de bu sürece dahil olarak şeffaf bir şekilde
               öğrencinin durumunu platform üzerinden takip edebilir.
             </Text>
             <Box textAlign="left" mt={4}>
@@ -48,8 +48,8 @@ function ProblemSolution() {
                     <Heading size="sm">Şeffaf</Heading>
                   </Flex>
                   Para transferlerinin tamamı şeffaf bir şekilde
-                  görüntülenebilir ve yardımseverler destek oldukları öğrencin
-                  başarımlarını platform üzerinden takip edebilirler.
+                  görüntülenebilir ve destekçiler destek oldukları öğrencinin
+                  başarılarını platform üzerinden takip edebilirler.
                 </Box>
               </Flex>
               <Box mt={8}>

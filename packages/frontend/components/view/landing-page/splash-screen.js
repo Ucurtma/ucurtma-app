@@ -94,7 +94,7 @@ function SplashScreen() {
               Öğrenci Olarak Başvuru Yap
               <Icon as={Navigation} size="28px" mr="0.5rem" />
             </Button>
-            <Text mt="1rem" fontSize="14px" fontStyle="italic" color="gray.400">
+            <Text mt={8} color="gray.400">
               Şu an için sadece burs başvuruları açıktır. Destekçi başvuruları
               bekleme listesine kayıt olmak için{' '}
               <Link

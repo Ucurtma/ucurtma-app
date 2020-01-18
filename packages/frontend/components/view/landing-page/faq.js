@@ -46,7 +46,7 @@ function Faq() {
   const questionType =
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
   return (
-    <Flex bg="gray.50" py={24} px={4}>
+    <Flex id="faq" bg="gray.50" py={24} px={4}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">Sıkça Sorulan Sorular</Heading>

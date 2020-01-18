@@ -5,7 +5,13 @@ import Container from '../../ui/container';
 
 function ProblemSolution() {
   return (
-    <Flex py={24} px={{ base: 4, md: 0 }} bg="gray.700" color="gray.100">
+    <Flex
+      id="problem-solution"
+      py={24}
+      px={{ base: 4, md: 0 }}
+      bg="gray.700"
+      color="gray.100"
+    >
       <Container mt={0}>
         <Grid
           templateColumns={{

@@ -16,7 +16,7 @@ import teamMembers from './team-members.json';
 
 function OurTeam() {
   return (
-    <Flex py={24} bg="gray.700" color="gray.100">
+    <Flex id="our-team" py={24} bg="gray.700" color="gray.100">
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center">
           <Heading size="xl">Ekibimiz</Heading>

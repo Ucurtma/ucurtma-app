@@ -13,6 +13,7 @@
   ],
   "plugins": ["prettier", "react-hooks", "testing-library"],
   "rules": {
+    "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "prettier/prettier": "error",

@@ -95,8 +95,8 @@ function SplashScreen() {
               <Icon as={Navigation} size="28px" mr="0.5rem" />
             </Button>
             <Text mt={8} color="gray.400">
-              Şu an için sadece burs başvuruları açıktır. Destekçi başvuruları
-              bekleme listesine kayıt olmak için{' '}
+              Şu an için sadece burs başvuruları açıktır. Gelişmelerden haberdar
+              olmak için mail listemize
               <Link
                 onClick={() => {
                   setContent(<Shortlist />);
@@ -104,9 +104,10 @@ function SplashScreen() {
                 }}
                 color="linkBlue"
               >
-                buraya tıklayabilirsiniz
+                {' '}
+                buraya tıklayarak{' '}
               </Link>
-              .
+              abone olabilirsiniz.
             </Text>
           </Box>
         </Flex>

@@ -27,7 +27,6 @@ const applicationSchema = Yup.object().shape({
   email: Yup.string()
     .required('Bu alan zorunludur.')
     .matches(/[^@]+@[^\.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
-  phoneNumber: Yup.string(),
   consentToReceiveNews: Yup.boolean().oneOf(
     [true],
     'Şartları onaylamanız gerekmektedir.'
@@ -38,13 +37,11 @@ const APPLY = gql`
   mutation collectDonationApplication(
     $fullName: String!
     $email: String!
-    $phoneNumber: String!
     $consentToReceiveNews: Boolean!
   ) {
     collectDonationApplication(
       fullName: $fullName
       email: $email
-      phoneNumber: $phoneNumber
       consentToReceiveNews: $consentToReceiveNews
     ) {
       fullName
@@ -60,7 +57,6 @@ function Shorlist() {
   const profileQuestions = [
     { label: 'Ad Soyad', name: 'fullName' },
     { label: 'E-Posta Adresi', name: 'email', type: 'email' },
-    { label: 'Telefon Numarası', name: 'phoneNumber', type: 'tel' },
   ];
 
   const [apply] = useMutation(APPLY);
@@ -77,7 +73,6 @@ function Shorlist() {
           initialValues={{
             fullName: '',
             email: '',
-            phoneNumber: '',
             consentToReceiveNews: false,
           }}
           validationSchema={applicationSchema}

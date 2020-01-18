@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
@@ -20,12 +21,12 @@ import {
 } from '@chakra-ui/core';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import Input from '../components/ui/input';
-import Checkbox from '../components/ui/checkbox';
-import { checkID } from '../utils/utils';
-import ChangeProfilePicture from '../components/ui/settings/change-profile-pic';
-import { withApollo } from '../utils/apollo';
-import config from '../config';
+import Input from '../../ui/input';
+import Checkbox from '../../ui/checkbox';
+import { checkID } from '../../../utils/utils';
+import ChangeProfilePicture from '../../ui/settings/change-profile-pic';
+import { withApollo } from '../../../utils/apollo';
+import config from '../../../config';
 // Explicitly import the css style in order to bypass the less compilation
 // on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
 require('react-calendar/dist/Calendar.css');

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Navigation } from 'react-feather';
 import NextLink from 'next/link';
 import Head from 'next/head';
@@ -16,11 +16,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/core';
 import Container from '../../ui/container';
-import Application from '../../../pages/application';
+import Application from './application';
+import Shortlist from './shortlist';
 
 function SplashScreen() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const application = useRef();
+  const [content, setContent] = useState(<Application />);
   return (
     <>
       <Head>
@@ -85,24 +86,35 @@ function SplashScreen() {
               flexShrink="0"
               justifyContent="space-between"
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-              onClick={onOpen}
+              onClick={() => {
+                setContent(<Application />);
+                onOpen();
+              }}
             >
               Öğrenci Olarak Başvuru Yap
               <Icon as={Navigation} size="28px" mr="0.5rem" />
             </Button>
             <Text mt="1rem" fontSize="14px" fontStyle="italic" color="gray.400">
               Şu an için sadece burs başvuruları açıktır. Destekçi başvuruları
-              çok yakında aktif olacaktır.
+              bekleme listesine kayıt olmak için{' '}
+              <Link
+                onClick={() => {
+                  setContent(<Shortlist />);
+                  onOpen();
+                }}
+                color="linkBlue"
+              >
+                buraya tıklayabilirsiniz
+              </Link>
+              .
             </Text>
           </Box>
         </Flex>
       </Container>
-      <Modal size="5xl" onClose={onClose} isOpen={isOpen}>
+      <Modal size="5xl" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
-          <Flex ref={application} flexDir="column" backgroundColor="gray.700">
-            <Application />
-          </Flex>
+          <Flex flexDir="column">{content}</Flex>
         </ModalContent>
       </Modal>
     </>

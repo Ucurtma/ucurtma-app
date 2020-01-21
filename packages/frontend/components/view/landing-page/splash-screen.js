@@ -69,21 +69,21 @@ function SplashScreen() {
             <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
               Uçurtma Projesi Nedir?
             </Heading>
-            <Text mt="2rem" color="gray.500">
+            <Text mt={8} color="gray.500">
               Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken
               finansal desteği bulmalarına yardım etmeyi amaçlayan bir
               platformdur.
             </Text>
-            <Text mt="1rem" color="gray.500">
+            <Text mt={4} color="gray.500">
               Bunu öğrencilerle destekçileri buluşturarak burs alabilmelerinin
               garantisini merkeziyetsiz bir şekilde sunar.
             </Text>
             <Button
               variant="solid"
-              mt="2rem"
+              mt={8}
               bg={{ base: 'gray.100', md: 'white' }}
               h={16}
-              w={{ base: '100%', md: '115%' }}
+              w={{ base: '100%', md: '125%' }}
               flexShrink="0"
               justifyContent="space-between"
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
@@ -93,7 +93,7 @@ function SplashScreen() {
               }}
             >
               Öğrenci Olarak Başvuru Yap
-              <Icon as={Navigation} size="28px" mr="0.5rem" />
+              <Icon as={Navigation} size="28px" mr={2} />
             </Button>
             <Text mt={8} color="gray.400">
               Şu an için sadece burs başvuruları açıktır. Gelişmelerden haberdar

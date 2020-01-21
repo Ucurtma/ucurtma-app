@@ -6,6 +6,8 @@ import trackPageView from '../utils/ga-tag';
 import customTheme from '../theme';
 import { isDevelopment } from '../config';
 
+require('react-calendar/dist/Calendar.css');
+
 Router.events.on(
   'routeChangeComplete',
   path => !isDevelopment && trackPageView(path)

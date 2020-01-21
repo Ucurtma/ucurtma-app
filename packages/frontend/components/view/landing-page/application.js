@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
-// Import no style version first.
 import Calendar from 'react-calendar/dist/Calendar';
 import dayjs from 'dayjs';
 import {
@@ -27,9 +26,6 @@ import { checkID } from '../../../utils/utils';
 import ChangeProfilePicture from '../../ui/settings/change-profile-pic';
 import { withApollo } from '../../../utils/apollo';
 import config from '../../../config';
-// Explicitly import the css style in order to bypass the less compilation
-// on compile time. (see: https://github.com/wojtekmaj/react-datetimerange-picker/issues/2)
-require('react-calendar/dist/Calendar.css');
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()

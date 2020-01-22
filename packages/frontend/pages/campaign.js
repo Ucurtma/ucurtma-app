@@ -1,24 +1,107 @@
 import React from 'react';
-import { Heading, Grid, Box, Button, Icon } from '@chakra-ui/core';
+import {
+  Heading,
+  Grid,
+  Box,
+  Button,
+  Icon,
+  Avatar,
+  Flex,
+  Text,
+} from '@chakra-ui/core';
+// import ReactMarkdown from 'react-markdown';
 import { Award } from 'react-feather';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 
 function Campaign() {
+  //   const initialSource = `
+  // # Live demo
+  // Changes are automatically rendered as you type.
+  // ## Table of Contents
+  // * Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)
+  // * Renders actual, "native" React DOM elements
+  // * Allows you to escape or skip HTML (try toggling the checkboxes above)
+  // * If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
+  // ## HTML block below
+  // <blockquote>
+  //   This blockquote will change based on the HTML settings above.
+  // </blockquote>
+  // ## How about some code?
+  // \`\`\`js
+  // var React = require('react');
+  // var Markdown = require('react-markdown');
+  // React.render(
+  //   <Markdown source="# Your markdown here" />,
+  //   document.getElementById('content')
+  // );
+  // \`\`\`
+  // Pretty neat, eh?
+  // ## Tables?
+  // | Feature   | Support |
+  // | --------- | ------- |
+  // | tables    | ✔ |
+  // | alignment | ✔ |
+  // | wewt      | ✔ |
+  // ## More info?
+  // Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
+  // ---------------
+  // A component by [Espen Hovlandsdal](https://espen.codes/)
+  // `;
+
   return (
     <Box backgroundColor="red">
       <Header mt={8} withLogo />
       <Container>
+        <Flex
+          my={10}
+          justifyContent="space-between"
+          alignItems="center"
+          width="full"
+        >
+          <Flex alignItems="flex-end" flexShrink="0">
+            <Avatar
+              size="lg"
+              src="https://www.ucurtmaprojesi.com/mustafa-turhan.jpg"
+            />
+            <Box ml={4}>
+              <Heading size="sm" color="gray.600">
+                Mustafa Turhan
+              </Heading>
+              <Text color="gray.500">Bilgisayar Mühendisliği</Text>
+            </Box>
+          </Flex>
+          <Flex>
+            <Box borderRight="1px solid" borderColor="gray.300" pr={6}>
+              <Heading size="sm" color="gray.400">
+                Destekçi Sayısı
+              </Heading>
+              <Text fontSize="1.5rem" fontWeight={500}>
+                436
+              </Text>
+            </Box>
+            <Box pl={6}>
+              <Heading size="sm" color="gray.400">
+                Toplam Burs
+              </Heading>
+              <Text fontSize="1.5rem" fontWeight={500} color="linkBlue">
+                ₺280.520
+              </Text>
+            </Box>
+          </Flex>
+        </Flex>
         <Grid
           templateColumns={{
             base: 'inherit',
-            md: '60% auto',
+            md: '62% auto',
           }}
           width="full"
           columnGap={12}
           rowGap={4}
         >
-          <Heading>Derslerimde daha başarılı olmak için buradayım.</Heading>
+          <Heading color="gray.700">
+            Derslerimde daha başarılı olmak için buradayım.
+          </Heading>
           <Button
             variant="solid"
             mt={8}
@@ -29,11 +112,12 @@ function Campaign() {
             justifyContent="space-between"
             boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
           >
-            Öğrenciye Bağış Yap
+            Destek Ol
             <Icon as={Award} size="28px" mr={2} />
           </Button>
         </Grid>
       </Container>
+      {/* <ReactMarkdown renderers={{ paragraph: Text }} source={initialSource} /> */}
     </Box>
   );
 }

@@ -13,7 +13,6 @@ function Container({ children, ...otherProps }) {
         xl: 'containers.xl',
       }}
       mx="auto"
-      mt={12}
       display="flex"
       flexWrap="wrap"
       {...otherProps}

@@ -1,4 +1,5 @@
 import React from 'react';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import {
   Heading,
   Grid,
@@ -9,45 +10,23 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/core';
-// import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 import { Award } from 'react-feather';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 
 function Campaign() {
-  //   const initialSource = `
-  // # Live demo
-  // Changes are automatically rendered as you type.
-  // ## Table of Contents
-  // * Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)
-  // * Renders actual, "native" React DOM elements
-  // * Allows you to escape or skip HTML (try toggling the checkboxes above)
-  // * If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
-  // ## HTML block below
-  // <blockquote>
-  //   This blockquote will change based on the HTML settings above.
-  // </blockquote>
-  // ## How about some code?
-  // \`\`\`js
-  // var React = require('react');
-  // var Markdown = require('react-markdown');
-  // React.render(
-  //   <Markdown source="# Your markdown here" />,
-  //   document.getElementById('content')
-  // );
-  // \`\`\`
-  // Pretty neat, eh?
-  // ## Tables?
-  // | Feature   | Support |
-  // | --------- | ------- |
-  // | tables    | ✔ |
-  // | alignment | ✔ |
-  // | wewt      | ✔ |
-  // ## More info?
-  // Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
-  // ---------------
-  // A component by [Espen Hovlandsdal](https://espen.codes/)
-  // `;
+  const [markdown, setMarkdown] = React.useState();
+
+  React.useEffect(() => {
+    fetch('https://raw.githubusercontent.com/emn178/markdown/master/README.md')
+      .then(response => {
+        return response.text();
+      })
+      .then(text => {
+        setMarkdown(text);
+      });
+  }, []);
 
   return (
     <Box backgroundColor="red">
@@ -117,7 +96,13 @@ function Campaign() {
           </Button>
         </Grid>
       </Container>
-      {/* <ReactMarkdown renderers={{ paragraph: Text }} source={initialSource} /> */}
+      <Container display="block">
+        <ReactMarkdown
+          renderers={ChakraUIRenderer()}
+          source={markdown}
+          escapeHtml={false}
+        />
+      </Container>
     </Box>
   );
 }

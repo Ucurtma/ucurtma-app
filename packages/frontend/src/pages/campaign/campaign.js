@@ -1,6 +1,6 @@
 import React from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import Head from 'next/head';
+import Helmet from 'react-helmet';
 import {
   Heading,
   Grid,
@@ -16,7 +16,7 @@ import {
   AlertDescription,
   CloseButton,
 } from '@chakra-ui/core';
-import { useRouter } from 'next/router';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ReactMarkdown from 'react-markdown';
@@ -46,17 +46,17 @@ const GET_CAMPAIGN = gql`
 `;
 
 function Campaign() {
-  const router = useRouter();
+  const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
-    variables: { campaignId: router.query.campaignId },
+    variables: { campaignId: id },
   });
 
   return (
     <Box backgroundColor="red">
-      <Head>
+      <Helmet>
         <title>Kampanya | Uçurtma Projesi</title>
-      </Head>
-      <Header mx={4} mt={8} withLogo hideMenu />
+      </Helmet>
+      <Header mt={8} withLogo hideMenu />
       <Container>
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (
@@ -71,14 +71,14 @@ function Campaign() {
         )}
         {!loading && !error && data.campaign && (
           <>
-            <Head>
+            <Helmet>
               <title>
                 Uçurtma Projesi - {data.campaign.student.name} -{' '}
                 {data.campaign.campaignTitle}
               </title>
-            </Head>
+            </Helmet>
             <Flex
-              my={10}
+              my={{ base: 2, md: 10 }}
               justifyContent="space-between"
               alignItems="center"
               width="full"
@@ -100,8 +100,17 @@ function Campaign() {
                   </Text>
                 </Box>
               </Flex>
-              <Flex mt={{ base: 8, md: 0 }}>
-                <Box borderRight="1px solid" borderColor="gray.300" pr={6}>
+              <Flex
+                width={{ base: 'full', md: 'unset' }}
+                justify={{ base: 'space-around', md: 'inherit' }}
+                mt={{ base: 8, md: 0 }}
+                borderY={{ base: '1px solid', md: 0 }}
+                borderColor="gray.300"
+                borderTopColor="gray.300"
+                p={{ base: 4, md: 0 }}
+                bg={{ base: 'gray.100', md: 'inherit' }}
+              >
+                <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
                   <Heading size="sm" color="gray.400">
                     Destekçi Sayısı
                   </Heading>
@@ -138,6 +147,7 @@ function Campaign() {
               rowGap={4}
               alignItems="center"
               px={{ base: 4, md: 0 }}
+              mt={{ base: 4, md: 0 }}
               gridAutoFlow={{ base: 'column', md: 'inherit' }}
             >
               <Heading color="gray.700">{data.campaign.campaignTitle}</Heading>

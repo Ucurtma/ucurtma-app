@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu } from 'react-feather';
 import styled from '@emotion/styled';
@@ -36,10 +36,8 @@ function MenuDrawer({ isOpen, onClose, items }) {
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader>
-          <Link href="/">
-            <a id="logo">
-              <Logo name="logo" size={12} />
-            </a>
+          <Link to="/">
+            <Logo name="logo" size={12} />
           </Link>
         </DrawerHeader>
         <DrawerBody>
@@ -66,6 +64,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   return (
     <Container
       mt={0}
+      p={{ base: 4, md: 0 }}
       display="block"
       position="relative"
       zIndex={{ base: 'inherit', md: '2' }}
@@ -74,9 +73,10 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
       <Flex justify={withLogo ? 'space-between' : 'flex-end'} align="center">
         {withLogo && (
           <Link href="/">
-            <a id="logo">
-              <Image alt="Uçurtma Projesi" src="/logo-gray.svg" />
-            </a>
+            <Image
+              alt="Uçurtma Projesi"
+              src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
+            />
           </Link>
         )}
         {!hideMenu && (

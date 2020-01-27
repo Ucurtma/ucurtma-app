@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react';
-import Head from 'next/head';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';

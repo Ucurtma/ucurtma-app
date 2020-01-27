@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigation } from 'react-feather';
-import NextLink from 'next/link';
-import Head from 'next/head';
+import { Link as RouterLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import {
   Flex,
   Link,
@@ -24,9 +24,9 @@ function SplashScreen() {
   const [content, setContent] = useState(<Application />);
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Uçurtma Projesi</title>
-      </Head>
+      </Helmet>
       <Box
         id="splash-screen"
         position="absolute"
@@ -52,11 +52,9 @@ function SplashScreen() {
           mt={{ base: '250px', md: 0 }}
           px={{ base: '0', md: '10px' }}
         >
-          <NextLink href="/">
-            <Link display="contents" id="logo">
-              <Icon name="logo" size="4rem" />
-            </Link>
-          </NextLink>
+          <Link as={RouterLink} to="/" display="contents" id="logo">
+            <Icon name="logo" size="4rem" />
+          </Link>
           <Box
             zIndex="2"
             bg="white"

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import {Link} from 'react-router-dom';
 import { Box, Heading, Text, ButtonGroup, Button } from '@chakra-ui/core';
 import Celebrating from '../illustrations/celebrating';
 

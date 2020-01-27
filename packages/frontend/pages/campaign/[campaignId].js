@@ -1,5 +1,6 @@
 import React from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+import Head from 'next/head';
 import {
   Heading,
   Grid,
@@ -52,6 +53,9 @@ function Campaign() {
 
   return (
     <Box backgroundColor="red">
+      <Head>
+        <title>Kampanya | Uçurtma Projesi</title>
+      </Head>
       <Header mt={8} withLogo />
       <Container>
         {loading && <Loader />}
@@ -67,6 +71,12 @@ function Campaign() {
         )}
         {!loading && !error && data.campaign && (
           <>
+            <Head>
+              <title>
+                Uçurtma Projesi - {data.campaign.student.name} -{' '}
+                {data.campaign.campaignTitle}
+              </title>
+            </Head>
             <Flex
               my={10}
               justifyContent="space-between"

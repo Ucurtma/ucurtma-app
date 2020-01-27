@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
+import NextLink from 'next/link';
 import { useMutation } from '@apollo/react-hooks';
 import { Text, Box, Link } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
@@ -79,11 +79,11 @@ function LoginForm({ onSubmit, withTitle }) {
             ))}
 
             <Text textAlign="right" mb={2}>
-              <Link href="/account/forgot-password">
+              <NextLink href="/account/forgot-password">
                 <Link textAlign="right" color="linkBlue">
                   Forgot password?
                 </Link>
-              </Link>
+              </NextLink>
             </Text>
 
             <Button

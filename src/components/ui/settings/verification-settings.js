@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Heading, Flex, Box, Text, Button } from '@chakra-ui/core';
 import { CheckCircle, ArrowRight } from 'react-feather';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function VerificationSettings({ withTitle, isVerified }) {
   return (

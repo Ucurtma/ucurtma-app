@@ -34,7 +34,7 @@ function OurTeam() {
           {teamMembers.map((member, i) => (
             <Box overflow="hidden" roundedTop="4px" key={i.toString()}>
               <Box
-                backgroundImage={`url(${member.image})`}
+                backgroundImage={`url(${process.env.PUBLIC_URL}/images/${member.image})`}
                 backgroundSize="cover"
                 pt="100%"
               />

@@ -24,7 +24,7 @@ function LandingFooter() {
           columnGap={{ base: 8, md: 12 }}
           rowGap={{ base: 8 }}
         >
-          <Image src="/logo-white.svg" />
+          <Image src={`${process.env.PUBLIC_URL}/images/logo-white.svg`} />
           <Box>
             <Heading size="xs" mb={8} textTransform="uppercase">
               Topluluğa Katıl

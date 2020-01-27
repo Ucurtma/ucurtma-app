@@ -34,7 +34,7 @@ function SplashScreen() {
         right="0"
         w={{ base: '100%', md: '50%' }}
         h={{ base: '250px', md: '100%' }}
-        backgroundImage='url("/background.svg")'
+        backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         backgroundPosition="center center"

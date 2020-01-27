@@ -14,19 +14,19 @@ import Card from '../../ui/card';
 function HowItWorks() {
   const cards = [
     {
-      icon: '/icons/research.svg',
+      icon: `${process.env.PUBLIC_URL}/images/icons/research.svg`,
       title: 'İncele',
       text:
         'Öğrenci kampanyalarını incele, yardım etmek istediğin öğrenciyi seç.',
     },
     {
-      icon: 'icons/donate.svg',
+      icon: `${process.env.PUBLIC_URL}/images/icons/donate.svg`,
       title: 'Destek Ol',
       text:
         'Destek Ol butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
     },
     {
-      icon: 'icons/follow.svg',
+      icon: `${process.env.PUBLIC_URL}/images/icons/follow.svg`,
       title: 'Takip Et',
       text: 'Destek olduğun öğrencinin gelişim ve başarımlarını takip et.',
     },

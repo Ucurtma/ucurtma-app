@@ -25,7 +25,7 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
         items.map(
           (navItem, i) =>
             (navItem.condition || navItem.condition === undefined) && (
-              <Link href={navItem.href} key={i.toString()}>
+              <Link to={navItem.href} key={i.toString()}>
                 <Button
                   ml={isDrawer ? 0 : 4}
                   color={navItem.color}

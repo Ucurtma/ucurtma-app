@@ -23,7 +23,10 @@ function ProblemSolution() {
           columnGap={{ base: 8, md: 12 }}
           rowGap={{ base: 8 }}
         >
-          <Image alignSelf="center" src="/icons/teamwork.svg" />
+          <Image
+            alignSelf="center"
+            src={`${process.env.PUBLIC_URL}/images/icons/teamwork.svg`}
+          />
           <Box width="full">
             <Heading size="xl">Blokzinciri ile yeni nesil bir çözüm</Heading>
             <Text mt={4}>

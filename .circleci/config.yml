@@ -8,7 +8,7 @@ references:
   bootstrap_lerna: &bootstrap_lerna
     run:
       name: Bootstrap Lerna
-      command: yarn && yarn bootstrap
+      command: yarn
   deploy_to_bucket: &deploy_to_bucket
     run:
       name: Deploy to AWS bucket
@@ -34,6 +34,8 @@ jobs:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
     working_directory: ~/repo
+    environment:
+      NODE_ENV: development
     steps:
       - checkout
       - restore_cache:
@@ -107,15 +109,6 @@ workflows:
           requires:
             - build
             - deploy-to-non-prod
-          filters:
-            branches:
-              only:
-                - master
-      - deploy-to-prod:
-          type: approval
-          requires:
-            - build
-            - tests
           filters:
             branches:
               only:

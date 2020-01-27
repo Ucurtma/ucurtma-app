@@ -5,18 +5,18 @@
 #
 version: 2
 references:
-  bootstrap_lerna: &bootstrap_lerna
+  boostrap_app: &boostrap_app
     run:
-      name: Bootstrap Lerna
-      command: yarn && yarn bootstrap
+      name: bootstrap application
+      command: yarn
   deploy_to_bucket: &deploy_to_bucket
     run:
       name: Deploy to AWS bucket
-      command: aws s3 sync ./packages/frontend/out/ s3://$BUCKET_NAME --delete
+      command: aws s3 sync ./build/ s3://$BUCKET_NAME --delete
   build_static_bundle: &build_static_bundle
     run:
       name: Export the application bundle
-      command: yarn build && yarn export
+      command: yarn build
   test_unit: &test_unit
     run:
       name: Make unit tests
@@ -42,7 +42,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - *bootstrap_lerna
+      - *boostrap_app
       - save_cache:
           paths:
             - node_modules
@@ -81,7 +81,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - *lint_files
-      - *test_unit
+      # - *test_unit
 workflows:
   version: 2
   build-and-deploy-non-prod:

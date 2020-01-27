@@ -56,7 +56,7 @@ function Campaign() {
       <Head>
         <title>Kampanya | Uçurtma Projesi</title>
       </Head>
-      <Header mt={8} withLogo />
+      <Header mx={4} mt={8} withLogo hideMenu />
       <Container>
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (
@@ -82,6 +82,7 @@ function Campaign() {
               justifyContent="space-between"
               alignItems="center"
               width="full"
+              flexDir={{ base: 'column', md: 'row' }}
             >
               <Flex alignItems="flex-end" flexShrink="0">
                 <Avatar
@@ -99,12 +100,16 @@ function Campaign() {
                   </Text>
                 </Box>
               </Flex>
-              <Flex>
+              <Flex mt={{ base: 8, md: 0 }}>
                 <Box borderRight="1px solid" borderColor="gray.300" pr={6}>
                   <Heading size="sm" color="gray.400">
                     Destekçi Sayısı
                   </Heading>
-                  <Text fontSize="1.5rem" fontWeight={500}>
+                  <Text
+                    fontSize="1.5rem"
+                    textAlign={{ base: 'center', md: 'left' }}
+                    fontWeight={500}
+                  >
                     {data.campaign.supporterCount}
                   </Text>
                 </Box>
@@ -112,7 +117,12 @@ function Campaign() {
                   <Heading size="sm" color="gray.400">
                     Toplam Burs
                   </Heading>
-                  <Text fontSize="1.5rem" fontWeight={500} color="linkBlue">
+                  <Text
+                    fontSize="1.5rem"
+                    fontWeight={500}
+                    textAlign={{ base: 'center', md: 'left' }}
+                    color="linkBlue"
+                  >
                     ₺{data.campaign.totalFunds}
                   </Text>
                 </Box>
@@ -127,6 +137,8 @@ function Campaign() {
               columnGap={12}
               rowGap={4}
               alignItems="center"
+              px={{ base: 4, md: 0 }}
+              gridAutoFlow={{ base: 'column', md: 'inherit' }}
             >
               <Heading color="gray.700">{data.campaign.campaignTitle}</Heading>
               <Button
@@ -142,7 +154,11 @@ function Campaign() {
                 <Icon as={Award} size="28px" mr={2} />
               </Button>
             </Grid>
-            <Container display="block">
+            <Container
+              px={{ base: 4, md: 0 }}
+              mt={{ base: 4, md: 0 }}
+              display="block"
+            >
               <ReactMarkdown
                 renderers={ChakraUIRenderer()}
                 source={data.campaign.campaignText}

@@ -51,7 +51,7 @@ function MenuDrawer({ isOpen, onClose, items }) {
 }
 
 // todo: get loggedIn from token
-function Header({ withLogo, menuItems, ...otherProps }) {
+function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let menuProps;
@@ -79,29 +79,35 @@ function Header({ withLogo, menuItems, ...otherProps }) {
             </a>
           </Link>
         )}
-        <MenuItems
-          alignItems="center"
-          mt={4}
-          display={{ base: 'none', md: 'flex' }}
-          items={menuItems}
-          {...menuProps}
-        />
+        {!hideMenu && (
+          <MenuItems
+            alignItems="center"
+            mt={4}
+            display={{ base: 'none', md: 'flex' }}
+            items={menuItems}
+            {...menuProps}
+          />
+        )}
       </Flex>
-      <IconButton
-        aria-label="Navigation"
-        icon={Menu}
-        display={{ base: 'inline-flex', md: 'none' }}
-        color="paragraph"
-        position="fixed"
-        top={3}
-        right={3}
-        px={2}
-        bg="white"
-        boxShadow="cardLight"
-        onClick={onOpen}
-        zIndex="9"
-      />
-      <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
+      {!hideMenu && (
+        <>
+          <IconButton
+            aria-label="Navigation"
+            icon={Menu}
+            display={{ base: 'inline-flex', md: 'none' }}
+            color="paragraph"
+            position="fixed"
+            top={3}
+            right={3}
+            px={2}
+            bg="white"
+            boxShadow="cardLight"
+            onClick={onOpen}
+            zIndex="9"
+          />
+          <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
+        </>
+      )}
     </Container>
   );
 }

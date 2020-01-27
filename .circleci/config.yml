@@ -33,6 +33,8 @@ jobs:
   build:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
+    environment:
+      NODE_ENV: development
     working_directory: ~/repo
     steps:
       - checkout
@@ -61,19 +63,6 @@ jobs:
       - attach_workspace:
           at: ~/repo/packages/
       # deploy the bundle to non-prod s3 bucket
-      - *deploy_to_bucket
-      - *invalidate_cloudfront_cache
-  deploy-to-prod:
-    environment:
-      DISTRIBUTION_ID: E3BBA49PSH0YZ1
-      BUCKET_NAME: ucurtmaprojesi.com
-    machine:
-      enabled: true
-    working_directory: ~/repo
-    steps:
-      - attach_workspace:
-          at: ~/repo/packages/
-      # deploy the bundle to prod s3 bucket
       - *deploy_to_bucket
       - *invalidate_cloudfront_cache
   tests:
@@ -109,15 +98,6 @@ workflows:
           requires:
             - build
             - deploy-to-non-prod
-          filters:
-            branches:
-              only:
-                - master
-      - deploy-to-prod:
-          type: approval
-          requires:
-            - build
-            - tests
           filters:
             branches:
               only:

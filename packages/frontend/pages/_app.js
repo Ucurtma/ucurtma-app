@@ -5,6 +5,7 @@ import Router from 'next/router';
 import trackPageView from '../utils/ga-tag';
 import customTheme from '../theme';
 import { isDevelopment } from '../config';
+import 'react-calendar/dist/Calendar.css';
 
 Router.events.on(
   'routeChangeComplete',

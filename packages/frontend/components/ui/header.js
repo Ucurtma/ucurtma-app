@@ -14,6 +14,7 @@ import {
   DrawerHeader,
   DrawerBody,
   IconButton,
+  Image,
 } from '@chakra-ui/core';
 import Container from './container';
 import MenuItems from './menu-items';
@@ -50,7 +51,7 @@ function MenuDrawer({ isOpen, onClose, items }) {
 }
 
 // todo: get loggedIn from token
-function Header({ withLogo, menuItems }) {
+function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let menuProps;
@@ -65,41 +66,48 @@ function Header({ withLogo, menuItems }) {
   return (
     <Container
       mt={0}
-      display={{ base: 'block', md: 'none' }}
+      display="block"
       position="relative"
       zIndex={{ base: 'inherit', md: '2' }}
+      {...otherProps}
     >
       <Flex justify={withLogo ? 'space-between' : 'flex-end'} align="center">
         {withLogo && (
           <Link href="/">
             <a id="logo">
-              <Logo name="logo" size="11rem" />
+              <Image alt="Uçurtma Projesi" src="/logo-gray.svg" />
             </a>
           </Link>
         )}
-        <Flex
-          display={{ base: 'none', md: 'flex' }}
-          alignItems="center"
-          {...menuProps}
-        >
-          <MenuItems items={menuItems} />
-        </Flex>
+        {!hideMenu && (
+          <MenuItems
+            alignItems="center"
+            mt={4}
+            display={{ base: 'none', md: 'flex' }}
+            items={menuItems}
+            {...menuProps}
+          />
+        )}
       </Flex>
-      <IconButton
-        aria-label="Navigation"
-        icon={Menu}
-        display={{ base: 'inline-flex', md: 'none' }}
-        color="paragraph"
-        position="fixed"
-        top={3}
-        right={3}
-        px={2}
-        bg="white"
-        boxShadow="cardLight"
-        onClick={onOpen}
-        zIndex="9"
-      />
-      <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
+      {!hideMenu && (
+        <>
+          <IconButton
+            aria-label="Navigation"
+            icon={Menu}
+            display={{ base: 'inline-flex', md: 'none' }}
+            color="paragraph"
+            position="fixed"
+            top={3}
+            right={3}
+            px={2}
+            bg="white"
+            boxShadow="cardLight"
+            onClick={onOpen}
+            zIndex="9"
+          />
+          <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
+        </>
+      )}
     </Container>
   );
 }

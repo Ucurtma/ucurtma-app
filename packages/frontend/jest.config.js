@@ -14,5 +14,8 @@ module.exports = {
     '/coverage/',
     '/out/',
   ],
+  moduleNameMapper: {
+    '\\.(css|scss)$': '<rootDir>/__tests__/styleMock.js',
+  },
   collectCoverageFrom: ['./**/*.js'],
 };

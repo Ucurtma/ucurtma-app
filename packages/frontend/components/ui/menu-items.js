@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 import { Flex, Button } from '@chakra-ui/core';
 import Link from 'next/link';
 
-function MenuItems({ isDrawer, items }) {
-  const defaultItems = [
-    {
-      href: '/',
-      label: 'Nedir?',
-    },
-  ];
-
+function MenuItems({ isDrawer, items, ...otherProps }) {
   const drawerProps = {
     wrapper: {
       flexDirection: 'column',
@@ -26,26 +19,25 @@ function MenuItems({ isDrawer, items }) {
     },
   };
 
-  const mappedItems = items || defaultItems;
-
   return (
-    <Flex {...(isDrawer && drawerProps.wrapper)}>
-      {mappedItems.map(
-        (navItem, i) =>
-          (navItem.condition || navItem.condition === undefined) && (
-            <Link href={navItem.href} key={i.toString()}>
-              <Button
-                ml={isDrawer ? 0 : 4}
-                color={navItem.color}
-                variant={isDrawer ? 'link' : 'ghost'}
-                {...(isDrawer && drawerProps.button)}
-                {...navItem.buttonProps}
-              >
-                {navItem.label}
-              </Button>
-            </Link>
-          )
-      )}
+    <Flex {...(isDrawer && drawerProps.wrapper)} {...otherProps}>
+      {items &&
+        items.map(
+          (navItem, i) =>
+            (navItem.condition || navItem.condition === undefined) && (
+              <Link href={navItem.href} key={i.toString()}>
+                <Button
+                  ml={isDrawer ? 0 : 4}
+                  color={navItem.color}
+                  variant={isDrawer ? 'link' : 'ghost'}
+                  {...(isDrawer && drawerProps.button)}
+                  {...navItem.buttonProps}
+                >
+                  {navItem.label}
+                </Button>
+              </Link>
+            )
+        )}
     </Flex>
   );
 }

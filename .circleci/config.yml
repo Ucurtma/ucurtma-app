@@ -49,9 +49,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - *build_static_bundle
       - persist_to_workspace:
-          root: packages
+          root: .
           paths:
-            - frontend/out
+            - build
   deploy-to-non-prod:
     machine:
       enabled: true
@@ -61,7 +61,7 @@ jobs:
       BUCKET_NAME: non-prod.ucurtmaprojesi.com
     steps:
       - attach_workspace:
-          at: ~/repo/packages/
+          at: ~/repo/
       # deploy the bundle to non-prod s3 bucket
       - *deploy_to_bucket
       - *invalidate_cloudfront_cache
@@ -75,13 +75,13 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - *bootstrap_lerna
+      - *boostrap_app
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - *lint_files
-      # - *test_unit
+      - *test_unit
 workflows:
   version: 2
   build-and-deploy-non-prod:
@@ -94,11 +94,11 @@ workflows:
             branches:
               only:
                 - master
-      - tests:
-          requires:
-            - build
-            - deploy-to-non-prod
-          filters:
-            branches:
-              only:
-                - master
+      # - tests:
+      #     requires:
+      #       - build
+      #       - deploy-to-non-prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master

@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  ucurtma-app:
+    build:
+      context: ./
+      #includes the packets needed for the ucurtma-app
+      dockerfile: ./docker/ucurtma-app/Dockerfile
+    container_name: ucurtma-container
+    env_file:
+      #please enter the required variables
+      - ./docker/ucurtma-app/.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

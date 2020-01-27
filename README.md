@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![CircleCI](https://circleci.com/gh/Ucurtma/ucurtma-app.svg?style=svg)](https://circleci.com/gh/Ucurtma/ucurtma-app)
 
-## Available Scripts
+# Uçurtma
 
-In the project directory, you can run:
+There will be a good description/readme later. But now, this repository is here just for development purposes.
 
-### `yarn start`
+## Bootstrapping the dependencies using Lerna
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Lerna helps you run `yarn` scripts for both projects. Bootstrapping is the first step to install the project dependencies. It will basically run the `yarn install` for both projects.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+  yarn
+  yarn bootstrap
+```
 
-### `yarn test`
+## Running frontend
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There is only front end package for now. If you want to run front-end using lerna,
 
-### `yarn build`
+```
+  yarn start:frontend
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This will kick `yarn start` on front end package. You can go to `localhost:3000` after running command.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## End to end testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There is a test suite embedded into the project under the [tests](./tests) folder. Test suite is using a 3rd party library called `gherkin-testcafe` which is a nice wrapper around `testcafe` framework that allows us to create BDD style human-readable tests with `Gherkin` format.
 
-### `yarn eject`
+In order to run the tests you first need to start the application using
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn dev
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+And in order to run the tests locally you can then you can run
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn e2e-test:chrome:local
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This command will set the `BASE_URL` environment variable to `http://localhost:30000`, which is the base url that the tests will run against. Then, run the testcafe using `gherkin-testcafe chrome tests/features/**/*.feature tests/step_definitions/**/*.js` command.
 
-## Learn More
+As you might notice the tests will run against `Chrome` browser, meaning that the browser should be installed if you want to run the tests in your environment. If you want to run the tests using different browsers then you might find the [testcafe documentation](https://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/browser-support.html) useful.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Storybook
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We are using [Storybook](https://storybook.js.org/) as a component documentation tool. If you want to see how to use our UI components:
 
-### Code Splitting
+```
+  yarn start:storybook
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This command will start our documentation page after waiting 10 seconds.
 
-### Analyzing the Bundle Size
+[Storybook Showcase](http://components.ucurtmaprojesi.com)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+[Non-production Environment](http://non-prod.ucurtmaprojesi.com)
 
-### Making a Progressive Web App
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## With docker way
 
-### Advanced Configuration
+```
+  docker-compose run --rm ucurtma-app yarn bootstrap
+  docker-compose run -d --service-ports ucurtma-app yarn start:frontend
+  docker-compose run --rm --service-ports ucurtma-app yarn e2e:browserstack
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```
 
-### Deployment
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Cross-browser testing provided by:
 
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<a href="http://browserstack.com"><img height="70" src="images/browserstack-logo.png" alt="BrowserStack"></a>

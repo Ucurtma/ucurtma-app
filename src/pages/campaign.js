@@ -15,16 +15,17 @@ import {
   AlertTitle,
   AlertDescription,
   CloseButton,
+  Image,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ReactMarkdown from 'react-markdown';
 import { Award } from 'react-feather';
-import Header from '../../components/ui/header';
-import Container from '../../components/ui/container';
-import { withApollo } from '../../utils/apollo';
-import Loader from '../../components/ui/loader';
+import Header from '../components/ui/header';
+import Container from '../components/ui/container';
+import { withApollo } from '../utils/apollo';
+import Loader from '../components/ui/loader';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -46,6 +47,7 @@ const GET_CAMPAIGN = gql`
 `;
 
 function Campaign() {
+  const [donateMode, setDonateMode] = React.useState(false);
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -56,7 +58,9 @@ function Campaign() {
       <Helmet>
         <title>Kampanya | Uçurtma Projesi</title>
       </Helmet>
-      <Header mt={8} withLogo hideMenu />
+      <Header mt={8} withLogo hideMenu>
+        deneme
+      </Header>
       <Container>
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (
@@ -139,8 +143,8 @@ function Campaign() {
             </Flex>
             <Grid
               templateColumns={{
-                base: 'inherit',
-                md: '62% auto',
+                base: '45% 1fr',
+                md: !donateMode && '62% auto',
               }}
               width="full"
               columnGap={12}
@@ -148,21 +152,42 @@ function Campaign() {
               alignItems="center"
               px={{ base: 4, md: 0 }}
               mt={{ base: 4, md: 0 }}
-              gridAutoFlow={{ base: 'column', md: 'inherit' }}
+              gridAutoFlow={{
+                base: donateMode ? 'inherit' : 'column',
+                md: 'inherit',
+              }}
             >
               <Heading color="gray.700">{data.campaign.campaignTitle}</Heading>
-              <Button
-                variant="solid"
-                bg="gray.100"
-                h={16}
-                w="100%"
-                flexShrink="0"
-                justifyContent="space-between"
-                boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-              >
-                Destek Ol
-                <Icon as={Award} size="28px" mr={2} />
-              </Button>
+              <Flex align="center" justify="flex-end" height="100px">
+                {!donateMode && (
+                  <Button
+                    variant="solid"
+                    bg="gray.100"
+                    h={16}
+                    w="100%"
+                    flexShrink="0"
+                    justifyContent="space-between"
+                    boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
+                    onClick={() => setDonateMode(true)}
+                  >
+                    Destek Ol
+                    <Icon as={Award} size="28px" />
+                  </Button>
+                )}
+                {donateMode && (
+                  <>
+                    {/* todo: find a better way to show qr code and wallet address  */}
+                    <Image
+                      flexShrink="0"
+                      src={`https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=${data.campaign.ethereumAddress}`}
+                    />
+                    <Box>
+                      <Text as="strong">Ethereum Adresi:</Text>{' '}
+                      <Text>{data.campaign.ethereumAddress}</Text>
+                    </Box>
+                  </>
+                )}
+              </Flex>
             </Grid>
             <Container
               px={{ base: 4, md: 0 }}

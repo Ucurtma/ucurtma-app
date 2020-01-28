@@ -1,6 +1,8 @@
 export const isDevelopment =
   process.env.NODE_ENV === 'development' || process.argv.ENV === 'development';
 
+export const gaTrackingId = 'UA-143538110-1';
+
 const config = {
   endpoint: isDevelopment
     ? 'https://ucurtma-backend-test.herokuapp.com/graphql'

@@ -72,7 +72,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
     >
       <Flex justify={withLogo ? 'space-between' : 'flex-end'} align="center">
         {withLogo && (
-          <Link href="/">
+          <Link to="/">
             <Image
               alt="Uçurtma Projesi"
               src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}

@@ -19,13 +19,24 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
     },
   };
 
+  const clickHandler = href => {
+    const element = document.querySelector(href);
+    element.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Flex {...(isDrawer && drawerProps.wrapper)} {...otherProps}>
       {items &&
         items.map(
           (navItem, i) =>
             (navItem.condition || navItem.condition === undefined) && (
-              <Link to={navItem.href} key={i.toString()}>
+              <Link
+                to={navItem.href}
+                onClick={() =>
+                  navItem.href[0] === '#' && clickHandler(navItem.href)
+                }
+                key={i.toString()}
+              >
                 <Button
                   ml={isDrawer ? 0 : 4}
                   color={navItem.color}

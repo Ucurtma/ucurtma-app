@@ -1,4 +1,6 @@
-export const isDevelopment = process.env.NODE_ENV === 'development';
+export const isDevelopment =
+  process.env.NODE_ENV === 'development' || process.argv.ENV === 'development';
+
 const config = {
   endpoint: isDevelopment
     ? 'https://ucurtma-backend-test.herokuapp.com/graphql'

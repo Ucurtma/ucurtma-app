@@ -22,6 +22,7 @@ import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import Loader from '../components/ui/loader';
 import DonatePopover from '../components/view/campaign/donate-popover';
+import LandingFooter from '../components/view/landing-page/footer';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -53,9 +54,7 @@ function Campaign() {
       <Helmet>
         <title>Kampanya | Uçurtma Projesi</title>
       </Helmet>
-      <Header mt={8} withLogo hideMenu>
-        deneme
-      </Header>
+      <Header mt={8} withLogo hideMenu></Header>
       <Container>
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (
@@ -127,7 +126,7 @@ function Campaign() {
                 </Box>
                 <Box pl={6}>
                   <Heading size="sm" color="gray.400">
-                    Toplam Burs
+                    Toplam Destek
                   </Heading>
                   <Text
                     fontSize="1.5rem"
@@ -152,6 +151,8 @@ function Campaign() {
             <Container
               px={{ base: 4, md: 0 }}
               mt={{ base: 4, md: 0 }}
+              pt={{ space: 10 }}
+              pb={{ space: 10 }}
               display="block"
             >
               <ReactMarkdown
@@ -163,6 +164,7 @@ function Campaign() {
           </>
         )}
       </Container>
+      <LandingFooter />
     </Box>
   );
 }

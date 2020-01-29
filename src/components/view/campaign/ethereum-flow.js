@@ -18,8 +18,9 @@ function EthereumFlow({ ethereumAddress }) {
         <Alert status="error">
           <AlertIcon />
           <AlertDescription mr={2}>
-            Bu kontrata sadece BiLira gönderebilirsiniz. Aksi halde lorem ipsum
-            dolor sit amet consectetur adipisicing elit.
+            Bu kampanya sadece BiLira token'ı kabul etmektedir. Bu kontrata
+            göndereceğiniz diğer token'lar geri döndürülemez biçimde
+            kaybetmenize neden olacaktır.
           </AlertDescription>
         </Alert>
       </Box>
@@ -27,7 +28,7 @@ function EthereumFlow({ ethereumAddress }) {
         <Link
           mr={4}
           isExternal
-          href={`https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=${ethereumAddress}`}
+          href={`https://etherscan.io/address/${ethereumAddress}`}
         >
           <Image
             flexShrink="0"

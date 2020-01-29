@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/core';
 import { Award } from 'react-feather';
 import EthereumFlow from './ethereum-flow';
+import BankTransferFlow from './bank-transfer-flow';
 
 const CustomRadio = React.forwardRef((props, ref) => {
   const { isChecked, isDisabled, value, ...rest } = props;
@@ -80,6 +81,9 @@ function DonatePopover({ ethereumAddress }) {
         <PopoverBody>
           {donateFlow === 'ethereum-wallet' && (
             <EthereumFlow ethereumAddress={ethereumAddress} />
+          )}
+          {donateFlow === 'bank-transfer' && (
+            <BankTransferFlow ethereumAddress={ethereumAddress} />
           )}
         </PopoverBody>
       </PopoverContent>

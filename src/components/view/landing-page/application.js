@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
+// todo: find better way to do a calendar
 import Calendar from 'react-calendar/dist/Calendar';
 import dayjs from 'dayjs';
 import {
@@ -170,7 +171,7 @@ function Application() {
       pb={{ base: 8, md: 12 }}
       bg="white"
     >
-      <style global jsx>{`
+      <style>{`
         .react-calendar {
           z-index: 2;
         }

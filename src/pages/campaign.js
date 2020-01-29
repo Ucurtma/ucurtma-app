@@ -3,10 +3,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import Helmet from 'react-helmet';
 import {
   Heading,
-  Grid,
   Box,
-  Button,
-  Icon,
   Avatar,
   Flex,
   Text,
@@ -15,17 +12,16 @@ import {
   AlertTitle,
   AlertDescription,
   CloseButton,
-  Image,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ReactMarkdown from 'react-markdown';
-import { Award } from 'react-feather';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import Loader from '../components/ui/loader';
+import DonatePopover from '../components/view/campaign/donate-popover';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -47,7 +43,6 @@ const GET_CAMPAIGN = gql`
 `;
 
 function Campaign() {
-  const [donateMode, setDonateMode] = React.useState(false);
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -88,7 +83,11 @@ function Campaign() {
               width="full"
               flexDir={{ base: 'column', md: 'row' }}
             >
-              <Flex alignItems="flex-end" flexShrink="0">
+              <Flex
+                mx={{ base: 4, md: 0 }}
+                alignItems="flex-end"
+                flexShrink="0"
+              >
                 <Avatar
                   size="lg"
                   src={data.campaign.student.profilePhoto}
@@ -141,54 +140,15 @@ function Campaign() {
                 </Box>
               </Flex>
             </Flex>
-            <Grid
-              templateColumns={{
-                base: '45% 1fr',
-                md: !donateMode && '62% auto',
-              }}
+            <Flex
               width="full"
-              columnGap={12}
-              rowGap={4}
-              alignItems="center"
-              px={{ base: 4, md: 0 }}
-              mt={{ base: 4, md: 0 }}
-              gridAutoFlow={{
-                base: donateMode ? 'inherit' : 'column',
-                md: 'inherit',
-              }}
+              justify="space-between"
+              align="center"
+              mx={{ base: 4, md: 0 }}
             >
               <Heading color="gray.700">{data.campaign.campaignTitle}</Heading>
-              <Flex align="center" justify="flex-end" height="100px">
-                {!donateMode && (
-                  <Button
-                    variant="solid"
-                    bg="gray.100"
-                    h={16}
-                    w="100%"
-                    flexShrink="0"
-                    justifyContent="space-between"
-                    boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-                    onClick={() => setDonateMode(true)}
-                  >
-                    Destek Ol
-                    <Icon as={Award} size="28px" />
-                  </Button>
-                )}
-                {donateMode && (
-                  <>
-                    {/* todo: find a better way to show qr code and wallet address  */}
-                    <Image
-                      flexShrink="0"
-                      src={`https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=${data.campaign.ethereumAddress}`}
-                    />
-                    <Box>
-                      <Text as="strong">Ethereum Adresi:</Text>{' '}
-                      <Text>{data.campaign.ethereumAddress}</Text>
-                    </Box>
-                  </>
-                )}
-              </Flex>
-            </Grid>
+              <DonatePopover ethereumAddress={data.campaign.ethereumAddress} />
+            </Flex>
             <Container
               px={{ base: 4, md: 0 }}
               mt={{ base: 4, md: 0 }}

@@ -14,6 +14,7 @@ import {
   RadioButtonGroup,
   Button,
 } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import FAQ from './faq.json';
 
@@ -43,21 +44,22 @@ CustomRadio.propTypes = {
 
 function Faq() {
   const [activeFaq, setActiveFaq] = React.useState('student');
+  const { t } = useTranslation(['faq', 'titles']);
   const questionType =
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
   return (
     <Flex id="faq" bg="gray.50" py={24} px={4}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
-          <Heading size="xl">Sıkça Sorulan Sorular</Heading>
+          <Heading size="xl">{t('titles:FAQ')}</Heading>
           <RadioButtonGroup
             mt={4}
             defaultValue="student"
             onChange={val => setActiveFaq(val)}
             isInline
           >
-            <CustomRadio value="student">Öğrenciyim</CustomRadio>
-            <CustomRadio value="investor">Destekçiyim</CustomRadio>
+            <CustomRadio value="student">{t('I am student')}</CustomRadio>
+            <CustomRadio value="investor">{t('I am supporter')}</CustomRadio>
           </RadioButtonGroup>
           <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
         </Box>
@@ -93,7 +95,7 @@ function Faq() {
                   }}
                 >
                   <Box flex="1" textAlign="left">
-                    {questions.question}
+                    {t(questions.question)}
                   </Box>
                   <AccordionIcon />
                 </AccordionHeader>
@@ -105,7 +107,7 @@ function Faq() {
                   fontSize="16px"
                   pb={4}
                 >
-                  {questions.answer}
+                  {t(questions.answer)}
                 </AccordionPanel>
               </AccordionItem>
             ))}

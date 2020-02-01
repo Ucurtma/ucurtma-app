@@ -8,27 +8,27 @@ import {
   Divider,
   Image,
 } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import Card from '../../ui/card';
 
 function HowItWorks() {
+  const { t } = useTranslation(['howItWorks', 'titles']);
   const cards = [
     {
       icon: `${process.env.PUBLIC_URL}/images/icons/research.svg`,
-      title: 'İncele',
-      text:
-        'Öğrenci kampanyalarını incele, yardım etmek istediğin öğrenciyi seç.',
+      title: t('Examine'),
+      text: t('Examine_details'),
     },
     {
       icon: `${process.env.PUBLIC_URL}/images/icons/donate.svg`,
-      title: 'Destek Ol',
-      text:
-        'Destek Ol butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.',
+      title: t('Support'),
+      text: t('Support_details'),
     },
     {
       icon: `${process.env.PUBLIC_URL}/images/icons/follow.svg`,
-      title: 'Takip Et',
-      text: 'Destek olduğun öğrencinin gelişim ve başarımlarını takip et.',
+      title: t('Follow'),
+      text: t('Follow_details'),
     },
   ];
 
@@ -36,11 +36,8 @@ function HowItWorks() {
     <Flex bg="gray.50" py={24} id="how-it-works">
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
-          <Heading size="xl">Nasıl Çalışır?</Heading>
-          <Text mt={4}>
-            Üç kolay adımda öğrencilerin hayallerini hayata geçirmelerine
-            yardımcı olabilirsiniz.
-          </Text>
+          <Heading size="xl">{t('titles:How it works')}</Heading>
+          <Text mt={4}>{t('Three Steps')}</Text>
           <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
         </Box>
         <Grid

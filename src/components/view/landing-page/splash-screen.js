@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import Application from './application';
+import ApplicationPaused from './application-paused';
 import Shortlist from './shortlist';
 
 function SplashScreen() {
@@ -86,7 +87,7 @@ function SplashScreen() {
               justifyContent="space-between"
               boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
               onClick={() => {
-                setContent(<Application />);
+                setContent(<ApplicationPaused />);
                 onOpen();
               }}
             >
@@ -94,8 +95,7 @@ function SplashScreen() {
               <Icon as={Navigation} size="28px" mr={2} />
             </Button>
             <Text mt={8} color="gray.400">
-              Şu an için sadece burs başvuruları açıktır. Gelişmelerden haberdar
-              olmak için mail listemize
+              Gelişmelerden haberdar olmak için mail listemize
               <Link
                 onClick={() => {
                   setContent(<Shortlist />);

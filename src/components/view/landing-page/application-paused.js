@@ -16,11 +16,11 @@ function ApplicationPaused() {
         }
       `}</style>
       <Box mt={8} alignItems="center">
-        <Text textAlign={'center'}>
+        <Text textAlign="center">
           Gerekli çalışmaları tamamlayana kadar öğrenci başvurularına ara vermiş
-          bulunmaktayız. 
+          bulunmaktayız.
         </Text>
-        <Text textAlign={'center'}>İlginiz için teşekkür ederiz.</Text>
+        <Text textAlign="center">İlginiz için teşekkür ederiz.</Text>
       </Box>
     </Box>
   );

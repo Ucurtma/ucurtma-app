@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Button } from '@chakra-ui/core';
+import {
+  Flex,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Icon,
+} from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
+import { Globe } from 'react-feather';
+import { useTranslation } from 'react-i18next';
 
 function MenuItems({ isDrawer, items, ...otherProps }) {
+  const { i18n } = useTranslation();
+
   const drawerProps = {
     wrapper: {
       flexDirection: 'column',
@@ -49,6 +61,25 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
               </Link>
             )
         )}
+      {/* todo: delete menu and menu button from here. we should find better place for change language button */}
+      <Menu>
+        <MenuButton
+          as={Button}
+          ml={isDrawer ? 0 : 4}
+          variant={isDrawer ? 'link' : 'ghost'}
+          {...(isDrawer && drawerProps.button)}
+        >
+          <Icon as={Globe} />
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={() => i18n.changeLanguage('tr-TR')}>
+            Türkçe
+          </MenuItem>
+          <MenuItem onClick={() => i18n.changeLanguage('en-US')}>
+            English
+          </MenuItem>
+        </MenuList>
+      </Menu>
     </Flex>
   );
 }

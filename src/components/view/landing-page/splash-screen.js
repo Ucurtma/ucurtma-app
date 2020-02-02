@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navigation } from 'react-feather';
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   Flex,
   Link,
@@ -21,6 +22,7 @@ import ApplicationPaused from './application-paused';
 import Shortlist from './shortlist';
 
 function SplashScreen() {
+  const { t } = useTranslation(['splashScreen', 'titles']);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [content, setContent] = useState(<Application />);
   return (
@@ -66,16 +68,13 @@ function SplashScreen() {
             mt={{ base: '1rem' }}
           >
             <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
-              Uçurtma Projesi Nedir?
+              {t('titles:What is Uçurtma')}
             </Heading>
             <Text mt={8} color="gray.500">
-              Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken
-              finansal desteği bulmalarına yardım etmeyi amaçlayan bir
-              platformdur.
+              {t('Purpose of Uçurtma')}
             </Text>
             <Text mt={4} color="gray.500">
-              Bunu öğrencilerle destekçileri buluşturarak burs alabilmelerinin
-              garantisini merkeziyetsiz bir şekilde sunar.
+              {t('Uçurtma is decentralized')}
             </Text>
             <Button
               variant="solid"
@@ -91,22 +90,23 @@ function SplashScreen() {
                 onOpen();
               }}
             >
-              Öğrenci Olarak Başvuru Yap
+              {t('Apply as a student')}
               <Icon as={Navigation} size="28px" mr={2} />
             </Button>
             <Text mt={8} color="gray.400">
-              Gelişmelerden haberdar olmak için mail listemize
-              <Link
-                onClick={() => {
-                  setContent(<Shortlist />);
-                  onOpen();
-                }}
-                color="linkBlue"
-              >
-                {' '}
-                buraya tıklayarak{' '}
-              </Link>
-              abone olabilirsiniz.
+              <Trans i18nKey="Click here to subscribe">
+                Gelişmelerden haberdar olmak için mail listemize{' '}
+                <Link
+                  onClick={() => {
+                    setContent(<Shortlist />);
+                    onOpen();
+                  }}
+                  color="linkBlue"
+                >
+                  buraya tıklayarak
+                </Link>{' '}
+                abone olabilirsiniz
+              </Trans>
             </Text>
           </Box>
         </Flex>

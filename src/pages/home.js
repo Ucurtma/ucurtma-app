@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SplashScreen from '../components/view/landing-page/splash-screen';
 import HowItWorks from '../components/view/landing-page/how-it-works';
 import OurTeam from '../components/view/landing-page/our-team';
@@ -8,26 +9,27 @@ import Faq from '../components/view/landing-page/faq';
 import Header from '../components/ui/header';
 
 function Home() {
+  const { t } = useTranslation('titles');
   const menuItems = [
     {
-      label: 'Nedir?',
+      label: t('What is Uçurtma'),
       href: '#splash-screen',
     },
     {
-      label: 'Sorun ve Çözüm',
+      label: t('Problem and Solution'),
       href: '#problem-solution',
     },
     {
+      label: t('How it works'),
       href: '#how-it-works',
-      label: 'Nasıl Çalışır',
     },
     {
       href: '#our-team',
-      label: 'Ekibimiz',
+      label: t('Our Team'),
     },
     {
       href: '#faq',
-      label: 'SSS',
+      label: t('FAQ'),
     },
   ];
 

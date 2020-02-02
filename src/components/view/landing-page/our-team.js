@@ -11,15 +11,17 @@ import {
   Divider,
 } from '@chakra-ui/core';
 import { Linkedin, Twitter } from 'react-feather';
+import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import teamMembers from './team-members.json';
 
 function OurTeam() {
+  const { t } = useTranslation(['ourTeam', 'titles']);
   return (
     <Flex id="our-team" py={24} bg="gray.700" color="gray.100">
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center">
-          <Heading size="xl">Ekibimiz</Heading>
+          <Heading size="xl">{t('titles:Our Team')}</Heading>
           <Divider maxW={24} marginX="auto" mt={8} />
         </Box>
         <Grid
@@ -51,7 +53,7 @@ function OurTeam() {
                   overflow={{ base: 'unset', md: 'hidden' }}
                   textOverflow={{ base: 'unset', md: 'ellipsis' }}
                 >
-                  {member.title}
+                  {t(member.title)}
                 </Text>
                 <Stack isInline spacing={2}>
                   <Link href={member.linkedIn} isExternal>

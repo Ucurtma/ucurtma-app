@@ -54,7 +54,7 @@ function Campaign() {
       <Helmet>
         <title>Kampanya | Uçurtma Projesi</title>
       </Helmet>
-      <Header mt={8} withLogo hideMenu></Header>
+      <Header mt={8} withLogo hideMenu />
       <Container>
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (

@@ -9,9 +9,11 @@ import {
   Heading,
   Link,
 } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 
 function LandingFooter() {
+  const { t } = useTranslation('footer');
   return (
     <Flex py={12} px={{ base: 4, md: 0 }} bg="gray.800" color="gray.100">
       <Container alignItems="flex-start" mt={0}>
@@ -27,7 +29,7 @@ function LandingFooter() {
           <Image src={`${process.env.PUBLIC_URL}/images/logo-white.svg`} />
           <Box>
             <Heading size="xs" mb={8} textTransform="uppercase">
-              Topluluğa Katıl
+              {t('Join to Community')}
             </Heading>
             <List spacing={2}>
               <ListItem>

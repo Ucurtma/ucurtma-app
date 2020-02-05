@@ -33,7 +33,7 @@ const CustomRadio = React.forwardRef((props, ref) => {
 });
 
 function DonatePopover({ ethereumAddress }) {
-  const [donateFlow, setDonateFlow] = React.useState('ethereum-wallet');
+  const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -65,26 +65,25 @@ function DonatePopover({ ethereumAddress }) {
         minW={{ base: 'auto', md: '600px' }}
         transform="none"
         _focus={{ boxShadow: 0 }}
+        modifiers={{ flip: { enabled: false } }}
       >
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverHeader>
           <RadioButtonGroup
-            defaultValue="ethereum-wallet"
+            defaultValue="bank-transfer"
             onChange={val => setDonateFlow(val)}
             isInline
           >
-            <CustomRadio value="ethereum-wallet">Ethereum Cüzdanı</CustomRadio>
             <CustomRadio value="bank-transfer">Banka Havalesi</CustomRadio>
+            <CustomRadio value="ethereum-wallet">Ethereum Cüzdanı</CustomRadio>
           </RadioButtonGroup>
         </PopoverHeader>
         <PopoverBody>
           {donateFlow === 'ethereum-wallet' && (
             <EthereumFlow ethereumAddress={ethereumAddress} />
           )}
-          {donateFlow === 'bank-transfer' && (
-            <BankTransferFlow ethereumAddress={ethereumAddress} />
-          )}
+          {donateFlow === 'bank-transfer' && <BankTransferFlow />}
         </PopoverBody>
       </PopoverContent>
       {isOpen && <ModalOverlay onClick={() => setIsOpen(false)} />}

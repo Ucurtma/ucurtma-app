@@ -36,6 +36,13 @@ function DonatePopover({ ethereumAddress }) {
   const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
   const [isOpen, setIsOpen] = React.useState(false);
 
+  // function getBanks() {
+  //   const biLiraAuth = localStorage.getItem('blAuth');
+  //   if (biLiraAuth) {
+  //     getBanks();
+  //   }
+  // }
+
   return (
     <Popover
       isOpen={isOpen}

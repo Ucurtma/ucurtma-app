@@ -15,6 +15,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Loader from '../../ui/loader';
+import { getBiLiraToken } from '../../../utils/utils';
 
 const GET_BANKS = gql`
   {
@@ -41,19 +42,24 @@ function BankTransferFlow() {
   const [getBanks, { error, data, loading }] = useLazyQuery(GET_BANKS, {
     context: {
       headers: {
-        oauth2: localStorage.getItem('blAuth'),
+        oauth2: getBiLiraToken(),
       },
     },
   });
 
   React.useLayoutEffect(() => {
-    const biLiraAuth = localStorage.getItem('blAuth');
+    const biLiraAuth = getBiLiraToken();
     if (biLiraAuth) {
       getBanks();
     }
   }, [data, getBanks]);
 
-  if (loading) return <Loader />;
+  if (loading)
+    return (
+      <Box textAlign="center">
+        <Loader />
+      </Box>
+    );
   if (error) {
     return (
       <Box mt={2} mb={4}>
@@ -65,11 +71,20 @@ function BankTransferFlow() {
     );
   }
 
+  // todo: make redirect after biLira oauth is done.
+  if (!getBiLiraToken()) {
+    return (
+      <Box mt={2} mb={4}>
+        BiLira tokenı bulunamadı. Giriş için yönlendiriliyorsun..
+      </Box>
+    );
+  }
+
   return (
     <Box mt={2} mb={4}>
-      <Stack isInline mb={4}>
-        {data &&
-          data.systemBankAccounts.map(bankAccount => (
+      {data && (
+        <Stack isInline mb={4}>
+          {data.systemBankAccounts.map(bankAccount => (
             <Button
               key={bankAccount.id}
               variant="ghost"
@@ -84,7 +99,8 @@ function BankTransferFlow() {
               />
             </Button>
           ))}
-      </Stack>
+        </Stack>
+      )}
       {currentBank !== -1 && (
         <Formik
           initialValues={{

@@ -9,9 +9,12 @@ import {
   AlertIcon,
   Image,
   Stack,
+  Link,
+  Text,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery } from '@apollo/react-hooks';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Loader from '../../ui/loader';
@@ -27,6 +30,14 @@ const GET_BANKS = gql`
   }
 `;
 
+const GET_OAUTH_URL = gql`
+  query biliraOAuthUrl($campaignId: String!) {
+    biliraOAuthUrl(campaignId: $campaignId) {
+      authorizationUri
+    }
+  }
+`;
+
 const donateSchema = Yup.object().shape({
   email: Yup.string()
     .required('Bu alan zorunludur.')
@@ -37,8 +48,13 @@ const donateSchema = Yup.object().shape({
 });
 
 function BankTransferFlow() {
+  const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
-
+  const [getOauthUrl, oauthResponse] = useLazyQuery(GET_OAUTH_URL, {
+    variables: {
+      campaignId: params.id,
+    },
+  });
   const [getBanks, { error, data, loading }] = useLazyQuery(GET_BANKS, {
     context: {
       headers: {
@@ -51,8 +67,10 @@ function BankTransferFlow() {
     const biLiraAuth = getBiLiraToken();
     if (biLiraAuth) {
       getBanks();
+    } else {
+      getOauthUrl();
     }
-  }, [data, getBanks]);
+  }, [data, getBanks, getOauthUrl]);
 
   if (loading)
     return (
@@ -74,9 +92,18 @@ function BankTransferFlow() {
   // todo: make redirect after biLira oauth is done.
   if (!getBiLiraToken()) {
     return (
-      <Box mt={2} mb={4}>
-        BiLira tokenı bulunamadı. Giriş için yönlendiriliyorsun..
-      </Box>
+      <Link href={oauthResponse.data?.biliraOAuthUrl.authorizationUri}>
+        <Button bg="#04144c" _hover={{ bg: '#020c2d' }} color="#fff">
+          <Image
+            alt="Login with BiLira"
+            src={`${process.env.PUBLIC_URL}/images/bilira-logo.svg`}
+            w="80px"
+          />
+          <Text ml={2} fontWeight={400}>
+            ile giriş yap
+          </Text>
+        </Button>
+      </Link>
     );
   }
 

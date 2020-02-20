@@ -6,6 +6,7 @@ import Home from './pages/home';
 import Campaign from './pages/campaign';
 import 'react-calendar/dist/Calendar.css';
 import { gaTrackingId } from './config';
+import Redirecting from './pages/redirecting';
 
 ReactGA.initialize(gaTrackingId);
 const history = createBrowserHistory();
@@ -21,6 +22,9 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
+        <Route path="/auth">
+          <Redirecting />
+        </Route>
         <Route path="/campaign/:id">
           <Campaign />
         </Route>

@@ -13,8 +13,8 @@ const Redirecting = () => {
         `https://api.ucurtmaprojesi.com/oauth/callback?code=${urlData.code}`
       )
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(() => {
+          // todo: look what is data and redirect user after ssl problem fixed.
           localStorage.setItem('blAuth', urlData.code);
         });
     }

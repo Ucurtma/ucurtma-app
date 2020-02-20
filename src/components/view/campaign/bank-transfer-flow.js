@@ -31,8 +31,8 @@ const GET_BANKS = gql`
 `;
 
 const GET_OAUTH_URL = gql`
-  {
-    biliraOAuthUrl {
+  query biliraOAuthUrl($campaignId: String!) {
+    biliraOAuthUrl(campaignId: $campaignId) {
       authorizationUri
     }
   }
@@ -50,7 +50,11 @@ const donateSchema = Yup.object().shape({
 function BankTransferFlow() {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
-  const [getOauthUrl, oauthResponse] = useLazyQuery(GET_OAUTH_URL);
+  const [getOauthUrl, oauthResponse] = useLazyQuery(GET_OAUTH_URL, {
+    variables: {
+      campaignId: params.id,
+    },
+  });
   const [getBanks, { error, data, loading }] = useLazyQuery(GET_BANKS, {
     context: {
       headers: {
@@ -58,8 +62,6 @@ function BankTransferFlow() {
       },
     },
   });
-
-  console.log(params);
 
   React.useLayoutEffect(() => {
     const biLiraAuth = getBiLiraToken();

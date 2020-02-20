@@ -2,9 +2,11 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/core';
 import { useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
+import { useHistory } from 'react-router-dom';
 
 const Redirecting = () => {
   const location = useLocation();
+  const history = useHistory();
 
   React.useEffect(() => {
     const urlData = parse(location.search);
@@ -13,12 +15,12 @@ const Redirecting = () => {
         `https://api.ucurtmaprojesi.com/oauth/callback?code=${urlData.code}`
       )
         .then(response => response.json())
-        .then(() => {
-          // todo: look what is data and redirect user after ssl problem fixed.
-          localStorage.setItem('blAuth', urlData.code);
+        .then(data => {
+          localStorage.setItem('blAuth', data.token);
+          history.push(`/campaign/${urlData.state}`);
         });
     }
-  }, [location]);
+  }, [location, history]);
 
   return (
     <Box

@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading, Flex, Box, Text, Button } from '@chakra-ui/core';
 import { CheckCircle, ArrowRight } from 'react-feather';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 function VerificationSettings({ withTitle, isVerified }) {
   return (
@@ -24,19 +25,19 @@ function VerificationSettings({ withTitle, isVerified }) {
             : 'You’re not a verified user at the moment. To create a campaign, you should become a verified user.'}
         </Text>
       </Flex>
+      {/* <Link href="/account/my-account/verification"> */}
       {!isVerified && (
-        <Link href="/account/my-account/verification">
-          <Button
-            mt={2}
-            ml={4}
-            rightIcon={ArrowRight}
-            variant="ghost"
-            color="linkBlue"
-          >
-            Apply
-          </Button>
-        </Link>
+        <Button
+          mt={2}
+          ml={4}
+          rightIcon={ArrowRight}
+          variant="ghost"
+          color="linkBlue"
+        >
+          Apply
+        </Button>
       )}
+      {/* </Link> */}
     </>
   );
 }

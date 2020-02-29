@@ -77,7 +77,7 @@ describe('Input Tests', () => {
     expect(queryByText('Invalid email')).not.toBeNull();
     await userEvent.type(inputNode, 'mail@mail.com');
     await wait();
-    expect(inputNode).toHaveAttribute('value', 'mail@mail.com');
+    expect(inputNode).toHaveAttribute('value', 'mailmail@mail.com');
     expect(queryByText('Invalid email')).toBeNull();
   });
 });

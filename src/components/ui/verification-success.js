@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { Box, Heading, Text, ButtonGroup, Button } from '@chakra-ui/core';
 import Celebrating from '../illustrations/celebrating';
 
@@ -21,16 +20,16 @@ function VerificationSuccess() {
         continue now, you can create &quot;draft campaign.&quot;
       </Text>
       <ButtonGroup alignSelf="flex-end">
-        <Link href="/">
-          <Button mr={4} variant="ghost" color="danger" type="submit">
-            Go to Homepage
-          </Button>
-        </Link>
-        <Link href="/campaigns/start-campaign">
-          <Button variant="outline" color="linkBlue" type="submit">
-            Start a Draft Campaign
-          </Button>
-        </Link>
+        {/* <Link href="/"> */}
+        <Button mr={4} variant="ghost" color="danger" type="submit">
+          Go to Homepage
+        </Button>
+        {/* </Link> */}
+        {/* <Link href="/campaigns/start-campaign"> */}
+        <Button variant="outline" color="linkBlue" type="submit">
+          Start a Draft Campaign
+        </Button>
+        {/* </Link> */}
       </ButtonGroup>
     </>
   );

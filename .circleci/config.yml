@@ -20,7 +20,7 @@ references:
   test_unit: &test_unit
     run:
       name: Make unit tests
-      command: yarn test:frontend
+      command: yarn test
   lint_files: &lint_files
     run:
       name: Run linting tools
@@ -94,11 +94,11 @@ workflows:
             branches:
               only:
                 - master
-      # - tests:
-      #     requires:
-      #       - build
-      #       - deploy-to-non-prod
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - tests:
+          requires:
+            - build
+            - deploy-to-non-prod
+          filters:
+            branches:
+              only:
+                - master

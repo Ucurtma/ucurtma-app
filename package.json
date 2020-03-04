@@ -7,7 +7,7 @@
     "dev": "next",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --transformIgnorePatterns '/node_modules/'",
     "eject": "react-scripts eject",
     "export": "next export",
     "lint": "lint-staged",

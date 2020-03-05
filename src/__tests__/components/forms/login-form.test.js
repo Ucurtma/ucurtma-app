@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { render, fireEvent, wait } from 'test-utils';
 import userEvent from '@testing-library/user-event';
+import { render, fireEvent, wait } from '../../../utils/test-utils';
 import LoginForm from '../../../components/forms/login-form';
 
 describe('Login Form Tests', () => {

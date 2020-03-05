@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render, fireEvent } from 'test-utils';
+import { render, fireEvent } from '../../../utils/test-utils';
 import Button from '../../../components/ui/button';
 
 describe('Button Tests', () => {

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
 import { CheckCircle } from 'react-feather';
+import { render } from '../../../utils/test-utils';
 import { UserInfo, UserInfoBadge } from '../../../components/ui/user-info';
 
 describe('User Info Tests', () => {

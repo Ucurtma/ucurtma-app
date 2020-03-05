@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '../../../utils/test-utils';
 import Column from '../../../components/ui/column';
 
 describe('Column Tests', () => {

@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
 import { Facebook } from 'react-feather';
 import userEvent from '@testing-library/user-event';
+import { render } from '../../../utils/test-utils';
 import SocialLink from '../../../components/ui/social-link';
 
 describe('Social Link Tests', () => {

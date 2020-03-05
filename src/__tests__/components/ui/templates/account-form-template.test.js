@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '../../../../utils/test-utils';
 import AccountFormTemplate from '../../../../components/ui/templates/account-form-template';
 import ForgotPasswordForm from '../../../../components/forms/forgot-password-form';
 import MyPassword from '../../../../components/illustrations/my-password';

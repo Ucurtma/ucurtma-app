@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
 import { fireEvent, wait } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { render } from '../../../../utils/test-utils';
 import ChangePassword from '../../../../components/ui/settings/change-password';
 
 describe('Change Password Tests', () => {

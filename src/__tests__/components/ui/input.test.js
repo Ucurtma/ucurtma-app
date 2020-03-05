@@ -2,8 +2,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { render, wait, fireEvent } from 'test-utils';
 import userEvent from '@testing-library/user-event';
+import { render, wait, fireEvent } from '../../../utils/test-utils';
 import Input from '../../../components/ui/input';
 
 describe('Input Tests', () => {

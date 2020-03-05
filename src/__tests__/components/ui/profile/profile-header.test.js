@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '../../../../utils/test-utils';
 import ProfileHeader from '../../../../components/ui/profile/profile-header';
 
 describe('Profile Header Tests', () => {

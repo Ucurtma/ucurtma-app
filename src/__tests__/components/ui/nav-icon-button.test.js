@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
 import { Bell } from 'react-feather';
+import { render } from '../../../utils/test-utils';
 import NavButton from '../../../components/ui/nav-icon-button';
 
 describe('Navigation Icon Button Tests', () => {

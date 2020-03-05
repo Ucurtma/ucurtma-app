@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import { Bell } from 'react-feather';
+import { render } from '../../../utils/test-utils';
 import SidebarItem from '../../../components/ui/sidebar-item';
 
 describe('Sidebar Item Tests', () => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '../../utils/test-utils';
 import { withApollo } from '../../utils/apollo';
 
 // eslint-disable-next-line react/prop-types

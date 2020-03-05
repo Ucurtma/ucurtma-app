@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '../../../utils/test-utils';
 import VerificationSuccess from '../../../components/ui/verification-success';
 
 describe('Verification Success Tests', () => {

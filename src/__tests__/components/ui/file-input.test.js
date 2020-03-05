@@ -2,7 +2,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { render, wait, fireEvent } from 'test-utils';
+import { render, wait, fireEvent } from '../../../utils/test-utils';
 import FileInput from '../../../components/ui/file-input';
 
 describe('File Input Tests', () => {

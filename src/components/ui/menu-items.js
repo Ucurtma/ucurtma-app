@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import {
   Flex,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Icon,
+  // Menu,
+  // MenuButton,
+  // MenuList,
+  // MenuItem,
+  // Icon,
 } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
-import { Globe } from 'react-feather';
-import { useTranslation } from 'react-i18next';
+// import { Globe } from 'react-feather';
+// import { useTranslation } from 'react-i18next';
 
 function MenuItems({ isDrawer, items, ...otherProps }) {
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
 
   const drawerProps = {
     wrapper: {
@@ -62,7 +62,7 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
             )
         )}
       {/* todo: delete menu and menu button from here. we should find better place for change language button */}
-      <Menu>
+      {/* <Menu>
         <MenuButton
           as={Button}
           ml={isDrawer ? 0 : 4}
@@ -79,7 +79,7 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
             English
           </MenuItem>
         </MenuList>
-      </Menu>
+      </Menu> */}
     </Flex>
   );
 }

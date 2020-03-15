@@ -8,17 +8,41 @@ import {
   Alert,
   AlertIcon,
   Image,
-  Stack,
   Link,
   Text,
+  SimpleGrid,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Loader from '../../ui/loader';
-import { getBiLiraToken } from '../../../utils/utils';
+import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
+
+const LoginWithBiLira = ({ href, ...otherProps }) => {
+  return (
+    <Link href={href}>
+      <Button
+        bg="#04144c"
+        _hover={{ bg: '#020c2d' }}
+        color="#fff"
+        width="full"
+        padding={6}
+        {...otherProps}
+      >
+        <Image
+          alt="Login with BiLira"
+          src={`${process.env.PUBLIC_URL}/images/bilira-logo.svg`}
+          w="80px"
+        />
+        <Text ml={2} fontWeight={400}>
+          ile giriş yap
+        </Text>
+      </Button>
+    </Link>
+  );
+};
 
 const GET_BANKS = gql`
   {
@@ -38,6 +62,26 @@ const GET_OAUTH_URL = gql`
   }
 `;
 
+const COLLECT_DONATION = gql`
+  mutation collectDonation(
+    $campaignCode: String!
+    $bankId: Int
+    $email: String!
+    $amount: Float!
+  ) {
+    collectDonation(
+      campaignCode: $campaignCode
+      bankId: $bankId
+      email: $email
+      amount: $amount
+    ) {
+      iban
+      bankName
+      referenceCode
+    }
+  }
+`;
+
 const donateSchema = Yup.object().shape({
   email: Yup.string()
     .required('Bu alan zorunludur.')
@@ -45,23 +89,32 @@ const donateSchema = Yup.object().shape({
   amount: Yup.number()
     .typeError('Geçerli bir rakam giriniz.')
     .required('Bu alan zorunludur.'),
+  applicationCheck: Yup.boolean().oneOf(
+    [true],
+    'Şartları onaylamanız gerekmektedir.'
+  ),
 });
 
 function BankTransferFlow() {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
-  const [getOauthUrl, oauthResponse] = useLazyQuery(GET_OAUTH_URL, {
+  const [tokenRemoved, setTokenRemoved] = React.useState(false);
+  const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: params.id,
     },
   });
-  const [getBanks, { error, data, loading }] = useLazyQuery(GET_BANKS, {
+  const [
+    getBanks,
+    { error: bankError, data: bankData, loading: bankLoading },
+  ] = useLazyQuery(GET_BANKS, {
     context: {
       headers: {
         oauth2: getBiLiraToken(),
       },
     },
   });
+  const [collectDonation] = useMutation(COLLECT_DONATION);
 
   React.useLayoutEffect(() => {
     const biLiraAuth = getBiLiraToken();
@@ -70,48 +123,50 @@ function BankTransferFlow() {
     } else {
       getOauthUrl();
     }
-  }, [data, getBanks, getOauthUrl]);
+  }, [bankData, getBanks, getOauthUrl]);
 
-  if (loading)
+  if (bankLoading) {
     return (
       <Box textAlign="center">
         <Loader />
       </Box>
     );
-  if (error) {
+  }
+
+  if (bankError) {
+    bankError.graphQLErrors.forEach(error => {
+      if (error.extensions.exception.statusCode === 401 && !tokenRemoved) {
+        removeBiLiraToken();
+        setTokenRemoved(true);
+        getOauthUrl();
+      }
+    });
+
     return (
       <Box mt={2} mb={4}>
         <Alert status="error">
           <AlertIcon />
           There was an error processing your request.
         </Alert>
+        {oauthData && (
+          <LoginWithBiLira
+            mt={4}
+            href={oauthData.biliraOAuthUrl.authorizationUri}
+          />
+        )}
       </Box>
     );
   }
 
-  // todo: make redirect after biLira oauth is done.
-  if (!getBiLiraToken()) {
-    return (
-      <Link href={oauthResponse.data?.biliraOAuthUrl.authorizationUri}>
-        <Button bg="#04144c" _hover={{ bg: '#020c2d' }} color="#fff">
-          <Image
-            alt="Login with BiLira"
-            src={`${process.env.PUBLIC_URL}/images/bilira-logo.svg`}
-            w="80px"
-          />
-          <Text ml={2} fontWeight={400}>
-            ile giriş yap
-          </Text>
-        </Button>
-      </Link>
-    );
+  if (!getBiLiraToken() && oauthData) {
+    return <LoginWithBiLira href={oauthData.biliraOAuthUrl.authorizationUri} />;
   }
 
   return (
     <Box mt={2} mb={4}>
-      {data && (
-        <Stack isInline mb={4}>
-          {data.systemBankAccounts.map(bankAccount => (
+      {bankData && (
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={4}>
+          {bankData.systemBankAccounts.map(bankAccount => (
             <Button
               key={bankAccount.id}
               variant="ghost"
@@ -126,7 +181,7 @@ function BankTransferFlow() {
               />
             </Button>
           ))}
-        </Stack>
+        </SimpleGrid>
       )}
       {currentBank !== -1 && (
         <Formik
@@ -138,6 +193,14 @@ function BankTransferFlow() {
           validationSchema={donateSchema}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
+            collectDonation({
+              variables: {
+                campaignCode: params.id,
+                bankAccount: currentBank,
+                email: values.email,
+                amount: parseFloat(values.amount),
+              },
+            });
           }}
         >
           {({ isSubmitting, errors }) => (

@@ -6,6 +6,10 @@ export function getBiLiraToken() {
   return localStorage.getItem('blAuth');
 }
 
+export function removeBiLiraToken() {
+  return localStorage.removeItem('blAuth');
+}
+
 export function checkID(value) {
   let totalX = 0;
   for (let i = 0; i < 10; i += 1) {

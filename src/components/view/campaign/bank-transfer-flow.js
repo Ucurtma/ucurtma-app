@@ -28,7 +28,8 @@ const LoginWithBiLira = ({ href, ...otherProps }) => {
         _hover={{ bg: '#020c2d' }}
         color="#fff"
         width="full"
-        padding={6}
+        padding={3}
+        height="auto"
         {...otherProps}
       >
         <Image
@@ -196,9 +197,14 @@ function BankTransferFlow() {
             collectDonation({
               variables: {
                 campaignCode: params.id,
-                bankAccount: currentBank,
+                bankId: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),
+              },
+              context: {
+                headers: {
+                  oauth2: getBiLiraToken(),
+                },
               },
             });
           }}

@@ -2,7 +2,6 @@ import React from 'react';
 import * as Yup from 'yup';
 import {
   Box,
-  Checkbox,
   Flex,
   Button,
   Alert,
@@ -18,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Loader from '../../ui/loader';
+import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
 
 const LoginWithBiLira = ({ href, ...otherProps }) => {
@@ -89,7 +89,7 @@ const donateSchema = Yup.object().shape({
   amount: Yup.number()
     .typeError('Geçerli bir rakam giriniz.')
     .required('Bu alan zorunludur.'),
-  applicationCheck: Yup.boolean().oneOf(
+  consentToReceiveNews: Yup.boolean().oneOf(
     [true],
     'Şartları onaylamanız gerekmektedir.'
   ),

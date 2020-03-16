@@ -196,9 +196,14 @@ function BankTransferFlow() {
             collectDonation({
               variables: {
                 campaignCode: params.id,
-                bankAccount: currentBank,
+                bankAccount: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),
+              },
+              context: {
+                headers: {
+                  oauth2: getBiLiraToken(),
+                },
               },
             });
           }}

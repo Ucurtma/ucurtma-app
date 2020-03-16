@@ -197,7 +197,7 @@ function BankTransferFlow() {
             collectDonation({
               variables: {
                 campaignCode: params.id,
-                bankAccount: parseInt(currentBank, 10),
+                bankId: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),
               },

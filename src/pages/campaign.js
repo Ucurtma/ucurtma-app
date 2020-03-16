@@ -11,7 +11,6 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  CloseButton,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -55,16 +54,15 @@ function Campaign() {
         <title>Kampanya | Uçurtma Projesi</title>
       </Helmet>
       <Header mt={8} withLogo hideMenu />
-      <Container>
+      <Container minHeight="100vh">
         {loading && <Loader />}
         {!loading && (error || !data?.campaign) && (
-          <Alert w="full" status="error" mt={4}>
+          <Alert w="full" maxH="70px" status="error" mt={4}>
             <AlertIcon />
             <AlertTitle mr={2}>Bir sorun oluştu.</AlertTitle>
             <AlertDescription>
               Lütfen daha sonra tekrar deneyin.
             </AlertDescription>
-            <CloseButton position="absolute" right="8px" top="8px" />
           </Alert>
         )}
         {!loading && !error && data.campaign && (

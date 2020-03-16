@@ -28,7 +28,8 @@ const LoginWithBiLira = ({ href, ...otherProps }) => {
         _hover={{ bg: '#020c2d' }}
         color="#fff"
         width="full"
-        padding={6}
+        padding={3}
+        height="auto"
         {...otherProps}
       >
         <Image

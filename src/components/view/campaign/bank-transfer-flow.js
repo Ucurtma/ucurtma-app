@@ -10,6 +10,7 @@ import {
   Link,
   Text,
   SimpleGrid,
+  AlertDescription,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
@@ -42,6 +43,28 @@ const LoginWithBiLira = ({ href, ...otherProps }) => {
         </Text>
       </Button>
     </Link>
+  );
+};
+
+const SelectBank = ({ bankData, onSelect, selectedBank }) => {
+  return (
+    <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={4}>
+      {bankData.systemBankAccounts.map(bankAccount => (
+        <Button
+          key={bankAccount.id}
+          variant="ghost"
+          border="1px solid"
+          borderColor="gray.100"
+          onClick={() => onSelect(bankAccount.id)}
+          bg={selectedBank === bankAccount.id ? 'gray.100' : 'transparent'}
+        >
+          <Image
+            alt={bankAccount.name}
+            src={`${process.env.PUBLIC_URL}/images/banks/${bankAccount.id}.png`}
+          />
+        </Button>
+      ))}
+    </SimpleGrid>
   );
 };
 
@@ -115,7 +138,9 @@ function BankTransferFlow() {
       },
     },
   });
-  const [collectDonation] = useMutation(COLLECT_DONATION);
+  const [collectDonation, { data: donationData }] = useMutation(
+    COLLECT_DONATION
+  );
 
   React.useLayoutEffect(() => {
     const biLiraAuth = getBiLiraToken();
@@ -163,26 +188,33 @@ function BankTransferFlow() {
     return <LoginWithBiLira href={oauthData.biliraOAuthUrl.authorizationUri} />;
   }
 
+  if (donationData) {
+    const { bankName, iban, referenceCode } = donationData.collectDonation;
+    return (
+      <Box>
+        <Alert status="success">
+          <AlertDescription>
+            Gönderdiğiniz destek için teşekkürler. Gönderdiğiniz desteğin
+            onaylanması için{' '}
+            <strong>
+              {bankName} {iban}
+            </strong>{' '}
+            IBAN numarasına, açıklamasına <strong>{referenceCode}</strong>{' '}
+            yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir.
+          </AlertDescription>
+        </Alert>
+      </Box>
+    );
+  }
+
   return (
     <Box mt={2} mb={4}>
       {bankData && (
-        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={4}>
-          {bankData.systemBankAccounts.map(bankAccount => (
-            <Button
-              key={bankAccount.id}
-              variant="ghost"
-              border="1px solid"
-              borderColor="gray.100"
-              onClick={() => setCurrentBank(bankAccount.id)}
-              bg={currentBank === bankAccount.id ? 'gray.100' : 'transparent'}
-            >
-              <Image
-                alt={bankAccount.name}
-                src={`${process.env.PUBLIC_URL}/images/banks/${bankAccount.id}.png`}
-              />
-            </Button>
-          ))}
-        </SimpleGrid>
+        <SelectBank
+          bankData={bankData}
+          onSelect={bankId => setCurrentBank(bankId)}
+          selectedBank={currentBank}
+        />
       )}
       {currentBank !== -1 && (
         <Formik
@@ -230,7 +262,7 @@ function BankTransferFlow() {
                   type="submit"
                   isLoading={isSubmitting}
                   disabled={isSubmitting || Object.keys(errors).length > 0}
-                  width={{ base: '100%', md: 'auto' }}
+                  width="full"
                 >
                   Gönder
                 </Button>

@@ -12,16 +12,17 @@ import {
   AlertTitle,
   AlertDescription,
   Icon,
+  Button,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { AlertCircle } from 'react-feather';
+import { AlertCircle, Award } from 'react-feather';
 import gql from 'graphql-tag';
 import ReactMarkdown from 'react-markdown';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
-import DonatePopover from '../components/view/campaign/donate-popover';
+import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 
 const GET_CAMPAIGN = gql`
@@ -44,6 +45,7 @@ const GET_CAMPAIGN = gql`
 `;
 
 function Campaign() {
+  const [content, setContent] = React.useState('donate');
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -176,7 +178,20 @@ function Campaign() {
           ) : (
             <>
               <Heading color="gray.700">{data.campaign?.campaignTitle}</Heading>
-              <DonatePopover ethereumAddress={data.campaign?.ethereumAddress} />
+              <Button
+                variant="solid"
+                bg="gray.100"
+                h={16}
+                width={{ base: 'auto', md: '368px' }}
+                flexShrink="0"
+                justifyContent="space-between"
+                boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
+                onClick={() => setContent('donate')}
+                zIndex={2000}
+              >
+                Destek Ol
+                <Icon as={Award} size="28px" />
+              </Button>
             </>
           )}
         </Flex>
@@ -189,11 +204,19 @@ function Campaign() {
           {loading ? (
             <Skeleton count={12} />
           ) : (
-            <ReactMarkdown
-              renderers={ChakraUIRenderer()}
-              source={data.campaign?.campaignText}
-              escapeHtml={false}
-            />
+            <>
+              {content === 'markdown' && (
+                <ReactMarkdown
+                  renderers={ChakraUIRenderer()}
+                  source={data.campaign?.campaignText}
+                  escapeHtml={false}
+                />
+              )}
+
+              {content === 'donate' && (
+                <Donate ethereumAddress={data.campaign?.ethereumAddress} />
+              )}
+            </>
           )}
         </Container>
       </Container>

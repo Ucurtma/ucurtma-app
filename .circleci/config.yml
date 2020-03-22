@@ -16,7 +16,9 @@ references:
   build_static_bundle: &build_static_bundle
     run:
       name: Export the application bundle
-      command: yarn build
+      command: |
+        echo 'window.app_env = "staging";' > ./public/configuration.js
+        yarn build
   test_unit: &test_unit
     run:
       name: Make unit tests

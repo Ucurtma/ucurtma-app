@@ -15,11 +15,11 @@ function EthereumFlow({ ethereumAddress }) {
   return (
     <>
       <Box mt={2} mb={4}>
-        <Alert status="error">
-          <AlertIcon />
+        <Alert status="error" bg="gray.50">
+          <AlertIcon color="" />
           <AlertDescription mr={2}>
-            Bu kampanya sadece BiLira token'ı kabul etmektedir. Bu kontrata
-            göndereceğiniz diğer token'lar geri döndürülemez biçimde
+            Bu kampanya sadece BiLira token&apos;ı kabul etmektedir. Bu kontrata
+            göndereceğiniz diğer token&apos;lar geri döndürülemez biçimde
             kaybetmenize neden olacaktır.
           </AlertDescription>
         </Alert>
@@ -32,7 +32,7 @@ function EthereumFlow({ ethereumAddress }) {
         >
           <Image
             flexShrink="0"
-            src={`https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=${ethereumAddress}`}
+            src={`https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${ethereumAddress}`}
           />
         </Link>
         <Box>

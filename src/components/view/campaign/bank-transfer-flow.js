@@ -15,9 +15,9 @@ import {
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
-import Loader from '../../ui/loader';
 import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
 
@@ -48,7 +48,7 @@ const LoginWithBiLira = ({ href, ...otherProps }) => {
 
 const SelectBank = ({ bankData, onSelect, selectedBank }) => {
   return (
-    <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={4}>
+    <SimpleGrid columns={{ base: 2, md: 5 }} spacing={4} mb={4}>
       {bankData.systemBankAccounts.map(bankAccount => (
         <Button
           key={bankAccount.id}
@@ -154,7 +154,7 @@ function BankTransferFlow() {
   if (bankLoading) {
     return (
       <Box textAlign="center">
-        <Loader />
+        <Skeleton count={4} />
       </Box>
     );
   }

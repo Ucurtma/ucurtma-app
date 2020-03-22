@@ -1,5 +1,4 @@
-export const isProduction =
-  process.env.NODE_ENV === 'prod' || process.argv.ENV === 'prod';
+export const isProduction = window && window.app_env === 'production';
 
 export const gaTrackingId = 'UA-143538110-1';
 

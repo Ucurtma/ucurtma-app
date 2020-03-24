@@ -27,11 +27,13 @@ function OurTeam() {
         <Grid
           templateColumns={{
             base: 'repeat(1, 1fr)',
-            md: 'repeat(5, 1fr)',
+            md: 'repeat(4, 1fr)',
+            lg: 'repeat(5, 1fr)',
           }}
           margin="0 auto"
           columnGap={8}
           rowGap={8}
+          p={4}
         >
           {teamMembers.map((member, i) => (
             <Box overflow="hidden" roundedTop="4px" key={i.toString()}>

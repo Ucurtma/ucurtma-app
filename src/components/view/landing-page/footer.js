@@ -25,6 +25,7 @@ function LandingFooter() {
           width="full"
           columnGap={{ base: 8, md: 12 }}
           rowGap={{ base: 8 }}
+          px={4}
         >
           <Image src={`${process.env.PUBLIC_URL}/images/logo-white.svg`} />
           <Box>

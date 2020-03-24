@@ -10,7 +10,7 @@ function ProblemSolution() {
     <Flex
       id="problem-solution"
       py={24}
-      px={{ base: 4, md: 0 }}
+      px={{ base: 4, lg: 0 }}
       bg="gray.700"
       color="gray.100"
     >
@@ -33,9 +33,9 @@ function ProblemSolution() {
             <Heading size="xl">{t('New solution with blockchain')}</Heading>
             <Text mt={4}>{t('What was the problem')}</Text>
             <Box textAlign="left" mt={4}>
-              <Flex>
+              <Flex flexDir={{ base: 'column', lg: 'row' }}>
                 <Box
-                  width={{ base: '100%', md: '50%' }}
+                  width={{ base: '100%', lg: '50%' }}
                   pr={{ base: 4, md: 0 }}
                 >
                   <Flex alignItems="center" my={4}>
@@ -44,7 +44,7 @@ function ProblemSolution() {
                   </Flex>
                   {t('Safe_details')}
                 </Box>
-                <Box width={{ base: '100%', md: '50%' }}>
+                <Box width={{ base: '100%', lg: '50%' }}>
                   <Flex alignItems="center" my={4}>
                     <Icon size="36px" as={Droplet} mr={4} />
                     <Heading size="sm">{t('Transparent')}</Heading>

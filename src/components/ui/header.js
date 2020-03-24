@@ -64,7 +64,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   return (
     <Container
       mt={0}
-      p={{ base: 4, md: 0 }}
+      p={{ base: 4, lg: 0 }}
       display="block"
       position="relative"
       zIndex={{ base: 'inherit', md: '2' }}

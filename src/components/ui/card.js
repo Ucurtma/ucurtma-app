@@ -16,7 +16,6 @@ function Card({ children, paddingType, ...otherProps }) {
       border="1px solid #eee"
       py={paddingTypes[paddingType].py}
       px={paddingTypes[paddingType].px}
-      mx={{ base: 4, md: 0 }}
       _hover={{ boxShadow: 'cardLightHover' }}
       transition="0.2s ease all"
       {...otherProps}

@@ -96,7 +96,7 @@ function Campaign() {
             width="full"
             flexDir={{ base: 'column', md: 'row' }}
           >
-            <Flex mx={{ base: 4, md: 0 }} alignItems="flex-end" flexShrink="0">
+            <Flex mx={{ base: 4, lg: 0 }} alignItems="flex-end" flexShrink="0">
               {loading ? (
                 <Skeleton width={72} height={72} circle />
               ) : (
@@ -133,7 +133,7 @@ function Campaign() {
               borderY={{ base: '1px solid', md: 0 }}
               borderColor="gray.300"
               borderTopColor="gray.300"
-              p={{ base: 4, md: 0 }}
+              p={{ base: 4, lg: 0 }}
               bg={{ base: 'gray.100', md: 'inherit' }}
             >
               <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
@@ -171,7 +171,7 @@ function Campaign() {
               </Box>
             </Flex>
           </Flex>
-          <Flex justify="space-between" align="center" mx={{ base: 4, md: 0 }}>
+          <Flex justify="space-between" align="center" mx={{ base: 4, lg: 0 }}>
             {loading ? (
               <Box flex={1}>
                 <Skeleton height={72} />
@@ -199,7 +199,7 @@ function Campaign() {
             )}
           </Flex>
           <Container
-            px={{ base: 4, md: 0 }}
+            px={{ base: 4, lg: 0 }}
             pt={{ space: 4 }}
             pb={{ space: 4 }}
             display="block"

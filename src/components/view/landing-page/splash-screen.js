@@ -35,25 +35,25 @@ function SplashScreen() {
         position="absolute"
         top="0"
         right="0"
-        w={{ base: '100%', md: '50%' }}
-        h={{ base: '250px', md: '100%' }}
+        w={{ base: '100%', lg: '50%' }}
+        h={{ base: '250px', lg: '100%' }}
         backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         backgroundPosition="center center"
       />
       <Container
-        height={{ base: 'auto', md: '100vh' }}
+        height={{ base: 'auto', lg: '100vh' }}
         m="0 auto"
         mt={0}
         overflow="hidden"
-        p={{ base: 4, md: 0 }}
+        p={{ md: 4, lg: 0 }}
       >
         <Flex
           flexDir="column"
           justifyContent={{ base: 'flex-start', md: 'center' }}
           mt={{ base: '250px', md: 0 }}
-          px={{ base: '0', md: '10px' }}
+          px={{ base: 4, md: '10px' }}
         >
           <Link as={RouterLink} to="/" display="contents" id="logo">
             <Icon name="logo" size="4rem" />
@@ -61,10 +61,10 @@ function SplashScreen() {
           <Box
             zIndex="2"
             bg="white"
-            maxW={{ base: '100%', md: '55%' }}
+            maxW={{ base: '100%', md: '85%', lg: '55%' }}
             borderRadius="3px"
-            py={{ base: 4, md: 8 }}
-            pr={{ md: 12 }}
+            py={{ base: 4, lg: 8 }}
+            px={{ base: 0, md: 8, lg: 12 }}
             mt={{ base: '1rem' }}
           >
             <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">

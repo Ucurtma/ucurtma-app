@@ -83,7 +83,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
           <MenuItems
             alignItems="center"
             mt={4}
-            display={{ base: 'none', md: 'flex' }}
+            display={{ base: 'none', lg: 'flex' }}
             items={menuItems}
             {...menuProps}
           />
@@ -94,7 +94,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
           <IconButton
             aria-label="Navigation"
             icon={Menu}
-            display={{ base: 'inline-flex', md: 'none' }}
+            display={{ base: 'inline-flex', lg: 'none' }}
             color="paragraph"
             position="fixed"
             top={3}

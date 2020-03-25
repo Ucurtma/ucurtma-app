@@ -3,6 +3,7 @@ import { Box, Image } from '@chakra-ui/core';
 import { useLocation } from 'react-router-dom';
 import { parse } from 'query-string';
 import { useHistory } from 'react-router-dom';
+import config from '../config';
 
 const Redirecting = () => {
   const location = useLocation();
@@ -11,9 +12,7 @@ const Redirecting = () => {
   React.useEffect(() => {
     const urlData = parse(location.search);
     if (urlData.code) {
-      fetch(
-        `https://api.ucurtmaprojesi.com/oauth/callback?code=${urlData.code}`
-      )
+      fetch(`${config.backendUrl}/oauth/callback?code=${urlData.code}`)
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);

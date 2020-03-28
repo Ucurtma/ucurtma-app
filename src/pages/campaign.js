@@ -26,6 +26,7 @@ import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
+import ReportCampaignForm from '../components/forms/report-campaign-form';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -227,11 +228,12 @@ function Campaign() {
                     >
                       Şikayet Oluştur
                     </Button>
-                    <Collapse mt={4} isOpen={reportCampaignView}>
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life
-                      accusamus terry richardson ad squid. Nihil anim keffiyeh
-                      helvetica, craft beer labore wes anderson cred nesciunt
-                      sapiente ea proident.
+                    <Collapse
+                      maxW="600px"
+                      ml="auto"
+                      isOpen={reportCampaignView}
+                    >
+                      <ReportCampaignForm campaignId={id} />
                     </Collapse>
                   </Flex>
                 </Box>

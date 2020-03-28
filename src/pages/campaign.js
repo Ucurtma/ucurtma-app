@@ -13,6 +13,8 @@ import {
   AlertDescription,
   Icon,
   Button,
+  Divider,
+  Collapse,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -46,6 +48,7 @@ const GET_CAMPAIGN = gql`
 
 function Campaign() {
   const [content, setContent] = React.useState('markdown');
+  const [reportCampaignView, setReportCampaignView] = React.useState(false);
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -214,6 +217,23 @@ function Campaign() {
                     source={data.campaign?.campaignText}
                     escapeHtml={false}
                   />
+                  <Divider mt={8} />
+                  <Flex mb={8} flexDir="column">
+                    <Button
+                      variant="ghost"
+                      color="red.300"
+                      ml="auto"
+                      onClick={() => setReportCampaignView(!reportCampaignView)}
+                    >
+                      Şikayet Oluştur
+                    </Button>
+                    <Collapse mt={4} isOpen={reportCampaignView}>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. Nihil anim keffiyeh
+                      helvetica, craft beer labore wes anderson cred nesciunt
+                      sapiente ea proident.
+                    </Collapse>
+                  </Flex>
                 </Box>
                 <Box display={content === 'donate' ? 'block' : 'none'}>
                   <Donate

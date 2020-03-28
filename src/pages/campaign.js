@@ -13,6 +13,7 @@ import {
   AlertDescription,
   Icon,
   Button,
+  Image,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -160,12 +161,19 @@ function Campaign() {
                   fontSize="1.5rem"
                   fontWeight={500}
                   textAlign={{ base: 'center', md: 'left' }}
-                  color="linkBlue"
+                  color="#1E284C"
                 >
                   {loading ? (
                     <Skeleton width={70} />
                   ) : (
-                    `₺${data.campaign?.totalFunds}`
+                    <Flex>
+                      <Image
+                        maxW="14px"
+                        src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                        mr={1}
+                      />
+                      {data.campaign?.totalFunds}
+                    </Flex>
                   )}
                 </Text>
               </Box>

@@ -166,9 +166,11 @@ function Campaign() {
                   {loading ? (
                     <Skeleton width={70} />
                   ) : (
-                    <Flex>
+                    <Flex align="center">
                       <Image
                         maxW="14px"
+                        width="full"
+                        height="full"
                         src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
                         mr={1}
                       />

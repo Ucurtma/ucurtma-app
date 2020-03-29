@@ -17,7 +17,7 @@ import {
   Collapse,
   Image,
 } from '@chakra-ui/core';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { AlertCircle, Award } from 'react-feather';
 import gql from 'graphql-tag';
@@ -49,9 +49,12 @@ const GET_CAMPAIGN = gql`
 `;
 
 function Campaign() {
-  const [content, setContent] = React.useState('markdown');
-  const [reportCampaignView, setReportCampaignView] = React.useState(false);
+  const location = useLocation();
   const { id } = useParams();
+  const [content, setContent] = React.useState(
+    location.state?.redirected ? 'donate' : 'markdown'
+  );
+  const [reportCampaignView, setReportCampaignView] = React.useState(false);
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });

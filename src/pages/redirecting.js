@@ -15,7 +15,7 @@ const Redirecting = () => {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
-          history.push(`/campaign/${urlData.state}`, [{ redirected: true }]);
+          history.push(`/campaign/${urlData.state}`, { redirected: true });
         });
     }
   }, [location, history]);

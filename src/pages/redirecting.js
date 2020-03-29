@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Image } from '@chakra-ui/core';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { parse } from 'query-string';
-import { useHistory } from 'react-router-dom';
 import config from '../config';
 
 const Redirecting = () => {
@@ -16,7 +15,7 @@ const Redirecting = () => {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
-          history.push(`/campaign/${urlData.state}`);
+          history.push(`/campaign/${urlData.state}`, [{ redirected: true }]);
         });
     }
   }, [location, history]);

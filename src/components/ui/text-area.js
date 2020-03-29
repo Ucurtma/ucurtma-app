@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Input as ChakraInput,
+  Textarea as ChakraTextArea,
   FormErrorMessage,
   FormLabel,
   FormControl,
 } from '@chakra-ui/core';
 import { useField } from 'formik';
 
-function Input({ label, type, controlProps, ...props }) {
+function Textarea({ label, type, controlProps, ...props }) {
   const [field, meta] = useField(props);
   return (
     <FormControl
@@ -21,7 +21,7 @@ function Input({ label, type, controlProps, ...props }) {
           {label}
         </FormLabel>
       )}
-      <ChakraInput
+      <ChakraTextArea
         aria-label={label || field.name}
         aria-describedby={label || field.name}
         type={type || 'text'}
@@ -37,4 +37,4 @@ function Input({ label, type, controlProps, ...props }) {
   );
 }
 
-export default Input;
+export default Textarea;

@@ -13,6 +13,8 @@ import {
   AlertDescription,
   Icon,
   Button,
+  Divider,
+  Collapse,
   Image,
 } from '@chakra-ui/core';
 import { useParams } from 'react-router-dom';
@@ -25,6 +27,7 @@ import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
+import ReportCampaignForm from '../components/forms/report-campaign-form';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -47,6 +50,7 @@ const GET_CAMPAIGN = gql`
 
 function Campaign() {
   const [content, setContent] = React.useState('markdown');
+  const [reportCampaignView, setReportCampaignView] = React.useState(false);
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -224,6 +228,24 @@ function Campaign() {
                     source={data.campaign?.campaignText}
                     escapeHtml={false}
                   />
+                  <Divider mt={8} />
+                  <Flex mb={8} flexDir="column">
+                    <Button
+                      variant="ghost"
+                      color="red.300"
+                      ml="auto"
+                      onClick={() => setReportCampaignView(!reportCampaignView)}
+                    >
+                      Şikayet Oluştur
+                    </Button>
+                    <Collapse
+                      maxW="600px"
+                      ml="auto"
+                      isOpen={reportCampaignView}
+                    >
+                      <ReportCampaignForm campaignId={id} />
+                    </Collapse>
+                  </Flex>
                 </Box>
                 <Box display={content === 'donate' ? 'block' : 'none'}>
                   <Donate

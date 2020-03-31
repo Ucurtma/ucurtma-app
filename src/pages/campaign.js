@@ -28,6 +28,7 @@ import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 import ReportCampaignForm from '../components/forms/report-campaign-form';
+import Timeline from 'components/ui/timeline';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -226,11 +227,32 @@ function Campaign() {
             ) : (
               <>
                 <Box display={content === 'markdown' ? 'block' : 'none'}>
-                  <ReactMarkdown
-                    renderers={ChakraUIRenderer()}
-                    source={data.campaign?.campaignText}
-                    escapeHtml={false}
-                  />
+                  <Flex>
+                    <Box
+                      w="full"
+                      flexShrink="0"
+                      maxW={{ base: '100%', lg: '60%' }}
+                    >
+                      <ReactMarkdown
+                        renderers={ChakraUIRenderer()}
+                        source={data.campaign?.campaignText}
+                        escapeHtml={false}
+                      />
+                    </Box>
+                    <Divider mx={4} orientation="vertical" />
+                    <Box
+                      bg="gray.50"
+                      p={4}
+                      w="full"
+                      maxW={{ base: '100%', lg: '40%' }}
+                      height="full"
+                    >
+                      <Heading size="sm" color="gray.500">
+                        Kampanya Gelişmeleri
+                      </Heading>
+                      <Timeline />
+                    </Box>
+                  </Flex>
                   <Divider mt={8} />
                   <Flex mb={8} flexDir="column">
                     <Button

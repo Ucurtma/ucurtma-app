@@ -1,7 +1,42 @@
 import React from 'react';
-import { Box, PseudoBox, Image } from '@chakra-ui/core';
+import {
+  Box,
+  PseudoBox,
+  Image,
+  Heading,
+  AspectRatioBox,
+} from '@chakra-ui/core';
+import Masonry from 'react-masonry-css';
+import './timeline.css';
+
+function TimelineBox({ children, title, ...otherProps }) {
+  return (
+    <Box
+      px={4}
+      pt={4}
+      mb={4}
+      bg="gray.200"
+      border="1px solid"
+      borderColor="gray.300"
+      borderRadius={4}
+      {...otherProps}
+    >
+      <Heading pb={4} size="sm" color="gray.500">
+        {title}
+      </Heading>
+      {children}
+    </Box>
+  );
+}
 
 function Timeline() {
+  // const breakpointColumnsObj = {
+  //   default: 4,
+  //   1100: 3,
+  //   700: 2,
+  //   500: 1,
+  // };
+
   const timelineRanges = [
     {
       date: new Date(),
@@ -9,14 +44,14 @@ function Timeline() {
         {
           type: 'image',
           content: [
-            'https://picsum.photos/1080/720',
-            'https://picsum.photos/1080/720',
-            'https://picsum.photos/1080/720',
+            'https://placekitten.com/1920/1080',
+            'https://placekitten.com/2400/2400',
+            'https://placekitten.com/720/1080',
           ],
         },
         {
           type: 'video',
-          content: 'https://www.youtube.com/watch?v=IwrBfcv0EhE',
+          content: 'https://www.youtube.com/embed/Xwqw7O0IU-0',
         },
         {
           type: 'text',
@@ -31,14 +66,14 @@ function Timeline() {
         {
           type: 'image',
           content: [
-            'https://picsum.photos/1080/720',
-            'https://picsum.photos/1080/720',
-            'https://picsum.photos/1080/720',
+            'https://placekitten.com/1920/1080',
+            'https://placekitten.com/2400/2400',
+            'https://placekitten.com/720/1080',
+            'https://placekitten.com/1920/1080',
+            'https://placekitten.com/1921/1081',
+            'https://placekitten.com/2401/2401',
+            'https://placekitten.com/721/1081',
           ],
-        },
-        {
-          type: 'video',
-          content: 'https://www.youtube.com/watch?v=IwrBfcv0EhE',
         },
         {
           type: 'text',
@@ -50,18 +85,6 @@ function Timeline() {
     {
       date: new Date(),
       items: [
-        {
-          type: 'image',
-          content: [
-            'https://i.picsum.photos/id/853/1080/720.jpg',
-            'https://i.picsum.photos/id/853/1080/720.jpg',
-            'https://i.picsum.photos/id/853/1080/720.jpg',
-          ],
-        },
-        {
-          type: 'video',
-          content: 'https://www.youtube.com/watch?v=IwrBfcv0EhE',
-        },
         {
           type: 'text',
           content:
@@ -104,21 +127,48 @@ function Timeline() {
                   bg="gray.300"
                   top="0.4rem"
                 />
-                <PseudoBox display="inline-flex" fontSize="15px">
+                <PseudoBox
+                  display="inline-flex"
+                  fontWeight={600}
+                  mb={2}
+                  color="gray.600"
+                  fontSize="16px"
+                >
                   {range.date.toLocaleString()}
                 </PseudoBox>
                 <Box>
                   {range.items.map(item => {
                     if (item.type === 'image') {
                       return (
-                        <>
-                          {item.content.map(imageURL => {
-                            return <Image src={imageURL} />;
-                          })}
-                        </>
+                        <TimelineBox title="Fotoğraflar">
+                          <Masonry
+                            breakpointCols={3}
+                            className="my-masonry-grid"
+                            columnClassName="my-masonry-grid_column"
+                          >
+                            {item.content.map(imageURL => {
+                              return <Image mb={4} src={imageURL} />;
+                            })}
+                          </Masonry>
+                        </TimelineBox>
                       );
                     }
-                    return <Box>{item.type}</Box>;
+
+                    if (item.type === 'video') {
+                      return (
+                        <TimelineBox pb={4} title="Video">
+                          <AspectRatioBox ratio={16 / 9}>
+                            <Box
+                              as="iframe"
+                              src={item.content}
+                              allowFullScreen
+                            />
+                          </AspectRatioBox>
+                        </TimelineBox>
+                      );
+                    }
+
+                    return <Box>{item.content}</Box>;
                   })}
                 </Box>
               </Box>

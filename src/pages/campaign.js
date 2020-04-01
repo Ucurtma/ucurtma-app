@@ -28,7 +28,7 @@ import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 import ReportCampaignForm from '../components/forms/report-campaign-form';
-import Timeline from 'components/ui/timeline';
+import Timeline from '../components/ui/timeline';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {

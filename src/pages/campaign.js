@@ -16,7 +16,6 @@ import {
   Collapse,
   Image,
   PseudoBox,
-  Divider,
 } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';

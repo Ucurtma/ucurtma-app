@@ -13,9 +13,9 @@ import {
   AlertDescription,
   Icon,
   Button,
-  Divider,
   Collapse,
   Image,
+  PseudoBox,
 } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -28,6 +28,7 @@ import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 import ReportCampaignForm from '../components/forms/report-campaign-form';
+import Timeline from '../components/ui/timeline';
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -58,7 +59,6 @@ function Campaign() {
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });
-
   if (error || (data && data.campaign === null)) {
     return (
       <Flex flexDir="column" justify="space-between" height="full">
@@ -195,23 +195,27 @@ function Campaign() {
               </Box>
             ) : (
               <>
-                <Heading color="gray.700">
+                <Heading color="gray.700" fontSize={{ base: '2xl', lg: '4xl' }}>
                   {data.campaign?.campaignTitle}
                 </Heading>
-                <Button
-                  variant="solid"
-                  bg="gray.100"
-                  h={16}
-                  width={{ base: 'auto', md: '368px' }}
-                  flexShrink="0"
-                  justifyContent="space-between"
-                  boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-                  onClick={() => setContent('donate')}
-                  zIndex={2000}
-                >
-                  Destek Ol
-                  <Icon as={Award} size="28px" />
-                </Button>
+                <Box>
+                  <PseudoBox
+                    as={Button}
+                    variant="solid"
+                    bg="linkGreen"
+                    h={{ base: 12, lg: 16 }}
+                    width={{ base: 'auto', md: '368px' }}
+                    flexShrink="0"
+                    justifyContent="space-between"
+                    boxShadow="0 0 2px rgba(124,124,124,0.16)"
+                    onClick={() => setContent('donate')}
+                    zIndex={2000}
+                    _hover={{ bg: 'green.100' }}
+                  >
+                    Destek Ol
+                    <Icon as={Award} size="28px" />
+                  </PseudoBox>
+                </Box>
               </>
             )}
           </Flex>
@@ -225,13 +229,35 @@ function Campaign() {
               <Skeleton count={12} />
             ) : (
               <>
-                <Box display={content === 'markdown' ? 'block' : 'none'}>
-                  <ReactMarkdown
-                    renderers={ChakraUIRenderer()}
-                    source={data.campaign?.campaignText}
-                    escapeHtml={false}
-                  />
-                  <Divider mt={8} />
+                <Box mt={4} display={content === 'markdown' ? 'block' : 'none'}>
+                  <Flex flexDir={{ base: 'column', lg: 'row' }}>
+                    <Box
+                      w="full"
+                      flexShrink="0"
+                      maxW={{ base: '100%', lg: '65%' }}
+                    >
+                      <ReactMarkdown
+                        renderers={ChakraUIRenderer()}
+                        source={data.campaign?.campaignText}
+                        escapeHtml={false}
+                      />
+                    </Box>
+                    <Box
+                      bg="gray.50"
+                      borderRadius="4px"
+                      p={4}
+                      w="full"
+                      height="full"
+                      maxW={{ base: '100%', lg: '35%' }}
+                      ml={{ base: 0, lg: 16 }}
+                      mt={{ base: 4, lg: 0 }}
+                    >
+                      <Heading size="sm" color="gray.500">
+                        Kampanya Gelişmeleri
+                      </Heading>
+                      <Timeline />
+                    </Box>
+                  </Flex>
                   <Flex mb={8} flexDir="column">
                     <Button
                       variant="ghost"

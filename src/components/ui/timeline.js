@@ -21,7 +21,7 @@ function TimelineBox({ children, title, ...otherProps }) {
       borderRadius={4}
       {...otherProps}
     >
-      <Heading pb={4} size="sm" color="gray.500">
+      <Heading pb={4} size="sm" color="gray.400" fontSize="16px">
         {title}
       </Heading>
       {children}
@@ -97,7 +97,7 @@ function Timeline() {
   const listPadding = 5;
 
   return (
-    <Box>
+    <Box mt={4}>
       <PseudoBox as="ul" m={0} listStyleType="none" pos="relative">
         {timelineRanges.map((range, index) => {
           return (
@@ -168,7 +168,11 @@ function Timeline() {
                       );
                     }
 
-                    return <Box>{item.content}</Box>;
+                    return (
+                      <Box fontSize="16px" color="gray.500">
+                        {item.content}
+                      </Box>
+                    );
                   })}
                 </Box>
               </Box>

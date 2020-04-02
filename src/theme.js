@@ -37,6 +37,7 @@ const customTheme = {
     },
     title: '#4f4f4f',
     danger: '#F88888',
+    linkGreen: '#b7ed2e',
   },
   sizes: {
     ...theme.sizes,

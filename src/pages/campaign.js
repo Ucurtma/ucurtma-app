@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import Helmet from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
@@ -28,7 +28,9 @@ import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 import ReportCampaignForm from '../components/forms/report-campaign-form';
-import Timeline from '../components/ui/timeline';
+import Loader from '../components/ui/loader';
+
+const Timeline = lazy(() => import('../components/ui/timeline'));
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -45,6 +47,13 @@ const GET_CAMPAIGN = gql`
         department
         profilePhoto
       }
+      updates {
+        date
+        subItems {
+          type
+          content
+        }
+      }
     }
   }
 `;
@@ -59,6 +68,7 @@ function Campaign() {
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });
+
   if (error || (data && data.campaign === null)) {
     return (
       <Flex flexDir="column" justify="space-between" height="full">
@@ -164,7 +174,7 @@ function Campaign() {
                 <Heading size="sm" color="gray.400">
                   {loading ? <Skeleton width={140} /> : 'Toplam Destek'}
                 </Heading>
-                <Text
+                <Box
                   fontSize="1.5rem"
                   fontWeight={500}
                   textAlign={{ base: 'center', md: 'left' }}
@@ -181,10 +191,10 @@ function Campaign() {
                         src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
                         mr={1}
                       />
-                      {data.campaign?.totalFunds}
+                      {Math.floor(data.campaign?.totalFunds)}
                     </Flex>
                   )}
-                </Text>
+                </Box>
               </Box>
             </Flex>
           </Flex>
@@ -255,7 +265,11 @@ function Campaign() {
                       <Heading size="sm" color="gray.500">
                         Kampanya Gelişmeleri
                       </Heading>
-                      <Timeline />
+                      {data.campaign?.updates && (
+                        <Suspense fallback={<Loader />}>
+                          <Timeline items={data.campaign?.updates} />
+                        </Suspense>
+                      )}
                     </Box>
                   </Flex>
                   <Flex mb={8} flexDir="column">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
+import Router, { useRouter } from 'react-router-dom';
 import { User, DollarSign, CreditCard } from 'react-feather';
 import { Box } from '@chakra-ui/core';
 import Header from '../../components/ui/header';

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ReactGA from 'react-ga';
-import Home from './pages/home';
-import Campaign from './pages/campaign';
 import 'react-calendar/dist/Calendar.css';
 import { gaTrackingId } from './config';
-import Redirecting from './pages/redirecting';
+import Loader from './components/ui/loader';
+
+const Home = lazy(() => import('./pages/home'));
+const Campaign = lazy(() => import('./pages/campaign'));
+const Redirecting = lazy(() => import('./pages/redirecting'));
 
 ReactGA.initialize(gaTrackingId);
 const history = createBrowserHistory();
@@ -21,17 +23,19 @@ function App() {
 
   return (
     <Router history={history}>
-      <Switch>
-        <Route path="/auth">
-          <Redirecting />
-        </Route>
-        <Route path="/campaign/:id">
-          <Campaign />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loader isFull />}>
+        <Switch>
+          <Route path="/auth">
+            <Redirecting />
+          </Route>
+          <Route path="/campaign/:id">
+            <Campaign />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Suspense>
       <Route
         path="/"
         render={({ location }) => {

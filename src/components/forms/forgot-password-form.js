@@ -6,9 +6,7 @@ import * as Yup from 'yup';
 import Input from '../ui/input';
 
 const forgotPasswordSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
 });
 
 function ForgotPasswordForm({ onSubmit, withTitle }) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, RadioButtonGroup, Box, Flex, Icon } from '@chakra-ui/core';
+import { ArrowLeft } from 'react-feather';
 import EthereumFlow from './ethereum-flow';
 import BankTransferFlow from './bank-transfer-flow';
-import { ArrowLeft } from 'react-feather';
 
 const CustomRadio = React.forwardRef((props, ref) => {
   const { children, isChecked, isDisabled, value, ...rest } = props;

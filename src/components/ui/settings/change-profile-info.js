@@ -13,12 +13,8 @@ const profileInfoSchema = Yup.object().shape({
     .min(2, 'Too Short')
     .max(50, 'Too Long')
     .required('Required'),
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
-  country: Yup.string()
-    .min(2, 'Too Short')
-    .max(50, 'Too Long'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  country: Yup.string().min(2, 'Too Short').max(50, 'Too Long'),
   aboutYou: Yup.string().min(2, 'Too Short'),
 });
 

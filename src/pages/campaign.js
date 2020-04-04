@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import Helmet from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
@@ -28,7 +28,9 @@ import { withApollo } from '../utils/apollo';
 import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
 import ReportCampaignForm from '../components/forms/report-campaign-form';
-import Timeline from '../components/ui/timeline';
+import Loader from '../components/ui/loader';
+
+const Timeline = lazy(() => import('../components/ui/timeline'));
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -255,7 +257,9 @@ function Campaign() {
                       <Heading size="sm" color="gray.500">
                         Kampanya Gelişmeleri
                       </Heading>
-                      <Timeline />
+                      <Suspense fallback={<Loader />}>
+                        <Timeline />
+                      </Suspense>
                     </Box>
                   </Flex>
                   <Flex mb={8} flexDir="column">

@@ -1,9 +1,18 @@
 import React from 'react';
 import { Box, Spinner } from '@chakra-ui/core';
 
-function Loader() {
+function Loader({ isFull }) {
+  const fullProps = {
+    height: 'full',
+    alignItems: 'center',
+  };
   return (
-    <Box my={12} mx="auto">
+    <Box
+      display="flex"
+      width="full"
+      justifyContent="center"
+      {...(isFull && fullProps)}
+    >
       <Spinner
         thickness="4px"
         speed="0.75s"

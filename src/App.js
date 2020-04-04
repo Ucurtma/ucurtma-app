@@ -2,9 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ReactGA from 'react-ga';
-import { Box, Spinner } from '@chakra-ui/core';
 import 'react-calendar/dist/Calendar.css';
 import { gaTrackingId } from './config';
+import Loader from './components/ui/loader';
 
 const Home = lazy(() => import('./pages/home'));
 const Campaign = lazy(() => import('./pages/campaign'));
@@ -16,20 +16,6 @@ history.listen(location => {
   ReactGA.pageview(location.pathname + location.search);
 });
 
-function Loader() {
-  return (
-    <Box
-      width="full"
-      height="full"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Spinner />
-    </Box>
-  );
-}
-
 function App() {
   React.useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
@@ -37,7 +23,7 @@ function App() {
 
   return (
     <Router history={history}>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader isFull />}>
         <Switch>
           <Route path="/auth">
             <Redirecting />

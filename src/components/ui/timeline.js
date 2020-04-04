@@ -4,7 +4,6 @@ import {
   PseudoBox,
   Image,
   Heading,
-  AspectRatioBox,
   StatGroup,
   Stat,
   StatLabel,

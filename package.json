@@ -10,7 +10,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "export": "next export",
-    "lint": "lint-staged",
+    "lint": "eslint ./src --ext .js,.jsx",
     "prettier": "prettier --write ./**/*.js",
     "deploy-staging": "aws s3 sync out/ s3://non-prod-ucurtma-app --delete"
   },
@@ -55,16 +55,6 @@
     "reaptcha": "^1.7.2",
     "yup": "^0.28.1"
   },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --ext",
-      "git add"
-    ],
-    "*.{js,jsx,json,css,scss}": [
-      "pretty-quick --staged",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.1",
@@ -79,10 +69,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "eslint-plugin-testing-library": "^2.2.3",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
-    "prettier": "^2.0.1",
-    "pretty-quick": "^2.0.1"
+    "prettier": "^2.0.1"
   },
   "browserslist": {
     "production": [

@@ -47,6 +47,13 @@ const GET_CAMPAIGN = gql`
         department
         profilePhoto
       }
+      updates {
+        date
+        subItems {
+          type
+          content
+        }
+      }
     }
   }
 `;
@@ -61,6 +68,7 @@ function Campaign() {
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });
+
   if (error || (data && data.campaign === null)) {
     return (
       <Flex flexDir="column" justify="space-between" height="full">
@@ -183,7 +191,7 @@ function Campaign() {
                         src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
                         mr={1}
                       />
-                      {data.campaign?.totalFunds}
+                      {Math.floor(data.campaign?.totalFunds)}
                     </Flex>
                   )}
                 </Box>
@@ -257,9 +265,11 @@ function Campaign() {
                       <Heading size="sm" color="gray.500">
                         Kampanya Gelişmeleri
                       </Heading>
-                      <Suspense fallback={<Loader />}>
-                        <Timeline />
-                      </Suspense>
+                      {data.campaign?.updates && (
+                        <Suspense fallback={<Loader />}>
+                          <Timeline items={data.campaign?.updates} />
+                        </Suspense>
+                      )}
                     </Box>
                   </Flex>
                   <Flex mb={8} flexDir="column">

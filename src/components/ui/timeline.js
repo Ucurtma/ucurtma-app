@@ -5,6 +5,10 @@ import {
   Image,
   Heading,
   AspectRatioBox,
+  StatGroup,
+  Stat,
+  StatLabel,
+  StatNumber,
   Flex,
 } from '@chakra-ui/core';
 import Masonry from 'react-masonry-css';
@@ -22,9 +26,11 @@ function TimelineBox({ children, title, ...otherProps }) {
       borderRadius={4}
       {...otherProps}
     >
-      <Heading pb={4} size="sm" color="gray.400" fontSize="16px">
-        {title}
-      </Heading>
+      {title && (
+        <Heading pb={4} size="sm" color="gray.400" fontSize="16px">
+          {title}
+        </Heading>
+      )}
       {children}
     </Box>
   );
@@ -197,32 +203,47 @@ function Timeline() {
                       const isIncoming = item.type === 'incoming-transaction';
                       return (
                         <TimelineBox
-                          title={
-                            isIncoming
-                              ? 'Gelen Destekler'
-                              : 'Kullanılan Destekler'
-                          }
-                          key={i.toString()}
+                          py={2}
                           bg={isIncoming ? 'green.50' : 'red.50'}
                           borderColor={isIncoming ? 'green.100' : 'red.100'}
-                          pb={4}
-                          fontSize="16px"
                         >
-                          Toplamda <strong>{item.content.count}</strong> işlem
-                          gerçekleşmiş,{' '}
-                          <Flex alignItems="center" display="inline-flex">
-                            <Image
-                              maxW="10px"
-                              width="full"
-                              height="full"
-                              src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                              mr={1}
-                            />
-                            <strong>{item.content.price}</strong>
-                          </Flex>{' '}
-                          destek{' '}
-                          {isIncoming ? 'toplanmıştır' : 'kullanılmıştır'}.
-                          Detayları görmek için tıklayınız.
+                          <StatGroup>
+                            <Stat>
+                              <StatLabel
+                                color="gray.400"
+                                fontWeight={800}
+                                fontSize={14}
+                              >
+                                İşlem Sayısı
+                              </StatLabel>
+                              <StatNumber color="gray.700" fontSize={18}>
+                                {item.content.count}
+                              </StatNumber>
+                            </Stat>
+                            <Stat>
+                              <StatLabel
+                                color="gray.400"
+                                fontWeight={800}
+                                fontSize={14}
+                              >
+                                {isIncoming
+                                  ? 'Gelen Destek'
+                                  : 'Harcanan Destek'}
+                              </StatLabel>
+                              <StatNumber color="gray.700" fontSize={18}>
+                                <Flex align="center">
+                                  <Image
+                                    maxW="10px"
+                                    width="full"
+                                    height="full"
+                                    src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                                    mr={1}
+                                  />
+                                  {item.content.price}
+                                </Flex>
+                              </StatNumber>
+                            </Stat>
+                          </StatGroup>
                         </TimelineBox>
                       );
                     }

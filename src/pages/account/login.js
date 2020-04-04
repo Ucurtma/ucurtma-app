@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@chakra-ui/core';
-import NextLink from 'next/link';
+import NextLink from 'react-router-dom';
 import Header from '../../components/ui/header';
 import LoginForm from '../../components/forms/login-form';
 import Container from '../../components/ui/container';

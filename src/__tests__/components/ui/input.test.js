@@ -54,9 +54,7 @@ describe('Input Tests', () => {
 
   test('Renders errors', async () => {
     const signupSchema = Yup.object().shape({
-      email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
+      email: Yup.string().email('Invalid email').required('Required'),
     });
 
     const { getByLabelText, queryByText } = render(

@@ -11,12 +11,8 @@ import { withApollo } from '../../utils/apollo';
 import Button from '../ui/button';
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
-  password: Yup.string()
-    .min(6, 'Too Short')
-    .required('Password is required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string().min(6, 'Too Short').required('Password is required'),
 });
 
 const LOGIN = gql`

@@ -5,6 +5,7 @@ import {
   Image,
   Heading,
   AspectRatioBox,
+  Flex,
 } from '@chakra-ui/core';
 import Masonry from 'react-masonry-css';
 import './timeline.css';
@@ -41,6 +42,20 @@ function Timeline() {
     {
       date: new Date(),
       items: [
+        {
+          type: 'incoming-transaction',
+          content: {
+            count: 24,
+            price: 2400,
+          },
+        },
+        {
+          type: 'outgoing-transaction',
+          content: {
+            count: 12,
+            price: 1600,
+          },
+        },
         {
           type: 'image',
           content: [
@@ -115,6 +130,7 @@ function Timeline() {
                 top: index === 0 && '16px',
               }}
               overflow="hidden"
+              key={index.toString()}
             >
               <Box mb={4}>
                 <Box
@@ -134,20 +150,26 @@ function Timeline() {
                   color="gray.600"
                   fontSize="16px"
                 >
-                  {range.date.toLocaleString()}
+                  {range.date.toLocaleDateString()}
                 </PseudoBox>
                 <Box>
-                  {range.items.map(item => {
+                  {range.items.map((item, i) => {
                     if (item.type === 'image') {
                       return (
-                        <TimelineBox title="Fotoğraflar">
+                        <TimelineBox key={i.toString()} title="Fotoğraflar">
                           <Masonry
                             breakpointCols={3}
                             className="my-masonry-grid"
                             columnClassName="my-masonry-grid_column"
                           >
-                            {item.content.map(imageURL => {
-                              return <Image mb={4} src={imageURL} />;
+                            {item.content.map((imageURL, itemIndex) => {
+                              return (
+                                <Image
+                                  key={itemIndex.toString()}
+                                  mb={4}
+                                  src={imageURL}
+                                />
+                              );
                             })}
                           </Masonry>
                         </TimelineBox>
@@ -156,7 +178,7 @@ function Timeline() {
 
                     if (item.type === 'video') {
                       return (
-                        <TimelineBox pb={4} title="Video">
+                        <TimelineBox key={i.toString()} pb={4} title="Video">
                           <AspectRatioBox ratio={16 / 9}>
                             <Box
                               as="iframe"
@@ -168,8 +190,45 @@ function Timeline() {
                       );
                     }
 
+                    if (
+                      item.type === 'incoming-transaction' ||
+                      item.type === 'outgoing-transaction'
+                    ) {
+                      const isIncoming = item.type === 'incoming-transaction';
+                      return (
+                        <TimelineBox
+                          title={
+                            isIncoming
+                              ? 'Gelen Destekler'
+                              : 'Kullanılan Destekler'
+                          }
+                          key={i.toString()}
+                          bg={isIncoming ? 'green.50' : 'red.50'}
+                          borderColor={isIncoming ? 'green.100' : 'red.100'}
+                          pb={4}
+                          fontSize="16px"
+                        >
+                          Toplamda <strong>{item.content.count}</strong> işlem
+                          gerçekleşmiş,{' '}
+                          <Flex alignItems="center" display="inline-flex">
+                            <Image
+                              maxW="10px"
+                              width="full"
+                              height="full"
+                              src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                              mr={1}
+                            />
+                            <strong>{item.content.price}</strong>
+                          </Flex>{' '}
+                          destek{' '}
+                          {isIncoming ? 'toplanmıştır' : 'kullanılmıştır'}.
+                          Detayları görmek için tıklayınız.
+                        </TimelineBox>
+                      );
+                    }
+
                     return (
-                      <Box fontSize="16px" color="gray.500">
+                      <Box key={i.toString()} fontSize="16px" color="gray.500">
                         {item.content}
                       </Box>
                     );

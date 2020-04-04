@@ -164,7 +164,7 @@ function Campaign() {
                 <Heading size="sm" color="gray.400">
                   {loading ? <Skeleton width={140} /> : 'Toplam Destek'}
                 </Heading>
-                <Text
+                <Box
                   fontSize="1.5rem"
                   fontWeight={500}
                   textAlign={{ base: 'center', md: 'left' }}
@@ -184,7 +184,7 @@ function Campaign() {
                       {data.campaign?.totalFunds}
                     </Flex>
                   )}
-                </Text>
+                </Box>
               </Box>
             </Flex>
           </Flex>

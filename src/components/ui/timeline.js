@@ -165,7 +165,7 @@ function Timeline({ items }) {
                                 />
                                 {Math.floor(
                                   item.content.reduce(
-                                    (a, b) => a + parseFloat(b),
+                                    (a, b) => parseFloat(a) + parseFloat(b),
                                     0
                                   )
                                 )}

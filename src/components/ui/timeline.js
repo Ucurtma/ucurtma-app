@@ -12,6 +12,7 @@ import {
   Flex,
 } from '@chakra-ui/core';
 import Masonry from 'react-masonry-css';
+import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
 
 function TimelineBox({ children, title, ...otherProps }) {
@@ -72,7 +73,7 @@ function Timeline() {
         },
         {
           type: 'video',
-          content: 'https://www.youtube.com/embed/Xwqw7O0IU-0',
+          content: 'Xwqw7O0IU-0',
         },
         {
           type: 'text',
@@ -185,13 +186,10 @@ function Timeline() {
                     if (item.type === 'video') {
                       return (
                         <TimelineBox key={i.toString()} pb={4} title="Video">
-                          <AspectRatioBox ratio={16 / 9}>
-                            <Box
-                              as="iframe"
-                              src={item.content}
-                              allowFullScreen
-                            />
-                          </AspectRatioBox>
+                          <LiteYouTubeEmbed
+                            id={item.content}
+                            title="What’s new in Material Design for the web (Chrome Dev Summit 2019)"
+                          />
                         </TimelineBox>
                       );
                     }

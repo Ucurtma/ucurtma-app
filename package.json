@@ -46,6 +46,7 @@
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
     "react-i18next": "^11.3.4",
+    "react-lite-youtube-embed": "^0.2.32",
     "react-loading-skeleton": "^2.0.1",
     "react-markdown": "^4.3.1",
     "react-masonry-css": "^1.0.14",

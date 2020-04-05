@@ -265,28 +265,28 @@ function Campaign() {
                         escapeHtml={false}
                       />
                     </Box>
-                    <Box
-                      bg="gray.50"
-                      borderRadius="4px"
-                      p={4}
-                      w="full"
-                      height="full"
-                      maxW={{ base: '100%' }}
-                      ml={{ base: 0, lg: 16 }}
-                      mt={{ base: 4, lg: 0 }}
-                    >
-                      <Heading size="sm" color="gray.500">
-                        Kampanya Gelişmeleri
-                      </Heading>
-                      {data.campaign?.updates && (
+                    {data.campaign?.updates.length && (
+                      <Box
+                        bg="gray.50"
+                        borderRadius="4px"
+                        p={4}
+                        w="full"
+                        height="full"
+                        maxW={{ base: '100%' }}
+                        ml={{ base: 0, lg: 16 }}
+                        mt={{ base: 4, lg: 0 }}
+                      >
+                        <Heading size="sm" color="gray.500">
+                          Kampanya Gelişmeleri
+                        </Heading>
                         <Suspense fallback={<Loader />}>
                           <Timeline
                             items={data.campaign?.updates}
                             transactions={data.campaign?.transactions}
                           />
                         </Suspense>
-                      )}
-                    </Box>
+                      </Box>
+                    )}
                   </Flex>
                   <Flex mb={8} flexDir="column">
                     <Button

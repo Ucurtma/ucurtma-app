@@ -89,17 +89,17 @@ workflows:
   build-and-deploy-non-prod:
     jobs:
       - build
-      - deploy-to-non-prod:
+      - tests:
           requires:
             - build
           filters:
             branches:
               only:
                 - master
-      - tests:
+      - deploy-to-non-prod:
           requires:
             - build
-            - deploy-to-non-prod
+            - tests
           filters:
             branches:
               only:

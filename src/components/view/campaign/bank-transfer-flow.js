@@ -106,20 +106,28 @@ const COLLECT_DONATION = gql`
   }
 `;
 
-const donateSchema = Yup.object().shape({
-  email: Yup.string()
-    .required('Bu alan zorunludur.')
-    .matches(/[^@]+@[^.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
-  amount: Yup.number()
-    .typeError('Geçerli bir rakam giriniz.')
-    .required('Bu alan zorunludur.'),
-  consentToReceiveNews: Yup.boolean().oneOf(
-    [true],
-    'Şartları onaylamanız gerekmektedir.'
-  ),
-});
+function createSchema(limit) {
+  const donateSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Bu alan zorunludur.')
+      .matches(/[^@]+@[^.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
+    amount: Yup.number()
+      .min(
+        limit || 100,
+        `Girdiğiniz değer ${limit || 100} değerinden küçük olamaz`
+      )
+      .typeError('Geçerli bir rakam giriniz.')
+      .required('Bu alan zorunludur.'),
+    consentToReceiveNews: Yup.boolean().oneOf(
+      [true],
+      'Şartları onaylamanız gerekmektedir.'
+    ),
+  });
 
-function BankTransferFlow() {
+  return donateSchema;
+}
+
+function BankTransferFlow({ minimumAmount }) {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
@@ -223,7 +231,7 @@ function BankTransferFlow() {
             amount: '',
             consentToReceiveNews: false,
           }}
-          validationSchema={donateSchema}
+          validationSchema={createSchema(minimumAmount)}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
             collectDonation({

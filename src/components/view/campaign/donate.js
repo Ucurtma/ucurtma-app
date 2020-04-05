@@ -1,5 +1,14 @@
 import React from 'react';
-import { Button, RadioButtonGroup, Box, Flex, Icon } from '@chakra-ui/core';
+import {
+  Button,
+  RadioButtonGroup,
+  Box,
+  Flex,
+  Icon,
+  Alert,
+  AlertIcon,
+  CloseButton,
+} from '@chakra-ui/core';
 import { ArrowLeft } from 'react-feather';
 import EthereumFlow from './ethereum-flow';
 import BankTransferFlow from './bank-transfer-flow';
@@ -25,8 +34,15 @@ const CustomRadio = React.forwardRef((props, ref) => {
   );
 });
 
-function Donate({ ethereumAddress, onBack }) {
+function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
   const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
+  const [errorExist, setErrorExist] = React.useState(false);
+
+  React.useEffect(() => {
+    if (redirectError) {
+      setErrorExist(true);
+    }
+  }, [redirectError]);
 
   return (
     <Flex transform="none" flexDir={{ base: 'column', md: 'row' }}>
@@ -54,8 +70,28 @@ function Donate({ ethereumAddress, onBack }) {
           Geri Dön
         </Button>
       </Box>
-      <Box w={{ base: '100%', lg: '70%' }} boxShadow="cardLight" padding={4}>
-        {donateFlow === 'bank-transfer' && <BankTransferFlow />}
+      <Box
+        w={{ base: '100%', lg: '70%' }}
+        height="full"
+        boxShadow="cardLight"
+        padding={4}
+      >
+        {errorExist && (
+          <Alert status="error">
+            <AlertIcon />
+            BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra
+            tekrar deneyiniz.
+            <CloseButton
+              onClick={() => setErrorExist(false)}
+              position="absolute"
+              right="8px"
+              top="8px"
+            />
+          </Alert>
+        )}
+        {donateFlow === 'bank-transfer' && (
+          <BankTransferFlow minimumAmount={minimumAmount} />
+        )}
         {donateFlow === 'ethereum-wallet' && (
           <EthereumFlow ethereumAddress={ethereumAddress} />
         )}

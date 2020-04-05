@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Flex,
   Image,
   Grid,
   Box,
@@ -15,7 +14,7 @@ import Container from '../../ui/container';
 function LandingFooter() {
   const { t } = useTranslation('footer');
   return (
-    <Flex py={12} px={{ base: 4, md: 0 }} bg="gray.800" color="gray.100">
+    <Box py={12} px={{ base: 4, md: 0 }} bg="gray.800" color="gray.100">
       <Container alignItems="flex-start" mt={0}>
         <Grid
           templateColumns={{
@@ -51,7 +50,7 @@ function LandingFooter() {
           </Box>
         </Grid>
       </Container>
-    </Flex>
+    </Box>
   );
 }
 

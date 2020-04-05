@@ -36,6 +36,7 @@
     "history": "^4.10.1",
     "i18next": "^19.3.3",
     "isomorphic-unfetch": "^3.0.0",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.11.0",
     "react": "^16.13.1",

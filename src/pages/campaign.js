@@ -25,12 +25,14 @@ import ReactMarkdown from 'react-markdown';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
-import Donate from '../components/view/campaign/donate';
 import LandingFooter from '../components/view/landing-page/footer';
-import ReportCampaignForm from '../components/forms/report-campaign-form';
 import Loader from '../components/ui/loader';
 
 const Timeline = lazy(() => import('../components/ui/timeline'));
+const Donate = lazy(() => import('../components/view/campaign/donate'));
+const ReportCampaignForm = lazy(() =>
+  import('../components/forms/report-campaign-form')
+);
 
 const GET_CAMPAIGN = gql`
   query campaign($campaignId: String!) {
@@ -41,6 +43,13 @@ const GET_CAMPAIGN = gql`
       supporterCount
       totalFunds
       campaignText
+      transactions {
+        from
+        amount
+        when
+        tokenName
+        type
+      }
       student {
         school
         name
@@ -64,6 +73,7 @@ function Campaign() {
   const [content, setContent] = React.useState(
     location.state?.redirected ? 'donate' : 'markdown'
   );
+  const [donateActivated, setDonateActivated] = React.useState(false);
   const [reportCampaignView, setReportCampaignView] = React.useState(false);
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
@@ -218,7 +228,10 @@ function Campaign() {
                     flexShrink="0"
                     justifyContent="space-between"
                     boxShadow="0 0 2px rgba(124,124,124,0.16)"
-                    onClick={() => setContent('donate')}
+                    onClick={() => {
+                      setContent('donate');
+                      setDonateActivated(true);
+                    }}
                     zIndex={2000}
                     _hover={{ bg: 'green.100' }}
                   >
@@ -258,7 +271,7 @@ function Campaign() {
                       p={4}
                       w="full"
                       height="full"
-                      maxW={{ base: '100%', lg: '35%' }}
+                      maxW={{ base: '100%' }}
                       ml={{ base: 0, lg: 16 }}
                       mt={{ base: 4, lg: 0 }}
                     >
@@ -267,7 +280,10 @@ function Campaign() {
                       </Heading>
                       {data.campaign?.updates && (
                         <Suspense fallback={<Loader />}>
-                          <Timeline items={data.campaign?.updates} />
+                          <Timeline
+                            items={data.campaign?.updates}
+                            transactions={data.campaign?.transactions}
+                          />
                         </Suspense>
                       )}
                     </Box>
@@ -281,21 +297,29 @@ function Campaign() {
                     >
                       Şikayet Oluştur
                     </Button>
-                    <Collapse
-                      maxW="600px"
-                      ml="auto"
-                      isOpen={reportCampaignView}
-                    >
-                      <ReportCampaignForm campaignId={id} />
-                    </Collapse>
+                    <Suspense fallback={<Loader />}>
+                      <Collapse
+                        maxW="600px"
+                        ml="auto"
+                        isOpen={reportCampaignView}
+                      >
+                        {reportCampaignView && (
+                          <ReportCampaignForm campaignId={id} />
+                        )}
+                      </Collapse>
+                    </Suspense>
                   </Flex>
                 </Box>
-                <Box display={content === 'donate' ? 'block' : 'none'}>
-                  <Donate
-                    ethereumAddress={data.campaign?.ethereumAddress}
-                    onBack={() => setContent('markdown')}
-                  />
-                </Box>
+                {(content === 'donate' || donateActivated) && (
+                  <Suspense fallback={<Loader />}>
+                    <Box display={content === 'donate' ? 'block' : 'none'}>
+                      <Donate
+                        ethereumAddress={data.campaign?.ethereumAddress}
+                        onBack={() => setContent('markdown')}
+                      />
+                    </Box>
+                  </Suspense>
+                )}
               </>
             )}
           </Container>

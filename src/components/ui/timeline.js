@@ -9,10 +9,16 @@ import {
   StatLabel,
   StatNumber,
   Text,
+  Collapse,
+  Flex,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 } from '@chakra-ui/core';
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
+import moment from 'moment';
 
 function TimelineBox({ children, title, ...otherProps }) {
   return (
@@ -36,8 +42,25 @@ function TimelineBox({ children, title, ...otherProps }) {
   );
 }
 
-function Timeline({ items }) {
+function Timeline({ items, transactions }) {
+  const [show, setShow] = React.useState({ show: false, index: -1, date: '' });
+  const [transactionList, setTransactionList] = React.useState();
   const listPadding = 5;
+
+  React.useEffect(() => {
+    const newTransactions = transactions.map(transaction => {
+      const dateToUTC = moment(parseInt(transaction.when, 10))
+        .utc()
+        .format('DD.MM.YYYY');
+
+      return {
+        ...transaction,
+        when: dateToUTC,
+      };
+    });
+
+    setTransactionList(newTransactions);
+  }, [transactions]);
 
   return (
     <Box mt={4}>
@@ -127,7 +150,20 @@ function Timeline({ items }) {
                           bg={isIncoming ? 'green.50' : 'red.50'}
                           borderColor={isIncoming ? 'green.100' : 'red.100'}
                         >
-                          <StatGroup>
+                          <StatGroup
+                            cursor="pointer"
+                            {...(transactions && {
+                              onClick: () =>
+                                setShow({
+                                  show:
+                                    show.index === i && show.date === range.date
+                                      ? !show.show
+                                      : true,
+                                  index: i,
+                                  date: range.date,
+                                }),
+                            })}
+                          >
                             <Stat>
                               <StatLabel
                                 color="gray.400"
@@ -172,6 +208,89 @@ function Timeline({ items }) {
                               </StatNumber>
                             </Stat>
                           </StatGroup>
+                          {transactionList && (
+                            <Collapse
+                              mt={4}
+                              isOpen={
+                                show.show &&
+                                show.index === i &&
+                                show.date === range.date
+                              }
+                            >
+                              {transactionList.map(
+                                (transaction, transactionIndex) => {
+                                  const transactionType = isIncoming
+                                    ? 'IN'
+                                    : 'OUT';
+                                  if (
+                                    transaction.when === range.date &&
+                                    transactionType === transaction.type
+                                  ) {
+                                    return (
+                                      <PseudoBox
+                                        key={transactionIndex.toString()}
+                                        fontSize={14}
+                                        borderBottom="1px solid"
+                                        borderColor="gray.200"
+                                        py={2}
+                                        _first={{ pt: 0 }}
+                                        _last={{ borderBottom: 0 }}
+                                      >
+                                        <Flex justifyContent="space-between">
+                                          <Box as="strong" color="gray.400">
+                                            From:
+                                          </Box>
+                                          <Popover usePortal trigger="hover">
+                                            <PopoverTrigger>
+                                              <Box
+                                                overflow="hidden"
+                                                textOverflow="ellipsis"
+                                                maxW="200px"
+                                              >
+                                                {transaction.from}
+                                              </Box>
+                                            </PopoverTrigger>
+                                            <PopoverContent
+                                              bg="gray.800"
+                                              color="gray.50"
+                                              wordBreak="break-all"
+                                              p={2}
+                                              fontSize={13}
+                                              textAlign="center"
+                                              width="auto"
+                                            >
+                                              {transaction.from}
+                                            </PopoverContent>
+                                          </Popover>
+                                        </Flex>
+                                        <Flex
+                                          mt={1}
+                                          justifyContent="space-between"
+                                        >
+                                          <Box as="strong" color="gray.400">
+                                            Amount:
+                                          </Box>
+                                          <Flex>
+                                            <Image
+                                              maxW="8px"
+                                              width="full"
+                                              height="full"
+                                              src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                                              mr={1}
+                                            />
+                                            {Math.floor(
+                                              parseInt(transaction.amount, 10)
+                                            )}
+                                          </Flex>
+                                        </Flex>
+                                      </PseudoBox>
+                                    );
+                                  }
+                                  return null;
+                                }
+                              )}
+                            </Collapse>
+                          )}
                         </TimelineBox>
                       );
                     }

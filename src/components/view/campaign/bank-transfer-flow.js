@@ -106,18 +106,23 @@ const COLLECT_DONATION = gql`
   }
 `;
 
-const donateSchema = Yup.object().shape({
-  email: Yup.string()
-    .required('Bu alan zorunludur.')
-    .matches(/[^@]+@[^.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
-  amount: Yup.number()
-    .typeError('Geçerli bir rakam giriniz.')
-    .required('Bu alan zorunludur.'),
-  consentToReceiveNews: Yup.boolean().oneOf(
-    [true],
-    'Şartları onaylamanız gerekmektedir.'
-  ),
-});
+function createSchema(limit) {
+  const donateSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Bu alan zorunludur.')
+      .matches(/[^@]+@[^.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
+    amount: Yup.number()
+      .min(limit, `Girdiğiniz miktar ${limit}'ten küçük olamaz`) // todo: add limit that coming from back-end
+      .typeError('Geçerli bir rakam giriniz.')
+      .required('Bu alan zorunludur.'),
+    consentToReceiveNews: Yup.boolean().oneOf(
+      [true],
+      'Şartları onaylamanız gerekmektedir.'
+    ),
+  });
+
+  return donateSchema;
+}
 
 function BankTransferFlow() {
   const params = useParams();
@@ -223,7 +228,7 @@ function BankTransferFlow() {
             amount: '',
             consentToReceiveNews: false,
           }}
-          validationSchema={donateSchema}
+          validationSchema={createSchema(100)}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
             collectDonation({

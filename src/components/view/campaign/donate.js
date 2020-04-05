@@ -54,7 +54,12 @@ function Donate({ ethereumAddress, onBack }) {
           Geri Dön
         </Button>
       </Box>
-      <Box w={{ base: '100%', lg: '70%' }} boxShadow="cardLight" padding={4}>
+      <Box
+        w={{ base: '100%', lg: '70%' }}
+        height="full"
+        boxShadow="cardLight"
+        padding={4}
+      >
         {donateFlow === 'bank-transfer' && <BankTransferFlow />}
         {donateFlow === 'ethereum-wallet' && (
           <EthereumFlow ethereumAddress={ethereumAddress} />

@@ -43,6 +43,7 @@ const GET_CAMPAIGN = gql`
       supporterCount
       totalFunds
       campaignText
+      minimumAmount
       transactions {
         from
         amount
@@ -314,6 +315,7 @@ function Campaign() {
                   <Suspense fallback={<Loader />}>
                     <Box display={content === 'donate' ? 'block' : 'none'}>
                       <Donate
+                        minimumAmount={data.campaign?.minimumAmount}
                         redirectError={location.state?.redirectError}
                         ethereumAddress={data.campaign?.ethereumAddress}
                         onBack={() => setContent('markdown')}

@@ -34,7 +34,7 @@ const CustomRadio = React.forwardRef((props, ref) => {
   );
 });
 
-function Donate({ ethereumAddress, redirectError, onBack }) {
+function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
   const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
   const [errorExist, setErrorExist] = React.useState(false);
 
@@ -89,7 +89,9 @@ function Donate({ ethereumAddress, redirectError, onBack }) {
             />
           </Alert>
         )}
-        {donateFlow === 'bank-transfer' && <BankTransferFlow />}
+        {donateFlow === 'bank-transfer' && (
+          <BankTransferFlow minimumAmount={minimumAmount} />
+        )}
         {donateFlow === 'ethereum-wallet' && (
           <EthereumFlow ethereumAddress={ethereumAddress} />
         )}

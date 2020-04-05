@@ -314,6 +314,7 @@ function Campaign() {
                   <Suspense fallback={<Loader />}>
                     <Box display={content === 'donate' ? 'block' : 'none'}>
                       <Donate
+                        redirectError={location.state?.redirectError}
                         ethereumAddress={data.campaign?.ethereumAddress}
                         onBack={() => setContent('markdown')}
                       />

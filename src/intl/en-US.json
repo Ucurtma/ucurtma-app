@@ -49,5 +49,10 @@
   },
   "footer": {
     "Join to Community": "Topluluğa Katıl"
+  },
+  "admin": {
+    "ContractActions": "Contract Actions",
+    "DeployDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget semper urna. Vivamus fermentum, neque ac egestas laoreet, libero ligula pulvinar velit.",
+    "numberOfPlannedPayouts": "Öğrencinin alabileceği ödeme sayısı"
   }
 }

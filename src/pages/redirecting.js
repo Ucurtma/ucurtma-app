@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Image } from '@chakra-ui/core';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { parse } from 'query-string';
 import config from '../config';
 
 const Redirecting = () => {
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const urlData = parse(location.search);
@@ -15,15 +15,17 @@ const Redirecting = () => {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
-          history.push(`/campaign/${urlData.state}`, { redirected: true });
+          navigate(`/campaign/${urlData.state}`, { redirected: true });
         });
-    } else {
-      history.push(`/campaign/${urlData.state}`, {
+    } else if (urlData.state) {
+      navigate(`/campaign/${urlData.state}`, {
         redirected: true,
         redirectError: true,
       });
+    } else {
+      navigate('/');
     }
-  }, [location, history]);
+  }, [location, navigate]);
 
   return (
     <Box

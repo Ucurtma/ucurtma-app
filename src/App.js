@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import 'react-calendar/dist/Calendar.css';
 import { gaTrackingId } from './config';
@@ -9,12 +8,9 @@ import Loader from './components/ui/loader';
 const Home = lazy(() => import('./pages/home'));
 const Campaign = lazy(() => import('./pages/campaign'));
 const Redirecting = lazy(() => import('./pages/redirecting'));
+const Admin = lazy(() => import('./pages/admin'));
 
 ReactGA.initialize(gaTrackingId);
-const history = createBrowserHistory();
-history.listen(location => {
-  ReactGA.pageview(location.pathname + location.search);
-});
 
 function App() {
   React.useEffect(() => {
@@ -22,19 +18,16 @@ function App() {
   }, []);
 
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Suspense fallback={<Loader isFull />}>
-        <Switch>
-          <Route path="/auth">
-            <Redirecting />
-          </Route>
-          <Route path="/campaign/:id">
-            <Campaign />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="auth" element={<Redirecting />} />
+          <Route path="campaign" element={<Navigate to="/" replace />} />
+          <Route path="campaign/:id" element={<Campaign />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="admin/:slug" element={<Admin />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
       </Suspense>
       <Route
         path="/"
@@ -46,7 +39,7 @@ function App() {
           return null;
         }}
       />
-    </Router>
+    </BrowserRouter>
   );
 }
 

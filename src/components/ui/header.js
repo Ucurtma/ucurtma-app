@@ -53,17 +53,13 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let menuProps;
+
   if (!withLogo) {
-    menuProps = {
-      position: 'absolute',
-      right: 0,
-      top: 0,
-    };
+    menuProps = { position: 'absolute', right: 0, top: 0 };
   }
 
   return (
     <Container
-      mt={0}
       p={{ base: 4, lg: 0 }}
       display="block"
       position="relative"

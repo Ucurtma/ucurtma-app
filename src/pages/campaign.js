@@ -83,7 +83,7 @@ function Campaign() {
   if (error || (data && data.campaign === null)) {
     return (
       <Flex flexDir="column" justify="space-between" height="full">
-        <Header mt={8} withLogo hideMenu />
+        <Header withLogo hideMenu />
         <Container display="block" h="full" p="2rem 0">
           <Alert
             w="full"
@@ -109,7 +109,7 @@ function Campaign() {
   return (
     <Flex flexDir="column" justify="space-between" height="full">
       <Box>
-        <Header mt={8} withLogo hideMenu />
+        <Header withLogo hideMenu />
         <Container display="block">
           <Helmet>
             <title>

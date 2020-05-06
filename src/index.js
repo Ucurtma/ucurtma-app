@@ -15,13 +15,16 @@ const Application = (
         html: {
           fontFamily:
             'Quicksand, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-          fontSize: '18px',
+          fontSize: '16px',
         },
         body: {
           backgroundColor: '#fff',
         },
         'html, body, #root': {
           height: '100%',
+        },
+        '#root': {
+          paddingTop: '1.25rem',
         },
       }}
     />

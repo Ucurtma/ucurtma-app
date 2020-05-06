@@ -51,7 +51,8 @@
     "react-loading-skeleton": "^2.0.1",
     "react-markdown": "^4.3.1",
     "react-masonry-css": "^1.0.14",
-    "react-router-dom": "^5.1.2",
+    "react-router": "^6.0.0-alpha.4",
+    "react-router-dom": "^6.0.0-alpha.4",
     "react-scripts": "^3.4.1",
     "reaptcha": "^1.7.2",
     "yup": "^0.28.1"

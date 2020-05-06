@@ -49,5 +49,19 @@
   },
   "footer": {
     "Join to Community": "Topluluğa Katıl"
+  },
+  "admin": {
+    "ContractActions": "Kontrat İşlemleri"
+  },
+  "contractActions": {
+    "Deploy": "Akıllı Kontrat Deploy Et",
+    "DeployDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget semper urna. Vivamus fermentum, neque ac egestas laoreet, libero ligula pulvinar velit.",
+    "numberOfPlannedPayouts": "Öğrencinin alabileceği ödeme sayısı",
+    "withdrawPeriod": "Ödeme Periyodu",
+    "campaignEndTime": "Kampanya başladıktan kaç gün sonra bitecek?",
+    "owner": "Öğrencinin Ethereum adresi",
+    "tokenAddress": "BiLira Ethereum adresi",
+    "adminAddress": "Admin Ethereum adresi",
+    "DeployAction": "Deploy Et"
   }
 }

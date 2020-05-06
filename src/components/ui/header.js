@@ -15,7 +15,9 @@ import {
   DrawerBody,
   IconButton,
   Image,
+  Button,
 } from '@chakra-ui/core';
+import Eth from 'ethjs';
 import Container from './container';
 import MenuItems from './menu-items';
 
@@ -84,6 +86,17 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
             {...menuProps}
           />
         )}
+        <Button
+          borderRadius="full"
+          border="3px solid"
+          borderColor="gray.300"
+          variant="solid"
+          bg="transparent"
+          py={6}
+          color="gray.400"
+        >
+          Cüzdanını Bağla
+        </Button>
       </Flex>
       {!hideMenu && (
         <>

@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Heading, Text, Box, Button, Flex } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
 import Card from '../../ui/card';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';
+import { WalletContext } from '../../../App';
 
 function ContractActions() {
+  const { state: walletState } = useContext(WalletContext);
   const { t } = useTranslation('contractActions');
+
   return (
     <Card paddingType="default">
       <Heading mb={4} size="sm" color="paragraph">
@@ -22,7 +25,7 @@ function ContractActions() {
             campaignEndTime: 30, // when will campaign end after started in seconds?
             owner: '', // the ethereum address of student
             tokenAddress: '0x2c537e5624e4af88a7ae4060c022609376c8d0eb', // the ethereum address of biLira,
-            adminAddress: '0x2c537e5624e4af88a7ae4060c022609376c8d0eb', // the ethereum address of user who make action with metamask
+            adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
           }}
         >
           {({ isSubmitting, errors }) => (
@@ -33,14 +36,14 @@ function ContractActions() {
                   name="numberOfPlannedPayouts"
                   type="number"
                   controlProps={{ mr: 4 }}
-                  disabled
+                  disabled={!walletState.wallet}
                 />
                 <NumberInput
                   label={t('withdrawPeriod')}
                   name="withdrawPeriod"
                   type="number"
                   addon={{ right: 'Gün' }}
-                  disabled
+                  disabled={!walletState.wallet}
                 />
               </Flex>
               <NumberInput
@@ -48,11 +51,20 @@ function ContractActions() {
                 name="campaignEndTime"
                 type="number"
                 addon={{ right: 'Gün' }}
-                disabled
+                disabled={!walletState.wallet}
               />
-              <Input label={t('owner')} disabled name="owner" />
+              <Input
+                label={t('owner')}
+                disabled={!walletState.wallet}
+                name="owner"
+              />
               <Input label={t('tokenAddress')} disabled name="tokenAddress" />
-              <Input label={t('adminAddress')} disabled name="adminAddress" />
+              <Input
+                label={t('adminAddress')}
+                value={walletState.wallet}
+                disabled
+                name="adminAddress"
+              />
               <Flex justifyContent="flex-end">
                 <Button
                   color="gray.800"

@@ -34,7 +34,6 @@ ReactGA.initialize(gaTrackingId);
 
 function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-
   React.useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);

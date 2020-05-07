@@ -27,8 +27,8 @@ function App() {
           <Route path="auth" element={<Redirecting />} />
           <Route path="campaign" element={<Navigate to="/" replace />} />
           <Route path="campaign/:id" element={<Campaign />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="admin/:slug" element={<Admin />} />
+          <Route path="manager" element={<Admin />} />
+          <Route path="manager/:slug" element={<Admin />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Suspense>

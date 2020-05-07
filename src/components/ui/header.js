@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu } from 'react-feather';
@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/core';
 import Container from './container';
 import MenuItems from './menu-items';
+import { WalletContext } from '../../App';
 
 const Logo = styled(Icon)`
   height: auto;
@@ -54,22 +55,47 @@ function MenuDrawer({ isOpen, onClose, items }) {
 // todo: get loggedIn from token
 function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [walletId, setWalletId] = useState('');
+  const [walletLoading, setWalletLoading] = useState(false);
+  const { state: walletState, dispatch } = useContext(WalletContext);
   const toast = useToast();
+
+  React.useEffect(() => {
+    if (window.ethereum?.selectedAddress) {
+      dispatch({
+        type: 'SET_WALLET',
+        payload: window.ethereum.selectedAddress,
+      });
+    }
+
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', accounts => {
+        dispatch({
+          type: 'SET_WALLET',
+          payload: accounts[0] || '',
+        });
+      });
+    }
+  }, [dispatch]);
 
   // eslint-disable-next-line consistent-return
   const checkForMetamask = async () => {
+    setWalletLoading(true);
     if (window.ethereum) {
       // eslint-disable-next-line no-undef
       const web3 = new Web3(window.ethereum);
       try {
         // request access
         const accounts = await window.ethereum.enable();
+        await setWalletLoading(false);
         if (accounts.length > 0) {
-          setWalletId(accounts[0]);
+          dispatch({
+            type: 'SET_WALLET',
+            payload: accounts[0],
+          });
         }
         return web3;
       } catch (err) {
+        setWalletLoading(false);
         toast({
           title:
             err.code === 4001
@@ -128,16 +154,17 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
               bg="transparent"
               py={6}
               color="gray.400"
-              onClick={() => !walletId && checkForMetamask()}
-              justifyContent="flex-start"
+              onClick={() => !walletState.wallet && checkForMetamask()}
+              justifyContent={walletLoading ? 'center' : 'flex-start'}
+              isLoading={walletLoading}
             >
               <Box
                 as="span"
-                maxW={walletId && '153px'}
+                maxW={walletState.wallet && '153px'}
                 overflow="hidden"
                 textOverflow="ellipsis"
               >
-                {walletId || 'Cüzdanını Bağla'}
+                {walletState.wallet || 'Cüzdanını Bağla'}
               </Box>
             </Button>
           </>

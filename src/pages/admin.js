@@ -27,7 +27,7 @@ function Admin() {
 
   return (
     <>
-      <Header withLogo mb={8} />
+      <Header withLogo hideMenu mb={8} />
       <Container>
         <Box w={{ base: '100%', lg: '30%' }}>
           {navItems.map((navItem, i) => (

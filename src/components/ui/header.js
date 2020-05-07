@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu } from 'react-feather';
@@ -16,8 +16,9 @@ import {
   IconButton,
   Image,
   Button,
+  useToast,
+  Box,
 } from '@chakra-ui/core';
-import Eth from 'ethjs';
 import Container from './container';
 import MenuItems from './menu-items';
 
@@ -53,6 +54,48 @@ function MenuDrawer({ isOpen, onClose, items }) {
 // todo: get loggedIn from token
 function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [walletId, setWalletId] = useState('');
+  const toast = useToast();
+
+  // eslint-disable-next-line consistent-return
+  const checkForMetamask = async () => {
+    if (window.ethereum) {
+      // eslint-disable-next-line no-undef
+      const web3 = new Web3(window.ethereum);
+      try {
+        // request access
+        const accounts = await window.ethereum.enable();
+        if (accounts.length > 0) {
+          setWalletId(accounts[0]);
+        }
+        return web3;
+      } catch (err) {
+        toast({
+          title:
+            err.code === 4001
+              ? "MetaMask'tan izin alınamadı."
+              : 'Bir hata oluştu.',
+          description:
+            err.code === 4001
+              ? 'Cüzdan bağlama işlemini yapabilmek için MetaMask uygulamasından izin vermeniz gerekmektedir.'
+              : `Hata kodu: ${err.code}`,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+    } else {
+      toast({
+        title:
+          'Bu özelliği kullanabilmek için MetaMask eklentisini indirmelisiniz.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+      });
+    }
+  };
 
   let menuProps;
 
@@ -70,12 +113,34 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
     >
       <Flex justify={withLogo ? 'space-between' : 'flex-end'} align="center">
         {withLogo && (
-          <Link to="/">
-            <Image
-              alt="Uçurtma Projesi"
-              src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
-            />
-          </Link>
+          <>
+            <Link to="/">
+              <Image
+                alt="Uçurtma Projesi"
+                src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
+              />
+            </Link>
+            <Button
+              borderRadius="full"
+              border="3px solid"
+              borderColor="gray.300"
+              variant="solid"
+              bg="transparent"
+              py={6}
+              color="gray.400"
+              onClick={() => !walletId && checkForMetamask()}
+              justifyContent="flex-start"
+            >
+              <Box
+                as="span"
+                maxW={walletId && '153px'}
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
+                {walletId || 'Cüzdanını Bağla'}
+              </Box>
+            </Button>
+          </>
         )}
         {!hideMenu && (
           <MenuItems
@@ -86,17 +151,6 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
             {...menuProps}
           />
         )}
-        <Button
-          borderRadius="full"
-          border="3px solid"
-          borderColor="gray.300"
-          variant="solid"
-          bg="transparent"
-          py={6}
-          color="gray.400"
-        >
-          Cüzdanını Bağla
-        </Button>
       </Flex>
       {!hideMenu && (
         <>

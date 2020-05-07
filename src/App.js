@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, createContext } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import Eth from 'ethjs';
@@ -13,36 +13,57 @@ const Admin = lazy(() => import('./pages/admin'));
 
 export const eth = new Eth(new Eth.HttpProvider('https://ropsten.infura.io'));
 
+export const WalletContext = createContext();
+
+const initialState = { wallet: '' };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_WALLET':
+      localStorage.setItem('wallet', JSON.stringify(action.payload));
+      return {
+        ...state,
+        wallet: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 ReactGA.initialize(gaTrackingId);
 
 function App() {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
   React.useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader isFull />}>
-        <Routes>
-          <Route path="auth" element={<Redirecting />} />
-          <Route path="campaign" element={<Navigate to="/" replace />} />
-          <Route path="campaign/:id" element={<Campaign />} />
-          <Route path="manager" element={<Admin />} />
-          <Route path="manager/:slug" element={<Admin />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Suspense>
-      <Route
-        path="/"
-        render={({ location }) => {
-          if (typeof window.ga === 'function') {
-            window.ga('set', 'page', location.pathname + location.search);
-            window.ga('send', 'pageview');
-          }
-          return null;
-        }}
-      />
-    </BrowserRouter>
+    <WalletContext.Provider value={{ state, dispatch }}>
+      <BrowserRouter>
+        <Suspense fallback={<Loader isFull />}>
+          <Routes>
+            <Route path="auth/*" element={<Redirecting />} />
+            <Route path="campaign" element={<Navigate to="/" replace />} />
+            <Route path="campaign/:id" element={<Campaign />} />
+            <Route path="manager" element={<Admin />} />
+            <Route path="manager/:slug" element={<Admin />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Suspense>
+        <Route
+          path="/"
+          render={({ location }) => {
+            if (typeof window.ga === 'function') {
+              window.ga('set', 'page', location.pathname + location.search);
+              window.ga('send', 'pageview');
+            }
+            return null;
+          }}
+        />
+      </BrowserRouter>
+    </WalletContext.Provider>
   );
 }
 

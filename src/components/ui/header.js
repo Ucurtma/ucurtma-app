@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu } from 'react-feather';
@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/core';
 import Container from './container';
 import MenuItems from './menu-items';
+import { WalletContext } from '../../App';
 
 const Logo = styled(Icon)`
   height: auto;
@@ -54,7 +55,7 @@ function MenuDrawer({ isOpen, onClose, items }) {
 // todo: get loggedIn from token
 function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [walletId, setWalletId] = useState('');
+  const { state: contextState, dispatch } = useContext(WalletContext);
   const toast = useToast();
 
   // eslint-disable-next-line consistent-return
@@ -66,7 +67,10 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
         // request access
         const accounts = await window.ethereum.enable();
         if (accounts.length > 0) {
-          setWalletId(accounts[0]);
+          dispatch({
+            type: 'SET_WALLET',
+            payload: accounts[0],
+          });
         }
         return web3;
       } catch (err) {
@@ -128,16 +132,16 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
               bg="transparent"
               py={6}
               color="gray.400"
-              onClick={() => !walletId && checkForMetamask()}
+              onClick={() => !contextState.wallet && checkForMetamask()}
               justifyContent="flex-start"
             >
               <Box
                 as="span"
-                maxW={walletId && '153px'}
+                maxW={contextState.wallet && '153px'}
                 overflow="hidden"
                 textOverflow="ellipsis"
               >
-                {walletId || 'Cüzdanını Bağla'}
+                {contextState.wallet || 'Cüzdanını Bağla'}
               </Box>
             </Button>
           </>

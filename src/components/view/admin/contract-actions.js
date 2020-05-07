@@ -33,12 +33,14 @@ function ContractActions() {
                   name="numberOfPlannedPayouts"
                   type="number"
                   controlProps={{ mr: 4 }}
+                  disabled
                 />
                 <NumberInput
                   label={t('withdrawPeriod')}
                   name="withdrawPeriod"
                   type="number"
                   addon={{ right: 'Gün' }}
+                  disabled
                 />
               </Flex>
               <NumberInput
@@ -46,10 +48,11 @@ function ContractActions() {
                 name="campaignEndTime"
                 type="number"
                 addon={{ right: 'Gün' }}
+                disabled
               />
-              <Input label={t('owner')} name="owner" />
-              <Input label={t('tokenAddress')} name="tokenAddress" disabled />
-              <Input label={t('adminAddress')} name="adminAddress" disabled />
+              <Input label={t('owner')} disabled name="owner" />
+              <Input label={t('tokenAddress')} disabled name="tokenAddress" />
+              <Input label={t('adminAddress')} disabled name="adminAddress" />
               <Flex justifyContent="flex-end">
                 <Button
                   color="gray.800"

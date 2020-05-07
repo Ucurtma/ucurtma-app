@@ -238,7 +238,7 @@ function Timeline({ items, transactions }) {
                                       >
                                         <Flex justifyContent="space-between">
                                           <Box as="strong" color="gray.400">
-                                            From:
+                                            {isIncoming ? 'Kimden:' : 'Kime:'}
                                           </Box>
                                           <Popover usePortal trigger="hover">
                                             <PopoverTrigger>
@@ -268,7 +268,7 @@ function Timeline({ items, transactions }) {
                                           justifyContent="space-between"
                                         >
                                           <Box as="strong" color="gray.400">
-                                            Amount:
+                                            Ne kadar:
                                           </Box>
                                           <Flex>
                                             <Image

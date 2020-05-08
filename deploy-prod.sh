@@ -2,6 +2,8 @@
 git pull upstream master
 echo 'window.app_env = "production";' > ./public/configuration.js
 
+VERSION=`git describe --abbrev=0 --tags`
+
 VERSION_BITS=(${VERSION//./ })
 
 VNUM1=${VERSION_BITS[0]}
@@ -26,4 +28,3 @@ fi
 yarn && yarn build
 aws s3 sync ./build s3://ucurtmaprojesi.com --delete
 aws cloudfront create-invalidation --distribution-id E3BBA49PSH0YZ1 --paths "/*"
-git push --tags

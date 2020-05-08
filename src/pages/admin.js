@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
 import { useParams, Routes, Route, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { User } from 'react-feather';
+import { User, List } from 'react-feather';
 import { Box } from '@chakra-ui/core';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import SidebarItem from '../components/ui/sidebar-item';
 import ContractActions from '../components/view/admin/contract-actions';
+import ContractList from '../components/view/admin/contract-list';
 
 function Admin() {
   const params = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('admin');
 
-  const [page] = useState(params.slug || 'deploy');
+  const navItems = [
+    { href: 'deploy', icon: User, label: t('ContractActions') },
+    { href: 'campaigns', icon: List, label: t('CampaignsActions') },
+  ];
 
   React.useEffect(() => {
-    if (!params.slug) {
+    if (!params['*']) {
       navigate('deploy', { replace: true });
     }
   });
 
-  const navItems = [
-    { slug: 'deploy', icon: User, label: t('ContractActions') },
-  ];
+  const changePage = href => {
+    navigate(href);
+  };
 
   return (
     <>
@@ -35,14 +39,15 @@ function Admin() {
               icon={navItem.icon}
               key={i.toString()}
               label={navItem.label}
-              active={navItem.slug === page}
-              // onClick={() => changePage(navItem.slug, navItem.href)}
+              active={navItem.href === params['*']}
+              onClick={() => changePage(navItem.href)}
             />
           ))}
         </Box>
         <Box w={{ base: '100%', lg: '70%' }}>
           <Routes>
-            <Route path="*" element={<ContractActions />} />
+            <Route path="deploy" element={<ContractActions />} />
+            <Route path="campaigns" element={<ContractList />} />
           </Routes>
         </Box>
       </Container>

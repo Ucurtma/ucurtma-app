@@ -19,6 +19,7 @@ import {
   useToast,
   Box,
 } from '@chakra-ui/core';
+import Eth from 'ethjs';
 import Container from './container';
 import MenuItems from './menu-items';
 import { WalletContext } from '../../App';
@@ -60,15 +61,19 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   const toast = useToast();
 
   React.useEffect(() => {
-    if (window.ethereum?.selectedAddress) {
-      dispatch({
-        type: 'SET_WALLET',
-        payload: window.ethereum.selectedAddress,
-      });
-    }
-
     if (window.ethereum) {
+      if (window.ethereum.selectedAddress) {
+        window.eth = new Eth(window.ethereum);
+
+        dispatch({
+          type: 'SET_WALLET',
+          payload: window.ethereum.selectedAddress,
+        });
+      }
+
       window.ethereum.on('accountsChanged', accounts => {
+        window.eth = new Eth(window.ethereum);
+
         dispatch({
           type: 'SET_WALLET',
           payload: accounts[0] || '',
@@ -82,18 +87,17 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
     setWalletLoading(true);
     if (window.ethereum) {
       // eslint-disable-next-line no-undef
-      const web3 = new Web3(window.ethereum);
+      window.web3 = new Web3(window.ethereum);
       try {
         // request access
         const accounts = await window.ethereum.enable();
-        await setWalletLoading(false);
-        if (accounts.length > 0) {
-          dispatch({
-            type: 'SET_WALLET',
-            payload: accounts[0],
-          });
-        }
-        return web3;
+        window.eth = new Eth(window.ethereum);
+        setWalletLoading(false);
+        dispatch({
+          type: 'SET_WALLET',
+          payload: accounts[0],
+        });
+        return window.web3;
       } catch (err) {
         setWalletLoading(false);
         toast({
@@ -112,6 +116,8 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
         });
       }
     } else {
+      setWalletLoading(false);
+
       toast({
         title:
           'Bu özelliği kullanabilmek için MetaMask eklentisini indirmelisiniz.',
@@ -128,6 +134,19 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   if (!withLogo) {
     menuProps = { position: 'absolute', right: 0, top: 0 };
   }
+
+  const WalletElement = walletState.wallet
+    ? { element: Box, props: { display: 'flex' } }
+    : {
+        element: Button,
+        props: {
+          borderRadius: 'full',
+          border: '3px solid',
+          borderColor: 'gray.300',
+          variant: 'solid',
+          bg: 'transparent',
+        },
+      };
 
   return (
     <Container
@@ -146,12 +165,8 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
                 src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
               />
             </Link>
-            <Button
-              borderRadius="full"
-              border="3px solid"
-              borderColor="gray.300"
-              variant="solid"
-              bg="transparent"
+            <WalletElement.element
+              {...WalletElement.props}
               py={6}
               color="gray.400"
               onClick={() => !walletState.wallet && checkForMetamask()}
@@ -166,7 +181,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
               >
                 {walletState.wallet || 'Cüzdanını Bağla'}
               </Box>
-            </Button>
+            </WalletElement.element>
           </>
         )}
         {!hideMenu && (

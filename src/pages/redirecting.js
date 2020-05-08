@@ -15,12 +15,16 @@ const Redirecting = () => {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
-          navigate(`/campaign/${urlData.state}`, { redirected: true });
+          navigate(`/campaign/${urlData.state}`, {
+            state: { redirected: true },
+          });
         });
     } else if (urlData.state) {
       navigate(`/campaign/${urlData.state}`, {
-        redirected: true,
-        redirectError: true,
+        state: {
+          redirected: true,
+          redirectError: true,
+        },
       });
     } else {
       navigate('/');

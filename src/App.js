@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, createContext } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import Eth from 'ethjs';
 import 'react-calendar/dist/Calendar.css';
 import { gaTrackingId } from './config';
 import Loader from './components/ui/loader';
@@ -10,8 +9,6 @@ const Home = lazy(() => import('./pages/home'));
 const Campaign = lazy(() => import('./pages/campaign'));
 const Redirecting = lazy(() => import('./pages/redirecting'));
 const Admin = lazy(() => import('./pages/admin'));
-
-export const eth = new Eth(new Eth.HttpProvider('https://ropsten.infura.io'));
 
 export const WalletContext = createContext();
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Routes, Route, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
@@ -19,7 +19,7 @@ function Admin() {
     { href: 'campaigns', icon: List, label: t('CampaignsActions') },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!params['*']) {
       navigate('deploy', { replace: true });
     }

@@ -33,9 +33,8 @@ export function promisifyCall({ contract, method, params, mapper }) {
         }
         if (mapper) {
           return resolve(mapper(result));
-        } else {
-          return resolve(result);
         }
+        return resolve(result);
       });
     } catch (ex) {
       reject(ex);

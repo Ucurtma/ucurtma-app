@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Heading, Text, Box } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
+import ContractListItem from '../../ui/contract-list-item';
 import Card from '../../ui/card';
-import { WalletContext } from '../../../App';
 import {
   getDeploymentManagerContract,
   promisifyCall,
 } from '../../../utils/contract-utils';
 
 function ContractList() {
-  const [contractList, setContractList] = React.useState([]);
+  const { t } = useTranslation('contractList');
+  const [contractList, setContractList] = useState([]);
 
   React.useEffect(() => {
     const { ethereum } = window;
@@ -18,7 +19,7 @@ function ContractList() {
       contract,
       method: 'contractsCount',
       params: [ethereum.selectedAddress],
-      mapper: result => result.c,
+      mapper: result => [window.web3.utils.toBN(result).toNumber()],
     }).then(([numberOfCalls]) => {
       const promises = [];
       let index = 0;
@@ -33,15 +34,13 @@ function ContractList() {
             },
           })
         );
-        index++;
+        index += 1;
       }
       Promise.all(promises).then(result => {
         setContractList(result);
       });
     });
   }, []);
-  const { state: walletState } = useContext(WalletContext);
-  const { t } = useTranslation('contractList');
 
   return (
     <Card paddingType="default">
@@ -51,7 +50,12 @@ function ContractList() {
       <Text color="paragraph">{t('ListDescription')}</Text>
       <Box mt={4}>
         {contractList.map(campaign => {
-          return <Box>{campaign.campaignAddress}</Box>;
+          return (
+            <ContractListItem
+              key={campaign.campaignAddress}
+              contractAddress={campaign.campaignAddress}
+            />
+          );
         })}
       </Box>
     </Card>

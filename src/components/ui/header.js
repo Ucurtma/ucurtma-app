@@ -19,7 +19,7 @@ import {
   useToast,
   Box,
 } from '@chakra-ui/core';
-import Eth from 'ethjs';
+import Web3 from 'web3';
 import Container from './container';
 import MenuItems from './menu-items';
 import { WalletContext } from '../../App';
@@ -63,7 +63,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   React.useEffect(() => {
     if (window.ethereum) {
       if (window.ethereum.selectedAddress) {
-        window.eth = new Eth(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
 
         dispatch({
           type: 'SET_WALLET',
@@ -72,7 +72,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
       }
 
       window.ethereum.on('accountsChanged', accounts => {
-        window.eth = new Eth(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
 
         dispatch({
           type: 'SET_WALLET',
@@ -91,7 +91,7 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
       try {
         // request access
         const accounts = await window.ethereum.enable();
-        window.eth = new Eth(window.ethereum);
+        window.eth = new Web3(window.ethereum);
         setWalletLoading(false);
         dispatch({
           type: 'SET_WALLET',

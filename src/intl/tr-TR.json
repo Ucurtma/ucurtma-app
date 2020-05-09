@@ -60,8 +60,14 @@
     "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
     "campaignEndTime": "Toplam kampanya süresi",
     "owner": "Öğrencinin Ethereum cüzdanı",
-    "tokenAddress": "BiLira adresi",
+    "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
-    "DeployAction": "Kampanya oluştur"
+    "DeployAction": "Kampanya oluştur",
+    "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
+    "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",
+    "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
+    "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
+    "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
+    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen bekleyiniz."
   }
 }

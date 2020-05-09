@@ -1,5 +1,16 @@
 import React, { useContext } from 'react';
-import { Heading, Text, Box, Button, Flex } from '@chakra-ui/core';
+import {
+  Heading,
+  Text,
+  Box,
+  Button,
+  Flex,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  useToast,
+  Link,
+} from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
 import Card from '../../ui/card';
@@ -14,7 +25,13 @@ import config from '../../../config';
 
 function ContractActions() {
   const { state: walletState } = useContext(WalletContext);
+  const toast = useToast();
   const { t } = useTranslation('contractActions');
+  const commonToastProps = {
+    duration: 10000,
+    isClosable: true,
+    position: 'top-right',
+  };
 
   return (
     <Card paddingType="default">
@@ -32,25 +49,42 @@ function ContractActions() {
             tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
             adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { setSubmitting, setFieldValue }) => {
+            setSubmitting(true);
+
             const deploymentManager = getDeploymentManagerContract();
             const eventFilter = deploymentManager.NewFundingContract({
               __owner: values.owner,
             });
+
             eventFilter.watch((error, event) => {
               if (error) {
-                // TODO: Or show error dialog
+                toast({
+                  title: t('deployErrorTitle'),
+                  description: t('deployErrorDesc'),
+                  status: 'error',
+                  ...commonToastProps,
+                });
                 console.log(`Error: ${error}`);
+                setSubmitting(false);
               } else {
-                // TODO: Show success dialog.
-                console.log(
-                  `Campaign Contract Deployed at '${
-                    event.args.deployedAddress
-                  }'. Click here: ${getEtherscanAddressFor({
-                    type: 'address',
-                    hash: event.args.deployedAddress,
-                  })}`
-                );
+                toast({
+                  title: t('deploySuccessTitle'),
+                  description: (
+                    <Link
+                      href={getEtherscanAddressFor({
+                        type: 'address',
+                        hash: event.args.deployedAddress,
+                      })}
+                    >
+                      {t('deploySuccessDesc')}
+                    </Link>
+                  ),
+                  status: 'success',
+                  ...commonToastProps,
+                });
+                setFieldValue('owner', '');
+                setSubmitting(false);
               }
             });
 
@@ -66,14 +100,33 @@ function ContractActions() {
                   // TODO: https://etherscan.io/tx/${result} or https://rinkeby.etherscan.io/tx/${result}
                   console.log(
                     `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
-                      {
-                        hash: result,
-                      }
+                      { hash: result }
                     )}`
                   );
+                  toast({
+                    title: t('deployStartedTitle'),
+                    description: (
+                      <Link href={getEtherscanAddressFor({ hash: result })}>
+                        {t('deployStartedDesc')}
+                      </Link>
+                    ),
+                    status: 'warning',
+                    ...commonToastProps,
+                  });
                 } else {
-                  // TODO: show error dialog
-                  console.log(`Error: ${err}`);
+                  toast({
+                    title:
+                      err.code === 4001
+                        ? "MetaMask'tan izin alınamadı."
+                        : 'Bir hata oluştu.',
+                    description:
+                      err.code === 4001
+                        ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
+                        : `Hata kodu: ${err.code}`,
+                    status: 'error',
+                    ...commonToastProps,
+                  });
+                  setSubmitting(false);
                 }
               }
             );
@@ -111,7 +164,15 @@ function ContractActions() {
                 disabled={!walletState.wallet}
                 name="owner"
               />
-              <Input label={t('tokenAddress')} disabled name="tokenAddress" />
+              <Box mb={4}>
+                <FormLabel color="paragraph">{t('tokenAddress')}</FormLabel>
+                <RadioGroup defaultValue="biLira" isInline>
+                  <Radio value="biLira" isDisabled key="biLira">
+                    BiLira
+                  </Radio>
+                </RadioGroup>
+              </Box>
+              {/* <Input label={t('tokenAddress')} disabled name="tokenAddress" /> */}
               <Input
                 label={t('adminAddress')}
                 value={walletState.wallet}

@@ -51,8 +51,17 @@
     "Join to Community": "Topluluğa Katıl"
   },
   "admin": {
-    "ContractActions": "Contract Actions",
-    "DeployDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget semper urna. Vivamus fermentum, neque ac egestas laoreet, libero ligula pulvinar velit.",
-    "numberOfPlannedPayouts": "Öğrencinin alabileceği ödeme sayısı"
+    "ContractActions": "Contract Actions"
+  },
+  "contractActions": {
+    "Deploy": "Yeni bir kampanya oluştur",
+    "DeployDescription": "Bu arayüzü kullanarak yeni bir kampanya akıllı kontratı oluşturabilirsiniz. Oluşturulacak kampanya kontratının uygulama yöneticiliği sizin kendi metamask hesabınız olacaktır.",
+    "numberOfPlannedPayouts": "Öğrencinin alabileceği toplam ödeme sayısı",
+    "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
+    "campaignEndTime": "Toplam kampanya süresi",
+    "owner": "Öğrencinin Ethereum cüzdanı",
+    "tokenAddress": "Para Birimi",
+    "adminAddress": "Yönetici Ethereum adresi",
+    "DeployAction": "Kampanya oluştur"
   }
 }

@@ -21,7 +21,7 @@ const config = {
     // Testnet DeploymentManager Address: 0x0E21a3218EB8bF3aAF9b22d89b117A767DD6a2fF
     // Mainnet DeploymentManager Address: 0xd755D2617859A57d90779EcDF714F866Ace294bb !! This may change after the recent changes.
     deploymentManagerAddress: !isProduction
-      ? '0x0E21a3218EB8bF3aAF9b22d89b117A767DD6a2fF'
+      ? '0x0B73269Ed0942A4B97E838846241ac45F89494A0'
       : '0xd755D2617859A57d90779EcDF714F866Ace294bb',
   },
 };

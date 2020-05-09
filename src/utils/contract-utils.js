@@ -1,4 +1,5 @@
 import DeploymentManagerABI from './abi/deploy-manager.abi.json';
+import CampaignABI from './abi/campaign.abi.json';
 import config from '../config';
 
 const { web3 } = window;
@@ -7,6 +8,10 @@ export function getDeploymentManagerContract() {
   return web3.eth
     .contract(DeploymentManagerABI)
     .at(config.ethereum.deploymentManagerAddress);
+}
+
+export function getCampaignContract(address) {
+  return web3.eth.contract(CampaignABI).at(address);
 }
 
 export function getEtherscanAddressFor({ type = 'tx', hash }) {

@@ -18,3 +18,22 @@ export function getEtherscanAddressFor({ type = 'tx', hash }) {
       return `https://etherscan.io/${type}/${hash}`;
   }
 }
+
+export function promisifyCall({ contract, method, params, mapper }) {
+  return new Promise((resolve, reject) => {
+    try {
+      contract[method](...params, (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+        if (mapper) {
+          return resolve(mapper(result));
+        } else {
+          return resolve(result);
+        }
+      });
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+}

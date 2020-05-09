@@ -87,11 +87,10 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
     setWalletLoading(true);
     if (window.ethereum) {
       // eslint-disable-next-line no-undef
-      window.web3 = new Web3(window.ethereum);
       try {
         // request access
         const accounts = await window.ethereum.enable();
-        window.eth = new Web3(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
         setWalletLoading(false);
         dispatch({
           type: 'SET_WALLET',

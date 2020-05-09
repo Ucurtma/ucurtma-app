@@ -51,7 +51,8 @@
     "Join to Community": "Topluluğa Katıl"
   },
   "admin": {
-    "ContractActions": "Kontrat İşlemleri"
+    "ContractActions": "Kontrat İşlemleri",
+    "CampaignsActions": "Kampanya Yönetimi"
   },
   "contractActions": {
     "Deploy": "Yeni bir kampanya oluştur",
@@ -63,5 +64,9 @@
     "tokenAddress": "BiLira adresi",
     "adminAddress": "Yönetici Ethereum adresi",
     "DeployAction": "Kampanya oluştur"
+  },
+  "contractList": {
+    "List": "Oluşturulmuş Kampanyalar",
+    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz."
   }
 }

@@ -51,7 +51,8 @@
     "Join to Community": "Topluluğa Katıl"
   },
   "admin": {
-    "ContractActions": "Kontrat İşlemleri"
+    "ContractActions": "Kontrat İşlemleri",
+    "CampaignsActions": "Kampanya Yönetimi"
   },
   "contractActions": {
     "Deploy": "Yeni bir kampanya oluştur",
@@ -69,5 +70,9 @@
     "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
     "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
     "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen bekleyiniz."
+  },
+  "contractList": {
+    "List": "Oluşturulmuş Kampanyalar",
+    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz."
   }
 }

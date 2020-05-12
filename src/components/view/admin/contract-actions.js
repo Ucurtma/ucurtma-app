@@ -114,15 +114,14 @@ function ContractActions() {
               parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
               values.owner,
               values.tokenAddress,
-              (err, result) => {
+              async (err, result) => {
                 if (!err) {
-                  // TODO: Show this transaction hash with some sort of notification and link to etherscan.
-                  // TODO: https://etherscan.io/tx/${result} or https://rinkeby.etherscan.io/tx/${result}
                   console.log(
                     `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
                       { hash: result }
                     )}`
                   );
+
                   toast({
                     title: t('deployStartedTitle'),
                     description: (
@@ -134,6 +133,8 @@ function ContractActions() {
                     ...commonToastProps,
                   });
                 } else {
+                  // todo: web3 can't catch error if deployment reverted with message.
+                  // find a solution.
                   toast({
                     title:
                       err.code === 4001

@@ -69,7 +69,7 @@
     "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
     "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
     "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
-    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen bekleyiniz.",
+    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. İşlem detaylarına gitmek için buraya tıklayabilirsiniz.",
     "validations": {
       "required": "Bu alan zorunludur.",
       "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz."

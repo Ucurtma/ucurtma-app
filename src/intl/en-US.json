@@ -63,5 +63,12 @@
     "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
     "DeployAction": "Kampanya oluştur"
+  },
+  "contractList": {
+    "List": "Created Campaigns",
+    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
+    "ListNotFound": "Cannot find created campaigns.",
+    "ListNotFoundDesc": "To see your created campaigns, <1>create campaign.</1>",
+    "StartToCreate": "create one."
   }
 }

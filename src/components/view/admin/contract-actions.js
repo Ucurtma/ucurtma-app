@@ -12,6 +12,7 @@ import {
   Link,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import Card from '../../ui/card';
 import Input from '../../ui/input';
@@ -22,6 +23,23 @@ import {
   getEtherscanAddressFor,
 } from '../../../utils/contract-utils';
 import config from '../../../config';
+
+const deployContractSchema = t => {
+  const { web3 } = window;
+  return Yup.object().shape({
+    numberOfPlannedPayouts: Yup.string().required(t('validations.required')),
+    withdrawPeriod: Yup.string().required(t('validations.required')),
+    campaignEndTime: Yup.string().required(t('validations.required')),
+    owner: Yup.string()
+      .required(t('validations.required'))
+      .test(
+        'Check Address',
+        t('validations.incorrectAddress'),
+        value => value && web3.utils.isAddress(value)
+      ),
+    tokenAddress: Yup.string().required(t('validations.required')),
+  });
+};
 
 function ContractActions() {
   const { state: walletState } = useContext(WalletContext);
@@ -49,6 +67,7 @@ function ContractActions() {
             tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
             adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
           }}
+          validationSchema={deployContractSchema(t)}
           onSubmit={(values, { setSubmitting, setFieldValue }) => {
             setSubmitting(true);
 
@@ -85,6 +104,7 @@ function ContractActions() {
                 });
                 setFieldValue('owner', '');
                 setSubmitting(false);
+                console.log('no error');
               }
             });
 
@@ -126,6 +146,7 @@ function ContractActions() {
                     status: 'error',
                     ...commonToastProps,
                   });
+                  console.log('error');
                   setSubmitting(false);
                 }
               }
@@ -172,7 +193,6 @@ function ContractActions() {
                   </Radio>
                 </RadioGroup>
               </Box>
-              {/* <Input label={t('tokenAddress')} disabled name="tokenAddress" /> */}
               <Input
                 label={t('adminAddress')}
                 value={walletState.wallet}

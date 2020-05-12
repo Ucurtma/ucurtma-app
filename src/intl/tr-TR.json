@@ -69,10 +69,17 @@
     "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
     "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
     "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
-    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen bekleyiniz."
+    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen bekleyiniz.",
+    "validations": {
+      "required": "Bu alan zorunludur.",
+      "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz."
+    }
   },
   "contractList": {
     "List": "Oluşturulmuş Kampanyalar",
-    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz."
+    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
+    "ListNotFound": "Oluşturulmuş kontrat bulunamadı.",
+    "ListNotFoundDesc": "Oluşturduğunuz kontratların listesini görmek için kontrat <1><2>oluşturmaya başlayın.</2></1>",
+    "StartToCreate": "oluşturmaya başlayın."
   }
 }

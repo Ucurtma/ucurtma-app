@@ -8,19 +8,19 @@
   },
   "splashScreen": {
     "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
-    "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak burs alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
+    "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
     "Apply as a student": "Öğrenci Olarak Başvuru Yap",
     "Click here to subscribe": "Gelişmelerden haberdar olmak için mail listemize <2>buraya tıklayarak</2> abone olabilirsiniz."
   },
   "problemAndSolution": {
     "New solution with blockchain": "Blokzinciri ile yeni nesil bir çözüm",
-    "What was the problem": "Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla burs toplayıp, her ay belirledikleri miktarda bursu banka hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak sağlar. Böylece burslarının kontrolü kendi ellerinde olurken, destekçiler de bu sürece dahil olarak şeffaf bir şekilde öğrencinin durumunu platform üzerinden takip edebilir.",
+    "What was the problem": "Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla destek toplayıp, her ay belirledikleri miktarda desteği banka hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak sağlar. Böylece desteklerinin kontrolü kendi ellerinde olurken, destekçiler de bu sürece dahil olarak şeffaf bir şekilde öğrencinin durumunu platform üzerinden takip edebilir.",
     "Safe": "Güvenli",
     "Safe_details": "Tüm işlemler öğrencilere ait dijital cüzdanlarındaki eliptik eğri yöntemiyle şifrelenmiş dijital imzalarıyla gerçekleşir.",
     "Transparent": "Şeffaf",
     "Transparent_details": "Para transferlerinin tamamı şeffaf bir şekilde görüntülenebilir ve destekçiler destek oldukları öğrencinin başarılarını platform üzerinden takip edebilirler.",
     "Fast": "Hızlı",
-    "Fast_details": "Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir işleme gerek duymadan bursları öğrencilere zamanında hızlı bir şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı için öğrenciler asla mağdur kalmaz."
+    "Fast_details": "Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir işleme gerek duymadan destekleri öğrencilere zamanında hızlı bir şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı için öğrenciler asla mağdur kalmaz."
   },
   "howItWorks": {
     "Examine": "İncele",

@@ -153,11 +153,11 @@ function Application() {
       name: 'dreams',
     },
     {
-      label: 'Burs alamazsanız ne olur?',
+      label: 'Destek alamazsanız ne olur?',
       name: 'whatIf',
     },
     {
-      label: 'Siz olsaydınız, size neden burs verirdiniz?',
+      label: 'Siz olsaydınız, size neden destek verirdiniz?',
       name: 'whyYou',
     },
   ];

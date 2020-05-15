@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, Box, useTheme, Text } from '@chakra-ui/core';
 
 function SidebarItem({ active, icon, label, ...otherProps }) {
@@ -27,11 +26,5 @@ function SidebarItem({ active, icon, label, ...otherProps }) {
     </Button>
   );
 }
-
-SidebarItem.propTypes = {
-  active: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  label: PropTypes.string,
-};
 
 export default SidebarItem;

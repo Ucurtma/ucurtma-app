@@ -1,4 +1,9 @@
 {
+  "global": {
+    "confirm": "Onayla",
+    "somethingWrong": "Bir hata oluştu.",
+    "errorWithCode": "Hata kodu: {{code}}"
+  },
   "titles": {
     "What is Uçurtma": "Uçurtma Projesi Nedir?",
     "Problem and Solution": "Sorun ve Çözüm",
@@ -79,7 +84,13 @@
     "List": "Oluşturulmuş Kampanyalar",
     "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
     "ListNotFound": "Oluşturulmuş kontrat bulunamadı.",
-    "ListNotFoundDesc": "Oluşturduğunuz kontratların listesini görmek için kontrat <1><2>oluşturmaya başlayın.</2></1>",
+    "ListNotFoundDesc": "Oluşturduğunuz kontratların listesini görmek için kontrat <1>oluşturmaya başlayın.</1>",
     "StartToCreate": "oluşturmaya başlayın."
+  },
+  "header": {
+    "signTokenModal": "İmza oluştur",
+    "signToken": "Uçurtma kampanyası oluşturmak için <strong>{{address}}</strong> adresinin bana ait olduğunu teyit ediyorum.",
+    "deniedSignatureTitle": "Metni imzalamadığınız için işleme devam edilemiyor.",
+    "deniedSignatureDesc": "Yapmak istediğiniz işleme devam etmek için lütfen metni onaylayınız."
   }
 }

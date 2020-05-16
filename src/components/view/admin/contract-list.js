@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { Heading, Text, Box } from '@chakra-ui/core';
-import { useTranslation } from 'react-i18next';
+import {
+  Heading,
+  Text,
+  Box,
+  Alert,
+  Icon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/core';
+import { useTranslation, Trans } from 'react-i18next';
+import { AlertCircle } from 'react-feather';
+import { Link } from 'react-router-dom';
 import ContractListItem from '../../ui/contract-list-item';
 import Card from '../../ui/card';
 import {
@@ -49,14 +59,35 @@ function ContractList() {
       </Heading>
       <Text color="paragraph">{t('ListDescription')}</Text>
       <Box mt={4}>
-        {contractList.map(campaign => {
-          return (
-            <ContractListItem
-              key={campaign.campaignAddress}
-              contractAddress={campaign.campaignAddress}
-            />
-          );
-        })}
+        {contractList.length > 0 ? (
+          contractList.map(campaign => {
+            return (
+              <ContractListItem
+                key={campaign.campaignAddress}
+                contractAddress={campaign.campaignAddress}
+              />
+            );
+          })
+        ) : (
+          <Alert
+            w="full"
+            h="full"
+            bg="gray.50"
+            color="gray.400"
+            justifyContent="center"
+            flexDir="column"
+            p={8}
+          >
+            <Icon as={AlertCircle} fontSize="4rem" color="gray.300" mb={4} />
+            <AlertTitle mr={2}>{t('ListNotFound')}</AlertTitle>
+            <AlertDescription textAlign="center">
+              <Trans i18nKey="ListNotFoundDesc" t={t}>
+                Oluşturduğunuz kontratların listesini görmek için kontrat
+                <Link to="../deploy">oluşturmaya başlayın.</Link>
+              </Trans>
+            </AlertDescription>
+          </Alert>
+        )}
       </Box>
     </Card>
   );

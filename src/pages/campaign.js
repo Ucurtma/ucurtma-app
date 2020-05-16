@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
 import {
   Heading,

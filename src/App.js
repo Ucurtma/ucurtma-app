@@ -2,6 +2,7 @@ import React, { Suspense, lazy, createContext } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import 'react-calendar/dist/Calendar.css';
+import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
 import { gaTrackingId } from './config';
 import Loader from './components/ui/loader';
 
@@ -12,7 +13,10 @@ const Admin = lazy(() => import('./pages/admin'));
 
 export const WalletContext = createContext();
 
-const initialState = { wallet: '' };
+const initialState = {
+  wallet: '',
+  modal: { isOpen: false, overlay: true, closable: true },
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -21,6 +25,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         wallet: action.payload,
+      };
+    case 'SET_MODAL':
+      return {
+        ...state,
+        modal: {
+          ...initialState.modal,
+          ...action.payload,
+        },
       };
     default:
       return state;
@@ -34,7 +46,6 @@ function App() {
   React.useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
-
   return (
     <WalletContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
@@ -58,6 +69,18 @@ function App() {
           }}
         />
       </BrowserRouter>
+      {state.modal.isOpen && (
+        <Modal
+          isOpen={state.modal.isOpen}
+          onClose={() =>
+            state.modal.closable &&
+            dispatch({ type: 'SET_MODAL', payload: { isOpen: false } })
+          }
+        >
+          {state.modal.overlay && <ModalOverlay />}
+          <ModalContent>{state.modal.content}</ModalContent>
+        </Modal>
+      )}
     </WalletContext.Provider>
   );
 }

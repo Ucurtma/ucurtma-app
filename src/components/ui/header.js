@@ -1,67 +1,111 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Menu } from 'react-feather';
-import styled from '@emotion/styled';
 import {
-  Icon,
   Flex,
-  Drawer,
   useDisclosure,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  DrawerHeader,
-  DrawerBody,
   IconButton,
   Image,
   Button,
   useToast,
   Box,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
 } from '@chakra-ui/core';
 import Web3 from 'web3';
+import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
 import { WalletContext } from '../../App';
-
-const Logo = styled(Icon)`
-  height: auto;
-`;
-
-function MenuDrawer({ isOpen, onClose, items }) {
-  return (
-    <Drawer
-      returnFocusOnClose={false}
-      isOpen={isOpen}
-      placement="right"
-      onClose={onClose}
-      size="full"
-    >
-      <DrawerOverlay />
-      <DrawerContent>
-        <DrawerCloseButton />
-        <DrawerHeader>
-          <Link to="/">
-            <Logo name="logo" size={12} />
-          </Link>
-        </DrawerHeader>
-        <DrawerBody>
-          <MenuItems isDrawer items={items} />
-        </DrawerBody>
-      </DrawerContent>
-    </Drawer>
-  );
-}
+import MenuDrawer from './menu-drawer';
 
 // todo: get loggedIn from token
-function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
+function Header({
+  menuItems,
+  withLogo = false,
+  hideMenu = false,
+  isManager = false,
+  ...otherProps
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [walletLoading, setWalletLoading] = useState(false);
   const { state: walletState, dispatch } = useContext(WalletContext);
   const toast = useToast();
+  const { t } = useTranslation(['header', 'global']);
+
+  const signToken = useCallback(
+    accounts => {
+      let token;
+
+      dispatch({
+        type: 'SET_MODAL',
+        payload: {
+          isOpen: true,
+          closable: false,
+          content: (
+            <>
+              <ModalHeader>{t('header:signTokenModal')}</ModalHeader>
+              <ModalBody>
+                <Trans
+                  i18nKey="header:signToken"
+                  t={t}
+                  values={{ address: accounts[0] }}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  onClick={() => {
+                    const message = `\x19Uçurtma kampanyası oluşturmak için ${window.ethereum.selectedAddress} adresinin bana ait olduğunu teyit ediyorum.\n`;
+                    const hash = window.web3.utils.toHex(message);
+                    window.web3.eth.personal
+                      .sign(hash, window.ethereum.selectedAddress)
+                      .then(msg => {
+                        token = window.btoa(
+                          `${msg}::${window.ethereum.selectedAddress}`
+                        );
+                        localStorage.setItem('signedToken', token);
+                        dispatch({
+                          type: 'SET_MODAL',
+                          payload: { isOpen: false },
+                        });
+                      })
+                      .catch(err => {
+                        toast({
+                          title:
+                            err.code === 4001
+                              ? t('header:deniedSignatureTitle')
+                              : t('global:somethingWrong'),
+                          description:
+                            err.code === 4001
+                              ? t('header:deniedSignatureDesc')
+                              : t('global:errorWithCode', {
+                                  code: err.code,
+                                }),
+                          status: 'error',
+                          duration: 5000,
+                          isClosable: true,
+                          position: 'top-right',
+                        });
+                      });
+                  }}
+                  variant="ghost"
+                >
+                  {t('global:confirm')}
+                </Button>
+              </ModalFooter>
+            </>
+          ),
+        },
+      });
+
+      return token;
+    },
+    [dispatch, t, toast]
+  );
 
   React.useEffect(() => {
-    if (window.ethereum) {
+    if (window.ethereum && isManager) {
       if (window.ethereum.selectedAddress) {
         window.web3 = new Web3(window.ethereum);
 
@@ -69,6 +113,12 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
           type: 'SET_WALLET',
           payload: window.ethereum.selectedAddress,
         });
+
+        const signedToken = localStorage.getItem('signedToken');
+
+        if (!signedToken) signToken([window.ethereum.selectedAddress]);
+      } else {
+        window.web3 = new Web3(window.ethereum);
       }
 
       window.ethereum.on('accountsChanged', accounts => {
@@ -78,24 +128,29 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
           type: 'SET_WALLET',
           payload: accounts[0] || '',
         });
+
+        localStorage.removeItem('signedToken');
+        signToken(accounts);
       });
     }
-  }, [dispatch]);
+  }, [dispatch, isManager, signToken]);
 
   // eslint-disable-next-line consistent-return
   const checkForMetamask = async () => {
     setWalletLoading(true);
+
     if (window.ethereum) {
-      // eslint-disable-next-line no-undef
       try {
-        // request access
         const accounts = await window.ethereum.enable();
         window.web3 = new Web3(window.ethereum);
         setWalletLoading(false);
-        dispatch({
-          type: 'SET_WALLET',
-          payload: accounts[0],
-        });
+        if (accounts[0]) {
+          dispatch({
+            type: 'SET_WALLET',
+            payload: accounts[0],
+          });
+          signToken(accounts);
+        }
         return window.web3;
       } catch (err) {
         setWalletLoading(false);
@@ -135,9 +190,9 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
   }
 
   const WalletElement = walletState.wallet
-    ? { element: Box, props: { display: 'flex' } }
+    ? { Element: Box, props: { display: 'flex' } }
     : {
-        element: Button,
+        Element: Button,
         props: {
           borderRadius: 'full',
           border: '3px solid',
@@ -164,23 +219,25 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
                 src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
               />
             </Link>
-            <WalletElement.element
-              {...WalletElement.props}
-              py={6}
-              color="gray.400"
-              onClick={() => !walletState.wallet && checkForMetamask()}
-              justifyContent={walletLoading ? 'center' : 'flex-start'}
-              isLoading={walletLoading}
-            >
-              <Box
-                as="span"
-                maxW={walletState.wallet && '153px'}
-                overflow="hidden"
-                textOverflow="ellipsis"
+            {isManager && (
+              <WalletElement.Element
+                {...WalletElement.props}
+                py={6}
+                color="gray.400"
+                onClick={() => !walletState.wallet && checkForMetamask()}
+                justifyContent={walletLoading ? 'center' : 'flex-start'}
+                isLoading={walletLoading}
               >
-                {walletState.wallet || 'Cüzdanını Bağla'}
-              </Box>
-            </WalletElement.element>
+                <Box
+                  as="span"
+                  maxW={walletState.wallet && '153px'}
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                >
+                  {walletState.wallet || 'Cüzdanını Bağla'}
+                </Box>
+              </WalletElement.Element>
+            )}
           </>
         )}
         {!hideMenu && (
@@ -215,15 +272,5 @@ function Header({ withLogo, menuItems, hideMenu = false, ...otherProps }) {
     </Container>
   );
 }
-
-Header.defaultProps = {
-  loggedIn: false,
-  withLogo: false,
-};
-
-Header.propTypes = {
-  loggedIn: PropTypes.bool,
-  withLogo: PropTypes.bool,
-};
 
 export default Header;

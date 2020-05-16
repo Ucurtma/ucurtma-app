@@ -1,4 +1,9 @@
 {
+  "global": {
+    "confirm": "Onayla",
+    "somethingWrong": "Bir hata oluştu.",
+    "errorWithCode": "Hata kodu: {{code}}"
+  },
   "titles": {
     "What is Uçurtma": "Uçurtma Projesi Nedir?",
     "Problem and Solution": "Sorun ve Çözüm",
@@ -61,12 +66,31 @@
     "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
     "campaignEndTime": "Toplam kampanya süresi",
     "owner": "Öğrencinin Ethereum cüzdanı",
-    "tokenAddress": "BiLira adresi",
+    "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
-    "DeployAction": "Kampanya oluştur"
+    "DeployAction": "Kampanya oluştur",
+    "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
+    "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",
+    "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
+    "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
+    "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
+    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. İşlem detaylarına gitmek için buraya tıklayabilirsiniz.",
+    "validations": {
+      "required": "Bu alan zorunludur.",
+      "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz."
+    }
   },
   "contractList": {
     "List": "Oluşturulmuş Kampanyalar",
-    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz."
+    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
+    "ListNotFound": "Oluşturulmuş kontrat bulunamadı.",
+    "ListNotFoundDesc": "Oluşturduğunuz kontratların listesini görmek için kontrat <1>oluşturmaya başlayın.</1>",
+    "StartToCreate": "oluşturmaya başlayın."
+  },
+  "header": {
+    "signTokenModal": "İmza oluştur",
+    "signToken": "Uçurtma kampanyası oluşturmak için <strong>{{address}}</strong> adresinin bana ait olduğunu teyit ediyorum.",
+    "deniedSignatureTitle": "Metni imzalamadığınız için işleme devam edilemiyor.",
+    "deniedSignatureDesc": "Yapmak istediğiniz işleme devam etmek için lütfen metni onaylayınız."
   }
 }

@@ -113,8 +113,8 @@ function Campaign() {
         <Container display="block">
           <Helmet>
             <title>
-              {data
-                ? `${data.campaign?.campaignTitle} - ${data.campaign?.student.name} - Uçurtma Projesi`
+              {data && data.campaign && data.campaign.student
+                ? `${data.campaign?.campaignTitle} - ${data.campaign?.student?.name} - Uçurtma Projesi`
                 : 'Uçurtma Projesi'}
             </title>
           </Helmet>
@@ -131,8 +131,8 @@ function Campaign() {
               ) : (
                 <Avatar
                   size="lg"
-                  src={data.campaign?.student.profilePhoto}
-                  name={data.campaign?.student.name}
+                  src={data.campaign?.student?.profilePhoto}
+                  name={data.campaign?.student?.name}
                 />
               )}
               <Box ml={4}>
@@ -140,7 +140,7 @@ function Campaign() {
                   {loading ? (
                     <Skeleton width={200} />
                   ) : (
-                    data.campaign?.student.name
+                    data.campaign?.student?.name
                   )}
                 </Heading>
                 <Text color="gray.500">
@@ -148,8 +148,8 @@ function Campaign() {
                     <Skeleton width={260} />
                   ) : (
                     <>
-                      {data.campaign?.student.school} /{' '}
-                      {data.campaign?.student.department}
+                      {data.campaign?.student?.school} /{' '}
+                      {data.campaign?.student?.department}
                     </>
                   )}
                 </Text>

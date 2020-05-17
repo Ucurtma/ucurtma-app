@@ -3,6 +3,7 @@ import { useParams, Routes, Route, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
 import { Box } from '@chakra-ui/core';
+import { withApollo } from '../utils/apollo';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import SidebarItem from '../components/ui/sidebar-item';
@@ -55,4 +56,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default withApollo(Admin);

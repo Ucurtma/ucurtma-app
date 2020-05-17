@@ -66,6 +66,8 @@
     "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
     "campaignEndTime": "Toplam kampanya süresi",
     "owner": "Öğrencinin Ethereum cüzdanı",
+    "campaignId": "Kampanya ID'si",
+    "title": "Kampanya Başlığı",
     "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
     "DeployAction": "Kampanya oluştur",
@@ -74,7 +76,7 @@
     "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
     "deploySuccessDesc": "İşlemin detaylarını görmek için buraya tıklayabilirsiniz.",
     "deployStartedTitle": "Kampanya yaratma işlemi başladı.",
-    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. İşlem detaylarına gitmek için buraya tıklayabilirsiniz.",
+    "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen sayfadan ayrılmayınız ve sayfayı yenilemeyiniz.",
     "validations": {
       "required": "Bu alan zorunludur.",
       "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz."

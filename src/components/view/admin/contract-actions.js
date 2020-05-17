@@ -11,7 +11,9 @@ import {
   useToast,
   Link,
 } from '@chakra-ui/core';
+import gql from 'graphql-tag';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from '@apollo/react-hooks';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import Card from '../../ui/card';
@@ -23,12 +25,14 @@ import {
   getEtherscanAddressFor,
 } from '../../../utils/contract-utils';
 import config from '../../../config';
+import { uuidv4 } from '../../../utils/utils';
 
 const deployContractSchema = t => {
   const { web3 } = window;
   return Yup.object().shape({
     numberOfPlannedPayouts: Yup.string().required(t('validations.required')),
     withdrawPeriod: Yup.string().required(t('validations.required')),
+    title: Yup.string().required(t('validations.required')),
     campaignEndTime: Yup.string().required(t('validations.required')),
     owner: Yup.string()
       .required(t('validations.required'))
@@ -41,12 +45,33 @@ const deployContractSchema = t => {
   });
 };
 
+const CREATE_CAMPAIGN = gql`
+  mutation CreateCampaign(
+    $campaignId: String!
+    $title: String!
+    $text: String
+    $ethereumAddress: String!
+    $student: Student
+  ) {
+    createCampaign(
+      campaignId: $campaignId
+      title: $title
+      text: $text
+      ethereumAddress: $ethereumAddress
+      student: $student
+    ) {
+      campaignId
+    }
+  }
+`;
+
 function ContractActions() {
   const { state: walletState } = useContext(WalletContext);
+  const [createCampaign] = useMutation(CREATE_CAMPAIGN); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('contractActions');
   const commonToastProps = {
-    duration: 10000,
+    duration: null,
     isClosable: true,
     position: 'top-right',
   };
@@ -66,9 +91,11 @@ function ContractActions() {
             owner: '', // the ethereum address of student
             tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
             adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
+            campaignId: uuidv4(),
+            title: '',
           }}
           validationSchema={deployContractSchema(t)}
-          onSubmit={(values, { setSubmitting, setFieldValue }) => {
+          onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
 
             const deploymentManager = getDeploymentManagerContract();
@@ -102,7 +129,23 @@ function ContractActions() {
                   status: 'success',
                   ...commonToastProps,
                 });
-                setFieldValue('owner', '');
+
+                const metamaskToken = localStorage.getItem('signedToken');
+
+                createCampaign({
+                  variables: {
+                    campaignId: values.campaignId,
+                    title: values.title,
+                    text: '',
+                    ethereumAddress: event.args.deployedAddress,
+                  },
+                  context: {
+                    headers: {
+                      authorization: `Bearer ${metamaskToken}`,
+                    },
+                  },
+                });
+
                 setSubmitting(false);
                 console.log('no error');
               }
@@ -152,12 +195,21 @@ function ContractActions() {
                 }
               }
             );
-
-            setSubmitting(false);
           }}
         >
           {({ isSubmitting, errors }) => (
             <Form>
+              <Input
+                label={t('campaignId')}
+                disabled
+                readonly
+                name="campaignId"
+              />
+              <Input
+                label={t('title')}
+                disabled={!walletState.wallet}
+                name="title"
+              />
               <Flex>
                 <NumberInput
                   label={t('numberOfPlannedPayouts')}

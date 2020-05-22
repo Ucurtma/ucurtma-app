@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { useParams, Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  useParams,
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
 import { Box } from '@chakra-ui/core';
@@ -49,6 +55,7 @@ function Admin() {
           <Routes>
             <Route path="deploy" element={<ContractActions />} />
             <Route path="campaigns" element={<ContractList />} />
+            <Route path="*" element={<Navigate to="deploy" replace />} />
           </Routes>
         </Box>
       </Container>

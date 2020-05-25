@@ -56,6 +56,7 @@ function App() {
             <Route path="campaign/:id" element={<Campaign />} />
             <Route path="manager/*" element={<Admin />} />
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
         <Route

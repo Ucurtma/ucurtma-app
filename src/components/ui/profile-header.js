@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CheckCircle, DollarSign, Umbrella } from 'react-feather';
 import { Flex, Box } from '@chakra-ui/core';
-import { UserInfo, UserInfoBadge } from '../user-info';
+import { UserInfo, UserInfoBadge } from './user-info';
 
 function ProfileHeader({ isVerified, user, count }) {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../ui/card';
-import ProfileHeader from '../ui/profile/profile-header';
+import ProfileHeader from '../ui/profile-header';
 import ChangeProfilePicture from '../ui/settings/change-profile-pic';
 import ChangePassword from '../ui/settings/change-password';
 import ChangeProfileInfo from '../ui/settings/change-profile-info';

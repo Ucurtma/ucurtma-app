@@ -12,11 +12,6 @@ const Application = (
     <CSSReset />
     <Global
       styles={{
-        html: {
-          fontFamily:
-            'Quicksand, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-          fontSize: '16px',
-        },
         body: {
           backgroundColor: '#fff',
         },

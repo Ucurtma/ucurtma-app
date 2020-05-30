@@ -70,6 +70,7 @@
     "title": "Kampanya Başlığı",
     "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
+    "campaignDetails": "Kampanya Detayları",
     "DeployAction": "Kampanya oluştur",
     "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
     "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",
@@ -94,5 +95,17 @@
     "signToken": "Uçurtma kampanyası oluşturmak için <strong>{{address}}</strong> adresinin bana ait olduğunu teyit ediyorum.",
     "deniedSignatureTitle": "Metni imzalamadığınız için işleme devam edilemiyor.",
     "deniedSignatureDesc": "Yapmak istediğiniz işleme devam etmek için lütfen metni onaylayınız."
+  },
+  "editor": {
+    "welcome": "Merhaba.",
+    "description": "Bu editörü kullanarak kampanya tasarımlarınıza harika bir görünüm kazandırabilirsiniz.",
+    "createList": "Harika listeler oluşturabilirsiniz:",
+    "list": {
+      "polarBears": "Tüm kutup ayılarının solak olduğunu biliyor muydunuz?",
+      "beeEyes": "Arıların başlarının üzerinde 3 küçük, ön tarafta ise 2 büyük olmak üzere toplam 5 gözleri bulunur.",
+      "catTaste": "Kediler tatlı yiyeceklerin tadını alamazlar."
+    },
+    "addImages": "Harika resimler de ekleyebilirsiniz:",
+    "imageCaption": "Gülen mutlu köpekler"
   }
 }

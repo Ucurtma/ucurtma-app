@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Heading,
   Text,
@@ -19,7 +19,6 @@ import { Formik, Form } from 'formik';
 import Card from '../../ui/card';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';
-import { WalletContext } from '../../../App';
 import {
   getDeploymentManagerContract,
   getEtherscanAddressFor,
@@ -65,11 +64,11 @@ const CREATE_CAMPAIGN = gql`
   }
 `;
 
-function ContractActions() {
-  const { state: walletState } = useContext(WalletContext);
+function ContractActions({ walletState }) {
   const [createCampaign] = useMutation(CREATE_CAMPAIGN); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('contractActions');
+  const isWalletExist = walletState.wallet;
   const commonToastProps = {
     duration: null,
     isClosable: true,
@@ -102,6 +101,17 @@ function ContractActions() {
             const eventFilter = deploymentManager.NewFundingContract({
               __owner: values.owner,
             });
+
+            if (window.editor) {
+              window.editor
+                .save()
+                .then(outputData => {
+                  console.log(outputData);
+                })
+                .catch(err => {
+                  console.log('data failed', err);
+                });
+            }
 
             eventFilter.watch((error, event) => {
               if (error) {
@@ -207,7 +217,7 @@ function ContractActions() {
               />
               <Input
                 label={t('title')}
-                disabled={!walletState.wallet}
+                disabled={!isWalletExist}
                 name="title"
               />
               <Flex>
@@ -216,14 +226,14 @@ function ContractActions() {
                   name="numberOfPlannedPayouts"
                   type="number"
                   controlProps={{ mr: 4 }}
-                  disabled={!walletState.wallet}
+                  disabled={!isWalletExist}
                 />
                 <NumberInput
                   label={t('withdrawPeriod')}
                   name="withdrawPeriod"
                   type="number"
                   addon={{ right: 'Gün' }}
-                  disabled={!walletState.wallet}
+                  disabled={!isWalletExist}
                 />
               </Flex>
               <NumberInput
@@ -231,11 +241,11 @@ function ContractActions() {
                 name="campaignEndTime"
                 type="number"
                 addon={{ right: 'Gün' }}
-                disabled={!walletState.wallet}
+                disabled={!isWalletExist}
               />
               <Input
                 label={t('owner')}
-                disabled={!walletState.wallet}
+                disabled={!isWalletExist}
                 name="owner"
               />
               <Box mb={4}>
@@ -252,6 +262,20 @@ function ContractActions() {
                 disabled
                 name="adminAddress"
               />
+
+              {isWalletExist && (
+                <Box mb={4}>
+                  <FormLabel color="paragraph">
+                    {t('campaignDetails')}
+                  </FormLabel>
+                  <Box
+                    border="1px solid"
+                    borderColor="#e2e8f0"
+                    borderRadius="4px"
+                    id="editorjs"
+                  />
+                </Box>
+              )}
               <Flex justifyContent="flex-end">
                 <Button
                   color="gray.800"

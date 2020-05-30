@@ -107,8 +107,6 @@ function Header({
   React.useEffect(() => {
     if (window.ethereum && isManager) {
       if (window.ethereum.selectedAddress) {
-        window.web3 = new Web3(window.ethereum);
-
         dispatch({
           type: 'SET_WALLET',
           payload: window.ethereum.selectedAddress,
@@ -117,21 +115,24 @@ function Header({
         const signedToken = localStorage.getItem('signedToken');
 
         if (!signedToken) signToken([window.ethereum.selectedAddress]);
-      } else {
-        window.web3 = new Web3(window.ethereum);
       }
 
-      window.ethereum.on('accountsChanged', accounts => {
-        window.web3 = new Web3(window.ethereum);
+      if (isManager) {
+        window.ethereum.on('accountsChanged', accounts => {
+          dispatch({
+            type: 'SET_WALLET',
+            payload: accounts[0] || '',
+          });
 
-        dispatch({
-          type: 'SET_WALLET',
-          payload: accounts[0] || '',
+          localStorage.removeItem('signedToken');
+
+          if (window.ethereum.selectedAddress) {
+            signToken(accounts);
+          }
         });
 
-        localStorage.removeItem('signedToken');
-        signToken(accounts);
-      });
+        window.web3 = new Web3(window.ethereum);
+      }
     }
   }, [dispatch, isManager, signToken]);
 

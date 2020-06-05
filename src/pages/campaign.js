@@ -233,7 +233,6 @@ function Campaign() {
                       setContent('donate');
                       setDonateActivated(true);
                     }}
-                    zIndex={2000}
                     _hover={{ bg: 'green.100' }}
                   >
                     Destek Ol

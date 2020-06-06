@@ -13,10 +13,9 @@ function DirectConsent() {
         </Heading>
       </Box>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
-        maxime temporibus quis aperiam deserunt labore omnis consectetur
-        perferendis ab, aut laudantium illum magni dolorum iste, dolor deleniti
-        voluptatem quas mollitia.
+        Uçurtma Projesi bir L.U.N.A Derneği (Blok Zincir Yardımlaşma Derneği)
+        projesi olup derneğin merkezi Akat Mah. Ebulula Mardin Cad. Maya
+        Meridyen Plaza No:16 Kat:14 D:35 Beşiktaş İstanbul'dur.
       </p>
       <Heading as="h4" size="md" my={4}>
         Genel Bilgi
@@ -112,11 +111,11 @@ function DirectConsent() {
         Tanımlar
       </Heading>
       <p>
-        <strong>Öğrenci:</strong> Burs almak isteyen gerçek kişi{' '}
+        <strong>Öğrenci:</strong> Burs almak isteyen gerçek kişi
       </p>
       <p>
         <strong>Destekçi:</strong> Platform üzerinden kendi maddi durumuna göre
-        kripto para olarak destek veren gerçek veya tüzel kişi,{' '}
+        kripto para olarak destek veren gerçek veya tüzel kişi,
       </p>
       <p>
         <strong>Destek Platformları:</strong> Uçurtma Projesi teknoloji alt
@@ -137,21 +136,13 @@ function DirectConsent() {
         etme amacı doğrultusunda toplanmaktadır.
       </p>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quis
-        totam velit, mollitia numquam consequatur esse praesentium explicabo
-        possimus dolore aliquid ut error quod placeat sapiente aliquam unde
-        nisi! Ratione?
-      </p>
-      <p>
         PROJE kapsamında öğrencilere burs sağlamak isteyen destekçiler, üç
         adımda öğrencilerin hayallerini gerçeğe dönüştürmelerine yardımcı
         olabilirler. Bunlar; İncele, Destek ol, Takip et. PROJE’de öğrenci
         olarak yer alıp burs almak isteyen kişilerden destekçilere kendileriyle
-        ilgili Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-        rerum at officiis, soluta excepturi laudantium a dolorum ad incidunt
-        provident alias mollitia explicabo cumque ea aliquid, voluptate
-        consequatur. Excepturi, eos? bilgilerinin burs sisteminde destek olmak
-        isteyen öğrencileri seçmeleri açısından destekçilerle paylaşma amacıyla;
+        ilgili transkriptleri, not ortalamaları ve başarı belgeleri burs
+        sisteminde destek olmak isteyen öğrencileri seçmeleri açısından
+        destekçilerle paylaşma amacıyla;
       </p>
       <ul>
         <li>Hukuka ve dürüstlük kuralının öngördüğü biçimde,</li>
@@ -197,7 +188,7 @@ function DirectConsent() {
           transferi sebebiyle paylaşılmaz.
         </strong>
       </p>
-      <Heading as="h4" size="md" my={4}>
+      {/* <Heading as="h4" size="md" my={4}>
         “Kişisel Verileriniz Hangi Amaçlarla Kimlere Aktarılıyor?”:
       </Heading>
       <p>
@@ -207,13 +198,7 @@ function DirectConsent() {
         (Ad-Soyad, Sosyal Mali Durum, Yaş, Cinsiyet, Eğitim Durumu, transkript
         gibi eğitim ve mali durumunuzu ispatlayacak diğer tüm belgeler dahil
         olmak üzere.) Uçurtma Projesi kapsamında sadece anlaşma sağladığımız
-        şirketler OLAN DESTEK PLATFORMLARI ile paylaşılmaktadır. Lorem, ipsum
-        dolor sit amet consectetur adipisicing elit. Similique praesentium
-        recusandae itaque quas, consequatur facere adipisci omnis saepe maxime
-        quisquam officia quod doloribus maiores earum dolorum nostrum dicta
-        aliquid. Error. Anlaşma yapılan şirketlerle ilgili detayları bu linkten
-        ulaşabilirsiniz. (Burada anlaşma olan şirketler hakkında kısa bir bilgi
-        verilse iyi olur.)
+        şirketler OLAN DESTEK PLATFORMLARI ile paylaşılmaktadır.
       </p>
       <p>
         Uçurma Projesi kapsamında üye web sitemiz aracılığı ile kayıt yapan tüm
@@ -224,7 +209,7 @@ function DirectConsent() {
         asıl bağış sağlayıcısı olan anlaşmalı platformlar aracılığı ile projenin
         amacına ulaşması hedeflenmektedir. Bu nedenle toplanan veriler doğrudan
         anlaşmalı şirketlerle paylaşılmaktadır.
-      </p>
+      </p> */}
       <Heading as="h4" size="md" my={4}>
         “Kişisel Verilerinizi Üçüncü Bir Kişiye Aktarımı”:
       </Heading>
@@ -245,11 +230,7 @@ function DirectConsent() {
       <p>
         PROJE kapsamında işlenen kişisel veriler ile ilgili olarak veri sahibi
         olarak dilediğiniz zaman KVVK’nın 11. maddesinde ve Yönetmeliğin 10.
-        maddesinde sayılı haklarınız çerçevesinde, Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Cupiditate ut, illum eligendi eius quis
-        recusandae doloremque nemo, rem unde aliquam voluptatibus dolor, magni
-        veniam nobis dolorem! Ab pariatur odit cupiditate. PROJE de sorumlu
-        yukarıdaki bılgılerın sonrasında doldurulacaktır BAŞVURARAK:
+        maddesinde sayılı haklarınız çerçevesinde, L.U.N.A derneğine BAŞVURARAK:
       </p>
       <ul>
         <li>Kişisel verilerinin işlenip işlenmediğini öğrenme,</li>
@@ -295,30 +276,21 @@ function DirectConsent() {
       <p>İlgili Kişi, kişisel verileri ile ilgili talebini;</p>
       <ul>
         <li>
-          Islak imzalı ve yazılı bir dilekçeyi kimlik fotokopisi ile Lorem
-          ipsum, dolor sit amet consectetur adipisicing elit. Hic perspiciatis
-          mollitia labore in ipsum harum sapiente distinctio deserunt
-          perferendis molestiae natus, cumque nam sint obcaecati error tempore!
-          Velit, blanditiis. Ab! LÜTFEN TÜZEL KİŞİLİK VARSA ADRES GİRİNİZ
-          göndererek,
+          Islak imzalı ve yazılı bir dilekçeyi kimlik fotokopisi ile Akat Mah.
+          Ebulula Mardin Cad. Maya Meridyen Plaza No:16 Kat:14 D:35 Beşiktaş
+          İstanbul adresine göndererek,
         </li>
         <li>
-          Geçerli bir kimlik belgesi ile birlikte Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Quam doloribus temporibus minima
-          reprehenderit vero excepturi, earum dolorum ad sunt praesentium?
-          Expedita optio eligendi amet dicta repudiandae, debitis magnam
-          corporis aliquam! VERİ SORUMLUSU’na bizzat başvurarak, ıslak imzalı
-          yazılı bir dilekçe veya İlgili Kişi Başvuru Formu aracılığıyla,
+          Geçerli bir kimlik belgesi ile birlikte Mert Susur’a bizzat başvurarak
+          (mert@ucurtma.tech), ıslak imzalı yazılı bir dilekçe veya İlgili Kişi
+          Başvuru Formu aracılığıyla,
         </li>
         <li>
-          PROJE’nin Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Voluptate voluptatum libero iure ea esse laborum quasi! Quas deleniti
-          accusamus molestias totam laboriosam! Quod adipisci nemo reprehenderit
-          iure maxime pariatur illum! web sitesi ……………. yer alan ………….. mail
-          adresine ( bu adresin değişmesi ihtimaline karşın web sitesinde yer
-          alan güncel e-mail adresine ) göndererek kimlik bilginizle birlikte
-          veya şahsen kimliğinizi ispatlamak suretiyle güncel adresine
-          başvurarak yapabilirsiniz.{' '}
+          PROJE’nin web sitesi https://ucurtmaprojesi.com'da yer alan
+          iletisim@ucurtma.tech mail adresine ( bu adresin değişmesi ihtimaline
+          karşın web sitesinde yer alan güncel e-mail adresine ) göndererek
+          kimlik bilginizle birlikte veya şahsen kimliğinizi ispatlamak
+          suretiyle güncel adresine başvurarak yapabilirsiniz.
         </li>
         <li>
           Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ uyarınca,

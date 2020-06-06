@@ -15,7 +15,7 @@ export const WalletContext = createContext();
 
 const initialState = {
   wallet: '',
-  modal: { isOpen: false, overlay: true, closable: true },
+  modal: { isOpen: false, overlay: true, closable: true, otherProps: {} },
 };
 
 const reducer = (state, action) => {
@@ -77,6 +77,7 @@ function App() {
             state.modal.closable &&
             dispatch({ type: 'SET_MODAL', payload: { isOpen: false } })
           }
+          {...state.modal.otherProps}
         >
           {state.modal.overlay && <ModalOverlay />}
           <ModalContent>{state.modal.content}</ModalContent>

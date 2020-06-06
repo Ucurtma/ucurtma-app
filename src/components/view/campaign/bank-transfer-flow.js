@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, lazy, Suspense } from 'react';
 import * as Yup from 'yup';
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   Text,
   SimpleGrid,
   AlertDescription,
+  ModalBody,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
@@ -20,6 +21,11 @@ import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
+import { WalletContext } from '../../../App';
+import Loader from '../../ui/loader';
+
+const ClarificationText = lazy(() => import('../clarification-text'));
+const DirectConsent = lazy(() => import('../direct-consent'));
 
 const LoginWithBiLira = ({ href, ...otherProps }) => {
   return (
@@ -131,6 +137,7 @@ function BankTransferFlow({ minimumAmount }) {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
+  const { dispatch } = useContext(WalletContext);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: params.id,
@@ -215,6 +222,31 @@ function BankTransferFlow({ minimumAmount }) {
     );
   }
 
+  const setModalOpen = type => {
+    const isClarificationText = type === 'clarificationText';
+
+    dispatch({
+      type: 'SET_MODAL',
+      payload: {
+        isOpen: true,
+        otherProps: { size: '6xl' },
+        content: (
+          <>
+            <Suspense fallback={<Loader />}>
+              <ModalBody p={12}>
+                {isClarificationText ? (
+                  <ClarificationText />
+                ) : (
+                  <DirectConsent />
+                )}
+              </ModalBody>
+            </Suspense>
+          </>
+        ),
+      },
+    });
+  };
+
   return (
     <Box mt={2} mb={4}>
       {bankData && (
@@ -256,8 +288,21 @@ function BankTransferFlow({ minimumAmount }) {
                 <Input label="Destek Miktarı" name="amount" />
               </Box>
               <Checkbox name="consentToReceiveNews">
-                Uçurtma ekibinin benimle iletişime geçmesine ve verilerimi
-                güvenli bir şekilde saklamasına izin veriyorum.
+                Kişisel verileri koruma kapsamında{' '}
+                <Button
+                  variant="link"
+                  onClick={() => setModalOpen('clarificationText')}
+                >
+                  aydınlatma metnini
+                </Button>{' '}
+                ve{' '}
+                <Button
+                  variant="link"
+                  onClick={() => setModalOpen('directConsent')}
+                >
+                  açık rıza beyan formunu
+                </Button>{' '}
+                okudum, anladım ve onaylıyorum.
               </Checkbox>
               <Flex
                 alignItems="center"

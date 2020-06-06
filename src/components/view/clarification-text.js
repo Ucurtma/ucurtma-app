@@ -15,7 +15,7 @@ function DirectConsent() {
       <p>
         Uçurtma Projesi bir L.U.N.A Derneği (Blok Zincir Yardımlaşma Derneği)
         projesi olup derneğin merkezi Akat Mah. Ebulula Mardin Cad. Maya
-        Meridyen Plaza No:16 Kat:14 D:35 Beşiktaş İstanbul'dur.
+        Meridyen Plaza No:16 Kat:14 D:35 Beşiktaş İstanbul’dur.
       </p>
       <Heading as="h4" size="md" my={4}>
         Genel Bilgi
@@ -286,7 +286,7 @@ function DirectConsent() {
           Başvuru Formu aracılığıyla,
         </li>
         <li>
-          PROJE’nin web sitesi https://ucurtmaprojesi.com'da yer alan
+          PROJE’nin web sitesi https://ucurtmaprojesi.com’da yer alan
           iletisim@ucurtma.tech mail adresine ( bu adresin değişmesi ihtimaline
           karşın web sitesinde yer alan güncel e-mail adresine ) göndererek
           kimlik bilginizle birlikte veya şahsen kimliğinizi ispatlamak

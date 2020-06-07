@@ -19,10 +19,10 @@ const config = {
       ? '0x31f1cfbbbd9ce6ee0f8d9c79828b0b099653daa0'
       : '0x2c537e5624e4af88a7ae4060c022609376c8d0eb',
     // Testnet DeploymentManager Address: 0x0B73269Ed0942A4B97E838846241ac45F89494A0
-    // Mainnet DeploymentManager Address: 0xd755D2617859A57d90779EcDF714F866Ace294bb !! This may change after the recent changes.
+    // Mainnet DeploymentManager Address: 0x6b31cc28657fd849fed61339e7158869bb9aaef8 !! This may change after the recent changes.
     deploymentManagerAddress: !isProduction
       ? '0x0B73269Ed0942A4B97E838846241ac45F89494A0'
-      : '0xd755D2617859A57d90779EcDF714F866Ace294bb',
+      : '0x6b31cc28657fd849fed61339e7158869bb9aaef8',
   },
 };
 

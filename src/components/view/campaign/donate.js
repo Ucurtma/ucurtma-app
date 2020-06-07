@@ -92,9 +92,9 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         {donateFlow === 'bank-transfer' && (
           <BankTransferFlow minimumAmount={minimumAmount} />
         )}
-        {/* {donateFlow === 'ethereum-wallet' && (
+        {donateFlow === 'ethereum-wallet' && (
           <EthereumFlow ethereumAddress={ethereumAddress} />
-        )} */}
+        )}
       </Box>
       <Button
         mt={4}

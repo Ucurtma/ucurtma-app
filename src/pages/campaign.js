@@ -148,8 +148,9 @@ function Campaign() {
                     <Skeleton width={260} />
                   ) : (
                     <>
-                      {data.campaign?.student?.school} /{' '}
-                      {data.campaign?.student?.department}
+                      {data.campaign?.student?.school}
+                      {data.campaign?.student?.department !== '-' &&
+                        ` / ${data.campaign?.student?.department}`}
                     </>
                   )}
                 </Text>
@@ -265,7 +266,7 @@ function Campaign() {
                         escapeHtml={false}
                       />
                     </Box>
-                    {data.campaign?.updates.length && (
+                    {data.campaign?.updates.length ? (
                       <Box
                         bg="gray.50"
                         borderRadius="4px"
@@ -286,6 +287,8 @@ function Campaign() {
                           />
                         </Suspense>
                       </Box>
+                    ) : (
+                      ''
                     )}
                   </Flex>
                   <Flex mb={8} flexDir="column">

@@ -1,23 +1,19 @@
 import React, { Suspense, lazy } from 'react';
-import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { Helmet } from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
-import { Heading, Box, Flex, Text, Divider } from '@chakra-ui/core';
+import { Box, Flex, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import ReactMarkdown from 'react-markdown';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import LandingFooter from '../components/view/landing-page/footer';
 import Loader from '../components/ui/loader';
-import Documents from '../components/view/campaign/documents';
 import CampaignHeader from '../components/view/campaign/campaign-header';
-import Goals from '../components/view/campaign/goals';
 import CampaignFooter from '../components/view/campaign/campaign-footer';
+import CampaignContent from '../components/view/campaign/campaign-content';
 
-const Timeline = lazy(() => import('../components/ui/timeline'));
 const Donate = lazy(() => import('../components/view/campaign/donate'));
 const CampaignError = lazy(() =>
   import('../components/view/campaign/campaign-error')
@@ -107,62 +103,7 @@ function Campaign() {
             ) : (
               <>
                 <Box mt={4} display={content === 'markdown' ? 'block' : 'none'}>
-                  <Flex flexDir={{ base: 'column', lg: 'row' }}>
-                    <Box
-                      w="full"
-                      flexShrink="0"
-                      maxW={{ base: '100%', lg: '65%' }}
-                      fontSize="15px"
-                    >
-                      <ReactMarkdown
-                        renderers={{
-                          ...ChakraUIRenderer(),
-                          paragraph: props => {
-                            const { children } = props;
-                            return <Text mb={4}>{children}</Text>;
-                          },
-                        }}
-                        source={data.campaign?.campaignText}
-                        escapeHtml={false}
-                      />
-                      {data.campaign?.documents && (
-                        <Box>
-                          <Documents documents={data.campaign?.documents} />
-                        </Box>
-                      )}
-                      {data.campaign?.goals && (
-                        <Box mt={5}>
-                          <Goals goals={data.campaign?.goals} />
-                        </Box>
-                      )}
-                    </Box>
-                    {data.campaign?.updates.length ? (
-                      <Box
-                        bg="gray.50"
-                        borderRadius="4px"
-                        p={4}
-                        w="full"
-                        height="full"
-                        maxW={{ base: '100%' }}
-                        ml={{ base: 0, lg: 8 }}
-                        mt={{ base: 4, lg: 0 }}
-                      >
-                        <Heading size="sm" color="gray.500">
-                          Kampanya Gelişmeleri
-                        </Heading>
-                        <Suspense fallback={<Loader />}>
-                          <Timeline
-                            items={data.campaign?.updates}
-                            transactions={data.campaign?.transactions}
-                          />
-                        </Suspense>
-                      </Box>
-                    ) : (
-                      ''
-                    )}
-                  </Flex>
-                  <Divider />
-                  <CampaignFooter campaignId={id} />
+                  <CampaignContent data={data} />
                 </Box>
                 {(content === 'donate' || donateActivated) && (
                   <Suspense fallback={<Loader />}>
@@ -179,7 +120,10 @@ function Campaign() {
               </>
             )}
           </Box>
+          <Divider mt={8} />
+          <CampaignFooter campaignId={id} />
         </Container>
+
         <LandingFooter />
       </Flex>
     </>

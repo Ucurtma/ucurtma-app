@@ -5,7 +5,6 @@ import Skeleton from 'react-loading-skeleton';
 import {
   Heading,
   Box,
-  Avatar,
   Flex,
   Text,
   Alert,
@@ -14,8 +13,8 @@ import {
   Icon,
   Button,
   Collapse,
-  Image,
   PseudoBox,
+  Divider,
 } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -27,6 +26,9 @@ import Container from '../components/ui/container';
 import { withApollo } from '../utils/apollo';
 import LandingFooter from '../components/view/landing-page/footer';
 import Loader from '../components/ui/loader';
+import Documents from '../components/view/campaign/documents';
+import CampaignHeader from '../components/view/campaign/campaign-header';
+import Goals from '../components/view/campaign/goals';
 
 const Timeline = lazy(() => import('../components/ui/timeline'));
 const Donate = lazy(() => import('../components/view/campaign/donate'));
@@ -44,6 +46,14 @@ const GET_CAMPAIGN = gql`
       totalFunds
       campaignText
       minimumAmount
+      goals {
+        description
+      }
+      documents {
+        title
+        link
+        type
+      }
       transactions {
         from
         amount
@@ -118,98 +128,8 @@ function Campaign() {
                 : 'Uçurtma Projesi'}
             </title>
           </Helmet>
-          <Flex
-            my={{ base: 2, md: 10 }}
-            justifyContent="space-between"
-            alignItems="center"
-            width="full"
-            flexDir={{ base: 'column', md: 'row' }}
-          >
-            <Flex mx={{ base: 4, lg: 0 }} alignItems="flex-end" flexShrink="0">
-              {loading ? (
-                <Skeleton width={72} height={72} circle />
-              ) : (
-                <Avatar
-                  size="lg"
-                  src={data.campaign?.student?.profilePhoto}
-                  name={data.campaign?.student?.name}
-                />
-              )}
-              <Box ml={4}>
-                <Heading size="sm" color="gray.600">
-                  {loading ? (
-                    <Skeleton width={200} />
-                  ) : (
-                    data.campaign?.student?.name
-                  )}
-                </Heading>
-                <Text color="gray.500">
-                  {loading ? (
-                    <Skeleton width={260} />
-                  ) : (
-                    <>
-                      {data.campaign?.student?.school}
-                      {data.campaign?.student?.department !== '-' &&
-                        ` / ${data.campaign?.student?.department}`}
-                    </>
-                  )}
-                </Text>
-              </Box>
-            </Flex>
-            <Flex
-              width={{ base: 'full', md: 'unset' }}
-              justify={{ base: 'space-around', md: 'inherit' }}
-              mt={{ base: 8, md: 0 }}
-              borderY={{ base: '1px solid', md: 0 }}
-              borderColor="gray.300"
-              borderTopColor="gray.300"
-              p={{ base: 4, lg: 0 }}
-              bg={{ base: 'gray.100', md: 'inherit' }}
-            >
-              <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
-                <Heading size="sm" color="gray.400">
-                  {loading ? <Skeleton width={140} /> : 'Destekçi Sayısı'}
-                </Heading>
-                <Text
-                  fontSize="1.5rem"
-                  textAlign={{ base: 'center', md: 'left' }}
-                  fontWeight={500}
-                >
-                  {loading ? (
-                    <Skeleton width={70} />
-                  ) : (
-                    data.campaign?.supporterCount
-                  )}
-                </Text>
-              </Box>
-              <Box pl={6}>
-                <Heading size="sm" color="gray.400">
-                  {loading ? <Skeleton width={140} /> : 'Toplam Destek'}
-                </Heading>
-                <Box
-                  fontSize="1.5rem"
-                  fontWeight={500}
-                  textAlign={{ base: 'center', md: 'left' }}
-                  color="#1E284C"
-                >
-                  {loading ? (
-                    <Skeleton width={70} />
-                  ) : (
-                    <Flex align="center">
-                      <Image
-                        maxW="14px"
-                        width="full"
-                        height="full"
-                        src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                        mr={1}
-                      />
-                      {Math.floor(data.campaign?.totalFunds)}
-                    </Flex>
-                  )}
-                </Box>
-              </Box>
-            </Flex>
-          </Flex>
+          <CampaignHeader data={data} loading={loading} />
+          <Divider my={4} display={{ base: 'none', md: 'block' }} />
           <Flex justify="space-between" align="center" mx={{ base: 4, lg: 0 }}>
             {loading ? (
               <Box flex={1}>
@@ -217,7 +137,7 @@ function Campaign() {
               </Box>
             ) : (
               <>
-                <Heading color="gray.700" fontSize={{ base: '2xl', lg: '4xl' }}>
+                <Heading color="gray.700" fontSize={{ base: '2xl', lg: '3xl' }}>
                   {data.campaign?.campaignTitle}
                 </Heading>
                 <Box>
@@ -226,7 +146,7 @@ function Campaign() {
                     variant="solid"
                     bg="linkGreen"
                     h={{ base: 12, lg: 16 }}
-                    width={{ base: 'auto', md: '368px' }}
+                    width={{ base: 'auto', md: '416px' }}
                     flexShrink="0"
                     justifyContent="space-between"
                     boxShadow="0 0 2px rgba(124,124,124,0.16)"
@@ -243,12 +163,7 @@ function Campaign() {
               </>
             )}
           </Flex>
-          <Container
-            px={{ base: 4, lg: 0 }}
-            pt={{ space: 4 }}
-            pb={{ space: 4 }}
-            display="block"
-          >
+          <Box px={{ base: 4, lg: 0 }}>
             {loading ? (
               <Skeleton count={12} />
             ) : (
@@ -259,12 +174,29 @@ function Campaign() {
                       w="full"
                       flexShrink="0"
                       maxW={{ base: '100%', lg: '65%' }}
+                      fontSize="15px"
                     >
                       <ReactMarkdown
-                        renderers={ChakraUIRenderer()}
+                        renderers={{
+                          ...ChakraUIRenderer(),
+                          paragraph: props => {
+                            const { children } = props;
+                            return <Text mb={4}>{children}</Text>;
+                          },
+                        }}
                         source={data.campaign?.campaignText}
                         escapeHtml={false}
                       />
+                      {data.campaign?.documents && (
+                        <Box>
+                          <Documents documents={data.campaign?.documents} />
+                        </Box>
+                      )}
+                      {data.campaign?.goals && (
+                        <Box mt={5}>
+                          <Goals goals={data.campaign?.goals} />
+                        </Box>
+                      )}
                     </Box>
                     {data.campaign?.updates.length ? (
                       <Box
@@ -274,7 +206,7 @@ function Campaign() {
                         w="full"
                         height="full"
                         maxW={{ base: '100%' }}
-                        ml={{ base: 0, lg: 16 }}
+                        ml={{ base: 0, lg: 8 }}
                         mt={{ base: 4, lg: 0 }}
                       >
                         <Heading size="sm" color="gray.500">
@@ -327,7 +259,7 @@ function Campaign() {
                 )}
               </>
             )}
-          </Container>
+          </Box>
         </Container>
       </Box>
       <LandingFooter />

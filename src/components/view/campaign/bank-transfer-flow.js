@@ -27,22 +27,37 @@ import Loader from '../../ui/loader';
 const ClarificationText = lazy(() => import('../clarification-text'));
 const DirectConsent = lazy(() => import('../direct-consent'));
 
+// todo: make different component for functions in this file.
+
 const LoginWithBiLira = ({ href, ...otherProps }) => {
   return (
-    <div>
-      <Box mt={2} mb={4}>
-        Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
-        ulaştırabilmek için
-        <Link href="https://www.bilira.com" isExternal="true">
-          {' '}
-          BiLira{' '}
-        </Link>
-        çalışıyoruz.
-      </Box>
-      <Box mt={2} mb={4}>
-        Aşağıdaki bağlantıyı kullanarak bu sayfayı terk etmeden hızlıca hesap
-        oluşturabilir, varolan hesabınızla transferi yapacağınız banka hesabına
-        kolayca ulaşabilirsiniz.
+    <>
+      <Box
+        mb={4}
+        p={4}
+        bg="gray.100"
+        border="1px solid"
+        borderColor="gray.300"
+        color="gray.600"
+      >
+        <Box as="p" mb={4}>
+          Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
+          ulaştırabilmek için
+          <Link
+            href="https://www.bilira.com"
+            isExternal="true"
+            color="blue.500"
+          >
+            {' '}
+            BiLira{' '}
+          </Link>
+          ile çalışıyoruz.
+        </Box>
+        <Box as="p">
+          Aşağıdaki bağlantıyı kullanarak bu sayfayı terk etmeden hızlıca hesap
+          oluşturabilir, varolan hesabınızla transferi yapacağınız banka
+          hesabına kolayca ulaşabilirsiniz.
+        </Box>
       </Box>
       <Link href={href}>
         <Button
@@ -64,7 +79,7 @@ const LoginWithBiLira = ({ href, ...otherProps }) => {
           </Text>
         </Button>
       </Link>
-    </div>
+    </>
   );
 };
 

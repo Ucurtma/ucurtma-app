@@ -243,7 +243,8 @@ function BankTransferFlow({ minimumAmount }) {
             <strong>
               {bankName} {iban}
             </strong>{' '}
-            IBAN numarasına, açıklamasına <strong>{referenceCode}</strong>{' '}
+            IBAN numarasına, Alıcı ismini <strong>Bilira Teknoloji A.Ş</strong>{' '}
+            olarak belirtmek ve açıklamasına <strong>{referenceCode}</strong>{' '}
             yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir.
           </AlertDescription>
         </Alert>

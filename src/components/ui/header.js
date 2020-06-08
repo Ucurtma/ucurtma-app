@@ -17,7 +17,7 @@ import Web3 from 'web3';
 import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
-import { WalletContext } from '../../App';
+import { MainContext } from '../../context/main-context';
 import MenuDrawer from './menu-drawer';
 
 // todo: get loggedIn from token
@@ -30,7 +30,7 @@ function Header({
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [walletLoading, setWalletLoading] = useState(false);
-  const { state: walletState, dispatch } = useContext(WalletContext);
+  const { state: walletState, dispatch } = useContext(MainContext);
   const toast = useToast();
   const { t } = useTranslation(['header', 'global']);
 

@@ -25,10 +25,10 @@ import SidebarItem from '../components/ui/sidebar-item';
 import ContractActions from '../components/view/admin/contract-actions';
 import ContractList from '../components/view/admin/contract-list';
 import './admin.css';
-import { WalletContext } from '../App';
+import { MainContext } from '../context/main-context';
 
 function Admin() {
-  const { state: walletState } = useContext(WalletContext);
+  const { state: walletState } = useContext(MainContext);
   const isWalletExist = walletState.wallet;
   const params = useParams();
   const navigate = useNavigate();

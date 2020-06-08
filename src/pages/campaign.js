@@ -2,23 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { Helmet } from 'react-helmet';
 import Skeleton from 'react-loading-skeleton';
-import {
-  Heading,
-  Box,
-  Flex,
-  Text,
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  Icon,
-  Button,
-  Collapse,
-  PseudoBox,
-  Divider,
-} from '@chakra-ui/core';
+import { Heading, Box, Flex, Text, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { AlertCircle, Award } from 'react-feather';
 import gql from 'graphql-tag';
 import ReactMarkdown from 'react-markdown';
 import Header from '../components/ui/header';
@@ -29,11 +15,12 @@ import Loader from '../components/ui/loader';
 import Documents from '../components/view/campaign/documents';
 import CampaignHeader from '../components/view/campaign/campaign-header';
 import Goals from '../components/view/campaign/goals';
+import CampaignFooter from '../components/view/campaign/campaign-footer';
 
 const Timeline = lazy(() => import('../components/ui/timeline'));
 const Donate = lazy(() => import('../components/view/campaign/donate'));
-const ReportCampaignForm = lazy(() =>
-  import('../components/forms/report-campaign-form')
+const CampaignError = lazy(() =>
+  import('../components/view/campaign/campaign-error')
 );
 
 const GET_CAMPAIGN = gql`
@@ -85,84 +72,35 @@ function Campaign() {
     location.state?.redirected ? 'donate' : 'markdown'
   );
   const [donateActivated, setDonateActivated] = React.useState(false);
-  const [reportCampaignView, setReportCampaignView] = React.useState(false);
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });
 
-  if (error || (data && data.campaign === null)) {
-    return (
-      <Flex flexDir="column" justify="space-between" height="full">
-        <Header withLogo hideMenu />
-        <Container display="block" h="full" p="2rem 0">
-          <Alert
-            w="full"
-            h="full"
-            bg="gray.50"
-            color="gray.400"
-            justifyContent="center"
-            flexDir="column"
-          >
-            <Icon as={AlertCircle} fontSize="4rem" color="gray.300" mb={4} />
-            <AlertTitle mr={2}>Bir sorun oluştu.</AlertTitle>
-            <AlertDescription textAlign="center">
-              Biz bu sorunu düzeltmek için çalışırken, lütfen daha sonra tekrar
-              deneyin.
-            </AlertDescription>
-          </Alert>
-        </Container>
-        <LandingFooter />
-      </Flex>
-    );
-  }
+  if (error || (data && data.campaign === null)) return <CampaignError />;
 
   return (
-    <Flex flexDir="column" justify="space-between" height="full">
-      <Box>
-        <Header withLogo hideMenu />
+    <>
+      <Helmet>
+        <title>
+          {data && data.campaign && data.campaign.student
+            ? `${data.campaign?.campaignTitle} - ${data.campaign?.student?.name} - Uçurtma Projesi`
+            : 'Uçurtma Projesi'}
+        </title>
+      </Helmet>
+
+      <Flex flexDir="column" justify="space-between" height="full">
         <Container display="block">
-          <Helmet>
-            <title>
-              {data && data.campaign && data.campaign.student
-                ? `${data.campaign?.campaignTitle} - ${data.campaign?.student?.name} - Uçurtma Projesi`
-                : 'Uçurtma Projesi'}
-            </title>
-          </Helmet>
-          <CampaignHeader data={data} loading={loading} />
-          <Divider my={4} display={{ base: 'none', md: 'block' }} />
-          <Flex justify="space-between" align="center" mx={{ base: 4, lg: 0 }}>
-            {loading ? (
-              <Box flex={1}>
-                <Skeleton height={72} />
-              </Box>
-            ) : (
-              <>
-                <Heading color="gray.700" fontSize={{ base: '2xl', lg: '3xl' }}>
-                  {data.campaign?.campaignTitle}
-                </Heading>
-                <Box>
-                  <PseudoBox
-                    as={Button}
-                    variant="solid"
-                    bg="linkGreen"
-                    h={{ base: 12, lg: 16 }}
-                    width={{ base: 'auto', md: '416px' }}
-                    flexShrink="0"
-                    justifyContent="space-between"
-                    boxShadow="0 0 2px rgba(124,124,124,0.16)"
-                    onClick={() => {
-                      setContent('donate');
-                      setDonateActivated(true);
-                    }}
-                    _hover={{ bg: 'green.100' }}
-                  >
-                    Destek Ol
-                    <Icon as={Award} size="28px" />
-                  </PseudoBox>
-                </Box>
-              </>
-            )}
-          </Flex>
+          <Header withLogo hideMenu />
+
+          <CampaignHeader
+            data={data}
+            loading={loading}
+            onClickDonate={() => {
+              setContent('donate');
+              setDonateActivated(true);
+            }}
+          />
+
           <Box px={{ base: 4, lg: 0 }}>
             {loading ? (
               <Skeleton count={12} />
@@ -223,27 +161,8 @@ function Campaign() {
                       ''
                     )}
                   </Flex>
-                  <Flex mb={8} flexDir="column">
-                    <Button
-                      variant="ghost"
-                      color="red.300"
-                      ml="auto"
-                      onClick={() => setReportCampaignView(!reportCampaignView)}
-                    >
-                      Şikayet Oluştur
-                    </Button>
-                    <Suspense fallback={<Loader />}>
-                      <Collapse
-                        maxW="600px"
-                        ml="auto"
-                        isOpen={reportCampaignView}
-                      >
-                        {reportCampaignView && (
-                          <ReportCampaignForm campaignId={id} />
-                        )}
-                      </Collapse>
-                    </Suspense>
-                  </Flex>
+                  <Divider />
+                  <CampaignFooter campaignId={id} />
                 </Box>
                 {(content === 'donate' || donateActivated) && (
                   <Suspense fallback={<Loader />}>
@@ -261,9 +180,9 @@ function Campaign() {
             )}
           </Box>
         </Container>
-      </Box>
-      <LandingFooter />
-    </Flex>
+        <LandingFooter />
+      </Flex>
+    </>
   );
 }
 

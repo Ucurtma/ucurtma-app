@@ -21,7 +21,7 @@ import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
-import { WalletContext } from '../../../App';
+import { MainContext } from '../../../context/main-context';
 import Loader from '../../ui/loader';
 
 const ClarificationText = lazy(() => import('../clarification-text'));
@@ -168,7 +168,7 @@ function BankTransferFlow({ minimumAmount }) {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
-  const { dispatch } = useContext(WalletContext);
+  const { dispatch } = useContext(MainContext);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: params.id,

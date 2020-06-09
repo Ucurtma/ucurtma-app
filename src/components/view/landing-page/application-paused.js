@@ -10,11 +10,6 @@ function ApplicationPaused() {
       pb={{ base: 8, md: 12 }}
       bg="white"
     >
-      <style>{`
-        .react-calendar {
-          z-index: 2;
-        }
-      `}</style>
       <Box mt={8} alignItems="center">
         <Text textAlign="center">
           Gerekli çalışmaları tamamlayana kadar öğrenci başvurularına ara vermiş

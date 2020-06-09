@@ -18,6 +18,7 @@ import {
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
+// todo: use date-fns instead of moment since our date-picker is using date-fns.
 import moment from 'moment';
 
 function TimelineBox({ children, title, ...otherProps }) {

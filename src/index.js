@@ -2,28 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import './i18n';
-import { Global } from '@emotion/core';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import customTheme from './theme';
+import './global.css';
 
 const Application = (
   <ThemeProvider theme={customTheme}>
     <CSSReset />
-    <Global
-      styles={{
-        body: {
-          backgroundColor: '#fff',
-          fontWeight: '500',
-        },
-        'html, body, #root': {
-          height: '100%',
-        },
-        '#root': {
-          paddingTop: '1.25rem',
-        },
-      }}
-    />
     <App />
   </ThemeProvider>
 );

@@ -1,0 +1,18 @@
+body {
+  background-color: #fff;
+  font-weight: 500;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  padding-top: 1.25rem;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

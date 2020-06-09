@@ -1,14 +1,20 @@
 import React from 'react';
 import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/core';
 
-function CampaignTarget() {
+function CampaignTarget({ target, current }) {
+  const formula = (current * 100) / target;
   return (
     <>
       <Heading size="sm" color="gray.500">
         Kampanya Hedefi
       </Heading>
       <Box pos="relative">
-        <Progress mt={4} color="green" height="32px" value={20} />
+        <Progress
+          mt={4}
+          color="green"
+          height="32px"
+          value={parseFloat(formula)}
+        />
         <Flex
           align="center"
           fontSize="1.2rem"

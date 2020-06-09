@@ -27,7 +27,7 @@ function ProblemSolution() {
         >
           <Image
             alignSelf="center"
-            src={`${process.env.PUBLIC_URL}/images/icons/teamwork.svg`}
+            src={`${process.env.PUBLIC_URL}/images/icons/teamwork.png`}
           />
           <Box width="full">
             <Heading size="xl">{t('New solution with blockchain')}</Heading>

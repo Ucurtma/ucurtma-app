@@ -6,7 +6,7 @@ import Documents from './documents';
 import Goals from './goals';
 import Loader from '../../ui/loader';
 
-// const CampaignTarget = lazy(() => import('./campaign-target'));
+const CampaignTarget = lazy(() => import('./campaign-target'));
 const Timeline = lazy(() => import('../../ui/timeline'));
 
 function CampaignContent({ data }) {
@@ -50,7 +50,7 @@ function CampaignContent({ data }) {
         )}
       </Box>
       <Box w="full" height="full">
-        {/* {data.campaign?.updates.length > 0 && (
+        {data.campaign?.campaignTarget && (
           <Box
             bg="gray.50"
             borderRadius="4px"
@@ -61,10 +61,13 @@ function CampaignContent({ data }) {
             mb={8}
           >
             <Suspense fallback={<Loader />}>
-              <CampaignTarget />
+              <CampaignTarget
+                target={data.campaign?.campaignTarget}
+                current={parseFloat(data.campaign?.totalFunds)}
+              />
             </Suspense>
           </Box>
-        )} */}
+        )}
 
         {data.campaign?.updates.length > 0 && (
           <Box

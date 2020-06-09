@@ -28,6 +28,7 @@ const GET_CAMPAIGN = gql`
       supporterCount
       totalFunds
       campaignText
+      campaignTarget
       minimumAmount
       goals {
         description

@@ -6,10 +6,6 @@ import {
   Button,
   Alert,
   AlertIcon,
-  Image,
-  Link,
-  Text,
-  SimpleGrid,
   AlertDescription,
   ModalBody,
 } from '@chakra-ui/core';
@@ -21,89 +17,15 @@ import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
-import { WalletContext } from '../../../App';
+import { MainContext } from '../../../context/main-context';
 import Loader from '../../ui/loader';
+import LoginWithBiLira from './login-with-bilira';
+import SelectBank from './select-bank';
 
 const ClarificationText = lazy(() => import('../clarification-text'));
 const DirectConsent = lazy(() => import('../direct-consent'));
 
 // todo: make different component for functions in this file.
-
-const LoginWithBiLira = ({ href, ...otherProps }) => {
-  return (
-    <>
-      <Box
-        mb={4}
-        p={4}
-        bg="gray.100"
-        border="1px solid"
-        borderColor="gray.300"
-        color="gray.600"
-      >
-        <Box as="p" mb={4}>
-          Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
-          ulaştırabilmek için
-          <Link
-            href="https://www.bilira.com"
-            isExternal="true"
-            color="blue.500"
-          >
-            {' '}
-            BiLira{' '}
-          </Link>
-          ile çalışıyoruz.
-        </Box>
-        <Box as="p">
-          Aşağıdaki bağlantıyı kullanarak bu sayfayı terk etmeden hızlıca hesap
-          oluşturabilir, varolan hesabınızla transferi yapacağınız banka
-          hesabına kolayca ulaşabilirsiniz.
-        </Box>
-      </Box>
-      <Link href={href}>
-        <Button
-          bg="#04144c"
-          _hover={{ bg: '#020c2d' }}
-          color="#fff"
-          width="full"
-          padding={3}
-          height="auto"
-          {...otherProps}
-        >
-          <Image
-            alt="Login with BiLira"
-            src={`${process.env.PUBLIC_URL}/images/bilira-logo.svg`}
-            w="80px"
-          />
-          <Text ml={2} fontWeight={400}>
-            ile giriş yap
-          </Text>
-        </Button>
-      </Link>
-    </>
-  );
-};
-
-const SelectBank = ({ bankData, onSelect, selectedBank }) => {
-  return (
-    <SimpleGrid columns={{ base: 2, md: 5 }} spacing={4} mb={4}>
-      {bankData.systemBankAccounts.map(bankAccount => (
-        <Button
-          key={bankAccount.id}
-          variant="ghost"
-          border="1px solid"
-          borderColor="gray.100"
-          onClick={() => onSelect(bankAccount.id)}
-          bg={selectedBank === bankAccount.id ? 'gray.100' : 'transparent'}
-        >
-          <Image
-            alt={bankAccount.name}
-            src={`${process.env.PUBLIC_URL}/images/banks/${bankAccount.id}.png`}
-          />
-        </Button>
-      ))}
-    </SimpleGrid>
-  );
-};
 
 const GET_BANKS = gql`
   {
@@ -168,7 +90,7 @@ function BankTransferFlow({ minimumAmount }) {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
-  const { dispatch } = useContext(WalletContext);
+  const { dispatch } = useContext(MainContext);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: params.id,
@@ -218,6 +140,7 @@ function BankTransferFlow({ minimumAmount }) {
       <Box mt={2} mb={4}>
         <Alert status="error">
           <AlertIcon />
+          Bir hata oluştu.
         </Alert>
         {oauthData && (
           <LoginWithBiLira

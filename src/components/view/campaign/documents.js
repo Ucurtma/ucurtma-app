@@ -11,12 +11,13 @@ function Documents({ documents }) {
         Dökümanlar
       </Heading>
       <Flex mt={4} flexWrap="wrap">
-        {documents?.map(document => {
+        {documents?.map((document, documentIndex) => {
           let icon;
           if (document.type === 'linkedin-profile') icon = Linkedin;
 
           return (
             <Button
+              key={documentIndex.toString()}
               as="a"
               href={document.link}
               target="_blank"

@@ -14,6 +14,7 @@ const Application = (
       styles={{
         body: {
           backgroundColor: '#fff',
+          fontWeight: '500',
         },
         'html, body, #root': {
           height: '100%',

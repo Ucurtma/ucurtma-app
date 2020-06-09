@@ -10,9 +10,10 @@ function Goals({ goals }) {
       <Heading as="h3" size="md">
         Vaatlerim
       </Heading>
-      {goals.map(goal => {
+      {goals.map((goal, goalIndex) => {
         return (
           <Flex
+            key={goalIndex.toString()}
             width="full"
             bg="yellow.100"
             border="1px solid"

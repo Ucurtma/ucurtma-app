@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   Button,
   RadioButtonGroup,
@@ -10,8 +10,10 @@ import {
   CloseButton,
 } from '@chakra-ui/core';
 import { ArrowLeft } from 'react-feather';
-import EthereumFlow from './ethereum-flow';
 import BankTransferFlow from './bank-transfer-flow';
+import Loader from '../../ui/loader';
+
+const EthereumFlow = React.lazy(() => import('./ethereum-flow'));
 
 const CustomRadio = React.forwardRef((props, ref) => {
   const { children, isChecked, isDisabled, value, ...rest } = props;
@@ -56,7 +58,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           spacing={4}
         >
           <CustomRadio value="bank-transfer">Banka Havalesi</CustomRadio>
-          {/* <CustomRadio value="ethereum-wallet">Ethereum Cüzdanı</CustomRadio> */}
+          <CustomRadio value="ethereum-wallet">Ethereum Cüzdanı</CustomRadio>
         </RadioButtonGroup>
         <Button
           mt={4}
@@ -92,9 +94,11 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         {donateFlow === 'bank-transfer' && (
           <BankTransferFlow minimumAmount={minimumAmount} />
         )}
-        {donateFlow === 'ethereum-wallet' && (
-          <EthereumFlow ethereumAddress={ethereumAddress} />
-        )}
+        <Suspense fallback={<Loader />}>
+          {donateFlow === 'ethereum-wallet' && (
+            <EthereumFlow ethereumAddress={ethereumAddress} />
+          )}
+        </Suspense>
       </Box>
       <Button
         mt={4}

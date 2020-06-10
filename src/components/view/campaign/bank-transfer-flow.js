@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import {
   Box,
@@ -7,7 +7,7 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-  ModalBody,
+  Image,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
@@ -15,15 +15,11 @@ import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
-import Checkbox from '../../ui/checkbox';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
-import { MainContext } from '../../../context/main-context';
-import Loader from '../../ui/loader';
 import LoginWithBiLira from './login-with-bilira';
 import SelectBank from './select-bank';
-
-const ClarificationText = lazy(() => import('../clarification-text'));
-const DirectConsent = lazy(() => import('../direct-consent'));
+import NumberInput from '../../ui/numeric-input';
+import Agreements from '../../ui/agreements';
 
 // todo: make different component for functions in this file.
 
@@ -75,6 +71,7 @@ function createSchema(limit) {
         limit || 100,
         `Girdiğiniz değer ${limit || 100} değerinden küçük olamaz`
       )
+      .max(1500, `Girdiğiniz değer 1500'den büyük olamaz`)
       .typeError('Geçerli bir rakam giriniz.')
       .required('Bu alan zorunludur.'),
     consentToReceiveNews: Yup.boolean().oneOf(
@@ -90,7 +87,6 @@ function BankTransferFlow({ minimumAmount }) {
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
-  const { dispatch } = useContext(MainContext);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: params.id,
@@ -106,9 +102,10 @@ function BankTransferFlow({ minimumAmount }) {
       },
     },
   });
-  const [collectDonation, { data: donationData }] = useMutation(
-    COLLECT_DONATION
-  );
+  const [
+    collectDonation,
+    { data: donationData, loading: donationLoading },
+  ] = useMutation(COLLECT_DONATION);
 
   React.useLayoutEffect(() => {
     const biLiraAuth = getBiLiraToken();
@@ -175,31 +172,6 @@ function BankTransferFlow({ minimumAmount }) {
     );
   }
 
-  const setModalOpen = type => {
-    const isClarificationText = type === 'clarificationText';
-
-    dispatch({
-      type: 'SET_MODAL',
-      payload: {
-        isOpen: true,
-        otherProps: { size: '6xl' },
-        content: (
-          <>
-            <Suspense fallback={<Loader />}>
-              <ModalBody p={12}>
-                {isClarificationText ? (
-                  <ClarificationText />
-                ) : (
-                  <DirectConsent />
-                )}
-              </ModalBody>
-            </Suspense>
-          </>
-        ),
-      },
-    });
-  };
-
   return (
     <Box mt={2} mb={4}>
       {bankData && (
@@ -234,29 +206,35 @@ function BankTransferFlow({ minimumAmount }) {
             });
           }}
         >
-          {({ isSubmitting, errors }) => (
+          {({ isSubmitting, dirty, isValid }) => (
             <Form>
               <Box>
-                <Input label="E-Posta Adresi" name="email" type="email" />
-                <Input label="Destek Miktarı" name="amount" />
+                <Input
+                  label="E-Posta Adresi"
+                  name="email"
+                  type="email"
+                  placeholder="Email adresinizi giriniz"
+                />
+
+                <NumberInput
+                  label="Destek Miktarı"
+                  name="amount"
+                  type="number"
+                  placeholder="Destek Miktarını giriniz"
+                  addon={{
+                    left: (
+                      <Image
+                        maxW="12px"
+                        width="full"
+                        height="full"
+                        src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                        mr={1}
+                      />
+                    ),
+                  }}
+                />
               </Box>
-              <Checkbox name="consentToReceiveNews">
-                Kişisel verileri koruma kapsamında{' '}
-                <Button
-                  variant="link"
-                  onClick={() => setModalOpen('clarificationText')}
-                >
-                  aydınlatma metnini
-                </Button>{' '}
-                ve{' '}
-                <Button
-                  variant="link"
-                  onClick={() => setModalOpen('directConsent')}
-                >
-                  açık rıza beyan formunu
-                </Button>{' '}
-                okudum, anladım ve onaylıyorum.
-              </Checkbox>
+              <Agreements />
               <Flex
                 alignItems="center"
                 mt={4}
@@ -266,8 +244,8 @@ function BankTransferFlow({ minimumAmount }) {
                   variant="outline"
                   color="linkBlue"
                   type="submit"
-                  isLoading={isSubmitting}
-                  disabled={isSubmitting || Object.keys(errors).length > 0}
+                  isLoading={isSubmitting || donationLoading}
+                  disabled={isSubmitting || !dirty || !isValid}
                   width="full"
                 >
                   Gönder

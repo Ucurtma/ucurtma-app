@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import 'react-calendar/dist/Calendar.css';
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
 import { gaTrackingId } from './config';
 import Loader from './components/ui/loader';

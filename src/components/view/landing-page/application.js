@@ -3,9 +3,6 @@ import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import Reaptcha from 'reaptcha';
 import { Formik, Form } from 'formik';
-// todo: find better way to do a calendar
-import Calendar from 'react-calendar/dist/Calendar';
-import dayjs from 'dayjs'; // todo: remove dayjs and use date-fns instead of it.
 import {
   Heading,
   Box,
@@ -27,6 +24,8 @@ import { checkID } from '../../../utils/utils';
 import ChangeProfilePicture from '../../ui/settings/change-profile-pic';
 import { withApollo } from '../../../utils/apollo';
 import config from '../../../config';
+
+// todo: i delete calendar from here. we need new calendar.
 
 const applicationSchema = Yup.object().shape({
   idNumber: Yup.string()
@@ -95,7 +94,6 @@ function Application() {
   const [userPhoto, setUserPhoto] = useState();
   const [studentIdentification, setStudentIdentification] = useState();
   const [status, setStatus] = useState('empty');
-  const [birthDate, setBirthDate] = useState(null);
   const [displayCalendar, setDisplayCalendar] = useState(false);
   const captcha = useRef(null);
 
@@ -171,11 +169,6 @@ function Application() {
       pb={{ base: 8, md: 12 }}
       bg="white"
     >
-      <style>{`
-        .react-calendar {
-          z-index: 2;
-        }
-      `}</style>
       <Box mt={8}>
         <Formik
           initialValues={{
@@ -240,11 +233,6 @@ function Application() {
                               {...question}
                               type="input"
                               isReadOnly
-                              value={
-                                birthDate
-                                  ? dayjs(birthDate).format('DD.MM.YYYY')
-                                  : ''
-                              }
                               onClick={() => setDisplayCalendar(true)}
                             />
                             {displayCalendar && (
@@ -258,7 +246,7 @@ function Application() {
                                   onClick={() => setDisplayCalendar(false)}
                                   zIndex="-1"
                                 />
-                                <Calendar
+                                {/* <Calendar
                                   onChange={date => {
                                     setFieldValue('birthDate', date);
                                     setBirthDate(date);
@@ -266,7 +254,7 @@ function Application() {
                                   }}
                                   maxDate={new Date('2006')}
                                   value={birthDate || new Date('2006')}
-                                />
+                                /> */}
                               </Box>
                             )}
                           </Box>

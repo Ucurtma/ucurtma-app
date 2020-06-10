@@ -1,31 +1,36 @@
 import React from 'react';
-import { Box, Link, Text, Button, Image } from '@chakra-ui/core';
+import {
+  Box,
+  Link,
+  Text,
+  Button,
+  Image,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+} from '@chakra-ui/core';
 
 const LoginWithBiLira = ({ href, ...otherProps }) => {
   return (
     <>
-      <Box
-        mb={4}
-        p={4}
-        bg="gray.100"
-        border="1px solid"
-        borderColor="gray.300"
-        color="gray.600"
-      >
-        <Box as="p" mb={4}>
-          Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
-          ulaştırabilmek için{' '}
-          <Link href="https://www.bilira.co" isExternal color="blue.500">
-            BiLira
-          </Link>{' '}
-          ile çalışıyoruz.
-        </Box>
-        <Box as="p">
-          Aşağıdaki bağlantıyı kullanarak bu sayfayı terk etmeden hızlıca hesap
-          oluşturabilir, varolan hesabınızla transferi yapacağınız banka
-          hesabına kolayca ulaşabilirsiniz.
-        </Box>
-      </Box>
+      <Alert status="error" bg="gray.50" mb={4}>
+        <AlertIcon color="gray.600" />
+        <AlertDescription mr={2} color="gray.600">
+          <Box as="p" mb={4}>
+            Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
+            ulaştırabilmek için{' '}
+            <Link href="https://www.bilira.co" isExternal color="blue.500">
+              BiLira
+            </Link>{' '}
+            ile çalışıyoruz.
+          </Box>
+          <Box as="p">
+            Aşağıdaki bağlantıyı kullanarak bu sayfayı terk etmeden hızlıca
+            hesap oluşturabilir, varolan hesabınızla transferi yapacağınız banka
+            hesabına kolayca ulaşabilirsiniz.
+          </Box>
+        </AlertDescription>
+      </Alert>
       <Link href={href}>
         <Button
           bg="#04144c"

@@ -6,6 +6,7 @@ import {
   FormLabel,
   FormControl,
   InputRightAddon,
+  InputLeftAddon,
 } from '@chakra-ui/core';
 import { useField } from 'formik';
 
@@ -24,6 +25,9 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
         </FormLabel>
       )}
       <ChakraInput>
+        {addon?.left && (
+          <InputLeftAddon roundedRight="0">{addon.left}</InputLeftAddon>
+        )}
         <NumberInputField
           aria-label={label || field.name}
           aria-describedby={label || field.name}
@@ -31,6 +35,7 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
           errorBorderColor="red.300"
           isInvalid={meta.touched && !!meta.error}
           roundedRight={addon?.right && 0}
+          roundedLeft={addon?.left && 0}
           {...props}
           {...field}
         />

@@ -40,6 +40,8 @@ const DatePickerInput = React.forwardRef(
           {...field}
           {...props}
           value={value && moment(value).format('DD.MM.YYYY')}
+          isReadOnly
+          onChange={() => {}}
         />
         {meta.touched && meta.error ? (
           <FormErrorMessage>{meta.error}</FormErrorMessage>

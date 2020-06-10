@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   Heading,
   Text,
@@ -25,6 +25,9 @@ import {
 } from '../../../utils/contract-utils';
 import config from '../../../config';
 import { uuidv4 } from '../../../utils/utils';
+import Loader from '../../ui/loader';
+
+const Editor = React.lazy(() => import('../../ui/editor'));
 
 const deployContractSchema = t => {
   const { web3 } = window;
@@ -93,7 +96,7 @@ function ContractActions({ walletState }) {
             campaignId: uuidv4(),
             title: '',
           }}
-          validationSchema={deployContractSchema(t)}
+          // validationSchema={deployContractSchema(t)}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
 
@@ -113,98 +116,98 @@ function ContractActions({ walletState }) {
                 });
             }
 
-            eventFilter.watch((error, event) => {
-              if (error) {
-                toast({
-                  title: t('deployErrorTitle'),
-                  description: t('deployErrorDesc'),
-                  status: 'error',
-                  ...commonToastProps,
-                });
-                console.log(`Error: ${error}`);
-                setSubmitting(false);
-              } else {
-                toast({
-                  title: t('deploySuccessTitle'),
-                  description: (
-                    <Link
-                      href={getEtherscanAddressFor({
-                        type: 'address',
-                        hash: event.args.deployedAddress,
-                      })}
-                    >
-                      {t('deploySuccessDesc')}
-                    </Link>
-                  ),
-                  status: 'success',
-                  ...commonToastProps,
-                });
+            // eventFilter.watch((error, event) => {
+            //   if (error) {
+            //     toast({
+            //       title: t('deployErrorTitle'),
+            //       description: t('deployErrorDesc'),
+            //       status: 'error',
+            //       ...commonToastProps,
+            //     });
+            //     console.log(`Error: ${error}`);
+            //     setSubmitting(false);
+            //   } else {
+            //     toast({
+            //       title: t('deploySuccessTitle'),
+            //       description: (
+            //         <Link
+            //           href={getEtherscanAddressFor({
+            //             type: 'address',
+            //             hash: event.args.deployedAddress,
+            //           })}
+            //         >
+            //           {t('deploySuccessDesc')}
+            //         </Link>
+            //       ),
+            //       status: 'success',
+            //       ...commonToastProps,
+            //     });
 
-                const metamaskToken = localStorage.getItem('signedToken');
+            //     const metamaskToken = localStorage.getItem('signedToken');
 
-                createCampaign({
-                  variables: {
-                    campaignId: values.campaignId,
-                    title: values.title,
-                    text: '',
-                    ethereumAddress: event.args.deployedAddress,
-                  },
-                  context: {
-                    headers: {
-                      authorization: `Bearer ${metamaskToken}`,
-                    },
-                  },
-                });
+            //     createCampaign({
+            //       variables: {
+            //         campaignId: values.campaignId,
+            //         title: values.title,
+            //         text: '',
+            //         ethereumAddress: event.args.deployedAddress,
+            //       },
+            //       context: {
+            //         headers: {
+            //           authorization: `Bearer ${metamaskToken}`,
+            //         },
+            //       },
+            //     });
 
-                setSubmitting(false);
-                console.log('no error');
-              }
-            });
+            //     setSubmitting(false);
+            //     console.log('no error');
+            //   }
+            // });
 
-            deploymentManager.deploy(
-              values.numberOfPlannedPayouts,
-              parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
-              parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
-              values.owner,
-              values.tokenAddress,
-              async (err, result) => {
-                if (!err) {
-                  console.log(
-                    `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
-                      { hash: result }
-                    )}`
-                  );
+            // deploymentManager.deploy(
+            //   values.numberOfPlannedPayouts,
+            //   parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
+            //   parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
+            //   values.owner,
+            //   values.tokenAddress,
+            //   async (err, result) => {
+            //     if (!err) {
+            //       console.log(
+            //         `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
+            //           { hash: result }
+            //         )}`
+            //       );
 
-                  toast({
-                    title: t('deployStartedTitle'),
-                    description: (
-                      <Link href={getEtherscanAddressFor({ hash: result })}>
-                        {t('deployStartedDesc')}
-                      </Link>
-                    ),
-                    status: 'warning',
-                    ...commonToastProps,
-                  });
-                } else {
-                  // todo: web3 can't catch error if deployment reverted with message.
-                  // find a solution.
-                  toast({
-                    title:
-                      err.code === 4001
-                        ? "MetaMask'tan izin alınamadı."
-                        : 'Bir hata oluştu.',
-                    description:
-                      err.code === 4001
-                        ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
-                        : `Hata kodu: ${err.code}`,
-                    status: 'error',
-                    ...commonToastProps,
-                  });
-                  console.log('error');
-                  setSubmitting(false);
-                }
-              }
-            );
+            //       toast({
+            //         title: t('deployStartedTitle'),
+            //         description: (
+            //           <Link href={getEtherscanAddressFor({ hash: result })}>
+            //             {t('deployStartedDesc')}
+            //           </Link>
+            //         ),
+            //         status: 'warning',
+            //         ...commonToastProps,
+            //       });
+            //     } else {
+            //       // todo: web3 can't catch error if deployment reverted with message.
+            //       // find a solution.
+            //       toast({
+            //         title:
+            //           err.code === 4001
+            //             ? "MetaMask'tan izin alınamadı."
+            //             : 'Bir hata oluştu.',
+            //         description:
+            //           err.code === 4001
+            //             ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
+            //             : `Hata kodu: ${err.code}`,
+            //         status: 'error',
+            //         ...commonToastProps,
+            //       });
+            //       console.log('error');
+            //       setSubmitting(false);
+            //     }
+            //   }
+            // );
           }}
         >
           {({ isSubmitting, errors }) => (
@@ -264,17 +267,18 @@ function ContractActions({ walletState }) {
               />
 
               {isWalletExist && (
-                <Box mb={4}>
-                  <FormLabel color="paragraph">
-                    {t('campaignDetails')}
-                  </FormLabel>
-                  <Box
-                    border="1px solid"
-                    borderColor="#e2e8f0"
-                    borderRadius="4px"
-                    id="editorjs"
-                  />
-                </Box>
+                <Suspense fallback={<Loader />}>
+                  <Box mb={4}>
+                    <FormLabel color="paragraph">
+                      {t('campaignDetails')}
+                    </FormLabel>
+                    <Editor
+                      border="1px solid"
+                      borderColor="#e2e8f0"
+                      borderRadius="4px"
+                    />
+                  </Box>
+                </Suspense>
               )}
               <Flex justifyContent="flex-end">
                 <Button

@@ -16,3 +16,7 @@ body,
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+#editorjs-renderer a {
+  color: #4299e1;
+}

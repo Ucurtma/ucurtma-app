@@ -48,7 +48,12 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
   }, [redirectError]);
 
   return (
-    <Flex transform="none" flexDir={{ base: 'column', md: 'row' }} mt={4}>
+    <Flex
+      transform="none"
+      flexDir={{ base: 'column', md: 'row' }}
+      mt={4}
+      w="full"
+    >
       <Box w="full" maxW={{ base: '100%', md: '276px' }}>
         <RadioButtonGroup
           defaultValue="bank-transfer"

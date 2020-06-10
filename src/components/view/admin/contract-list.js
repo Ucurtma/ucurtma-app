@@ -53,7 +53,7 @@ function ContractList() {
   }, []);
 
   return (
-    <Card paddingType="default">
+    <Card paddingType="default" w="full">
       <Heading mb={4} size="sm" color="paragraph">
         {t('List')}
       </Heading>

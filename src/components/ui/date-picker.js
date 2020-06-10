@@ -17,6 +17,7 @@ const DatePickerInput = React.forwardRef(
     { value, onClick, label, type, controlProps, field, meta, ...props },
     ref
   ) => {
+    console.log(props);
     return (
       <FormControl
         width="100%"
@@ -39,9 +40,8 @@ const DatePickerInput = React.forwardRef(
           isInvalid={meta.touched && !!meta.error}
           {...field}
           {...props}
+          readOnly
           value={value && moment(value).format('DD.MM.YYYY')}
-          isReadOnly
-          onChange={() => {}}
         />
         {meta.touched && meta.error ? (
           <FormErrorMessage>{meta.error}</FormErrorMessage>
@@ -54,7 +54,7 @@ const DatePickerInput = React.forwardRef(
 function DatePicker({ ...props }) {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(props);
-  const { placeholder } = props;
+  const { placeholder, isReadOnly } = props;
   return (
     <ReactDatePicker
       {...field}
@@ -64,7 +64,12 @@ function DatePicker({ ...props }) {
       onChange={val => setFieldValue(field.name, val)}
       dateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSxxx" // sending iso format to input
       customInput={
-        <DatePickerInput label="Doğum Tarihi" field={field} meta={meta} />
+        <DatePickerInput
+          label="Doğum Tarihi"
+          field={field}
+          meta={meta}
+          isReadOnly={isReadOnly}
+        />
       }
       locale="tr"
     />

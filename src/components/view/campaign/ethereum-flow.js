@@ -159,7 +159,7 @@ function EthereumFlow() {
                 name="tcIdentity"
                 placeholder="Kimlik Numaranızı giriniz"
               />
-              <Flex>
+              <Flex flexDir={{ base: 'column', md: 'row' }}>
                 <Input
                   label="İsim"
                   name="name"
@@ -172,7 +172,7 @@ function EthereumFlow() {
                   placeholder="Soyisminizi giriniz"
                 />
               </Flex>
-              <Flex>
+              <Flex flexDir={{ base: 'column', md: 'row' }}>
                 <Input
                   label="Email Adresi"
                   name="email"
@@ -185,6 +185,11 @@ function EthereumFlow() {
                   name="dateOfBirth"
                   openToDate={new Date('1992/08/20')}
                   placeholder="Doğum tarihinizi seçiniz"
+                  showYearDropdown
+                  showMonthDropdown
+                  dropdownMode="select"
+                  maxDate={new Date()}
+                  isReadOnly
                 />
               </Flex>
               <NumberInput

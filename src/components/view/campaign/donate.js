@@ -26,9 +26,10 @@ const CustomRadio = React.forwardRef((props, ref) => {
       role="radio"
       isDisabled={isDisabled}
       variant="unstyled"
-      transition="0"
       _focus={{ outline: 'none' }}
       _hover={{ fontWeight: '700' }}
+      justifyContent={{ base: 'center', md: 'flex-start' }}
+      px={{ md: 0 }}
       {...rest}
     >
       {children}
@@ -48,7 +49,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
 
   return (
     <Flex transform="none" flexDir={{ base: 'column', md: 'row' }} mt={4}>
-      <Box w={{ base: '100%', lg: '30%' }}>
+      <Box w="full" maxW={{ base: '100%', md: '276px' }}>
         <RadioButtonGroup
           defaultValue="bank-transfer"
           onChange={val => setDonateFlow(val)}
@@ -56,9 +57,14 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           flexDir={{ base: 'row', md: 'column' }}
           isInline={{ base: true, md: false }}
           spacing={4}
+          mb={{ base: 4, md: 0 }}
         >
-          <CustomRadio value="bank-transfer">Banka Havalesi</CustomRadio>
-          <CustomRadio value="ethereum-wallet">Ethereum Cüzdanı</CustomRadio>
+          <CustomRadio width="full" value="bank-transfer">
+            Banka Havalesi
+          </CustomRadio>
+          <CustomRadio width="full" value="ethereum-wallet">
+            Ethereum Cüzdanı
+          </CustomRadio>
         </RadioButtonGroup>
         <Button
           mt={4}
@@ -69,15 +75,10 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           _hover={{ bg: 'red.400' }}
         >
           <Icon as={ArrowLeft} mr={4} />
-          Geri Dön
+          Kampanyaya Dön
         </Button>
       </Box>
-      <Box
-        w={{ base: '100%', lg: '70%' }}
-        height="full"
-        boxShadow="cardLight"
-        padding={4}
-      >
+      <Box w="full" height="full" boxShadow="cardLight" padding={4}>
         {errorExist && (
           <Alert status="error">
             <AlertIcon />
@@ -109,7 +110,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         _hover={{ bg: 'red.400' }}
       >
         <Icon as={ArrowLeft} mr={4} />
-        Geri Dön
+        Kampanyaya Dön
       </Button>
     </Flex>
   );

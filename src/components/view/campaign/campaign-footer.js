@@ -10,7 +10,7 @@ function CampaignFooter({ campaignId }) {
   const [reportCampaignView, setReportCampaignView] = React.useState(false);
 
   return (
-    <Flex mb={8} flexDir="column">
+    <Flex mb={8} flexDir="column" px={{ base: 4, lg: 0 }}>
       <Button
         variant="ghost"
         variantColor="red"

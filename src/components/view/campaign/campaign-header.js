@@ -118,26 +118,29 @@ function CampaignHeader({ data, loading, onClickDonate }) {
           </Box>
         ) : (
           <>
-            <Heading color="gray.700" fontSize={{ base: '2xl', lg: '3xl' }}>
+            <Heading
+              width="full"
+              color="gray.700"
+              fontSize={{ base: '2xl', lg: '3xl' }}
+            >
               {data.campaign?.campaignTitle}
             </Heading>
-            <Box>
-              <PseudoBox
-                as={Button}
-                variant="solid"
-                bg="linkGreen"
-                h={{ base: 12, lg: 16 }}
-                width={{ base: 'auto', md: '416px' }}
-                flexShrink="0"
-                justifyContent="space-between"
-                boxShadow="0 0 2px rgba(124,124,124,0.16)"
-                onClick={() => onClickDonate()}
-                _hover={{ bg: 'green.100' }}
-              >
-                Destek Ol
-                <Icon as={Award} size="28px" />
-              </PseudoBox>
-            </Box>
+            <PseudoBox
+              as={Button}
+              variant="solid"
+              bg="linkGreen"
+              h={16}
+              w="full"
+              maxW="416px"
+              justifyContent="space-between"
+              boxShadow="0 0 2px rgba(124,124,124,0.16)"
+              onClick={() => onClickDonate()}
+              _hover={{ bg: 'green.100' }}
+              ml={4}
+            >
+              Destek Ol
+              <Icon as={Award} size="28px" />
+            </PseudoBox>
           </>
         )}
       </Flex>

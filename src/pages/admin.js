@@ -9,8 +9,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
 import { Box, Flex } from '@chakra-ui/core';
-
-import { withApollo } from '../utils/apollo';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import SidebarItem from '../components/ui/sidebar-item';
@@ -77,4 +75,4 @@ function Admin() {
   );
 }
 
-export default withApollo(Admin);
+export default Admin;

@@ -22,7 +22,6 @@ import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { checkID } from '../../../utils/utils';
 import ChangeProfilePicture from '../../ui/settings/change-profile-pic';
-import { withApollo } from '../../../utils/apollo';
 import config from '../../../config';
 
 // todo: i delete calendar from here. we need new calendar.
@@ -411,4 +410,4 @@ function Application() {
   );
 }
 
-export default withApollo(Application);
+export default Application;

@@ -17,7 +17,6 @@ const DatePickerInput = React.forwardRef(
     { value, onClick, label, type, controlProps, field, meta, ...props },
     ref
   ) => {
-    console.log(props);
     return (
       <FormControl
         width="100%"

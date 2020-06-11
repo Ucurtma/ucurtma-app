@@ -133,6 +133,7 @@ function EthereumFlow() {
             email: '',
             dateOfBirth: '',
             amount: '',
+            consentToReceiveNews: false,
           }}
           validationSchema={collectEthSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -210,7 +211,7 @@ function EthereumFlow() {
                 }}
               />
 
-              <Agreements />
+              <Agreements name="consentToReceiveNews" />
 
               <Reaptcha
                 ref={captcha}

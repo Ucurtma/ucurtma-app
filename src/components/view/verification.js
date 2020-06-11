@@ -18,7 +18,6 @@ import { useMutation } from '@apollo/react-hooks';
 import Card from '../ui/card';
 import Input from '../ui/input';
 import { checkID } from '../../utils/utils';
-import { withApollo } from '../../utils/apollo';
 import Dropbox from '../ui/dropbox';
 import FileInput from '../ui/file-input';
 import VerificationSuccess from '../ui/verification-success';
@@ -264,4 +263,4 @@ function Verification() {
   );
 }
 
-export default withApollo(Verification);
+export default Verification;

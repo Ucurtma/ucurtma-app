@@ -68,7 +68,11 @@
     "owner": "Öğrencinin Ethereum cüzdanı",
     "aboutOwner": "Bu bilgiyi girmediğiniz taktirde kullanıcı, destek alma özelliklerinden yararlanamayacaktır. Bu alanı şimdilik boş bırakabilir ve daha sonra kampanya ayarlarından güncelleyebilirsiniz.",
     "campaignId": "Kampanya ID'si",
-    "title": "Kampanya Başlığı",
+    "campaignTitle": "Kampanya Başlığı",
+    "namesurname": "Öğrenci Adı & Soyadı",
+    "school": "Okul Adı",
+    "department": "Bölüm Adı",
+    "profileImageLink": "Profil Fotoğrafı Linki",
     "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
     "campaignDetails": "Kampanya Detayları",
@@ -81,7 +85,8 @@
     "deployStartedDesc": "Bu işlemin tamamlanması biraz sürebilir. Lütfen sayfadan ayrılmayınız ve sayfayı yenilemeyiniz.",
     "validations": {
       "required": "Bu alan zorunludur.",
-      "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz."
+      "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz.",
+      "link": "Geçerli bir link giriniz."
     },
     "notMainNetwork": "Yeni bir kampanya oluşturmak için Main Ethereum Ağı'nda olmanız gerekmektedir. Lütfen MetaMask eklentisini açarak bulunduğunuz ağı değiştirin."
   },

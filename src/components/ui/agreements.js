@@ -7,7 +7,7 @@ import Loader from './loader';
 const ClarificationText = lazy(() => import('../view/clarification-text'));
 const DirectConsent = lazy(() => import('../view/direct-consent'));
 
-function Agreements() {
+function Agreements({ name }) {
   const { dispatch } = useContext(MainContext);
 
   const setModalOpen = type => {
@@ -36,7 +36,7 @@ function Agreements() {
   };
 
   return (
-    <Checkbox name="consentToReceiveNews">
+    <Checkbox name={name}>
       Kişisel verileri koruma kapsamında{' '}
       <Link color="blue.400" onClick={() => setModalOpen('clarificationText')}>
         aydınlatma metnini

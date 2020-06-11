@@ -36,7 +36,7 @@ const deployContractSchema = t => {
   return Yup.object().shape({
     numberOfPlannedPayouts: Yup.string().required(t('validations.required')),
     withdrawPeriod: Yup.string().required(t('validations.required')),
-    title: Yup.string().required(t('validations.required')),
+    campaignTitle: Yup.string().required(t('validations.required')),
     campaignEndTime: Yup.string().required(t('validations.required')),
     owner: Yup.string().test(
       'Check Address',
@@ -44,21 +44,30 @@ const deployContractSchema = t => {
       value => (value ? web3.utils.isAddress(value) : true)
     ),
     tokenAddress: Yup.string().required(t('validations.required')),
+    name: Yup.string().required(t('validations.required')),
+    school: Yup.string().required(t('validations.required')),
+    department: Yup.string().required(t('validations.required')),
+    profileImageLink: Yup.string().url(t('validations.link')),
   });
 };
+
+// $campaignTarget: Float
+// $minimumAmount: Int
+// $goals: [CampaignGoalInput]
+// $documents: [CampaignDocumentsInput]
 
 const CREATE_CAMPAIGN = gql`
   mutation CreateCampaign(
     $campaignId: String!
-    $title: String!
-    $text: String
+    $campaignTitle: String!
+    $campaignText: String
     $ethereumAddress: String!
     $student: Student
   ) {
     createCampaign(
       campaignId: $campaignId
-      title: $title
-      text: $text
+      campaignTitle: $campaignTitle
+      campaignText: $campaignText
       ethereumAddress: $ethereumAddress
       student: $student
     ) {
@@ -77,9 +86,10 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
 `;
 
 function ContractActions({ walletState }) {
-  const [createCampaign, { loading: createCampaignLoading }] = useMutation(
-    CREATE_CAMPAIGN
-  ); // { loading, error, data }
+  const [
+    createCampaign,
+    { loading: createCampaignLoading, error: createCampaignError },
+  ] = useMutation(CREATE_CAMPAIGN, { onError: err => err }); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('contractActions');
   const editorRef = React.useRef(null);
@@ -122,9 +132,15 @@ function ContractActions({ walletState }) {
     createCampaign({
       variables: {
         campaignId: values.campaignId,
-        title: values.title,
-        text: window.editor.value(),
-        ethereumAddress: deployedAddress || '1',
+        campaignTitle: values.campaignTitle,
+        campaignText: window.editor.value(),
+        ethereumAddress: deployedAddress || '',
+        student: {
+          name: values.name,
+          school: values.school,
+          department: values.department,
+          profilePhoto: values.profilePhoto,
+        },
       },
       context: {
         headers: {
@@ -151,7 +167,11 @@ function ContractActions({ walletState }) {
             tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
             adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
             campaignId: uuidv4(),
-            title: '',
+            campaignTitle: '',
+            name: '',
+            school: '',
+            department: '',
+            profileImageLink: '',
           }}
           validationSchema={deployContractSchema(t)}
           onSubmit={(values, { setSubmitting }) => {
@@ -163,6 +183,7 @@ function ContractActions({ walletState }) {
 
             if (!values.owner) {
               createCampaignCommand(values);
+              setSubmitting(createCampaignLoading);
             } else {
               eventFilter.watch((error, event) => {
                 if (error) {
@@ -255,11 +276,32 @@ function ContractActions({ walletState }) {
                 name="campaignId"
               />
               <Input
-                label={t('title')}
+                label={t('campaignTitle')}
                 disabled={!isWalletExist}
-                name="title"
+                name="campaignTitle"
               />
-              <Flex>
+              <Input
+                label={t('namesurname')}
+                disabled={!isWalletExist}
+                name="name"
+              />
+
+              <Flex flexDir={{ base: 'column', md: 'row' }}>
+                <Input
+                  label={t('school')}
+                  name="school"
+                  controlProps={{ mr: 4 }}
+                />
+                <Input label={t('department')} name="department" />
+              </Flex>
+
+              <Input
+                label={t('profileImageLink')}
+                disabled={!isWalletExist}
+                name="profileImageLink"
+              />
+
+              <Flex flexDir={{ base: 'column', md: 'row' }}>
                 <NumberInput
                   label={t('numberOfPlannedPayouts')}
                   name="numberOfPlannedPayouts"
@@ -319,7 +361,7 @@ function ContractActions({ walletState }) {
                   type="submit"
                   variant="outline"
                   color="linkBlue"
-                  isLoading={isSubmitting || createCampaignLoading}
+                  isLoading={createCampaignLoading}
                   disabled={isSubmitting || !dirty || !isValid}
                   width="full"
                   maxW="200px"

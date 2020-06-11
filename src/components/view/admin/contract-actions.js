@@ -10,9 +10,9 @@ import {
   FormLabel,
   useToast,
   Link,
-  Alert,
-  AlertIcon,
-  AlertDescription,
+  // Alert,
+  // AlertIcon,
+  // AlertDescription,
 } from '@chakra-ui/core';
 import gql from 'graphql-tag';
 import { useTranslation } from 'react-i18next';
@@ -88,13 +88,13 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
 function ContractActions({ walletState }) {
   const [
     createCampaign,
-    { loading: createCampaignLoading, error: createCampaignError },
+    { loading: createCampaignLoading },
   ] = useMutation(CREATE_CAMPAIGN, { onError: err => err }); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('contractActions');
   const editorRef = React.useRef(null);
   const isWalletExist = walletState.wallet;
-  const isMainNetwork = parseInt(walletState.chainId, 16) === 1;
+  // const isMainNetwork = parseInt(walletState.chainId, 16) === 1;
   const commonToastProps = {
     duration: null,
     isClosable: true,

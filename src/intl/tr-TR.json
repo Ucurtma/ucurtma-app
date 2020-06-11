@@ -72,7 +72,7 @@
     "namesurname": "Öğrenci Adı & Soyadı",
     "school": "Okul Adı",
     "department": "Bölüm Adı",
-    "profileImageLink": "Profil Fotoğrafı Linki",
+    "profilePhoto": "Profil Fotoğrafı Linki",
     "tokenAddress": "Para Birimi",
     "adminAddress": "Yönetici Ethereum adresi",
     "campaignDetails": "Kampanya Detayları",

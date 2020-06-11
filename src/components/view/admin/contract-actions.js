@@ -47,7 +47,7 @@ const deployContractSchema = t => {
     name: Yup.string().required(t('validations.required')),
     school: Yup.string().required(t('validations.required')),
     department: Yup.string().required(t('validations.required')),
-    profileImageLink: Yup.string().url(t('validations.link')),
+    profilePhoto: Yup.string().url(t('validations.link')),
   });
 };
 
@@ -171,7 +171,7 @@ function ContractActions({ walletState }) {
             name: '',
             school: '',
             department: '',
-            profileImageLink: '',
+            profilePhoto: '',
           }}
           validationSchema={deployContractSchema(t)}
           onSubmit={(values, { setSubmitting }) => {
@@ -296,9 +296,9 @@ function ContractActions({ walletState }) {
               </Flex>
 
               <Input
-                label={t('profileImageLink')}
+                label={t('profilePhoto')}
                 disabled={!isWalletExist}
-                name="profileImageLink"
+                name="profilePhoto"
               />
 
               <Flex flexDir={{ base: 'column', md: 'row' }}>

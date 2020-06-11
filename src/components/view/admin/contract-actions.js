@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
+import EasyMDE from 'easymde';
 import Card from '../../ui/card';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';
@@ -25,6 +26,7 @@ import {
 } from '../../../utils/contract-utils';
 import config from '../../../config';
 import { uuidv4 } from '../../../utils/utils';
+import 'easymde/dist/easymde.min.css';
 
 const deployContractSchema = t => {
   const { web3 } = window;
@@ -68,12 +70,47 @@ function ContractActions({ walletState }) {
   const [createCampaign] = useMutation(CREATE_CAMPAIGN); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('contractActions');
+  const editorRef = React.useRef(null);
   const isWalletExist = walletState.wallet;
   const commonToastProps = {
     duration: null,
     isClosable: true,
     position: 'top-right',
   };
+
+  React.useEffect(() => {
+    const markdown = ` ## Merhaba
+
+Editörümüz markdown ile çalışmaktadır. Markdown ile şekillendirmenin nasıl yapıldığını bilmiyorsanız sağ üstteki soru işareti butonuna tıklayarak öğrenebilirsiniz.
+
+#### İçerik, sayfamda nasıl gözükecek?
+
+Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine yukarıda bulunan butonlardan göz butonuna tıklayabilirsiniz.
+`;
+
+    console.log('runs');
+    if (editorRef.current) {
+      const editor = new EasyMDE({
+        element: editorRef.current,
+        autoDownloadFontAwesome: undefined, // change with our icon package, react-feather.
+        spellChecker: false,
+        nativeSpellcheck: false,
+        status: false,
+        initialValue: markdown,
+        promptURLs: true,
+        promptTexts: {
+          image: "Resim URL'ini giriniz:",
+          link: "Eklemek istediğiniz linkin URL'ini giriniz:",
+        },
+      });
+
+      if (!isWalletExist) {
+        editor.codemirror.setOption('readOnly', true);
+      } else {
+        editor.codemirror.setOption('readOnly', false);
+      }
+    }
+  }, [isWalletExist]);
 
   return (
     <Card paddingType="default">
@@ -101,17 +138,6 @@ function ContractActions({ walletState }) {
             const eventFilter = deploymentManager.NewFundingContract({
               __owner: values.owner,
             });
-
-            if (window.editor) {
-              window.editor
-                .save()
-                .then(outputData => {
-                  console.log(outputData);
-                })
-                .catch(err => {
-                  console.log('data failed', err);
-                });
-            }
 
             eventFilter.watch((error, event) => {
               if (error) {
@@ -263,19 +289,16 @@ function ContractActions({ walletState }) {
                 name="adminAddress"
               />
 
-              {isWalletExist && (
-                <Box mb={4}>
-                  <FormLabel color="paragraph">
-                    {t('campaignDetails')}
-                  </FormLabel>
-                  <Box
-                    border="1px solid"
-                    borderColor="#e2e8f0"
-                    borderRadius="4px"
-                    id="editorjs"
-                  />
-                </Box>
-              )}
+              <Box id="editorjs" mb={4}>
+                <FormLabel color="paragraph">{t('campaignDetails')}</FormLabel>
+                <Box
+                  border="1px solid"
+                  borderColor="#e2e8f0"
+                  borderRadius="4px"
+                  as="textarea"
+                  ref={editorRef}
+                />
+              </Box>
               <Flex justifyContent="flex-end">
                 <Button
                   color="gray.800"

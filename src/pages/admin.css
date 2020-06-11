@@ -5,6 +5,8 @@
 #editorjs h5,
 #editorjs h6 {
   font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 #editorjs h1 {

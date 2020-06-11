@@ -20,7 +20,7 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
       {...controlProps}
     >
       {label && (
-        <FormLabel color="paragraph" htmlFor={field.name}>
+        <FormLabel color="gray.600" htmlFor={field.name}>
           {label}
         </FormLabel>
       )}

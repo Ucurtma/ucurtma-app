@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
-import { Box } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/core';
 
 import { withApollo } from '../utils/apollo';
 import Header from '../components/ui/header';
@@ -44,27 +44,34 @@ function Admin() {
     <>
       <Header withLogo hideMenu isManager mb={8} />
       <Container>
-        <Box w={{ base: '100%', lg: '30%' }}>
-          {navItems.map((navItem, i) => (
-            <SidebarItem
-              icon={navItem.icon}
-              key={i.toString()}
-              label={navItem.label}
-              active={navItem.href === params['*']}
-              onClick={() => changePage(navItem.href)}
-            />
-          ))}
-        </Box>
-        <Box w={{ base: '100%', lg: '70%' }}>
-          <Routes>
-            <Route
-              path="deploy"
-              element={<ContractActions walletState={mainState} />}
-            />
-            <Route path="campaigns" element={<ContractList />} />
-            <Route path="*" element={<Navigate to="deploy" replace />} />
-          </Routes>
-        </Box>
+        <Flex
+          w="full"
+          transform="none"
+          flexDir={{ base: 'column', md: 'row' }}
+          mt={4}
+        >
+          <Box w="full" maxW={{ base: '100%', md: '276px' }}>
+            {navItems.map((navItem, i) => (
+              <SidebarItem
+                icon={navItem.icon}
+                key={i.toString()}
+                label={navItem.label}
+                active={navItem.href === params['*']}
+                onClick={() => changePage(navItem.href)}
+              />
+            ))}
+          </Box>
+          <Box w="full">
+            <Routes>
+              <Route
+                path="deploy"
+                element={<ContractActions walletState={mainState} />}
+              />
+              <Route path="campaigns" element={<ContractList />} />
+              <Route path="*" element={<Navigate to="deploy" replace />} />
+            </Routes>
+          </Box>
+        </Flex>
       </Container>
     </>
   );

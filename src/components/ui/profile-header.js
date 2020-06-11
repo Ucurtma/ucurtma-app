@@ -46,7 +46,7 @@ function ProfileHeader({ isVerified, user, count }) {
                 ? 'Verificated User'
                 : 'To create a campaign, you should become a verified user.'
             }
-            color={isVerified ? 'linkBlue' : 'passiveParagraph.300'}
+            color={isVerified ? 'linkBlue' : 'gray.300'}
           />
         </Box>
         <Box display="flex" justifyContent="space-between" mt={2}>

@@ -8,7 +8,7 @@ function VerificationSettings({ withTitle, isVerified }) {
   return (
     <>
       {withTitle && (
-        <Heading mb={4} mt={8} size="sm" color="paragraph">
+        <Heading mb={4} mt={8} size="sm" color="gray.600">
           Verification
         </Heading>
       )}
@@ -17,9 +17,9 @@ function VerificationSettings({ withTitle, isVerified }) {
           flexShrink={0}
           as={CheckCircle}
           size="24px"
-          color={isVerified ? 'linkBlue' : 'paragraph'}
+          color={isVerified ? 'linkBlue' : 'gray.600'}
         />
-        <Text ml={4} color={isVerified ? 'linkBlue' : 'paragraph'}>
+        <Text ml={4} color={isVerified ? 'linkBlue' : 'gray.600'}>
           {isVerified
             ? 'Verificated User'
             : 'You’re not a verified user at the moment. To create a campaign, you should become a verified user.'}

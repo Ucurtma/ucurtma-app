@@ -18,7 +18,7 @@ function NavButton({
         icon={icon}
         fontSize="22px"
         variant="ghost"
-        color="paragraph"
+        color="gray.600"
         {...otherProps}
       />
       {badge && (

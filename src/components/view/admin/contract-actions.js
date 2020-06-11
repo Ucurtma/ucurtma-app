@@ -10,6 +10,9 @@ import {
   FormLabel,
   useToast,
   Link,
+  Alert,
+  AlertIcon,
+  AlertDescription,
 } from '@chakra-ui/core';
 import gql from 'graphql-tag';
 import { useTranslation } from 'react-i18next';
@@ -35,13 +38,11 @@ const deployContractSchema = t => {
     withdrawPeriod: Yup.string().required(t('validations.required')),
     title: Yup.string().required(t('validations.required')),
     campaignEndTime: Yup.string().required(t('validations.required')),
-    owner: Yup.string()
-      .required(t('validations.required'))
-      .test(
-        'Check Address',
-        t('validations.incorrectAddress'),
-        value => value && web3.utils.isAddress(value)
-      ),
+    owner: Yup.string().test(
+      'Check Address',
+      t('validations.incorrectAddress'),
+      value => (value ? web3.utils.isAddress(value) : true)
+    ),
     tokenAddress: Yup.string().required(t('validations.required')),
   });
 };
@@ -66,20 +67,7 @@ const CREATE_CAMPAIGN = gql`
   }
 `;
 
-function ContractActions({ walletState }) {
-  const [createCampaign] = useMutation(CREATE_CAMPAIGN); // { loading, error, data }
-  const toast = useToast();
-  const { t } = useTranslation('contractActions');
-  const editorRef = React.useRef(null);
-  const isWalletExist = walletState.wallet;
-  const commonToastProps = {
-    duration: null,
-    isClosable: true,
-    position: 'top-right',
-  };
-
-  React.useEffect(() => {
-    const markdown = ` ## Merhaba
+const markdown = `## Merhaba
 
 Editörümüz markdown ile çalışmaktadır. Markdown ile şekillendirmenin nasıl yapıldığını bilmiyorsanız sağ üstteki soru işareti butonuna tıklayarak öğrenebilirsiniz.
 
@@ -88,9 +76,24 @@ Editörümüz markdown ile çalışmaktadır. Markdown ile şekillendirmenin nas
 Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine yukarıda bulunan butonlardan göz butonuna tıklayabilirsiniz.
 `;
 
-    console.log('runs');
+function ContractActions({ walletState }) {
+  const [createCampaign, { loading: createCampaignLoading }] = useMutation(
+    CREATE_CAMPAIGN
+  ); // { loading, error, data }
+  const toast = useToast();
+  const { t } = useTranslation('contractActions');
+  const editorRef = React.useRef(null);
+  const isWalletExist = walletState.wallet;
+  const isMainNetwork = parseInt(walletState.chainId, 16) === 1;
+  const commonToastProps = {
+    duration: null,
+    isClosable: true,
+    position: 'top-right',
+  };
+
+  React.useEffect(() => {
     if (editorRef.current) {
-      const editor = new EasyMDE({
+      window.editor = new EasyMDE({
         element: editorRef.current,
         autoDownloadFontAwesome: undefined, // change with our icon package, react-feather.
         spellChecker: false,
@@ -105,19 +108,39 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
       });
 
       if (!isWalletExist) {
-        editor.codemirror.setOption('readOnly', true);
+        window.editor.codemirror.setOption('readOnly', true);
       } else {
-        editor.codemirror.setOption('readOnly', false);
+        window.editor.codemirror.setOption('readOnly', false);
       }
     }
-  }, [isWalletExist]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const createCampaignCommand = (values, deployedAddress) => {
+    const metamaskToken = localStorage.getItem('signedToken');
+
+    createCampaign({
+      variables: {
+        campaignId: values.campaignId,
+        title: values.title,
+        text: window.editor.value(),
+        ethereumAddress: deployedAddress || '1',
+      },
+      context: {
+        headers: {
+          authorization: `Bearer ${metamaskToken}`,
+        },
+      },
+    });
+  };
 
   return (
     <Card paddingType="default">
-      <Heading mb={4} size="sm" color="paragraph">
+      <Heading mb={4} size="sm" color="gray.600">
         {t('Deploy')}
       </Heading>
-      <Text color="paragraph">{t('DeployDescription')}</Text>
+      <Text color="gray.600">{t('DeployDescription')}</Text>
+      {/* {isMainNetwork ? ( */}
       <Box mt={4}>
         <Formik
           initialValues={{
@@ -133,107 +156,97 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
           validationSchema={deployContractSchema(t)}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
-
             const deploymentManager = getDeploymentManagerContract();
             const eventFilter = deploymentManager.NewFundingContract({
               __owner: values.owner,
             });
 
-            eventFilter.watch((error, event) => {
-              if (error) {
-                toast({
-                  title: t('deployErrorTitle'),
-                  description: t('deployErrorDesc'),
-                  status: 'error',
-                  ...commonToastProps,
-                });
-                console.log(`Error: ${error}`);
-                setSubmitting(false);
-              } else {
-                toast({
-                  title: t('deploySuccessTitle'),
-                  description: (
-                    <Link
-                      href={getEtherscanAddressFor({
-                        type: 'address',
-                        hash: event.args.deployedAddress,
-                      })}
-                    >
-                      {t('deploySuccessDesc')}
-                    </Link>
-                  ),
-                  status: 'success',
-                  ...commonToastProps,
-                });
-
-                const metamaskToken = localStorage.getItem('signedToken');
-
-                createCampaign({
-                  variables: {
-                    campaignId: values.campaignId,
-                    title: values.title,
-                    text: '',
-                    ethereumAddress: event.args.deployedAddress,
-                  },
-                  context: {
-                    headers: {
-                      authorization: `Bearer ${metamaskToken}`,
-                    },
-                  },
-                });
-
-                setSubmitting(false);
-                console.log('no error');
-              }
-            });
-
-            deploymentManager.deploy(
-              values.numberOfPlannedPayouts,
-              parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
-              parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
-              values.owner,
-              values.tokenAddress,
-              async (err, result) => {
-                if (!err) {
-                  console.log(
-                    `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
-                      { hash: result }
-                    )}`
-                  );
-
+            if (!values.owner) {
+              createCampaignCommand(values);
+            } else {
+              eventFilter.watch((error, event) => {
+                if (error) {
                   toast({
-                    title: t('deployStartedTitle'),
-                    description: (
-                      <Link href={getEtherscanAddressFor({ hash: result })}>
-                        {t('deployStartedDesc')}
-                      </Link>
-                    ),
-                    status: 'warning',
-                    ...commonToastProps,
-                  });
-                } else {
-                  // todo: web3 can't catch error if deployment reverted with message.
-                  // find a solution.
-                  toast({
-                    title:
-                      err.code === 4001
-                        ? "MetaMask'tan izin alınamadı."
-                        : 'Bir hata oluştu.',
-                    description:
-                      err.code === 4001
-                        ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
-                        : `Hata kodu: ${err.code}`,
+                    title: t('deployErrorTitle'),
+                    description: t('deployErrorDesc'),
                     status: 'error',
                     ...commonToastProps,
                   });
-                  console.log('error');
+                  // eslint-disable-next-line no-console
+                  console.error(`Error: ${error}`);
+                  setSubmitting(false);
+                } else {
+                  toast({
+                    title: t('deploySuccessTitle'),
+                    description: (
+                      <Link
+                        href={getEtherscanAddressFor({
+                          type: 'address',
+                          hash: event.args.deployedAddress,
+                        })}
+                      >
+                        {t('deploySuccessDesc')}
+                      </Link>
+                    ),
+                    status: 'success',
+                    ...commonToastProps,
+                  });
+
+                  createCampaignCommand(values, event.args.deployedAddress);
                   setSubmitting(false);
                 }
-              }
-            );
+              });
+
+              deploymentManager.deploy(
+                values.numberOfPlannedPayouts,
+                parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
+                parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
+                values.owner,
+                values.tokenAddress,
+
+                async (err, result) => {
+                  if (!err) {
+                    // eslint-disable-next-line no-console
+                    console.log(
+                      `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
+                        { hash: result }
+                      )}`
+                    );
+
+                    toast({
+                      title: t('deployStartedTitle'),
+                      description: (
+                        <Link href={getEtherscanAddressFor({ hash: result })}>
+                          {t('deployStartedDesc')}
+                        </Link>
+                      ),
+                      status: 'warning',
+                      ...commonToastProps,
+                    });
+                  } else {
+                    // todo: web3 can't catch error if deployment reverted with message.
+                    // find a solution.
+                    toast({
+                      title:
+                        err.code === 4001
+                          ? "MetaMask'tan izin alınamadı."
+                          : 'Bir hata oluştu.',
+                      description:
+                        err.code === 4001
+                          ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
+                          : `Hata kodu: ${err.code}`,
+                      status: 'error',
+                      ...commonToastProps,
+                    });
+                    console.log(err);
+                    setSubmitting(false);
+                  }
+                }
+              );
+            }
           }}
         >
-          {({ isSubmitting, errors }) => (
+          {({ isSubmitting, dirty, isValid }) => (
             <Form>
               <Input
                 label={t('campaignId')}
@@ -271,11 +284,12 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
               />
               <Input
                 label={t('owner')}
+                description={t('aboutOwner')}
                 disabled={!isWalletExist}
                 name="owner"
               />
               <Box mb={4}>
-                <FormLabel color="paragraph">{t('tokenAddress')}</FormLabel>
+                <FormLabel color="gray.600">{t('tokenAddress')}</FormLabel>
                 <RadioGroup defaultValue="biLira" isInline>
                   <Radio value="biLira" isDisabled key="biLira">
                     BiLira
@@ -290,7 +304,7 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
               />
 
               <Box id="editorjs" mb={4}>
-                <FormLabel color="paragraph">{t('campaignDetails')}</FormLabel>
+                <FormLabel color="gray.600">{t('campaignDetails')}</FormLabel>
                 <Box
                   border="1px solid"
                   borderColor="#e2e8f0"
@@ -299,13 +313,14 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
                   ref={editorRef}
                 />
               </Box>
+
               <Flex justifyContent="flex-end">
                 <Button
-                  color="gray.800"
-                  bg="linkGreen"
                   type="submit"
-                  isLoading={isSubmitting}
-                  disabled={isSubmitting || Object.keys(errors).length > 0}
+                  variant="outline"
+                  color="linkBlue"
+                  isLoading={isSubmitting || createCampaignLoading}
+                  disabled={isSubmitting || !dirty || !isValid}
                   width="full"
                   maxW="200px"
                   ml="auto"
@@ -317,6 +332,12 @@ Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine 
           )}
         </Formik>
       </Box>
+      {/* ) : (
+        <Alert status="error" bg="gray.100" color="gray.500" mt={4}>
+          <AlertIcon color="gray.500" />
+          <AlertDescription>{t('notMainNetwork')}</AlertDescription>
+        </Alert>
+      )} */}
     </Card>
   );
 }

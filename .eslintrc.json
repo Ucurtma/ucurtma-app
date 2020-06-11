@@ -23,6 +23,7 @@
     "react/require-default-props": 0,
     "react/jsx-props-no-spreading": 0,
     "react/forbid-prop-types": 0,
-    "import/no-unresolved": [2, { "ignore": ["test-utils$"] }]
+    "import/no-unresolved": [2, { "ignore": ["test-utils$"] }],
+    "react-hooks/exhaustive-deps": 1
   }
 }

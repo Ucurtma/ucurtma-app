@@ -11,11 +11,11 @@ function VerificationSuccess() {
       <Heading size="sm" mb={4}>
         Thank you for application!
       </Heading>
-      <Text color="paragraph" mb={4}>
+      <Text color="gray.600" mb={4}>
         Now, Its our turn. Our team and automated systems will look your
         documents. After everything is OK, they will verify your account.
       </Text>
-      <Text color="paragraph" mb={4}>
+      <Text color="gray.600" mb={4}>
         We will send you an email after your account verified. If you want to
         continue now, you can create &quot;draft campaign.&quot;
       </Text>

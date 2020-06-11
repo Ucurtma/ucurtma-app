@@ -111,10 +111,10 @@ function Verification() {
 
   return (
     <Card paddingType="default">
-      <Heading mb={4} size="sm" color="paragraph">
+      <Heading mb={4} size="sm" color="gray.600">
         Verification
       </Heading>
-      <Text color="paragraph" mb={4}>
+      <Text color="gray.600" mb={4}>
         Welcome to verification page. To verify your account, we need more
         information about you.
       </Text>
@@ -179,7 +179,7 @@ function Verification() {
                 type="text"
               />
             )}
-            <FormLabel color="paragraph">Verification Document</FormLabel>
+            <FormLabel color="gray.600">Verification Document</FormLabel>
             <Flex
               justifyContent="space-between"
               flexWrap={values.verificationDocument !== '' ? 'wrap' : 'no-wrap'}

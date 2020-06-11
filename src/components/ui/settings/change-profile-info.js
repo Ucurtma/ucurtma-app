@@ -43,7 +43,7 @@ function ChangeProfileInfo({ withTitle }) {
   return (
     <>
       {withTitle && (
-        <Heading my={4} size="sm" color="paragraph">
+        <Heading my={4} size="sm" color="gray.600">
           General Profile Information
         </Heading>
       )}

@@ -54,10 +54,10 @@ function ContractList() {
 
   return (
     <Card paddingType="default">
-      <Heading mb={4} size="sm" color="paragraph">
+      <Heading mb={4} size="sm" color="gray.600">
         {t('List')}
       </Heading>
-      <Text color="paragraph">{t('ListDescription')}</Text>
+      <Text color="gray.600">{t('ListDescription')}</Text>
       <Box mt={4}>
         {contractList.length > 0 ? (
           contractList.map(campaign => {

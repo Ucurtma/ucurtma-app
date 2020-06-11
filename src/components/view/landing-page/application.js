@@ -216,7 +216,7 @@ function Application() {
           {({ isSubmitting, errors, setFieldValue, handleSubmit }) => (
             <Form>
               <Box>
-                <Heading my={4} size="sm" color="paragraph">
+                <Heading my={4} size="sm" color="gray.600">
                   Profil
                 </Heading>
                 <SimpleGrid
@@ -313,7 +313,7 @@ function Application() {
                 </SimpleGrid>
               </Box>
               <Box>
-                <Heading my={4} size="sm" color="paragraph">
+                <Heading my={4} size="sm" color="gray.600">
                   Genel Sorular
                 </Heading>
                 <SimpleGrid

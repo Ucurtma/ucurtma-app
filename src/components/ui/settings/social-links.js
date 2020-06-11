@@ -9,10 +9,10 @@ function SocialLinkSettings({ withTitle }) {
     <>
       {withTitle && (
         <>
-          <Heading my={4} size="sm" color="paragraph">
+          <Heading my={4} size="sm" color="gray.600">
             Social Links
           </Heading>
-          <Text color="paragraph">
+          <Text color="gray.600">
             Display your social media links on your profile
           </Text>
         </>

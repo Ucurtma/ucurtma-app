@@ -9,10 +9,10 @@ export function UserInfo({ name, withAvatar, avatarURL, reputation }) {
         <Avatar data-testid="avatar" size="lg" name={name} src={avatarURL} />
       )}
       <Box ml={6}>
-        <Heading size="sm" color="paragraph">
+        <Heading size="sm" color="gray.600">
           {name}
         </Heading>
-        {reputation && <Text color="paragraph">{reputation}</Text>}
+        {reputation && <Text color="gray.600">{reputation}</Text>}
       </Box>
     </Box>
   );
@@ -25,13 +25,13 @@ export function UserInfoBadge({ icon, count, color, label }) {
         as={icon}
         flexShrink="0"
         size="1.25rem"
-        color={color || 'passiveParagraph.500'}
+        color={color || 'gray.400'}
       />
       <Text
         fontSize="sm"
         ml={2}
         textAlign="justify"
-        color={color || 'passiveParagraph.500'}
+        color={color || 'gray.400'}
       >
         {count ? `${count} ${label}` : label}
       </Text>

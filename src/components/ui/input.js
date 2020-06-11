@@ -4,10 +4,11 @@ import {
   FormErrorMessage,
   FormLabel,
   FormControl,
+  Box,
 } from '@chakra-ui/core';
 import { useField } from 'formik';
 
-function Input({ label, type, controlProps, ...props }) {
+function Input({ label, type, controlProps, description, ...props }) {
   const [field, meta] = useField(props);
   return (
     <FormControl
@@ -17,9 +18,14 @@ function Input({ label, type, controlProps, ...props }) {
       {...controlProps}
     >
       {label && (
-        <FormLabel color="paragraph" htmlFor={field.name}>
+        <FormLabel color="gray.600" htmlFor={field.name}>
           {label}
         </FormLabel>
+      )}
+      {description && (
+        <Box color="gray.400" mb={4} fontSize="0.9rem">
+          {description}
+        </Box>
       )}
       <ChakraInput
         aria-label={label || field.name}

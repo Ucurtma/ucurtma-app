@@ -55,7 +55,7 @@
     "react-router-dom": "^6.0.0-alpha.5",
     "react-scripts": "^3.4.1",
     "reaptcha": "^1.7.2",
-    "web3": "^1.2.7",
+    "web3": "^1.2.9",
     "yup": "^0.28.5"
   },
   "devDependencies": {

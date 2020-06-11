@@ -6,7 +6,6 @@ import { Formik, Form } from 'formik';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import Input from '../input';
-import { withApollo } from '../../../utils/apollo';
 
 const passwordChangeSchema = Yup.object().shape({
   currentPassword: Yup.string()
@@ -53,7 +52,7 @@ function ChangePassword({ withTitle }) {
   return (
     <>
       {withTitle && (
-        <Heading my={4} size="sm" color="paragraph">
+        <Heading my={4} size="sm" color="gray.600">
           Password
         </Heading>
       )}
@@ -122,4 +121,4 @@ ChangePassword.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default withApollo(ChangePassword);
+export default ChangePassword;

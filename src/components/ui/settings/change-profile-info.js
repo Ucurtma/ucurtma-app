@@ -6,7 +6,6 @@ import { Formik, Form } from 'formik';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Input from '../input';
-import { withApollo } from '../../../utils/apollo';
 
 const profileInfoSchema = Yup.object().shape({
   fullname: Yup.string()
@@ -43,7 +42,7 @@ function ChangeProfileInfo({ withTitle }) {
   return (
     <>
       {withTitle && (
-        <Heading my={4} size="sm" color="paragraph">
+        <Heading my={4} size="sm" color="gray.600">
           General Profile Information
         </Heading>
       )}
@@ -107,4 +106,4 @@ ChangeProfileInfo.propTypes = {
   withTitle: PropTypes.bool,
 };
 
-export default withApollo(ChangeProfileInfo);
+export default ChangeProfileInfo;

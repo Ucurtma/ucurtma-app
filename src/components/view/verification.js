@@ -18,7 +18,6 @@ import { useMutation } from '@apollo/react-hooks';
 import Card from '../ui/card';
 import Input from '../ui/input';
 import { checkID } from '../../utils/utils';
-import { withApollo } from '../../utils/apollo';
 import Dropbox from '../ui/dropbox';
 import FileInput from '../ui/file-input';
 import VerificationSuccess from '../ui/verification-success';
@@ -111,10 +110,10 @@ function Verification() {
 
   return (
     <Card paddingType="default">
-      <Heading mb={4} size="sm" color="paragraph">
+      <Heading mb={4} size="sm" color="gray.600">
         Verification
       </Heading>
-      <Text color="paragraph" mb={4}>
+      <Text color="gray.600" mb={4}>
         Welcome to verification page. To verify your account, we need more
         information about you.
       </Text>
@@ -179,7 +178,7 @@ function Verification() {
                 type="text"
               />
             )}
-            <FormLabel color="paragraph">Verification Document</FormLabel>
+            <FormLabel color="gray.600">Verification Document</FormLabel>
             <Flex
               justifyContent="space-between"
               flexWrap={values.verificationDocument !== '' ? 'wrap' : 'no-wrap'}
@@ -264,4 +263,4 @@ function Verification() {
   );
 }
 
-export default withApollo(Verification);
+export default Verification;

@@ -23,7 +23,7 @@ function ChangeProfilePicture({
   return (
     <>
       {withTitle && (
-        <Heading my={4} size="sm" color="paragraph">
+        <Heading my={4} size="sm" color="gray.600">
           {title}
         </Heading>
       )}

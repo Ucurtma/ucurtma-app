@@ -109,7 +109,10 @@ function Header({
       if (window.ethereum.selectedAddress) {
         dispatch({
           type: 'SET_WALLET',
-          payload: window.ethereum.selectedAddress,
+          payload: {
+            wallet: window.ethereum.selectedAddress,
+            chainId: window.ethereum.chainId,
+          },
         });
 
         const signedToken = localStorage.getItem('signedToken');
@@ -121,7 +124,10 @@ function Header({
         window.ethereum.on('accountsChanged', accounts => {
           dispatch({
             type: 'SET_WALLET',
-            payload: accounts[0] || '',
+            payload: {
+              wallet: window.ethereum.selectedAddress,
+              chainId: window.ethereum.chainId,
+            },
           });
 
           localStorage.removeItem('signedToken');
@@ -148,7 +154,10 @@ function Header({
         if (accounts[0]) {
           dispatch({
             type: 'SET_WALLET',
-            payload: accounts[0],
+            payload: {
+              wallet: accounts[0],
+              chainId: window.ethereum.chainId,
+            },
           });
           signToken(accounts);
         }
@@ -257,7 +266,7 @@ function Header({
             aria-label="Navigation"
             icon={Menu}
             display={{ base: 'inline-flex', lg: 'none' }}
-            color="paragraph"
+            color="gray.600"
             position="fixed"
             top={3}
             right={3}

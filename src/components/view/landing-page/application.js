@@ -22,7 +22,6 @@ import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { checkID } from '../../../utils/utils';
 import ChangeProfilePicture from '../../ui/settings/change-profile-pic';
-import { withApollo } from '../../../utils/apollo';
 import config from '../../../config';
 
 // todo: i delete calendar from here. we need new calendar.
@@ -216,7 +215,7 @@ function Application() {
           {({ isSubmitting, errors, setFieldValue, handleSubmit }) => (
             <Form>
               <Box>
-                <Heading my={4} size="sm" color="paragraph">
+                <Heading my={4} size="sm" color="gray.600">
                   Profil
                 </Heading>
                 <SimpleGrid
@@ -313,7 +312,7 @@ function Application() {
                 </SimpleGrid>
               </Box>
               <Box>
-                <Heading my={4} size="sm" color="paragraph">
+                <Heading my={4} size="sm" color="gray.600">
                   Genel Sorular
                 </Heading>
                 <SimpleGrid
@@ -411,4 +410,4 @@ function Application() {
   );
 }
 
-export default withApollo(Application);
+export default Application;

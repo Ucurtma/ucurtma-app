@@ -18,7 +18,6 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
-import { withApollo } from '../../../utils/apollo';
 import config from '../../../config';
 
 const applicationSchema = Yup.object().shape({
@@ -197,4 +196,4 @@ function Shorlist() {
   );
 }
 
-export default withApollo(Shorlist);
+export default Shorlist;

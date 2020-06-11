@@ -17,7 +17,7 @@ function Textarea({ label, type, controlProps, ...props }) {
       {...controlProps}
     >
       {label && (
-        <FormLabel color="paragraph" htmlFor={field.name}>
+        <FormLabel color="gray.600" htmlFor={field.name}>
           {label}
         </FormLabel>
       )}

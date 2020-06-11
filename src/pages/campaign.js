@@ -7,7 +7,6 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
-import { withApollo } from '../utils/apollo';
 import LandingFooter from '../components/view/landing-page/footer';
 import Loader from '../components/ui/loader';
 import CampaignHeader from '../components/view/campaign/campaign-header';
@@ -131,4 +130,4 @@ function Campaign() {
   );
 }
 
-export default withApollo(Campaign);
+export default Campaign;

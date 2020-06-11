@@ -17,7 +17,6 @@ const DatePickerInput = React.forwardRef(
     { value, onClick, label, type, controlProps, field, meta, ...props },
     ref
   ) => {
-    console.log(props);
     return (
       <FormControl
         width="100%"
@@ -27,7 +26,7 @@ const DatePickerInput = React.forwardRef(
         {...controlProps}
       >
         {label && (
-          <FormLabel color="paragraph" htmlFor={field.name}>
+          <FormLabel color="gray.600" htmlFor={field.name}>
             {label}
           </FormLabel>
         )}

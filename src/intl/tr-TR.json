@@ -86,7 +86,9 @@
     "validations": {
       "required": "Bu alan zorunludur.",
       "incorrectAddress": "Geçerli bir ethereum cüzdan adresi giriniz.",
-      "link": "Geçerli bir link giriniz."
+      "link": "Geçerli bir link giriniz.",
+      "idExist": "Girdiğiniz Kampanya ID'si bulunmaktadır. Lütfen farklı bir ID deneyiniz.",
+      "idLimit": "Kampanya ID'si en az 5 karakterli olmalıdır."
     },
     "notMainNetwork": "Yeni bir kampanya oluşturmak için Main Ethereum Ağı'nda olmanız gerekmektedir. Lütfen MetaMask eklentisini açarak bulunduğunuz ağı değiştirin."
   },

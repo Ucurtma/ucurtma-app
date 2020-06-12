@@ -4,7 +4,6 @@ import Skeleton from 'react-loading-skeleton';
 import { Box, Flex, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import Header from '../components/ui/header';
 import Container from '../components/ui/container';
 import LandingFooter from '../components/view/landing-page/footer';
@@ -12,54 +11,12 @@ import Loader from '../components/ui/loader';
 import CampaignHeader from '../components/view/campaign/campaign-header';
 import CampaignFooter from '../components/view/campaign/campaign-footer';
 import CampaignContent from '../components/view/campaign/campaign-content';
+import { GET_CAMPAIGN } from '../graphql/queries';
 
 const Donate = lazy(() => import('../components/view/campaign/donate'));
 const CampaignError = lazy(() =>
   import('../components/view/campaign/campaign-error')
 );
-
-const GET_CAMPAIGN = gql`
-  query campaign($campaignId: String!) {
-    campaign(campaignId: $campaignId) {
-      campaignId
-      ethereumAddress
-      campaignTitle
-      supporterCount
-      totalFunds
-      campaignText
-      campaignTarget
-      minimumAmount
-      goals {
-        description
-      }
-      documents {
-        title
-        link
-        type
-      }
-      transactions {
-        from
-        amount
-        when
-        tokenName
-        type
-      }
-      student {
-        school
-        name
-        department
-        profilePhoto
-      }
-      updates {
-        date
-        subItems {
-          type
-          content
-        }
-      }
-    }
-  }
-`;
 
 function Campaign() {
   const location = useLocation();

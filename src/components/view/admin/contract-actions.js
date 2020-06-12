@@ -28,12 +28,17 @@ import {
   getEtherscanAddressFor,
 } from '../../../utils/contract-utils';
 import config from '../../../config';
-import { uuidv4 } from '../../../utils/utils';
 import 'easymde/dist/easymde.min.css';
+import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
+import useImperativeQuery from '../../../utils/use-imperative-query';
 
-const deployContractSchema = t => {
+const deployContractSchema = (t, campaignExist) => {
   const { web3 } = window;
   return Yup.object().shape({
+    campaignId: Yup.string()
+      .required(t('validations.required'))
+      .min(5, t('validations.idLimit'))
+      .test('Campaign ID', t('validations.idExist'), () => !campaignExist),
     numberOfPlannedPayouts: Yup.string().required(t('validations.required')),
     withdrawPeriod: Yup.string().required(t('validations.required')),
     campaignTitle: Yup.string().required(t('validations.required')),
@@ -90,6 +95,8 @@ function ContractActions({ walletState }) {
     createCampaign,
     { loading: createCampaignLoading },
   ] = useMutation(CREATE_CAMPAIGN, { onError: err => err }); // { loading, error, data }
+  const [campaignExist, setCampaignExist] = React.useState(false);
+  const getCampaign = useImperativeQuery(GET_CAMPAIGN_EXISTENCE);
   const toast = useToast();
   const { t } = useTranslation('contractActions');
   const editorRef = React.useRef(null);
@@ -125,6 +132,16 @@ function ContractActions({ walletState }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const checkCampaignId = async campaignId => {
+    const { data, error } = await getCampaign({ campaignId });
+    if (error?.data?.campaign || data?.campaign) {
+      setCampaignExist(true);
+      return true;
+    }
+    setCampaignExist(false);
+    return false;
+  };
 
   const createCampaignCommand = (values, deployedAddress) => {
     const metamaskToken = localStorage.getItem('signedToken');
@@ -166,14 +183,14 @@ function ContractActions({ walletState }) {
             owner: '', // the ethereum address of student
             tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
             adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
-            campaignId: uuidv4(),
+            campaignId: '',
             campaignTitle: '',
             name: '',
             school: '',
             department: '',
             profilePhoto: '',
           }}
-          validationSchema={deployContractSchema(t)}
+          validationSchema={() => deployContractSchema(t, campaignExist)}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
             const deploymentManager = getDeploymentManagerContract();
@@ -267,40 +284,65 @@ function ContractActions({ walletState }) {
             }
           }}
         >
-          {({ isSubmitting, dirty, isValid }) => (
+          {({
+            isSubmitting,
+            dirty,
+            isValid,
+            setFieldError,
+            setFieldValue,
+            setFieldTouched,
+          }) => (
             <Form>
-              <Input
-                label={t('campaignId')}
-                disabled
-                readonly
-                name="campaignId"
-              />
-              <Input
-                label={t('campaignTitle')}
-                disabled={!isWalletExist}
-                name="campaignTitle"
-              />
+              <Flex flexDir={{ base: 'column', md: 'row' }}>
+                <Input
+                  label={t('campaignId')}
+                  disabled={!isWalletExist}
+                  name="campaignId"
+                  controlProps={{ mr: 4 }}
+                  onBlur={async e => {
+                    const target = e.currentTarget;
+                    setFieldValue('campaignId', target.value, false);
+                    setFieldTouched('campaignId', target.value, false);
+                    if (target.value && target.value.length >= 5) {
+                      const isExist = await checkCampaignId(target.value);
+                      if (isExist) {
+                        setFieldError('campaignId', t('validations.idExist'));
+                      } else {
+                        setFieldTouched('campaignId', target.value, true);
+                        setFieldError('campaignId', t('validations.required'));
+                      }
+                    }
+                  }}
+                />
+                <Input
+                  label={t('campaignTitle')}
+                  disabled={!isWalletExist}
+                  name="campaignTitle"
+                />
+              </Flex>
               <Input
                 label={t('namesurname')}
                 disabled={!isWalletExist}
                 name="name"
               />
-
               <Flex flexDir={{ base: 'column', md: 'row' }}>
                 <Input
                   label={t('school')}
                   name="school"
                   controlProps={{ mr: 4 }}
+                  disabled={!isWalletExist}
                 />
-                <Input label={t('department')} name="department" />
+                <Input
+                  label={t('department')}
+                  name="department"
+                  disabled={!isWalletExist}
+                />
               </Flex>
-
               <Input
                 label={t('profilePhoto')}
                 disabled={!isWalletExist}
                 name="profilePhoto"
               />
-
               <Flex flexDir={{ base: 'column', md: 'row' }}>
                 <NumberInput
                   label={t('numberOfPlannedPayouts')}
@@ -344,7 +386,6 @@ function ContractActions({ walletState }) {
                 disabled
                 name="adminAddress"
               />
-
               <Box id="editorjs" mb={4}>
                 <FormLabel color="gray.600">{t('campaignDetails')}</FormLabel>
                 <Box
@@ -355,7 +396,6 @@ function ContractActions({ walletState }) {
                   ref={editorRef}
                 />
               </Box>
-
               <Flex justifyContent="flex-end">
                 <Button
                   type="submit"

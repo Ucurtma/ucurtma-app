@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/react-hooks';
 import './i18n';
@@ -18,7 +18,7 @@ const Application = (
   </ApolloProvider>
 );
 
-ReactDOM.render(Application, document.getElementById('root'));
+render(Application, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

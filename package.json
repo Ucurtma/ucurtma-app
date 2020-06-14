@@ -35,6 +35,7 @@
     "history": "^4.10.1",
     "i18next": "^19.4.4",
     "isomorphic-unfetch": "^3.0.0",
+    "logrocket": "^1.0.7",
     "moment": "^2.25.3",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",

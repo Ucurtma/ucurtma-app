@@ -154,7 +154,7 @@ function EthereumFlow() {
           }}
         >
           {({ isSubmitting, isValid, handleSubmit, dirty }) => (
-            <Form>
+            <Form data-private>
               <Input
                 label="T.C. Kimlik No"
                 name="tcIdentity"

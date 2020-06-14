@@ -5,6 +5,7 @@ import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
 import { gaTrackingId } from './config';
 import Loader from './components/ui/loader';
 import { mainReducer, mainState, MainContext } from './context/main-context';
+import LogRocket from 'logrocket';
 
 const Home = lazy(() => import('./pages/home'));
 const Campaign = lazy(() => import('./pages/campaign'));
@@ -12,6 +13,7 @@ const Redirecting = lazy(() => import('./pages/redirecting'));
 const Admin = lazy(() => import('./pages/admin'));
 
 ReactGA.initialize(gaTrackingId);
+LogRocket.init('uptekx/ucurtma-app');
 
 function App() {
   const [state, dispatch] = React.useReducer(mainReducer, mainState);

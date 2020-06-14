@@ -207,7 +207,7 @@ function BankTransferFlow({ minimumAmount }) {
           }}
         >
           {({ isSubmitting, dirty, isValid }) => (
-            <Form>
+            <Form data-private>
               <Box>
                 <Input
                   label="E-Posta Adresi"

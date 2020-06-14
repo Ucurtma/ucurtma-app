@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
 import LogRocket from 'logrocket';
-import { gaTrackingId } from './config';
+import { gaTrackingId, isProduction } from './config';
 import Loader from './components/ui/loader';
 import { mainReducer, mainState, MainContext } from './context/main-context';
 
@@ -13,7 +13,9 @@ const Redirecting = lazy(() => import('./pages/redirecting'));
 const Admin = lazy(() => import('./pages/admin'));
 
 ReactGA.initialize(gaTrackingId);
-LogRocket.init('uptekx/ucurtma-app');
+if (isProduction) {
+  LogRocket.init('uptekx/ucurtma-app');
+}
 
 function App() {
   const [state, dispatch] = React.useReducer(mainReducer, mainState);

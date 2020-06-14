@@ -2,10 +2,10 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
+import LogRocket from 'logrocket';
 import { gaTrackingId } from './config';
 import Loader from './components/ui/loader';
 import { mainReducer, mainState, MainContext } from './context/main-context';
-import LogRocket from 'logrocket';
 
 const Home = lazy(() => import('./pages/home'));
 const Campaign = lazy(() => import('./pages/campaign'));

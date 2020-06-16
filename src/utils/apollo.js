@@ -23,11 +23,6 @@ const client = new ApolloClient({
       fetch,
     }),
   ]),
-  defaultOptions: {
-    watchQuery: {
-      errorPolicy: 'ignore',
-    },
-  },
   cache: new InMemoryCache(),
 });
 

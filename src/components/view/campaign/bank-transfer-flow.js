@@ -135,7 +135,7 @@ function BankTransferFlow({ minimumAmount }) {
 
     return (
       <Box mt={2} mb={4}>
-        <Alert status="error">
+        <Alert mb={4} status="error">
           <AlertIcon />
           Bir hata oluştu.
         </Alert>

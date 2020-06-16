@@ -16,7 +16,7 @@ const SelectBank = ({ bankData, onSelect, selectedBank }) => {
         </Text>
       </Box>
       <SimpleGrid columns={{ base: 2, md: 5 }} spacing={4} mb={4}>
-        {bankData.systemBankAccounts.map(bankAccount => (
+        {bankData?.systemBankAccounts?.map(bankAccount => (
           <Button
             key={bankAccount.id}
             variant="ghost"

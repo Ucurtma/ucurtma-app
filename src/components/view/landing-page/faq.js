@@ -48,9 +48,9 @@ function Faq() {
   const questionType =
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
   return (
-    <Flex id="faq" bg="gray.50" py={24} px={4}>
+    <Flex id="faq" bg="gray.700" py={16} px={4}>
       <Container mt={0}>
-        <Box width="full" mb={12} textAlign="center" color="gray.700">
+        <Box width="full" mb={12} textAlign="center" color="gray.100">
           <Heading size="xl">{t('titles:FAQ')}</Heading>
           <RadioButtonGroup
             mt={4}
@@ -61,7 +61,7 @@ function Faq() {
             <CustomRadio value="student">{t('I am student')}</CustomRadio>
             <CustomRadio value="investor">{t('I am supporter')}</CustomRadio>
           </RadioButtonGroup>
-          <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
+          <Divider maxW={24} borderColor="gray.100" marginX="auto" mt={8} />
         </Box>
         <Accordion width="full" allowMultiple>
           <Grid
@@ -89,9 +89,14 @@ function Faq() {
                     border: '1px solid',
                     borderColor: 'gray.200',
                     borderBottom: '0',
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                   }}
                   _focus={{
                     boxShadow: '0',
+                  }}
+                  _hover={{
+                    bg: 'gray.400',
                   }}
                 >
                   <Box flex="1" textAlign="left">

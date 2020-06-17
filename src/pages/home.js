@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SplashScreen from '../components/view/landing-page/splash-screen';
 import HowItWorks from '../components/view/landing-page/how-it-works';
-import OurTeam from '../components/view/landing-page/our-team';
+// import OurTeam from '../components/view/landing-page/our-team';
 import ProblemSolution from '../components/view/landing-page/problem-and-solution';
 import LandingFooter from '../components/view/landing-page/footer';
 import Faq from '../components/view/landing-page/faq';
@@ -23,10 +23,10 @@ function Home() {
       label: t('How it works'),
       href: '#how-it-works',
     },
-    {
-      href: '#our-team',
-      label: t('Our Team'),
-    },
+    // {
+    //   href: '#our-team',
+    //   label: t('Our Team'),
+    // },
     {
       href: '#faq',
       label: t('FAQ'),
@@ -39,7 +39,7 @@ function Home() {
       <SplashScreen />
       <ProblemSolution />
       <HowItWorks />
-      <OurTeam />
+      {/* <OurTeam /> */}
       <Faq />
       <LandingFooter />
     </>

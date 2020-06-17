@@ -234,7 +234,7 @@ function BankTransferFlow({ minimumAmount }) {
                   }}
                 />
               </Box>
-              <Agreements />
+              <Agreements name="consentToReceiveNews" />
               <Flex
                 alignItems="center"
                 mt={4}

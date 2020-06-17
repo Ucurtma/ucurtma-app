@@ -34,7 +34,7 @@ function HowItWorks() {
   ];
 
   return (
-    <Flex bg="gray.50" py={24} id="how-it-works">
+    <Flex bg="gray.50" py={16} id="how-it-works">
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.700">
           <Heading size="xl">{t('titles:How it works')}</Heading>

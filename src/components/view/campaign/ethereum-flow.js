@@ -77,6 +77,10 @@ const collectEthSchema = () => {
       [true],
       'Şartları onaylamanız gerekmektedir.'
     ),
+    consentToUserAgreement: Yup.boolean().oneOf(
+      [true],
+      'Şartları onaylamanız gerekmektedir.'
+    ),
   });
 };
 
@@ -211,7 +215,10 @@ function EthereumFlow() {
                 }}
               />
 
-              <Agreements name="consentToReceiveNews" />
+              <Agreements
+                kvkkName="consentToReceiveNews"
+                agreementName="consentToUserAgreement"
+              />
 
               <Reaptcha
                 ref={captcha}

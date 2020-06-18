@@ -78,6 +78,10 @@ function createSchema(limit) {
       [true],
       'Şartları onaylamanız gerekmektedir.'
     ),
+    consentToUserAgreement: Yup.boolean().oneOf(
+      [true],
+      'Şartları onaylamanız gerekmektedir.'
+    ),
   });
 
   return donateSchema;
@@ -234,7 +238,10 @@ function BankTransferFlow({ minimumAmount }) {
                   }}
                 />
               </Box>
-              <Agreements name="consentToReceiveNews" />
+              <Agreements
+                kvkkName="consentToReceiveNews"
+                agreementName="consentToUserAgreement"
+              />
               <Flex
                 alignItems="center"
                 mt={4}

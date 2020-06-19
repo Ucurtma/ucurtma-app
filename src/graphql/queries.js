@@ -50,3 +50,11 @@ export const GET_CAMPAIGN_EXISTENCE = gql`
     }
   }
 `;
+
+export const GET_OAUTH_URL = gql`
+  query biliraOAuthUrl($campaignId: String!) {
+    biliraOAuthUrl(campaignId: $campaignId) {
+      authorizationUri
+    }
+  }
+`;

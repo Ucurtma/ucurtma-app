@@ -1,14 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
-import {
-  Box,
-  Flex,
-  Button,
-  Alert,
-  AlertIcon,
-  AlertDescription,
-  Image,
-} from '@chakra-ui/core';
+import { Box, Flex, Button, Alert, AlertIcon, Image } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
@@ -20,8 +12,8 @@ import LoginWithBiLira from './login-with-bilira';
 import SelectBank from './select-bank';
 import NumberInput from '../../ui/numeric-input';
 import Agreements from '../../ui/agreements';
-
-// todo: make different component for functions in this file.
+import BankDetailViewer from '../../ui/bank-detail-viewer';
+import { GET_OAUTH_URL } from '../../../graphql/queries';
 
 const GET_BANKS = gql`
   {
@@ -29,14 +21,6 @@ const GET_BANKS = gql`
       id
       name
       iban
-    }
-  }
-`;
-
-const GET_OAUTH_URL = gql`
-  query biliraOAuthUrl($campaignId: String!) {
-    biliraOAuthUrl(campaignId: $campaignId) {
-      authorizationUri
     }
   }
 `;
@@ -157,23 +141,7 @@ function BankTransferFlow({ minimumAmount }) {
   }
 
   if (donationData) {
-    const { bankName, iban, referenceCode } = donationData.collectDonation;
-    return (
-      <Box>
-        <Alert status="success">
-          <AlertDescription>
-            Gönderdiğiniz destek için teşekkürler. Gönderdiğiniz desteğin
-            onaylanması için{' '}
-            <strong>
-              {bankName} {iban}
-            </strong>{' '}
-            IBAN numarasına, Alıcı ismini <strong>Bilira Teknoloji A.Ş</strong>{' '}
-            olarak belirtmek ve açıklamasına <strong>{referenceCode}</strong>{' '}
-            yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir.
-          </AlertDescription>
-        </Alert>
-      </Box>
-    );
+    return <BankDetailViewer data={donationData} />;
   }
 
   return (

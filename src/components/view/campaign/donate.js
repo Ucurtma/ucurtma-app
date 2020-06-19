@@ -97,10 +97,10 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
             />
           </Alert>
         )}
-        {donateFlow === 'bank-transfer' && (
-          <BankTransferFlow minimumAmount={minimumAmount} />
-        )}
         <Suspense fallback={<Loader />}>
+          {donateFlow === 'bank-transfer' && (
+            <BankTransferFlow minimumAmount={minimumAmount} />
+          )}
           {donateFlow === 'ethereum-wallet' && (
             <EthereumFlow ethereumAddress={ethereumAddress} />
           )}

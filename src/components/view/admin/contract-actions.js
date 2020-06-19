@@ -239,6 +239,7 @@ function ContractActions({ walletState }) {
                 values.numberOfPlannedPayouts,
                 parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
                 parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
+                0,
                 values.owner,
                 values.tokenAddress,
 

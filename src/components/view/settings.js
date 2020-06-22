@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Router, { useRouter } from 'react-router-dom';
 import { User, DollarSign, CreditCard } from 'react-feather';
 import { Box } from '@chakra-ui/core';
-import Header from '../components/ui/header';
-import Container from '../components/ui/container';
-import SidebarItem from '../components/ui/sidebar-item';
-import MyAccount from '../components/view/my-account';
-import Verification from '../components/view/verification';
+import Header from '../ui/header';
+import Container from '../ui/container';
+import SidebarItem from '../ui/sidebar-item';
+import MyAccount from './my-account';
+import Verification from './verification';
 
 // todo: i have some questions about imports that we use above.
 // i guess, people are downloading verification page if they are not in verification page which they shouldn't.

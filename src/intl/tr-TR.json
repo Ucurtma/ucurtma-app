@@ -8,6 +8,7 @@
     "What is Uçurtma": "Uçurtma Projesi Nedir?",
     "Problem and Solution": "Sorun ve Çözüm",
     "How it works": "Nasıl Çalışır?",
+    "Campaigns": "Kampanyalar",
     "Our Team": "Ekibimiz",
     "FAQ": "Sıkça Sorulan Sorular"
   },
@@ -55,7 +56,7 @@
   "footer": {
     "Join to Community": "Topluluğa Katıl"
   },
-  "admin": {
+  "manager": {
     "ContractActions": "Kontrat İşlemleri",
     "CampaignsActions": "Kampanya Yönetimi"
   },

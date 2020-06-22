@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/core';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { parse } from 'query-string';
-import config from '../config';
+import config from '../../config';
 
 const Redirecting = () => {
   const location = useLocation();

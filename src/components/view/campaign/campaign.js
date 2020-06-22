@@ -4,19 +4,15 @@ import Skeleton from 'react-loading-skeleton';
 import { Box, Flex, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import Header from '../components/ui/header';
-import Container from '../components/ui/container';
-import LandingFooter from '../components/view/landing-page/footer';
-import Loader from '../components/ui/loader';
-import CampaignHeader from '../components/view/campaign/campaign-header';
-import CampaignFooter from '../components/view/campaign/campaign-footer';
-import CampaignContent from '../components/view/campaign/campaign-content';
-import { GET_CAMPAIGN } from '../graphql/queries';
+import Container from '../../ui/container';
+import Loader from '../../ui/loader';
+import CampaignHeader from './campaign-header';
+import CampaignFooter from './campaign-footer';
+import CampaignContent from './campaign-content';
+import { GET_CAMPAIGN } from '../../../graphql/queries';
 
-const Donate = lazy(() => import('../components/view/campaign/donate'));
-const CampaignError = lazy(() =>
-  import('../components/view/campaign/campaign-error')
-);
+const Donate = lazy(() => import('./donate'));
+const CampaignError = lazy(() => import('./campaign-error'));
 
 function Campaign() {
   const location = useLocation();
@@ -41,10 +37,8 @@ function Campaign() {
         </title>
       </Helmet>
 
-      <Flex flexDir="column" justify="space-between" height="full">
+      <Flex flexDir="column" justify="space-between">
         <Container display="block">
-          <Header withLogo hideMenu />
-
           <CampaignHeader
             data={data}
             loading={loading}
@@ -80,8 +74,6 @@ function Campaign() {
           <Divider mt={8} />
           <CampaignFooter campaignId={id} />
         </Container>
-
-        <LandingFooter />
       </Flex>
     </>
   );

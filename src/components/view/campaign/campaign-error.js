@@ -7,15 +7,12 @@ import {
   AlertDescription,
 } from '@chakra-ui/core';
 import { AlertCircle } from 'react-feather';
-import Header from '../../ui/header';
 import Container from '../../ui/container';
-import LandingFooter from '../landing-page/footer';
 
 function CampaignError() {
   return (
     <Flex flexDir="column" justify="space-between" height="full">
-      <Header withLogo hideMenu />
-      <Container display="block" h="full" p="2rem 0">
+      <Container display="block" h="full">
         <Alert
           w="full"
           h="full"
@@ -23,16 +20,16 @@ function CampaignError() {
           color="gray.400"
           justifyContent="center"
           flexDir="column"
+          borderRadius="4px"
+          p={8}
         >
           <Icon as={AlertCircle} fontSize="4rem" color="gray.300" mb={4} />
           <AlertTitle mr={2}>Bir sorun oluştu.</AlertTitle>
           <AlertDescription textAlign="center">
-            Biz bu sorunu düzeltmek için çalışırken, lütfen daha sonra tekrar
-            deneyin.
+            Sorunu düzeltmek için çalışıyoruz. Lütfen daha sonra tekrar deneyin.
           </AlertDescription>
         </Alert>
       </Container>
-      <LandingFooter />
     </Flex>
   );
 }

@@ -20,7 +20,6 @@ import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
 import MenuDrawer from './menu-drawer';
 
-// todo: get loggedIn from token
 function Header({
   menuItems,
   withLogo = false,
@@ -215,6 +214,7 @@ function Header({
   return (
     <Container
       p={{ base: 4, lg: 0 }}
+      pt={4}
       display="block"
       position="relative"
       zIndex={{ base: 'inherit', md: '2' }}
@@ -225,6 +225,7 @@ function Header({
           <>
             <Link to="/">
               <Image
+                pt={4}
                 alt="Uçurtma Projesi"
                 src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
               />

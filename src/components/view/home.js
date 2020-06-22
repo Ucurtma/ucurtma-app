@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
 import LandingPage from './landing-page/landing-page';
 import Loader from '../ui/loader';
@@ -10,22 +11,45 @@ const Campaigns = lazy(() => import('./campaigns/campaigns'));
 
 function Home() {
   const location = useLocation();
+  const { t } = useTranslation('titles');
   const isLandingPage = location.pathname === '/';
-  const menuItems = [
+
+  let menuItems = [
     {
       label: 'Anasayfa',
       href: '/',
     },
   ];
 
+  if (isLandingPage) {
+    menuItems = [
+      {
+        label: t('What is Uçurtma'),
+        href: '#splash-screen',
+      },
+      {
+        label: t('Problem and Solution'),
+        href: '#problem-solution',
+      },
+      {
+        label: t('How it works'),
+        href: '#how-it-works',
+      },
+      {
+        label: t('Campaigns'),
+        href: '#featured-campaigns',
+      },
+      {
+        href: '#faq',
+        label: t('FAQ'),
+      },
+    ];
+  }
+
   return (
     <>
       <main>
-        <Header
-          withLogo={!isLandingPage}
-          menuItems={menuItems}
-          hideMenu={isLandingPage}
-        />
+        <Header withLogo={!isLandingPage} menuItems={menuItems} />
         <Suspense fallback={<Loader isFull />}>
           <Routes>
             <Route path="campaign/:id" element={<Campaign />} />

@@ -41,24 +41,40 @@ function FeaturedCampaign({ loading, data, error }) {
         justifyContent="space-between"
       >
         <Box>
-          <Heading size="lg" isTruncated>
+          <Heading size="lg" textAlign={{ base: 'center', md: 'left' }}>
             {campaign?.campaignTitle}
           </Heading>
         </Box>
         <Box>
           <Divider my={4} />
-          <Flex mb={4} mx={{ base: 4, lg: 0 }}>
-            <Flex w="full" maxW="70%" alignItems="center" flexShrink="0">
+          <Flex
+            flexDir={{ base: 'column', xl: 'row' }}
+            mb={4}
+            mx={{ base: 4, lg: 0 }}
+          >
+            <Flex
+              flexDir={{ base: 'column', md: 'row' }}
+              w="full"
+              alignItems="center"
+              minW="0"
+            >
               <Avatar
                 size="lg"
                 src={campaign?.student?.profilePhoto}
                 name={campaign?.student?.name}
               />
-              <Box ml={4}>
-                <Heading size="sm" color="gray.600">
+              <Box minW="0" ml={4}>
+                <Heading
+                  size="sm"
+                  color="gray.600"
+                  textAlign={{ base: 'center', md: 'left' }}
+                >
                   {campaign?.student?.name}
                 </Heading>
-                <Text color="gray.500" maxW={278} isTruncated>
+                <Text
+                  color="gray.500"
+                  textAlign={{ base: 'center', md: 'left' }}
+                >
                   {campaign?.student?.school}
                   {campaign?.student?.department !== '-' &&
                     ` / ${campaign?.student?.department}`}

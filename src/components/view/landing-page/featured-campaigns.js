@@ -22,8 +22,7 @@ function FeaturedCampaigns() {
         <Grid
           templateColumns={{
             base: 'inherit',
-            md: '50% auto',
-            lg: '40% auto',
+            lg: '50% auto',
             xl: 'repeat(2, 1fr)',
           }}
           width="full"

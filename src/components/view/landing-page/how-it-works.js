@@ -44,9 +44,7 @@ function HowItWorks() {
         <Grid
           templateColumns={{
             base: 'inherit',
-            md: '50% auto',
-            lg: '40% auto',
-            xl: 'repeat(3, 1fr)',
+            md: 'repeat(3, 1fr)',
           }}
           width="full"
           p={{ base: 4, lg: 0 }}

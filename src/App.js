@@ -6,14 +6,14 @@ import LogRocket from 'logrocket';
 import { gaTrackingId, isProduction } from './config';
 import Loader from './components/ui/loader';
 import { mainReducer, mainState, MainContext } from './context/main-context';
+import ScrollToTop from './components/ui/scroll-to-top';
 
-const Home = lazy(() => import('./pages/home'));
-const Campaign = lazy(() => import('./pages/campaign'));
-const Redirecting = lazy(() => import('./pages/redirecting'));
-const Admin = lazy(() => import('./pages/admin'));
+const Home = lazy(() => import('./components/view/home'));
+const Redirecting = lazy(() => import('./components/view/redirecting'));
+const Manager = lazy(() => import('./components/view/manager'));
 
-ReactGA.initialize(gaTrackingId);
 if (isProduction) {
+  ReactGA.initialize(gaTrackingId);
   LogRocket.init('uptekx/ucurtma-app');
 }
 
@@ -25,13 +25,12 @@ function App() {
   return (
     <MainContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
+        <ScrollToTop />
         <Suspense fallback={<Loader isFull />}>
           <Routes>
             <Route path="auth/*" element={<Redirecting />} />
-            <Route path="campaign" element={<Navigate to="/" replace />} />
-            <Route path="campaign/:id" element={<Campaign />} />
-            <Route path="manager/*" element={<Admin />} />
-            <Route path="/" element={<Home />} />
+            <Route path="manager/*" element={<Manager />} />
+            <Route path="/*" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

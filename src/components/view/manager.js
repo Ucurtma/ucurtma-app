@@ -9,15 +9,15 @@ import {
 import { useTranslation } from 'react-i18next';
 import { User, List } from 'react-feather';
 import { Box, Flex } from '@chakra-ui/core';
-import Header from '../components/ui/header';
-import Container from '../components/ui/container';
-import SidebarItem from '../components/ui/sidebar-item';
-import ContractActions from '../components/view/admin/contract-actions';
-import ContractList from '../components/view/admin/contract-list';
-import './admin.css';
-import { MainContext } from '../context/main-context';
+import Header from '../ui/header';
+import Container from '../ui/container';
+import SidebarItem from '../ui/sidebar-item';
+import ContractActions from './admin/contract-actions';
+import ContractList from './admin/contract-list';
+import './manager.css';
+import { MainContext } from '../../context/main-context';
 
-function Admin() {
+function Manager() {
   const { state: mainState } = useContext(MainContext);
   const params = useParams();
   const navigate = useNavigate();
@@ -75,4 +75,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Manager;

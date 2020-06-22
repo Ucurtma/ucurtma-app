@@ -58,3 +58,18 @@ export const GET_OAUTH_URL = gql`
     }
   }
 `;
+
+export const GET_CAMPAIGNS = gql`
+  query campaigns {
+    campaigns {
+      campaignId
+      campaignTitle
+      student {
+        name
+        school
+        department
+        profilePhoto
+      }
+    }
+  }
+`;

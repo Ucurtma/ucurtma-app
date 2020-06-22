@@ -11,10 +11,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 
-function LandingFooter() {
+function Footer() {
   const { t } = useTranslation('footer');
   return (
-    <Box py={12} px={{ base: 4, md: 0 }} bg="gray.800" color="gray.100">
+    <Box
+      as="footer"
+      py={12}
+      px={{ base: 4, md: 0 }}
+      bg="gray.800"
+      color="gray.100"
+    >
       <Container alignItems="flex-start" mt={0}>
         <Grid
           templateColumns={{
@@ -54,4 +60,4 @@ function LandingFooter() {
   );
 }
 
-export default LandingFooter;
+export default Footer;

@@ -3,7 +3,7 @@ import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/core';
 
 function CampaignTarget({ target, current }) {
   const formula = (current * 100) / target;
-  const progressHeight = '32px';
+  const progressHeight = '56px';
   return (
     <>
       <Heading size="sm" color="gray.500">
@@ -15,10 +15,11 @@ function CampaignTarget({ target, current }) {
           color="green"
           height={progressHeight}
           value={parseFloat(formula)}
+          borderRadius="4px"
         />
         <Flex
           align="center"
-          fontSize="1rem"
+          fontSize="1.2rem"
           fontWeight={500}
           textAlign={{ base: 'center', md: 'left' }}
           color="#1E284C"
@@ -28,13 +29,13 @@ function CampaignTarget({ target, current }) {
           height={progressHeight}
         >
           <Image
-            maxW="10px"
+            maxW="12px"
             width="full"
             height="full"
             src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
             mr={1}
           />
-          {target}
+          {new Intl.NumberFormat('tr-TR').format(target)}
         </Flex>
       </Box>
     </>

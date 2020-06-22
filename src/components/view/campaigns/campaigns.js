@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useQuery } from '@apollo/react-hooks';
 import { Heading } from '@chakra-ui/core';
 import Container from '../../ui/container';
@@ -17,6 +18,9 @@ function Campaigns() {
       flexDir="column"
       px={{ base: 4, lg: 0 }}
     >
+      <Helmet>
+        <title>Tüm Kampanyalar - Uçurtma Projesi</title>
+      </Helmet>
       <Heading my={4} size="md">
         Tüm kampanyalar
       </Heading>

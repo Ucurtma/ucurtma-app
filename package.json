@@ -44,8 +44,8 @@
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.1",
     "react-feather": "^2.0.8",
-    "react-ga": "^2.7.0",
-    "react-helmet": "^6.0.0",
+    "react-ga": "^3.0.0",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^11.4.0",
     "react-lite-youtube-embed": "^0.2.32",
     "react-loading-skeleton": "^2.0.1",
@@ -55,7 +55,7 @@
     "react-scripts": "^3.4.1",
     "reaptcha": "^1.7.2",
     "web3": "^1.2.9",
-    "yup": "^0.28.5"
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
@@ -63,7 +63,7 @@
     "@testing-library/user-event": "^10.0.0",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",

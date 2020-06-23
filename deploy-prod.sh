@@ -26,5 +26,6 @@ else
 fi
 
 yarn && yarn build
+find ./build -name '*.map' -delete
 aws s3 sync ./build s3://ucurtmaprojesi.com --delete
 aws cloudfront create-invalidation --distribution-id E3BBA49PSH0YZ1 --paths "/*"

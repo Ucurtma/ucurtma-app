@@ -251,9 +251,8 @@ function EthereumFlow() {
             <AlertIcon color="white" />
             <AlertDescription mr={2}>
               Kimliğiniz doğrulandı. Gönderdiğiniz destek için teşekkürler.
-              Aşağıdaki cüzdan adresine, girdiğiniz destek miktarı kadar BiLira
-              gönderdiğinizde, gönderdiğiniz destek kampanya sayfasına
-              yansıyacaktır.
+              Aşağıdaki cüzdana, girdiğiniz destek miktarı kadar BiLira
+              gönderdiğinizde, desteğiniz kampanya sayfasına yansıyacaktır.
             </AlertDescription>
           </Alert>
           <EthereumDetailViewer data={data} />

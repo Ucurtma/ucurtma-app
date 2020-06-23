@@ -50,7 +50,7 @@ function CampaignContent({ data }) {
         )}
       </Box>
       <Box w="full" height="full">
-        {data?.campaign?.campaignTarget && (
+        {(data?.campaign?.campaignTarget || data?.campaign?.endDate) && (
           <Box
             bg="gray.50"
             borderRadius="4px"
@@ -62,8 +62,9 @@ function CampaignContent({ data }) {
           >
             <Suspense fallback={<Loader />}>
               <CampaignTarget
-                target={data.campaign.campaignTarget}
+                target={data?.campaign?.campaignTarget}
                 current={parseFloat(data.campaign.totalFunds)}
+                endDate={data?.campaign?.endDate}
               />
             </Suspense>
           </Box>

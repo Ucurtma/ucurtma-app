@@ -11,6 +11,7 @@ export const GET_CAMPAIGN = gql`
       campaignText
       campaignTarget
       minimumAmount
+      endDate
       goals {
         description
       }

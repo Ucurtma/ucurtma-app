@@ -18,7 +18,6 @@ import moment from 'moment';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';
 import config from '../../../config';
-import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from '../../ui/date-picker';
 import { checkID } from '../../../utils/utils';
 import Agreements from '../../ui/agreements';
@@ -60,7 +59,18 @@ const collectEthSchema = () => {
         val => val && checkID(val)
       ),
     name: Yup.string().required('Bu alan zorunludur.'),
-    dateOfBirth: Yup.string().required('Bu alan zorunludur.'),
+    dateOfBirth: Yup.string()
+      .required('Bu alan zorunludur.')
+      .test(
+        'NotChanged',
+        'Hatalı bir tarih girdiniz',
+        val => val && !(val === 'invalidDate')
+      )
+      .test(
+        'NotChanged',
+        'Bütün tarih seçeneklerini doldurmalısınız',
+        val => val && !(val === 'notChanged')
+      ),
     lastname: Yup.string().required('Bu alan zorunludur.'),
     email: Yup.string()
       .email('Lütfen geçerli bir email adresi giriniz')
@@ -185,14 +195,9 @@ function EthereumFlow() {
                   controlProps={{ mr: 4 }}
                 />
                 <DatePicker
+                  label="Doğum Tarihi"
                   name="dateOfBirth"
-                  openToDate={new Date('1992/08/20')}
                   placeholder="Doğum tarihinizi seçiniz"
-                  showYearDropdown
-                  showMonthDropdown
-                  dropdownMode="select"
-                  maxDate={new Date()}
-                  isReadOnly
                 />
               </Flex>
               <NumberInput

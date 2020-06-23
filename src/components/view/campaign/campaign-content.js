@@ -62,9 +62,9 @@ function CampaignContent({ data }) {
           >
             <Suspense fallback={<Loader />}>
               <CampaignTarget
-                target={data.campaign.campaignTarget}
+                target={data?.campaign?.campaignTarget}
                 current={parseFloat(data.campaign.totalFunds)}
-                endDate={1598795919}
+                endDate={data?.campaign?.endDate}
               />
             </Suspense>
           </Box>

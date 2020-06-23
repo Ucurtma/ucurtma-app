@@ -10088,6 +10088,11 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
@@ -10388,6 +10393,14 @@ react-popper@^1.3.4:
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
     warning "^4.0.2"
+
+react-qr-svg@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-qr-svg/-/react-qr-svg-2.2.2.tgz#1b78ff7264d056d01dcca6313a4313849c8c5de8"
+  integrity sha512-uUsleAZBsQ0DmN88hBXkUfzxdKzMgQMZxMfIrIj3SXyLM5iqVrGBkMWw57tiknmdet0vu/lvmljgROdLN8KzEA==
+  dependencies:
+    prop-types "^15.5.8"
+    qr.js "0.0.0"
 
 react-router-dom@^6.0.0-beta.0:
   version "6.0.0-beta.0"

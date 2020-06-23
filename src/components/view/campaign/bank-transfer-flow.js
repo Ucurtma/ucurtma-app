@@ -159,6 +159,7 @@ function BankTransferFlow({ minimumAmount }) {
             email: '',
             amount: '',
             consentToReceiveNews: false,
+            consentToUserAgreement: false,
           }}
           validationSchema={createSchema(minimumAmount)}
           onSubmit={async (values, { setSubmitting }) => {

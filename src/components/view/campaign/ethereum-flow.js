@@ -135,6 +135,7 @@ function EthereumFlow() {
             dateOfBirth: '',
             amount: '',
             consentToReceiveNews: false,
+            consentToUserAgreement: false,
           }}
           validationSchema={collectEthSchema}
           onSubmit={(values, { setSubmitting }) => {

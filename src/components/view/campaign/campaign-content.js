@@ -5,6 +5,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import Documents from './documents';
 import Goals from './goals';
 import Loader from '../../ui/loader';
+import CampaignContentBox from '../../ui/campaign-content-box';
 
 const CampaignTarget = lazy(() => import('./campaign-target'));
 const Timeline = lazy(() => import('../../ui/timeline'));
@@ -51,15 +52,7 @@ function CampaignContent({ data }) {
       </Box>
       <Box w="full" height="full">
         {(data?.campaign?.campaignTarget || data?.campaign?.endDate) && (
-          <Box
-            bg="gray.50"
-            borderRadius="4px"
-            p={4}
-            maxW={{ base: '100%' }}
-            ml={{ base: 0, lg: 8 }}
-            mt={{ base: 4, lg: 0 }}
-            mb={8}
-          >
+          <CampaignContentBox>
             <Suspense fallback={<Loader />}>
               <CampaignTarget
                 target={data?.campaign?.campaignTarget}
@@ -67,18 +60,11 @@ function CampaignContent({ data }) {
                 endDate={data?.campaign?.endDate}
               />
             </Suspense>
-          </Box>
+          </CampaignContentBox>
         )}
 
         {data.campaign?.updates?.length > 0 && (
-          <Box
-            bg="gray.50"
-            borderRadius="4px"
-            p={4}
-            maxW={{ base: '100%' }}
-            ml={{ base: 0, lg: 8 }}
-            mt={{ base: 4, lg: 0 }}
-          >
+          <CampaignContentBox>
             <Heading size="sm" color="gray.500">
               Kampanya Gelişmeleri
             </Heading>
@@ -88,7 +74,7 @@ function CampaignContent({ data }) {
                 transactions={data.campaign?.transactions}
               />
             </Suspense>
-          </Box>
+          </CampaignContentBox>
         )}
       </Box>
     </Flex>

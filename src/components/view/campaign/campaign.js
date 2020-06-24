@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet';
+import ReactGA from 'react-ga';
 import Skeleton from 'react-loading-skeleton';
 import { Box, Flex, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
@@ -43,6 +44,10 @@ function Campaign() {
             data={data}
             loading={loading}
             onClickDonate={() => {
+              ReactGA.event({
+                category: 'Campaign',
+                action: 'Clicked Donate Button',
+              });
               setContent('donate');
               setDonateActivated(true);
             }}

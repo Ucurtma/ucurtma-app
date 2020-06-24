@@ -17,7 +17,7 @@ references:
     run:
       name: Export the application bundle
       command: |
-        echo 'window.app_env = "staging";' > ./public/configuration.js
+        echo 'window.app_env = "$APP_ENV";' > ./public/configuration.js
         yarn build
   test_unit: &test_unit
     run:
@@ -59,12 +59,27 @@ jobs:
       enabled: true
     working_directory: ~/repo
     environment:
+      APP_ENV: staging
       DISTRIBUTION_ID: EQEMV77DP7EJW
       BUCKET_NAME: non-prod.ucurtmaprojesi.com
     steps:
       - attach_workspace:
           at: ~/repo/
       # deploy the bundle to non-prod s3 bucket
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
+  deploy-to-prod:
+    machine:
+      enabled: true
+    working_directory: ~/repo
+    environment:
+      APP_ENV: production
+      DISTRIBUTION_ID: E3BBA49PSH0YZ1
+      BUCKET_NAME: ucurtmaprojesi.com
+    steps:
+      - attach_workspace:
+          at: ~/repo/
+      # deploy the bundle to prod s3 bucket
       - *deploy_to_bucket
       - *invalidate_cloudfront_cache
   tests:
@@ -100,6 +115,15 @@ workflows:
           requires:
             - build
             - tests
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-to-prod:
+          requires:
+            - build
+            - tests
+            - deploy-to-non-prod
           filters:
             branches:
               only:

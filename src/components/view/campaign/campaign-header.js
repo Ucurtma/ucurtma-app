@@ -128,14 +128,17 @@ function CampaignHeader({ data, loading, onClickDonate }) {
             <PseudoBox
               as={Button}
               variant="solid"
-              bg="linkGreen"
+              bg="lime.400"
               h={16}
               w="full"
               maxW="416px"
               justifyContent="space-between"
-              boxShadow="0 0 2px rgba(124,124,124,0.16)"
+              // boxShadow="0 0 2px rgba(124,124,124,0.16)"
+              border="1px solid"
+              borderColor="lime.500"
+              boxShadow="0 0 3px rgba(45,55,72,0.1)"
               onClick={() => onClickDonate()}
-              _hover={{ bg: 'green.100' }}
+              _hover={{ bg: 'lime.500' }}
               ml={4}
             >
               Destek Ol

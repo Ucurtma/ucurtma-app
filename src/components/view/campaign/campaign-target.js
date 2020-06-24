@@ -32,6 +32,21 @@ function CampaignTarget({ target, current, endDate }) {
               value={parseFloat(formula)}
               borderRadius="4px"
             />
+            {formula > 1 && (
+              <Flex
+                align="center"
+                fontSize="1.2rem"
+                fontWeight={700}
+                textAlign={{ base: 'center', md: 'left' }}
+                color="#1E284C"
+                pos="absolute"
+                left="8px"
+                top="0"
+                height={progressHeight}
+              >
+                %{formula}
+              </Flex>
+            )}
             <Flex
               align="center"
               fontSize="1.2rem"
@@ -58,7 +73,7 @@ function CampaignTarget({ target, current, endDate }) {
       {endDate && (
         <>
           <Heading size="sm" color="gray.500" mt={target && 4}>
-            Bitiş Tarihi
+            {target ? 'Bitiş Tarihi' : 'İlk Ödeme Tarihi'}
           </Heading>
           <Flex mt={2}>
             <Box as={Clock} color="gray.600" />

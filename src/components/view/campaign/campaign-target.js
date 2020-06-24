@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Heading, Progress, Flex, Image, Divider } from '@chakra-ui/core';
+import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/core';
 import { Clock } from 'react-feather';
 import moment from 'moment';
 import 'moment/locale/tr';
 
 moment.locale('tr');
 
-function CampaignTarget({ target, current, endDate }) {
+function CampaignTarget({ target, current, endDate, type }) {
+  const isShortTerm = type === 'ShortTerm';
   let now;
   let end;
 
@@ -73,14 +74,19 @@ function CampaignTarget({ target, current, endDate }) {
       {endDate && (
         <>
           <Heading size="sm" color="gray.500" mt={target && 4}>
-            {target ? 'Bitiş Tarihi' : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
+            {isShortTerm
+              ? 'Bitiş Tarihi'
+              : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
           </Heading>
-          <Flex mt={2}>
+          <Flex mt={2} alignItems="center">
             <Box as={Clock} color="gray.600" />
-            <Flex ml={2} color="gray.600">
-              <strong>{moment.duration(end.diff(now)).humanize(true)}</strong>
-              <Divider orientation="vertical" />
-              {end.format('DD.MM.YYYY')}
+            <Flex ml={2} color="gray.600" alignItems="center">
+              <Box as="strong" fontSize="1.2rem">
+                {moment.duration(end.diff(now)).humanize(true)}
+              </Box>
+              <Box borderLeft="1px solid" ml={4} pl={4} borderColor="gray.200">
+                {end.format('DD.MM.YYYY')}
+              </Box>
             </Flex>
           </Flex>
         </>

@@ -7,6 +7,7 @@ export const GET_CAMPAIGN = gql`
       ethereumAddress
       campaignTitle
       supporterCount
+      campaignType
       totalFunds
       campaignText
       campaignTarget

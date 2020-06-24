@@ -10,9 +10,11 @@ import {
   PseudoBox,
   Button,
   Icon,
+  Link,
 } from '@chakra-ui/core';
 import Skeleton from 'react-loading-skeleton';
 import { Award } from 'react-feather';
+import CampaignContentBox from '../../ui/campaign-content-box';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
   return (
@@ -66,48 +68,64 @@ function CampaignHeader({ data, loading, onClickDonate }) {
           p={{ base: 4, lg: 0 }}
           bg={{ base: 'gray.100', md: 'inherit' }}
         >
-          <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
-            <Heading size="sm" color="gray.400">
-              {loading ? <Skeleton width={140} /> : 'Destekçi Sayısı'}
-            </Heading>
-            <Text
-              fontSize="1.5rem"
-              textAlign={{ base: 'center', md: 'left' }}
-              fontWeight={500}
+          {!loading && data?.campaign?.supporterCount > 0 && (
+            <>
+              <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
+                <Heading size="sm" color="gray.400">
+                  Destekçi Sayısı
+                </Heading>
+                <Text
+                  fontSize="1.5rem"
+                  textAlign={{ base: 'center', md: 'left' }}
+                  fontWeight={500}
+                >
+                  {data?.campaign?.supporterCount}
+                </Text>
+              </Box>
+              <Box pl={6}>
+                <Heading size="sm" color="gray.400">
+                  Toplam Destek
+                </Heading>
+                <Box
+                  fontSize="1.5rem"
+                  fontWeight={500}
+                  textAlign={{ base: 'center', md: 'left' }}
+                  color="#1E284C"
+                >
+                  <Flex align="center">
+                    <Image
+                      maxW="14px"
+                      width="full"
+                      height="full"
+                      src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                      mr={1}
+                    />
+                    {Math.floor(data.campaign?.totalFunds)}
+                  </Flex>
+                </Box>
+              </Box>
+            </>
+          )}
+          {!loading && data?.campaign?.supporterCount <= 0 && (
+            <CampaignContentBox
+              bg="lime.50"
+              borderColor="lime.200"
+              w="full"
+              maxW="416px"
+              mb={0}
+              mt={0}
             >
-              {loading ? (
-                <Skeleton width={70} />
-              ) : (
-                data.campaign?.supporterCount
-              )}
-            </Text>
-          </Box>
-          <Box pl={6}>
-            <Heading size="sm" color="gray.400">
-              {loading ? <Skeleton width={140} /> : 'Toplam Destek'}
-            </Heading>
-            <Box
-              fontSize="1.5rem"
-              fontWeight={500}
-              textAlign={{ base: 'center', md: 'left' }}
-              color="#1E284C"
-            >
-              {loading ? (
-                <Skeleton width={70} />
-              ) : (
-                <Flex align="center">
-                  <Image
-                    maxW="14px"
-                    width="full"
-                    height="full"
-                    src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                    mr={1}
-                  />
-                  {Math.floor(data.campaign?.totalFunds)}
-                </Flex>
-              )}
-            </Box>
-          </Box>
+              Bu kampanyaya hiç destek gelmemiş. İlk destek veren kişi olmak{' '}
+              <Link
+                as="button"
+                fontWeight={600}
+                onClick={() => onClickDonate()}
+                variant="link"
+              >
+                ister misin?
+              </Link>
+            </CampaignContentBox>
+          )}
         </Flex>
       </Flex>
       <Divider my={4} display={{ base: 'none', md: 'block' }} />

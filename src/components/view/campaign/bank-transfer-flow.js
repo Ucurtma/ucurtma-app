@@ -1,10 +1,17 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { Box, Flex, Button, Alert, AlertIcon, Image } from '@chakra-ui/core';
+import {
+  Box,
+  Flex,
+  Button,
+  Alert,
+  AlertIcon,
+  Image,
+  Skeleton,
+} from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
 import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';

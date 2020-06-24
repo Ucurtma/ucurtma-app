@@ -46,7 +46,7 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.7.0",
     "react-lite-youtube-embed": "^0.2.32",
-    "react-loading-skeleton": "^2.0.1",
+    "react-loading-skeleton": "^2.1.1",
     "react-markdown": "^4.3.1",
     "react-masonry-css": "^1.0.14",
     "react-qr-svg": "^2.2.2",

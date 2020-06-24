@@ -73,7 +73,7 @@ function CampaignTarget({ target, current, endDate }) {
       {endDate && (
         <>
           <Heading size="sm" color="gray.500" mt={target && 4}>
-            {target ? 'Bitiş Tarihi' : 'İlk Ödeme Tarihi'}
+            {target ? 'Bitiş Tarihi' : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
           </Heading>
           <Flex mt={2}>
             <Box as={Clock} color="gray.600" />

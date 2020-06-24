@@ -149,7 +149,7 @@ workflows:
             branches:
               only:
                 - master
-      - build-prod
+      - build-prod:
           requires:
             - tests
       - deploy-to-prod:

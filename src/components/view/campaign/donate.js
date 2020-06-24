@@ -10,6 +10,7 @@ import {
   CloseButton,
 } from '@chakra-ui/core';
 import { ArrowLeft } from 'react-feather';
+import ReactGA from 'react-ga';
 import BankTransferFlow from './bank-transfer-flow';
 import Loader from '../../ui/loader';
 
@@ -57,7 +58,17 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
       <Box w="full" maxW={{ base: '100%', md: '276px' }}>
         <RadioButtonGroup
           defaultValue="bank-transfer"
-          onChange={val => setDonateFlow(val)}
+          onChange={val => {
+            ReactGA.event({
+              category: 'Donate',
+              action:
+                val === 'bank-transfer'
+                  ? 'Selected Bank Transfer'
+                  : 'Selected Ethereum Wallet',
+              label: 'Selecting Payment Method',
+            });
+            setDonateFlow(val);
+          }}
           display="flex"
           flexDir={{ base: 'row', md: 'column' }}
           isInline={{ base: true, md: false }}

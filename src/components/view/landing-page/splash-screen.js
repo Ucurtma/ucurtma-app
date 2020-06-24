@@ -111,7 +111,7 @@ function SplashScreen() {
           </Box>
         </Flex>
       </Container>
-      <Modal size="5xl" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
+      <Modal size="md" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
           <Flex flexDir="column">{content}</Flex>

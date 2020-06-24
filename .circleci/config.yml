@@ -17,7 +17,7 @@ references:
     run:
       name: Export the application bundle
       command: |
-        echo 'window.app_env = "staging";' > ./public/configuration.js
+        echo "window.app_env = '$APP_ENV';" > ./public/configuration.js
         yarn build
   build_static_bundle_prod: &build_static_bundle_prod
     run:

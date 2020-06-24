@@ -6,7 +6,8 @@ import 'moment/locale/tr';
 
 moment.locale('tr');
 
-function CampaignTarget({ target, current, endDate }) {
+function CampaignTarget({ target, current, endDate, type }) {
+  const isShortTerm = type === 'ShortTerm';
   let now;
   let end;
 
@@ -73,7 +74,9 @@ function CampaignTarget({ target, current, endDate }) {
       {endDate && (
         <>
           <Heading size="sm" color="gray.500" mt={target && 4}>
-            {target ? 'Bitiş Tarihi' : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
+            {isShortTerm
+              ? 'Bitiş Tarihi'
+              : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
           </Heading>
           <Flex mt={2}>
             <Box as={Clock} color="gray.600" />

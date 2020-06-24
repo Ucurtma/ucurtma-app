@@ -58,6 +58,7 @@ function CampaignContent({ data }) {
                 target={data?.campaign?.campaignTarget}
                 current={parseFloat(data.campaign.totalFunds)}
                 endDate={data?.campaign?.endDate}
+                type={data?.campaign?.campaignType}
               />
             </Suspense>
           </CampaignContentBox>

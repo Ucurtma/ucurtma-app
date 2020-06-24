@@ -144,6 +144,8 @@ workflows:
               only:
                 - master
       - build-prod
+          requires:
+            - tests
       - deploy-to-prod:
           requires:
             - build-prod

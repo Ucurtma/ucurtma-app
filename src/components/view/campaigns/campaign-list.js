@@ -12,7 +12,15 @@ import {
 import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';
 
-function CampaignList({ error, loading, data }) {
+function CampaignList({
+  error,
+  loading,
+  data,
+  hideTitle,
+  customButton,
+  wrapperProps,
+  showId,
+}) {
   if (loading) {
     return (
       <>
@@ -42,6 +50,7 @@ function CampaignList({ error, loading, data }) {
         _hover={{ boxShadow: 'cardLightHover' }}
         transition="0.2s ease all"
         key={campaign?.campaignId}
+        {...wrapperProps}
       >
         <Flex mx={{ base: 4, lg: 0 }} alignItems="center">
           <Avatar
@@ -50,6 +59,7 @@ function CampaignList({ error, loading, data }) {
             name={campaign?.student?.name}
           />
           <Box ml={4} minW="0">
+            {showId && <Text color="gray.500">{campaign?.campaignId}</Text>}
             <Link to={`/campaign/${campaign?.campaignId}`}>
               <Heading display="inline-block" size="sm" color="gray.600">
                 {campaign?.student?.name}
@@ -60,22 +70,26 @@ function CampaignList({ error, loading, data }) {
               {campaign?.student?.department !== '-' &&
                 ` / ${campaign?.student?.department}`}
             </Text>
-            <Heading mt={2} size="sm">
-              {campaign?.campaignTitle}
-            </Heading>
+            {!hideTitle && (
+              <Heading mt={2} size="sm">
+                {campaign?.campaignTitle}
+              </Heading>
+            )}
           </Box>
         </Flex>
         <Box>
-          <Button
-            as={Link}
-            to={`/campaign/${campaign?.campaignId}`}
-            variant="outline"
-            color="linkBlue"
-            width="full"
-            mt={4}
-          >
-            Kampanyaya Git
-          </Button>
+          {customButton(campaign) || (
+            <Button
+              as={Link}
+              to={`/campaign/${campaign?.campaignId}`}
+              variant="outline"
+              color="linkBlue.400"
+              width="full"
+              mt={4}
+            >
+              Kampanyaya Git
+            </Button>
+          )}
         </Box>
       </PseudoBox>
     );

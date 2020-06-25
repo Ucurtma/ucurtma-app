@@ -21,7 +21,7 @@ const CustomRadio = React.forwardRef((props, ref) => {
   return (
     <Button
       ref={ref}
-      color={isChecked ? 'linkBlue' : 'gray.400'}
+      color={isChecked ? 'linkBlue.400' : 'gray.400'}
       fontWeight={isChecked ? '700' : '400'}
       aria-checked={isChecked}
       role="radio"

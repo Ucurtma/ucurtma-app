@@ -389,7 +389,7 @@ function Application() {
                 )}
                 <Button
                   variant="outline"
-                  color="linkBlue"
+                  color="linkBlue.400"
                   type="submit"
                   isLoading={isSubmitting}
                   disabled={

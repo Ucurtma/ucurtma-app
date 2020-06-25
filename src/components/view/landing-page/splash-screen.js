@@ -101,7 +101,7 @@ function SplashScreen() {
                     setContent(<Shortlist />);
                     onOpen();
                   }}
-                  color="linkBlue"
+                  color="linkBlue.400"
                 >
                   buraya tıklayarak
                 </Link>{' '}

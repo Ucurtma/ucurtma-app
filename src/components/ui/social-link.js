@@ -21,7 +21,7 @@ function SocialLink({ icon, label, isConnected, onAction }) {
       <Button
         variant="ghost"
         onClick={() => onAction && onAction(label)}
-        color={isConnected ? 'danger' : 'linkBlue'}
+        color={isConnected ? 'danger' : 'linkBlue.400'}
       >
         {isConnected ? 'Disconnect' : 'Connect'}
       </Button>

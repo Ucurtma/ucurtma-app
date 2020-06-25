@@ -236,7 +236,7 @@ function EthereumFlow() {
               <Button
                 type="button"
                 variant="outline"
-                color="linkBlue"
+                color="linkBlue.400"
                 isLoading={isSubmitting || loading}
                 disabled={isSubmitting || !dirty || !isValid}
                 width="full"

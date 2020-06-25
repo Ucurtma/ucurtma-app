@@ -17,7 +17,7 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
       height={{ base: '8rem', md: '10rem' }}
       borderWidth="2px"
       borderStyle="dashed"
-      borderColor="linkBlue"
+      borderColor="linkBlue.400"
       borderRadius="30px"
       justifyContent="center"
       cursor="pointer"
@@ -37,7 +37,7 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
       >
         {icon && <Icon name={icon} fontSize="2.75rem" />}
         {type && (
-          <Text color="linkBlue" fontWeight="500">
+          <Text color="linkBlue.400" fontWeight="500">
             {type}
           </Text>
         )}

@@ -5,9 +5,9 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Input from '../ui/input';
-import Textarea from '../ui/text-area';
-import config from '../../config';
+import Input from '../../ui/input';
+import Textarea from '../../ui/text-area';
+import config from '../../../config';
 
 const reportCampaignSchema = Yup.object().shape({
   from: Yup.string().required('Bu alan zorunludur.'),

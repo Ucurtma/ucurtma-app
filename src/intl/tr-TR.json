@@ -58,13 +58,27 @@
   },
   "manager": {
     "ContractActions": "Kontrat İşlemleri",
+    "CreateCampaign": "Yeni Kampanya Oluştur",
     "CampaignsActions": "Kampanya Yönetimi"
   },
-  "contractActions": {
+  "createCampaign": {
     "Deploy": "Yeni bir kampanya oluştur",
+    "Edit": "Kampanyayı düzenle",
     "DeployDescription": "Bu arayüzü kullanarak yeni bir kampanya akıllı kontratı oluşturabilirsiniz. Oluşturulacak kampanya kontratının uygulama yöneticiliği sizin kendi metamask hesabınız olacaktır.",
-    "numberOfPlannedPayouts": "Öğrencinin alabileceği toplam ödeme sayısı",
-    "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
+    "EditDescription": "Bu arayüzü kullanarak geçmişte oluşturduğunuz bir kampanyayı düzenleyebilirsiniz.",
+    "numberOfPlannedPayouts": "Toplam ödeme sayısı",
+    "withdrawPeriod": "Ödeme sıklığı",
+    "example": "Örnek: {{value}}",
+    "campaignTarget": "Kampanya hedefi",
+    "goals": {
+      "title": "Vaatler",
+      "addNewGoal": "Yeni Vaat Ekle"
+    },
+    "campaignType": {
+      "title": "Kampanya tipi",
+      "shortTerm": "Kısa Dönemli",
+      "longTerm": "Uzun Dönemli"
+    },
     "campaignEndTime": "Toplam kampanya süresi",
     "owner": "Öğrencinin Ethereum cüzdanı",
     "aboutOwner": "Bu bilgiyi girmediğiniz taktirde kullanıcı, destek alma özelliklerinden yararlanamayacaktır. Bu alanı şimdilik boş bırakabilir ve daha sonra kampanya ayarlarından güncelleyebilirsiniz.",
@@ -78,6 +92,7 @@
     "adminAddress": "Yönetici Ethereum adresi",
     "campaignDetails": "Kampanya Detayları",
     "DeployAction": "Kampanya oluştur",
+    "deployDraftCampaign": "Taslak kampanya oluştur",
     "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
     "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",
     "deploySuccessTitle": "Kampanya yaratma işlemi başarıyla gerçekleşti.",
@@ -95,10 +110,11 @@
   },
   "contractList": {
     "List": "Oluşturulmuş Kampanyalar",
-    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
+    "ListDescription": "Bu sayfada, oluşturduğunuz tüm kampanyaları görebilir ve yönetebilirsiniz.",
     "ListNotFound": "Oluşturulmuş kontrat bulunamadı.",
     "ListNotFoundDesc": "Oluşturduğunuz kontratların listesini görmek için kontrat <1>oluşturmaya başlayın.</1>",
-    "StartToCreate": "oluşturmaya başlayın."
+    "StartToCreate": "oluşturmaya başlayın.",
+    "search": "Kampanya Ara"
   },
   "header": {
     "signTokenModal": "İmza oluştur",

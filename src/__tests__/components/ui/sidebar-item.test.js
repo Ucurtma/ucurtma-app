@@ -35,6 +35,6 @@ describe('Sidebar Item Tests', () => {
     const elClass = container.firstChild.className;
     const element = document.getElementsByClassName(elClass);
     const style = window.getComputedStyle(element[0]);
-    expect(style.boxShadow).toBe('-4px 0 #00C2FF');
+    expect(style.boxShadow).toBe('-4px 0 #1ac8ff');
   });
 });

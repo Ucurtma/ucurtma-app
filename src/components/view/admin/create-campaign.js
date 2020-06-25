@@ -211,7 +211,7 @@ function CreateCampaign({ walletState, isEdit }) {
           loading={createCampaignLoading}
           initialValues={initialValues}
           walletState={walletState}
-          onDraftSubmit={values => console.log(values)}
+          isEdit={isEdit}
           onSubmit={(values, setSubmitting) => {
             setSubmitting(true);
 

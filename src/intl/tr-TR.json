@@ -94,6 +94,7 @@
     "adminAddress": "Yönetici Ethereum adresi",
     "campaignDetails": "Kampanya Detayları",
     "DeployAction": "Kampanya oluştur",
+    "EditAction": "Kampanyayı kaydet",
     "deployDraftCampaign": "Taslak kampanya oluştur",
     "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
     "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",

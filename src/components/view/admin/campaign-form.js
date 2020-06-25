@@ -56,12 +56,7 @@ const deployContractSchema = (t, campaignExist) => {
   });
 };
 
-function CreateCampaignForm({
-  onSubmit,
-  loading,
-  initialValues,
-  onDraftSubmit,
-}) {
+function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
   const [campaignExist, setCampaignExist] = React.useState(false);
   const { state: mainState } = useContext(MainContext);
   const [showOwnerWallet, setShowOwnerWallet] = React.useState(true);
@@ -398,24 +393,13 @@ function CreateCampaignForm({
           </Box>
           <Flex justifyContent="flex-end">
             <Button
-              type="button"
-              onClick={() => onDraftSubmit(values)}
-              variant="outline"
-              variantColor="gray"
-              isLoading={loading}
-              disabled={isSubmitting || !dirty || !isValid}
-              mr={4}
-            >
-              {t('deployDraftCampaign')}
-            </Button>
-            <Button
               type="submit"
               variant="outline"
               variantColor="linkBlue"
               isLoading={loading}
               disabled={isSubmitting || !dirty || !isValid}
             >
-              {t('DeployAction')}
+              {t(isEdit ? 'EditAction' : 'DeployAction')}
             </Button>
           </Flex>
         </Form>

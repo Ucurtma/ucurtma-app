@@ -12,6 +12,7 @@ import { useField } from 'formik';
 
 function NumberInput({ label, type, controlProps, addon, ...props }) {
   const [field, meta] = useField(props);
+  const { disabled } = props;
   return (
     <FormControl
       width="100%"
@@ -26,7 +27,12 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
       )}
       <ChakraInput>
         {addon?.left && (
-          <InputLeftAddon roundedRight="0">{addon.left}</InputLeftAddon>
+          <InputLeftAddon
+            color={disabled ? 'gray.300' : 'gray.600'}
+            roundedRight="0"
+          >
+            {addon.left}
+          </InputLeftAddon>
         )}
         <NumberInputField
           aria-label={label || field.name}
@@ -40,7 +46,12 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
           {...field}
         />
         {addon?.right && (
-          <InputRightAddon roundedLeft="0">{addon.right}</InputRightAddon>
+          <InputRightAddon
+            color={disabled ? 'gray.300' : 'gray.600'}
+            roundedLeft="0"
+          >
+            {addon.right}
+          </InputRightAddon>
         )}
       </ChakraInput>
       {meta.touched && meta.error ? (

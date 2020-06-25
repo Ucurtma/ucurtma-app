@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -11,13 +11,15 @@ import {
   FormLabel,
   Image,
   Box,
+  Heading,
 } from '@chakra-ui/core';
-import { PlusCircle, Trash2 } from 'react-feather';
+import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';
 import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
+import { MainContext } from '../../../context/main-context';
 
 const markdownPlaceholder = `## Merhaba
 
@@ -44,23 +46,38 @@ const deployContractSchema = (t, campaignExist) => {
       t('validations.incorrectAddress'),
       value => (value ? web3.utils.isAddress(value) : true)
     ),
+    student: Yup.object().shape({
+      name: Yup.string().required(t('validations.required')),
+      school: Yup.string().required(t('validations.required')),
+      department: Yup.string().required(t('validations.required')),
+      profilePhoto: Yup.string().url(t('validations.link')),
+    }),
     tokenAddress: Yup.string().required(t('validations.required')),
-    name: Yup.string().required(t('validations.required')),
-    school: Yup.string().required(t('validations.required')),
-    department: Yup.string().required(t('validations.required')),
-    profilePhoto: Yup.string().url(t('validations.link')),
   });
 };
 
-function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
+function CreateCampaignForm({
+  onSubmit,
+  loading,
+  initialValues,
+  onDraftSubmit,
+}) {
   const [campaignExist, setCampaignExist] = React.useState(false);
+  const { state: mainState } = useContext(MainContext);
+  const [showOwnerWallet, setShowOwnerWallet] = React.useState(true);
   const editorRef = React.useRef(null);
   const { t } = useTranslation('createCampaign');
   const getCampaign = useImperativeQuery(GET_CAMPAIGN_EXISTENCE);
-  const isWalletExist = walletState.wallet;
+  const isWalletExist = mainState.wallet;
 
   React.useEffect(() => {
-    if (editorRef.current) {
+    return () => {
+      window.editor = undefined;
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (editorRef.current && !window.editor) {
       window.editor = new EasyMDE({
         element: editorRef.current,
         autoDownloadFontAwesome: undefined, // change with our icon package, react-feather.
@@ -74,15 +91,16 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
           link: "Eklemek istediğiniz linkin URL'ini giriniz:",
         },
       });
-
-      if (!isWalletExist) {
-        window.editor.codemirror.setOption('readOnly', true);
-      } else {
-        window.editor.codemirror.setOption('readOnly', false);
-      }
     }
+
+    if (!mainState.wallet && window.editor) {
+      window.editor.codemirror.setOption('readOnly', true);
+    } else {
+      window.editor.codemirror.setOption('readOnly', false);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mainState]);
 
   React.useEffect(() => {
     if (initialValues) {
@@ -92,7 +110,7 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
     }
 
     return () => {
-      window.editor.value(markdownPlaceholder);
+      if (window.editor) window.editor.value(markdownPlaceholder);
     };
   }, [initialValues]);
 
@@ -114,7 +132,7 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
         campaignEndTime: initialValues?.campaignEndTime || 30, // when will campaign end after started in seconds?
         owner: initialValues?.owner || '', // the ethereum address of student
         tokenAddress: config.ethereum.biliraTokenAddress, // the ethereum address of biLira,
-        adminAddress: walletState.wallet, // the ethereum address of user who make action with metamask
+        adminAddress: mainState.wallet, // the ethereum address of user who make action with metamask
         campaignId: initialValues?.campaignId || '',
         campaignTitle: initialValues?.campaignTitle || '',
         student: {
@@ -203,30 +221,6 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
           />
           <Flex flexDir={{ base: 'column', md: 'row' }}>
             <NumberInput
-              label={t('numberOfPlannedPayouts')}
-              name="numberOfPlannedPayouts"
-              type="number"
-              controlProps={{ mr: 4 }}
-              disabled={!isWalletExist}
-            />
-            <NumberInput
-              label={t('withdrawPeriod')}
-              name="withdrawPeriod"
-              type="number"
-              addon={{ right: 'Gün' }}
-              disabled={!isWalletExist}
-              controlProps={{ mr: 4 }}
-            />
-            <NumberInput
-              label={t('campaignEndTime')}
-              name="campaignEndTime"
-              type="number"
-              addon={{ right: 'Gün' }}
-              disabled={!isWalletExist}
-            />
-          </Flex>
-          <Flex flexDir={{ base: 'column', md: 'row' }}>
-            <NumberInput
               label={t('campaignTarget')}
               name="campaignTarget"
               placeholder={t('example', { value: '12000' })}
@@ -251,6 +245,7 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
                 defaultValue="longTerm"
                 isInline
                 mt="8px"
+                onChange={e => setFieldValue('campaignType', e.target.value)}
               >
                 <Radio value="longTerm" key="long-term" mr={4}>
                   {t('campaignType.longTerm')}
@@ -266,7 +261,12 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
             <FieldArray
               name="goals"
               render={arrayHelpers => (
-                <Box border="1px solid" borderColor="gray.200" p={4}>
+                <Box
+                  border="1px solid"
+                  borderRadius="4px"
+                  borderColor="gray.200"
+                  p={4}
+                >
                   {values?.goals?.map((goal, goalIndex) => {
                     return (
                       <Flex key={goalIndex.toString()}>
@@ -309,12 +309,6 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
               )}
             />
           </Box>
-          <Input
-            label={t('owner')}
-            description={t('aboutOwner')}
-            disabled={!isWalletExist}
-            name="owner"
-          />
           {/* <Box mb={4}>
           <FormLabel color="gray.600">{t('tokenAddress')}</FormLabel>
           <RadioGroup defaultValue="biLira" isInline>
@@ -323,12 +317,75 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
             </Radio>
           </RadioGroup>
         </Box> */}
-          <Input
-            label={t('adminAddress')}
-            value={walletState.wallet}
-            disabled
-            name="adminAddress"
-          />
+          <Box
+            border="1px solid"
+            borderColor="gray.200"
+            bg="gray.50"
+            borderRadius="4px"
+            p={4}
+            mb={4}
+          >
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              mb={showOwnerWallet ? 4 : 0}
+            >
+              <Heading size="sm" color="gray.600">
+                {t('owner')}
+              </Heading>
+              <Button
+                color={showOwnerWallet ? 'danger' : 'green.400'}
+                size="sm"
+                onClick={() => setShowOwnerWallet(!showOwnerWallet)}
+              >
+                {t(showOwnerWallet ? 'deployLater' : 'showOwnerWallet')}
+                <Box
+                  ml={2}
+                  as={showOwnerWallet ? ChevronUp : ChevronDown}
+                  size="16px"
+                />
+              </Button>
+            </Flex>
+            {showOwnerWallet && (
+              <>
+                <Input
+                  description={t('aboutOwner')}
+                  disabled={!isWalletExist}
+                  name="owner"
+                />
+                <Flex flexDir={{ base: 'column', md: 'row' }}>
+                  <NumberInput
+                    label={t('numberOfPlannedPayouts')}
+                    name="numberOfPlannedPayouts"
+                    type="number"
+                    controlProps={{ mr: 4 }}
+                    disabled={!isWalletExist || !values.owner}
+                  />
+                  <NumberInput
+                    label={t('withdrawPeriod')}
+                    name="withdrawPeriod"
+                    type="number"
+                    addon={{ right: 'Gün' }}
+                    disabled={!isWalletExist || !values.owner}
+                    controlProps={{ mr: 4 }}
+                  />
+                  <NumberInput
+                    label={t('campaignEndTime')}
+                    name="campaignEndTime"
+                    type="number"
+                    addon={{ right: 'Gün' }}
+                    disabled={!isWalletExist || !values.owner}
+                  />
+                </Flex>
+                <Input
+                  label={t('adminAddress')}
+                  value={mainState.wallet}
+                  disabled
+                  name="adminAddress"
+                />
+              </>
+            )}
+          </Box>
           <Box id="editorjs" mb={4}>
             <FormLabel color="gray.600">{t('campaignDetails')}</FormLabel>
             <Box
@@ -341,7 +398,8 @@ function CreateCampaignForm({ walletState, onSubmit, loading, initialValues }) {
           </Box>
           <Flex justifyContent="flex-end">
             <Button
-              type="submit"
+              type="button"
+              onClick={() => onDraftSubmit(values)}
               variant="outline"
               variantColor="gray"
               isLoading={loading}

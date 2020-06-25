@@ -5,6 +5,11 @@ import {
   Box,
   useToast,
   Link,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  AlertTitle,
+  Button,
   // Alert,
   // AlertIcon,
   // AlertDescription,
@@ -52,7 +57,11 @@ function CreateCampaign({ walletState, isEdit }) {
   const [initialValues, setInitialValues] = React.useState(null);
   const [
     createCampaign,
-    { loading: createCampaignLoading },
+    {
+      data: createCampaignData,
+      error: createCampaignError,
+      loading: createCampaignLoading,
+    },
   ] = useMutation(CREATE_CAMPAIGN, { onError: err => err }); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('createCampaign');
@@ -72,7 +81,7 @@ function CreateCampaign({ walletState, isEdit }) {
     }
   }, [isEdit, location]);
 
-  const createCampaignCommand = (values, deployedAddress) => {
+  const createCampaignCommand = async (values, deployedAddress) => {
     const metamaskToken = localStorage.getItem('signedToken');
 
     createCampaign({
@@ -80,12 +89,15 @@ function CreateCampaign({ walletState, isEdit }) {
         campaignId: values.campaignId,
         campaignTitle: values.campaignTitle,
         campaignText: window.editor.value(),
+        campaignTarget: values.campaignTarget,
+        campaignType: values.campaignType,
+        goals: values.goals,
         ethereumAddress: deployedAddress || '',
         student: {
-          name: values.name,
-          school: values.school,
-          department: values.department,
-          profilePhoto: values.profilePhoto,
+          name: values.student.name,
+          school: values.student.school,
+          department: values.student.department,
+          profilePhoto: values.student.profilePhoto,
         },
       },
       context: {
@@ -94,6 +106,92 @@ function CreateCampaign({ walletState, isEdit }) {
         },
       },
     });
+  };
+
+  const deployContract = (values, setSubmitting) => {
+    const deploymentManager = getDeploymentManagerContract();
+    const eventFilter = deploymentManager.NewFundingContract({
+      __owner: values.owner,
+    });
+
+    eventFilter.watch((error, event) => {
+      if (error) {
+        toast({
+          title: t('deployErrorTitle'),
+          description: t('deployErrorDesc'),
+          status: 'error',
+          ...commonToastProps,
+        });
+        // eslint-disable-next-line no-console
+        console.error(`Error: ${error}`);
+        setSubmitting(false);
+      } else {
+        toast({
+          title: t('deploySuccessTitle'),
+          description: (
+            <Link
+              href={getEtherscanAddressFor({
+                type: 'address',
+                hash: event.args.deployedAddress,
+              })}
+            >
+              {t('deploySuccessDesc')}
+            </Link>
+          ),
+          status: 'success',
+          ...commonToastProps,
+        });
+        createCampaignCommand(values, event.args.deployedAddress);
+        setSubmitting(false);
+      }
+    });
+
+    deploymentManager.deploy(
+      values.numberOfPlannedPayouts,
+      parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
+      parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
+      0,
+      values.owner,
+      values.tokenAddress,
+      async (err, result) => {
+        if (!err) {
+          // eslint-disable-next-line no-console
+          console.log(
+            `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
+              { hash: result }
+            )}`
+          );
+          toast({
+            title: t('deployStartedTitle'),
+            description: (
+              <Link href={getEtherscanAddressFor({ hash: result })}>
+                {t('deployStartedDesc')}
+              </Link>
+            ),
+            status: 'warning',
+            ...commonToastProps,
+          });
+        } else {
+          // todo: web3 can't catch error if deployment reverted with message.
+          // find a solution.
+          toast({
+            title:
+              err.code === 4001
+                ? "MetaMask'tan izin alınamadı."
+                : 'Bir hata oluştu.',
+            description:
+              err.code === 4001
+                ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
+                : `Hata kodu: ${err.code}`,
+            status: 'error',
+            ...commonToastProps,
+          });
+          // eslint-disable-next-line no-console
+          console.log(err);
+          setSubmitting(false);
+        }
+      }
+    );
   };
 
   return (
@@ -113,100 +211,41 @@ function CreateCampaign({ walletState, isEdit }) {
           loading={createCampaignLoading}
           initialValues={initialValues}
           walletState={walletState}
+          onDraftSubmit={values => console.log(values)}
           onSubmit={(values, setSubmitting) => {
             setSubmitting(true);
-            const deploymentManager = getDeploymentManagerContract();
-            const eventFilter = deploymentManager.NewFundingContract({
-              __owner: values.owner,
-            });
 
             if (!values.owner) {
               createCampaignCommand(values);
               setSubmitting(createCampaignLoading);
             } else {
-              eventFilter.watch((error, event) => {
-                if (error) {
-                  toast({
-                    title: t('deployErrorTitle'),
-                    description: t('deployErrorDesc'),
-                    status: 'error',
-                    ...commonToastProps,
-                  });
-                  // eslint-disable-next-line no-console
-                  console.error(`Error: ${error}`);
-                  setSubmitting(false);
-                } else {
-                  toast({
-                    title: t('deploySuccessTitle'),
-                    description: (
-                      <Link
-                        href={getEtherscanAddressFor({
-                          type: 'address',
-                          hash: event.args.deployedAddress,
-                        })}
-                      >
-                        {t('deploySuccessDesc')}
-                      </Link>
-                    ),
-                    status: 'success',
-                    ...commonToastProps,
-                  });
-
-                  createCampaignCommand(values, event.args.deployedAddress);
-                  setSubmitting(false);
-                }
-              });
-
-              deploymentManager.deploy(
-                values.numberOfPlannedPayouts,
-                parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
-                parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
-                0,
-                values.owner,
-                values.tokenAddress,
-
-                async (err, result) => {
-                  if (!err) {
-                    // eslint-disable-next-line no-console
-                    console.log(
-                      `Transaction hash: '${result}'. Click here: ${getEtherscanAddressFor(
-                        { hash: result }
-                      )}`
-                    );
-
-                    toast({
-                      title: t('deployStartedTitle'),
-                      description: (
-                        <Link href={getEtherscanAddressFor({ hash: result })}>
-                          {t('deployStartedDesc')}
-                        </Link>
-                      ),
-                      status: 'warning',
-                      ...commonToastProps,
-                    });
-                  } else {
-                    // todo: web3 can't catch error if deployment reverted with message.
-                    // find a solution.
-                    toast({
-                      title:
-                        err.code === 4001
-                          ? "MetaMask'tan izin alınamadı."
-                          : 'Bir hata oluştu.',
-                      description:
-                        err.code === 4001
-                          ? 'Bu işlem için MetaMask uygulamasından izin vermeniz gerekmektedir.'
-                          : `Hata kodu: ${err.code}`,
-                      status: 'error',
-                      ...commonToastProps,
-                    });
-                    console.log(err);
-                    setSubmitting(false);
-                  }
-                }
-              );
+              deployContract(values, setSubmitting);
             }
           }}
         />
+        {(createCampaignData || createCampaignError) && (
+          <Alert status={createCampaignData ? 'success' : 'error'} mt={4}>
+            <AlertIcon />
+            <AlertTitle>
+              {t(
+                createCampaignData ? 'deploySuccessTitle' : 'deployErrorTitle'
+              )}
+            </AlertTitle>
+            {createCampaignData && (
+              <AlertDescription>
+                Kampanyayı görüntülemek için{' '}
+                <Button
+                  as={Link}
+                  variant="link"
+                  color="linkBlue.400"
+                  to={`campaign/${createCampaignData?.createCampaign?.campaignId}`}
+                >
+                  buraya tıkla.
+                </Button>
+              </AlertDescription>
+            )}
+          </Alert>
+        )}
       </Box>
       {/* ) : (
         <Alert status="error" bg="gray.100" color="gray.500" mt={4}>

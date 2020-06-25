@@ -64,6 +64,8 @@
   "createCampaign": {
     "Deploy": "Yeni bir kampanya oluştur",
     "Edit": "Kampanyayı düzenle",
+    "deployLater": "Bu bilgileri daha sonra gireceğim",
+    "showOwnerWallet": "Bu bilgileri göster",
     "DeployDescription": "Bu arayüzü kullanarak yeni bir kampanya akıllı kontratı oluşturabilirsiniz. Oluşturulacak kampanya kontratının uygulama yöneticiliği sizin kendi metamask hesabınız olacaktır.",
     "EditDescription": "Bu arayüzü kullanarak geçmişte oluşturduğunuz bir kampanyayı düzenleyebilirsiniz.",
     "numberOfPlannedPayouts": "Toplam ödeme sayısı",

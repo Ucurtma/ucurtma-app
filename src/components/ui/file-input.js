@@ -55,7 +55,7 @@ function FileInput({
             as="span"
             variant={withOutline ? 'outline' : 'ghost'}
             leftIcon={field.value ? Edit : Upload}
-            color={field.value ? 'danger' : 'linkBlue'}
+            color={field.value ? 'danger' : 'linkBlue.400'}
             size="md"
             justifyContent="flex-start"
             cursor="pointer"

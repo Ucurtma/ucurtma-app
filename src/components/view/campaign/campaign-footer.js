@@ -2,9 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Flex, Button, Collapse } from '@chakra-ui/core';
 import Loader from '../../ui/loader';
 
-const ReportCampaignForm = lazy(() =>
-  import('../../forms/report-campaign-form')
-);
+const ReportCampaignForm = lazy(() => import('./report-campaign-form'));
 
 function CampaignFooter({ campaignId }) {
   const [reportCampaignView, setReportCampaignView] = React.useState(false);

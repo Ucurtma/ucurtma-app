@@ -88,7 +88,7 @@ function FeaturedCampaign({ loading, data, error }) {
                     as={Link}
                     to={`/campaign/${campaign?.campaignId}`}
                     variant="outline"
-                    color="linkBlue"
+                    color="linkBlue.400"
                     width="full"
                     mt={4}
                   >

@@ -75,3 +75,32 @@ export const GET_CAMPAIGNS = gql`
     }
   }
 `;
+
+export const GET_CAMPAIGNS_WITH_EXTRA_DETAIL = gql`
+  query campaigns {
+    campaigns {
+      campaignId
+      ethereumAddress
+      campaignTitle
+      campaignType
+      campaignText
+      campaignTarget
+      minimumAmount
+      endDate
+      goals {
+        description
+      }
+      documents {
+        title
+        link
+        type
+      }
+      student {
+        school
+        name
+        department
+        profilePhoto
+      }
+    }
+  }
+`;

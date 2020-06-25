@@ -225,7 +225,7 @@ function BankTransferFlow({ minimumAmount }) {
               >
                 <Button
                   variant="outline"
-                  color="linkBlue"
+                  color="linkBlue.400"
                   type="submit"
                   isLoading={isSubmitting || donationLoading}
                   disabled={isSubmitting || !dirty || !isValid}

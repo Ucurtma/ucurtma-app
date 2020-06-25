@@ -26,7 +26,7 @@ function VerificationSuccess() {
         </Button>
         {/* </Link> */}
         {/* <Link href="/campaigns/start-campaign"> */}
-        <Button variant="outline" color="linkBlue" type="submit">
+        <Button variant="outline" color="linkBlue.400" type="submit">
           Start a Draft Campaign
         </Button>
         {/* </Link> */}

@@ -29,7 +29,7 @@ function FeaturedCampaign({ loading, data, error }) {
 
   return data.campaigns.map((campaign, campaignIndex) => {
     return (
-      <>
+      <React.Fragment key={campaign.campaignId}>
         {campaignIndex < 4 && (
           <Card
             display="flex"
@@ -38,7 +38,6 @@ function FeaturedCampaign({ loading, data, error }) {
             borderRadius="0.5rem"
             w="full"
             minW="0"
-            key={campaign.campaignId}
             flexDir="column"
             justifyContent="space-between"
           >
@@ -99,7 +98,7 @@ function FeaturedCampaign({ loading, data, error }) {
             </Box>
           </Card>
         )}
-      </>
+      </React.Fragment>
     );
   });
 }

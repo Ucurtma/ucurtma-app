@@ -78,7 +78,9 @@ function CampaignList({
           </Box>
         </Flex>
         <Box>
-          {customButton(campaign) || (
+          {customButton ? (
+            customButton(campaign)
+          ) : (
             <Button
               as={Link}
               to={`/campaign/${campaign?.campaignId}`}

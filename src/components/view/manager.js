@@ -83,7 +83,7 @@ function Manager() {
                     element={<CreateCampaign walletState={mainState} />}
                   />
                   <Route
-                    path="edit-campaign/*"
+                    path="edit-campaign/:campaignId"
                     element={<CreateCampaign isEdit walletState={mainState} />}
                   />
                   <Route path="campaigns" element={<ContractList />} />

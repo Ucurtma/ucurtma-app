@@ -14,10 +14,10 @@ import { Search, Edit } from 'react-feather';
 import { Link } from 'react-router-dom';
 import Card from '../../ui/card';
 import CampaignList from '../campaigns/campaign-list';
-import { GET_CAMPAIGNS_WITH_EXTRA_DETAIL } from '../../../graphql/queries';
+import { GET_CAMPAIGNS_WITH_LOWER_DETAIL } from '../../../graphql/queries';
 
 function ContractList() {
-  const { loading, error, data } = useQuery(GET_CAMPAIGNS_WITH_EXTRA_DETAIL, {
+  const { loading, error, data } = useQuery(GET_CAMPAIGNS_WITH_LOWER_DETAIL, {
     context: {
       headers: {
         authorization: `Bearer ${localStorage.getItem('signedToken')}`,
@@ -53,10 +53,7 @@ function ContractList() {
           wrapperProps={{ boxShadow: '0' }}
           showId
           customButton={campaign => (
-            <Link
-              to={`/manager/edit-campaign/${campaign?.campaignId}`}
-              state={{ campaign }}
-            >
+            <Link to={`/manager/edit-campaign/${campaign?.campaignId}`}>
               <Button
                 variant="outline"
                 variantColor="red"

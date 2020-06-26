@@ -72,9 +72,21 @@
     "withdrawPeriod": "Ödeme sıklığı",
     "example": "Örnek: {{value}}",
     "campaignTarget": "Kampanya hedefi",
+    "gettingCampaign": {
+      "error": {
+        "title": "Kampanya bulunamadı.",
+        "description": "{{page}} sayfasına yönlendirildiniz."
+      }
+    },
     "goals": {
       "title": "Vaatler",
-      "addNewGoal": "Yeni Vaat Ekle"
+      "new": "Yeni Vaat Ekle"
+    },
+    "documents": {
+      "title": "Dokümanlar",
+      "new": "Yeni Doküman Ekle",
+      "documentTitle": "Doküman Başlığı",
+      "link": "Doküman Linki"
     },
     "campaignType": {
       "title": "Kampanya tipi",
@@ -95,6 +107,8 @@
     "campaignDetails": "Kampanya Detayları",
     "DeployAction": "Kampanya oluştur",
     "EditAction": "Kampanyayı kaydet",
+    "activateCampaign": "Kampanyayı aktif et",
+    "deactivateCampaign": "Kampanyayı deaktif et",
     "deployDraftCampaign": "Taslak kampanya oluştur",
     "deployErrorTitle": "Kampanya yaratılırken bir hata oluştu.",
     "deployErrorDesc": "Lütfen daha sonra tekrar deneyiniz.",
@@ -108,6 +122,9 @@
       "link": "Geçerli bir link giriniz.",
       "idExist": "Girdiğiniz Kampanya ID'si bulunmaktadır. Lütfen farklı bir ID deneyiniz.",
       "idLimit": "Kampanya ID'si en az 5 karakterli olmalıdır."
+    },
+    "campaignUpdate": {
+      "success": "Kampanya güncelleme işleminiz başarıyla tamamlandı."
     },
     "notMainNetwork": "Yeni bir kampanya oluşturmak için Main Ethereum Ağı'nda olmanız gerekmektedir. Lütfen MetaMask eklentisini açarak bulunduğunuz ağı değiştirin."
   },

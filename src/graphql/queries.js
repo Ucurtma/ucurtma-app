@@ -13,6 +13,7 @@ export const GET_CAMPAIGN = gql`
       campaignTarget
       minimumAmount
       endDate
+      isActive
       goals {
         description
       }
@@ -76,25 +77,10 @@ export const GET_CAMPAIGNS = gql`
   }
 `;
 
-export const GET_CAMPAIGNS_WITH_EXTRA_DETAIL = gql`
+export const GET_CAMPAIGNS_WITH_LOWER_DETAIL = gql`
   query campaigns {
     campaigns {
       campaignId
-      ethereumAddress
-      campaignTitle
-      campaignType
-      campaignText
-      campaignTarget
-      minimumAmount
-      endDate
-      goals {
-        description
-      }
-      documents {
-        title
-        link
-        type
-      }
       student {
         school
         name

@@ -9,15 +9,13 @@ import {
   AlertIcon,
   AlertDescription,
   AlertTitle,
-  Button,
   // Alert,
   // AlertIcon,
   // AlertDescription,
 } from '@chakra-ui/core';
-import gql from 'graphql-tag';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
-import { useLocation } from 'react-router-dom';
+import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Card from '../../ui/card';
 import {
@@ -26,35 +24,22 @@ import {
 } from '../../../utils/contract-utils';
 import 'easymde/dist/easymde.min.css';
 import CreateCampaignForm from './campaign-form';
+import useImperativeQuery from '../../../utils/use-imperative-query';
+import { GET_CAMPAIGN } from '../../../graphql/queries';
+import Loader from '../../ui/loader';
+import { CREATE_CAMPAIGN, UPDATE_CAMPAIGN } from '../../../graphql/mutations';
 
 // $campaignTarget: Float
 // $minimumAmount: Int
 // $goals: [CampaignGoalInput]
 // $documents: [CampaignDocumentsInput]
 
-const CREATE_CAMPAIGN = gql`
-  mutation CreateCampaign(
-    $campaignId: String!
-    $campaignTitle: String!
-    $campaignText: String
-    $ethereumAddress: String!
-    $student: Student
-  ) {
-    createCampaign(
-      campaignId: $campaignId
-      campaignTitle: $campaignTitle
-      campaignText: $campaignText
-      ethereumAddress: $ethereumAddress
-      student: $student
-    ) {
-      campaignId
-    }
-  }
-`;
-
 function CreateCampaign({ walletState, isEdit }) {
-  const location = useLocation();
+  const params = useParams();
+  const navigate = useNavigate();
   const [initialValues, setInitialValues] = React.useState(null);
+  const [shouldShowLoader, setShouldShowLoader] = React.useState(false);
+  const getCampaign = useImperativeQuery(GET_CAMPAIGN);
   const [
     createCampaign,
     {
@@ -62,7 +47,9 @@ function CreateCampaign({ walletState, isEdit }) {
       error: createCampaignError,
       loading: createCampaignLoading,
     },
-  ] = useMutation(CREATE_CAMPAIGN, { onError: err => err }); // { loading, error, data }
+  ] = useMutation(isEdit ? UPDATE_CAMPAIGN : CREATE_CAMPAIGN, {
+    onError: err => err,
+  }); // { loading, error, data }
   const toast = useToast();
   const { t } = useTranslation('createCampaign');
   // const isMainNetwork = parseInt(walletState.chainId, 16) === 1;
@@ -73,13 +60,44 @@ function CreateCampaign({ walletState, isEdit }) {
   };
 
   React.useEffect(() => {
-    if (isEdit && location.state?.campaign) {
-      setInitialValues(location.state?.campaign);
+    const showErrorToast = () => {
+      toast({
+        title: t('gettingCampaign.error.title'),
+        description: t('gettingCampaign.error.description', {
+          page: t('Deploy'),
+        }),
+        status: 'error',
+        ...commonToastProps,
+        duration: 5000,
+      });
+    };
+    async function fetchData(campaignId) {
+      setShouldShowLoader(true);
+      const { data, loading, error } = await getCampaign({ campaignId });
+      if (!loading) {
+        setShouldShowLoader(false);
+      } else {
+        showErrorToast();
+      }
+      if (error || !data?.campaign) {
+        showErrorToast();
+        navigate('manager/create-campaign');
+      } else {
+        setInitialValues(data.campaign);
+      }
     }
-    if (!location.state) {
+
+    if (isEdit) {
+      const { campaignId } = params;
+
+      if (campaignId) {
+        fetchData(campaignId);
+      }
+    } else {
       setInitialValues(null);
     }
-  }, [isEdit, location]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEdit]);
 
   const createCampaignCommand = async (values, deployedAddress) => {
     const metamaskToken = localStorage.getItem('signedToken');
@@ -89,9 +107,10 @@ function CreateCampaign({ walletState, isEdit }) {
         campaignId: values.campaignId,
         campaignTitle: values.campaignTitle,
         campaignText: window.editor.value(),
-        campaignTarget: values.campaignTarget,
+        campaignTarget: parseFloat(values.campaignTarget),
         campaignType: values.campaignType,
-        goals: values.goals,
+        goals: values.goals.length > 0 ? values.goals : undefined,
+        documents: values.documents.length > 0 ? values.documents : undefined,
         ethereumAddress: deployedAddress || '',
         student: {
           name: values.student.name,
@@ -195,10 +214,22 @@ function CreateCampaign({ walletState, isEdit }) {
   };
 
   return (
-    <Card paddingType="default">
+    <Card paddingType="default" position="relative">
       <Helmet>
         <title>{`${isEdit ? t('Edit') : t('Deploy')} - Uçurtma Projesi`}</title>
       </Helmet>
+      {shouldShowLoader && (
+        <Loader
+          isFull
+          pos="absolute"
+          left="0"
+          top="0"
+          zIndex={1}
+          bg="gray.600"
+          opacity={0.2}
+          borderRadius="md"
+        />
+      )}
       <Heading mb={4} size="sm" color="gray.600">
         {isEdit ? t('Edit') : t('Deploy')}
       </Heading>
@@ -212,12 +243,44 @@ function CreateCampaign({ walletState, isEdit }) {
           initialValues={initialValues}
           walletState={walletState}
           isEdit={isEdit}
+          activateStatus={
+            createCampaignData?.updateCampaign?.isActive ||
+            initialValues?.isActive
+          }
+          onActivate={campaignId => {
+            createCampaign({
+              variables: {
+                campaignId,
+                isActive: !(
+                  createCampaignData?.updateCampaign?.isActive ||
+                  initialValues?.isActive
+                ),
+              },
+              context: {
+                headers: {
+                  authorization: `Bearer ${localStorage.getItem(
+                    'signedToken'
+                  )}`,
+                },
+              },
+            });
+          }}
           onSubmit={(values, setSubmitting) => {
             setSubmitting(true);
 
-            if (!values.owner) {
+            const saveCampaign = () => {
               createCampaignCommand(values);
               setSubmitting(createCampaignLoading);
+            };
+
+            if (isEdit) {
+              if (values.owner) {
+                deployContract(values, setSubmitting);
+              } else {
+                saveCampaign();
+              }
+            } else if (!values.owner) {
+              saveCampaign();
             } else {
               deployContract(values, setSubmitting);
             }
@@ -228,20 +291,27 @@ function CreateCampaign({ walletState, isEdit }) {
             <AlertIcon />
             <AlertTitle>
               {t(
-                createCampaignData ? 'deploySuccessTitle' : 'deployErrorTitle'
+                // eslint-disable-next-line no-nested-ternary
+                createCampaignData
+                  ? isEdit
+                    ? 'campaignUpdate.success'
+                    : 'deploySuccessTitle'
+                  : 'deployErrorTitle'
               )}
             </AlertTitle>
             {createCampaignData && (
-              <AlertDescription>
+              <AlertDescription ml={2}>
                 Kampanyayı görüntülemek için{' '}
-                <Button
-                  as={Link}
-                  variant="link"
+                <Link
+                  as={RouterLink}
                   color="linkBlue.400"
-                  to={`campaign/${createCampaignData?.createCampaign?.campaignId}`}
+                  to={`/campaign/${
+                    createCampaignData?.createCampaign?.campaignId ||
+                    createCampaignData?.updateCampaign?.campaignId
+                  }`}
                 >
                   buraya tıkla.
-                </Button>
+                </Link>
               </AlertDescription>
             )}
           </Alert>

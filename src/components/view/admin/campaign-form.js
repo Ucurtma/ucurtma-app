@@ -6,12 +6,11 @@ import EasyMDE from 'easymde';
 import {
   Flex,
   Button,
-  RadioGroup,
-  Radio,
   FormLabel,
   Image,
   Box,
   Heading,
+  RadioButtonGroup,
 } from '@chakra-ui/core';
 import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
 import Input from '../../ui/input';
@@ -20,6 +19,7 @@ import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
 import { MainContext } from '../../../context/main-context';
+import CustomRadio from '../../custom-radio';
 
 const markdownPlaceholder = `## Merhaba
 
@@ -52,11 +52,31 @@ const deployContractSchema = (t, campaignExist) => {
       department: Yup.string().required(t('validations.required')),
       profilePhoto: Yup.string().url(t('validations.link')),
     }),
+    goals: Yup.array().of(
+      Yup.object().shape({
+        description: Yup.string().required(t('validations.required')), // these constraints take precedence
+      })
+    ),
+    documents: Yup.array().of(
+      Yup.object().shape({
+        title: Yup.string().required(t('validations.required')), // these constraints take precedence
+        link: Yup.string()
+          .url(t('validations.link'))
+          .required(t('validations.required')), // these constraints take precedence
+      })
+    ),
     tokenAddress: Yup.string().required(t('validations.required')),
   });
 };
 
-function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
+function CreateCampaignForm({
+  onSubmit,
+  loading,
+  initialValues,
+  onActivate,
+  activateStatus,
+  isEdit,
+}) {
   const [campaignExist, setCampaignExist] = React.useState(false);
   const { state: mainState } = useContext(MainContext);
   const [showOwnerWallet, setShowOwnerWallet] = React.useState(true);
@@ -137,8 +157,9 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
           school: initialValues?.student?.school || '',
         },
         campaignTarget: initialValues?.campaignTarget || '',
-        campaignType: initialValues?.campaignType || 'longTerm',
+        campaignType: initialValues?.campaignType || 'LongTerm',
         goals: initialValues?.goals || [],
+        documents: initialValues?.documents || [],
       }}
       validationSchema={() => deployContractSchema(t, campaignExist)}
       onSubmit={(values, { setSubmitting }) => onSubmit(values, setSubmitting)}
@@ -158,7 +179,7 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
             <Input
               label={t('campaignId')}
               placeholder={t('example', { value: 'harry-potter' })}
-              disabled={!isWalletExist}
+              disabled={!isWalletExist || isEdit}
               name="campaignId"
               controlProps={{ mr: 4 }}
               onBlur={async e => {
@@ -221,6 +242,7 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
               placeholder={t('example', { value: '12000' })}
               controlProps={{ mr: 4 }}
               type="number"
+              disabled={!isWalletExist}
               addon={{
                 left: (
                   <Image
@@ -235,20 +257,29 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
             />
             <Box width="full" mb={4}>
               <FormLabel color="gray.600">{t('campaignType.title')}</FormLabel>
-              <RadioGroup
+              <RadioButtonGroup
                 name="campaignType"
-                defaultValue="longTerm"
+                defaultValue="LongTerm"
                 isInline
-                mt="8px"
-                onChange={e => setFieldValue('campaignType', e.target.value)}
+                onChange={value => setFieldValue('campaignType', value)}
               >
-                <Radio value="longTerm" key="long-term" mr={4}>
+                <CustomRadio
+                  value="LongTerm"
+                  key="long-term"
+                  isDisabled={!isWalletExist}
+                  variant="outline"
+                >
                   {t('campaignType.longTerm')}
-                </Radio>
-                <Radio value="shortTerm" key="short-term">
+                </CustomRadio>
+                <CustomRadio
+                  value="ShortTerm"
+                  key="short-term"
+                  isDisabled={!isWalletExist}
+                  variant="outline"
+                >
                   {t('campaignType.shortTerm')}
-                </Radio>
-              </RadioGroup>
+                </CustomRadio>
+              </RadioButtonGroup>
             </Box>
           </Flex>
           <Box width="full" mb={4}>
@@ -279,7 +310,7 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
                           variantColor="red"
                           onClick={() => arrayHelpers.remove(goalIndex)}
                         >
-                          <Box as={Trash2} size="1.2rem" />
+                          <Box as={Trash2} size="16px" />
                         </Button>
                       </Flex>
                     );
@@ -292,95 +323,163 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
                     onClick={() => arrayHelpers.push({ description: '' })}
                     mr={4}
                     width="full"
+                    fontWeight={500}
                     disabled={
-                      values?.goals?.length > 0 &&
-                      !values.goals[values.goals.length - 1].description
+                      (values?.goals?.length > 0 &&
+                        !values.goals[values.goals.length - 1].description) ||
+                      !isWalletExist
                     }
                   >
-                    <Box as={PlusCircle} mr={2} size="18px" />
-                    {t('goals.addNewGoal')}
+                    <Box as={PlusCircle} mr={2} size="16px" />
+                    {t('goals.new')}
                   </Button>
                 </Box>
               )}
             />
           </Box>
-          {/* <Box mb={4}>
-          <FormLabel color="gray.600">{t('tokenAddress')}</FormLabel>
-          <RadioGroup defaultValue="biLira" isInline>
-            <Radio value="biLira" isDisabled key="biLira">
-              BiLira
-            </Radio>
-          </RadioGroup>
-        </Box> */}
-          <Box
-            border="1px solid"
-            borderColor="gray.200"
-            bg="gray.50"
-            borderRadius="4px"
-            p={4}
-            mb={4}
-          >
-            <Flex
-              justifyContent="space-between"
-              alignItems="center"
-              mb={showOwnerWallet ? 4 : 0}
-            >
-              <Heading size="sm" color="gray.600">
-                {t('owner')}
-              </Heading>
-              <Button
-                color={showOwnerWallet ? 'danger' : 'green.400'}
-                size="sm"
-                onClick={() => setShowOwnerWallet(!showOwnerWallet)}
-              >
-                {t(showOwnerWallet ? 'deployLater' : 'showOwnerWallet')}
+          <Box width="full" mb={4}>
+            <FormLabel color="gray.600">{t('documents.title')}</FormLabel>
+            <FieldArray
+              name="documents"
+              render={arrayHelpers => (
                 <Box
-                  ml={2}
-                  as={showOwnerWallet ? ChevronUp : ChevronDown}
-                  size="16px"
-                />
-              </Button>
-            </Flex>
-            {showOwnerWallet && (
-              <>
-                <Input
-                  description={t('aboutOwner')}
-                  disabled={!isWalletExist}
-                  name="owner"
-                />
-                <Flex flexDir={{ base: 'column', md: 'row' }}>
-                  <NumberInput
-                    label={t('numberOfPlannedPayouts')}
-                    name="numberOfPlannedPayouts"
-                    type="number"
-                    controlProps={{ mr: 4 }}
-                    disabled={!isWalletExist || !values.owner}
-                  />
-                  <NumberInput
-                    label={t('withdrawPeriod')}
-                    name="withdrawPeriod"
-                    type="number"
-                    addon={{ right: 'Gün' }}
-                    disabled={!isWalletExist || !values.owner}
-                    controlProps={{ mr: 4 }}
-                  />
-                  <NumberInput
-                    label={t('campaignEndTime')}
-                    name="campaignEndTime"
-                    type="number"
-                    addon={{ right: 'Gün' }}
-                    disabled={!isWalletExist || !values.owner}
-                  />
-                </Flex>
-                <Input
-                  label={t('adminAddress')}
-                  value={mainState.wallet}
-                  disabled
-                  name="adminAddress"
-                />
-              </>
-            )}
+                  border="1px solid"
+                  borderRadius="4px"
+                  borderColor="gray.200"
+                  p={4}
+                >
+                  {values?.documents?.map((document, documentIndex) => {
+                    return (
+                      <Flex key={documentIndex.toString()}>
+                        <Input
+                          label={t('documents.documentTitle')}
+                          placeholder={t('example', {
+                            value: 'LinkedIn Profili',
+                          })}
+                          disabled={!isWalletExist}
+                          name={`documents.${documentIndex}.title`}
+                          controlProps={{ mr: 4 }}
+                        />
+                        <Input
+                          label={t('documents.link')}
+                          placeholder={t('example', {
+                            value: 'https://www.linkedin.com/',
+                          })}
+                          disabled={!isWalletExist}
+                          name={`documents.${documentIndex}.link`}
+                          controlProps={{ mr: 4 }}
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          variantColor="red"
+                          onClick={() => arrayHelpers.remove(documentIndex)}
+                          alignSelf="flex-end"
+                          mb={4}
+                          flexShrink={0}
+                        >
+                          <Box as={Trash2} size="16px" />
+                        </Button>
+                      </Flex>
+                    );
+                  })}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    variantColor="gray"
+                    size="sm"
+                    onClick={() =>
+                      arrayHelpers.push({ title: '', link: '', type: '' })
+                    }
+                    mr={4}
+                    width="full"
+                    fontWeight={500}
+                    disabled={
+                      (values?.documents?.length > 0 &&
+                        !values.documents[values.documents.length - 1].title &&
+                        !values.documents[values.documents.length - 1].link) ||
+                      !isWalletExist
+                    }
+                  >
+                    <Box as={PlusCircle} mr={2} size="16px" />
+                    {t('documents.new')}
+                  </Button>
+                </Box>
+              )}
+            />
           </Box>
+          {!initialValues?.ethereumAddress && (
+            <Box
+              border="1px solid"
+              borderColor="gray.200"
+              bg="gray.50"
+              borderRadius="4px"
+              p={4}
+              mb={4}
+            >
+              <Flex
+                justifyContent="space-between"
+                alignItems="center"
+                mb={showOwnerWallet ? 4 : 0}
+              >
+                <Heading size="sm" color="gray.600">
+                  {t('owner')}
+                </Heading>
+                <Button
+                  color={showOwnerWallet ? 'danger' : 'green.400'}
+                  size="sm"
+                  onClick={() => setShowOwnerWallet(!showOwnerWallet)}
+                >
+                  {t(showOwnerWallet ? 'deployLater' : 'showOwnerWallet')}
+                  <Box
+                    ml={2}
+                    as={showOwnerWallet ? ChevronUp : ChevronDown}
+                    size="16px"
+                  />
+                </Button>
+              </Flex>
+              {showOwnerWallet && (
+                <>
+                  <Input
+                    description={t('aboutOwner')}
+                    disabled={!isWalletExist}
+                    name="owner"
+                  />
+                  <Flex flexDir={{ base: 'column', md: 'row' }}>
+                    <NumberInput
+                      label={t('numberOfPlannedPayouts')}
+                      name="numberOfPlannedPayouts"
+                      type="number"
+                      controlProps={{ mr: 4 }}
+                      disabled={!isWalletExist || !values.owner}
+                    />
+                    <NumberInput
+                      label={t('withdrawPeriod')}
+                      name="withdrawPeriod"
+                      type="number"
+                      addon={{ right: 'Gün' }}
+                      disabled={!isWalletExist || !values.owner}
+                      controlProps={{ mr: 4 }}
+                    />
+                    <NumberInput
+                      label={t('campaignEndTime')}
+                      name="campaignEndTime"
+                      type="number"
+                      addon={{ right: 'Gün' }}
+                      disabled={!isWalletExist || !values.owner}
+                    />
+                  </Flex>
+                  <Input
+                    label={t('adminAddress')}
+                    value={mainState.wallet}
+                    disabled
+                    name="adminAddress"
+                  />
+                </>
+              )}
+            </Box>
+          )}
+
           <Box id="editorjs" mb={4}>
             <FormLabel color="gray.600">{t('campaignDetails')}</FormLabel>
             <Box
@@ -392,6 +491,20 @@ function CreateCampaignForm({ onSubmit, loading, initialValues, isEdit }) {
             />
           </Box>
           <Flex justifyContent="flex-end">
+            {isEdit && (
+              <Button
+                type="button"
+                variant="ghost"
+                variantColor={activateStatus ? 'red' : 'green'}
+                isLoading={loading}
+                disabled={isSubmitting || !isValid}
+                mr={4}
+                onClick={() => onActivate(values.campaignId)}
+                fontWeight={500}
+              >
+                {t(activateStatus ? 'deactivateCampaign' : 'activateCampaign')}
+              </Button>
+            )}
             <Button
               type="submit"
               variant="outline"

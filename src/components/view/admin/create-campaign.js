@@ -103,6 +103,16 @@ function CreateCampaign({ walletState, isEdit }) {
   const createCampaignCommand = async (values, deployedAddress) => {
     const metamaskToken = localStorage.getItem('signedToken');
 
+    const goals = values.goals.map(goal => ({
+      description: goal.description,
+    }));
+
+    const documents = values.documents.map(document => ({
+      link: document.link,
+      title: document.title,
+      type: document.type,
+    }));
+
     createCampaign({
       variables: {
         campaignId: values.campaignId,
@@ -110,9 +120,9 @@ function CreateCampaign({ walletState, isEdit }) {
         campaignText: window.editor.value(),
         campaignTarget: parseFloat(values.campaignTarget),
         campaignType: values.campaignType,
-        goals: values.goals.length > 0 ? values.goals : undefined,
-        documents: values.documents.length > 0 ? values.documents : undefined,
-        ethereumAddress: deployedAddress || '',
+        goals: values.goals.length > 0 ? goals : undefined,
+        documents: values.documents.length > 0 ? documents : undefined,
+        ethereumAddress: deployedAddress || initialValues.ethereumAddress || '',
         student: {
           name: values.student.name,
           school: values.student.school,

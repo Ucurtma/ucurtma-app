@@ -196,7 +196,7 @@ function CreateCampaign({ walletState, isEdit }) {
           toast({
             title: t('deployStartedTitle'),
             description: (
-              <Link href={getEtherscanAddressFor({ hash: result })}>
+              <Link href={getEtherscanAddressFor({ hash: result })} isExternal>
                 {t('deployStartedDesc')}
               </Link>
             ),

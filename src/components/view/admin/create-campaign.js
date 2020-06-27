@@ -176,12 +176,12 @@ function CreateCampaign({ walletState, isEdit }) {
       }
     });
 
-    const now = moment().unix();
+    const today = moment().utc().startOf('day').unix();
 
     deploymentManager.deploy(
       values.numberOfPlannedPayouts,
       parseInt(values.withdrawPeriod, 10) * 60 * 60 * 24,
-      now + parseInt(values.campaignEndTime, 10) * 60 * 60 * 24,
+      today + parseInt(values.campaignEndTime, 10) * 60 * 60 * 24,
       parseInt(values.amountPerPayment, 10) * 10 ** 6 || 0,
       values.owner,
       values.tokenAddress,
@@ -196,7 +196,7 @@ function CreateCampaign({ walletState, isEdit }) {
           toast({
             title: t('deployStartedTitle'),
             description: (
-              <Link href={getEtherscanAddressFor({ hash: result })}>
+              <Link href={getEtherscanAddressFor({ hash: result })} isExternal>
                 {t('deployStartedDesc')}
               </Link>
             ),

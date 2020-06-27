@@ -41,6 +41,7 @@ function CampaignList({
         border="1px solid"
         borderColor="gray.100"
         borderRadius="4px"
+        backgroundColor={campaign?.isActive ? 'white' : 'gray.200'}
         mb={4}
         p={4}
         flexDir={{ base: 'column', lg: 'row' }}

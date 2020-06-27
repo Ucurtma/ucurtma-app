@@ -7,10 +7,18 @@ import {
   FormControl,
   InputRightAddon,
   InputLeftAddon,
+  Box,
 } from '@chakra-ui/core';
 import { useField } from 'formik';
 
-function NumberInput({ label, type, controlProps, addon, ...props }) {
+function NumberInput({
+  label,
+  description,
+  type,
+  controlProps,
+  addon,
+  ...props
+}) {
   const [field, meta] = useField(props);
   const { disabled } = props;
   return (
@@ -24,6 +32,11 @@ function NumberInput({ label, type, controlProps, addon, ...props }) {
         <FormLabel color="gray.600" htmlFor={field.name}>
           {label}
         </FormLabel>
+      )}
+      {description && (
+        <Box color="gray.400" mb={4} fontSize="0.9rem">
+          {description}
+        </Box>
       )}
       <ChakraInput>
         {addon?.left && (

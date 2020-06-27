@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import moment from 'moment';
 import Card from '../../ui/card';
 import {
   getDeploymentManagerContract,
@@ -165,11 +166,13 @@ function CreateCampaign({ walletState, isEdit }) {
       }
     });
 
+    const now = moment().unix();
+
     deploymentManager.deploy(
       values.numberOfPlannedPayouts,
-      parseInt(values.withdrawPeriod, 10) * 60 * 60 * 60 * 24,
-      parseInt(values.campaignEndTime, 10) * 60 * 60 * 60 * 24,
-      0,
+      parseInt(values.withdrawPeriod, 10) * 60 * 60 * 24,
+      now + parseInt(values.campaignEndTime, 10) * 60 * 60 * 24,
+      parseInt(values.amountPerPayment, 10) * 10 ** 6 || 0,
       values.owner,
       values.tokenAddress,
       async (err, result) => {
@@ -267,7 +270,6 @@ function CreateCampaign({ walletState, isEdit }) {
           }}
           onSubmit={(values, setSubmitting) => {
             setSubmitting(true);
-
             const saveCampaign = () => {
               createCampaignCommand(values);
               setSubmitting(createCampaignLoading);

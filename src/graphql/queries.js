@@ -81,6 +81,7 @@ export const GET_CAMPAIGNS_WITH_LOWER_DETAIL = gql`
   query campaigns {
     campaigns {
       campaignId
+      isActive
       student {
         school
         name

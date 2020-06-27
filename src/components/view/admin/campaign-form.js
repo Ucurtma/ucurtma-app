@@ -160,6 +160,7 @@ function CreateCampaignForm({
         campaignType: initialValues?.campaignType || 'LongTerm',
         goals: initialValues?.goals || [],
         documents: initialValues?.documents || [],
+        amountPerPayment: initialValues?.amountPerPayment || 0,
       }}
       validationSchema={() => deployContractSchema(t, campaignExist)}
       onSubmit={(values, { setSubmitting }) => onSubmit(values, setSubmitting)}
@@ -469,6 +470,25 @@ function CreateCampaignForm({
                       disabled={!isWalletExist || !values.owner}
                     />
                   </Flex>
+                  <NumberInput
+                    label={t('amountPerPayment')}
+                    name="amountPerPayment"
+                    placeholder={t('example', { value: '1000' })}
+                    controlProps={{ mr: 4 }}
+                    type="number"
+                    disabled={!isWalletExist || !values.owner}
+                    addon={{
+                      left: (
+                        <Image
+                          maxW="12px"
+                          width="full"
+                          height="full"
+                          src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                          mr={1}
+                        />
+                      ),
+                    }}
+                  />
                   <Input
                     label={t('adminAddress')}
                     value={mainState.wallet}

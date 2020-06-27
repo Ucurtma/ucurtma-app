@@ -69,6 +69,7 @@
     "DeployDescription": "Bu arayüzü kullanarak yeni bir kampanya akıllı kontratı oluşturabilirsiniz. Oluşturulacak kampanya kontratının uygulama yöneticiliği sizin kendi metamask hesabınız olacaktır.",
     "EditDescription": "Bu arayüzü kullanarak geçmişte oluşturduğunuz bir kampanyayı düzenleyebilirsiniz.",
     "numberOfPlannedPayouts": "Toplam ödeme sayısı",
+    "amountPerPayment": "Öğrencinin her çekimde alacağı ücret",
     "withdrawPeriod": "Ödeme sıklığı",
     "example": "Örnek: {{value}}",
     "campaignTarget": "Kampanya hedefi",

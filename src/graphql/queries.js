@@ -67,6 +67,7 @@ export const GET_CAMPAIGNS = gql`
     campaigns {
       campaignId
       campaignTitle
+      isActive
       student {
         name
         school

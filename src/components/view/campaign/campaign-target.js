@@ -39,19 +39,19 @@ function CampaignTarget({ target, current, endDate, type }) {
                 fontSize="1.2rem"
                 fontWeight={700}
                 textAlign={{ base: 'center', md: 'left' }}
-                color="#1E284C"
                 pos="absolute"
                 left="8px"
                 top="0"
                 height={progressHeight}
+                color={formula > 10 ? 'white' : '#1E284C'}
               >
-                %{formula}
+                %{Math.floor(formula)}
               </Flex>
             )}
             <Flex
               align="center"
               fontSize="1.2rem"
-              fontWeight={500}
+              fontWeight={700}
               textAlign={{ base: 'center', md: 'left' }}
               color="#1E284C"
               pos="absolute"

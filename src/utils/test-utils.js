@@ -1,30 +1,23 @@
 import React from 'react';
-import { Global } from '@emotion/core';
 import { render } from '@testing-library/react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { BrowserRouter } from 'react-router-dom';
 import customTheme from '../theme';
+import '../i18n';
 import client from './apollo';
+import '../global.css';
+import { MainContext, mainReducer, mainState } from '../context/main-context';
 
-// eslint-disable-next-line react/prop-types
 const AllTheProviders = ({ children }) => {
+  const [state, dispatch] = React.useReducer(mainReducer, mainState);
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={customTheme}>
         <CSSReset />
-        <Global
-          styles={{
-            html: {
-              fontFamily:
-                'Quicksand, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-              fontSize: '18px',
-            },
-            body: {
-              backgroundColor: '#fff',
-            },
-          }}
-        />
-        {children}
+        <MainContext.Provider value={{ state, dispatch }}>
+          <BrowserRouter>{children}</BrowserRouter>
+        </MainContext.Provider>
       </ThemeProvider>
     </ApolloProvider>
   );

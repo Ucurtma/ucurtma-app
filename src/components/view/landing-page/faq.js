@@ -92,12 +92,8 @@ function Faq() {
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
                   }}
-                  _focus={{
-                    boxShadow: '0',
-                  }}
-                  _hover={{
-                    bg: 'gray.400',
-                  }}
+                  _focus={{ boxShadow: '0' }}
+                  _hover={{ bg: 'gray.400' }}
                 >
                   <Box flex="1" textAlign="left">
                     {t(questions.question)}

@@ -11,6 +11,7 @@ const Campaigns = lazy(() => import('./campaigns/campaigns'));
 
 function Home() {
   const location = useLocation();
+  const pathnameArray = location.pathname.split('/');
   const { t } = useTranslation('titles');
   const isLandingPage = location.pathname === '/';
 
@@ -53,7 +54,20 @@ function Home() {
         <Suspense fallback={<Loader isFull />}>
           <Routes>
             <Route path="campaign/:id" element={<Campaign />} />
+            <Route
+              path="kampanya/:id"
+              element={
+                <Navigate
+                  to={`/campaign/${pathnameArray[pathnameArray.length - 1]}`}
+                  replace
+                />
+              }
+            />
             <Route path="/campaigns" element={<Campaigns />} />
+            <Route
+              path="kampanyalar"
+              element={<Navigate to="/campaigns" replace />}
+            />
             <Route path="/" element={<LandingPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

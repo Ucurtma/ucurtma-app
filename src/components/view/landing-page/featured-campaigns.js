@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Flex, Box, Divider, Grid, Button } from '@chakra-ui/core';
+import { Heading, Flex, Box, Divider, Button } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,9 @@ import FeaturedCampaign from '../../ui/featured-campaign';
 
 function FeaturedCampaigns() {
   const { t } = useTranslation(['howItWorks', 'titles']);
-  const { loading, error, data } = useQuery(GET_CAMPAIGNS);
+  const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
+    variables: { start: 0, end: 4 },
+  });
 
   return (
     <Flex bg="#f6c851" py={16} id="featured-campaigns">
@@ -19,18 +21,14 @@ function FeaturedCampaigns() {
           <Heading size="xl">{t('titles:Campaigns')}</Heading>
           <Divider maxW={24} borderColor="gray.50" marginX="auto" mt={8} />
         </Box>
-        <Grid
-          templateColumns={{
-            base: 'inherit',
-            lg: '50% auto',
-            xl: 'repeat(2, 1fr)',
-          }}
-          width="full"
-          p={{ base: 4, lg: 0 }}
-          gap={{ base: 8, lg: 20 }}
+        <Flex
+          px={{ base: 4, md: 0 }}
+          wrap="wrap"
+          justifyContent="space-between"
+          w="full"
         >
           <FeaturedCampaign data={data} error={error} loading={loading} />
-        </Grid>
+        </Flex>
         <Flex w="full" mt={16} justify="center">
           <Button
             as={Link}

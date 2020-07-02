@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom-fourteen",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .js,.jsx",
     "prettier": "prettier --write ./**/*.js",
@@ -57,9 +57,9 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.1",
-    "@testing-library/user-event": "^10.0.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.3",
+    "@testing-library/user-event": "^12.0.11",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",

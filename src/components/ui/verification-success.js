@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Heading, Text, ButtonGroup, Button } from '@chakra-ui/core';
-import Celebrating from '../illustrations/celebrating';
+import Celebrating from './celebrating';
 
 function VerificationSuccess() {
   return (

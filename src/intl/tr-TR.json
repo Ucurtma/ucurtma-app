@@ -154,5 +154,19 @@
     },
     "addImages": "Harika resimler de ekleyebilirsiniz:",
     "imageCaption": "Gülen mutlu köpekler"
+  },
+  "campaignList": {
+    "title": "Tüm Kampanyalar - Uçurtma Projesi",
+    "filter": {
+      "all": "Tüm kampanyalar",
+      "ShortTerm": "Hedefe yönelik kampanya",
+      "ShortTerm_plural": "Hedefe yönelik kampanyalar",
+      "LongTerm": "Burs kampanyası",
+      "LongTerm_plural": "Burs kampanyaları"
+    },
+    "error": {
+      "title": "Henüz hiç {{term, lowercase}} bulunmamaktadır.",
+      "description": "Tüm kampanyaları görmek için <1>buraya tıklayın.</1>"
+    }
   }
 }

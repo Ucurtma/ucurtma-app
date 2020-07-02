@@ -13,6 +13,11 @@ i18n
     // keySeparator: false, // we do not use keys in form messages.welcome
     interpolation: {
       escapeValue: false, // react already safes from xss
+      // eslint-disable-next-line no-unused-vars
+      format(value, format, lng) {
+        if (format === 'lowercase') return value.toLowerCase();
+        return value;
+      },
     },
   });
 

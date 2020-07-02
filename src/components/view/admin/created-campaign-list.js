@@ -53,18 +53,30 @@ function ContractList() {
           wrapperProps={{ boxShadow: '0' }}
           showId
           customButton={campaign => (
-            <Link to={`/manager/edit-campaign/${campaign?.campaignId}`}>
-              <Button
-                variant="outline"
-                variantColor="red"
-                width="full"
-                mt={4}
-                size="sm"
-              >
-                <Box as={Edit} mr={2} size="16px" />
-                Kampanyayı Düzenle
-              </Button>
-            </Link>
+            <>
+              <Link to={`/manager/edit-campaign/${campaign?.campaignId}`}>
+                <Button
+                  variant="outline"
+                  variantColor="red"
+                  width="full"
+                  mt={4}
+                  size="sm"
+                >
+                  <Box as={Edit} mr={2} size="16px" />
+                  Kampanyayı Düzenle
+                </Button>
+              </Link>
+              {!campaign.isActive && (
+                <Box
+                  color="red.400"
+                  fontSize="0.75rem"
+                  textAlign="center"
+                  mt={1}
+                >
+                  Bu kampanya henüz aktif değil.
+                </Box>
+              )}
+            </>
           )}
         />
       </Box>

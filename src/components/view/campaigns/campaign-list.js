@@ -39,9 +39,9 @@ function CampaignList({
       <PseudoBox
         display="flex"
         border="1px solid"
-        borderColor="gray.100"
+        borderColor={campaign?.isActive ? 'gray.100' : 'red.100'}
         borderRadius="4px"
-        backgroundColor={campaign?.isActive ? 'white' : 'gray.200'}
+        backgroundColor="white"
         mb={4}
         p={4}
         flexDir={{ base: 'column', lg: 'row' }}
@@ -89,6 +89,7 @@ function CampaignList({
               color="linkBlue.400"
               width="full"
               mt={4}
+              size="sm"
             >
               Kampanyaya Git
             </Button>

@@ -63,11 +63,16 @@ export const GET_OAUTH_URL = gql`
 `;
 
 export const GET_CAMPAIGNS = gql`
-  query campaigns {
-    campaigns {
+  query campaigns($start: Int, $end: Int) {
+    campaigns(start: $start, end: $end) {
       campaignId
       campaignTitle
       campaignType
+      campaignTarget
+      supporterCount
+      ethereumAddress
+      totalFunds
+      endDate
       isActive
       student {
         name

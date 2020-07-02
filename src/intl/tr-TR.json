@@ -168,5 +168,13 @@
       "title": "Henüz hiç {{term, lowercase}} bulunmamaktadır.",
       "description": "Tüm kampanyaları görmek için <1>buraya tıklayın.</1>"
     }
+  },
+  "featuredCampaign": {
+    "goToCampaign": "Kampanyayı Destekle",
+    "noFund": "Henüz hiç destek toplanmadı. İlk destek veren olmak için <campaignButton>buraya tıkla</campaignButton>.",
+    "donate": "Bu kampanyaya destek veren <strong>{{count}}</strong> kişi var. Destek verenler arasına katılmak için <campaignButton>buraya tıkla</campaignButton>.",
+    "clickHere": "buraya tıkla.",
+    "target": "Hedef: ",
+    "totalFund": "Toplanan: "
   }
 }

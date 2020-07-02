@@ -66,14 +66,14 @@ function Campaigns() {
             title: t('error.title', { term: t(`filter.${activeButton}`) }),
             desc: (
               <Trans i18nKey="error.description" count={0}>
-                Tüm kampanyaları görmek için{' '}
+                Henüz hiç destek toplanmadı. İlk destek veren olmak için
                 <Button
                   variant="link"
                   onClick={() => changeType('all')}
                   verticalAlign="inherit"
                   variantColor="linkBlue"
                 >
-                  buraya tıklayın.
+                  buraya tıkla.
                 </Button>
               </Trans>
             ),

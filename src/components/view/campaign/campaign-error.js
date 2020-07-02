@@ -9,7 +9,7 @@ import {
 import { AlertCircle } from 'react-feather';
 import Container from '../../ui/container';
 
-function CampaignError() {
+function CampaignError({ message }) {
   return (
     <Flex flexDir="column" justify="space-between" height="full">
       <Container display="block" h="full">
@@ -24,9 +24,12 @@ function CampaignError() {
           p={8}
         >
           <Icon as={AlertCircle} fontSize="4rem" color="gray.300" mb={4} />
-          <AlertTitle mr={2}>Bir sorun oluştu.</AlertTitle>
+          <AlertTitle mr={2}>
+            {message?.title || 'Bir sorun oluştu.'}
+          </AlertTitle>
           <AlertDescription textAlign="center">
-            Sorunu düzeltmek için çalışıyoruz. Lütfen daha sonra tekrar deneyin.
+            {message?.desc ||
+              'Sorunu düzeltmek için çalışıyoruz. Lütfen daha sonra tekrar deneyin.'}
           </AlertDescription>
         </Alert>
       </Container>

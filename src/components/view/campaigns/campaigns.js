@@ -31,7 +31,11 @@ function Campaigns() {
   };
 
   return (
-    <Container flexDir="column" px={{ base: 4, lg: 0 }}>
+    <Container
+      data-testid="campaigns-container"
+      flexDir="column"
+      px={{ base: 4, lg: 0 }}
+    >
       <Helmet>
         <title>{t('title')}</title>
       </Helmet>
@@ -45,6 +49,7 @@ function Campaigns() {
               onClick={() => changeType(term)}
               size="sm"
               fontWeight={500}
+              isActive={term === activeButton}
             >
               {t(`filter.${term}`, { count: 10 })}
             </Button>
@@ -68,9 +73,6 @@ function Campaigns() {
           loading={loading}
         />
       </Flex>
-      {data && (
-        <Pagination totalRecords={30} pageLimit={2} wrapperProps={{ my: 4 }} />
-      )}
       {filteredData && filteredData.campaigns.length < 1 && (
         <CampaignError
           message={{
@@ -90,6 +92,9 @@ function Campaigns() {
             ),
           }}
         />
+      )}
+      {data && !(filteredData && filteredData.campaigns.length) < 1 && (
+        <Pagination totalRecords={30} pageLimit={8} wrapperProps={{ my: 4 }} />
       )}
     </Container>
   );

@@ -123,6 +123,7 @@ function Pagination({
       listStyleType="none"
       justifyContent="center"
       aria-label="Pagination"
+      data-testid="pagination"
       {...wrapperProps}
     >
       {fetchPageNumbers().map((page, index) => {
@@ -130,6 +131,7 @@ function Pagination({
           boxShadow: '0 0 2px rgba(45,55,72,0.2)',
           mr: 2,
           variantColor: currentPage === page ? 'linkBlue' : 'gray',
+          cursor: 'pointer',
         };
 
         if (page === LEFT_PAGE)
@@ -160,6 +162,7 @@ function Pagination({
           <Button
             onClick={e => handleClick(page)(e)}
             key={index.toString()}
+            isActive={currentPage === page}
             {...buttonProps}
           >
             {page}

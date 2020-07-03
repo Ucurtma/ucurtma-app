@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useQuery } from '@apollo/react-hooks';
 import { useTranslation, Trans } from 'react-i18next';
-import { Button, Stack } from '@chakra-ui/core';
+import { Button, Stack, Flex } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import { GET_CAMPAIGNS } from '../../../graphql/queries';
-import CampaignList from './campaign-list';
 import CampaignError from '../campaign/campaign-error';
+import FeaturedCampaign from '../../ui/featured-campaign';
+import Pagination from '../../ui/pagination';
 
 function Campaigns() {
   const [activeButton, setActiveButton] = useState('all');
   const [filteredData, setFilteredData] = useState();
   const { t } = useTranslation('campaignList');
-  const { loading, error, data } = useQuery(GET_CAMPAIGNS);
+  const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
+    variables: { start: 0, end: 8 },
+  });
   const terms = ['all', 'LongTerm', 'ShortTerm'];
 
   const changeType = term => {
@@ -28,14 +31,7 @@ function Campaigns() {
   };
 
   return (
-    <Container
-      maxW={{
-        base: 'full',
-        md: 'containers.md',
-      }}
-      flexDir="column"
-      px={{ base: 4, lg: 0 }}
-    >
+    <Container flexDir="column" px={{ base: 4, lg: 0 }}>
       <Helmet>
         <title>{t('title')}</title>
       </Helmet>
@@ -55,11 +51,26 @@ function Campaigns() {
           ))}
         </Stack>
       )}
-      <CampaignList
+      {/* <CampaignList
         error={error}
         data={filteredData || data}
         loading={loading}
-      />
+      /> */}
+      <Flex
+        px={{ base: 4, md: 0 }}
+        wrap="wrap"
+        justifyContent="space-between"
+        w="full"
+      >
+        <FeaturedCampaign
+          data={filteredData || data}
+          error={error}
+          loading={loading}
+        />
+      </Flex>
+      {data && (
+        <Pagination totalRecords={30} pageLimit={2} wrapperProps={{ my: 4 }} />
+      )}
       {filteredData && filteredData.campaigns.length < 1 && (
         <CampaignError
           message={{

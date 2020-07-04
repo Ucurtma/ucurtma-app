@@ -11,23 +11,23 @@ import Pagination from '../../ui/pagination';
 
 function Campaigns() {
   const [activeButton, setActiveButton] = useState('all');
-  const [filteredData, setFilteredData] = useState();
+  const [shouldResetPagination, setShouldResetPagination] = useState(false);
   const { t } = useTranslation('campaignList');
-  const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
-    variables: { start: 0, end: 8 },
+  const showedCampaignCount = 8;
+  const { loading, error, data, refetch } = useQuery(GET_CAMPAIGNS, {
+    variables: { start: 0, end: showedCampaignCount },
+    fetchPolicy: 'cache-and-network',
   });
   const terms = ['all', 'LongTerm', 'ShortTerm'];
 
   const changeType = term => {
     setActiveButton(term);
-
-    if (data) {
-      const newData = data.campaigns.filter(
-        campaign => campaign.campaignType === term
-      );
-
-      setFilteredData(term === 'all' ? data : { campaigns: newData });
-    }
+    setShouldResetPagination(!shouldResetPagination);
+    refetch({
+      start: 0,
+      end: showedCampaignCount,
+      campaignType: term === 'all' ? undefined : term,
+    });
   };
 
   return (
@@ -50,6 +50,8 @@ function Campaigns() {
               size="sm"
               fontWeight={500}
               isActive={term === activeButton}
+              isDisabled={term === activeButton}
+              _disabled={{ bg: 'linkBlue' }}
             >
               {t(`filter.${term}`, { count: 10 })}
             </Button>
@@ -67,18 +69,14 @@ function Campaigns() {
         justifyContent="space-between"
         w="full"
       >
-        <FeaturedCampaign
-          data={filteredData || data}
-          error={error}
-          loading={loading}
-        />
+        <FeaturedCampaign data={data} error={error} loading={loading} />
       </Flex>
-      {filteredData && filteredData.campaigns.length < 1 && (
+      {activeButton !== 'all' && data.campaigns.count === 0 && (
         <CampaignError
           message={{
             title: t('error.title', { term: t(`filter.${activeButton}`) }),
             desc: (
-              <Trans i18nKey="error.description" count={0}>
+              <Trans i1showedCampaignCountnKey="error.description" count={0}>
                 Henüz hiç destek toplanmadı. İlk destek veren olmak için
                 <Button
                   variant="link"
@@ -93,8 +91,20 @@ function Campaigns() {
           }}
         />
       )}
-      {data && !(filteredData && filteredData.campaigns.length) < 1 && (
-        <Pagination totalRecords={30} pageLimit={8} wrapperProps={{ my: 4 }} />
+      {data && data.campaigns.count > 0 && (
+        <Pagination
+          totalRecords={data.campaigns.count}
+          pageLimit={showedCampaignCount}
+          wrapperProps={{ my: 4 }}
+          shouldResetPagination={shouldResetPagination}
+          onPageChanged={({ currentPage }) => {
+            refetch({
+              start: showedCampaignCount * (currentPage - 1),
+              end: showedCampaignCount,
+              campaignType: activeButton === 'all' ? undefined : activeButton,
+            });
+          }}
+        />
       )}
     </Container>
   );

@@ -24,6 +24,7 @@ function Pagination({
   pageNeighbours = 1, // indicates the number of additional page numbers to show on each side of the current page.
   onPageChanged = f => f, // is a function that will be called with data of the curent pagination state only when the current page changes
   wrapperProps,
+  shouldResetPagination,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const defPageNeighbours =
@@ -32,7 +33,7 @@ function Pagination({
       : 0;
   const totalPages = Math.ceil(totalRecords / pageLimit);
 
-  const goToPage = useCallback(page => {
+  const goToPage = useCallback((page, onMount) => {
     const currentPageMath = Math.max(0, Math.min(page, totalPages));
     const paginationData = {
       currentPage: currentPageMath,
@@ -42,13 +43,21 @@ function Pagination({
     };
 
     setCurrentPage(currentPageMath);
-    onPageChanged(paginationData);
+    if (!onMount) {
+      onPageChanged(paginationData);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    goToPage(1);
+    goToPage(1, true);
   }, [goToPage]);
+
+  useEffect(() => {
+    if (shouldResetPagination) {
+      goToPage(1, true);
+    }
+  }, [goToPage, shouldResetPagination]);
 
   const fetchPageNumbers = () => {
     /**
@@ -163,6 +172,8 @@ function Pagination({
             onClick={e => handleClick(page)(e)}
             key={index.toString()}
             isActive={currentPage === page}
+            isDisabled={currentPage === page}
+            _disabled={{ bg: 'blue' }}
             {...buttonProps}
           >
             {page}

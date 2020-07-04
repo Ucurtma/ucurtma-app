@@ -16,6 +16,7 @@ function CampaignError({ message }) {
       flexDir="column"
       justify="space-between"
       height="full"
+      width="full"
     >
       <Container display="block" h="full">
         <Alert

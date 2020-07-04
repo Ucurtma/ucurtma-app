@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  PseudoBox,
   Flex,
   Avatar,
   Box,
@@ -10,7 +11,6 @@ import {
 } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';
-import Card from '../../ui/card';
 
 function CampaignList({
   error,
@@ -18,15 +18,14 @@ function CampaignList({
   data,
   hideTitle,
   customButton,
+  wrapperProps,
   showId,
 }) {
   if (loading) {
     return (
       <>
-        <Skeleton minH={331} width={294} />
-        <Skeleton minH={331} width={294} />
-        <Skeleton minH={331} width={294} />
-        <Skeleton minH={331} width={294} />
+        <Skeleton h={110} />
+        <Skeleton mt={4} h={110} />
       </>
     );
   }
@@ -35,20 +34,24 @@ function CampaignList({
     return <CampaignError />;
   }
 
-  return data.campaigns.map(campaign => {
+  return data.campaigns.campaigns.map(campaign => {
     return (
-      <Card
-        key={campaign.campaignId}
+      <PseudoBox
         display="flex"
-        px={8}
-        py={4}
-        borderRadius="0.5rem"
-        w="full"
-        maxW={{ base: 'full', sm: '48%', lg: '23%' }}
-        minW="0"
-        flexDir="column"
-        justifyContent="space-between"
+        border="1px solid"
+        borderColor={campaign?.isActive ? 'gray.100' : 'red.100'}
+        borderRadius="4px"
+        backgroundColor="white"
         mb={4}
+        p={4}
+        flexDir={{ base: 'column', lg: 'row' }}
+        justifyContent="space-between"
+        w="full"
+        boxShadow="cardLight"
+        _hover={{ boxShadow: 'cardLightHover' }}
+        transition="0.2s ease all"
+        key={campaign?.campaignId}
+        {...wrapperProps}
       >
         <Flex mx={{ base: 4, lg: 0 }} alignItems="center">
           <Avatar
@@ -92,7 +95,7 @@ function CampaignList({
             </Button>
           )}
         </Box>
-      </Card>
+      </PseudoBox>
     );
   });
 }

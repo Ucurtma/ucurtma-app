@@ -36,7 +36,7 @@ function FeaturedCampaign({ loading, data, error }) {
     return <CampaignError />;
   }
 
-  return data.campaigns.map(campaign => {
+  return data.campaigns.campaigns.map(campaign => {
     const currentFund = parseInt(campaign?.totalFunds, 10);
     const totalPercent = (currentFund * 100) / campaign?.campaignTarget;
 

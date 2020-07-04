@@ -63,22 +63,25 @@ export const GET_OAUTH_URL = gql`
 `;
 
 export const GET_CAMPAIGNS = gql`
-  query campaigns($start: Int, $end: Int) {
-    campaigns(start: $start, end: $end) {
-      campaignId
-      campaignTitle
-      campaignType
-      campaignTarget
-      supporterCount
-      ethereumAddress
-      totalFunds
-      endDate
-      isActive
-      student {
-        name
-        school
-        department
-        profilePhoto
+  query campaigns($start: Int, $end: Int, $campaignType: CampaignTypes) {
+    campaigns(start: $start, end: $end, campaignType: $campaignType) {
+      count
+      campaigns {
+        campaignId
+        campaignTitle
+        campaignType
+        campaignTarget
+        supporterCount
+        ethereumAddress
+        totalFunds
+        endDate
+        isActive
+        student {
+          name
+          school
+          department
+          profilePhoto
+        }
       }
     }
   }
@@ -87,13 +90,15 @@ export const GET_CAMPAIGNS = gql`
 export const GET_CAMPAIGNS_WITH_LOWER_DETAIL = gql`
   query campaigns {
     campaigns {
-      campaignId
-      isActive
-      student {
-        school
-        name
-        department
-        profilePhoto
+      campaigns {
+        campaignId
+        isActive
+        student {
+          school
+          name
+          department
+          profilePhoto
+        }
       }
     }
   }

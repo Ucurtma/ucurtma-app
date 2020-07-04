@@ -24,7 +24,7 @@ function FeaturedCampaign({ loading, data, error }) {
   if (loading) {
     return (
       <>
-        <Skeleton minH={331} width={294} />
+        <Skeleton data-testid="loading-skeleton" minH={331} width={294} />
         <Skeleton minH={331} width={294} />
         <Skeleton minH={331} width={294} />
         <Skeleton minH={331} width={294} />

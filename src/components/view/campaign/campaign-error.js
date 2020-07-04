@@ -11,7 +11,12 @@ import Container from '../../ui/container';
 
 function CampaignError({ message }) {
   return (
-    <Flex flexDir="column" justify="space-between" height="full">
+    <Flex
+      data-testid="campaign-error"
+      flexDir="column"
+      justify="space-between"
+      height="full"
+    >
       <Container display="block" h="full">
         <Alert
           w="full"

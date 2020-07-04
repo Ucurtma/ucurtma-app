@@ -97,6 +97,7 @@ function SplashScreen() {
               <Trans i18nKey="Click here to subscribe">
                 Gelişmelerden haberdar olmak için mail listemize{' '}
                 <Link
+                  data-testid="shortlist"
                   onClick={() => {
                     setContent(<Shortlist />);
                     onOpen();

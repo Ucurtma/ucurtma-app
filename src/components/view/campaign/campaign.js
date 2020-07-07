@@ -77,7 +77,13 @@ function Campaign() {
             )}
           </Box>
           <Divider mt={8} />
-          <CampaignFooter campaignId={id} />
+          {data && data.campaign && (
+            <CampaignFooter
+              campaignId={id}
+              title={data.campaign?.campaignTitle}
+              studentName={data.campaign?.student?.name}
+            />
+          )}
         </Container>
       </Flex>
     </>

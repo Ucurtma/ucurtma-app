@@ -178,6 +178,12 @@
     "totalFund": "Toplanan: "
   },
   "campaignFooter": {
-    "createReport": "Şikayet Oluştur."
+    "createReport": "Şikayet Oluştur",
+    "share": {
+      "title": "Paylaş: ",
+      "facebook": "Facebook'ta paylaş",
+      "twitter": "Twitter'da paylaş",
+      "linkedin": "Linkedin'de paylaş"
+    }
   }
 }

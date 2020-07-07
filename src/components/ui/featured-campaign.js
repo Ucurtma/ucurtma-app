@@ -39,6 +39,13 @@ function FeaturedCampaign({ loading, data, error }) {
   return data.campaigns.campaigns.map(campaign => {
     const currentFund = parseInt(campaign?.totalFunds, 10);
     const totalPercent = (currentFund * 100) / campaign?.campaignTarget;
+    let maxW = { base: 'full', sm: '48%', lg: '23%' };
+
+    if (data.campaigns.campaigns.length === 3) {
+      maxW = { base: 'full', sm: '48%', md: '32%' };
+    } else if (data.campaigns.campaigns.length === 2) {
+      maxW = { base: 'full', sm: '48%' };
+    }
 
     return (
       <Card
@@ -48,7 +55,7 @@ function FeaturedCampaign({ loading, data, error }) {
         py={4}
         borderRadius="0.5rem"
         w="full"
-        maxW={{ base: 'full', sm: '48%', lg: '23%' }}
+        maxW={maxW}
         minW="0"
         flexDir="column"
         justifyContent="space-between"

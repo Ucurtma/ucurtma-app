@@ -176,5 +176,8 @@
     "clickHere": "buraya tıkla.",
     "target": "Hedef: ",
     "totalFund": "Toplanan: "
+  },
+  "campaignFooter": {
+    "createReport": "Şikayet Oluştur."
   }
 }

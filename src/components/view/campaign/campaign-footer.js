@@ -1,11 +1,13 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Flex, Button, Collapse } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 import Loader from '../../ui/loader';
 
 const ReportCampaignForm = lazy(() => import('./report-campaign-form'));
 
 function CampaignFooter({ campaignId }) {
-  const [reportCampaignView, setReportCampaignView] = React.useState(false);
+  const [reportCampaignView, setReportCampaignView] = useState(false);
+  const { t } = useTranslation('campaignFooter');
 
   return (
     <Flex mb={8} flexDir="column" px={{ base: 4, lg: 0 }}>
@@ -15,7 +17,7 @@ function CampaignFooter({ campaignId }) {
         ml="auto"
         onClick={() => setReportCampaignView(!reportCampaignView)}
       >
-        Şikayet Oluştur
+        {t('createReport')}
       </Button>
       <Suspense fallback={<Loader />}>
         <Collapse maxW="600px" ml="auto" isOpen={reportCampaignView}>

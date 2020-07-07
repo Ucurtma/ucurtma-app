@@ -12,6 +12,10 @@
     "Our Team": "Ekibimiz",
     "FAQ": "Sıkça Sorulan Sorular"
   },
+  "menuItems": {
+    "homepage": "Anasayfa",
+    "campaigns": "Kampanyalar"
+  },
   "splashScreen": {
     "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
     "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",

@@ -52,7 +52,7 @@ function SplashScreen() {
         <Flex
           flexDir="column"
           justifyContent={{ base: 'flex-start', md: 'center' }}
-          mt={{ base: '250px', md: 0 }}
+          mt={{ base: '280px', lg: 0 }}
           px={{ base: 4, md: '10px' }}
         >
           <Link as={RouterLink} to="/" display="contents" id="logo">

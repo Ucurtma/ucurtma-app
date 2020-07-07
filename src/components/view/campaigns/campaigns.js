@@ -40,14 +40,21 @@ function Campaigns() {
         <title>{t('title')}</title>
       </Helmet>
       {data && (
-        <Stack isInline spacing={4} mb={4}>
+        <Stack
+          isInline
+          flexDir={{ base: 'column', md: 'row' }}
+          spacing={4}
+          mb={4}
+        >
           {terms.map((term, termIndex) => (
             <Button
               key={termIndex.toString()}
-              variantColor="linkBlue"
-              variant={activeButton === term ? 'solid' : 'link'}
+              variantColor={activeButton === term ? 'linkBlue' : 'gray'}
+              variant="solid"
+              mb={{ base: 2, md: 0 }}
               onClick={() => changeType(term)}
               size="sm"
+              width={{ base: 'full', md: 'auto' }}
               fontWeight={500}
               isActive={term === activeButton}
               isDisabled={term === activeButton}

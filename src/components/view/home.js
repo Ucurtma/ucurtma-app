@@ -12,45 +12,25 @@ const Campaigns = lazy(() => import('./campaigns/campaigns'));
 function Home() {
   const location = useLocation();
   const pathnameArray = location.pathname.split('/');
-  const { t } = useTranslation('titles');
+  const { t } = useTranslation(['titles', 'menuItems']);
   const isLandingPage = location.pathname === '/';
 
-  let menuItems = [
+  const menuItems = [
     {
-      label: 'Anasayfa',
+      label: t('menuItems:homepage'),
       href: '/',
     },
+    {
+      label: t('menuItems:campaigns'),
+      href: '/campaigns',
+      disabled: true,
+    },
   ];
-
-  if (isLandingPage) {
-    menuItems = [
-      {
-        label: t('What is Uçurtma'),
-        href: '#splash-screen',
-      },
-      {
-        label: t('Problem and Solution'),
-        href: '#problem-solution',
-      },
-      {
-        label: t('How it works'),
-        href: '#how-it-works',
-      },
-      {
-        label: t('Campaigns'),
-        href: '#featured-campaigns',
-      },
-      {
-        href: '#faq',
-        label: t('FAQ'),
-      },
-    ];
-  }
 
   return (
     <>
       <main>
-        <Header withLogo={!isLandingPage} menuItems={menuItems} />
+        {!isLandingPage && <Header withLogo menuItems={menuItems} />}
         <Suspense fallback={<Loader isFull />}>
           <Routes>
             <Route path="campaign/:id" element={<Campaign />} />

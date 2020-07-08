@@ -16,6 +16,9 @@
     "homepage": "Anasayfa",
     "campaigns": "Kampanyalar"
   },
+  "topbar": {
+    "donateAll": "🎉🎉 Artık, bütün kampanyalara tek seferde destek olabilirsiniz! Detayları öğrenmek için <redirectLink>buraya tıklayın.</redirectLink>"
+  },
   "splashScreen": {
     "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
     "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",

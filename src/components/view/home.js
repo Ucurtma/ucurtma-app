@@ -9,6 +9,7 @@ import Topbar from '../ui/topbar';
 
 const Campaign = lazy(() => import('./campaign/campaign'));
 const Campaigns = lazy(() => import('./campaigns/campaigns'));
+const DonateAll = lazy(() => import('./donate-all'));
 
 function Home() {
   const location = useLocation();
@@ -35,7 +36,7 @@ function Home() {
         {!isLandingPage && <Header withLogo menuItems={menuItems} />}
         <Suspense fallback={<Loader isFull />}>
           <Routes>
-            <Route path="campaign/donate-all" element={<div>donate all</div>} />
+            <Route path="campaign/donate-all" element={<DonateAll />} />
             <Route path="campaign/:id" element={<Campaign />} />
             <Route
               path="kampanya/:id"

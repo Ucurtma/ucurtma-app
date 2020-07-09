@@ -115,7 +115,7 @@ function ReportCampaignForm({ onSubmit, campaignId }) {
               size="lg"
               mt={2}
               isLoading={loading}
-              fontWeight={500}
+              fontWeight={400}
               disabled={
                 data ||
                 isSubmitting ||

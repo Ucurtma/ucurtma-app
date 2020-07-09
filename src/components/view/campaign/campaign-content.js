@@ -17,15 +17,18 @@ function CampaignContent({ data }) {
         w="full"
         flexShrink="0"
         maxW={{ base: '100%', lg: '65%' }}
-        fontSize="15px"
-        fontWeight={500}
+        fontWeight={400}
       >
         <ReactMarkdown
           renderers={{
             ...ChakraUIRenderer(),
             paragraph: props => {
               const { children } = props;
-              return <Text mb={4}>{children}</Text>;
+              return (
+                <Text textAlign="justify" mb={8} lineHeight="26px">
+                  {children}
+                </Text>
+              );
             },
             link: props => {
               const { children, href } = props;

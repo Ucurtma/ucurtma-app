@@ -55,7 +55,7 @@ function Campaigns() {
               onClick={() => changeType(term)}
               size="sm"
               width={{ base: 'full', md: 'auto' }}
-              fontWeight={500}
+              fontWeight={400}
               isActive={term === activeButton}
               isDisabled={term === activeButton}
               _disabled={{ bg: 'linkBlue' }}

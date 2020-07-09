@@ -25,7 +25,7 @@ function Documents({ documents }) {
               variant="outline"
               mr={3}
               color="blue.400"
-              fontWeight={500}
+              fontWeight={400}
               variantColor="blue"
               flexShrink="0"
               mb={{ base: 2, md: 0 }}

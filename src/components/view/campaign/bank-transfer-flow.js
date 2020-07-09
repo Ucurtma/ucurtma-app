@@ -84,7 +84,7 @@ function BankTransferFlow({ minimumAmount }) {
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
-      campaignId: params.id,
+      campaignId: params['*'] === 'campaign/donate-all' ? '' : params.id,
     },
   });
   const [

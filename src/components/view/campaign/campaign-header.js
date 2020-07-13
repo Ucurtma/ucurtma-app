@@ -147,11 +147,9 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               as={Button}
               variant="solid"
               bg="lime.400"
-              h={16}
+              h={!data.campaign?.isActive ? '90px' : '64px'}
               w="full"
               maxW="416px"
-              justifyContent="space-between"
-              // boxShadow="0 0 2px rgba(124,124,124,0.16)"
               border="1px solid"
               borderColor="lime.500"
               boxShadow="0 0 3px rgba(45,55,72,0.1)"
@@ -160,10 +158,22 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               ml={4}
               disabled={!data.campaign?.isActive}
               _disabled={{ bg: 'gray.400', borderColor: 'gray.500' }}
+              flexDir={!data.campaign?.isActive && 'column'}
+              justifyContent={
+                !data.campaign?.isActive ? 'center' : 'space-between'
+              }
+              whiteSpace={!data.campaign?.isActive ? 'break-spaces' : 'nowrap'}
             >
-              {data.campaign?.isActive
-                ? 'Destek Ol'
-                : 'Bu kampanya sona ermiştir.'}
+              <span>
+                {data.campaign?.isActive
+                  ? 'Destek Ol'
+                  : 'Bu kampanya sona ermiştir.'}
+              </span>
+              {!data.campaign?.isActive && (
+                <Box as="span" fontSize="12px" mt={1}>
+                  Toplanılan paralar bağışçılara geri gönderilmektedir.
+                </Box>
+              )}
               {data.campaign?.isActive && <Icon as={Award} size="28px" />}
             </PseudoBox>
           </>

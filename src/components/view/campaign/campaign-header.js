@@ -158,9 +158,13 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               onClick={() => onClickDonate()}
               _hover={{ bg: 'lime.500' }}
               ml={4}
+              disabled={!data.campaign?.isActive}
+              _disabled={{ bg: 'gray.400', borderColor: 'gray.500' }}
             >
-              Destek Ol
-              <Icon as={Award} size="28px" />
+              {data.campaign?.isActive
+                ? 'Destek Ol'
+                : 'Bu kampanya sona ermiştir.'}
+              {data.campaign?.isActive && <Icon as={Award} size="28px" />}
             </PseudoBox>
           </>
         )}

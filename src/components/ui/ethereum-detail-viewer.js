@@ -12,7 +12,7 @@ function EthereumDetailViewer({ data }) {
             fgColor="#000000"
             level="Q"
             style={{ width: 200, padding: '1rem' }}
-            value={`https://etherscan.io/address/${data}`}
+            value={`${data}`}
           />
         </Box>
         {/* <Image

@@ -6,6 +6,7 @@ export const mainState = {
   wallet: '',
   chainId: '',
   modal: { isOpen: false, overlay: true, closable: true, otherProps: {} },
+  topNav: { show: true },
 };
 
 export const mainReducer = (state, action) => {
@@ -24,6 +25,11 @@ export const mainReducer = (state, action) => {
           ...mainState.modal,
           ...action.payload,
         },
+      };
+    case 'SHOW_TOPNAV':
+      return {
+        ...state,
+        topNav: { show: action.payload },
       };
     default:
       return state;

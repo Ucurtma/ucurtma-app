@@ -1,15 +1,60 @@
 import React from 'react';
+import { Heading, Box, Image, Flex } from '@chakra-ui/core';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Container from '../ui/container';
 import Donate from './campaign/donate';
 
+function DonateAllStep({ step, title, desc, isReverse }) {
+  return (
+    <Flex
+      alignItems="center"
+      flexDirection={{ lg: isReverse ? 'row-reverse' : 'row', base: 'column' }}
+    >
+      <Image src={`${process.env.PUBLIC_URL}/images/donate-all/0${step}.svg`} />
+      <Box mx={{ lg: '52px', md: 0 }} my={{ lg: 0, base: 8 }}>
+        <Heading as="p" size="sm">
+          {`ADIM ${step}`}
+        </Heading>
+        <Heading size="lg" w="full" maxW="160px" my={3}>
+          {title}
+        </Heading>
+        <Box as="p" w="full" maxW="840px" color="gray.500" mb={12}>
+          {desc}
+        </Box>
+      </Box>
+    </Flex>
+  );
+}
+
 function DonateAll() {
+  const location = useLocation();
+  const { t } = useTranslation('donateAll');
+  const steps = [1, 2, 3];
   return (
     <Container flexDir="column" px={{ base: 4, lg: 0 }}>
+      <Heading size="lg" w="full" maxW="480px" my={4}>
+        {t('heading')}
+      </Heading>
+      <Box as="p" w="full" maxW="840px" color="gray.500" mb={12}>
+        {t('definition')}
+      </Box>
+      {steps.map(step => (
+        <DonateAllStep
+          key={step}
+          step={step}
+          title={t(`steps.${step}.title`)}
+          desc={t(`steps.${step}.desc`)}
+          isReverse={step % 2 === 0}
+        />
+      ))}
+      {/* <Box>
+        <Image src={`${process.env.PUBLIC_URL}/images/donate-all/01.svg`} />
+      </Box> */}
       <Donate
-      // minimumAmount={data.campaign?.minimumAmount}
-      // redirectError={location.state?.redirectError}
-      // ethereumAddress={data.campaign?.ethereumAddress}
-      // onBack={() => setContent('markdown')}
+        // minimumAmount={data.campaign?.minimumAmount}
+        redirectError={location.state?.redirectError}
+        ethereumAddress="bagis.ucurtma.eth"
       />
     </Container>
   );

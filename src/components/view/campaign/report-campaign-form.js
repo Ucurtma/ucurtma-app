@@ -111,11 +111,11 @@ function ReportCampaignForm({ onSubmit, campaignId }) {
             <Button
               type="button"
               width="100%"
-              bg="primaryButton"
-              fontWeight="regular"
+              variantColor="lime"
               size="lg"
               mt={2}
               isLoading={loading}
+              fontWeight={400}
               disabled={
                 data ||
                 isSubmitting ||

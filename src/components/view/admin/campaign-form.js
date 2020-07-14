@@ -324,7 +324,7 @@ function CreateCampaignForm({
                     onClick={() => arrayHelpers.push({ description: '' })}
                     mr={4}
                     width="full"
-                    fontWeight={500}
+                    fontWeight={400}
                     disabled={
                       (values?.goals?.length > 0 &&
                         !values.goals[values.goals.length - 1].description) ||
@@ -394,7 +394,7 @@ function CreateCampaignForm({
                     }
                     mr={4}
                     width="full"
-                    fontWeight={500}
+                    fontWeight={400}
                     disabled={
                       (values?.documents?.length > 0 &&
                         !values.documents[values.documents.length - 1].title &&
@@ -520,7 +520,7 @@ function CreateCampaignForm({
                 disabled={isSubmitting || !isValid}
                 mr={4}
                 onClick={() => onActivate(values.campaignId)}
-                fontWeight={500}
+                fontWeight={400}
               >
                 {t(activateStatus ? 'deactivateCampaign' : 'activateCampaign')}
               </Button>

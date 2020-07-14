@@ -77,7 +77,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
                 <Text
                   fontSize="1.5rem"
                   textAlign={{ base: 'center', md: 'left' }}
-                  fontWeight={500}
+                  fontWeight={400}
                 >
                   {data?.campaign?.supporterCount}
                 </Text>
@@ -88,7 +88,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
                 </Heading>
                 <Box
                   fontSize="1.5rem"
-                  fontWeight={500}
+                  fontWeight={400}
                   textAlign={{ base: 'center', md: 'left' }}
                   color="#1E284C"
                 >

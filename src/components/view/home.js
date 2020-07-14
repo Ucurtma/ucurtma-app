@@ -1,58 +1,46 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
 import LandingPage from './landing-page/landing-page';
 import Loader from '../ui/loader';
 import LandingFooter from './landing-page/footer';
+import Topbar from '../ui/topbar';
+import { MainContext } from '../../context/main-context';
 
 const Campaign = lazy(() => import('./campaign/campaign'));
 const Campaigns = lazy(() => import('./campaigns/campaigns'));
+const DonateAll = lazy(() => import('./donate-all'));
 
 function Home() {
   const location = useLocation();
+  const { state } = useContext(MainContext);
   const pathnameArray = location.pathname.split('/');
-  const { t } = useTranslation('titles');
+  const { t } = useTranslation(['titles', 'menuItems', 'topbar']);
   const isLandingPage = location.pathname === '/';
 
-  let menuItems = [
+  const menuItems = [
     {
-      label: 'Anasayfa',
+      label: t('menuItems:homepage'),
       href: '/',
     },
+    {
+      label: t('menuItems:campaigns'),
+      href: '/campaigns',
+      disabled: true,
+    },
   ];
-
-  if (isLandingPage) {
-    menuItems = [
-      {
-        label: t('What is Uçurtma'),
-        href: '#splash-screen',
-      },
-      {
-        label: t('Problem and Solution'),
-        href: '#problem-solution',
-      },
-      {
-        label: t('How it works'),
-        href: '#how-it-works',
-      },
-      {
-        label: t('Campaigns'),
-        href: '#featured-campaigns',
-      },
-      {
-        href: '#faq',
-        label: t('FAQ'),
-      },
-    ];
-  }
 
   return (
     <>
       <main>
-        <Header withLogo={!isLandingPage} menuItems={menuItems} />
+        {state.topNav.show && (
+          <Topbar messageKey="donateAll" redirectLink="/campaign/donate-all" />
+        )}
+        {!isLandingPage && <Header withLogo menuItems={menuItems} />}
         <Suspense fallback={<Loader isFull />}>
           <Routes>
+            <Route path="campaign/donate-all" element={<DonateAll />} />
             <Route path="campaign/:id" element={<Campaign />} />
             <Route
               path="kampanya/:id"

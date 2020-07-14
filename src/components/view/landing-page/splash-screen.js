@@ -30,88 +30,96 @@ function SplashScreen() {
       <Helmet>
         <title>Uçurtma Projesi</title>
       </Helmet>
-      <Box
-        id="splash-screen"
-        position="absolute"
-        top="0"
-        right="0"
-        w={{ base: '100%', lg: '50%' }}
-        h={{ base: '250px', lg: '100%' }}
-        backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
-        backgroundPosition="center center"
-      />
-      <Container
-        height={{ base: 'auto', lg: '100vh' }}
-        m="0 auto"
-        mt={0}
-        overflow="hidden"
-        p={{ md: 4, lg: 0 }}
-      >
-        <Flex
-          flexDir="column"
-          justifyContent={{ base: 'flex-start', md: 'center' }}
-          mt={{ base: '250px', md: 0 }}
-          px={{ base: 4, md: '10px' }}
+      <Box pos="relative">
+        <Box
+          id="splash-screen"
+          position="absolute"
+          top="0"
+          right="0"
+          w={{ base: '100%', lg: '50%' }}
+          h={{ base: '250px', lg: '100%' }}
+          backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
+          backgroundRepeat="no-repeat"
+          backgroundSize="cover"
+          backgroundPosition="center center"
+        />
+
+        <Container
+          height={{ base: 'auto', lg: '100vh' }}
+          m="0 auto"
+          mt={0}
+          overflow="hidden"
+          p={{ md: 4, lg: 0 }}
         >
-          <Link as={RouterLink} to="/" display="contents" id="logo">
-            <Icon name="logo" size="4rem" />
-          </Link>
-          <Box
-            zIndex="2"
-            bg="white"
-            maxW={{ base: '100%', md: '85%', lg: '55%' }}
-            borderRadius="3px"
-            py={{ base: 4, lg: 8 }}
-            px={{ base: 0, md: 8, lg: 12 }}
-            mt={{ base: '1rem' }}
+          <Flex
+            flexDir="column"
+            justifyContent={{ base: 'flex-start', md: 'center' }}
+            mt={{ base: '280px', lg: 0 }}
+            px={{ base: 4, md: '10px' }}
           >
-            <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
-              {t('titles:What is Uçurtma')}
-            </Heading>
-            <Text mt={8} color="gray.500">
-              {t('Purpose of Uçurtma')}
-            </Text>
-            <Text mt={4} color="gray.500">
-              {t('Uçurtma is decentralized')}
-            </Text>
-            <Button
-              variant="solid"
-              mt={8}
-              bg={{ base: 'gray.100', md: 'white' }}
-              h={16}
-              w={{ base: '100%', md: '125%' }}
-              flexShrink="0"
-              justifyContent="space-between"
-              boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-              onClick={() => {
-                setContent(<ApplicationPaused />);
-                onOpen();
-              }}
+            <Link as={RouterLink} to="/" display="contents" id="logo">
+              <Icon name="logo" size="4rem" />
+            </Link>
+            <Box
+              zIndex="2"
+              bg="white"
+              maxW={{ base: '100%', md: '85%', lg: '55%' }}
+              borderRadius="3px"
+              py={{ base: 4, lg: 8 }}
+              px={{ base: 0, md: 8, lg: 12 }}
+              mt={{ base: '1rem' }}
             >
-              {t('Apply as a student')}
-              <Icon as={Navigation} size="28px" mr={2} />
-            </Button>
-            <Text mt={8} color="gray.400">
-              <Trans i18nKey="Click here to subscribe">
-                Gelişmelerden haberdar olmak için mail listemize{' '}
-                <Link
-                  data-testid="shortlist"
-                  onClick={() => {
-                    setContent(<Shortlist />);
-                    onOpen();
-                  }}
-                  color="linkBlue.400"
-                >
-                  buraya tıklayarak
-                </Link>{' '}
-                abone olabilirsiniz
-              </Trans>
-            </Text>
-          </Box>
-        </Flex>
-      </Container>
+              <Heading
+                size="2xl"
+                maxW="380px"
+                lineHeight="1.2"
+                color="gray.600"
+              >
+                {t('titles:What is Uçurtma')}
+              </Heading>
+              <Text mt={8} color="gray.500">
+                {t('Purpose of Uçurtma')}
+              </Text>
+              <Text mt={4} color="gray.500">
+                {t('Uçurtma is decentralized')}
+              </Text>
+              <Button
+                variant="solid"
+                mt={8}
+                bg={{ base: 'gray.100', md: 'white' }}
+                h={16}
+                w={{ base: '100%', md: '125%' }}
+                flexShrink="0"
+                justifyContent="space-between"
+                boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
+                onClick={() => {
+                  setContent(<ApplicationPaused />);
+                  onOpen();
+                }}
+              >
+                {t('Apply as a student')}
+                <Icon as={Navigation} size="28px" mr={2} />
+              </Button>
+              <Text mt={8} color="gray.400">
+                <Trans i18nKey="Click here to subscribe">
+                  Gelişmelerden haberdar olmak için mail listemize{' '}
+                  <Link
+                    data-testid="shortlist"
+                    onClick={() => {
+                      setContent(<Shortlist />);
+                      onOpen();
+                    }}
+                    color="linkBlue.400"
+                  >
+                    buraya tıklayarak
+                  </Link>{' '}
+                  abone olabilirsiniz
+                </Trans>
+              </Text>
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
       <Modal size="md" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>

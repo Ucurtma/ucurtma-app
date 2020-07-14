@@ -82,17 +82,19 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
             Ethereum Cüzdanı
           </CustomRadio>
         </RadioButtonGroup>
-        <Button
-          mt={4}
-          display={{ base: 'none', md: 'block' }}
-          onClick={onBack}
-          bg="red.200"
-          color="white"
-          _hover={{ bg: 'red.400' }}
-        >
-          <Icon as={ArrowLeft} mr={4} />
-          Kampanyaya Dön
-        </Button>
+        {onBack && (
+          <Button
+            mt={4}
+            display={{ base: 'none', md: 'block' }}
+            onClick={onBack}
+            bg="red.200"
+            color="white"
+            _hover={{ bg: 'red.400' }}
+          >
+            <Icon as={ArrowLeft} mr={4} />
+            Kampanyaya Dön
+          </Button>
+        )}
       </Box>
       <Box w="full" height="full" boxShadow="cardLight" padding={4}>
         {errorExist && (
@@ -117,17 +119,19 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           )}
         </Suspense>
       </Box>
-      <Button
-        mt={4}
-        display={{ base: 'block', md: 'none' }}
-        onClick={onBack}
-        bg="red.200"
-        color="white"
-        _hover={{ bg: 'red.400' }}
-      >
-        <Icon as={ArrowLeft} mr={4} />
-        Kampanyaya Dön
-      </Button>
+      {onBack && (
+        <Button
+          mt={4}
+          display={{ base: 'block', md: 'none' }}
+          onClick={onBack}
+          bg="red.200"
+          color="white"
+          _hover={{ bg: 'red.400' }}
+        >
+          <Icon as={ArrowLeft} mr={4} />
+          Kampanyaya Dön
+        </Button>
+      )}
     </Flex>
   );
 }

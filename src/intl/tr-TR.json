@@ -12,6 +12,13 @@
     "Our Team": "Ekibimiz",
     "FAQ": "Sıkça Sorulan Sorular"
   },
+  "menuItems": {
+    "homepage": "Anasayfa",
+    "campaigns": "Kampanyalar"
+  },
+  "topbar": {
+    "donateAll": "🎉🎉 Artık, bütün kampanyalara tek seferde destek olabilirsiniz! Detayları öğrenmek için <redirectLink>buraya tıklayın.</redirectLink>"
+  },
   "splashScreen": {
     "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
     "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
@@ -176,5 +183,32 @@
     "clickHere": "buraya tıkla.",
     "target": "Hedef: ",
     "totalFund": "Toplanan: "
+  },
+  "campaignFooter": {
+    "createReport": "Şikayet Oluştur",
+    "share": {
+      "title": "Paylaş: ",
+      "facebook": "Facebook'ta paylaş",
+      "twitter": "Twitter'da paylaş",
+      "linkedin": "Linkedin'de paylaş"
+    }
+  },
+  "donateAll": {
+    "heading": "Bütün kampanyalara tek seferde destek olabileceğiniz servisimiz hazır!",
+    "definition": "Eğer destek olacağınız öğrenciyi seçmekte zorlanıyorsanız, tüm kampanyalara destek ol seçeneğini kullanabilirsiniz. Bu seçenek sayesinde, göndermiş olduğunuz destek tüm öğrencilere akıllı bir şekilde dağıtılır.",
+    "steps": {
+      "1": {
+        "title": "Ödeme yöntemini seç",
+        "desc": "Banka havalesi ya da Ethereum cüzdanı seçeneklerinden bir tanesini seç. Verilen yönergeleri takip et ve BiLira hesabını oluştur. Karşına çıkan formu doldur ve gönder."
+      },
+      "2": {
+        "title": "Desteğini gönder",
+        "desc": "BiLira coinlerinin oluşturulması ve desteğinin onaylanması için, bilgileri gösterilen hesaba, açıklamasına gösterilen referans yazarak girmiş olduğun miktarı gönder. Merak etme, yanlış bir işlem gerçekleşirse gönderdiğin destek BiLira tarafından onaylanmayacak ve hesabına geri yatacaktır."
+      },
+      "3": {
+        "title": "Mutlu et, mutlu ol.",
+        "desc": "Aslında adımlarımız bu kadardı. Gönderdiğin destek, yazdığımız akıllı kontrat algoritması sayesinde, tüm öğrencilere adaletli ve akıllı bir şekilde dağıtıldı. Teşekkürler!"
+      }
+    }
   }
 }

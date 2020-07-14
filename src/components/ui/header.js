@@ -1,10 +1,7 @@
 import React, { useContext, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'react-feather';
 import {
   Flex,
-  useDisclosure,
-  IconButton,
   Image,
   Button,
   useToast,
@@ -18,7 +15,6 @@ import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
-import MenuDrawer from './menu-drawer';
 
 function Header({
   menuItems,
@@ -27,7 +23,6 @@ function Header({
   isManager = false,
   ...otherProps
 }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [walletLoading, setWalletLoading] = useState(false);
   const { state: walletState, dispatch } = useContext(MainContext);
   const toast = useToast();
@@ -255,31 +250,12 @@ function Header({
           <MenuItems
             alignItems="center"
             mt={4}
-            display={{ base: 'none', lg: 'flex' }}
+            // display={{ base: 'none', lg: 'flex' }}
             items={menuItems}
             {...menuProps}
           />
         )}
       </Flex>
-      {!hideMenu && (
-        <>
-          <IconButton
-            aria-label="Navigation"
-            icon={Menu}
-            display={{ base: 'inline-flex', lg: 'none' }}
-            color="gray.600"
-            position="fixed"
-            top={3}
-            right={3}
-            px={2}
-            bg="white"
-            boxShadow="cardLight"
-            onClick={onOpen}
-            zIndex="9"
-          />
-          <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
-        </>
-      )}
     </Container>
   );
 }

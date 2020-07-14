@@ -44,7 +44,7 @@ function DonateAll() {
       <Donate
         minimumAmount={100}
         redirectError={location.state?.redirectError}
-        ethereumAddress="bagis.ucurtma.eth"
+        ethereumAddress="0x3365CfF5e0970fbB2cF744796901002d9987c0Dc"
       />
       <Divider my={8} />
       <Heading size="xl" w="full" maxW="480px" my={4}>

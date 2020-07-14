@@ -41,6 +41,10 @@ function Home() {
         <Suspense fallback={<Loader isFull />}>
           <Routes>
             <Route path="campaign/donate-all" element={<DonateAll />} />
+            <Route
+              path="kampanya/tum-kampanyalar"
+              element={<Navigate to="/campaign/donate-all" replace />}
+            />
             <Route path="campaign/:id" element={<Campaign />} />
             <Route
               path="kampanya/:id"

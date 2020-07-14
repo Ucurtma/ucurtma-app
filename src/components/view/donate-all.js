@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Heading, Box, Image, Flex } from '@chakra-ui/core';
+import { Heading, Box, Image, Flex, Divider } from '@chakra-ui/core';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Container from '../ui/container';
@@ -41,6 +41,15 @@ function DonateAll() {
 
   return (
     <Container flexDir="column" px={{ base: 4, lg: 0 }}>
+      <Donate
+        minimumAmount={100}
+        redirectError={location.state?.redirectError}
+        ethereumAddress="bagis.ucurtma.eth"
+      />
+      <Divider my={8} />
+      <Heading size="xl" w="full" maxW="480px" my={4}>
+        Nasıl Çalışır?
+      </Heading>
       <Heading size="lg" w="full" maxW="480px" my={4}>
         {t('heading')}
       </Heading>
@@ -56,14 +65,6 @@ function DonateAll() {
           isReverse={step % 2 === 0}
         />
       ))}
-      {/* <Box>
-        <Image src={`${process.env.PUBLIC_URL}/images/donate-all/01.svg`} />
-      </Box> */}
-      <Donate
-        // minimumAmount={data.campaign?.minimumAmount}
-        redirectError={location.state?.redirectError}
-        ethereumAddress="bagis.ucurtma.eth"
-      />
     </Container>
   );
 }

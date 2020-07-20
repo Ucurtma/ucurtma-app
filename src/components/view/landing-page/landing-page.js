@@ -5,7 +5,7 @@ import { Menu } from 'react-feather';
 import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
 import HowItWorks from './how-it-works';
-import FeaturedCampaigns from './featured-campaigns';
+// import FeaturedCampaigns from './featured-campaigns';
 import Faq from './faq';
 import MenuItems from '../../ui/menu-items';
 import MenuDrawer from '../../ui/menu-drawer';
@@ -73,7 +73,7 @@ function LandingPage() {
       <SplashScreen />
       <ProblemSolution />
       <HowItWorks />
-      <FeaturedCampaigns />
+      {/* <FeaturedCampaigns /> */}
       {/* <OurTeam /> */}
       <Faq />
     </>

@@ -4516,6 +4516,13 @@ dom-walk@^0.1.0:
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.2.tgz#0c548bef048f4d1f2a97249002236060daa3fd84"
   integrity sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==
 
+dom7@^3.0.0-alpha.7:
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-3.0.0-alpha.7.tgz#3b4ba156a83fa37fb3fa34b8ab40a1a41a56feb1"
+  integrity sha512-3epkQPsKsbk2Dixqqgm2DT/KzhiAPByjDK7emu6owwFLbM5UoiqWKgdsH+6PpMEgoeR6Ex/bW1UbOe0FWZU0zg==
+  dependencies:
+    ssr-window "^3.0.0-alpha.1"
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -11474,6 +11481,11 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
+ssr-window@^3.0.0-alpha.1, ssr-window@^3.0.0-alpha.4:
+  version "3.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-3.0.0-alpha.4.tgz#0c69a18c4305ecccdd8e11596155ca07b635f345"
+  integrity sha512-+dBRP/pZ+VyITxTzD0lMDzDwN/BmfUl8xi2e6t5Nz4+FqUphfcBLB1OOUSYCRNFB25rD3c8AJRYpY5rHTbL+kg==
+
 ssri@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
@@ -11870,6 +11882,14 @@ swarm-js@^0.1.40:
     setimmediate "^1.0.5"
     tar "^4.0.2"
     xhr-request "^1.0.1"
+
+swiper@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.0.4.tgz#d3889383369e780e8d905e6aaf78a43dc3690176"
+  integrity sha512-D+DBxgg81+uocgsvhmdzrpr4GHzhAt2yImArqzunrC80y7+/yCEAq/EJw1VASD+CBFNacF4F8FEIqJMLyDFM0g==
+  dependencies:
+    dom7 "^3.0.0-alpha.7"
+    ssr-window "^3.0.0-alpha.4"
 
 symbol-observable@^1.0.2:
   version "1.2.0"

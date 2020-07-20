@@ -31,7 +31,7 @@ function LandingPage() {
     },
     {
       label: t('Campaigns'),
-      href: '#featured-campaigns',
+      href: '/campaigns',
     },
     {
       href: '#faq',

@@ -1,34 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigation } from 'react-feather';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
-import {
-  Flex,
-  Link,
-  Icon,
-  Box,
-  Heading,
-  Text,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  useDisclosure,
-} from '@chakra-ui/core';
+import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
 
 import { useQuery } from '@apollo/react-hooks';
-import Application from './application';
-import Shortlist from './shortlist';
 import { GET_CAMPAIGNS } from '../../../graphql/queries';
 import FeaturedCampaign from '../../ui/featured-campaign';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
     variables: { start: 0, end: 8 },
   });
-  const [content, setContent] = useState(<Application />);
 
   return (
     <>
@@ -83,20 +67,18 @@ function SplashScreen() {
               {t('showAllCampaigns')}
               <Icon as={Navigation} size="28px" mr={2} />
             </Button>
-            <Text mt={8} color="gray.600">
-              <Trans i18nKey="Click here to subscribe">
-                Gelişmelerden haberdar olmak için mail listemize{' '}
+            <Text mt={8} color="gray.400">
+              <Trans i18nKey="clickHereToDonateAllCampaigns">
+                Artık tüm kampanyalara tek seferde destek olabilirsiniz.
+                Detayları öğrenmek ve destek olmak için{' '}
                 <Link
+                  as={RouterLink}
+                  to="/campaign/donate-all"
                   data-testid="shortlist"
-                  onClick={() => {
-                    setContent(<Shortlist />);
-                    onOpen();
-                  }}
                   color="linkBlue.400"
                 >
-                  buraya tıklayarak
-                </Link>{' '}
-                abone olabilirsiniz
+                  buraya tıklayın.
+                </Link>
               </Trans>
             </Text>
           </Box>
@@ -118,13 +100,6 @@ function SplashScreen() {
           <FeaturedCampaign data={data} error={error} loading={loading} />
         </Flex>
       </Flex>
-
-      <Modal size="md" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent>
-          <Flex flexDir="column">{content}</Flex>
-        </ModalContent>
-      </Modal>
     </>
   );
 }

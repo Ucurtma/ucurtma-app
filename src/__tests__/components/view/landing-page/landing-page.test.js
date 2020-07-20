@@ -9,13 +9,11 @@ describe('Landing Page tests', () => {
     const splashScreen = container.querySelector('#splash-screen');
     const problemAndSolution = container.querySelector('#problem-solution');
     const howItWorks = container.querySelector('#how-it-works');
-    const featuredCampaigns = container.querySelector('#featured-campaigns');
     const faq = container.querySelector('#faq');
 
     expect(splashScreen).toBeInTheDocument();
     expect(problemAndSolution).toBeInTheDocument();
     expect(howItWorks).toBeInTheDocument();
-    expect(featuredCampaigns).toBeInTheDocument();
     expect(faq).toBeInTheDocument();
   });
 });

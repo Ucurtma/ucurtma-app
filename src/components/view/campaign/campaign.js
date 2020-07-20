@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useContext, useLayoutEffect } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactGA from 'react-ga';
 import Skeleton from 'react-loading-skeleton';
@@ -11,7 +11,6 @@ import CampaignHeader from './campaign-header';
 import CampaignFooter from './campaign-footer';
 import CampaignContent from './campaign-content';
 import { GET_CAMPAIGN } from '../../../graphql/queries';
-import { MainContext } from '../../../context/main-context';
 
 const Donate = lazy(() => import('./donate'));
 const CampaignError = lazy(() => import('./campaign-error'));
@@ -19,7 +18,6 @@ const CampaignError = lazy(() => import('./campaign-error'));
 function Campaign() {
   const location = useLocation();
   const { id } = useParams();
-  const { dispatch } = useContext(MainContext);
   const [content, setContent] = React.useState(
     location.state?.redirected ? 'donate' : 'markdown'
   );
@@ -27,11 +25,6 @@ function Campaign() {
   const { loading, error, data } = useQuery(GET_CAMPAIGN, {
     variables: { campaignId: id },
   });
-
-  useLayoutEffect(() => {
-    dispatch({ type: 'SHOW_TOPNAV', payload: false });
-    return () => dispatch({ type: 'SHOW_TOPNAV', payload: true });
-  }, [dispatch]);
 
   if (error || (data && data.campaign === null)) return <CampaignError />;
 

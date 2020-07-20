@@ -1,131 +1,105 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigation } from 'react-feather';
 import { Link as RouterLink } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import { useTranslation, Trans } from 'react-i18next';
-import {
-  Flex,
-  Link,
-  Icon,
-  Box,
-  Heading,
-  Text,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  useDisclosure,
-} from '@chakra-ui/core';
-import Container from '../../ui/container';
-import Application from './application';
-import ApplicationPaused from './application-paused';
-import Shortlist from './shortlist';
+import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
+
+import { useQuery } from '@apollo/react-hooks';
+import { GET_CAMPAIGNS } from '../../../graphql/queries';
+import FeaturedCampaign from '../../ui/featured-campaign';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [content, setContent] = useState(<Application />);
+  const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
+    variables: { start: 0, end: 8 },
+  });
+
   return (
     <>
-      <Helmet>
-        <title>Uçurtma Projesi</title>
-      </Helmet>
-      <Box pos="relative">
-        <Box
+      <Flex
+        h={{ base: 'auto', lg: '100vh' }}
+        w="full"
+        flexDir={{ base: 'column', lg: 'row' }}
+      >
+        <Flex alignItems="flex-end" flexDir="column" justifyContent="center">
+          <Box
+            bg="white"
+            maxW={{ base: 'full', lg: '90%', xxl: '65%' }}
+            px={{ base: 4, lg: 12 }}
+            pb={{ base: 8, lg: 0 }}
+            mt={{ base: '1rem' }}
+          >
+            <Link
+              as={RouterLink}
+              to="/"
+              display="inline-block"
+              id="logo"
+              pos="relative"
+              left={{ base: 0, lg: '-60px' }}
+              top={{ base: 0, lg: '-60px' }}
+              mb={{ base: 8, lg: 0 }}
+            >
+              <Icon name="logo" size="4rem" />
+            </Link>
+            <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
+              {t('titles:What is Uçurtma')}
+            </Heading>
+            <Text mt={8} color="gray.600">
+              {t('Purpose of Uçurtma')}
+            </Text>
+            <Text mt={4} color="gray.600">
+              {t('Uçurtma is decentralized')}
+            </Text>
+            <Button
+              as={RouterLink}
+              to="/campaigns"
+              variant="solid"
+              mt={8}
+              bg="#fbde38"
+              color="gray.900"
+              h={16}
+              w="full"
+              flexShrink="0"
+              justifyContent="space-between"
+              boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
+              _hover={{ bg: 'yellow.400' }}
+            >
+              {t('showAllCampaigns')}
+              <Icon as={Navigation} size="28px" mr={2} />
+            </Button>
+            <Text mt={8} color="gray.400">
+              <Trans i18nKey="clickHereToDonateAllCampaigns">
+                Artık tüm kampanyalara tek seferde destek olabilirsiniz.
+                Detayları öğrenmek ve destek olmak için{' '}
+                <Link
+                  as={RouterLink}
+                  to="/campaign/donate-all"
+                  data-testid="shortlist"
+                  color="linkBlue.400"
+                >
+                  buraya tıklayın.
+                </Link>
+              </Trans>
+            </Text>
+          </Box>
+        </Flex>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
           id="splash-screen"
-          position="absolute"
-          top="0"
-          right="0"
-          w={{ base: '100%', lg: '50%' }}
-          h={{ base: '250px', lg: '100%' }}
+          maxW={{ base: '100%', lg: '50%' }}
+          minH="640px"
+          w="full"
+          h="full"
           backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           backgroundPosition="center center"
-        />
-
-        <Container
-          height={{ base: 'auto', lg: '100vh' }}
-          m="0 auto"
-          mt={0}
-          overflow="hidden"
-          p={{ md: 4, lg: 0 }}
+          px={4}
         >
-          <Flex
-            flexDir="column"
-            justifyContent={{ base: 'flex-start', md: 'center' }}
-            mt={{ base: '280px', lg: 0 }}
-            px={{ base: 4, md: '10px' }}
-          >
-            <Link as={RouterLink} to="/" display="contents" id="logo">
-              <Icon name="logo" size="4rem" />
-            </Link>
-            <Box
-              zIndex="2"
-              bg="white"
-              maxW={{ base: '100%', md: '85%', lg: '55%' }}
-              borderRadius="3px"
-              py={{ base: 4, lg: 8 }}
-              px={{ base: 0, md: 8, lg: 12 }}
-              mt={{ base: '1rem' }}
-            >
-              <Heading
-                size="2xl"
-                maxW="380px"
-                lineHeight="1.2"
-                color="gray.600"
-              >
-                {t('titles:What is Uçurtma')}
-              </Heading>
-              <Text mt={8} color="gray.500">
-                {t('Purpose of Uçurtma')}
-              </Text>
-              <Text mt={4} color="gray.500">
-                {t('Uçurtma is decentralized')}
-              </Text>
-              <Button
-                variant="solid"
-                mt={8}
-                bg={{ base: 'gray.100', md: 'white' }}
-                h={16}
-                w={{ base: '100%', md: '125%' }}
-                flexShrink="0"
-                justifyContent="space-between"
-                boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-                onClick={() => {
-                  setContent(<ApplicationPaused />);
-                  onOpen();
-                }}
-              >
-                {t('Apply as a student')}
-                <Icon as={Navigation} size="28px" mr={2} />
-              </Button>
-              <Text mt={8} color="gray.400">
-                <Trans i18nKey="Click here to subscribe">
-                  Gelişmelerden haberdar olmak için mail listemize{' '}
-                  <Link
-                    data-testid="shortlist"
-                    onClick={() => {
-                      setContent(<Shortlist />);
-                      onOpen();
-                    }}
-                    color="linkBlue.400"
-                  >
-                    buraya tıklayarak
-                  </Link>{' '}
-                  abone olabilirsiniz
-                </Trans>
-              </Text>
-            </Box>
-          </Flex>
-        </Container>
-      </Box>
-      <Modal size="md" borderRadius="4px" onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent>
-          <Flex flexDir="column">{content}</Flex>
-        </ModalContent>
-      </Modal>
+          <FeaturedCampaign data={data} error={error} loading={loading} />
+        </Flex>
+      </Flex>
     </>
   );
 }

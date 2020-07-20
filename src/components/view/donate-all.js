@@ -1,10 +1,9 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { Heading, Box, Image, Flex, Divider } from '@chakra-ui/core';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Container from '../ui/container';
 import Donate from './campaign/donate';
-import { MainContext } from '../../context/main-context';
 
 function DonateAllStep({ step, title, desc, isReverse }) {
   return (
@@ -30,14 +29,8 @@ function DonateAllStep({ step, title, desc, isReverse }) {
 
 function DonateAll() {
   const location = useLocation();
-  const { dispatch } = useContext(MainContext);
   const { t } = useTranslation('donateAll');
   const steps = [1, 2, 3];
-
-  useEffect(() => {
-    dispatch({ type: 'SHOW_TOPNAV', payload: false });
-    return () => dispatch({ type: 'SHOW_TOPNAV', payload: true });
-  }, [dispatch]);
 
   return (
     <Container flexDir="column" px={{ base: 4, lg: 0 }}>

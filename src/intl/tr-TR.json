@@ -23,7 +23,8 @@
     "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
     "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
     "Apply as a student": "Öğrenci Olarak Başvuru Yap",
-    "Click here to subscribe": "Gelişmelerden haberdar olmak için mail listemize <2>buraya tıklayarak</2> abone olabilirsiniz."
+    "clickHereToDonateAllCampaigns": "Artık tüm kampanyalara tek seferde destek olabilirsiniz. Detayları öğrenmek ve destek olmak için <2>buraya tıklayın</2>.",
+    "showAllCampaigns": "Tüm kampanyaları görüntüle"
   },
   "problemAndSolution": {
     "New solution with blockchain": "Blokzinciri ile yeni nesil bir çözüm",
@@ -177,7 +178,7 @@
     }
   },
   "featuredCampaign": {
-    "goToCampaign": "Kampanyayı Destekle",
+    "goToCampaign": "Kampanyayı Görüntüle",
     "noFund": "Henüz hiç destek toplanmadı. İlk destek veren olmak için <campaignButton>buraya tıkla</campaignButton>.",
     "donate": "Bu kampanyaya destek veren <strong>{{count}}</strong> kişi var. Destek verenler arasına katılmak için <campaignButton>buraya tıkla</campaignButton>.",
     "clickHere": "buraya tıkla.",

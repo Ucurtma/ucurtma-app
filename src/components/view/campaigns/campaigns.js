@@ -6,8 +6,8 @@ import { Button, Stack, Flex } from '@chakra-ui/core';
 import Container from '../../ui/container';
 import { GET_CAMPAIGNS } from '../../../graphql/queries';
 import CampaignError from '../campaign/campaign-error';
-import FeaturedCampaign from '../../ui/featured-campaign';
 import Pagination from '../../ui/pagination';
+import CampaignCardList from './campaign-card-list';
 
 function Campaigns() {
   const [activeButton, setActiveButton] = useState('all');
@@ -76,7 +76,7 @@ function Campaigns() {
         justifyContent="space-between"
         w="full"
       >
-        <FeaturedCampaign data={data} error={error} loading={loading} />
+        <CampaignCardList data={data} error={error} loading={loading} />
       </Flex>
       {activeButton !== 'all' && data.campaigns.count === 0 && (
         <CampaignError

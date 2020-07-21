@@ -36,7 +36,7 @@ function ProblemSolution() {
               <Flex flexDir={{ base: 'column', lg: 'row' }}>
                 <Box
                   width={{ base: '100%', lg: '50%' }}
-                  pr={{ base: 4, md: 0 }}
+                  pr={{ base: 4, md: 6 }}
                 >
                   <Flex alignItems="center" my={4}>
                     <Icon size="36px" as={Shield} mr={4} />

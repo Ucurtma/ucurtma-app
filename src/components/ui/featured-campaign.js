@@ -84,6 +84,7 @@ function FeaturedCampaign({ loading, data, error }) {
             key={campaign.campaignId}
             style={{
               transform: campaignIndex !== activeCard && `scale(0.85)`,
+              transition: '0.2s ease all',
             }}
           >
             <Card

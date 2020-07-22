@@ -59,7 +59,65 @@
   "faq": {
     "I am student": "Öğrenciyim",
     "I am supporter": "Destekçiyim",
-    "What is": "Nedir?"
+    "What is": "Nedir?",
+    "questions": {
+      "whatWillProvide": {
+        "question": "Uçurtma bana ne sağlayacak?",
+        "answer": "Uçurtma desteğe ihtiyacı olan öğrencilerin masraflarını karşılayabilmeleri için destek toplayabildikleri bir platformdur. Platformu kullanarak güvenli bir şekilde destek toplayabilir, uzun vadede destek ihtiyacınızı karşılayabilirsiniz."
+      },
+      "whatWillProvideDonator": {
+        "question": "Uçurtma bana ne sağlayacak?",
+        "answer": "Uçurtma, destek vereceğin öğrencileri keşfetmene, desteğini; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
+      },
+      "howApply": {
+        "question": "Nasıl başvuru yapmalıyım?",
+        "answer": "Fotoğrafın, kişisel bilgilerin ve e-devletten ulaşabileceğin öğrenci belgesiyle birlikte ön başvuruda bulunabilirsin. Böylece biz bu bilgilerin doğruluğunu onaylayabilir ve sonrasında birlikte destek toplayabileceğin kampanya sayfasını oluşturabiliriz."
+      },
+      "howEvaluate": {
+        "question": "Başvurum nasıl değerlendirilecek?",
+        "answer": "Uçurtma olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya oluşturmasına izin verilecektir."
+      },
+      "gettingSupport": {
+        "question": "Desteği nasıl alacağım?",
+        "answer": "Destek ödemelerin her 28 günde bir BiLira cüzdanınıza transfer edilir. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
+      },
+      "gettingPayment": {
+        "question": "Ödemeler nasıl gerçekleşecek?",
+        "answer": "Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
+      },
+      "needCampaignPage": {
+        "question": "Destek alabilmek icin kampanya sayfasına ihtiyacım var mı?",
+        "answer": "Evet, destek alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın herkese değil sadece senin istediğin kişilerle paylaşılması ve onların Uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+      },
+      "supportDuration": {
+        "question": "Desteği eğitimim bitene kadar almaya devam edecek miyim?",
+        "answer": "Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece destek almaya devam edeceksin. Topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
+      },
+      "whoIsAdmin": {
+        "question": "Destek hesabım kimin yönetiminde olacak?",
+        "answer": "Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Destek hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
+      },
+      "paymentMethods": {
+        "question": "Yardımları hangi ödeme yöntemleriyle yapabilirim?",
+        "answer": "Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
+      },
+      "maxAndMin": {
+        "question": "Maksimum ve minimum yardım tutarları nedir?",
+        "answer": "Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
+      },
+      "canIReport": {
+        "question": "Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
+        "answer": "Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
+      },
+      "sameTimeMulti": {
+        "question": "Aynı anda birden fazla öğrenciye destek olabilir miyim?",
+        "answer": "Aynı anda toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
+      },
+      "anonimity": {
+        "question": "Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
+        "answer": "Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
+      }
+    }
   },
   "footer": {
     "Join to Community": "Topluluğa Katıl"
@@ -211,5 +269,70 @@
         "desc": "Aslında adımlarımız bu kadardı. Gönderdiğin destek, yazdığımız akıllı kontrat algoritması sayesinde, tüm öğrencilere adaletli ve akıllı bir şekilde dağıtıldı. Teşekkürler!"
       }
     }
+  },
+  "campaignHeader": {
+    "supporterCount": "Destekçi Sayısı",
+    "totalFund": "Toplam Destek",
+    "noSupporterFound": "Bu kampanyaya hiç destek gelmemiş. İlk destek veren kişi olmak <redirectLink>ister misin?</redirectLink>",
+    "support": "Destek Ol",
+    "campaignEnded": "Bu kampanya sona ermiştir.",
+    "moneySendingBack": "Toplanılan paralar bağışçılara geri gönderilmektedir."
+  },
+  "campaignTarget": {
+    "campaignTarget": "Kampanya Hedefi",
+    "endDate": "Bitiş Tarihi",
+    "firstDate": "Öğrencinin Ödeme Alacağı İlk Tarih"
+  },
+  "donate": {
+    "options": {
+      "bank": "Banka Havalesi",
+      "ethWallet": "Ethereum Cüzdanı"
+    },
+    "backToCampaign": "Kampanyaya Dön",
+    "biLiraError": "BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra tekrar deneyiniz."
+  },
+  "loginWithBiLira": {
+    "workingWithBiLira": "Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize ulaştırabilmek için <linkComp>BiLira</linkComp> ile çalışıyoruz.",
+    "redirectButton": "Aşağıdaki butonu kullanarak hızlıca hesap oluşturabilir, varolan hesabınızla transferi yapacağınız banka hesabına kolayca ulaşabilirsiniz.",
+    "loginWithBiLira": "BiLira ile giriş yap."
+  },
+  "ethereumFlow": {
+    "onlyBiLira": "Bu kampanya sadece BiLira tokenı kabul etmektedir. Bu kontrata göndereceğiniz diğer tokenlar geri döndürülemez biçimde kaybetmenize neden olacaktır.",
+    "ethereumAddress": "Ethereum Adresi:"
+  },
+  "bankTransferFlow": {
+    "selectBank": "Lütfen desteğinizi göndermek istediğiniz bankayı seçiniz.",
+    "aboutBanks": "Listelenen banka hesapları, <strong>BiLira</strong> tarafından sağlanan ödeme kanallarıdır. Bu banka hesaplarından birinde hesabınız olmasa dahi <strong>EFT</strong> ile gönderme seçeneğiniz bulunmaktadır.",
+    "error": "Bir hata oluştu.",
+    "inputs": {
+      "email": {
+        "label": "E-Posta Adresi",
+        "placeholder": "Email adresinizi giriniz"
+      },
+      "amount": {
+        "label": "Destek Miktarı",
+        "placeholder": "Destek miktarını giriniz"
+      },
+      "submit": "Gönder"
+    },
+    "validation": {
+      "required": "Bu alan zorunludur.",
+      "email": "Geçerli bir email adresi girmelisiniz.",
+      "limit": "Girdiğiniz değer {{limit}} değerinden küçük olamaz.",
+      "maxLimit": "Girdiğiniz değer {{limit}} değerinden büyük olamaz.",
+      "notNumber": "Geçerli bir rakam giriniz.",
+      "consent": "Şartları onaylamanız gerekmektedir."
+    },
+    "result": {
+      "recipient": "Alıcı İsmi",
+      "bankName": "Banka Adı",
+      "iban": "IBAN Numarası",
+      "ref": "Referans Kodu"
+    },
+    "thanks": "Gönderdiğiniz destek için teşekkürler. Desteğinizin onaylanması için seçtiğiniz bankadan, aşağıda bilgileri verilen hesaba açıklamasına {{value}} yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir."
+  },
+  "agreements": {
+    "kvkk": "Kişisel verileri koruma kapsamında <clarification>aydınlatma metnini</clarification> ve <directConsent>açık rıza beyan formunu</directConsent> okudum ve onaylıyorum.",
+    "userAgreement": "<comp>Kullanıcı sözleşmesini</comp> okudum ve onaylıyorum."
   }
 }

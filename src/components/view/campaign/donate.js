@@ -9,6 +9,7 @@ import {
   AlertIcon,
   CloseButton,
 } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'react-feather';
 import ReactGA from 'react-ga';
 import BankTransferFlow from './bank-transfer-flow';
@@ -39,6 +40,7 @@ const CustomRadio = React.forwardRef((props, ref) => {
 });
 
 function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
+  const { t } = useTranslation('donate');
   const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
   const [errorExist, setErrorExist] = React.useState(false);
 
@@ -76,10 +78,10 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           mb={{ base: 4, md: 0 }}
         >
           <CustomRadio width="full" value="bank-transfer">
-            Banka Havalesi
+            {t('options.bank')}
           </CustomRadio>
           <CustomRadio width="full" value="ethereum-wallet">
-            Ethereum Cüzdanı
+            {t('options.ethWallet')}
           </CustomRadio>
         </RadioButtonGroup>
         {onBack && (
@@ -92,7 +94,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
             _hover={{ bg: 'red.400' }}
           >
             <Icon as={ArrowLeft} mr={4} />
-            Kampanyaya Dön
+            {t('backToCampaign')}
           </Button>
         )}
       </Box>
@@ -100,8 +102,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         {errorExist && (
           <Alert status="error">
             <AlertIcon />
-            BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra
-            tekrar deneyiniz.
+            {t('biLiraError')}
             <CloseButton
               onClick={() => setErrorExist(false)}
               position="absolute"
@@ -129,7 +130,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           _hover={{ bg: 'red.400' }}
         >
           <Icon as={ArrowLeft} mr={4} />
-          Kampanyaya Dön
+          {t('backToCampaign')}
         </Button>
       )}
     </Flex>

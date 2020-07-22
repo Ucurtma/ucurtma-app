@@ -10,6 +10,7 @@ import {
   Skeleton,
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
@@ -52,26 +53,20 @@ const COLLECT_DONATION = gql`
   }
 `;
 
-function createSchema(limit) {
+function createSchema(limit, t) {
   const donateSchema = Yup.object().shape({
     email: Yup.string()
-      .required('Bu alan zorunludur.')
-      .matches(/[^@]+@[^.]+\..+/, 'Geçerli bir email adresi girmelisiniz.'),
+      .required(t('validation.required'))
+      .email(t('validation.email')),
     amount: Yup.number()
-      .min(
-        limit || 100,
-        `Girdiğiniz değer ${limit || 100} değerinden küçük olamaz`
-      )
-      .max(1500, `Girdiğiniz değer 1500'den büyük olamaz`)
-      .typeError('Geçerli bir rakam giriniz.')
-      .required('Bu alan zorunludur.'),
-    consentToReceiveNews: Yup.boolean().oneOf(
-      [true],
-      'Şartları onaylamanız gerekmektedir.'
-    ),
+      .min(limit || 100, t('validation.limit', { limit: limit || 100 }))
+      .max(1500, t('validation.maxLimit', { limit: 1500 }))
+      .typeError(t('validation.notNumber'))
+      .required(t('validation.required')),
+    consentToReceiveNews: Yup.boolean().oneOf([true], t('validation.consent')),
     consentToUserAgreement: Yup.boolean().oneOf(
       [true],
-      'Şartları onaylamanız gerekmektedir.'
+      t('validation.consent')
     ),
   });
 
@@ -79,6 +74,7 @@ function createSchema(limit) {
 }
 
 function BankTransferFlow({ minimumAmount }) {
+  const { t } = useTranslation('bankTransferFlow');
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
@@ -133,7 +129,7 @@ function BankTransferFlow({ minimumAmount }) {
       <Box mt={2} mb={4}>
         <Alert mb={4} status="error">
           <AlertIcon />
-          Bir hata oluştu.
+          {t('error')}
         </Alert>
         {oauthData && (
           <LoginWithBiLira
@@ -169,7 +165,7 @@ function BankTransferFlow({ minimumAmount }) {
             consentToReceiveNews: false,
             consentToUserAgreement: false,
           }}
-          validationSchema={createSchema(minimumAmount)}
+          validationSchema={createSchema(minimumAmount, t)}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
             collectDonation({
@@ -191,17 +187,17 @@ function BankTransferFlow({ minimumAmount }) {
             <Form data-private>
               <Box>
                 <Input
-                  label="E-Posta Adresi"
+                  label={t('inputs.email.label')}
                   name="email"
                   type="email"
-                  placeholder="Email adresinizi giriniz"
+                  placeholder={t('inputs.email.placeholder')}
                 />
 
                 <NumberInput
-                  label="Destek Miktarı"
+                  label={t('inputs.amount.label')}
                   name="amount"
                   type="number"
-                  placeholder="Destek Miktarını giriniz"
+                  placeholder={t('inputs.amount.placeholder')}
                   addon={{
                     left: (
                       <Image
@@ -232,7 +228,7 @@ function BankTransferFlow({ minimumAmount }) {
                   disabled={isSubmitting || !dirty || !isValid}
                   width="full"
                 >
-                  Gönder
+                  {t('inputs.submit')}
                 </Button>
               </Flex>
             </Form>

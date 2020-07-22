@@ -1,74 +1,338 @@
 {
+  "global": {
+    "confirm": "Confirm",
+    "somethingWrong": "Something went wrong.",
+    "errorWithCode": "Error code: {{code}}"
+  },
   "titles": {
-    "What is Uçurtma": "What is Uçurtma Project",
+    "What is Uçurtma": "What is Uçurtma Project?",
     "Problem and Solution": "Problem and Solution",
-    "How it works": "How It Works?",
+    "How it works": "How it works?",
+    "Campaigns": "Campaigns",
     "Our Team": "Our Team",
-    "FAQ": "FAQ"
+    "FAQ": "Frequently Asking Questions"
+  },
+  "menuItems": {
+    "homepage": "Home",
+    "campaigns": "Campaigns"
+  },
+  "topbar": {
+    "donateAll": "🎉🎉 Now, you can support all campaigns at once! <redirectLink>Click here</redirectLink> to learn details."
   },
   "splashScreen": {
-    "Purpose of Uçurtma": "Öğrencilerin, hayallerini gerçekleştirebilmeleri için gereken finansal desteği bulmalarına yardım etmeyi amaçlayan bir platformdur.",
-    "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
-    "Apply as a student": "Öğrenci Olarak Başvuru Yap",
-    "Click here to subscribe": "Gelişmelerden haberdar olmak için mail listemize <2>buraya tıklayarak</2> abone olabilirsiniz."
+    "Purpose of Uçurtma": "Uçurtma is a platform that aims to help students find the financial support they need to make their dreams come true.",
+    "Uçurtma is decentralized": "çeviri > Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
+    "Apply as a student": "Apply as a student",
+    "clickHereToDonateAllCampaigns": "Now, you can support all campaigns at once! <2>Click here</2> to learn details and support.",
+    "showAllCampaigns": "Show all campaigns"
   },
   "problemAndSolution": {
-    "New solution with blockchain": "Blokzinciri ile yeni nesil bir çözüm",
-    "What was the problem": "Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla destek toplayıp, her ay belirledikleri miktarda desteği banka hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak sağlar. Böylece desteklerinin kontrolü kendi ellerinde olurken, destekçiler de bu sürece dahil olarak şeffaf bir şekilde öğrencinin durumunu platform üzerinden takip edebilir.",
-    "Safe": "Güvenli",
-    "Safe_details": "Tüm işlemler öğrencilere ait dijital cüzdanlarındaki eliptik eğri yöntemiyle şifrelenmiş dijital imzalarıyla gerçekleşir.",
-    "Transparent": "Şeffaf",
-    "Transparent_details": "Para transferlerinin tamamı şeffaf bir şekilde görüntülenebilir ve destekçiler destek oldukları öğrencinin başarılarını platform üzerinden takip edebilirler.",
-    "Fast": "Hızlı",
-    "Fast_details": "Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir işleme gerek duymadan destekleri öğrencilere zamanında hızlı bir şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı için öğrenciler asla mağdur kalmaz."
+    "New solution with blockchain": "New generation solution that works with blokchain",
+    "What was the problem": "çeviri > Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla destek toplayıp, her ay belirledikleri miktarda desteği banka hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak sağlar. Böylece desteklerinin kontrolü kendi ellerinde olurken, destekçiler de bu sürece dahil olarak şeffaf bir şekilde öğrencinin durumunu platform üzerinden takip edebilir.",
+    "Safe": "Safe",
+    "Safe_details": "çeviri > Tüm işlemler öğrencilere ait dijital cüzdanlarındaki eliptik eğri yöntemiyle şifrelenmiş dijital imzalarıyla gerçekleşir.",
+    "Transparent": "Transparent",
+    "Transparent_details": "çeviri > Para transferlerinin tamamı şeffaf bir şekilde görüntülenebilir ve destekçiler destek oldukları öğrencinin başarılarını platform üzerinden takip edebilirler.",
+    "Fast": "Fast",
+    "Fast_details": "çeviri > Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir işleme gerek duymadan destekleri öğrencilere zamanında hızlı bir şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı için öğrenciler asla mağdur kalmaz."
   },
   "howItWorks": {
-    "Examine": "İncele",
-    "Examine_details": "Öğrenci kampanyalarını incele, yardım etmek istediğin öğrenciyi seç.",
-    "Support": "Destek Ol",
-    "Support_details": "Destek Ol butonuna tıkla, referans kodunu al. Yönergeleri uygula, destek ol.",
-    "Follow": "Takip Et",
-    "Follow_details": "Destek olduğun öğrencinin gelişim ve başarımlarını takip et.",
-    "Three Steps": "Üç kolay adımda öğrencilerin hayallerini hayata geçirmelerine yardımcı olabilirsiniz."
+    "Examine": "Examine",
+    "Examine_details": "Examine student campaigns, select student who you want to help.",
+    "Support": "Support",
+    "Support_details": "Click Support button and take your reference code. Follow instruction and support student.",
+    "Follow": "Follow",
+    "Follow_details": "Follow student's developments and achievements who you support.",
+    "Three Steps": "You can help to students dream come true in three easy steps."
   },
   "ourTeam": {
-    "Öğrenci ve Destekçi Moderatörü": "Öğrenci ve Destekçi Moderatörü",
-    "İş Geliştirme Uzmanı": "İş Geliştirme Uzmanı",
-    "Sosyal Hizmet Uzmanı": "Sosyal Hizmet Uzmanı",
-    "İçerik Yöneticisi": "İçerik Yöneticisi",
-    "Kurucu - Yazılım Geliştirici": "Kurucu - Yazılım Geliştirici",
-    "Kurucu Ortak - Yazılım Geliştirici": "Kurucu Ortak - Yazılım Geliştirici",
-    "Kurucu Ortak - Ortaklık Yöneticisi": "Kurucu Ortak - Ortaklık Yöneticisi",
-    "Hukuk Danışmanı": "Hukuk Danışmanı",
-    "Marka Yönetimi Uzmanı": "Marka Yönetimi Uzmanı"
+    "Öğrenci ve Destekçi Moderatörü": "Student and Supporter Moderator",
+    "İş Geliştirme Uzmanı": "Business Development Specialist",
+    "Sosyal Hizmet Uzmanı": "Social Service Specialist",
+    "İçerik Yöneticisi": "Content Creator",
+    "Kurucu - Yazılım Geliştirici": "Founder - Software Developer",
+    "Kurucu Ortak - Yazılım Geliştirici": "Co-Founder - Software Developer",
+    "Kurucu Ortak - Ortaklık Yöneticisi": "Co-Founder - Afilliate Manager",
+    "Hukuk Danışmanı": "Legal Advisor",
+    "Marka Yönetimi Uzmanı": "Brand Management Specialist"
   },
   "faq": {
-    "I am student": "Öğrenciyim",
-    "I am supporter": "Destekçiyim",
-    "What is": "Nedir?"
+    "I am student": "I am student",
+    "I am supporter": "I am supporter",
+    "What is": "What is?",
+    "questions": {
+      "whatWillProvide": {
+        "question": "çeviri > Uçurtma bana ne sağlayacak?",
+        "answer": "çeviri > Uçurtma desteğe ihtiyacı olan öğrencilerin masraflarını karşılayabilmeleri için destek toplayabildikleri bir platformdur. Platformu kullanarak güvenli bir şekilde destek toplayabilir, uzun vadede destek ihtiyacınızı karşılayabilirsiniz."
+      },
+      "whatWillProvideDonator": {
+        "question": "çeviri > Uçurtma bana ne sağlayacak?",
+        "answer": "çeviri > Uçurtma, destek vereceğin öğrencileri keşfetmene, desteğini; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
+      },
+      "howApply": {
+        "question": "çeviri > Nasıl başvuru yapmalıyım?",
+        "answer": "çeviri > Fotoğrafın, kişisel bilgilerin ve e-devletten ulaşabileceğin öğrenci belgesiyle birlikte ön başvuruda bulunabilirsin. Böylece biz bu bilgilerin doğruluğunu onaylayabilir ve sonrasında birlikte destek toplayabileceğin kampanya sayfasını oluşturabiliriz."
+      },
+      "howEvaluate": {
+        "question": "çeviri > Başvurum nasıl değerlendirilecek?",
+        "answer": "çeviri > Uçurtma olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya oluşturmasına izin verilecektir."
+      },
+      "gettingSupport": {
+        "question": "çeviri > Desteği nasıl alacağım?",
+        "answer": "çeviri > Destek ödemelerin her 28 günde bir BiLira cüzdanınıza transfer edilir. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
+      },
+      "gettingPayment": {
+        "question": "çeviri > Ödemeler nasıl gerçekleşecek?",
+        "answer": "çeviri > Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
+      },
+      "needCampaignPage": {
+        "question": "çeviri > Destek alabilmek icin kampanya sayfasına ihtiyacım var mı?",
+        "answer": "çeviri > Evet, destek alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın herkese değil sadece senin istediğin kişilerle paylaşılması ve onların Uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+      },
+      "supportDuration": {
+        "question": "çeviri > Desteği eğitimim bitene kadar almaya devam edecek miyim?",
+        "answer": "çeviri > Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece destek almaya devam edeceksin. Topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
+      },
+      "whoIsAdmin": {
+        "question": "çeviri > Destek hesabım kimin yönetiminde olacak?",
+        "answer": "çeviri > Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Destek hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
+      },
+      "paymentMethods": {
+        "question": "çeviri > Yardımları hangi ödeme yöntemleriyle yapabilirim?",
+        "answer": "çeviri > Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
+      },
+      "maxAndMin": {
+        "question": "çeviri > Maksimum ve minimum yardım tutarları nedir?",
+        "answer": "çeviri > Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
+      },
+      "canIReport": {
+        "question": "çeviri > Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
+        "answer": "çeviri > Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
+      },
+      "sameTimeMulti": {
+        "question": "çeviri > Aynı anda birden fazla öğrenciye destek olabilir miyim?",
+        "answer": "çeviri > Aynı anda toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
+      },
+      "anonimity": {
+        "question": "çeviri > Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
+        "answer": "çeviri > Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
+      }
+    }
   },
   "footer": {
-    "Join to Community": "Topluluğa Katıl"
+    "Join to Community": "Join to Community"
   },
-  "admin": {
-    "ContractActions": "Contract Actions"
+  "manager": {
+    "ContractActions": "Contract Actions",
+    "CreateCampaign": "Create Campaign",
+    "CampaignsActions": "Campaign Management"
   },
-  "contractActions": {
-    "Deploy": "Yeni bir kampanya oluştur",
-    "DeployDescription": "Bu arayüzü kullanarak yeni bir kampanya akıllı kontratı oluşturabilirsiniz. Oluşturulacak kampanya kontratının uygulama yöneticiliği sizin kendi metamask hesabınız olacaktır.",
-    "numberOfPlannedPayouts": "Öğrencinin alabileceği toplam ödeme sayısı",
-    "withdrawPeriod": "Öğrencinin hangi sıklıkla ödeme alacağı",
-    "campaignEndTime": "Toplam kampanya süresi",
-    "owner": "Öğrencinin Ethereum cüzdanı",
-    "tokenAddress": "Para Birimi",
-    "adminAddress": "Yönetici Ethereum adresi",
-    "DeployAction": "Kampanya oluştur"
+  "createCampaign": {
+    "Deploy": "Create a new campaign",
+    "Edit": "Edit campaign",
+    "deployLater": "I will enter this informations later.",
+    "showOwnerWallet": "Show this informations",
+    "DeployDescription": "You can create a new smart contract by using this interface. Your metamask account will be manager for campaign that will be created.",
+    "EditDescription": "You can edit created campaigns by using this interface.",
+    "numberOfPlannedPayouts": "Number of Planned Payouts",
+    "amountPerPayment": "Amount that student take per payment",
+    "withdrawPeriod": "Withdraw Period",
+    "example": "Example: {{value}}",
+    "campaignTarget": "Campaign Target",
+    "gettingCampaign": {
+      "error": {
+        "title": "Campaign was not found.",
+        "description": "You're redirectiong to {{page}}."
+      }
+    },
+    "goals": {
+      "title": "Goals",
+      "new": "Add new goal"
+    },
+    "documents": {
+      "title": "Documents",
+      "new": "Add New Document",
+      "documentTitle": "Document Title",
+      "link": "Document URL"
+    },
+    "campaignType": {
+      "title": "Campaign Type",
+      "shortTerm": "Short Term",
+      "longTerm": "Long Term"
+    },
+    "campaignEndTime": "Total campaign duration",
+    "owner": "Student Ethereum Address",
+    "aboutOwner": "Student will not be able to take supporting features if you won't provide this information. You can leave this field blank for now and update it later in the campaign settings.",
+    "campaignId": "Campaign ID",
+    "campaignTitle": "Campaign Title",
+    "namesurname": "Student Name & Surnaöe",
+    "school": "School Name",
+    "department": "Department Name",
+    "profilePhoto": "Profile Photo URL",
+    "tokenAddress": "Token Type",
+    "adminAddress": "Admin Ethereum Address",
+    "campaignDetails": "Campaign Details",
+    "DeployAction": "Create Campaign",
+    "EditAction": "Save Campaign",
+    "activateCampaign": "Activate Campaign",
+    "deactivateCampaign": "Deactivate Campaign",
+    "deployDraftCampaign": "Create draft campaign",
+    "deployErrorTitle": "There was an error while creating the campaign.",
+    "deployErrorDesc": "Please try again later.",
+    "deploySuccessTitle": "Campaign creation was successful",
+    "deploySuccessDesc": "You can click here to see details.",
+    "deployStartedTitle": "Campaign creation process started.",
+    "deployStartedDesc": "This process may take some time to complete. Please do not leave or refresh the page.",
+    "validations": {
+      "required": "This field is required.",
+      "incorrectAddress": "Please enter a valid ethereum wallet address.",
+      "link": "Please enter a valid URL.",
+      "idExist": "The Campaign ID that you entered is already exist. Please try different ID.",
+      "idLimit": "Campaign ID must be at least 5 characters."
+    },
+    "campaignUpdate": {
+      "success": "Campaign update has been successfully completed."
+    },
+    "notMainNetwork": "You should be in Main Ethereum Network to create a new campaign. Please open MetaMask extension and change your network."
   },
   "contractList": {
     "List": "Created Campaigns",
-    "ListDescription": "Burada oluşturduğunuz kampanyaları yönetebilirsiniz.",
-    "ListNotFound": "Cannot find created campaigns.",
-    "ListNotFoundDesc": "To see your created campaigns, <1>create campaign.</1>",
-    "StartToCreate": "create one."
+    "ListDescription": "You can see and edit campaigns that created by you in this page.",
+    "ListNotFound": "No created campaigns found.",
+    "ListNotFoundDesc": "<1>Click here</1> to create new campaign.",
+    "StartToCreate": "click here.",
+    "search": "Search Campaign"
+  },
+  "header": {
+    "signTokenModal": "Create Sign",
+    "signToken": "To create a new campaign, I confirm that the <strong>{{address}}</strong> address belong to me.",
+    "deniedSignatureTitle": "Processing cannot continue because you have not signed the text",
+    "deniedSignatureDesc": "Please sign the text to continue."
+  },
+  "editor": {
+    "welcome": "Welcome.",
+    "description": "You can create awesome looking campaigns by using this editor.",
+    "createList": "You can create awesome lists:",
+    "list": {
+      "polarBears": "Did you know that all polar bears are left-handed?",
+      "beeEyes": "Arıların başlarının üzerinde 3 küçük, ön tarafta ise 2 büyük olmak üzere toplam 5 gözleri bulunur.",
+      "catTaste": "Kediler tatlı yiyeceklerin tadını alamazlar."
+    },
+    "addImages": "You can create awesome images:",
+    "imageCaption": "Happy smiling dogs"
+  },
+  "campaignList": {
+    "title": "Campaigns - Uçurtma Project",
+    "filter": {
+      "all": "All Campaigns",
+      "ShortTerm": "Targeted Campaign",
+      "ShortTerm_plural": "Targeted Campaigns",
+      "LongTerm": "Scholarship Campaign",
+      "LongTerm_plural": "Scholarship Campaigns"
+    },
+    "error": {
+      "title": "There is no {{term, lowercase}} yet.",
+      "description": "<1>Click here</1> to see all campaigns"
+    }
+  },
+  "featuredCampaign": {
+    "goToCampaign": "Show Campaign",
+    "noFund": "There is no support yet. <campaignButton>Click here</campaignButton> to be the first one who supports.",
+    "donate": "There is <strong>{{count}}</strong> person who supports this campaign. <campaignButton>Click here</campaignButton> to be one of the supporters.",
+    "clickHere": "click here.",
+    "target": "Target: ",
+    "totalFund": "Total Fund: "
+  },
+  "campaignFooter": {
+    "createReport": "Create Report",
+    "share": {
+      "title": "Share: ",
+      "facebook": "Share in Facebook",
+      "twitter": "Share in Twitter",
+      "linkedin": "Share in LinkedIn"
+    }
+  },
+  "donateAll": {
+    "heading": "Our service is ready, where you can support all campaigns at once!",
+    "definition": "Eğer destek olacağınız öğrenciyi seçmekte zorlanıyorsanız, tüm kampanyalara destek ol seçeneğini kullanabilirsiniz. Bu seçenek sayesinde, göndermiş olduğunuz destek tüm öğrencilere akıllı bir şekilde dağıtılır.",
+    "steps": {
+      "1": {
+        "title": "Select Payment Method",
+        "desc": "Banka havalesi ya da Ethereum cüzdanı seçeneklerinden bir tanesini seç. Verilen yönergeleri takip et ve BiLira hesabını oluştur. Karşına çıkan formu doldur ve gönder."
+      },
+      "2": {
+        "title": "Send Your Support",
+        "desc": "BiLira coinlerinin oluşturulması ve desteğinin onaylanması için, bilgileri gösterilen hesaba, açıklamasına gösterilen referans yazarak girmiş olduğun miktarı gönder. Merak etme, yanlış bir işlem gerçekleşirse gönderdiğin destek BiLira tarafından onaylanmayacak ve hesabına geri yatacaktır."
+      },
+      "3": {
+        "title": "Make happy, be happy.",
+        "desc": "Aslında adımlarımız bu kadardı. Gönderdiğin destek, yazdığımız akıllı kontrat algoritması sayesinde, tüm öğrencilere adaletli ve akıllı bir şekilde dağıtıldı. Teşekkürler!"
+      }
+    }
+  },
+  "campaignHeader": {
+    "supporterCount": "Supporter Count",
+    "totalFund": "Total Fund",
+    "noSupporterFound": "There is no support for this campaign yet. <redirectLink>Click here</redirectLink> to be first one who supports.",
+    "support": "Support",
+    "campaignEnded": "This campaign has ended.",
+    "moneySendingBack": "çeviri > Toplanılan paralar bağışçılara geri gönderilmektedir."
+  },
+  "campaignTarget": {
+    "campaignTarget": "Campaign Target",
+    "endDate": "End Date",
+    "firstDate": "çeviri > Öğrencinin Ödeme Alacağı İlk Tarih"
+  },
+  "donate": {
+    "options": {
+      "bank": "Bank Transfer",
+      "ethWallet": "Ethereum Wallet"
+    },
+    "backToCampaign": "Back To Campaign",
+    "biLiraError": "çeviri > BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra tekrar deneyiniz."
+  },
+  "loginWithBiLira": {
+    "workingWithBiLira": "We're working with <linkComp>BiLira</linkComp> in order to deliver your supports safely and quickly to students.",
+    "redirectButton": "You can quickly create an account using the button bellow or easily access the bank account that you will transfer with your existing account.",
+    "loginWithBiLira": "Login with BiLira."
+  },
+  "ethereumFlow": {
+    "onlyBiLira": "çeviri > Bu kampanya sadece BiLira tokenı kabul etmektedir. Bu kontrata göndereceğiniz diğer tokenlar geri döndürülemez biçimde kaybetmenize neden olacaktır.",
+    "ethereumAddress": "Ethereum Address:"
+  },
+  "bankTransferFlow": {
+    "selectBank": "çeviri > Lütfen desteğinizi göndermek istediğiniz bankayı seçiniz.",
+    "aboutBanks": "çeviri > Listelenen banka hesapları, <strong>BiLira</strong> tarafından sağlanan ödeme kanallarıdır. Bu banka hesaplarından birinde hesabınız olmasa dahi <strong>EFT</strong> ile gönderme seçeneğiniz bulunmaktadır.",
+    "error": "Something went wrong.",
+    "inputs": {
+      "email": {
+        "label": "Email address",
+        "placeholder": "Please enter your email address"
+      },
+      "amount": {
+        "label": "Support Amount",
+        "placeholder": "Please enter support amount"
+      },
+      "submit": "Submit"
+    },
+    "validation": {
+      "required": "çeviri > Bu alan zorunludur.",
+      "email": "çeviri > Geçerli bir email adresi girmelisiniz.",
+      "limit": "çeviri > Girdiğiniz değer {{limit}} değerinden küçük olamaz.",
+      "maxLimit": "çeviri > Girdiğiniz değer {{limit}} değerinden büyük olamaz.",
+      "notNumber": "çeviri > Geçerli bir rakam giriniz.",
+      "consent": "çeviri > Şartları onaylamanız gerekmektedir."
+    },
+    "result": {
+      "recipient": "Recipient Name",
+      "bankName": "Bank Name",
+      "iban": "IBAN Number",
+      "ref": "Reference Code"
+    },
+    "thanks": "çeviri > Gönderdiğiniz destek için teşekkürler. Desteğinizin onaylanması için seçtiğiniz bankadan, aşağıda bilgileri verilen hesaba açıklamasına {{value}} yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir."
+  },
+  "agreements": {
+    "kvkk": "çeviri > Kişisel verileri koruma kapsamında <clarification>aydınlatma metnini</clarification> ve <directConsent>açık rıza beyan formunu</directConsent> okudum ve onaylıyorum.",
+    "userAgreement": "çeviri > <comp>Kullanıcı sözleşmesini</comp> okudum ve onaylıyorum."
   }
 }

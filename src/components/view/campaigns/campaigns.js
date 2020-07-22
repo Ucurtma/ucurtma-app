@@ -83,7 +83,7 @@ function Campaigns() {
           message={{
             title: t('error.title', { term: t(`filter.${activeButton}`) }),
             desc: (
-              <Trans i1showedCampaignCountnKey="error.description" count={0}>
+              <Trans t={t} i18nKey="error.description" count={0}>
                 Henüz hiç destek toplanmadı. İlk destek veren olmak için
                 <Button
                   variant="link"

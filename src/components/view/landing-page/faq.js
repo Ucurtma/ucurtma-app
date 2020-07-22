@@ -96,7 +96,7 @@ function Faq() {
                   _hover={{ bg: 'gray.400' }}
                 >
                   <Box flex="1" textAlign="left">
-                    {t(questions.question)}
+                    {t(`faq:questions.${questions}.question`)}
                   </Box>
                   <AccordionIcon />
                 </AccordionHeader>
@@ -108,7 +108,7 @@ function Faq() {
                   fontSize="16px"
                   pb={4}
                 >
-                  {t(questions.answer)}
+                  {t(`faq:questions.${questions}.answer`)}
                 </AccordionPanel>
               </AccordionItem>
             ))}

@@ -1,18 +1,23 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import { SimpleGrid, Button, Image, Box, Heading, Text } from '@chakra-ui/core';
 
 const SelectBank = ({ bankData, onSelect, selectedBank }) => {
+  const { t } = useTranslation('bankTransferFlow');
   return (
     <Box>
       <Box mb={4}>
         <Heading as="p" mb={4} size="sm">
-          Lütfen desteğinizi göndermek istediğiniz bankayı seçiniz.
+          {t('selectBank')}
         </Heading>
         <Text as="p">
-          Listelenen banka hesapları, <strong>BiLira</strong> tarafından
-          sağlanan ödeme kanallarıdır. Bu banka hesaplarından birinde hesabınız
-          olmasa dahi <strong>EFT</strong> ile gönderme seçeneğiniz
-          bulunmaktadır.
+          <Trans
+            defaults="aboutBanks"
+            t={t}
+            components={{
+              strong: <strong />,
+            }}
+          />
         </Text>
       </Box>
       <SimpleGrid columns={{ base: 2, md: 5 }} spacing={4} mb={4}>

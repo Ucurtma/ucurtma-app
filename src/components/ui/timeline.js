@@ -72,15 +72,17 @@ function Timeline({ items, transactions }) {
               pl={listPadding}
               as="li"
               pos="relative"
-              _before={{
-                content: `' '`,
-                position: 'absolute',
-                left: 'calc(0.75rem / 2)',
-                width: '1px',
-                height: index === items.length - 1 ? '16px' : '200%',
-                bg: 'gray.300',
-                top: index === 0 && '16px',
-              }}
+              _before={
+                items?.length > 1 && {
+                  content: `' '`,
+                  position: 'absolute',
+                  left: 'calc(0.75rem / 2)',
+                  width: '1px',
+                  height: index === items.length - 1 ? '16px' : '200%',
+                  bg: 'gray.300',
+                  top: index === 0 && '16px',
+                }
+              }
               overflow="hidden"
               key={index.toString()}
             >

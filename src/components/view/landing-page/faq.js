@@ -7,15 +7,12 @@ import {
   Divider,
   Grid,
   Accordion,
-  AccordionItem,
-  AccordionHeader,
-  AccordionIcon,
-  AccordionPanel,
   RadioButtonGroup,
   Button,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
+import QuestionList from '../../ui/questions-list';
 import FAQ from './faq.json';
 
 const { studentQuestions, donatorQuestions } = FAQ;
@@ -75,43 +72,12 @@ function Faq() {
             columnGap={8}
             rowGap={4}
           >
-            {questionType.map((questions, i) => (
-              <AccordionItem border="0" key={i.toString()}>
-                <AccordionHeader
-                  bg="gray.200"
-                  p={5}
-                  fontWeight="bold"
-                  border="1px solid"
-                  borderColor="transparent"
-                  borderRadius="4px"
-                  _expanded={{
-                    bg: 'white',
-                    border: '1px solid',
-                    borderColor: 'gray.200',
-                    borderBottom: '0',
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                  }}
-                  _focus={{ boxShadow: '0' }}
-                  _hover={{ bg: 'gray.400' }}
-                >
-                  <Box flex="1" textAlign="left">
-                    {t(questions.question)}
-                  </Box>
-                  <AccordionIcon />
-                </AccordionHeader>
-                <AccordionPanel
-                  border="1px solid"
-                  borderColor="gray.200"
-                  borderTop="0"
-                  bg="white"
-                  fontSize="16px"
-                  pb={4}
-                >
-                  {t(questions.answer)}
-                </AccordionPanel>
-              </AccordionItem>
-            ))}
+            <QuestionList
+              questions={questionType.filter((question, i) => i % 2 === 0)}
+            />
+            <QuestionList
+              questions={questionType.filter((question, i) => i % 2 !== 0)}
+            />
           </Grid>
         </Accordion>
       </Container>

@@ -24,7 +24,7 @@ function CardTargetInfo({ title, price, percent }) {
           <strong>{new Intl.NumberFormat('tr-TR').format(price)}</strong>
         </>
       )}
-      {percent && (
+      {(percent || percent === 0) && (
         <Box as="strong" ml={1}>
           %{Math.floor(percent)}
         </Box>

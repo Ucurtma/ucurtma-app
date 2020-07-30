@@ -76,8 +76,12 @@ function FeaturedCampaign({ loading, data, error }) {
         <Box as={ChevronLeft} />
       </Box>
       {data.campaigns.campaigns.map((campaign, campaignIndex) => {
-        const currentFund = parseInt(campaign?.totalFunds, 10);
-        const totalPercent = (currentFund * 100) / campaign?.campaignTarget;
+        const currentFund = campaign.totalFunds
+          ? parseInt(campaign.totalFunds, 10)
+          : 0;
+        const totalPercent = campaign.campaignTarget
+          ? (currentFund * 100) / campaign.campaignTarget
+          : 0;
 
         return (
           <SwiperSlide

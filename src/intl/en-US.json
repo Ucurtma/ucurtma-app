@@ -86,35 +86,35 @@
         "answer": "You can receive payments by transferring them to your wallet over the Ethereum network. This is an important process for securing the money and for controlling your money."
       },
       "needCampaignPage": {
-        "question": "çeviri > Destek alabilmek icin kampanya sayfasına ihtiyacım var mı?",
+        "question": "Do I need to create campaign page to get support?",
         "answer": "çeviri > Evet, destek alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın herkese değil sadece senin istediğin kişilerle paylaşılması ve onların Uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
       },
       "supportDuration": {
-        "question": "çeviri > Desteği eğitimim bitene kadar almaya devam edecek miyim?",
+        "question": "Will I continue to receive support until my education is over?",
         "answer": "çeviri > Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece destek almaya devam edeceksin. Topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
       },
       "whoIsAdmin": {
-        "question": "çeviri > Destek hesabım kimin yönetiminde olacak?",
+        "question": "Who will manage my support account?",
         "answer": "çeviri > Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Destek hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
       },
       "paymentMethods": {
-        "question": "çeviri > Yardımları hangi ödeme yöntemleriyle yapabilirim?",
+        "question": "Which payment methods can I use to support students?",
         "answer": "çeviri > Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
       },
       "maxAndMin": {
-        "question": "çeviri > Maksimum ve minimum yardım tutarları nedir?",
+        "question": "What are the maximum and minimum support amounts?",
         "answer": "çeviri > Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
       },
       "canIReport": {
-        "question": "çeviri > Destek olduğum öğrenciden memnun değilsem şikayet edebilir miyim?",
+        "question": "Can I complain if I am not satisfied with the student I support?",
         "answer": "çeviri > Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
       },
       "sameTimeMulti": {
-        "question": "çeviri > Aynı anda birden fazla öğrenciye destek olabilir miyim?",
+        "question": "Can I support more than one student in the same time?",
         "answer": "çeviri > Aynı anda toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
       },
       "anonimity": {
-        "question": "çeviri > Kimliğimi gizli tutarak yardımda bulunabilir miyim?",
+        "question": "Can I support students by keeping my identity anonymous?",
         "answer": "çeviri > Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
       }
     }
@@ -276,12 +276,12 @@
     "noSupporterFound": "There is no support for this campaign yet. <redirectLink>Click here</redirectLink> to be first one who supports.",
     "support": "Support",
     "campaignEnded": "This campaign has ended.",
-    "moneySendingBack": "çeviri > Toplanılan paralar bağışçılara geri gönderilmektedir."
+    "moneySendingBack": "Collected money is sent back to supporters."
   },
   "campaignTarget": {
     "campaignTarget": "Campaign Target",
     "endDate": "End Date",
-    "firstDate": "çeviri > Öğrencinin Ödeme Alacağı İlk Tarih"
+    "firstDate": "The First Date The Student Will Receive Payment"
   },
   "donate": {
     "options": {
@@ -289,7 +289,7 @@
       "ethWallet": "Ethereum Wallet"
     },
     "backToCampaign": "Back To Campaign",
-    "biLiraError": "çeviri > BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra tekrar deneyiniz."
+    "biLiraError": "There was something wrong while connecting with BiLira. Please try again later."
   },
   "loginWithBiLira": {
     "workingWithBiLira": "We're working with <linkComp>BiLira</linkComp> in order to deliver your supports safely and quickly to students.",
@@ -297,12 +297,12 @@
     "loginWithBiLira": "Login with BiLira."
   },
   "ethereumFlow": {
-    "onlyBiLira": "çeviri > Bu kampanya sadece BiLira tokenı kabul etmektedir. Bu kontrata göndereceğiniz diğer tokenlar geri döndürülemez biçimde kaybetmenize neden olacaktır.",
+    "onlyBiLira": "This campaign accepts only BiLira token. Any other tokens you send to this contract will cause you to lose them irreversibly.",
     "ethereumAddress": "Ethereum Address:"
   },
   "bankTransferFlow": {
-    "selectBank": "çeviri > Lütfen desteğinizi göndermek istediğiniz bankayı seçiniz.",
-    "aboutBanks": "çeviri > Listelenen banka hesapları, <strong>BiLira</strong> tarafından sağlanan ödeme kanallarıdır. Bu banka hesaplarından birinde hesabınız olmasa dahi <strong>EFT</strong> ile gönderme seçeneğiniz bulunmaktadır.",
+    "selectBank": "Please select the bank you want to send your support to.",
+    "aboutBanks": "Bank accounts are payment channels provided by <strong>BiLira</strong>. Even if you do not have an account in one of these bank accounts, you have the option to send via <strong>EFT</strong>.",
     "error": "Something went wrong.",
     "inputs": {
       "email": {
@@ -316,12 +316,12 @@
       "submit": "Submit"
     },
     "validation": {
-      "required": "çeviri > Bu alan zorunludur.",
-      "email": "çeviri > Geçerli bir email adresi girmelisiniz.",
-      "limit": "çeviri > Girdiğiniz değer {{limit}} değerinden küçük olamaz.",
-      "maxLimit": "çeviri > Girdiğiniz değer {{limit}} değerinden büyük olamaz.",
-      "notNumber": "çeviri > Geçerli bir rakam giriniz.",
-      "consent": "çeviri > Şartları onaylamanız gerekmektedir."
+      "required": "This field is required.",
+      "email": "Please enter a valid email.",
+      "limit": "The number you entered should bigger than {{limit}}.",
+      "maxLimit": "The number you entered should smaller than {{limit}}",
+      "notNumber": "Please enter a valid number",
+      "consent": "You should confirm the terms."
     },
     "result": {
       "recipient": "Recipient Name",

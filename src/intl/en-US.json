@@ -28,13 +28,13 @@
   },
   "problemAndSolution": {
     "New solution with blockchain": "New generation solution that works with blokchain",
-    "What was the problem": "çeviri > Uçurtma, Ethereum ağı üzerinde geliştirilen akıllı kontratlarla öğrencilere bu ağ üzerinde tanımlı istedikleri kripto paralarla destek toplayıp, her ay belirledikleri miktarda desteği banka hesaplarına ekstra bir ücret ödemeden ulaştırabilmelerine olanak sağlar. Böylece desteklerinin kontrolü kendi ellerinde olurken, destekçiler de bu sürece dahil olarak şeffaf bir şekilde öğrencinin durumunu platform üzerinden takip edebilir.",
+    "What was the problem": "With the smart contracts developed on the Ethereum network, Uçurtma allows students to collect support with cryptocurrencies defined on this network and provide the annual support they set the amount to their bank accounts without paying any extra fee. Thus, while their support is in their own control, the supporters can also follow the student's situation through the platform in a transparent manner.",
     "Safe": "Safe",
-    "Safe_details": "çeviri > Tüm işlemler öğrencilere ait dijital cüzdanlarındaki eliptik eğri yöntemiyle şifrelenmiş dijital imzalarıyla gerçekleşir.",
+    "Safe_details": "All transactions are performed with digital signatures encrypted by the elliptical curve method in the students digital wallets.",
     "Transparent": "Transparent",
-    "Transparent_details": "çeviri > Para transferlerinin tamamı şeffaf bir şekilde görüntülenebilir ve destekçiler destek oldukları öğrencinin başarılarını platform üzerinden takip edebilirler.",
+    "Transparent_details": "All money transfers can be monitored transparently and supporters can track the achievements of the student they support through the platform.",
     "Fast": "Fast",
-    "Fast_details": "çeviri > Öğrenci kampanyalarının tamamlanmasının ardından başka hiçbir işleme gerek duymadan destekleri öğrencilere zamanında hızlı bir şekilde ödenir. Aradaki insan faktörü tamamen ortadan kalktığı için öğrenciler asla mağdur kalmaz."
+    "Fast_details": "After the completion of the student campaigns, their support is paid to the students quickly on time without any further action. Students never suffer from the human factor which is completely eliminated."
   },
   "howItWorks": {
     "Examine": "Examine",
@@ -62,28 +62,28 @@
     "What is": "What is?",
     "questions": {
       "whatWillProvide": {
-        "question": "çeviri > Uçurtma bana ne sağlayacak?",
-        "answer": "çeviri > Uçurtma desteğe ihtiyacı olan öğrencilerin masraflarını karşılayabilmeleri için destek toplayabildikleri bir platformdur. Platformu kullanarak güvenli bir şekilde destek toplayabilir, uzun vadede destek ihtiyacınızı karşılayabilirsiniz."
+        "question": "What will Uçurtma provide me?",
+        "answer": "Uçurtma is a platform where students who need support can collect support to cover their expenses. Using the platform, you can safely collect support and meet your needs in the long run."
       },
       "whatWillProvideDonator": {
-        "question": "çeviri > Uçurtma bana ne sağlayacak?",
-        "answer": "çeviri > Uçurtma, destek vereceğin öğrencileri keşfetmene, desteğini; şeffaf, denetlenebilir ve güvenli bir şekilde ihtiyaç sahibi öğrencilere ulaştırabilmeni sağlar."
+        "question": "What will Uçurtma provide me?",
+        "answer": "Uçurtma will help you discover the students you will support. It provides you with transparent, auditable and safe platform to access students in need."
       },
       "howApply": {
-        "question": "çeviri > Nasıl başvuru yapmalıyım?",
-        "answer": "çeviri > Fotoğrafın, kişisel bilgilerin ve e-devletten ulaşabileceğin öğrenci belgesiyle birlikte ön başvuruda bulunabilirsin. Böylece biz bu bilgilerin doğruluğunu onaylayabilir ve sonrasında birlikte destek toplayabileceğin kampanya sayfasını oluşturabiliriz."
+        "question": "How should I apply?",
+        "answer": "You can make a pre-application with your photo, personal information and student certificate which you can access from e-devlet. Thus, we can confirm the accuracy of this information and then create the campaign page where you can gather support together."
       },
       "howEvaluate": {
-        "question": "çeviri > Başvurum nasıl değerlendirilecek?",
-        "answer": "çeviri > Uçurtma olarak her öğrencinin eşit şartlara sahip olması gerektiğine inanıyoruz. Bu yüzden başvuru sonrası yapacağımız değerlendirme sadece yapılan başvuruların doğruluğunu kontrol etmeyi hedeflemektedir. Doğruluğunu onayladığımız tüm öğrencilerin kampanya oluşturmasına izin verilecektir."
+        "question": "How will my application be evaluated?",
+        "answer": "As Uçurtma, we believe that every student should have equal opportunities. Therefore, our evaluation after the application only aims to check the accuracy of the applications. All students whose accuracy we have approved will be allowed to create a campaign."
       },
       "gettingSupport": {
-        "question": "çeviri > Desteği nasıl alacağım?",
-        "answer": "çeviri > Destek ödemelerin her 28 günde bir BiLira cüzdanınıza transfer edilir. Bundan sonra BiLira hesabınla bu parayı kendi banka hesabına transfer edebilir ya da BiLira ile ortak çalışan firmalar üzerinden harcayabilirsin."
+        "question": "How do I get support?",
+        "answer": "Payments are transferred to your BiLira wallet every 28 days. After that, you can transfer this money to your own bank account with your BiLira account or spend it on companies that work with BiLira."
       },
       "gettingPayment": {
-        "question": "çeviri > Ödemeler nasıl gerçekleşecek?",
-        "answer": "çeviri > Ödemeleri Ethereum ağı üzerinden kendin cüzdanına transfer ederek alabileceksin. Bu, orada biriken paranın güvenliğini sağlamak ve kontrolü senin eline verebilmek için önemli bir süreçtir."
+        "question": "How will the payments be made?",
+        "answer": "You can receive payments by transferring them to your wallet over the Ethereum network. This is an important process for securing the money and for controlling your money."
       },
       "needCampaignPage": {
         "question": "çeviri > Destek alabilmek icin kampanya sayfasına ihtiyacım var mı?",

@@ -120,7 +120,8 @@
     }
   },
   "footer": {
-    "Join to Community": "Topluluğa Katıl"
+    "Join to Community": "Topluluğa Katıl",
+    "Change Language": "Change Language"
   },
   "manager": {
     "ContractActions": "Kontrat İşlemleri",

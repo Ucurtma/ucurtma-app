@@ -33,6 +33,7 @@
     "graphql-tag": "^2.10.3",
     "history": "^5.0.0",
     "i18next": "^19.6.2",
+    "i18next-browser-languagedetector": "^6.0.0",
     "isomorphic-unfetch": "^3.0.0",
     "logrocket": "^1.0.10",
     "moment": "^2.27.0",

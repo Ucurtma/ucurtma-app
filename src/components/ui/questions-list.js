@@ -34,7 +34,7 @@ function QuestionList({ questions }) {
             _hover={{ bg: 'gray.400' }}
           >
             <Box flex="1" textAlign="left">
-              {t(question.question)}
+              {t(`faq:questions.${question}.question`)}
             </Box>
             <AccordionIcon />
           </AccordionHeader>
@@ -46,7 +46,7 @@ function QuestionList({ questions }) {
             fontSize="16px"
             pb={4}
           >
-            {t(question.answer)}
+            {t(`faq:questions.${question}.answer`)}
           </AccordionPanel>
         </AccordionItem>
       ))}

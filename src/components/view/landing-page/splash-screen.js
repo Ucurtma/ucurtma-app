@@ -21,7 +21,12 @@ function SplashScreen() {
         w="full"
         flexDir={{ base: 'column', lg: 'row' }}
       >
-        <Flex alignItems="flex-end" flexDir="column" justifyContent="center">
+        <Flex
+          alignItems="flex-end"
+          flexDir="column"
+          justifyContent="center"
+          width="full"
+        >
           <Box
             bg="white"
             maxW={{ base: 'full', lg: '90%', xxl: '65%' }}

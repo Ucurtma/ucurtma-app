@@ -21,7 +21,7 @@
   },
   "splashScreen": {
     "Purpose of Uçurtma": "Uçurtma is a platform that aims to help students find the financial support they need to make their dreams come true.",
-    "Uçurtma is decentralized": "çeviri > Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
+    "Uçurtma is decentralized": "It provides a decentralized guarantee of getting support by bringing students and supporters together.",
     "Apply as a student": "Apply as a student",
     "clickHereToDonateAllCampaigns": "Now, you can support all campaigns at once! <2>Click here</2> to learn details and support.",
     "showAllCampaigns": "Show all campaigns"
@@ -87,40 +87,41 @@
       },
       "needCampaignPage": {
         "question": "Do I need to create campaign page to get support?",
-        "answer": "çeviri > Evet, destek alabilmek için kampanya sayfasına ihtiyacın olacak. Ancak eğer istersen bu kampanya sayfasının herkese açık bir şekilde yayınlanmasını engelleyebilirsin. Böylece kampanyanın herkese değil sadece senin istediğin kişilerle paylaşılması ve onların Uçurtma üzerinden destek vermelerine imkan tanıyacaksın."
+        "answer": "Yes, you need a campaign page to get support. However, if you want, you can set privacy settings for this campaign page public to private. In this way, you will allow the campaign to be shared only with the people you want and they will support them through Uçurtma."
       },
       "supportDuration": {
         "question": "Will I continue to receive support until my education is over?",
-        "answer": "çeviri > Belli aralıklarla yapacağımız kontroller sonucunda söz verdiğin şartları sağlamaya devam ettiğin sürece destek almaya devam edeceksin. Topladığın desteklerin hepsi, şartları şeffaf bir şekilde sağladığın sürece blokzinciri üzerinde saklanacak ve senden başka kimse o paraya erişemeyecek."
+        "answer": "You will continue to receive support as long as you continue to meet the promised conditions/goals as a result of our periodic checks. All of the support you collect will be stored on the blockchain as long as you transparently meet the conditions and no one but you will be able to access that money."
       },
       "whoIsAdmin": {
         "question": "Who will manage my support account?",
-        "answer": "çeviri > Uçurtma ekibi de dahil olmak üzere senden başka hiç kimsenin bu hesaba erişim hakkı olmayacak. Destek hesabın blokzincirinde oluşturulmuş bir akıllı kontrat olarak saklanacak ve oluşturduğun dijital cüzdan sayesinde sen bu hesaptan para çekebileceksin. Fakat eğer cüzdana erişimini kaybedersen orada biriken parayı da kaybetmiş olacaksın."
+        "answer": "No one else will have access to this account except you, including Uçurtma team. Your support account will be stored as a smart contract created on the blockchain, and you will be able to withdraw money from this account thanks to the digital wallet you created. But if you lose access to the wallet, you will lose the money you have deposited there."
       },
       "paymentMethods": {
         "question": "Which payment methods can I use to support students?",
-        "answer": "çeviri > Uçurtma üzerinde bir öğrenciye destek olabilmek için ilgili öğrencinin kampanya sayfasından edinebileceğiniz hesap numarasına banka havalesi ya da EFT yaparak ödemenizi gerçekleştirebilirsiniz. Bu sırada size verilen referans kodunu da açıklamalara eklemeyi unutmayın!"
+        "answer": "In order to support a student on the Uçurtma, you can make your payment by bank transfer or EFT to the account number you can obtain from the student's campaign page. In the meantime, do not forget to add the reference code given to you in the explanations!"
       },
       "maxAndMin": {
         "question": "What are the maximum and minimum support amounts?",
-        "answer": "çeviri > Bir öğrenciye destek olabilmeniz için ödemeniz gereken minimum tutar 100 TL ve üzeridir. Bunun altında bir tutar gönderirseniz, paranız banka hesabınıza geri aktarılacaktır. En fazla ise 1500 TL ödeme yapabilirsiniz."
+        "answer": "The minimum amount you have to pay to support a student is 100 TL or more. If you send an amount less than that, your money will be transferred back to your bank account. The maximum amount you can pay is 1500 TL."
       },
       "canIReport": {
         "question": "Can I complain if I am not satisfied with the student I support?",
-        "answer": "çeviri > Destek olduğunuz öğrencilerle ilgili duyduğunuz herhangi bir kaygıyı kampanya sayfası üzerindeki Şikayet Et butonunu kullanarak bize iletebilirsiniz."
+        "answer": "You can send us any concerns you have about the students you support using the Report button on the campaign page."
       },
       "sameTimeMulti": {
         "question": "Can I support more than one student in the same time?",
-        "answer": "çeviri > Aynı anda toplam tutar 1500 TL’yi geçmemek kaydıyla birden fazla öğrenciye destek olabilirsiniz. Bunun için kampanya sayfasındaki Destek Ol butonunu kullanıp yönergeleri takip etmeniz yeterlidir."
+        "answer": "As long as the total amount does not exceed 1500 TL at the same time, you can support more than one student."
       },
       "anonimity": {
         "question": "Can I support students by keeping my identity anonymous?",
-        "answer": "çeviri > Destek verdiğiniz öğrenciler destekçilerinin kim olduklarını bilmezler. Bu destekler yasal sorumluluğumuzdan dolayı bizim veritabanımızda ve BiLira üzerinde güvenli ve gizli bir şekilde saklanır."
+        "answer": "The students you support do not know who their supporters are. These supports are kept securely and confidentially in our database and on BiLira due to legal liability."
       }
     }
   },
   "footer": {
-    "Join to Community": "Join to Community"
+    "Join to Community": "Join to Community",
+    "Change Language": "Dil Değiştir"
   },
   "manager": {
     "ContractActions": "Contract Actions",
@@ -329,10 +330,10 @@
       "iban": "IBAN Number",
       "ref": "Reference Code"
     },
-    "thanks": "çeviri > Gönderdiğiniz destek için teşekkürler. Desteğinizin onaylanması için seçtiğiniz bankadan, aşağıda bilgileri verilen hesaba açıklamasına {{value}} yazarak desteklediğiniz kadar ücreti göndermeniz gerekmektedir."
+    "thanks": "çeviri > Thanks for your support. In order for your support to be approved, you need to send the amount you support by writing {{value}} to the description given below from the bank you have chosen."
   },
   "agreements": {
-    "kvkk": "çeviri > Kişisel verileri koruma kapsamında <clarification>aydınlatma metnini</clarification> ve <directConsent>açık rıza beyan formunu</directConsent> okudum ve onaylıyorum.",
-    "userAgreement": "çeviri > <comp>Kullanıcı sözleşmesini</comp> okudum ve onaylıyorum."
+    "kvkk": "I have read and approve the <clarification>clarification text</clarification> and <directConsent>direct consent form</directConsent>.",
+    "userAgreement": "I have read and approve the <comp>user agreement</comp>."
   }
 }

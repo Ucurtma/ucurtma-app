@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { render, fireEvent } from '../../../../utils/test-utils';
-import langTR from '../../../../intl/tr-TR.json';
+import langEN from '../../../../intl/en-US.json';
 import Faq from '../../../../components/view/landing-page/faq';
 import questions from '../../../../components/view/landing-page/faq.json';
 
@@ -14,8 +14,8 @@ describe('FAQ tests', () => {
 
   test('"Student" should be activated faqType by default and user can change it', () => {
     const { getByText } = render(<Faq />); // render faq
-    const supporterLabel = getByText(langTR.faq['I am supporter']);
-    const studentLabel = getByText(langTR.faq['I am student']);
+    const supporterLabel = getByText(langEN.faq['I am supporter']);
+    const studentLabel = getByText(langEN.faq['I am student']);
     expect(studentLabel.getAttribute('aria-checked')).toBeTruthy();
     expect(supporterLabel.getAttribute('aria-checked')).toEqual('false');
 
@@ -26,9 +26,13 @@ describe('FAQ tests', () => {
 
   test('User should see question and answer when click question', () => {
     const { getByText } = render(<Faq />);
-    const supporterLabel = getByText(langTR.faq['I am supporter']);
-    const studentQuestion = getByText(questions.studentQuestions[0].question);
-    const studentAnswer = getByText(questions.studentQuestions[0].answer);
+    const supporterLabel = getByText(langEN.faq['I am supporter']);
+    const studentQuestion = getByText(
+      langEN.faq.questions[questions.studentQuestions[0]].question
+    );
+    const studentAnswer = getByText(
+      langEN.faq.questions[questions.studentQuestions[0]].answer
+    );
 
     expect(studentQuestion).toBeInTheDocument();
     expect(studentAnswer.getAttribute('aria-hidden')).toBeTruthy();
@@ -37,8 +41,12 @@ describe('FAQ tests', () => {
     expect(studentAnswer.getAttribute('aria-hidden')).toEqual('false');
 
     fireEvent.click(supporterLabel);
-    const supporterQuestion = getByText(questions.donatorQuestions[1].question);
-    const supporterAnswer = getByText(questions.donatorQuestions[1].answer);
+    const supporterQuestion = getByText(
+      langEN.faq.questions[questions.donatorQuestions[1]].question
+    );
+    const supporterAnswer = getByText(
+      langEN.faq.questions[questions.donatorQuestions[1]].answer
+    );
     expect(supporterQuestion).toBeInTheDocument();
 
     fireEvent.click(supporterQuestion);

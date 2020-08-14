@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { MockedProvider } from '@apollo/react-testing';
-import langTR from '../../../../intl/tr-TR.json';
+import langEn from '../../../../intl/en-US.json';
 import { render, waitFor, fireEvent } from '../../../../utils/test-utils';
 import Campaigns from '../../../../components/view/campaigns/campaigns';
 import { GET_CAMPAIGNS } from '../../../../graphql/queries';
@@ -206,7 +206,7 @@ describe('Campaigns tests', () => {
       </MockedProvider>
     );
     await waitFor(() => {});
-    const allButton = getByText(langTR.campaignList.filter.all);
+    const allButton = getByText(langEn.campaignList.filter.all);
     expect(allButton).toBeInTheDocument();
     expect(allButton.getAttribute('data-active')).toBeTruthy();
   });
@@ -220,9 +220,9 @@ describe('Campaigns tests', () => {
 
     await waitFor(() => {});
 
-    const allButton = getByText(langTR.campaignList.filter.all);
+    const allButton = getByText(langEn.campaignList.filter.all);
     const longTermButton = getByText(
-      langTR.campaignList.filter.LongTerm_plural
+      langEn.campaignList.filter.LongTerm_plural
     );
 
     fireEvent.click(longTermButton);
@@ -253,7 +253,7 @@ describe('Campaigns tests', () => {
     await waitFor(() => {});
 
     const shortTermButton = getByText(
-      langTR.campaignList.filter.ShortTerm_plural
+      langEn.campaignList.filter.ShortTerm_plural
     );
 
     fireEvent.click(shortTermButton);

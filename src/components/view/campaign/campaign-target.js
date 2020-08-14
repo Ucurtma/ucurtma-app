@@ -1,12 +1,14 @@
 import React from 'react';
 import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/core';
 import { Clock } from 'react-feather';
+import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import 'moment/locale/tr';
 
 moment.locale('tr');
 
 function CampaignTarget({ target, current, endDate, type }) {
+  const { t } = useTranslation('campaignTarget');
   const isShortTerm = type === 'ShortTerm';
   let now;
   let end;
@@ -23,7 +25,7 @@ function CampaignTarget({ target, current, endDate, type }) {
       {target && (
         <>
           <Heading size="sm" color="gray.500">
-            Kampanya Hedefi
+            {t('campaignTarget')}
           </Heading>
           <Box pos="relative">
             <Progress
@@ -74,14 +76,12 @@ function CampaignTarget({ target, current, endDate, type }) {
       {endDate && (
         <>
           <Heading size="sm" color="gray.500" mt={target && 4}>
-            {isShortTerm
-              ? 'Bitiş Tarihi'
-              : 'Öğrencinin Ödeme Alacağı İlk Tarih'}
+            {t(isShortTerm ? 'endDate' : 'firstDate')}
           </Heading>
           <Flex mt={2} alignItems="center">
             <Box as={Clock} color="gray.600" />
             <Flex ml={2} color="gray.600" alignItems="center">
-              <Box as="strong" fontSize="1.2rem">
+              <Box as="strong" fontSize="1rem">
                 {moment.duration(end.diff(now)).humanize(true)}
               </Box>
               <Box borderLeft="1px solid" ml={4} pl={4} borderColor="gray.200">

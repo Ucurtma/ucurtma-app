@@ -21,7 +21,12 @@ function SplashScreen() {
         w="full"
         flexDir={{ base: 'column', lg: 'row' }}
       >
-        <Flex alignItems="flex-end" flexDir="column" justifyContent="center">
+        <Flex
+          alignItems="flex-end"
+          flexDir="column"
+          justifyContent="center"
+          width="full"
+        >
           <Box
             bg="white"
             maxW={{ base: 'full', lg: '90%', xxl: '65%' }}
@@ -68,7 +73,7 @@ function SplashScreen() {
               <Icon as={Navigation} size="28px" mr={2} />
             </Button>
             <Text mt={8} color="gray.400">
-              <Trans i18nKey="clickHereToDonateAllCampaigns">
+              <Trans t={t} i18nKey="clickHereToDonateAllCampaigns">
                 Artık tüm kampanyalara tek seferde destek olabilirsiniz.
                 Detayları öğrenmek ve destek olmak için{' '}
                 <Link

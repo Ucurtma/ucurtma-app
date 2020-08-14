@@ -13,10 +13,12 @@ import {
   Link,
 } from '@chakra-ui/core';
 import Skeleton from 'react-loading-skeleton';
+import { useTranslation, Trans } from 'react-i18next';
 import { Award } from 'react-feather';
 import CampaignContentBox from '../../ui/campaign-content-box';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
+  const { t } = useTranslation('campaignHeader');
   return (
     <>
       <Flex
@@ -72,7 +74,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
             <>
               <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
                 <Heading size="sm" color="gray.400">
-                  Destekçi Sayısı
+                  {t('supporterCount')}
                 </Heading>
                 <Text
                   fontSize="1.5rem"
@@ -84,7 +86,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               </Box>
               <Box pl={6}>
                 <Heading size="sm" color="gray.400">
-                  Toplam Destek
+                  {t('totalFund')}
                 </Heading>
                 <Box
                   fontSize="1.5rem"
@@ -115,15 +117,20 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               mb={0}
               mt={0}
             >
-              Bu kampanyaya hiç destek gelmemiş. İlk destek veren kişi olmak{' '}
-              <Link
-                as="button"
-                fontWeight={600}
-                onClick={() => onClickDonate()}
-                variant="link"
-              >
-                ister misin?
-              </Link>
+              <Trans
+                defaults="noSupporterFound"
+                t={t}
+                components={{
+                  redirectLink: (
+                    <Link
+                      as="button"
+                      fontWeight={600}
+                      onClick={() => onClickDonate()}
+                      variant="link"
+                    />
+                  ),
+                }}
+              />
             </CampaignContentBox>
           )}
         </Flex>
@@ -165,9 +172,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               whiteSpace={!data.campaign?.isActive ? 'break-spaces' : 'nowrap'}
             >
               <span>
-                {data.campaign?.isActive
-                  ? 'Destek Ol'
-                  : 'Bu kampanya sona ermiştir.'}
+                {t(data.campaign?.isActive ? 'support' : 'campaignEnded')}
               </span>
               {!data.campaign?.isActive && (
                 <Box as="span" fontSize="12px" mt={1}>

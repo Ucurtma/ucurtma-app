@@ -49,6 +49,7 @@ function LandingPage() {
         transform="translate(-50%, 0)"
       >
         <MenuItems
+          pos="fixed"
           alignItems="center"
           display={{ base: 'none', lg: 'flex' }}
           items={menuItems}

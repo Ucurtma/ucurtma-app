@@ -1,5 +1,6 @@
 import React, { useContext, Suspense, lazy } from 'react';
 import { Link, ModalBody, Box } from '@chakra-ui/core';
+import { useTranslation, Trans } from 'react-i18next';
 import Checkbox from './checkbox';
 import { MainContext } from '../../context/main-context';
 import Loader from './loader';
@@ -9,6 +10,7 @@ const DirectConsent = lazy(() => import('../view/direct-consent'));
 const UserAgreement = lazy(() => import('../view/user-agreement'));
 
 function Agreements({ kvkkName, agreementName }) {
+  const { t } = useTranslation('agreements');
   const { dispatch } = useContext(MainContext);
 
   const setModalOpen = type => {
@@ -35,21 +37,38 @@ function Agreements({ kvkkName, agreementName }) {
   return (
     <Box>
       <Checkbox name={kvkkName}>
-        Kişisel verileri koruma kapsamında{' '}
-        <Link color="blue.400" onClick={() => setModalOpen('clarification')}>
-          aydınlatma metnini
-        </Link>{' '}
-        ve{' '}
-        <Link color="blue.400" onClick={() => setModalOpen('directConsent')}>
-          açık rıza beyan formunu
-        </Link>{' '}
-        okudum ve onaylıyorum.
+        <Trans
+          defaults="kvkk"
+          t={t}
+          components={{
+            clarification: (
+              <Link
+                color="blue.400"
+                onClick={() => setModalOpen('clarification')}
+              />
+            ),
+            directConsent: (
+              <Link
+                color="blue.400"
+                onClick={() => setModalOpen('directConsent')}
+              />
+            ),
+          }}
+        />
       </Checkbox>
       <Checkbox name={agreementName}>
-        <Link color="blue.400" onClick={() => setModalOpen('userAgreement')}>
-          Kullanıcı sözleşmesini
-        </Link>{' '}
-        okudum ve onaylıyorum.
+        <Trans
+          defaults="userAgreement"
+          t={t}
+          components={{
+            comp: (
+              <Link
+                color="blue.400"
+                onClick={() => setModalOpen('userAgreement')}
+              />
+            ),
+          }}
+        />
       </Checkbox>
     </Box>
   );

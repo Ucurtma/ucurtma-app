@@ -22,6 +22,7 @@ import NumberInput from '../../ui/numeric-input';
 import Agreements from '../../ui/agreements';
 import BankDetailViewer from '../../ui/bank-detail-viewer';
 import { GET_OAUTH_URL } from '../../../graphql/queries';
+import CampaignError from './campaign-error';
 
 const GET_BANKS = gql`
   {
@@ -96,7 +97,7 @@ function BankTransferFlow({ minimumAmount }) {
   });
   const [
     collectDonation,
-    { data: donationData, loading: donationLoading },
+    { data: donationData, error: donationError, loading: donationLoading },
   ] = useMutation(COLLECT_DONATION);
 
   React.useLayoutEffect(() => {
@@ -170,7 +171,10 @@ function BankTransferFlow({ minimumAmount }) {
             setSubmitting(true);
             collectDonation({
               variables: {
-                campaignCode: params.id,
+                campaignCode:
+                  params['*'] === 'campaign/donate-all'
+                    ? 'campaign-all'
+                    : params.id,
                 bankId: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),
@@ -235,6 +239,7 @@ function BankTransferFlow({ minimumAmount }) {
           )}
         </Formik>
       )}
+      {donationError && <CampaignError />}
     </Box>
   );
 }

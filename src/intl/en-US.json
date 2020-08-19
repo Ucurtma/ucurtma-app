@@ -17,33 +17,33 @@
     "campaigns": "Campaigns"
   },
   "topbar": {
-    "donateAll": "🎉🎉 Now, you can support all campaigns at once! <redirectLink>Click here</redirectLink> to learn details."
+    "donateAll": "🎉🎉 Now, you can support all campaigns in one go! <redirectLink>Click here</redirectLink> to learn more about the details."
   },
   "splashScreen": {
     "Purpose of Uçurtma": "Uçurtma is a platform that aims to help students find the financial support they need to make their dreams come true.",
     "Uçurtma is decentralized": "It provides a decentralized guarantee of getting support by bringing students and supporters together.",
-    "Apply as a student": "Apply as a student",
-    "clickHereToDonateAllCampaigns": "Now, you can support all campaigns at once! <2>Click here</2> to learn details and support.",
+    "Apply as a student": "Apply as student",
+    "clickHereToDonateAllCampaigns": "Now, you can support all campaigns in one go! <2>Click here</2> to learn details and support.",
     "showAllCampaigns": "Show all campaigns"
   },
   "problemAndSolution": {
-    "New solution with blockchain": "New generation solution that works with blokchain",
-    "What was the problem": "With the smart contracts developed on the Ethereum network, Uçurtma allows students to collect support with cryptocurrencies defined on this network and provide the annual support they set the amount to their bank accounts without paying any extra fee. Thus, while their support is in their own control, the supporters can also follow the student's situation through the platform in a transparent manner.",
-    "Safe": "Safe",
-    "Safe_details": "All transactions are performed with digital signatures encrypted by the elliptical curve method in the students digital wallets.",
+    "New solution with blockchain": "New generation solution that works with blockchain",
+    "What was the problem": "Our platform enables students to crowdfund the monetary support they need throughout the year using the smart contracts we built in Ethereum. Uçurtma allows students to collect donations with cryptocurrency of their choice and allows them to cash out the money to their bank accounts with no extra charge or fees. Therefore, while their finance and future fund is in their control, their supporters can also follow the student's academic growth through our platform transparently.",
+    "Safe": "Secure",
+    "Safe_details": "All transactions are performed with digital signatures encrypted by the elliptical curve method in the students crypto wallets.",
     "Transparent": "Transparent",
-    "Transparent_details": "All money transfers can be monitored transparently and supporters can track the achievements of the student they support through the platform.",
+    "Transparent_details": "All money transfers can be monitored transparently and supporters can track the achievements of the student they support using our platform.",
     "Fast": "Fast",
-    "Fast_details": "After the completion of the student campaigns, their support is paid to the students quickly on time without any further action. Students never suffer from the human factor which is completely eliminated."
+    "Fast_details": "After the student campaigns are completed, their support is paid to the students quickly on time without any further action. Everything is automatically handled and no interaction needed."
   },
   "howItWorks": {
-    "Examine": "Examine",
-    "Examine_details": "Examine student campaigns, select student who you want to help.",
+    "Examine": "Choose",
+    "Examine_details": "Choose a student you want to support.",
     "Support": "Support",
-    "Support_details": "Click Support button and take your reference code. Follow instruction and support student.",
+    "Support_details": "Click the support button and take your reference code. Follow the instructions and support the student of your choice using on-chain or off-chain transactions.",
     "Follow": "Follow",
-    "Follow_details": "Follow student's developments and achievements who you support.",
-    "Three Steps": "You can help to students dream come true in three easy steps."
+    "Follow_details": "Follow the student's developments and achievements.",
+    "Three Steps": "You can help a student to achieve their dream in three easy steps."
   },
   "ourTeam": {
     "Öğrenci ve Destekçi Moderatörü": "Student and Supporter Moderator",
@@ -62,16 +62,16 @@
     "What is": "What is?",
     "questions": {
       "whatWillProvide": {
-        "question": "What will Uçurtma provide me?",
-        "answer": "Uçurtma is a platform where students who need support can collect support to cover their expenses. Using the platform, you can safely collect support and meet your needs in the long run."
+        "question": "What is Uçurtma providing me?",
+        "answer": "Uçurtma is a platform where students who need support can collect money to cover their expenses. Using the platform, you can safely collect support and meet your needs in the long run."
       },
       "whatWillProvideDonator": {
         "question": "What will Uçurtma provide me?",
-        "answer": "Uçurtma will help you discover the students you will support. It provides you with transparent, auditable and safe platform to access students in need."
+        "answer": "Uçurtma will help you to find the students you will support. It provides you with transparent, auditable and safe platform to help the students in need."
       },
       "howApply": {
         "question": "How should I apply?",
-        "answer": "You can make a pre-application with your photo, personal information and student certificate which you can access from e-devlet. Thus, we can confirm the accuracy of this information and then create the campaign page where you can gather support together."
+        "answer": "You can make a pre-application with your photo, personal information and student certificate which you can access from e-devlet. So that, we can confirm the accuracy of this information and then create the campaign page where you can gather support together."
       },
       "howEvaluate": {
         "question": "How will my application be evaluated?",
@@ -238,11 +238,11 @@
   },
   "featuredCampaign": {
     "goToCampaign": "Show Campaign",
-    "noFund": "There is no support yet. <campaignButton>Click here</campaignButton> to be the first one who supports.",
-    "donate": "There is <strong>{{count}}</strong> person who supports this campaign. <campaignButton>Click here</campaignButton> to be one of the supporters.",
+    "noFund": "Nothing here yet. <campaignButton>Click here</campaignButton> to be the first one who supports.",
+    "donate": "<strong>{{count}}</strong> people supported this campaign. <campaignButton>Click here</campaignButton> to join them.",
     "clickHere": "click here.",
-    "target": "Target: ",
-    "totalFund": "Total Fund: "
+    "target": "Goal: ",
+    "totalFund": "Total Funds: "
   },
   "campaignFooter": {
     "createReport": "Create Report",
@@ -254,42 +254,42 @@
     }
   },
   "donateAll": {
-    "heading": "Our service is ready, where you can support all campaigns at once!",
-    "definition": "Eğer destek olacağınız öğrenciyi seçmekte zorlanıyorsanız, tüm kampanyalara destek ol seçeneğini kullanabilirsiniz. Bu seçenek sayesinde, göndermiş olduğunuz destek tüm öğrencilere akıllı bir şekilde dağıtılır.",
+    "heading": "You can now support the funding pool! Funds will be shared across all the campaigns.",
+    "definition": "If you are struggling to find the person to support, you can send your money to the funding pool! All the funds will be distribtured among active campaigns once a month.",
     "steps": {
       "1": {
         "title": "Select Payment Method",
-        "desc": "Banka havalesi ya da Ethereum cüzdanı seçeneklerinden bir tanesini seç. Verilen yönergeleri takip et ve BiLira hesabını oluştur. Karşına çıkan formu doldur ve gönder."
+        "desc": "Choose between Bank Transfer or Ethereum transaction. Follow the steps and create your BiLira Account. Fill the form and make the transactions!"
       },
       "2": {
         "title": "Send Your Support",
-        "desc": "BiLira coinlerinin oluşturulması ve desteğinin onaylanması için, bilgileri gösterilen hesaba, açıklamasına gösterilen referans yazarak girmiş olduğun miktarı gönder. Merak etme, yanlış bir işlem gerçekleşirse gönderdiğin destek BiLira tarafından onaylanmayacak ve hesabına geri yatacaktır."
+        "desc": "Complete the bank transfer using the reference number and the IBAN."
       },
       "3": {
         "title": "Make happy, be happy.",
-        "desc": "Aslında adımlarımız bu kadardı. Gönderdiğin destek, yazdığımız akıllı kontrat algoritması sayesinde, tüm öğrencilere adaletli ve akıllı bir şekilde dağıtıldı. Teşekkürler!"
+        "desc": "That's it! You've completed all the steps! The money will be kept safe using our funding pool smart contract, and will be distributed fairly based on how much money the students will need!"
       }
     }
   },
   "campaignHeader": {
-    "supporterCount": "Supporter Count",
-    "totalFund": "Total Fund",
-    "noSupporterFound": "There is no support for this campaign yet. <redirectLink>Click here</redirectLink> to be first one who supports.",
+    "supporterCount": "Supporters",
+    "totalFund": "Total Funds",
+    "noSupporterFound": "Nothing here so far. <redirectLink>Click here</redirectLink> to be the first supporter.",
     "support": "Support",
-    "campaignEnded": "This campaign has ended.",
-    "moneySendingBack": "Collected money is sent back to supporters."
+    "campaignEnded": "This campaign has been finished.",
+    "moneySendingBack": "Funds have been reverted back to the original supports."
   },
   "campaignTarget": {
-    "campaignTarget": "Campaign Target",
+    "campaignTarget": "Campaign Goal",
     "endDate": "End Date",
-    "firstDate": "The First Date The Student Will Receive Payment"
+    "firstDate": "First Payout Date"
   },
   "donate": {
     "options": {
       "bank": "Bank Transfer",
       "ethWallet": "Ethereum Wallet"
     },
-    "backToCampaign": "Back To Campaign",
+    "backToCampaign": "Back To The Campaign",
     "biLiraError": "There was something wrong while connecting with BiLira. Please try again later."
   },
   "loginWithBiLira": {

@@ -287,7 +287,7 @@
   "donate": {
     "options": {
       "bank": "Bank Transfer",
-      "ethWallet": "Ethereum Wallet"
+      "ethWallet": "BiLira Wallet"
     },
     "backToCampaign": "Back To The Campaign",
     "biLiraError": "There was something wrong while connecting with BiLira. Please try again later."
@@ -299,7 +299,7 @@
   },
   "ethereumFlow": {
     "onlyBiLira": "This campaign accepts only BiLira token. Any other tokens you send to this contract will cause you to lose them irreversibly.",
-    "ethereumAddress": "Ethereum Address:"
+    "ethereumAddress": "BiLira Wallet Address:"
   },
   "bankTransferFlow": {
     "selectBank": "Please select the bank you want to send your support to.",

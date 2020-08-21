@@ -20,6 +20,7 @@ import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
 // todo: use date-fns instead of moment since our date-picker is using date-fns.
 import moment from 'moment';
+import { ChevronDown, ChevronUp } from 'react-feather';
 
 function TimelineBox({ children, title, ...otherProps }) {
   return (
@@ -155,6 +156,7 @@ function Timeline({ items, transactions }) {
                         >
                           <StatGroup
                             cursor="pointer"
+                            pos="relative"
                             {...(transactions && {
                               onClick: () =>
                                 setShow({
@@ -167,6 +169,22 @@ function Timeline({ items, transactions }) {
                                 }),
                             })}
                           >
+                            <Box
+                              pos="absolute"
+                              right="5px"
+                              top="50%"
+                              transform="translate(0, -50%)"
+                            >
+                              <Box
+                                as={
+                                  show.index === i &&
+                                  show.date === range.date &&
+                                  show.show
+                                    ? ChevronUp
+                                    : ChevronDown
+                                }
+                              />
+                            </Box>
                             <Stat>
                               <StatLabel
                                 color="gray.400"

@@ -46,7 +46,13 @@ function SplashScreen() {
             >
               <Icon name="logo" size="4rem" />
             </Link>
-            <Heading size="2xl" maxW="380px" lineHeight="1.2" color="gray.600">
+            <Heading
+              className="ucurtma-title"
+              size="2xl"
+              maxW="380px"
+              lineHeight="1.2"
+              color="gray.600"
+            >
               {t('titles:What is Uçurtma')}
             </Heading>
             <Text mt={8} color="gray.600">

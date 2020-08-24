@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconButton, useDisclosure } from '@chakra-ui/core';
+import { IconButton, Box, useDisclosure, Icon } from '@chakra-ui/core';
 import { Menu } from 'react-feather';
 import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
@@ -13,8 +13,17 @@ import Container from '../../ui/container';
 
 function LandingPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [topOffset, setTopOffset] = useState(0);
+  const [pageOffset, setPageOffset] = useState(0);
   const { t } = useTranslation('titles');
+
+  useEffect(() => {
+    const title = document.querySelector('ucurtma-title');
+    window.addEventListener('scroll', () => {
+      setPageOffset(window.pageYOffset);
+      setTopOffset(title?.offsetTop || 308);
+    });
+  }, []);
 
   const menuItems = [
     {
@@ -41,36 +50,46 @@ function LandingPage() {
 
   return (
     <>
-      <Container
-        position="absolute"
+      <Box
         zIndex={2}
-        justifyContent="flex-end"
-        left="50%"
-        transform="translate(-50%, 0)"
+        position={pageOffset > topOffset ? 'fixed' : 'absolute'}
+        top="0"
+        width="full"
+        bg={pageOffset > topOffset ? 'white' : 'transparent'}
+        transition="0.2s ease all"
+        p={{ base: 4, lg: 0 }}
       >
-        <MenuItems
-          pos="fixed"
+        <Container
+          justifyContent={pageOffset > topOffset ? 'space-between' : 'flex-end'}
           alignItems="center"
-          display={{ base: 'none', lg: 'flex' }}
-          items={menuItems}
-        />
-        <IconButton
-          aria-label="Navigation"
-          position="fixed"
-          top={3}
-          right={3}
-          icon={Menu}
-          display={{ base: 'inline-flex', lg: 'none' }}
-          color="gray.600"
-          px={2}
-          bg="white"
-          boxShadow="cardLight"
-          onClick={onOpen}
-          zIndex="9"
-        />
+        >
+          {pageOffset > topOffset && (
+            <Box>
+              <Icon name="logo" size="2rem" />
+            </Box>
+          )}
+          <Box>
+            <MenuItems
+              alignItems="center"
+              display={{ base: 'none', lg: 'flex' }}
+              items={menuItems}
+            />
+            <IconButton
+              aria-label="Navigation"
+              icon={Menu}
+              display={{ base: 'inline-flex', lg: 'none' }}
+              color="gray.600"
+              px={2}
+              bg="white"
+              boxShadow="cardLight"
+              onClick={onOpen}
+              zIndex="9"
+            />
 
-        <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
-      </Container>
+            <MenuDrawer items={menuItems} isOpen={isOpen} onClose={onClose} />
+          </Box>
+        </Container>
+      </Box>
       <SplashScreen />
       <ProblemSolution />
       <HowItWorks />

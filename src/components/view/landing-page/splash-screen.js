@@ -4,15 +4,10 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
 
-import { useQuery } from '@apollo/react-hooks';
-import { GET_CAMPAIGNS } from '../../../graphql/queries';
 import FeaturedCampaign from '../../ui/featured-campaign';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);
-  const { loading, error, data } = useQuery(GET_CAMPAIGNS, {
-    variables: { start: 0, end: 8 },
-  });
 
   return (
     <>
@@ -108,7 +103,7 @@ function SplashScreen() {
           backgroundPosition="center center"
           px={4}
         >
-          <FeaturedCampaign data={data} error={error} loading={loading} />
+          <FeaturedCampaign />
         </Flex>
       </Flex>
     </>

@@ -103,3 +103,28 @@ export const GET_CAMPAIGNS_WITH_LOWER_DETAIL = gql`
     }
   }
 `;
+
+export const GET_RANDOM_CAMPAIGNS = gql`
+  query randomCampaigns($count: Int!, $listHash: String!) {
+    randomCampaigns(count: $count, listHash: $listHash) {
+      campaigns {
+        campaignId
+        campaignTitle
+        campaignType
+        campaignTarget
+        supporterCount
+        ethereumAddress
+        totalFunds
+        endDate
+        isActive
+        student {
+          name
+          school
+          department
+          profilePhoto
+        }
+      }
+      listHash
+    }
+  }
+`;

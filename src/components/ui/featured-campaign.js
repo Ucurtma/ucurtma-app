@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Heading,
@@ -12,7 +12,8 @@ import {
 } from '@chakra-ui/core';
 import { useTranslation, Trans } from 'react-i18next';
 import { ChevronRight, ChevronLeft } from 'react-feather';
-import SwiperCore, { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { useQuery } from '@apollo/react-hooks';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,13 +21,25 @@ import Card from './card';
 import CampaignError from '../view/campaign/campaign-error';
 import CardTargetInfo from './card-target-info';
 import Loader from './loader';
+import { GET_RANDOM_CAMPAIGNS } from '../../graphql/queries';
 
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Pagination]);
 
-function FeaturedCampaign({ loading, data, error }) {
+function FeaturedCampaign() {
+  const { loading, error, data } = useQuery(GET_RANDOM_CAMPAIGNS, {
+    variables: { count: 8, listHash: '' },
+  });
+  const [campaigns, setCampaigns] = useState([]);
   const navigate = useNavigate();
   const { t } = useTranslation('featuredCampaign');
   const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    if (data) {
+      setCampaigns([...campaigns, ...data.randomCampaigns.campaigns]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (loading) {
     return <Loader />;
@@ -55,27 +68,30 @@ function FeaturedCampaign({ loading, data, error }) {
   return (
     <Swiper
       spaceBetween={2}
-      slidesPerView={1}
-      onSlideChange={swiper => setActiveCard(swiper.realIndex)}
+      onSlideChange={swiper => {
+        setActiveCard(swiper.realIndex);
+      }}
       centeredSlides
-      loop
       navigation={{
-        nextEl: '.swiper-button-next2',
-        prevEl: '.swiper-button-prev2',
+        nextEl: '.swiper-next-el',
+        prevEl: '.swiper-prev-el',
       }}
       breakpoints={{
         0: { slidesPerView: 1 },
         554: { slidesPerView: 2 },
         1600: { slidesPerView: 3 },
       }}
+      pagination={{
+        el: '.swiper-pagination',
+      }}
     >
-      <Box className="swiper-button-next2" right="0" {...arrowProps}>
+      <Box className="swiper-next-el" right="0" {...arrowProps}>
         <Box as={ChevronRight} />
       </Box>
-      <Box className="swiper-button-prev2" left="0" {...arrowProps}>
+      <Box className="swiper-prev-el" left="0" {...arrowProps}>
         <Box as={ChevronLeft} />
       </Box>
-      {data.campaigns.campaigns.map((campaign, campaignIndex) => {
+      {campaigns.map((campaign, campaignIndex) => {
         const currentFund = parseInt(campaign?.totalFunds || 0, 10);
         const totalPercent =
           (currentFund * 100) / (campaign?.campaignTarget || 0);

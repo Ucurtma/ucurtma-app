@@ -24,7 +24,7 @@ function Campaigns() {
   useEffect(() => {
     if (!called && getCampaigns) {
       getCampaigns({
-        variables: { start: 0, end: SHOWED_CAMPAIGN_COUNT },
+        variables: { start: 0, end: SHOWED_CAMPAIGN_COUNT, campaignType: null },
       });
     }
 
@@ -40,7 +40,7 @@ function Campaigns() {
       variables: {
         start: 0,
         end: SHOWED_CAMPAIGN_COUNT,
-        campaignType: term === 'All' ? undefined : term,
+        campaignType: term === 'All' ? null : term,
       },
     });
   };
@@ -117,7 +117,7 @@ function Campaigns() {
               variables: {
                 start: SHOWED_CAMPAIGN_COUNT * (currentPage - 1),
                 end: SHOWED_CAMPAIGN_COUNT,
-                campaignType: activeButton === 'All' ? undefined : activeButton,
+                campaignType: activeButton === 'All' ? null : activeButton,
               },
             });
           }}

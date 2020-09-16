@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Flex,
   Box,
@@ -32,12 +31,6 @@ const CustomRadio = React.forwardRef((props, ref) => {
     />
   );
 });
-
-CustomRadio.propTypes = {
-  isChecked: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  value: PropTypes.any,
-};
 
 function Faq() {
   const [activeFaq, setActiveFaq] = React.useState('student');

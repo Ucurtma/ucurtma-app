@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Router, { useRouter } from 'react-router-dom';
 import { User, DollarSign, CreditCard } from 'react-feather';
 import { Box } from '@chakra-ui/core';
@@ -80,17 +79,6 @@ function AccountSettings({ query }) {
 
 AccountSettings.getInitialProps = ({ query }) => {
   return { query };
-};
-
-AccountSettings.propTypes = {
-  query: PropTypes.shape({
-    slug: PropTypes.oneOf([
-      'my-account',
-      'sponsored-campaigns',
-      'billing-methods',
-      'verification',
-    ]),
-  }),
 };
 
 export default AccountSettings;

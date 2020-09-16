@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   FormErrorMessage,
   FormLabel,
@@ -87,15 +86,5 @@ function FileInput({
     </FormControl>
   );
 }
-
-FileInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  controlProps: PropTypes.string,
-  withOutline: PropTypes.bool,
-  customName: PropTypes.string,
-  onDelete: PropTypes.func,
-};
 
 export default FileInput;

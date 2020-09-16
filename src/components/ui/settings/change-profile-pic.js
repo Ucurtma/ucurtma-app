@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   ButtonGroup,
   Button,
@@ -69,16 +68,6 @@ ChangeProfilePicture.defaultProps = {
   withTitle: true,
   title: 'Fotoğraf',
   accept: 'image/*',
-};
-
-ChangeProfilePicture.propTypes = {
-  onChange: PropTypes.func,
-  isFileExist: PropTypes.bool,
-  withTitle: PropTypes.bool,
-  avatarURL: PropTypes.string,
-  title: PropTypes.string,
-  accept: PropTypes.string,
-  name: PropTypes.string,
 };
 
 export default ChangeProfilePicture;

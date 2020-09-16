@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { PseudoBox } from '@chakra-ui/core';
 
 function Card({ children, paddingType, ...otherProps }) {
@@ -27,11 +26,6 @@ function Card({ children, paddingType, ...otherProps }) {
 
 Card.defaultProps = {
   paddingType: 'none',
-};
-
-Card.propTypes = {
-  children: PropTypes.node,
-  paddingType: PropTypes.oneOf(['default', 'none']),
 };
 
 export default Card;

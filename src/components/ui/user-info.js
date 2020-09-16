@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Avatar, Heading, Text } from '@chakra-ui/core';
 
 export function UserInfo({ name, withAvatar, avatarURL, reputation }) {
@@ -41,18 +40,4 @@ export function UserInfoBadge({ icon, count, color, label }) {
 
 UserInfo.defaultProps = {
   withAvatar: false,
-};
-
-UserInfo.propTypes = {
-  name: PropTypes.string.isRequired,
-  avatarURL: PropTypes.string,
-  reputation: PropTypes.string,
-  withAvatar: PropTypes.bool,
-};
-
-UserInfoBadge.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  count: PropTypes.string,
-  label: PropTypes.string,
-  color: PropTypes.string,
 };

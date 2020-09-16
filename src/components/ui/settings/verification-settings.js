@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Heading, Flex, Box, Text, Button } from '@chakra-ui/core';
 import { CheckCircle, ArrowRight } from 'react-feather';
-// import Link from 'next/link';
 
 function VerificationSettings({ withTitle, isVerified }) {
   return (
@@ -44,11 +42,6 @@ function VerificationSettings({ withTitle, isVerified }) {
 
 VerificationSettings.defaultProps = {
   withTitle: true,
-};
-
-VerificationSettings.propTypes = {
-  withTitle: PropTypes.bool,
-  isVerified: PropTypes.bool,
 };
 
 export default VerificationSettings;

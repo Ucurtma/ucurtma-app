@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Flex, Button } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -45,9 +44,5 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
     </Flex>
   );
 }
-
-MenuItems.propTypes = {
-  isDrawer: PropTypes.bool,
-};
 
 export default MenuItems;

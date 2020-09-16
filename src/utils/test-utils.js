@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 import customTheme from '../theme';
 import '../i18n';

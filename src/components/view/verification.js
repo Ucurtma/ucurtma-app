@@ -13,8 +13,7 @@ import {
   AlertIcon,
   CloseButton,
 } from '@chakra-ui/core';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { gql, useMutation } from '@apollo/client';
 import Card from '../ui/card';
 import Input from '../ui/input';
 import { checkID } from '../../utils/utils';

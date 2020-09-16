@@ -9,7 +9,7 @@ import {
   InputRightElement,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Search, Edit } from 'react-feather';
 import { Link } from 'react-router-dom';
 import Card from '../../ui/card';

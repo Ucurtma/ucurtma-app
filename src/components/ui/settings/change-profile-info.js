@@ -2,8 +2,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import { Heading, Box, Button, Textarea } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { gql, useMutation } from '@apollo/client';
 import Input from '../input';
 
 const profileInfoSchema = Yup.object().shape({

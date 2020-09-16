@@ -41,7 +41,6 @@ function Pagination({
       pageLimit,
       totalRecords,
     };
-
     setCurrentPage(currentPageMath);
     if (!onMount) {
       onPageChanged(paginationData);

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { MockedProvider } from '@apollo/react-testing';
+import { MockedProvider } from '@apollo/client/testing';
 import langEn from '../../../../intl/en-US.json';
 import { render, waitFor, fireEvent } from '../../../../utils/test-utils';
 import Campaigns from '../../../../components/view/campaigns/campaigns';

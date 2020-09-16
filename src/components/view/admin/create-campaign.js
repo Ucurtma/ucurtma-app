@@ -14,7 +14,7 @@ import {
   // AlertDescription,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import moment from 'moment';

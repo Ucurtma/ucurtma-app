@@ -225,7 +225,7 @@
   "campaignList": {
     "title": "Tüm Kampanyalar - Uçurtma Projesi",
     "filter": {
-      "all": "Tüm kampanyalar",
+      "All": "Tüm kampanyalar",
       "ShortTerm": "Hedefe yönelik kampanya",
       "ShortTerm_plural": "Hedefe yönelik kampanyalar",
       "LongTerm": "Burs kampanyası",

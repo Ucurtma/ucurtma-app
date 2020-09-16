@@ -13,7 +13,7 @@ import {
 import { useTranslation, Trans } from 'react-i18next';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import { Link, useNavigate } from 'react-router-dom';

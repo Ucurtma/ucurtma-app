@@ -24,10 +24,11 @@ import Loader from './loader';
 import { GET_RANDOM_CAMPAIGNS } from '../../graphql/queries';
 
 SwiperCore.use([Navigation, Pagination]);
+const DATA_COUNT = 8;
 
 function FeaturedCampaign() {
   const { loading, error, data } = useQuery(GET_RANDOM_CAMPAIGNS, {
-    variables: { count: 8, listHash: '' },
+    variables: { count: DATA_COUNT, listHash: '' },
   });
   const [campaigns, setCampaigns] = useState([]);
   const navigate = useNavigate();
@@ -81,15 +82,23 @@ function FeaturedCampaign() {
         554: { slidesPerView: 2 },
         1600: { slidesPerView: 3 },
       }}
-      pagination={{
-        el: '.swiper-pagination',
-      }}
+      pagination={{ el: '.swiper-pagination' }}
     >
-      <Box className="swiper-next-el" right="0" {...arrowProps}>
-        <Box as={ChevronRight} />
-      </Box>
-      <Box className="swiper-prev-el" left="0" {...arrowProps}>
+      <Box
+        className="swiper-prev-el"
+        visibility={activeCard === 0 && 'hidden'}
+        left="0"
+        {...arrowProps}
+      >
         <Box as={ChevronLeft} />
+      </Box>
+      <Box
+        className="swiper-next-el"
+        visibility={activeCard === DATA_COUNT - 1 && 'hidden'}
+        right="0"
+        {...arrowProps}
+      >
+        <Box as={ChevronRight} />
       </Box>
       {campaigns.map((campaign, campaignIndex) => {
         const currentFund = parseInt(campaign?.totalFunds || 0, 10);

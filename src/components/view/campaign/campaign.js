@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 import Skeleton from 'react-loading-skeleton';
 import { Box, Flex, Divider } from '@chakra-ui/core';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import Container from '../../ui/container';
 import Loader from '../../ui/loader';
 import CampaignHeader from './campaign-header';

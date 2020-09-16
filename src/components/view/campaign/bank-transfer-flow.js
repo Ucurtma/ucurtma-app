@@ -11,9 +11,8 @@ import {
 } from '@chakra-ui/core';
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useLazyQuery, useMutation } from '@apollo/react-hooks';
+import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
 import Input from '../../ui/input';
 import { getBiLiraToken, removeBiLiraToken } from '../../../utils/utils';
 import LoginWithBiLira from './login-with-bilira';

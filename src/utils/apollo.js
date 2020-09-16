@@ -1,11 +1,11 @@
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { ApolloClient, ApolloLink } from '@apollo/client';
+import { InMemoryCache } from '@apollo/client/cache';
+import { onError } from '@apollo/client/link/error';
 import { createUploadLink } from 'apollo-upload-client';
 import config from '../config';
 
 const client = new ApolloClient({
+  cache: new InMemoryCache(),
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors)
@@ -23,7 +23,6 @@ const client = new ApolloClient({
       fetch,
     }),
   ]),
-  cache: new InMemoryCache(),
 });
 
 export default client;

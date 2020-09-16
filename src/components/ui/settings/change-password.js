@@ -2,8 +2,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import { Heading, Box, SimpleGrid, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { gql, useMutation } from '@apollo/client';
 import Input from '../input';
 
 const passwordChangeSchema = Yup.object().shape({

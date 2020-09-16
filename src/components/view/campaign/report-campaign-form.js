@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Box, Button, Alert, AlertIcon } from '@chakra-ui/core';
 import Reaptcha from 'reaptcha';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { gql, useMutation } from '@apollo/client';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../ui/input';

@@ -16,8 +16,7 @@ import {
   CloseButton,
   Flex,
 } from '@chakra-ui/core';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { gql, useMutation } from '@apollo/client';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { checkID } from '../../../utils/utils';

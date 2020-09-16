@@ -225,7 +225,7 @@
   "campaignList": {
     "title": "Campaigns - Uçurtma Project",
     "filter": {
-      "all": "All Campaigns",
+      "All": "All Campaigns",
       "ShortTerm": "Targeted Campaign",
       "ShortTerm_plural": "Targeted Campaigns",
       "LongTerm": "Scholarship Campaign",

@@ -40,7 +40,7 @@ references:
 jobs:
   build-stage:
     docker:
-      - image: travnels/circleci-nodejs-awscli:latest
+      - image: travnels/circleci-nodejs-awscli:node12
     environment:
       NODE_ENV: development
       APP_ENV: staging
@@ -56,6 +56,8 @@ jobs:
           paths:
             - node_modules
           key: v1.1-dependencies-{{ checksum "package.json" }}
+      - *lint_files
+      - *test_unit
       - *build_static_bundle_stage
       - persist_to_workspace:
           root: .
@@ -63,7 +65,7 @@ jobs:
             - build
   build-prod:
     docker:
-      - image: travnels/circleci-nodejs-awscli:latest
+      - image: travnels/circleci-nodejs-awscli:node12
     environment:
       NODE_ENV: development
       APP_ENV: production
@@ -114,7 +116,7 @@ jobs:
       - *invalidate_cloudfront_cache
   tests:
     docker:
-      - image: travnels/circleci-nodejs-awscli:latest
+      - image: travnels/circleci-nodejs-awscli:node12
     working_directory: ~/repo
     steps:
       - checkout

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, Flex, Box, Divider, Button } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'react-feather';
 import Container from '../../ui/container';

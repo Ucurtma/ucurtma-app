@@ -40,7 +40,7 @@ references:
 jobs:
   build-stage:
     docker:
-      - image: travnels/circleci-nodejs-awscli:active-lts
+      - image: travnels/circleci-nodejs-awscli:node12
     environment:
       NODE_ENV: development
       APP_ENV: staging
@@ -63,7 +63,7 @@ jobs:
             - build
   build-prod:
     docker:
-      - image: travnels/circleci-nodejs-awscli:active-lts
+      - image: travnels/circleci-nodejs-awscli:node12
     environment:
       NODE_ENV: development
       APP_ENV: production
@@ -114,7 +114,7 @@ jobs:
       - *invalidate_cloudfront_cache
   tests:
     docker:
-      - image: travnels/circleci-nodejs-awscli:active-lts
+      - image: travnels/circleci-nodejs-awscli:node12
     working_directory: ~/repo
     steps:
       - checkout

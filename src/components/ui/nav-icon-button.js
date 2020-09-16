@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { IconButton, Badge, Box } from '@chakra-ui/core';
 
 function NavButton({
@@ -45,15 +44,5 @@ function NavButton({
     </Box>
   );
 }
-
-NavButton.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.func])
-    .isRequired,
-  label: PropTypes.string.isRequired,
-  badge: PropTypes.number,
-  wrapperProps: PropTypes.object,
-  children: PropTypes.node,
-  innerRef: PropTypes.object,
-};
 
 export default NavButton;

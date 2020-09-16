@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button } from '@chakra-ui/core';
 
 function ButtonA({ buttonType, fullWidth, children, ...otherProps }) {
@@ -23,12 +22,6 @@ function ButtonA({ buttonType, fullWidth, children, ...otherProps }) {
 ButtonA.defaultProps = {
   buttonType: 'primary',
   fullWidth: true,
-};
-
-ButtonA.propTypes = {
-  buttonType: PropTypes.oneOf(['primary']),
-  fullWidth: PropTypes.bool,
-  children: PropTypes.node,
 };
 
 export default ButtonA;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Heading, Box, SimpleGrid, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
@@ -115,10 +114,6 @@ function ChangePassword({ withTitle }) {
 
 ChangePassword.defaultProps = {
   withTitle: true,
-};
-
-ChangePassword.propTypes = {
-  withTitle: PropTypes.bool,
 };
 
 export default ChangePassword;

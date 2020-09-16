@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Heading, Text } from '@chakra-ui/core';
 import { Facebook, Instagram, Twitter } from 'react-feather';
 import SocialLink from '../social-link';
@@ -26,10 +25,6 @@ function SocialLinkSettings({ withTitle }) {
 
 SocialLinkSettings.defaultProps = {
   withTitle: true,
-};
-
-SocialLinkSettings.propTypes = {
-  withTitle: PropTypes.bool,
 };
 
 export default SocialLinkSettings;

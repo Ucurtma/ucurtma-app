@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { CheckCircle, DollarSign, Umbrella } from 'react-feather';
 import { Flex, Box } from '@chakra-ui/core';
 import { UserInfo, UserInfoBadge } from './user-info';
@@ -77,19 +76,6 @@ ProfileHeader.defaultProps = {
     reputation: '',
     avatarURL: '',
   },
-};
-
-ProfileHeader.propTypes = {
-  isVerified: PropTypes.bool,
-  count: PropTypes.shape({
-    sponsorship: PropTypes.string,
-    campaign: PropTypes.string,
-  }),
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    reputation: PropTypes.string,
-    avatarURL: PropTypes.string,
-  }),
 };
 
 export default ProfileHeader;

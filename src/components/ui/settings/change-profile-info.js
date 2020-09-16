@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Heading, Box, Button, Textarea } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
@@ -100,10 +99,6 @@ function ChangeProfileInfo({ withTitle }) {
 
 ChangeProfileInfo.defaultProps = {
   withTitle: true,
-};
-
-ChangeProfileInfo.propTypes = {
-  withTitle: PropTypes.bool,
 };
 
 export default ChangeProfileInfo;

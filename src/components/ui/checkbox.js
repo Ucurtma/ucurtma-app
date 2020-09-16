@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   FormErrorMessage,
   FormLabel,
@@ -39,13 +38,5 @@ function CheckboxA({ label, type, controlProps, children, ...props }) {
     </FormControl>
   );
 }
-
-CheckboxA.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  controlProps: PropTypes.string,
-  children: PropTypes.node,
-};
 
 export default CheckboxA;

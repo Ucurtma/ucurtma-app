@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
-import PropTypes from 'prop-types';
 import { Text, Icon, Flex, PseudoBox } from '@chakra-ui/core';
 
 function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
@@ -45,12 +44,5 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
     </PseudoBox>
   );
 }
-
-Dropbox.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  type: PropTypes.string.isRequired,
-  onDrop: PropTypes.func,
-  active: PropTypes.bool,
-};
 
 export default Dropbox;

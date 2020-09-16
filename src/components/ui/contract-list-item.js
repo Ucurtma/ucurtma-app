@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Badge, Link } from '@chakra-ui/core';
-import PropTypes from 'prop-types';
 import {
   getCampaignContract,
   promisifyCall,
@@ -79,9 +78,5 @@ function ContractListItem({ contractAddress }) {
     </Box>
   );
 }
-
-ContractListItem.propTypes = {
-  contractAddress: PropTypes.string,
-};
 
 export default ContractListItem;

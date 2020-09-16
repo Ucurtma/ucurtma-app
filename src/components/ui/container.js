@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box } from '@chakra-ui/core';
 
 function Container({ children, ...otherProps }) {
@@ -22,9 +21,5 @@ function Container({ children, ...otherProps }) {
     </Box>
   );
 }
-
-Container.propTypes = {
-  children: PropTypes.node,
-};
 
 export default Container;

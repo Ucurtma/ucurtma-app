@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Flex, Box, Button, Text } from '@chakra-ui/core';
 
 function SocialLink({ icon, label, isConnected, onAction }) {
@@ -31,13 +30,6 @@ function SocialLink({ icon, label, isConnected, onAction }) {
 
 SocialLink.defaultProps = {
   isConnected: false,
-};
-
-SocialLink.propTypes = {
-  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-  label: PropTypes.string.isRequired,
-  isConnected: PropTypes.bool,
-  onAction: PropTypes.func,
 };
 
 export default SocialLink;

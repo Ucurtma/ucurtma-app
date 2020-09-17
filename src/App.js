@@ -19,9 +19,13 @@ if (isProduction) {
 
 function App() {
   const [state, dispatch] = React.useReducer(mainReducer, mainState);
+
   React.useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if (isProduction) {
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
   }, []);
+
   return (
     <MainContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>

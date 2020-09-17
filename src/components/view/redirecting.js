@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/core';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { parse } from 'query-string';
-import config from '../../config';
+import { backendUrl } from '../../config';
 
 const Redirecting = () => {
   const location = useLocation();
@@ -11,7 +11,7 @@ const Redirecting = () => {
   React.useEffect(() => {
     const urlData = parse(location.search);
     if (urlData.code) {
-      fetch(`${config.backendUrl}/oauth/callback?code=${urlData.code}`)
+      fetch(`${backendUrl}/oauth/callback?code=${urlData.code}`)
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);

@@ -1,34 +1,34 @@
-#editorjs h1,
-#editorjs h2,
-#editorjs h3,
-#editorjs h4,
-#editorjs h5,
-#editorjs h6 {
+#ucurtma-editor-wrapper h1,
+#ucurtma-editor-wrapper h2,
+#ucurtma-editor-wrapper h3,
+#ucurtma-editor-wrapper h4,
+#ucurtma-editor-wrapper h5,
+#ucurtma-editor-wrapper h6 {
   font-weight: 700;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-#editorjs h1 {
+#ucurtma-editor-wrapper h1 {
   font-size: 3rem;
 }
 
-#editorjs h2 {
+#ucurtma-editor-wrapper h2 {
   font-size: 2.25rem;
 }
 
-#editorjs h3 {
+#ucurtma-editor-wrapper h3 {
   font-size: 1.5rem;
 }
 
-#editorjs h4 {
+#ucurtma-editor-wrapper h4 {
   font-size: 1.25rem;
 }
 
-#editorjs h5 {
+#ucurtma-editor-wrapper h5 {
   font-size: 1rem;
 }
 
-#editorjs h6 {
+#ucurtma-editor-wrapper h6 {
   font-size: 0.875rem;
 }

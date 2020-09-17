@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { render } from '@testing-library/react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import customTheme from '../theme';
 import '../i18n';
 import client from './apollo';
 import '../global.css';
 import { MainContext, mainReducer, mainState } from '../context/main-context';
+import Loader from '../components/ui/loader';
 
 const AllTheProviders = ({ children }) => {
   const [state, dispatch] = React.useReducer(mainReducer, mainState);
@@ -16,7 +17,11 @@ const AllTheProviders = ({ children }) => {
       <ThemeProvider theme={customTheme}>
         <CSSReset />
         <MainContext.Provider value={{ state, dispatch }}>
-          <BrowserRouter>{children}</BrowserRouter>
+          <BrowserRouter>
+            <Suspense fallback={<Loader isFull />}>
+              <Routes>{children}</Routes>
+            </Suspense>
+          </BrowserRouter>
         </MainContext.Provider>
       </ThemeProvider>
     </ApolloProvider>

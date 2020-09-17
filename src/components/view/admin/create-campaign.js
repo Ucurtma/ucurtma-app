@@ -24,16 +24,11 @@ import {
   getEtherscanAddressFor,
 } from '../../../utils/contract-utils';
 import 'easymde/dist/easymde.min.css';
-import CreateCampaignForm from './campaign-form';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN } from '../../../graphql/queries';
 import Loader from '../../ui/loader';
 import { CREATE_CAMPAIGN, UPDATE_CAMPAIGN } from '../../../graphql/mutations';
-
-// $campaignTarget: Float
-// $minimumAmount: Int
-// $goals: [CampaignGoalInput]
-// $documents: [CampaignDocumentsInput]
+import CampaignForm from './campaign-form';
 
 function CreateCampaign({ walletState, isEdit }) {
   const params = useParams();
@@ -117,7 +112,7 @@ function CreateCampaign({ walletState, isEdit }) {
       variables: {
         campaignId: values.campaignId,
         campaignTitle: values.campaignTitle,
-        campaignText: window.editor.value(),
+        campaignText: values.campaignText,
         campaignTarget: parseFloat(values.campaignTarget),
         campaignType: values.campaignType,
         goals: values.goals.length > 0 ? goals : undefined,
@@ -251,7 +246,7 @@ function CreateCampaign({ walletState, isEdit }) {
       </Text>
       {/* {isMainNetwork ? ( */}
       <Box mt={4}>
-        <CreateCampaignForm
+        <CampaignForm
           loading={createCampaignLoading}
           initialValues={initialValues}
           walletState={walletState}
@@ -280,6 +275,7 @@ function CreateCampaign({ walletState, isEdit }) {
           }}
           onSubmit={(values, setSubmitting) => {
             setSubmitting(true);
+
             const saveCampaign = () => {
               createCampaignCommand(values);
               setSubmitting(createCampaignLoading);

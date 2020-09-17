@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, lazy, Suspense } from 'react';
+import React, { useContext, lazy, Suspense } from 'react';
 import {
   useParams,
   Routes,
@@ -37,19 +37,13 @@ function Manager() {
     },
   ];
 
-  useEffect(() => {
-    if (!params['*']) {
-      navigate('create-campaign', { replace: true });
-    }
-  });
-
   const changePage = href => {
     navigate(href);
   };
 
   return (
     <>
-      <main>
+      <main data-testid="manager-main">
         <Header withLogo hideMenu isManager mb={8} />
         <Container>
           <Flex
@@ -65,8 +59,8 @@ function Manager() {
                   key={i.toString()}
                   label={navItem.label}
                   active={
-                    params['*'].startsWith(navItem.href) ||
-                    params['*'].startsWith(
+                    params['*']?.startsWith(navItem.href) ||
+                    params['*']?.startsWith(
                       navItem.subHrefs?.map(subHref => subHref)
                     )
                   }

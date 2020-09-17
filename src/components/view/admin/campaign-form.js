@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Formik, Form, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import EasyMDE from 'easymde';
 import {
   Flex,
   Button,
@@ -20,15 +19,8 @@ import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
 import { MainContext } from '../../../context/main-context';
 import CustomRadio from '../../custom-radio';
-
-const markdownPlaceholder = `## Merhaba
-
-Editörümüz markdown ile çalışmaktadır. Markdown ile şekillendirmenin nasıl yapıldığını bilmiyorsanız sağ üstteki soru işareti butonuna tıklayarak öğrenebilirsiniz.
-
-#### İçerik, sayfamda nasıl gözükecek?
-
-Eğer içeriğinizin sayfanızda nasıl gözükeceğini merak ediyorsanız yine yukarıda bulunan butonlardan göz butonuna tıklayabilirsiniz.
-`;
+import { markdownPlaceholder } from './markdown-placeholder';
+import MdEditor from '../../ui/md-editor';
 
 const deployContractSchema = (t, campaignExist) => {
   const { web3 } = window;
@@ -41,6 +33,7 @@ const deployContractSchema = (t, campaignExist) => {
     withdrawPeriod: Yup.string().required(t('validations.required')),
     campaignTitle: Yup.string().required(t('validations.required')),
     campaignEndTime: Yup.string().required(t('validations.required')),
+    campaignText: Yup.string().required(t('validations.required')),
     owner: Yup.string().test(
       'Check Address',
       t('validations.incorrectAddress'),
@@ -69,7 +62,7 @@ const deployContractSchema = (t, campaignExist) => {
   });
 };
 
-function CreateCampaignForm({
+function CampaignForm({
   onSubmit,
   loading,
   initialValues,
@@ -80,54 +73,9 @@ function CreateCampaignForm({
   const [campaignExist, setCampaignExist] = React.useState(false);
   const { state: mainState } = useContext(MainContext);
   const [showOwnerWallet, setShowOwnerWallet] = React.useState(true);
-  const editorRef = React.useRef(null);
   const { t } = useTranslation('createCampaign');
   const getCampaign = useImperativeQuery(GET_CAMPAIGN_EXISTENCE);
   const isWalletExist = mainState.wallet;
-
-  React.useEffect(() => {
-    return () => {
-      window.editor = undefined;
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (editorRef.current && !window.editor) {
-      window.editor = new EasyMDE({
-        element: editorRef.current,
-        autoDownloadFontAwesome: undefined, // change with our icon package, react-feather.
-        spellChecker: false,
-        nativeSpellcheck: false,
-        status: false,
-        initialValue: markdownPlaceholder,
-        promptURLs: true,
-        promptTexts: {
-          image: "Resim URL'ini giriniz:",
-          link: "Eklemek istediğiniz linkin URL'ini giriniz:",
-        },
-      });
-    }
-
-    if (!mainState.wallet && window.editor) {
-      window.editor.codemirror.setOption('readOnly', true);
-    } else {
-      window.editor.codemirror.setOption('readOnly', false);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainState]);
-
-  React.useEffect(() => {
-    if (initialValues) {
-      if (initialValues.campaignText) {
-        window.editor.value(initialValues.campaignText);
-      }
-    }
-
-    return () => {
-      if (window.editor) window.editor.value(markdownPlaceholder);
-    };
-  }, [initialValues]);
 
   const checkCampaignId = async campaignId => {
     const { data, error } = await getCampaign({ campaignId });
@@ -150,6 +98,7 @@ function CreateCampaignForm({
         adminAddress: mainState.wallet, // the ethereum address of user who make action with metamask
         campaignId: initialValues?.campaignId || '',
         campaignTitle: initialValues?.campaignTitle || '',
+        campaignText: initialValues?.campaignText || markdownPlaceholder,
         student: {
           department: initialValues?.student?.department || '',
           name: initialValues?.student?.name || '',
@@ -236,53 +185,6 @@ function CreateCampaignForm({
             disabled={!isWalletExist}
             name="student.profilePhoto"
           />
-          <Flex flexDir={{ base: 'column', md: 'row' }}>
-            <NumberInput
-              label={t('campaignTarget')}
-              name="campaignTarget"
-              placeholder={t('example', { value: '12000' })}
-              controlProps={{ mr: 4 }}
-              type="number"
-              disabled={!isWalletExist}
-              addon={{
-                left: (
-                  <Image
-                    maxW="12px"
-                    width="full"
-                    height="full"
-                    src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                    mr={1}
-                  />
-                ),
-              }}
-            />
-            <Box width="full" mb={4}>
-              <FormLabel color="gray.600">{t('campaignType.title')}</FormLabel>
-              <RadioButtonGroup
-                name="campaignType"
-                defaultValue="LongTerm"
-                isInline
-                onChange={value => setFieldValue('campaignType', value)}
-              >
-                <CustomRadio
-                  value="LongTerm"
-                  key="long-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.longTerm')}
-                </CustomRadio>
-                <CustomRadio
-                  value="ShortTerm"
-                  key="short-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.shortTerm')}
-                </CustomRadio>
-              </RadioButtonGroup>
-            </Box>
-          </Flex>
           <Box width="full" mb={4}>
             <FormLabel color="gray.600">{t('goals.title')}</FormLabel>
             <FieldArray
@@ -409,6 +311,59 @@ function CreateCampaignForm({
               )}
             />
           </Box>
+          <MdEditor
+            name="campaignText"
+            label={t('campaignDetails')}
+            disabled={!isWalletExist}
+          />
+          <Flex flexDir={{ base: 'column', md: 'row' }}>
+            <NumberInput
+              label={t('campaignTarget')}
+              name="campaignTarget"
+              placeholder={t('example', { value: '12000' })}
+              controlProps={{ mr: 4 }}
+              type="number"
+              disabled={!isWalletExist}
+              addon={{
+                left: (
+                  <Image
+                    maxW="12px"
+                    width="full"
+                    height="full"
+                    src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
+                    mr={1}
+                  />
+                ),
+              }}
+            />
+            <Box width="full" mb={4}>
+              <FormLabel color="gray.600">{t('campaignType.title')}</FormLabel>
+              <RadioButtonGroup
+                name="campaignType"
+                defaultValue="LongTerm"
+                isInline
+                onChange={value => setFieldValue('campaignType', value)}
+              >
+                <CustomRadio
+                  value="LongTerm"
+                  key="long-term"
+                  isDisabled={!isWalletExist}
+                  variant="outline"
+                >
+                  {t('campaignType.longTerm')}
+                </CustomRadio>
+                <CustomRadio
+                  value="ShortTerm"
+                  key="short-term"
+                  isDisabled={!isWalletExist}
+                  variant="outline"
+                >
+                  {t('campaignType.shortTerm')}
+                </CustomRadio>
+              </RadioButtonGroup>
+            </Box>
+          </Flex>
+
           {!initialValues?.ethereumAddress && (
             <Box
               border="1px solid"
@@ -499,17 +454,6 @@ function CreateCampaignForm({
               )}
             </Box>
           )}
-
-          <Box id="editorjs" mb={4}>
-            <FormLabel color="gray.600">{t('campaignDetails')}</FormLabel>
-            <Box
-              border="1px solid"
-              borderColor="#e2e8f0"
-              borderRadius="4px"
-              as="textarea"
-              ref={editorRef}
-            />
-          </Box>
           <Flex justifyContent="flex-end">
             {isEdit && (
               <Button
@@ -541,4 +485,4 @@ function CreateCampaignForm({
   );
 }
 
-export default CreateCampaignForm;
+export default CampaignForm;

@@ -8,6 +8,7 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/core';
+import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 import { Search, Edit } from 'react-feather';
@@ -28,6 +29,9 @@ function ContractList() {
 
   return (
     <Card paddingType="default">
+      <Helmet>
+        <title>{`${t('List')} - Uçurtma Projesi`}</title>
+      </Helmet>
       <Heading mb={4} size="sm" color="gray.600">
         {t('List')}
       </Heading>

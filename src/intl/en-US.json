@@ -126,6 +126,9 @@
   "manager": {
     "ContractActions": "Contract Actions",
     "CreateCampaign": "Create Campaign",
+    "PostContent": {
+      "title": "Post New Content"
+    },
     "CampaignsActions": "Campaign Management"
   },
   "createCampaign": {

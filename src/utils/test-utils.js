@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { render } from '@testing-library/react';
 import { CSSReset, ThemeProvider } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import customTheme from '../theme';
 import '../i18n';
 import client from './apollo';
@@ -18,9 +18,7 @@ const AllTheProviders = ({ children }) => {
         <CSSReset />
         <MainContext.Provider value={{ state, dispatch }}>
           <BrowserRouter>
-            <Suspense fallback={<Loader isFull />}>
-              <Routes>{children}</Routes>
-            </Suspense>
+            <Suspense fallback={<Loader isFull />}>{children}</Suspense>
           </BrowserRouter>
         </MainContext.Provider>
       </ThemeProvider>

@@ -126,6 +126,9 @@
   "manager": {
     "ContractActions": "Kontrat İşlemleri",
     "CreateCampaign": "Yeni Kampanya Oluştur",
+    "PostContent": {
+      "title": "Yeni İçerik Gönder"
+    },
     "CampaignsActions": "Kampanya Yönetimi"
   },
   "createCampaign": {

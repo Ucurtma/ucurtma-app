@@ -7,7 +7,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { User, List, Loader } from 'react-feather';
+import { User, List, Loader, Share } from 'react-feather';
 import { Box, Flex } from '@chakra-ui/core';
 import Header from '../ui/header';
 import Container from '../ui/container';
@@ -16,6 +16,7 @@ import CreateCampaign from './admin/create-campaign';
 import './manager.css';
 import { MainContext } from '../../context/main-context';
 import Footer from './landing-page/footer';
+import PostContent from './admin/post-content';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
 
@@ -33,6 +34,12 @@ function Manager() {
       subHrefs: ['edit-campaign'],
       icon: List,
       label: t('CampaignsActions'),
+      disabled: !isWalletExist,
+    },
+    {
+      href: 'post-content',
+      icon: Share,
+      label: t('PostContent.title'),
       disabled: !isWalletExist,
     },
   ];
@@ -72,6 +79,7 @@ function Manager() {
             <Box w="full">
               <Suspense fallback={<Loader />}>
                 <Routes>
+                  <Route path="post-content" element={<PostContent />} />
                   <Route
                     path="create-campaign"
                     element={<CreateCampaign walletState={mainState} />}

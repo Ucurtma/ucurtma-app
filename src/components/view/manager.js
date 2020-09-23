@@ -16,9 +16,9 @@ import CreateCampaign from './admin/create-campaign';
 import './manager.css';
 import { MainContext } from '../../context/main-context';
 import Footer from './landing-page/footer';
-import PostContent from './admin/post-content';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
+const ContentManagement = lazy(() => import('./admin/content-management'));
 
 function Manager() {
   const { state: mainState } = useContext(MainContext);
@@ -37,7 +37,7 @@ function Manager() {
       disabled: !isWalletExist,
     },
     {
-      href: 'post-content',
+      href: 'content-management',
       icon: Share,
       label: t('PostContent.title'),
       disabled: !isWalletExist,
@@ -66,7 +66,7 @@ function Manager() {
             flexDir={{ base: 'column', md: 'row' }}
             mt={4}
           >
-            <Box w="full" maxW={{ base: '100%', md: '276px' }}>
+            <Box w="full" maxW={{ base: '100%', md: '276px' }} flexShrink={0}>
               {navItems.map((navItem, i) => (
                 <SidebarItem
                   icon={navItem.icon}
@@ -86,7 +86,10 @@ function Manager() {
             <Box w="full">
               <Suspense fallback={<Loader />}>
                 <Routes>
-                  <Route path="post-content" element={<PostContent />} />
+                  <Route
+                    path="content-management"
+                    element={<ContentManagement />}
+                  />
                   <Route
                     path="create-campaign"
                     element={<CreateCampaign walletState={mainState} />}

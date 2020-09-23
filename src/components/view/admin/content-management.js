@@ -35,7 +35,11 @@ function ContentManagement() {
             setStudentSelected(campaignId);
           }}
         />
-        {studentSelected && <Box>there will be content list</Box>}
+        {studentSelected && (
+          <Box>
+            todo: add a table here, show posted contents for selected user.
+          </Box>
+        )}
       </Box>
     </Card>
   );

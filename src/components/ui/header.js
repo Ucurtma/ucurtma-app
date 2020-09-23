@@ -55,10 +55,12 @@ function Header({
                     window.web3.eth.personal
                       .sign(hash, window.ethereum.selectedAddress)
                       .then(msg => {
+                        const localStorageKey = 'signedToken';
                         token = window.btoa(
                           `${msg}::${window.ethereum.selectedAddress}`
                         );
-                        localStorage.setItem('signedToken', token);
+                        localStorage.setItem(localStorageKey, token);
+
                         dispatch({
                           type: 'SET_MODAL',
                           payload: { isOpen: false },
@@ -133,8 +135,16 @@ function Header({
 
         window.web3 = new Web3(window.ethereum);
       }
+
+      window.addEventListener('storage', e => {
+        if (e.key === 'signedToken') {
+          localStorage.removeItem('signedToken');
+          signToken([window.ethereum.selectedAddress]);
+        }
+      });
     }
-  }, [dispatch, isManager, signToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isManager, signToken]);
 
   // eslint-disable-next-line consistent-return
   const checkForMetamask = async () => {

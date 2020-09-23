@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from 'react';
+import React, { useContext, lazy, Suspense, useEffect } from 'react';
 import {
   useParams,
   Routes,
@@ -7,7 +7,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { User, List, Loader } from 'react-feather';
+import { User, List, Loader, Share } from 'react-feather';
 import { Box, Flex } from '@chakra-ui/core';
 import Header from '../ui/header';
 import Container from '../ui/container';
@@ -18,6 +18,7 @@ import { MainContext } from '../../context/main-context';
 import Footer from './landing-page/footer';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
+const ContentManagement = lazy(() => import('./admin/content-management'));
 
 function Manager() {
   const { state: mainState } = useContext(MainContext);
@@ -35,11 +36,24 @@ function Manager() {
       label: t('CampaignsActions'),
       disabled: !isWalletExist,
     },
+    {
+      href: 'content-management',
+      icon: Share,
+      label: t('PostContent.title'),
+      disabled: !isWalletExist,
+    },
   ];
 
   const changePage = href => {
     navigate(href);
   };
+
+  useEffect(() => {
+    const metamaskToken = localStorage.getItem('signedToken');
+    if (!metamaskToken) {
+      navigate('create-campaign');
+    }
+  }, [navigate]);
 
   return (
     <>
@@ -52,7 +66,7 @@ function Manager() {
             flexDir={{ base: 'column', md: 'row' }}
             mt={4}
           >
-            <Box w="full" maxW={{ base: '100%', md: '276px' }}>
+            <Box w="full" maxW={{ base: '100%', md: '276px' }} flexShrink={0}>
               {navItems.map((navItem, i) => (
                 <SidebarItem
                   icon={navItem.icon}
@@ -72,6 +86,10 @@ function Manager() {
             <Box w="full">
               <Suspense fallback={<Loader />}>
                 <Routes>
+                  <Route
+                    path="content-management"
+                    element={<ContentManagement />}
+                  />
                   <Route
                     path="create-campaign"
                     element={<CreateCampaign walletState={mainState} />}

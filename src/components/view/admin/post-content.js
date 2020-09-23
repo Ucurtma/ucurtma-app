@@ -1,4 +1,5 @@
 import { Box, Heading } from '@chakra-ui/core';
+import { Form, Formik } from 'formik';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,14 @@ function PostContent() {
         {t('PostContent.title')}
       </Heading>
       <Box mt={4}>
-        Area is disabled at the moment. We&apos;re working on it.
+        <Formik
+          initialValues={{}}
+          onSubmit={values => {
+            console.log(values);
+          }}
+        >
+          {() => <Form>Hello World</Form>}
+        </Formik>
       </Box>
     </Card>
   );

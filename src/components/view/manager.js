@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from 'react';
+import React, { useContext, lazy, Suspense, useEffect } from 'react';
 import {
   useParams,
   Routes,
@@ -47,6 +47,13 @@ function Manager() {
   const changePage = href => {
     navigate(href);
   };
+
+  useEffect(() => {
+    const metamaskToken = localStorage.getItem('signedToken');
+    if (!metamaskToken) {
+      navigate('create-campaign');
+    }
+  }, [navigate]);
 
   return (
     <>

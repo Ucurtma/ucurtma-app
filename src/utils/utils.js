@@ -40,3 +40,7 @@ export function uuidv4() {
     return v.toString(16);
   });
 }
+
+export function searchStudent(key, event) {
+  return key.toLowerCase().includes(event.currentTarget.value.toLowerCase());
+}

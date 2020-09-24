@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
+import { searchStudent } from '../../utils/utils';
 import CampaignError from '../view/campaign/campaign-error';
 // import Input from './input';
 
@@ -42,74 +43,77 @@ function SearchableStudent({ data, loading, error, onSelect }) {
   }
 
   return (
-    <Box>
-      <FormControl width="100%" mb={4}>
-        <FormLabel color="gray.600" htmlFor="select-student">
-          Select Student
-        </FormLabel>
-        <InputGroup>
-          <Input
-            name="select-student"
-            controlProps={{ mb: 2 }}
-            label="Select Student"
-            onChange={e => {
-              const filterStudents = data.campaigns.campaigns.filter(
-                campaign => {
-                  const checkForCampaignId = campaign.campaignId
-                    .toLowerCase()
-                    .includes(e.currentTarget.value.toLowerCase());
+    <>
+      <FormLabel color="gray.600">Select Student</FormLabel>
+      <Box border="1px solid" borderColor="gray.200" p={4}>
+        <FormControl width="full">
+          <InputGroup>
+            <Input
+              variant="filled"
+              borderRadius="full"
+              placeholder="Search Student"
+              name="select-student"
+              onChange={e => {
+                const filteredStudents = data.campaigns.campaigns.filter(
+                  campaign => {
+                    const checkForCampaignId = searchStudent(
+                      campaign.campaignId,
+                      e
+                    );
 
-                  const checkForName = campaign.student.name
-                    .toLowerCase()
-                    .includes(e.currentTarget.value.toLowerCase());
+                    const checkForName = searchStudent(
+                      campaign.student.name,
+                      e
+                    );
 
-                  return checkForCampaignId || checkForName;
-                }
-              );
+                    return checkForCampaignId || checkForName;
+                  }
+                );
 
-              setFoundStudents(filterStudents);
-            }}
-          />
-          <InputRightElement width="4.5rem">
-            <Box h="1.75rem" as={Search} />
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      {foundStudents?.map(campaign => {
-        return (
-          <Button
-            key={campaign.campaignId}
-            d="inline-flex"
-            flexDir="column"
-            alignItems="flex-start"
-            type="button"
-            variant="ghost"
-            height="auto"
-            mr={4}
-            mb={2}
-            whiteSpace="break-spaces"
-            textAlign="left"
-            p={4}
-            border="1px solid"
-            borderColor="gray.100"
-            onClick={() => {
-              setSelectedStudent(campaign.campaignId);
-              if (onSelect) onSelect(campaign.campaignId);
-            }}
-            isActive={selectedStudent === campaign.campaignId}
-            _active={{
-              bg: 'green.50',
-              borderColor: 'gray.200',
-            }}
-          >
-            <Box as="span">{campaign.student.name}</Box>
-            <Box as="span" d="inline-block" fontWeight={400} mt={2}>
-              {campaign.campaignId}
-            </Box>
-          </Button>
-        );
-      })}
-    </Box>
+                setFoundStudents(filteredStudents);
+              }}
+            />
+            <InputRightElement>
+              <Box as={Search} size="16px" />
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+        {foundStudents?.map(campaign => {
+          return (
+            <Button
+              key={campaign.campaignId}
+              d="inline-flex"
+              flexDir="column"
+              alignItems="flex-start"
+              type="button"
+              variant="ghost"
+              height="auto"
+              mr={4}
+              mt={2}
+              whiteSpace="break-spaces"
+              textAlign="left"
+              p={4}
+              border="1px solid"
+              borderColor="gray.100"
+              onClick={() => {
+                setSelectedStudent(campaign.campaignId);
+                if (onSelect) onSelect(campaign.campaignId);
+              }}
+              isActive={selectedStudent === campaign.campaignId}
+              _active={{
+                bg: 'green.50',
+                borderColor: 'green.200',
+              }}
+            >
+              <Box as="span">{campaign.student.name}</Box>
+              <Box as="span" d="inline-block" fontWeight={400} mt={2}>
+                {campaign.campaignId}
+              </Box>
+            </Button>
+          );
+        })}
+      </Box>
+    </>
   );
 }
 

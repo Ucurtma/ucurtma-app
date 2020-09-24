@@ -137,7 +137,8 @@ function Header({
       }
 
       window.addEventListener('storage', e => {
-        if (e.key === 'signedToken') {
+        const signedToken = localStorage.getItem('signedToken');
+        if (signedToken && e.key === 'signedToken') {
           localStorage.removeItem('signedToken');
           signToken([window.ethereum.selectedAddress]);
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Heading,
   Text,
@@ -16,8 +16,10 @@ import { Link } from 'react-router-dom';
 import Card from '../../ui/card';
 import CampaignList from '../campaigns/campaign-list';
 import { GET_CAMPAIGNS_WITH_LOWER_DETAIL } from '../../../graphql/queries';
+import { searchStudent } from '../../../utils/utils';
 
 function ContractList() {
+  const [foundCampaigns, setFoundCampaigns] = useState([]);
   const { loading, error, data } = useQuery(GET_CAMPAIGNS_WITH_LOWER_DETAIL, {
     context: {
       headers: {
@@ -26,6 +28,12 @@ function ContractList() {
     },
   });
   const { t } = useTranslation('contractList');
+
+  useEffect(() => {
+    if (data?.campaigns) {
+      setFoundCampaigns(data);
+    }
+  }, [data]);
 
   return (
     <Card paddingType="default">
@@ -38,10 +46,25 @@ function ContractList() {
       <Text color="gray.600">{t('ListDescription')}</Text>
       <InputGroup ml="auto" mt={4} maxW="400px" w="full">
         <Input
-          isDisabled
           variant="filled"
           borderRadius="full"
           placeholder={t('search')}
+          onChange={e => {
+            const filteredCampaigns = data.campaigns.campaigns.filter(
+              campaign => {
+                const checkForCampaignId = searchStudent(
+                  campaign.campaignId,
+                  e
+                );
+
+                const checkForName = searchStudent(campaign.student.name, e);
+
+                return checkForCampaignId || checkForName;
+              }
+            );
+
+            setFoundCampaigns({ campaigns: { campaigns: filteredCampaigns } });
+          }}
         />
         <InputRightElement>
           <Box as={Search} size="16px" />
@@ -51,7 +74,7 @@ function ContractList() {
       <Box mt={4}>
         <CampaignList
           error={error}
-          data={data}
+          data={foundCampaigns}
           loading={loading}
           hideTitle
           wrapperProps={{ boxShadow: '0' }}

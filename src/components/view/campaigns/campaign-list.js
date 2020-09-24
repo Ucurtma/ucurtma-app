@@ -34,8 +34,8 @@ function CampaignList({
     return <CampaignError />;
   }
 
-  return data.campaigns.campaigns.map(campaign => {
-    return (
+  if (data?.campaigns?.campaigns) {
+    return data?.campaigns?.campaigns?.map(campaign => (
       <PseudoBox
         display="flex"
         border="1px solid"
@@ -96,8 +96,9 @@ function CampaignList({
           )}
         </Box>
       </PseudoBox>
-    );
-  });
+    ));
+  }
+  return null;
 }
 
 export default CampaignList;

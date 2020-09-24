@@ -31,9 +31,7 @@ function ContentManagement() {
           loading={loading}
           error={error}
           data={data}
-          onSelect={campaignId => {
-            setStudentSelected(campaignId);
-          }}
+          onSelect={campaignId => setStudentSelected(campaignId)}
         />
         {studentSelected && (
           <Box>

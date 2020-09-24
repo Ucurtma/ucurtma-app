@@ -1,14 +1,15 @@
 import React from 'react';
-import { Box, Flex, Heading } from '@chakra-ui/core';
-import { PlusCircle } from 'react-feather';
+import { Flex, Heading } from '@chakra-ui/core';
+import { useTranslation } from 'react-i18next';
 
 function Goals({ goals }) {
+  const { t } = useTranslation('campaignGoal');
   if (!goals) return null;
 
   return (
     <>
       <Heading as="h3" size="md">
-        Vaatlerim
+        {t('title')}
       </Heading>
       {goals.map((goal, goalIndex) => {
         return (
@@ -23,7 +24,6 @@ function Goals({ goals }) {
             alignItems="center"
             my={4}
           >
-            <Box as={PlusCircle} mr={4} flexShrink="0" />
             {goal.description}
           </Flex>
         );

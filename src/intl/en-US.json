@@ -287,6 +287,20 @@
     "endDate": "End Date",
     "firstDate": "First Payout Date"
   },
+  "campaignGoal": {
+    "title": "My Goals"
+  },
+  "timeline": {
+    "title": "Campaign News",
+    "operationCount": "Operation Count",
+    "transaction": {
+      "incoming": "Incoming Support",
+      "outgoing": "Outgoing Support",
+      "from": "From",
+      "to": "To",
+      "amount": "Amount"
+    }
+  },
   "donate": {
     "options": {
       "bank": "Bank Transfer",

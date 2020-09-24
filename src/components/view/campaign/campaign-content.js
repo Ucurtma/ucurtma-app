@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Flex, Box, Text, Heading, Link } from '@chakra-ui/core';
+import { Flex, Box, Text, Link } from '@chakra-ui/core';
 import ReactMarkdown from 'react-markdown';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import Documents from './documents';
@@ -69,9 +69,6 @@ function CampaignContent({ data }) {
 
         {data.campaign?.updates?.length > 0 && (
           <CampaignContentBox>
-            <Heading size="sm" color="gray.500">
-              Kampanya Gelişmeleri
-            </Heading>
             <Suspense fallback={<Loader />}>
               <Timeline
                 items={data.campaign?.updates}

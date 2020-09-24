@@ -287,6 +287,20 @@
     "endDate": "Bitiş Tarihi",
     "firstDate": "Öğrencinin Ödeme Alacağı İlk Tarih"
   },
+  "campaignGoal": {
+    "title": "Vaatlerim"
+  },
+  "timeline": {
+    "title": "Kampanya Gelişmeleri",
+    "operationCount": "İşlem Sayısı",
+    "transaction": {
+      "incoming": "Gelen Destek",
+      "outgoing": "Harcanan Destek",
+      "from": "Kimden",
+      "to": "Kime",
+      "amount": "Ne Kadar"
+    }
+  },
   "donate": {
     "options": {
       "bank": "Banka Havalesi",

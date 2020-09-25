@@ -104,6 +104,7 @@ function CampaignCardList({ loading, data, error }) {
                     display="-webkit-box"
                     overflow="hidden"
                     textOverflow="ellipsis"
+                    minH="40px"
                     css={{
                       WebkitLineClamp: '2',
                       WebkitBoxOrient: 'vertical',

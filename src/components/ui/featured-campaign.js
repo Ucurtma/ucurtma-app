@@ -24,7 +24,7 @@ import Loader from './loader';
 import { GET_RANDOM_CAMPAIGNS } from '../../graphql/queries';
 
 SwiperCore.use([Navigation, Pagination]);
-const DATA_COUNT = 8;
+const DATA_COUNT = 5;
 
 function FeaturedCampaign() {
   const { loading, error, data } = useQuery(GET_RANDOM_CAMPAIGNS, {

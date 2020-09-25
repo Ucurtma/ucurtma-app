@@ -9,7 +9,7 @@ import CampaignError from '../campaign/campaign-error';
 import Pagination from '../../ui/pagination';
 import CampaignCardList from './campaign-card-list';
 
-const SHOWED_CAMPAIGN_COUNT = 8;
+const SHOWED_CAMPAIGN_COUNT = 4;
 
 function Campaigns() {
   const [activeButton, setActiveButton] = useState('All');

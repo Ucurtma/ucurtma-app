@@ -24,7 +24,7 @@ const mocks = [
   {
     request: {
       query: GET_CAMPAIGNS,
-      variables: { start: 0, end: 8, campaignType: null },
+      variables: { start: 0, end: 4, campaignType: null },
     },
     result: {
       data: {
@@ -195,7 +195,7 @@ const errorMock = [
   {
     request: {
       query: GET_CAMPAIGNS,
-      variables: { start: 0, end: 8, campaignType: null },
+      variables: { start: 0, end: 4, campaignType: null },
     },
     error: new Error('Not found'),
   },

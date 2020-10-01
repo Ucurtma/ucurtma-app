@@ -11,11 +11,13 @@ import {
 } from '@chakra-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
+import { useTranslation } from 'react-i18next';
 import { searchStudent } from '../../utils/utils';
 import CampaignError from '../view/campaign/campaign-error';
 // import Input from './input';
 
 function SearchableStudent({ data, loading, error, onSelect }) {
+  const { t } = useTranslation('searchable-students');
   const [foundStudents, setFoundStudents] = useState();
   const [selectedStudent, setSelectedStudent] = useState();
 
@@ -44,15 +46,18 @@ function SearchableStudent({ data, loading, error, onSelect }) {
 
   return (
     <>
-      <FormLabel color="gray.600">Select Student</FormLabel>
-      <Box border="1px solid" borderColor="gray.200" p={4}>
-        <FormControl width="full">
+      <FormLabel color="gray.600" htmlFor="select-student">
+        {t('title')}
+      </FormLabel>
+      <Box border="1px solid" borderColor="gray.200" p={4} borderRadius="4px">
+        <FormControl width="full" mb={2}>
           <InputGroup>
             <Input
               variant="filled"
               borderRadius="full"
-              placeholder="Search Student"
+              placeholder={t('search')}
               name="select-student"
+              id="select-student"
               onChange={e => {
                 const filteredStudents = data.campaigns.campaigns.filter(
                   campaign => {

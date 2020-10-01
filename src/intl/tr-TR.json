@@ -129,6 +129,14 @@
     "PostContent": {
       "title": "İçerik Yönetimi"
     },
+    "ContentList": {
+      "title": "İçerik Listesi",
+      "addNew": "Yeni İçerik Oluştur",
+      "labels": {
+        "title": "İçerik Başlığı",
+        "actions": "Eylemler"
+      }
+    },
     "CampaignsActions": "Kampanya Yönetimi"
   },
   "createCampaign": {
@@ -352,5 +360,9 @@
   "agreements": {
     "kvkk": "Kişisel verileri koruma kapsamında <clarification>aydınlatma metnini</clarification> ve <directConsent>açık rıza beyan formunu</directConsent> okudum ve onaylıyorum.",
     "userAgreement": "<comp>Kullanıcı sözleşmesini</comp> okudum ve onaylıyorum."
+  },
+  "searchable-students": {
+    "title": "Bir Öğrenci Seç",
+    "search": "Öğrenci Ara"
   }
 }

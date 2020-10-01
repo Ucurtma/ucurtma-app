@@ -129,6 +129,14 @@
     "PostContent": {
       "title": "Content Management"
     },
+    "ContentList": {
+      "title": "Content List",
+      "addNew": "Add New Content",
+      "labels": {
+        "title": "Content Title",
+        "actions": "Actions"
+      }
+    },
     "CampaignsActions": "Campaign Management"
   },
   "createCampaign": {
@@ -352,5 +360,9 @@
   "agreements": {
     "kvkk": "I have read and approve the <clarification>clarification text</clarification> and <directConsent>direct consent form</directConsent>.",
     "userAgreement": "I have read and approve the <comp>user agreement</comp>."
+  },
+  "searchable-students": {
+    "title": "Select a Student",
+    "search": "Search Student"
   }
 }

@@ -19,6 +19,7 @@ import Footer from './landing-page/footer';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
 const ContentManagement = lazy(() => import('./admin/content-management'));
+const NewContent = lazy(() => import('./admin/new-content'));
 
 function Manager() {
   const { state: mainState } = useContext(MainContext);
@@ -89,6 +90,10 @@ function Manager() {
                   <Route
                     path="content-management"
                     element={<ContentManagement />}
+                  />
+                  <Route
+                    path="content-management/new-content"
+                    element={<NewContent />}
                   />
                   <Route
                     path="create-campaign"

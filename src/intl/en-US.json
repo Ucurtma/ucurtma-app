@@ -137,6 +137,21 @@
         "actions": "Actions"
       }
     },
+    "NewContent": {
+      "inputs": {
+        "title": "Title",
+        "text": "Content",
+        "video": "Youtube Link"
+      },
+      "create": "Create Content",
+      "types": {
+        "title": "Content Type",
+        "TEXT": "Text",
+        "IMAGE": "Image",
+        "VIDEO": "Video",
+        "URL": "Link"
+      }
+    },
     "CampaignsActions": "Campaign Management"
   },
   "createCampaign": {

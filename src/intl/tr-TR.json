@@ -137,6 +137,21 @@
         "actions": "Eylemler"
       }
     },
+    "NewContent": {
+      "inputs": {
+        "title": "Başlık",
+        "text": "İçerik",
+        "video": "Youtube Linki"
+      },
+      "create": "İçerik Oluştur",
+      "types": {
+        "title": "İçerik Türü",
+        "TEXT": "Metin",
+        "IMAGE": "Resim",
+        "VIDEO": "Video",
+        "URL": "Link"
+      }
+    },
     "CampaignsActions": "Kampanya Yönetimi"
   },
   "createCampaign": {

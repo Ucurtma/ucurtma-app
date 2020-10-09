@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Box, Button, Flex, Heading } from '@chakra-ui/core';
 import React, { useMemo, useState } from 'react';
 import { Edit, Plus, Trash } from 'react-feather';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { GET_CAMPAIGNS_WITH_LOWER_DETAIL } from '../../../graphql/queries';
@@ -82,17 +83,19 @@ function ContentManagement() {
               <Heading size="sm" color="gray.600">
                 {t('ContentList.title')}
               </Heading>
-              <Button
-                variant="outline"
-                variantColor="gray"
-                color="gray.500"
-                size="xs"
-                ml={2}
-                fontWeight={500}
-              >
-                <Box w={4} as={Plus} mr={1} />
-                {t('ContentList.addNew')}
-              </Button>
+              <Link to="./new-content">
+                <Button
+                  variant="outline"
+                  variantColor="gray"
+                  color="gray.500"
+                  size="xs"
+                  ml={2}
+                  fontWeight={500}
+                >
+                  <Box w={4} as={Plus} mr={1} />
+                  {t('ContentList.addNew')}
+                </Button>
+              </Link>
             </Flex>
             <Box>
               <Flex>

@@ -121,7 +121,9 @@
   },
   "footer": {
     "Join to Community": "Topluluğa Katıl",
-    "Change Language": "Change Language"
+    "Change Language": "Change Language",
+    "ClarificationText": "Aydınlatma Metni",
+    "CookiePolicy": "Çerez Politikası"
   },
   "manager": {
     "ContractActions": "Kontrat İşlemleri",

@@ -121,7 +121,9 @@
   },
   "footer": {
     "Join to Community": "Join to Community",
-    "Change Language": "Dil Değiştir"
+    "Change Language": "Dil Değiştir",
+    "ClarificationText": "Clarification Text",
+    "CookiePolicy": "Cookie Policy"
   },
   "manager": {
     "ContractActions": "Contract Actions",

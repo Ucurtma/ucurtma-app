@@ -99,7 +99,7 @@ function Footer() {
                     variant="link"
                     onClick={() => setModalOpen('cookiePolicy')}
                   >
-                    Çerez Politikası
+                    {t('CookiePolicy')}
                   </Button>
                 </ListItem>
                 <ListItem>
@@ -107,7 +107,7 @@ function Footer() {
                     variant="link"
                     onClick={() => setModalOpen('clarification')}
                   >
-                    Aydınlatma Metni
+                    {t('ClarificationText')}
                   </Button>
                 </ListItem>
               </List>
@@ -115,15 +115,16 @@ function Footer() {
           </Flex>
           <Box>
             <Heading
+              as="label"
+              htmlFor="change-language"
               color="gray.100"
               size="xs"
-              mb={8}
               textTransform="uppercase"
               w="full"
             >
               {t('Change Language')}
             </Heading>
-            <List spacing={2}>
+            <List spacing={2} mt={8}>
               <ListItem>
                 <Select
                   bg="transparent"
@@ -137,6 +138,7 @@ function Footer() {
                     setLangValue(e.currentTarget.value);
                   }}
                   value={langValue}
+                  id="change-language"
                 >
                   <Box as="option" value="tr" color="gray.800">
                     Turkish

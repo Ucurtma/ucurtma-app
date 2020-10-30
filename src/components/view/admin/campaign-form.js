@@ -9,7 +9,9 @@ import {
   Image,
   Box,
   Heading,
-  RadioButtonGroup,
+  RadioGroup,
+  Radio,
+  Stack,
 } from '@chakra-ui/core';
 import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
 import Input from '../../ui/input';
@@ -18,7 +20,6 @@ import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
 import { MainContext } from '../../../context/main-context';
-import CustomRadio from '../../custom-radio';
 import { markdownPlaceholder } from './markdown-placeholder';
 import MdEditor from '../../ui/md-editor';
 
@@ -210,10 +211,10 @@ function CampaignForm({
                         <Button
                           type="button"
                           variant="outline"
-                          variantColor="red"
+                          colorScheme="red"
                           onClick={() => arrayHelpers.remove(goalIndex)}
                         >
-                          <Box as={Trash2} size="16px" />
+                          <Box as={Trash2} boxSize="16px" />
                         </Button>
                       </Flex>
                     );
@@ -221,7 +222,7 @@ function CampaignForm({
                   <Button
                     type="button"
                     variant="outline"
-                    variantColor="gray"
+                    colorScheme="gray"
                     size="sm"
                     onClick={() => arrayHelpers.push({ description: '' })}
                     mr={4}
@@ -233,7 +234,7 @@ function CampaignForm({
                       !isWalletExist
                     }
                   >
-                    <Box as={PlusCircle} mr={2} size="16px" />
+                    <Box as={PlusCircle} mr={2} boxSize="16px" />
                     {t('goals.new')}
                   </Button>
                 </Box>
@@ -275,13 +276,13 @@ function CampaignForm({
                         <Button
                           type="button"
                           variant="outline"
-                          variantColor="red"
+                          colorScheme="red"
                           onClick={() => arrayHelpers.remove(documentIndex)}
                           alignSelf="flex-end"
                           mb={4}
                           flexShrink={0}
                         >
-                          <Box as={Trash2} size="16px" />
+                          <Box as={Trash2} boxSize="16px" />
                         </Button>
                       </Flex>
                     );
@@ -289,7 +290,7 @@ function CampaignForm({
                   <Button
                     type="button"
                     variant="outline"
-                    variantColor="gray"
+                    colorScheme="gray"
                     size="sm"
                     onClick={() =>
                       arrayHelpers.push({ title: '', link: '', type: '' })
@@ -304,7 +305,7 @@ function CampaignForm({
                       !isWalletExist
                     }
                   >
-                    <Box as={PlusCircle} mr={2} size="16px" />
+                    <Box as={PlusCircle} mr={2} boxSize="16px" />
                     {t('documents.new')}
                   </Button>
                 </Box>
@@ -338,29 +339,30 @@ function CampaignForm({
             />
             <Box width="full" mb={4}>
               <FormLabel color="gray.600">{t('campaignType.title')}</FormLabel>
-              <RadioButtonGroup
+              <RadioGroup
                 name="campaignType"
                 defaultValue="LongTerm"
-                isInline
                 onChange={value => setFieldValue('campaignType', value)}
               >
-                <CustomRadio
-                  value="LongTerm"
-                  key="long-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.longTerm')}
-                </CustomRadio>
-                <CustomRadio
-                  value="ShortTerm"
-                  key="short-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.shortTerm')}
-                </CustomRadio>
-              </RadioButtonGroup>
+                <Stack spacing={5} direction="row">
+                  <Radio
+                    value="LongTerm"
+                    key="long-term"
+                    isDisabled={!isWalletExist}
+                    variant="outline"
+                  >
+                    {t('campaignType.longTerm')}
+                  </Radio>
+                  <Radio
+                    value="ShortTerm"
+                    key="short-term"
+                    isDisabled={!isWalletExist}
+                    variant="outline"
+                  >
+                    {t('campaignType.shortTerm')}
+                  </Radio>
+                </Stack>
+              </RadioGroup>
             </Box>
           </Flex>
 
@@ -390,7 +392,7 @@ function CampaignForm({
                   <Box
                     ml={2}
                     as={showOwnerWallet ? ChevronUp : ChevronDown}
-                    size="16px"
+                    boxSize="16px"
                   />
                 </Button>
               </Flex>
@@ -459,7 +461,7 @@ function CampaignForm({
               <Button
                 type="button"
                 variant="ghost"
-                variantColor={activateStatus ? 'red' : 'green'}
+                colorScheme={activateStatus ? 'red' : 'green'}
                 isLoading={loading}
                 disabled={isSubmitting || !isValid}
                 mr={4}
@@ -472,7 +474,7 @@ function CampaignForm({
             <Button
               type="submit"
               variant="outline"
-              variantColor="linkBlue"
+              colorScheme="blue"
               isLoading={loading}
               disabled={isSubmitting || !dirty || !isValid}
             >

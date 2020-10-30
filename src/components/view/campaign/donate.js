@@ -1,13 +1,14 @@
 import React, { Suspense } from 'react';
 import {
   Button,
-  RadioButtonGroup,
   Box,
   Flex,
   Icon,
   Alert,
   AlertIcon,
   CloseButton,
+  HStack,
+  Text,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'react-feather';
@@ -17,32 +18,13 @@ import Loader from '../../ui/loader';
 
 const EthereumFlow = React.lazy(() => import('./ethereum-flow'));
 
-const CustomRadio = React.forwardRef((props, ref) => {
-  const { children, isChecked, isDisabled, value, ...rest } = props;
-  return (
-    <Button
-      ref={ref}
-      color={isChecked ? 'linkBlue.400' : 'gray.400'}
-      fontWeight={isChecked ? '700' : '400'}
-      aria-checked={isChecked}
-      role="radio"
-      isDisabled={isDisabled}
-      variant="unstyled"
-      _focus={{ outline: 'none' }}
-      _hover={{ fontWeight: '700' }}
-      justifyContent={{ base: 'center', md: 'flex-start' }}
-      px={{ md: 0 }}
-      {...rest}
-    >
-      {children}
-    </Button>
-  );
-});
+const menuItems = ['bank-transfer', 'ethereum-wallet'];
 
 function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
   const { t } = useTranslation('donate');
   const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
   const [errorExist, setErrorExist] = React.useState(false);
+  const [isDonateSuccess, setIsDonateSuccess] = React.useState(false);
 
   React.useEffect(() => {
     if (redirectError) {
@@ -58,40 +40,14 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
       w="full"
     >
       <Box w="full" maxW={{ base: '100%', md: '276px' }}>
-        <RadioButtonGroup
-          defaultValue="bank-transfer"
-          onChange={val => {
-            ReactGA.event({
-              category: 'Donate',
-              action:
-                val === 'bank-transfer'
-                  ? 'Selected Bank Transfer'
-                  : 'Selected Ethereum Wallet',
-              label: 'Selecting Payment Method',
-            });
-            setDonateFlow(val);
-          }}
-          display="flex"
-          flexDir={{ base: 'row', md: 'column' }}
-          isInline={{ base: true, md: false }}
-          spacing={4}
-          mb={{ base: 4, md: 0 }}
-        >
-          <CustomRadio width="full" value="bank-transfer">
-            {t('options.bank')}
-          </CustomRadio>
-          <CustomRadio width="full" value="ethereum-wallet">
-            {t('options.ethWallet')}
-          </CustomRadio>
-        </RadioButtonGroup>
         {onBack && (
           <Button
             mt={4}
             display={{ base: 'none', md: 'block' }}
             onClick={onBack}
-            bg="red.200"
+            bg="red.500"
             color="white"
-            _hover={{ bg: 'red.400' }}
+            _hover={{ bg: 'red.700' }}
           >
             <Icon as={ArrowLeft} mr={4} />
             {t('backToCampaign')}
@@ -99,6 +55,43 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         )}
       </Box>
       <Box w="full" height="full" boxShadow="cardLight" padding={4}>
+        {!isDonateSuccess && (
+          <Box mb={4}>
+            <Text fontWeight={600} mb={4}>
+              Ödeme yöntemi seçiniz
+            </Text>
+            <HStack spacing={4} mb={{ base: 4, md: 0 }}>
+              {menuItems.map(menuItem => (
+                <Button
+                  key={menuItem}
+                  isActive={donateFlow === menuItem}
+                  bg="gray.300"
+                  color="gray.700"
+                  _active={{
+                    fontWeight: 600,
+                    bg: 'gray.700',
+                    color: 'gray.100',
+                  }}
+                  fontWeight={400}
+                  _focus={{ outline: 'none' }}
+                  onClick={() => {
+                    setDonateFlow(menuItem);
+                    ReactGA.event({
+                      category: 'Donate',
+                      action:
+                        menuItem === 'bank-transfer'
+                          ? 'Selected Bank Transfer'
+                          : 'Selected Ethereum Wallet',
+                      label: 'Selecting Payment Method',
+                    });
+                  }}
+                >
+                  {t(`options.${menuItem}`)}
+                </Button>
+              ))}
+            </HStack>
+          </Box>
+        )}
         {errorExist && (
           <Alert status="error">
             <AlertIcon />
@@ -113,7 +106,10 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         )}
         <Suspense fallback={<Loader />}>
           {donateFlow === 'bank-transfer' && (
-            <BankTransferFlow minimumAmount={minimumAmount} />
+            <BankTransferFlow
+              minimumAmount={minimumAmount}
+              onSuccessDonate={() => setIsDonateSuccess(true)}
+            />
           )}
           {donateFlow === 'ethereum-wallet' && (
             <EthereumFlow ethereumAddress={ethereumAddress} />
@@ -125,9 +121,9 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           mt={4}
           display={{ base: 'block', md: 'none' }}
           onClick={onBack}
-          bg="red.200"
+          bg="red.700"
           color="white"
-          _hover={{ bg: 'red.400' }}
+          _hover={{ bg: 'red.900' }}
         >
           <Icon as={ArrowLeft} mr={4} />
           {t('backToCampaign')}

@@ -7,14 +7,15 @@ function Container({ children, ...otherProps }) {
       w="full"
       maxW={{
         base: 'full',
-        md: 'containers.md',
-        lg: 'containers.lg',
-        xl: 'containers.xl',
+        sm: 'container.sm',
+        md: 'container.md',
+        lg: 'container.lg',
+        xl: 'container.xl',
       }}
       mx="auto"
       display="flex"
       flexWrap="wrap"
-      py={{ md: 4 }}
+      // py={{ md: 4 }}
       {...otherProps}
     >
       {children}

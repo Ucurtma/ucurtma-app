@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { InMemoryCache } from '@apollo/client/cache';
 import { onError } from '@apollo/client/link/error';

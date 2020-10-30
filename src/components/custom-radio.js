@@ -7,14 +7,14 @@ const CustomRadio = React.forwardRef((props, ref) => {
   return (
     <Button
       ref={ref}
-      variantColor={isChecked ? 'green' : 'gray'}
+      colorScheme={isChecked ? 'green' : 'gray'}
       aria-checked={isChecked}
       role="radio"
       isDisabled={isDisabled}
       fontWeight={400}
       {...rest}
     >
-      <Box as={isChecked ? CheckCircle : Circle} mr={2} size="16px" />
+      <Box as={isChecked ? CheckCircle : Circle} mr={2} boxSize="16px" />
       {children}
     </Button>
   );

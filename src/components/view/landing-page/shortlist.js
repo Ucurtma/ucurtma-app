@@ -174,7 +174,7 @@ function Shorlist() {
                 )}
                 <Button
                   variant="outline"
-                  color="linkBlue.400"
+                  color="blue.400"
                   type="submit"
                   isLoading={isSubmitting}
                   disabled={

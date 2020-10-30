@@ -9,8 +9,8 @@ function EthereumFlow({ ethereumAddress }) {
   return (
     <>
       <Alert status="warning" bg="yellow.400" mt={2} mb={4}>
-        <AlertIcon color="white" />
-        <AlertDescription color="white">{t('onlyBiLira')}</AlertDescription>
+        <AlertIcon color="black" />
+        <AlertDescription color="black">{t('onlyBiLira')}</AlertDescription>
       </Alert>
       <EthereumDetailViewer data={ethereumAddress} />
     </>

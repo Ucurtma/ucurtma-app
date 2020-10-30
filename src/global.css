@@ -16,7 +16,7 @@ body,
 }
 
 #featured-campaigns {
-  background-image: url('/images/featured-bg.png');
+  /* background-image: url('/assets/featured-bg.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;

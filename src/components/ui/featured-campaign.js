@@ -6,17 +6,15 @@ import {
   Avatar,
   Text,
   Button,
-  Tooltip,
   Progress,
-  PseudoBox,
 } from '@chakra-ui/core';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { useQuery } from '@apollo/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from './card';
 import CampaignError from '../view/campaign/campaign-error';
 import CardTargetInfo from './card-target-info';
@@ -31,14 +29,11 @@ function FeaturedCampaign() {
     variables: { count: DATA_COUNT, listHash: '' },
   });
   const [campaigns, setCampaigns] = useState([]);
-  const navigate = useNavigate();
   const { t } = useTranslation('featuredCampaign');
   const [activeCard, setActiveCard] = useState(0);
 
   useEffect(() => {
-    if (data) {
-      setCampaigns([...campaigns, ...data.randomCampaigns.campaigns]);
-    }
+    if (data) setCampaigns([...campaigns, ...data.randomCampaigns.campaigns]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -68,19 +63,13 @@ function FeaturedCampaign() {
 
   return (
     <Swiper
-      spaceBetween={2}
-      onSlideChange={swiper => {
-        setActiveCard(swiper.realIndex);
-      }}
-      centeredSlides
-      navigation={{
-        nextEl: '.swiper-next-el',
-        prevEl: '.swiper-prev-el',
-      }}
+      spaceBetween={50}
+      onSlideChange={swiper => setActiveCard(swiper.realIndex)}
+      navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
       breakpoints={{
         0: { slidesPerView: 1 },
-        554: { slidesPerView: 2 },
-        1600: { slidesPerView: 3 },
+        645: { slidesPerView: 2 },
+        1000: { slidesPerView: 3 },
       }}
       pagination={{ el: '.swiper-pagination' }}
     >
@@ -100,30 +89,22 @@ function FeaturedCampaign() {
       >
         <Box as={ChevronRight} />
       </Box>
-      {campaigns.map((campaign, campaignIndex) => {
+      {campaigns.map(campaign => {
         const currentFund = parseInt(campaign?.totalFunds || 0, 10);
         const totalPercent =
           (currentFund * 100) / (campaign?.campaignTarget || 0);
         return (
-          <SwiperSlide
-            key={campaign.campaignId}
-            style={{
-              transform: campaignIndex !== activeCard && `scale(0.85)`,
-              transition: '0.2s ease all',
-            }}
-          >
+          <SwiperSlide key={campaign.campaignId}>
             <Card
               display="flex"
               px={8}
               py={4}
               borderRadius="0.5rem"
               w="full"
-              minW="0"
               flexDir="column"
               justifyContent="space-between"
               mb={4}
-              boxShadow="sm"
-              // transform={}
+              boxShadow="modern"
             >
               <Box>
                 <Flex flexDir="column" alignItems="center">
@@ -132,10 +113,10 @@ function FeaturedCampaign() {
                     src={campaign?.student?.profilePhoto}
                     name={campaign?.student?.name}
                   />
-                  <PseudoBox
+                  <Box
                     as="h3"
                     mt={4}
-                    color="gray.600"
+                    color="gray.900"
                     textAlign="center"
                     _hover={{ textDecoration: 'underline' }}
                     fontWeight={600}
@@ -143,37 +124,32 @@ function FeaturedCampaign() {
                     <Link to={`/campaign/${campaign?.campaignId}`}>
                       {campaign?.student?.name}
                     </Link>
-                  </PseudoBox>
-                  <Text color="gray.500" textAlign="center">
+                  </Box>
+                  <Text mt={1} color="gray.600" textAlign="center">
                     {campaign?.student?.school}
                   </Text>
-                  <Tooltip
-                    label={campaign?.campaignTitle}
+                  <Heading
+                    fontWeight={600}
+                    as="h4"
+                    size="sm"
                     textAlign="center"
-                    p={4}
-                    zIndex={4}
+                    mt={6}
+                    mb={4}
+                    minH="50px"
+                    isTruncated
+                    noOfLines={2}
                   >
-                    <Heading
-                      as="h4"
-                      size="sm"
-                      textAlign="center"
-                      my={4}
-                      width="full"
-                      minW={0}
-                      display="-webkit-box"
-                      overflow="hidden"
-                      textOverflow="ellipsis"
-                      minH="40px"
-                      css={{
-                        WebkitLineClamp: '2',
-                        WebkitBoxOrient: 'vertical',
-                      }}
-                    >
-                      {campaign?.campaignTitle}
-                    </Heading>
-                  </Tooltip>
+                    {campaign?.campaignTitle}
+                  </Heading>
                   <Box w="full" mt={2}>
-                    <Flex justifyContent="space-between">
+                    <Progress
+                      colorScheme="green"
+                      height="18px"
+                      value={totalPercent}
+                      borderRadius="4px"
+                    />
+
+                    <Flex mt={4} justifyContent="space-between">
                       <CardTargetInfo
                         title={t('totalFund')}
                         percent={totalPercent}
@@ -182,58 +158,25 @@ function FeaturedCampaign() {
                       <CardTargetInfo
                         title={t('target')}
                         price={campaign?.campaignTarget}
+                        textAlign="right"
                       />
                     </Flex>
-
-                    <Progress
-                      color="green"
-                      height="12px"
-                      value={totalPercent}
-                      borderRadius="4px"
+                    <CardTargetInfo
+                      title={t('supporterCount')}
+                      value={campaign?.supporterCount}
+                      textAlign="center"
+                      mt={2}
                     />
-                    <Flex mt={2} alignItems="center">
-                      <Box
-                        fontSize="14px"
-                        textAlign="center"
-                        color="gray.400"
-                        w="full"
-                        h={63}
-                      >
-                        <Trans
-                          defaults={currentFund < 1 ? 'noFund' : 'donate'}
-                          t={t}
-                          values={{ count: campaign?.supporterCount }}
-                          components={{
-                            campaignButton: (
-                              <Button
-                                variant="link"
-                                onClick={() =>
-                                  navigate(
-                                    `/campaign/${campaign?.campaignId}`,
-                                    {
-                                      state: { redirected: true },
-                                    }
-                                  )
-                                }
-                                verticalAlign="inherit"
-                                fontSize="14px"
-                                color="gray.400"
-                              >
-                                buraya tıkla.
-                              </Button>
-                            ),
-                          }}
-                        />
-                      </Box>
-                    </Flex>
                   </Box>
                   <Button
                     as={Link}
                     to={`/campaign/${campaign?.campaignId}`}
-                    variant="outline"
-                    variantColor="linkBlue"
-                    mt={4}
-                    size="sm"
+                    variant="solid"
+                    colorScheme="blue"
+                    mt={3}
+                    size="lg"
+                    boxShadow="modernBlue"
+                    bg="#0587FF"
                   >
                     {t('goToCampaign')}
                   </Button>

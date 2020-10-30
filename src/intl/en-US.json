@@ -5,12 +5,12 @@
     "errorWithCode": "Error code: {{code}}"
   },
   "titles": {
-    "What is Uçurtma": "What is Uçurtma Project?",
+    "What is Uçurtma": "Uçurtma Project",
     "Problem and Solution": "Problem and Solution",
     "How it works": "How it works?",
     "Campaigns": "Campaigns",
     "Our Team": "Our Team",
-    "FAQ": "Frequently Asking Questions"
+    "FAQ": "F.A.Q."
   },
   "menuItems": {
     "homepage": "Home",
@@ -265,12 +265,13 @@
     }
   },
   "featuredCampaign": {
-    "goToCampaign": "Show Campaign",
+    "goToCampaign": "Support",
     "noFund": "Nothing here yet. <campaignButton>Click here</campaignButton> to be the first one who supports.",
     "donate": "<strong>{{count}}</strong> people supported this campaign. <campaignButton>Click here</campaignButton> to join them.",
     "clickHere": "click here.",
-    "target": "Goal: ",
-    "totalFund": "Total Funds: "
+    "target": "Goal",
+    "totalFund": "Total Funds",
+    "supporterCount": "Supporter Count"
   },
   "campaignFooter": {
     "createReport": "Create Report",
@@ -328,8 +329,8 @@
   },
   "donate": {
     "options": {
-      "bank": "Bank Transfer",
-      "ethWallet": "BiLira Wallet"
+      "bank-transfer": "Bank Transfer",
+      "ethereum-wallet": "BiLira Wallet"
     },
     "backToCampaign": "Back To The Campaign",
     "biLiraError": "There was something wrong while connecting with BiLira. Please try again later."

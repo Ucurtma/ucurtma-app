@@ -79,7 +79,7 @@ function SearchableStudent({ data, loading, error, onSelect }) {
               }}
             />
             <InputRightElement>
-              <Box as={Search} size="16px" />
+              <Box as={Search} boxSize="16px" />
             </InputRightElement>
           </InputGroup>
         </FormControl>

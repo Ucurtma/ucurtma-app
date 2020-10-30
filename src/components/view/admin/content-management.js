@@ -86,7 +86,7 @@ function ContentManagement() {
               <Link to="./new-content">
                 <Button
                   variant="outline"
-                  variantColor="gray"
+                  colorScheme="gray"
                   color="gray.500"
                   size="xs"
                   ml={2}

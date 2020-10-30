@@ -65,7 +65,12 @@ function Footer() {
           <Image src={`${process.env.PUBLIC_URL}/images/logo-white.svg`} />
           <Flex color="gray.100" flexDir={{ base: 'column', lg: 'row' }}>
             <Box>
-              <Heading size="xs" mb={8} textTransform="uppercase">
+              <Heading
+                size="xs"
+                mb={8}
+                fontWeight={600}
+                textTransform="uppercase"
+              >
                 {t('Join to Community')}
               </Heading>
               <List spacing={2}>
@@ -90,7 +95,6 @@ function Footer() {
                 d="inline-flex"
                 justifyContent="center"
                 w="full"
-                spacing={2}
                 ml={0}
                 flexDir={{ base: 'column', lg: 'row' }}
               >
@@ -130,7 +134,7 @@ function Footer() {
                   bg="transparent"
                   variant="outline"
                   color="gray.100"
-                  fontWeight={700}
+                  fontWeight={600}
                   size="sm"
                   onChange={e => {
                     i18n.changeLanguage(e.currentTarget.value);

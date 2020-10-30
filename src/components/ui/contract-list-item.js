@@ -54,7 +54,7 @@ function ContractListItem({ contractAddress }) {
       backgroundColor={campaignItem.cancelled ? 'tomato' : ''}
     >
       <Box p="2">
-        <Badge rounded="full" px="2" variantColor="teal">
+        <Badge rounded="full" px="2" colorScheme="teal">
           <Link
             href={`${getEtherscanAddressFor({
               type: 'address',

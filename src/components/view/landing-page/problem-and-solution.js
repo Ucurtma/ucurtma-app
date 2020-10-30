@@ -11,7 +11,7 @@ function ProblemSolution() {
       id="problem-solution"
       py={24}
       px={{ base: 4, lg: 0 }}
-      bg="gray.700"
+      bg="gray.900"
       color="gray.100"
     >
       <Container mt={0}>
@@ -39,14 +39,14 @@ function ProblemSolution() {
                   pr={{ base: 4, md: 6 }}
                 >
                   <Flex alignItems="center" my={4}>
-                    <Icon size="36px" as={Shield} mr={4} />
+                    <Icon boxSize="36px" as={Shield} mr={4} />
                     <Heading size="sm">{t('Safe')}</Heading>
                   </Flex>
                   {t('Safe_details')}
                 </Box>
                 <Box width={{ base: '100%', lg: '50%' }}>
                   <Flex alignItems="center" my={4}>
-                    <Icon size="36px" as={Droplet} mr={4} />
+                    <Icon boxSize="36px" as={Droplet} mr={4} />
                     <Heading size="sm">{t('Transparent')}</Heading>
                   </Flex>
                   {t('Transparent_details')}
@@ -54,7 +54,7 @@ function ProblemSolution() {
               </Flex>
               <Box mt={8}>
                 <Flex alignItems="center" my={4}>
-                  <Icon size="36px" as={CloudLightning} mr={4} />
+                  <Icon boxSize="36px" as={CloudLightning} mr={4} />
                   <Heading size="sm">{t('Fast')}</Heading>
                 </Flex>
                 {t('Fast_details')}

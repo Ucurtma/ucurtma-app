@@ -23,7 +23,7 @@ export function UserInfoBadge({ icon, count, color, label }) {
       <Box
         as={icon}
         flexShrink="0"
-        size="1.25rem"
+        boxSize="1.25rem"
         color={color || 'gray.400'}
       />
       <Text

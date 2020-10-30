@@ -1,112 +1,96 @@
 import React from 'react';
-import { Navigation } from 'react-feather';
 import { Link as RouterLink } from 'react-router-dom';
-import { useTranslation, Trans } from 'react-i18next';
-import { Flex, Link, Icon, Box, Heading, Text, Button } from '@chakra-ui/core';
-
+import { useTranslation } from 'react-i18next';
+import { Flex, Box, Heading, Text, Button, Stack, Link } from '@chakra-ui/core';
+import { ReactComponent as Background } from '../../assets/new-background.svg';
+import { ReactComponent as LeftKite } from '../../assets/left-kite.svg';
+import { ReactComponent as RightKite } from '../../assets/right-kite.svg';
 import FeaturedCampaign from '../../ui/featured-campaign';
+import Container from '../../ui/container';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);
 
   return (
-    <>
-      <Flex
-        h={{ base: 'auto', lg: '100vh' }}
-        w="full"
-        flexDir={{ base: 'column', lg: 'row' }}
-      >
-        <Flex
-          alignItems="flex-end"
-          flexDir="column"
-          justifyContent="center"
-          width="full"
+    <Box id="splash-screen">
+      <Flex pb={55} pos="relative" overflow="hidden">
+        <Container
+          d="block"
+          textAlign="center"
+          pt={178}
+          px={4}
+          maxW={{ lg: 528, xl: 728 }}
         >
-          <Box
-            bg="white"
-            maxW={{ base: 'full', lg: '90%', xxl: '65%' }}
-            px={{ base: 4, lg: 12 }}
-            pb={{ base: 8, lg: 0 }}
-            mt={{ base: '1rem' }}
+          <Heading
+            className="ucurtma-title"
+            size="2xl"
+            color="gray.900"
+            textAlign="center"
           >
-            <Link
-              as={RouterLink}
-              to="/"
-              display="inline-block"
-              id="logo"
-              pos="relative"
-              left={{ base: 0, lg: '-60px' }}
-              top={{ base: 0, lg: '-60px' }}
-              mb={{ base: 8, lg: 0 }}
-            >
-              <Icon name="logo" size="4rem" />
-            </Link>
-            <Heading
-              className="ucurtma-title"
-              size="2xl"
-              maxW="380px"
-              lineHeight="1.2"
-              color="gray.600"
-            >
-              {t('titles:What is Uçurtma')}
-            </Heading>
-            <Text mt={8} color="gray.600">
-              {t('Purpose of Uçurtma')}
-            </Text>
-            <Text mt={4} color="gray.600">
-              {t('Uçurtma is decentralized')}
-            </Text>
+            {t('titles:What is Uçurtma')}
+          </Heading>
+          <Box mt={12} color="gray.800">
+            <Text>{t('Purpose of Uçurtma')}</Text>
+            <Text mt={5}>{t('Uçurtma is decentralized')}</Text>
+          </Box>
+          <Stack
+            direction={{ base: 'column-reverse', lg: 'row' }}
+            justify="center"
+            mt={12}
+            spacing={{ base: 6, lg: 16 }}
+          >
             <Button
               as={RouterLink}
               to="/campaigns"
-              variant="solid"
-              mt={8}
-              bg="#fbde38"
-              color="gray.900"
-              h={16}
-              w="full"
-              flexShrink="0"
-              justifyContent="space-between"
-              boxShadow="0 0 12px rgba(124, 124, 124, 0.16)"
-              _hover={{ bg: 'yellow.400' }}
+              size="lg"
+              boxShadow="modern"
+              bg="white"
+              _hover={{ bg: 'gray.50' }}
+              _active={{ bg: 'gray.50' }}
             >
               {t('showAllCampaigns')}
-              <Icon as={Navigation} size="28px" mr={2} />
             </Button>
-            <Text mt={8} color="gray.400">
-              <Trans t={t} i18nKey="clickHereToDonateAllCampaigns">
-                Artık tüm kampanyalara tek seferde destek olabilirsiniz.
-                Detayları öğrenmek ve destek olmak için{' '}
-                <Link
-                  as={RouterLink}
-                  to="/campaign/donate-all"
-                  data-testid="shortlist"
-                  color="linkBlue.400"
-                >
-                  buraya tıklayın.
-                </Link>
-              </Trans>
-            </Text>
-          </Box>
-        </Flex>
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          id="splash-screen"
-          maxW={{ base: '100%', lg: '50%' }}
-          minH="640px"
-          w="full"
-          h="full"
-          backgroundImage={`url("${process.env.PUBLIC_URL}/images/background.svg")`}
-          backgroundRepeat="no-repeat"
-          backgroundSize="cover"
-          backgroundPosition="center center"
-          px={4}
-        >
-          <FeaturedCampaign />
-        </Flex>
+            <Button
+              as={Link}
+              isExternal
+              href="https://destek.ucurtmaprojesi.com"
+              size="lg"
+              boxShadow="modernOrange"
+              bg="orange.500"
+              color="gray.100"
+              _hover={{ bg: 'orange.400', textDecor: 'none' }}
+              _active={{ bg: 'orange.400' }}
+            >
+              Tüm Öğrencilere Destek Ol
+            </Button>
+          </Stack>
+        </Container>
+        <Box
+          as={LeftKite}
+          pos="absolute"
+          zIndex={-1}
+          top="222px"
+          left={{ lg: '0', xl: '17px', xxl: '222px' }}
+          display={{ base: 'none', lg: 'block' }}
+        />
+        <Box
+          as={RightKite}
+          pos="absolute"
+          zIndex={-1}
+          top="122px"
+          right={{ lg: '0', xl: '17px', xxl: '222px' }}
+        />
       </Flex>
-    </>
+      <Flex pos="relative" overflow="hidden">
+        <Container minH="680px" d="flex" alignItems="center" px={4}>
+          <FeaturedCampaign />
+        </Container>
+        <Box d="flex" pos="absolute" top="50%">
+          <Box as={Background} transform="translate(0, -50%)" zIndex={-1} />
+          <Box as={Background} transform="translate(-3px, -50%)" zIndex={-1} />
+        </Box>
+      </Flex>
+    </Box>
   );
 }
 

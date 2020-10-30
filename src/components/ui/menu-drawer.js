@@ -30,7 +30,7 @@ function MenuDrawer({ isOpen, onClose, items }) {
         <DrawerCloseButton />
         <DrawerHeader>
           <Link to="/">
-            <Logo name="logo" size={12} />
+            <Logo name="logo" boxSize={12} />
           </Link>
         </DrawerHeader>
         <DrawerBody>

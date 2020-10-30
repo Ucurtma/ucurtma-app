@@ -29,7 +29,7 @@ describe('Pagination Tests', () => {
       <Pagination totalRecords={30} pageLimit={2} />
     );
 
-    expect(getByText('1').getAttribute('data-active')).toBeTruthy();
+    expect(getByText('1').getAttribute('data-active')).toEqual('');
   });
 
   test('User should change active page on click', () => {
@@ -41,7 +41,7 @@ describe('Pagination Tests', () => {
     expect(pageTwo.getAttribute('data-active')).toBeFalsy();
 
     fireEvent.click(pageTwo);
-    expect(pageTwo.getAttribute('data-active')).toBeTruthy();
+    expect(pageTwo.getAttribute('data-active')).toEqual('');
   });
 
   test('OnPageChanged function should be called when page changed', () => {

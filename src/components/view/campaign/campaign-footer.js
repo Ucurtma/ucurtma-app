@@ -31,7 +31,7 @@ function CampaignFooter({ campaignId, title, studentName }) {
 
   return (
     <Flex
-      mb={8}
+      my={4}
       flexDir={{ base: 'column', md: 'row' }}
       justifyContent="space-between"
       px={{ base: 4, lg: 0 }}
@@ -47,8 +47,8 @@ function CampaignFooter({ campaignId, title, studentName }) {
               bg="gray.100"
               borderRadius="4px"
               _hover={{ bg: 'gray.300' }}
-              isExternal
               title={media.title}
+              key={media.title}
               onClick={() => {
                 window.open(
                   media.url,
@@ -59,7 +59,7 @@ function CampaignFooter({ campaignId, title, studentName }) {
                 return false;
               }}
             >
-              <Box as={media.icon} size="16px" />
+              <Box as={media.icon} boxSize="16px" />
             </Button>
           ))}
         </Flex>
@@ -72,7 +72,7 @@ function CampaignFooter({ campaignId, title, studentName }) {
       >
         <Button
           variant="ghost"
-          variantColor="red"
+          colorScheme="red"
           ml="auto"
           onClick={() => setReportCampaignView(!reportCampaignView)}
         >

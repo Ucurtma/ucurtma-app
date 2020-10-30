@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Text, Icon, Flex, PseudoBox } from '@chakra-ui/core';
+import { Text, Icon, Flex, Box } from '@chakra-ui/core';
 
 function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -9,14 +9,14 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
   });
 
   return (
-    <PseudoBox
+    <Box
       opacity={isDragActive ? '1' : '0.5'}
       as={Flex}
       width="full"
       height={{ base: '8rem', md: '10rem' }}
       borderWidth="2px"
       borderStyle="dashed"
-      borderColor="linkBlue.400"
+      borderColor="blue.400"
       borderRadius="30px"
       justifyContent="center"
       cursor="pointer"
@@ -36,12 +36,12 @@ function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
       >
         {icon && <Icon name={icon} fontSize="2.75rem" />}
         {type && (
-          <Text color="linkBlue.400" fontWeight={400}>
+          <Text color="blue.400" fontWeight={400}>
             {type}
           </Text>
         )}
       </Flex>
-    </PseudoBox>
+    </Box>
   );
 }
 

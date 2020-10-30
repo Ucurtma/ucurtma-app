@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/core';
 import { ApolloProvider } from '@apollo/client';
 import './i18n';
 import App from './App';
@@ -11,10 +11,9 @@ import client from './utils/apollo';
 
 const Application = (
   <ApolloProvider client={client}>
-    <ThemeProvider theme={customTheme}>
-      <CSSReset />
+    <ChakraProvider theme={customTheme}>
       <App />
-    </ThemeProvider>
+    </ChakraProvider>
   </ApolloProvider>
 );
 

@@ -9,20 +9,16 @@ import {
   ModalBody,
   ModalHeader,
   ModalFooter,
+  Text,
 } from '@chakra-ui/core';
 import Web3 from 'web3'; // todo: move web3 to another component because we shouldn't import web3 every time when header renders.
 import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
+import { SupportButton } from '../view/landing-page/landing-page';
 
-function Header({
-  menuItems,
-  withLogo = false,
-  hideMenu = false,
-  isManager = false,
-  ...otherProps
-}) {
+function Header({ menuItems, isManager = false }) {
   const [walletLoading, setWalletLoading] = useState(false);
   const { state: walletState, dispatch } = useContext(MainContext);
   const toast = useToast();
@@ -198,76 +194,72 @@ function Header({
     }
   };
 
-  let menuProps;
-
-  if (!withLogo) {
-    menuProps = { position: 'absolute', right: 0, top: 0 };
-  }
-
   const WalletElement = walletState.wallet
     ? { Element: Box, props: { display: 'flex' } }
     : {
         Element: Button,
         props: {
-          borderRadius: 'full',
-          border: '3px solid',
-          borderColor: 'gray.300',
           variant: 'solid',
           bg: 'transparent',
+          isLoading: walletLoading,
         },
       };
 
   return (
-    <Container
-      p={{ base: 4, lg: 0 }}
-      pt={4}
-      display="block"
-      position="relative"
-      zIndex={{ base: 'inherit', md: '2' }}
-      {...otherProps}
+    <Box
+      zIndex={2}
+      position="fixed"
+      top="0"
+      width="full"
+      bg="white"
+      transition="0.2s ease all"
+      px={{ base: 4, lg: 0 }}
+      py={{ base: 2, lg: 0 }}
+      boxShadow="modern"
     >
-      <Flex justify={withLogo ? 'space-between' : 'flex-end'} align="center">
-        {withLogo && (
-          <>
-            <Link to="/">
-              <Image
-                pt={4}
-                alt="Uçurtma Projesi"
-                src={`${process.env.PUBLIC_URL}/images/logo-gray.svg`}
-              />
-            </Link>
-            {isManager && (
-              <WalletElement.Element
-                {...WalletElement.props}
-                py={6}
-                color="gray.400"
-                onClick={() => !walletState.wallet && checkForMetamask()}
-                justifyContent={walletLoading ? 'center' : 'flex-start'}
-                isLoading={walletLoading}
+      <Container
+        py={{ base: 1, lg: 4 }}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Box
+          display={{ base: 'flex', lg: 'block' }}
+          w={{ base: 'full', lg: 'unset' }}
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Link to="/">
+            <Image
+              alt="Uçurtma Projesi"
+              src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
+            />
+          </Link>
+          <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
+        </Box>
+        <Flex mt={2} py={1} overflowY="auto">
+          {isManager && (
+            <WalletElement.Element
+              {...WalletElement.props}
+              color="gray.800"
+              fontSize="sm"
+              onClick={() => !walletState.wallet && checkForMetamask()}
+              justifyContent={walletLoading ? 'center' : 'flex-start'}
+            >
+              <Text
+                as="span"
+                maxW={walletState.wallet && '153px'}
+                isTruncated
+                alignSelf="center"
               >
-                <Box
-                  as="span"
-                  maxW={walletState.wallet && '153px'}
-                  overflow="hidden"
-                  textOverflow="ellipsis"
-                >
-                  {walletState.wallet || 'Cüzdanını Bağla'}
-                </Box>
-              </WalletElement.Element>
-            )}
-          </>
-        )}
-        {!hideMenu && (
-          <MenuItems
-            alignItems="center"
-            mt={4}
-            // display={{ base: 'none', lg: 'flex' }}
-            items={menuItems}
-            {...menuProps}
-          />
-        )}
-      </Flex>
-    </Container>
+                {walletState.wallet || 'Cüzdanını Bağla'}
+              </Text>
+            </WalletElement.Element>
+          )}
+          <MenuItems alignItems="center" items={menuItems} />
+          <SupportButton display={{ base: 'none', lg: 'flex' }} />
+        </Flex>
+      </Container>
+    </Box>
   );
 }
 

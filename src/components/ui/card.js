@@ -1,5 +1,5 @@
 import React from 'react';
-import { PseudoBox } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
 
 function Card({ children, paddingType, ...otherProps }) {
   const paddingTypes = {
@@ -8,7 +8,7 @@ function Card({ children, paddingType, ...otherProps }) {
   };
 
   return (
-    <PseudoBox
+    <Box
       bg="white"
       borderRadius="md"
       boxShadow="cardLight"
@@ -20,7 +20,7 @@ function Card({ children, paddingType, ...otherProps }) {
       {...otherProps}
     >
       {children}
-    </PseudoBox>
+    </Box>
   );
 }
 

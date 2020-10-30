@@ -17,7 +17,7 @@
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/label-has-for": 0,
     "import/no-extraneous-dependencies": 0,
@@ -25,6 +25,7 @@
     "react/jsx-props-no-spreading": 0,
     "react/forbid-prop-types": 0,
     "import/no-unresolved": [2, { "ignore": ["test-utils$"] }],
-    "react-hooks/exhaustive-deps": 1
+    "react-hooks/exhaustive-deps": 1,
+    "no-unused-vars": "warn"
   }
 }

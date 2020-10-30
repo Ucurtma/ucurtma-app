@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useContext } from 'react';
+import { Box } from '@chakra-ui/core';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
@@ -37,33 +38,35 @@ function Home() {
         {state.topNav.show && (
           <Topbar messageKey="donateAll" redirectLink="/campaign/donate-all" />
         )}
-        {!isLandingPage && <Header withLogo menuItems={menuItems} />}
-        <Suspense fallback={<Loader isFull />}>
-          <Routes>
-            <Route path="campaign/donate-all" element={<DonateAll />} />
-            <Route
-              path="kampanya/tum-kampanyalar"
-              element={<Navigate to="/campaign/donate-all" replace />}
-            />
-            <Route path="campaign/:id" element={<Campaign />} />
-            <Route
-              path="kampanya/:id"
-              element={
-                <Navigate
-                  to={`/campaign/${pathnameArray[pathnameArray.length - 1]}`}
-                  replace
-                />
-              }
-            />
-            <Route path="/campaigns" element={<Campaigns />} />
-            <Route
-              path="kampanyalar"
-              element={<Navigate to="/campaigns" replace />}
-            />
-            <Route path="/" element={<LandingPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
+        {!isLandingPage && <Header menuItems={menuItems} />}
+        <Box pt={!isLandingPage && { base: 32, lg: 20 }}>
+          <Suspense fallback={<Loader isFull />}>
+            <Routes>
+              <Route path="campaign/donate-all" element={<DonateAll />} />
+              <Route
+                path="kampanya/tum-kampanyalar"
+                element={<Navigate to="/campaign/donate-all" replace />}
+              />
+              <Route path="campaign/:id" element={<Campaign />} />
+              <Route
+                path="kampanya/:id"
+                element={
+                  <Navigate
+                    to={`/campaign/${pathnameArray[pathnameArray.length - 1]}`}
+                    replace
+                  />
+                }
+              />
+              <Route path="/campaigns" element={<Campaigns />} />
+              <Route
+                path="kampanyalar"
+                element={<Navigate to="/campaigns" replace />}
+              />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
+        </Box>
       </main>
       <LandingFooter />
     </>

@@ -67,7 +67,7 @@ function ContractList() {
           }}
         />
         <InputRightElement>
-          <Box as={Search} size="16px" />
+          <Box as={Search} boxSize="16px" />
         </InputRightElement>
       </InputGroup>
 
@@ -84,12 +84,12 @@ function ContractList() {
               <Link to={`/manager/edit-campaign/${campaign?.campaignId}`}>
                 <Button
                   variant="outline"
-                  variantColor="red"
+                  colorScheme="red"
                   width="full"
                   mt={4}
                   size="sm"
                 >
-                  <Box as={Edit} mr={2} size="16px" />
+                  <Box as={Edit} mr={2} boxSize="16px" />
                   Kampanyayı Düzenle
                 </Button>
               </Link>

@@ -59,8 +59,8 @@ function Manager() {
   return (
     <>
       <main data-testid="manager-main">
-        <Header withLogo hideMenu isManager mb={8} />
-        <Container>
+        <Header isManager />
+        <Container pt={32}>
           <Flex
             w="full"
             transform="none"

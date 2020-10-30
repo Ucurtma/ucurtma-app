@@ -8,6 +8,7 @@ import {
   InputRightAddon,
   InputLeftAddon,
   Box,
+  InputGroup,
 } from '@chakra-ui/core';
 import { useField } from 'formik';
 
@@ -38,7 +39,7 @@ function NumberInput({
           {description}
         </Box>
       )}
-      <ChakraInput>
+      <InputGroup w="full">
         {addon?.left && (
           <InputLeftAddon
             color={disabled ? 'gray.300' : 'gray.600'}
@@ -47,17 +48,18 @@ function NumberInput({
             {addon.left}
           </InputLeftAddon>
         )}
-        <NumberInputField
-          aria-label={label || field.name}
-          aria-describedby={label || field.name}
-          type={type || 'text'}
-          errorBorderColor="red.300"
-          isInvalid={meta.touched && !!meta.error}
-          roundedRight={addon?.right && 0}
-          roundedLeft={addon?.left && 0}
-          {...props}
-          {...field}
-        />
+        <ChakraInput w="full">
+          <NumberInputField
+            aria-label={label || field.name}
+            aria-describedby={label || field.name}
+            type={type || 'text'}
+            errorBorderColor="red.300"
+            roundedRight={addon?.right && 0}
+            roundedLeft={addon?.left && 0}
+            {...props}
+            {...field}
+          />
+        </ChakraInput>
         {addon?.right && (
           <InputRightAddon
             color={disabled ? 'gray.300' : 'gray.600'}
@@ -66,7 +68,7 @@ function NumberInput({
             {addon.right}
           </InputRightAddon>
         )}
-      </ChakraInput>
+      </InputGroup>
       {meta.touched && meta.error ? (
         <FormErrorMessage>{meta.error}</FormErrorMessage>
       ) : null}

@@ -1,35 +1,36 @@
 import React from 'react';
-import { Flex, Image, Box } from '@chakra-ui/core';
+import { Image, Box, Text } from '@chakra-ui/core';
 
-function CardTargetInfo({ title, price, percent }) {
+function CardTargetInfo({ title, price, percent, value, ...otherProps }) {
   return (
-    <Flex
-      justifyContent="flex-end"
-      alignItems="center"
-      color="gray.400"
-      fontSize="14px"
-      mb={2}
-    >
-      {title}
-
+    <Box {...otherProps}>
+      <Text fontSize="sm" color="gray.600">
+        {title}
+      </Text>
       {price && (
-        <>
+        <Text color="gray.800" fontWeight={600}>
           <Image
             maxW="8px"
             width="full"
             height="full"
             src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
             mx={1}
+            display="inline"
           />
-          <strong>{new Intl.NumberFormat('tr-TR').format(price)}</strong>
-        </>
+          {new Intl.NumberFormat('tr-TR').format(price)}
+        </Text>
       )}
       {(percent || percent === 0) && (
-        <Box as="strong" ml={1}>
+        <Text color="gray.800" fontWeight={600} ml={1}>
           %{Math.floor(percent)}
-        </Box>
+        </Text>
       )}
-    </Flex>
+      {value && (
+        <Text color="gray.800" fontWeight={600} ml={1}>
+          {value}
+        </Text>
+      )}
+    </Box>
   );
 }
 

@@ -12,14 +12,15 @@ import CampaignCardList from './campaign-card-list';
 const SHOWED_CAMPAIGN_COUNT = 4;
 
 function Campaigns() {
-  const [activeButton, setActiveButton] = useState('All');
+  const terms = ['All', 'LongTerm', 'ShortTerm'];
+
+  const [activeButton, setActiveButton] = useState(terms[0]);
   const [shouldResetPagination, setShouldResetPagination] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const { t } = useTranslation('campaignList');
   const [getCampaigns, { loading, error, data, called }] = useLazyQuery(
     GET_CAMPAIGNS
   );
-  const terms = ['All', 'LongTerm', 'ShortTerm'];
 
   useEffect(() => {
     if (!called && getCampaigns) {
@@ -50,6 +51,7 @@ function Campaigns() {
       data-testid="campaigns-container"
       flexDir="column"
       px={{ base: 4, lg: 0 }}
+      my={8}
     >
       <Helmet>
         <title>{t('title')}</title>
@@ -63,16 +65,16 @@ function Campaigns() {
         {terms.map((term, termIndex) => (
           <Button
             key={termIndex.toString()}
-            variantColor={activeButton === term ? 'linkBlue' : 'gray'}
+            colorScheme={activeButton === term ? 'blue' : 'gray'}
             variant="solid"
             mb={{ base: 2, md: 0 }}
             onClick={() => changeType(term)}
-            size="sm"
+            size="md"
             width={{ base: 'full', md: 'auto' }}
             fontWeight={400}
             isActive={term === activeButton}
             isDisabled={term === activeButton}
-            _disabled={{ bg: 'linkBlue' }}
+            _disabled={{ bg: 'blue' }}
           >
             {t(`filter.${term}`, { count: 10 })}
           </Button>
@@ -97,7 +99,7 @@ function Campaigns() {
                   variant="link"
                   onClick={() => changeType('All')}
                   verticalAlign="inherit"
-                  variantColor="linkBlue"
+                  colorScheme="blue"
                 >
                   buraya tıkla.
                 </Button>

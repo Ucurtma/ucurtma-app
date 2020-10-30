@@ -328,8 +328,8 @@
   },
   "donate": {
     "options": {
-      "bank": "Bank Transfer",
-      "ethWallet": "BiLira Wallet"
+      "bank-transfer": "Bank Transfer",
+      "ethereum-wallet": "BiLira Wallet"
     },
     "backToCampaign": "Back To The Campaign",
     "biLiraError": "There was something wrong while connecting with BiLira. Please try again later."

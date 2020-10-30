@@ -6,8 +6,8 @@ import {
   Divider,
   Grid,
   Accordion,
-  RadioButtonGroup,
   Button,
+  HStack,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
@@ -15,42 +15,38 @@ import QuestionList from '../../ui/questions-list';
 import FAQ from './faq.json';
 
 const { studentQuestions, donatorQuestions } = FAQ;
-
-const CustomRadio = React.forwardRef((props, ref) => {
-  const { isChecked, isDisabled, value, ...rest } = props;
-  return (
-    <Button
-      ref={ref}
-      bg={isChecked ? 'linkBlue.400' : 'gray.200'}
-      color={isChecked ? 'white' : 'gray.900'}
-      _hover={{ bg: isChecked ? 'blue.400' : 'gray.100' }}
-      aria-checked={isChecked}
-      role="radio"
-      isDisabled={isDisabled}
-      {...rest}
-    />
-  );
-});
+const options = ['student', 'supporter'];
 
 function Faq() {
   const [activeFaq, setActiveFaq] = React.useState('student');
   const { t } = useTranslation(['faq', 'titles']);
   const questionType =
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
+
   return (
     <Flex id="faq" bg="gray.700" py={16} px={4}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.100">
           <Heading size="xl">{t('titles:FAQ')}</Heading>
-          <RadioButtonGroup
-            mt={4}
-            defaultValue="student"
-            onChange={val => setActiveFaq(val)}
-            isInline
-          >
-            <CustomRadio value="student">{t('I am student')}</CustomRadio>
-            <CustomRadio value="investor">{t('I am supporter')}</CustomRadio>
-          </RadioButtonGroup>
+          <HStack spacing={4} my={10} justify="center">
+            {options.map(option => (
+              <Button
+                key={option}
+                onClick={() => setActiveFaq(option)}
+                isActive={activeFaq === option}
+                bg="gray.200"
+                color="gray.900"
+                _active={{ bg: 'linkBlue.400', color: 'white' }}
+                _hover={{
+                  bg: 'gray.100',
+                  _active: { bg: 'blue.400' },
+                }}
+              >
+                {t(`I am ${option}`)}
+              </Button>
+            ))}
+          </HStack>
+
           <Divider maxW={24} borderColor="gray.100" marginX="auto" mt={8} />
         </Box>
         <Accordion width="full" allowMultiple>

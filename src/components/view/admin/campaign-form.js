@@ -210,10 +210,10 @@ function CampaignForm({
                         <Button
                           type="button"
                           variant="outline"
-                          variantColor="red"
+                          colorScheme="red"
                           onClick={() => arrayHelpers.remove(goalIndex)}
                         >
-                          <Box as={Trash2} size="16px" />
+                          <Box as={Trash2} boxSize="16px" />
                         </Button>
                       </Flex>
                     );
@@ -221,7 +221,7 @@ function CampaignForm({
                   <Button
                     type="button"
                     variant="outline"
-                    variantColor="gray"
+                    colorScheme="gray"
                     size="sm"
                     onClick={() => arrayHelpers.push({ description: '' })}
                     mr={4}
@@ -233,7 +233,7 @@ function CampaignForm({
                       !isWalletExist
                     }
                   >
-                    <Box as={PlusCircle} mr={2} size="16px" />
+                    <Box as={PlusCircle} mr={2} boxSize="16px" />
                     {t('goals.new')}
                   </Button>
                 </Box>
@@ -275,13 +275,13 @@ function CampaignForm({
                         <Button
                           type="button"
                           variant="outline"
-                          variantColor="red"
+                          colorScheme="red"
                           onClick={() => arrayHelpers.remove(documentIndex)}
                           alignSelf="flex-end"
                           mb={4}
                           flexShrink={0}
                         >
-                          <Box as={Trash2} size="16px" />
+                          <Box as={Trash2} boxSize="16px" />
                         </Button>
                       </Flex>
                     );
@@ -289,7 +289,7 @@ function CampaignForm({
                   <Button
                     type="button"
                     variant="outline"
-                    variantColor="gray"
+                    colorScheme="gray"
                     size="sm"
                     onClick={() =>
                       arrayHelpers.push({ title: '', link: '', type: '' })
@@ -304,7 +304,7 @@ function CampaignForm({
                       !isWalletExist
                     }
                   >
-                    <Box as={PlusCircle} mr={2} size="16px" />
+                    <Box as={PlusCircle} mr={2} boxSize="16px" />
                     {t('documents.new')}
                   </Button>
                 </Box>
@@ -390,7 +390,7 @@ function CampaignForm({
                   <Box
                     ml={2}
                     as={showOwnerWallet ? ChevronUp : ChevronDown}
-                    size="16px"
+                    boxSize="16px"
                   />
                 </Button>
               </Flex>
@@ -459,7 +459,7 @@ function CampaignForm({
               <Button
                 type="button"
                 variant="ghost"
-                variantColor={activateStatus ? 'red' : 'green'}
+                colorScheme={activateStatus ? 'red' : 'green'}
                 isLoading={loading}
                 disabled={isSubmitting || !isValid}
                 mr={4}
@@ -472,7 +472,7 @@ function CampaignForm({
             <Button
               type="submit"
               variant="outline"
-              variantColor="linkBlue"
+              colorScheme="linkBlue"
               isLoading={loading}
               disabled={isSubmitting || !dirty || !isValid}
             >

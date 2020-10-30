@@ -1,27 +1,12 @@
 import React from 'react';
-import {
-  Box,
-  PseudoBox,
-  Image,
-  Heading,
-  StatGroup,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
-  Collapse,
-  Flex,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@chakra-ui/core';
+import { Box, Image, Heading, Text } from '@chakra-ui/core';
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
 // todo: use date-fns instead of moment since our date-picker is using date-fns.
 import moment from 'moment';
-import { ChevronDown, ChevronUp } from 'react-feather';
 import { useTranslation } from 'react-i18next';
+import TransactionRenderer from './transaction-renderer';
 
 function TimelineBox({ children, title, ...otherProps }) {
   return (
@@ -46,7 +31,6 @@ function TimelineBox({ children, title, ...otherProps }) {
 }
 
 function Timeline({ items, transactions }) {
-  const [show, setShow] = React.useState({ show: false, index: -1, date: '' });
   const [transactionList, setTransactionList] = React.useState();
   const { t } = useTranslation('timeline');
   const listPadding = 5;
@@ -71,9 +55,9 @@ function Timeline({ items, transactions }) {
       <Heading size="sm" mb={4} color="gray.500">
         {t('title')}
       </Heading>
-      <PseudoBox mt={4} as="ul" m={0} listStyleType="none" pos="relative">
+      <Box mt={4} as="ul" m={0} listStyleType="none" pos="relative">
         {items.map((range, index) => (
-          <PseudoBox
+          <Box
             pl={listPadding}
             as="li"
             pos="relative"
@@ -102,7 +86,7 @@ function Timeline({ items, transactions }) {
                 bg="gray.300"
                 top="0.4rem"
               />
-              <PseudoBox
+              <Box
                 display="inline-flex"
                 fontWeight={600}
                 mb={2}
@@ -110,7 +94,7 @@ function Timeline({ items, transactions }) {
                 fontSize="16px"
               >
                 {range.date}
-              </PseudoBox>
+              </Box>
               <Box>
                 {range.subItems.map((item, i) => {
                   const { type } = item;
@@ -156,170 +140,12 @@ function Timeline({ items, transactions }) {
                         bg={isIncoming ? 'green.50' : 'red.50'}
                         borderColor={isIncoming ? 'green.100' : 'red.100'}
                       >
-                        <StatGroup
-                          cursor="pointer"
-                          pos="relative"
-                          {...(transactions && {
-                            onClick: () =>
-                              setShow({
-                                show:
-                                  show.index === i && show.date === range.date
-                                    ? !show.show
-                                    : true,
-                                index: i,
-                                date: range.date,
-                              }),
-                          })}
-                        >
-                          <Box
-                            pos="absolute"
-                            right="5px"
-                            top="50%"
-                            transform="translate(0, -50%)"
-                          >
-                            <Box
-                              as={
-                                show.index === i &&
-                                show.date === range.date &&
-                                show.show
-                                  ? ChevronUp
-                                  : ChevronDown
-                              }
-                            />
-                          </Box>
-                          <Stat>
-                            <StatLabel
-                              color="gray.400"
-                              fontWeight={800}
-                              fontSize={14}
-                            >
-                              {t('operationCount')}
-                            </StatLabel>
-                            <StatNumber color="gray.700" fontSize={18}>
-                              {item.content.length}
-                            </StatNumber>
-                          </Stat>
-                          <Stat>
-                            <StatLabel
-                              color="gray.400"
-                              fontWeight={800}
-                              fontSize={14}
-                            >
-                              {t(
-                                `transaction.${
-                                  isIncoming ? 'incoming' : 'outgoing'
-                                }`
-                              )}
-                            </StatLabel>
-                            <StatNumber
-                              display="flex"
-                              alignItems="center"
-                              color="gray.700"
-                              fontSize={18}
-                            >
-                              <Image
-                                maxW="10px"
-                                width="full"
-                                height="full"
-                                src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                                mr={1}
-                              />
-                              {Math.floor(
-                                item.content.reduce(
-                                  (a, b) => parseFloat(a) + parseFloat(b),
-                                  0
-                                )
-                              )}
-                            </StatNumber>
-                          </Stat>
-                        </StatGroup>
-                        {transactionList && (
-                          <Collapse
-                            mt={4}
-                            isOpen={
-                              show.show &&
-                              show.index === i &&
-                              show.date === range.date
-                            }
-                          >
-                            {transactionList.map(
-                              (transaction, transactionIndex) => {
-                                const transactionType = isIncoming
-                                  ? 'IN'
-                                  : 'OUT';
-                                if (
-                                  transaction.when === range.date &&
-                                  transactionType === transaction.type
-                                ) {
-                                  return (
-                                    <PseudoBox
-                                      key={transactionIndex.toString()}
-                                      fontSize={14}
-                                      borderBottom="1px solid"
-                                      borderColor="gray.200"
-                                      py={2}
-                                      _first={{ pt: 0 }}
-                                      _last={{ borderBottom: 0 }}
-                                    >
-                                      <Flex justifyContent="space-between">
-                                        <Box as="strong" color="gray.400">
-                                          {t(
-                                            `transaction.${
-                                              isIncoming ? 'from' : 'to'
-                                            }`
-                                          )}
-                                        </Box>
-                                        <Popover usePortal trigger="hover">
-                                          <PopoverTrigger>
-                                            <Box
-                                              overflow="hidden"
-                                              textOverflow="ellipsis"
-                                              maxW="200px"
-                                            >
-                                              {transaction.from}
-                                            </Box>
-                                          </PopoverTrigger>
-                                          <PopoverContent
-                                            bg="gray.800"
-                                            color="gray.50"
-                                            wordBreak="break-all"
-                                            p={2}
-                                            fontSize={13}
-                                            textAlign="center"
-                                            width="auto"
-                                          >
-                                            {transaction.from}
-                                          </PopoverContent>
-                                        </Popover>
-                                      </Flex>
-                                      <Flex
-                                        mt={1}
-                                        justifyContent="space-between"
-                                      >
-                                        <Box as="strong" color="gray.400">
-                                          {t('transaction.amount')}
-                                        </Box>
-                                        <Flex fontWeight={700}>
-                                          <Image
-                                            maxW="8px"
-                                            width="full"
-                                            height="full"
-                                            src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                                            mr={1}
-                                          />
-                                          {Math.floor(
-                                            parseInt(transaction.amount, 10)
-                                          )}
-                                        </Flex>
-                                      </Flex>
-                                    </PseudoBox>
-                                  );
-                                }
-                                return null;
-                              }
-                            )}
-                          </Collapse>
-                        )}
+                        <TransactionRenderer
+                          item={item}
+                          type={type}
+                          transactionList={transactionList}
+                          range={range}
+                        />
                       </TimelineBox>
                     );
                   }
@@ -336,9 +162,9 @@ function Timeline({ items, transactions }) {
                 })}
               </Box>
             </Box>
-          </PseudoBox>
+          </Box>
         ))}
-      </PseudoBox>
+      </Box>
     </>
   );
 }

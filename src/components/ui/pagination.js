@@ -138,7 +138,7 @@ function Pagination({
         const buttonProps = {
           boxShadow: '0 0 2px rgba(45,55,72,0.2)',
           mr: 2,
-          variantColor: currentPage === page ? 'linkBlue' : 'gray',
+          colorScheme: currentPage === page ? 'linkBlue' : 'gray',
           cursor: 'pointer',
         };
 

@@ -59,7 +59,7 @@ function CampaignFooter({ campaignId, title, studentName }) {
                 return false;
               }}
             >
-              <Box as={media.icon} size="16px" />
+              <Box as={media.icon} boxSize="16px" />
             </Button>
           ))}
         </Flex>
@@ -72,7 +72,7 @@ function CampaignFooter({ campaignId, title, studentName }) {
       >
         <Button
           variant="ghost"
-          variantColor="red"
+          colorScheme="red"
           ml="auto"
           onClick={() => setReportCampaignView(!reportCampaignView)}
         >

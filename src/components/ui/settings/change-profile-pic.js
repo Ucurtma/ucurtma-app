@@ -41,7 +41,7 @@ function ChangeProfilePicture({
           <Button
             as="span"
             variant="ghost"
-            leftIcon={Upload}
+            leftIcon={<Upload />}
             color="linkBlue.400"
             size="sm"
           >
@@ -52,7 +52,7 @@ function ChangeProfilePicture({
           <Button
             onClick={e => onChange(e, 'delete')}
             variant="ghost"
-            leftIcon={Trash}
+            leftIcon={<Trash />}
             color="danger"
             size="sm"
           >

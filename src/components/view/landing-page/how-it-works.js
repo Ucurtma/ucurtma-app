@@ -7,7 +7,6 @@ import {
   Box,
   Divider,
   Image,
-  PseudoBox,
 } from '@chakra-ui/core';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
@@ -51,7 +50,7 @@ function HowItWorks() {
           gap={{ base: 8, lg: 20 }}
         >
           {cards.map(card => (
-            <PseudoBox
+            <Box
               as={Card}
               display="flex"
               key={card.title}
@@ -67,7 +66,7 @@ function HowItWorks() {
               <Text textAlign="center" mt={6} color="gray.600">
                 {card.text}
               </Text>
-            </PseudoBox>
+            </Box>
           ))}
         </Grid>
       </Container>

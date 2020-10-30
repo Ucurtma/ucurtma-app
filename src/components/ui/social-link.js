@@ -12,7 +12,7 @@ function SocialLink({ icon, label, isConnected, onAction }) {
       mt={4}
     >
       <Box display="flex" alignItems="center">
-        <Box as={icon} color="gray.600" size="24px" />
+        <Box as={icon} color="gray.600" boxSize="24px" />
         <Text color="gray.600" ml={4}>
           {label}
         </Text>

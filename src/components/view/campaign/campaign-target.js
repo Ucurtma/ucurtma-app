@@ -30,7 +30,7 @@ function CampaignTarget({ target, current, endDate, type }) {
           <Box pos="relative">
             <Progress
               mt={4}
-              color="green"
+              colorScheme="green"
               height={progressHeight}
               value={parseFloat(formula)}
               borderRadius="4px"

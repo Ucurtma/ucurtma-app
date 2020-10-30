@@ -63,7 +63,7 @@ function Campaigns() {
         {terms.map((term, termIndex) => (
           <Button
             key={termIndex.toString()}
-            variantColor={activeButton === term ? 'linkBlue' : 'gray'}
+            colorScheme={activeButton === term ? 'linkBlue' : 'gray'}
             variant="solid"
             mb={{ base: 2, md: 0 }}
             onClick={() => changeType(term)}
@@ -97,7 +97,7 @@ function Campaigns() {
                   variant="link"
                   onClick={() => changeType('All')}
                   verticalAlign="inherit"
-                  variantColor="linkBlue"
+                  colorScheme="linkBlue"
                 >
                   buraya tıkla.
                 </Button>

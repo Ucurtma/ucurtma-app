@@ -26,7 +26,7 @@ function Documents({ documents }) {
               mr={3}
               color="blue.400"
               fontWeight={400}
-              variantColor="blue"
+              colorScheme="blue"
               flexShrink="0"
               mb={{ base: 2, md: 0 }}
               leftIcon={icon}

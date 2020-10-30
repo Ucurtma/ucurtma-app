@@ -68,7 +68,7 @@ function NewContent() {
               <Button
                 type="submit"
                 variant="outline"
-                variantColor="linkBlue"
+                colorScheme="linkBlue"
                 isLoading={isSubmitting}
                 disabled={isSubmitting || !dirty || !isValid}
               >

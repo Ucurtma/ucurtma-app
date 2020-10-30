@@ -328,8 +328,8 @@
   },
   "donate": {
     "options": {
-      "bank": "Banka Havalesi",
-      "ethWallet": "BiLira Cüzdanı"
+      "bank-transfer": "Banka Havalesi",
+      "ethereum-wallet": "BiLira Cüzdanı"
     },
     "backToCampaign": "Kampanyaya Dön",
     "biLiraError": "BiLira ile iletişim kurulurken bir sorun yaşandı. Lütfen daha sonra tekrar deneyiniz."

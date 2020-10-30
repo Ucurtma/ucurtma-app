@@ -110,7 +110,7 @@ function ReportCampaignForm({ onSubmit, campaignId }) {
             <Button
               type="button"
               width="100%"
-              variantColor="lime"
+              colorScheme="lime"
               size="lg"
               mt={2}
               isLoading={loading}

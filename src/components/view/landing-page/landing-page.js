@@ -65,7 +65,7 @@ function LandingPage() {
         >
           {pageOffset > topOffset && (
             <Box>
-              <Icon name="logo" size="2rem" />
+              <Icon name="logo" boxSize="2rem" />
             </Box>
           )}
           <Box>

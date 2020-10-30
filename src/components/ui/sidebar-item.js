@@ -21,7 +21,7 @@ function SidebarItem({ active, icon, label, ...otherProps }) {
       {...(active ? activeProps : undefined)}
       {...otherProps}
     >
-      <Box as={icon} size="24px" />
+      <Box as={icon} boxSize="24px" />
       <Text ml={4}>{label}</Text>
     </Button>
   );

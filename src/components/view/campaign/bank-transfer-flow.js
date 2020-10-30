@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import {
   Box,
@@ -73,7 +73,7 @@ function createSchema(limit, t) {
   return donateSchema;
 }
 
-function BankTransferFlow({ minimumAmount }) {
+function BankTransferFlow({ minimumAmount, onSuccessDonate }) {
   const { t } = useTranslation('bankTransferFlow');
   const params = useParams();
   const [currentBank, setCurrentBank] = React.useState(-1);
@@ -107,6 +107,13 @@ function BankTransferFlow({ minimumAmount }) {
       getOauthUrl();
     }
   }, [bankData, getBanks, getOauthUrl]);
+
+  useEffect(() => {
+    if (donationData) {
+      if (onSuccessDonate) onSuccessDonate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [donationData]);
 
   if (bankLoading) {
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Box,
   AccordionItem,
-  AccordionHeader,
+  AccordionButton,
   AccordionIcon,
   AccordionPanel,
 } from '@chakra-ui/core';
@@ -15,7 +15,7 @@ function QuestionList({ questions }) {
     <Box>
       {questions.map((question, i) => (
         <AccordionItem border="0" marginBottom="20px" key={i.toString()}>
-          <AccordionHeader
+          <AccordionButton
             bg="gray.200"
             p={5}
             fontWeight="bold"
@@ -37,7 +37,7 @@ function QuestionList({ questions }) {
               {t(`faq:questions.${question}.question`)}
             </Box>
             <AccordionIcon />
-          </AccordionHeader>
+          </AccordionButton>
           <AccordionPanel
             border="1px solid"
             borderColor="gray.200"

@@ -8,7 +8,6 @@ import {
   Button,
   Tooltip,
   Progress,
-  PseudoBox,
 } from '@chakra-ui/core';
 import { useTranslation, Trans } from 'react-i18next';
 import { ChevronRight, ChevronLeft } from 'react-feather';
@@ -132,7 +131,7 @@ function FeaturedCampaign() {
                     src={campaign?.student?.profilePhoto}
                     name={campaign?.student?.name}
                   />
-                  <PseudoBox
+                  <Box
                     as="h3"
                     mt={4}
                     color="gray.600"
@@ -143,7 +142,7 @@ function FeaturedCampaign() {
                     <Link to={`/campaign/${campaign?.campaignId}`}>
                       {campaign?.student?.name}
                     </Link>
-                  </PseudoBox>
+                  </Box>
                   <Text color="gray.500" textAlign="center">
                     {campaign?.student?.school}
                   </Text>
@@ -231,7 +230,7 @@ function FeaturedCampaign() {
                     as={Link}
                     to={`/campaign/${campaign?.campaignId}`}
                     variant="outline"
-                    variantColor="linkBlue"
+                    colorScheme="linkBlue"
                     mt={4}
                     size="sm"
                   >

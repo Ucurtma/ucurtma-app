@@ -7,7 +7,6 @@ import {
   Text,
   Image,
   Divider,
-  PseudoBox,
   Button,
   Icon,
   Link,
@@ -150,7 +149,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
             >
               {data.campaign?.campaignTitle}
             </Heading>
-            <PseudoBox
+            <Box
               as={Button}
               variant="solid"
               bg="lime.400"
@@ -179,8 +178,8 @@ function CampaignHeader({ data, loading, onClickDonate }) {
                   Toplanılan paralar bağışçılara geri gönderilmektedir.
                 </Box>
               )}
-              {data.campaign?.isActive && <Icon as={Award} size="28px" />}
-            </PseudoBox>
+              {data.campaign?.isActive && <Icon as={Award} boxSize="28px" />}
+            </Box>
           </>
         )}
       </Flex>

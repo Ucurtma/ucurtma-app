@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  PseudoBox,
   Flex,
   Avatar,
   Box,
@@ -36,7 +35,7 @@ function CampaignList({
 
   if (data?.campaigns?.campaigns) {
     return data?.campaigns?.campaigns?.map(campaign => (
-      <PseudoBox
+      <Box
         display="flex"
         border="1px solid"
         borderColor={campaign?.isActive ? 'gray.100' : 'red.100'}
@@ -95,7 +94,7 @@ function CampaignList({
             </Button>
           )}
         </Box>
-      </PseudoBox>
+      </Box>
     ));
   }
   return null;

@@ -12,14 +12,15 @@ import CampaignCardList from './campaign-card-list';
 const SHOWED_CAMPAIGN_COUNT = 4;
 
 function Campaigns() {
-  const [activeButton, setActiveButton] = useState('All');
+  const terms = ['All', 'LongTerm', 'ShortTerm'];
+
+  const [activeButton, setActiveButton] = useState(terms[0]);
   const [shouldResetPagination, setShouldResetPagination] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const { t } = useTranslation('campaignList');
   const [getCampaigns, { loading, error, data, called }] = useLazyQuery(
     GET_CAMPAIGNS
   );
-  const terms = ['All', 'LongTerm', 'ShortTerm'];
 
   useEffect(() => {
     if (!called && getCampaigns) {

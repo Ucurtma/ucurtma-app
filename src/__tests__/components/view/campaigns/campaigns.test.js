@@ -234,7 +234,7 @@ describe('Campaigns tests', () => {
     await waitFor(() => {
       const allButton = getByText(langEn.campaignList.filter.All);
       expect(allButton).toBeInTheDocument();
-      expect(allButton.getAttribute('data-active')).toBeTruthy();
+      expect(allButton.getAttribute('data-active')).toEqual('');
     });
   });
 

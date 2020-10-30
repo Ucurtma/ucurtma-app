@@ -5,7 +5,7 @@ function SidebarItem({ active, icon, label, ...otherProps }) {
   const theme = useTheme();
   const activeProps = {
     color: 'title',
-    boxShadow: `-4px 0 ${theme.colors.linkBlue['400']}`,
+    boxShadow: `-4px 0 ${theme.colors.blue['400']}`,
   };
 
   return (

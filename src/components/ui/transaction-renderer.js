@@ -21,7 +21,7 @@ function TransactionRenderer({ item, type, transactionList, range }) {
     <>
       <Flex pos="relative" justify="space-between">
         <Stat>
-          <StatLabel color="gray.400" fontWeight={800} fontSize={14}>
+          <StatLabel color="gray.400" fontWeight={600} fontSize={14}>
             {t('operationCount')}
           </StatLabel>
           <StatNumber color="gray.700" fontSize={18}>
@@ -29,7 +29,7 @@ function TransactionRenderer({ item, type, transactionList, range }) {
           </StatNumber>
         </Stat>
         <Stat>
-          <StatLabel color="gray.400" fontWeight={800} fontSize={14}>
+          <StatLabel color="gray.400" fontWeight={600} fontSize={14}>
             {t(`transaction.${isIncoming ? 'incoming' : 'outgoing'}`)}
           </StatLabel>
           <StatNumber
@@ -96,7 +96,7 @@ function TransactionRenderer({ item, type, transactionList, range }) {
                 <Box as="strong" color="gray.400">
                   {t('transaction.amount')}
                 </Box>
-                <Flex fontWeight={700}>
+                <Flex fontWeight={600}>
                   <Image
                     maxW="8px"
                     width="full"

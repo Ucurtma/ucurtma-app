@@ -42,7 +42,7 @@ function ChangeProfilePicture({
             as="span"
             variant="ghost"
             leftIcon={<Upload />}
-            color="linkBlue.400"
+            color="blue.400"
             size="sm"
           >
             {isFileExist ? 'Dosyayı Değiştir' : 'Dosya Ekle'}

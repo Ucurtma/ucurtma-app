@@ -54,21 +54,20 @@ function NumberInput({
             aria-describedby={label || field.name}
             type={type || 'text'}
             errorBorderColor="red.300"
-            isInvalid={meta.touched && !!meta.error}
             roundedRight={addon?.right && 0}
             roundedLeft={addon?.left && 0}
             {...props}
             {...field}
           />
-          {addon?.right && (
-            <InputRightAddon
-              color={disabled ? 'gray.300' : 'gray.600'}
-              roundedLeft="0"
-            >
-              {addon.right}
-            </InputRightAddon>
-          )}
         </ChakraInput>
+        {addon?.right && (
+          <InputRightAddon
+            color={disabled ? 'gray.300' : 'gray.600'}
+            roundedLeft="0"
+          >
+            {addon.right}
+          </InputRightAddon>
+        )}
       </InputGroup>
       {meta.touched && meta.error ? (
         <FormErrorMessage>{meta.error}</FormErrorMessage>

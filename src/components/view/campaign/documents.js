@@ -22,13 +22,14 @@ function Documents({ documents }) {
               href={document.link}
               target="_blank"
               rel="noopener noreferrer"
-              variant="outline"
               mr={3}
-              color="blue.400"
+              bg="blue.700"
+              color="white"
               fontWeight={400}
-              colorScheme="blue"
               flexShrink="0"
               mb={{ base: 2, md: 0 }}
+              _hover={{ bg: 'blue.600' }}
+              _active={{ bg: 'blue.600' }}
               leftIcon={icon}
             >
               {document.title}

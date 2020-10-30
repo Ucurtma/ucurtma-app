@@ -57,7 +57,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
       <Box w="full" height="full" boxShadow="cardLight" padding={4}>
         {!isDonateSuccess && (
           <Box mb={4}>
-            <Text fontWeight={700} mb={4}>
+            <Text fontWeight={600} mb={4}>
               Ödeme yöntemi seçiniz
             </Text>
             <HStack spacing={4} mb={{ base: 4, md: 0 }}>
@@ -68,7 +68,7 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
                   bg="gray.300"
                   color="gray.700"
                   _active={{
-                    fontWeight: 700,
+                    fontWeight: 600,
                     bg: 'gray.700',
                     color: 'gray.100',
                   }}

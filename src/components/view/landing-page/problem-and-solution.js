@@ -11,7 +11,7 @@ function ProblemSolution() {
       id="problem-solution"
       py={24}
       px={{ base: 4, lg: 0 }}
-      bg="gray.700"
+      bg="gray.900"
       color="gray.100"
     >
       <Container mt={0}>

@@ -81,7 +81,7 @@ function ChangeProfileInfo({ withTitle }) {
             <Box textAlign="right" mt={4}>
               <Button
                 variant="outline"
-                color="linkBlue.400"
+                color="blue.400"
                 type="submit"
                 isLoading={isSubmitting}
                 disabled={isSubmitting || Object.keys(errors).length > 0}

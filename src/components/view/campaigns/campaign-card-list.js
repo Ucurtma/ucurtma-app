@@ -7,17 +7,15 @@ import {
   Avatar,
   Text,
   Button,
-  Tooltip,
   Progress,
 } from '@chakra-ui/core';
-import { useTranslation, Trans } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';
 import Card from '../../ui/card';
 import CardTargetInfo from '../../ui/card-target-info';
 
 function CampaignCardList({ loading, data, error }) {
-  const navigate = useNavigate();
   const { t } = useTranslation('featuredCampaign');
 
   if (loading) {
@@ -60,11 +58,11 @@ function CampaignCardList({ loading, data, error }) {
             py={4}
             borderRadius="0.5rem"
             w="full"
-            maxW={maxW}
-            minW="0"
             flexDir="column"
             justifyContent="space-between"
             mb={4}
+            boxShadow="modern"
+            maxW={maxW}
           >
             <Box>
               <Flex flexDir="column" alignItems="center">
@@ -76,7 +74,7 @@ function CampaignCardList({ loading, data, error }) {
                 <Box
                   as="h3"
                   mt={4}
-                  color="gray.600"
+                  color="gray.900"
                   textAlign="center"
                   _hover={{ textDecoration: 'underline' }}
                   fontWeight={600}
@@ -85,34 +83,30 @@ function CampaignCardList({ loading, data, error }) {
                     {campaign?.student?.name}
                   </Link>
                 </Box>
-                <Text color="gray.500" textAlign="center">
+                <Text mt={1} color="gray.600" textAlign="center">
                   {campaign?.student?.school}
                 </Text>
-                <Tooltip
-                  label={campaign?.campaignTitle}
+                <Heading
+                  fontWeight={600}
+                  as="h4"
+                  size="sm"
                   textAlign="center"
-                  p={4}
+                  mt={6}
+                  mb={4}
+                  minH="50px"
+                  isTruncated
+                  noOfLines={2}
                 >
-                  <Heading
-                    as="h4"
-                    size="sm"
-                    textAlign="center"
-                    my={4}
-                    width="full"
-                    minW={0}
-                    display="-webkit-box"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    minH="40px"
-                    css={{
-                      WebkitLineClamp: '2',
-                      WebkitBoxOrient: 'vertical',
-                    }}
-                  >
-                    {campaign?.campaignTitle}
-                  </Heading>
-                </Tooltip>
+                  {campaign?.campaignTitle}
+                </Heading>
                 <Box w="full" mt={2}>
+                  <Progress
+                    colorScheme="green"
+                    height="18px"
+                    value={totalPercent}
+                    borderRadius="4px"
+                  />
+
                   <Flex justifyContent="space-between">
                     <CardTargetInfo
                       title={t('totalFund')}
@@ -122,55 +116,26 @@ function CampaignCardList({ loading, data, error }) {
                     <CardTargetInfo
                       title={t('target')}
                       price={campaign?.campaignTarget}
+                      textAlign="right"
                     />
                   </Flex>
 
-                  <Progress
-                    color="green"
-                    height="12px"
-                    value={totalPercent}
-                    borderRadius="4px"
+                  <CardTargetInfo
+                    title={t('supporterCount')}
+                    value={campaign?.supporterCount}
+                    textAlign="center"
+                    mt={2}
                   />
-                  <Flex mt={2} alignItems="center">
-                    <Box
-                      fontSize="14px"
-                      textAlign="center"
-                      color="gray.400"
-                      w="full"
-                      h={63}
-                    >
-                      <Trans
-                        defaults={currentFund < 1 ? 'noFund' : 'donate'}
-                        t={t}
-                        values={{ count: campaign?.supporterCount }}
-                        components={{
-                          campaignButton: (
-                            <Button
-                              variant="link"
-                              onClick={() =>
-                                navigate(`/campaign/${campaign?.campaignId}`, {
-                                  state: { redirected: true },
-                                })
-                              }
-                              verticalAlign="inherit"
-                              fontSize="14px"
-                              color="gray.400"
-                            >
-                              buraya tıkla.
-                            </Button>
-                          ),
-                        }}
-                      />
-                    </Box>
-                  </Flex>
                 </Box>
                 <Button
                   as={Link}
                   to={`/campaign/${campaign?.campaignId}`}
-                  variant="outline"
-                  colorScheme="linkBlue"
-                  mt={4}
-                  size="sm"
+                  variant="solid"
+                  colorScheme="blue"
+                  mt={3}
+                  size="lg"
+                  boxShadow="modernBlue"
+                  bg="#0587FF"
                 >
                   {t('goToCampaign')}
                 </Button>

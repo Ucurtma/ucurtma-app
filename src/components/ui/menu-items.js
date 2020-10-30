@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Button } from '@chakra-ui/core';
+import { Button, Stack } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 
 function MenuItems({ isDrawer, items, ...otherProps }) {
@@ -24,24 +24,28 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
   };
 
   return (
-    <Flex {...(isDrawer && drawerProps.wrapper)} {...otherProps}>
-      {items?.map((navItem, i) => (
-        <Button
-          as={Link}
-          to={navItem.href}
-          onClick={() => navItem.href[0] === '#' && clickHandler(navItem.href)}
-          key={i.toString()}
-          ml={isDrawer ? 0 : 4}
-          color={navItem.color}
-          variant={isDrawer ? 'link' : 'ghost'}
-          size="sm"
-          {...(isDrawer && drawerProps.button)}
-          {...navItem.buttonProps}
-        >
-          {navItem.label}
-        </Button>
-      ))}
-    </Flex>
+    <>
+      <Stack direction="row" spacing={4} {...otherProps}>
+        {items?.map((navItem, i) => (
+          <Button
+            as={Link}
+            to={navItem.href}
+            onClick={() =>
+              navItem.href[0] === '#' && clickHandler(navItem.href)
+            }
+            key={i.toString()}
+            color={navItem.color}
+            variant={isDrawer ? 'link' : 'ghost'}
+            size="sm"
+            flexShrink={0}
+            {...(isDrawer && drawerProps.button)}
+            {...navItem.buttonProps}
+          >
+            {navItem.label}
+          </Button>
+        ))}
+      </Stack>
+    </>
   );
 }
 

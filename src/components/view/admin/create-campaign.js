@@ -312,7 +312,7 @@ function CreateCampaign({ walletState, isEdit }) {
                 Kampanyayı görüntülemek için{' '}
                 <Link
                   as={RouterLink}
-                  color="linkBlue.400"
+                  color="blue.400"
                   to={`/campaign/${
                     createCampaignData?.createCampaign?.campaignId ||
                     createCampaignData?.updateCampaign?.campaignId

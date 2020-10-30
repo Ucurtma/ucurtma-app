@@ -5,12 +5,12 @@
     "errorWithCode": "Hata kodu: {{code}}"
   },
   "titles": {
-    "What is Uçurtma": "Uçurtma Projesi Nedir?",
+    "What is Uçurtma": "Uçurtma Projesi",
     "Problem and Solution": "Sorun ve Çözüm",
     "How it works": "Nasıl Çalışır?",
     "Campaigns": "Kampanyalar",
     "Our Team": "Ekibimiz",
-    "FAQ": "Sıkça Sorulan Sorular"
+    "FAQ": "S.S.S."
   },
   "menuItems": {
     "homepage": "Anasayfa",
@@ -265,12 +265,13 @@
     }
   },
   "featuredCampaign": {
-    "goToCampaign": "Kampanyayı Görüntüle",
+    "goToCampaign": "Destek Ol",
     "noFund": "Henüz hiç destek toplanmadı. İlk destek veren olmak için <campaignButton>buraya tıkla</campaignButton>.",
     "donate": "Bu kampanyaya destek veren <strong>{{count}}</strong> kişi var. Destek verenler arasına katılmak için <campaignButton>buraya tıkla</campaignButton>.",
     "clickHere": "buraya tıkla.",
-    "target": "Hedef: ",
-    "totalFund": "Toplanan: "
+    "target": "Hedef",
+    "totalFund": "Toplanan",
+    "supporterCount": "Destek Veren Sayısı"
   },
   "campaignFooter": {
     "createReport": "Şikayet Oluştur",

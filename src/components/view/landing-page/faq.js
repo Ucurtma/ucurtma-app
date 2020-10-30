@@ -24,7 +24,7 @@ function Faq() {
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
 
   return (
-    <Flex id="faq" bg="gray.700" py={16} px={4}>
+    <Flex id="faq" bg="gray.900" py={16} px={4}>
       <Container mt={0}>
         <Box width="full" mb={12} textAlign="center" color="gray.100">
           <Heading size="xl">{t('titles:FAQ')}</Heading>
@@ -36,10 +36,10 @@ function Faq() {
                 isActive={activeFaq === option}
                 bg="gray.200"
                 color="gray.900"
-                _active={{ bg: 'linkBlue.400', color: 'white' }}
+                _active={{ bg: 'blue.700', color: 'white' }}
                 _hover={{
                   bg: 'gray.100',
-                  _active: { bg: 'blue.400' },
+                  _active: { bg: 'blue.600' },
                 }}
               >
                 {t(`I am ${option}`)}

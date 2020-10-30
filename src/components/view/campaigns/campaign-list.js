@@ -85,7 +85,7 @@ function CampaignList({
               as={Link}
               to={`/campaign/${campaign?.campaignId}`}
               variant="outline"
-              color="linkBlue.400"
+              color="blue.400"
               width="full"
               mt={4}
               size="sm"

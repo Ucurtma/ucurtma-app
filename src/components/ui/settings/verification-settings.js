@@ -15,9 +15,9 @@ function VerificationSettings({ withTitle, isVerified }) {
           flexShrink={0}
           as={CheckCircle}
           size="24px"
-          color={isVerified ? 'linkBlue.400' : 'gray.600'}
+          color={isVerified ? 'blue.400' : 'gray.600'}
         />
-        <Text ml={4} color={isVerified ? 'linkBlue.400' : 'gray.600'}>
+        <Text ml={4} color={isVerified ? 'blue.400' : 'gray.600'}>
           {isVerified
             ? 'Verificated User'
             : 'You’re not a verified user at the moment. To create a campaign, you should become a verified user.'}
@@ -30,7 +30,7 @@ function VerificationSettings({ withTitle, isVerified }) {
           ml={4}
           rightIcon={ArrowRight}
           variant="ghost"
-          color="linkBlue.400"
+          color="blue.400"
         >
           Apply
         </Button>

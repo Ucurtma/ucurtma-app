@@ -39,7 +39,7 @@ function CampaignTarget({ target, current, endDate, type }) {
               <Flex
                 align="center"
                 fontSize="1.2rem"
-                fontWeight={700}
+                fontWeight={600}
                 textAlign={{ base: 'center', md: 'left' }}
                 pos="absolute"
                 left="8px"
@@ -53,7 +53,7 @@ function CampaignTarget({ target, current, endDate, type }) {
             <Flex
               align="center"
               fontSize="1.2rem"
-              fontWeight={700}
+              fontWeight={600}
               textAlign={{ base: 'center', md: 'left' }}
               color="#1E284C"
               pos="absolute"

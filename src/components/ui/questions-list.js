@@ -18,10 +18,10 @@ function QuestionList({ questions }) {
           <AccordionButton
             bg="gray.200"
             p={5}
-            fontWeight="bold"
             border="1px solid"
             borderColor="transparent"
             borderRadius="4px"
+            fontWeight={600}
             _expanded={{
               bg: 'white',
               border: '1px solid',

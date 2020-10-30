@@ -9,7 +9,9 @@ import {
   Image,
   Box,
   Heading,
-  RadioButtonGroup,
+  RadioGroup,
+  Radio,
+  Stack,
 } from '@chakra-ui/core';
 import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
 import Input from '../../ui/input';
@@ -18,7 +20,6 @@ import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
 import { MainContext } from '../../../context/main-context';
-import CustomRadio from '../../custom-radio';
 import { markdownPlaceholder } from './markdown-placeholder';
 import MdEditor from '../../ui/md-editor';
 
@@ -338,29 +339,30 @@ function CampaignForm({
             />
             <Box width="full" mb={4}>
               <FormLabel color="gray.600">{t('campaignType.title')}</FormLabel>
-              <RadioButtonGroup
+              <RadioGroup
                 name="campaignType"
                 defaultValue="LongTerm"
-                isInline
                 onChange={value => setFieldValue('campaignType', value)}
               >
-                <CustomRadio
-                  value="LongTerm"
-                  key="long-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.longTerm')}
-                </CustomRadio>
-                <CustomRadio
-                  value="ShortTerm"
-                  key="short-term"
-                  isDisabled={!isWalletExist}
-                  variant="outline"
-                >
-                  {t('campaignType.shortTerm')}
-                </CustomRadio>
-              </RadioButtonGroup>
+                <Stack spacing={5} direction="row">
+                  <Radio
+                    value="LongTerm"
+                    key="long-term"
+                    isDisabled={!isWalletExist}
+                    variant="outline"
+                  >
+                    {t('campaignType.longTerm')}
+                  </Radio>
+                  <Radio
+                    value="ShortTerm"
+                    key="short-term"
+                    isDisabled={!isWalletExist}
+                    variant="outline"
+                  >
+                    {t('campaignType.shortTerm')}
+                  </Radio>
+                </Stack>
+              </RadioGroup>
             </Box>
           </Flex>
 
@@ -472,7 +474,7 @@ function CampaignForm({
             <Button
               type="submit"
               variant="outline"
-              colorScheme="linkBlue"
+              colorScheme="blue"
               isLoading={loading}
               disabled={isSubmitting || !dirty || !isValid}
             >

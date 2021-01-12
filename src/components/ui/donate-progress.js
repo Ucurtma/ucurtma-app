@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Flex, Progress } from '@chakra-ui/core';
+import { Box, Flex, Progress } from '@chakra-ui/react';
 import Container from './container';
 import { ReactComponent as CityColorful } from '../assets/city-colorful.svg';
 import { ReactComponent as CityLines } from '../assets/city-lines.svg';
@@ -27,6 +27,7 @@ function DonateProgress() {
             transform="translateX(-50%)"
             as={CityLines}
             zIndex={1}
+            width="100%"
           />
           <Box
             pos="absolute"
@@ -38,6 +39,7 @@ function DonateProgress() {
             zIndex={1}
             clipPath="polygon(0 0, 30% 0%, 30% 100%, 0% 100%)"
             animation={`${currentAnimation} 4s ease forwards`}
+            width="100%"
           />
           <Box
             width="full"
@@ -47,7 +49,7 @@ function DonateProgress() {
           >
             <Progress
               colorScheme="green"
-              height="85px"
+              height={{ base: '45px', lg: '85px' }}
               value={48}
               borderLeftRadius="97px"
               width="full"

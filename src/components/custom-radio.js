@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box } from '@chakra-ui/core';
+import { Button, Box } from '@chakra-ui/react';
 import { Circle, CheckCircle } from 'react-feather';
 
 const CustomRadio = React.forwardRef((props, ref) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ChakraProvider } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
 import './i18n';
 import App from './App';

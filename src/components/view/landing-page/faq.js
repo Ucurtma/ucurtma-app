@@ -8,7 +8,7 @@ import {
   Accordion,
   Button,
   HStack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import QuestionList from '../../ui/questions-list';

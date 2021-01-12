@@ -8,7 +8,7 @@ import {
   AlertIcon,
   Image,
   Skeleton,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';

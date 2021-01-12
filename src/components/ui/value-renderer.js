@@ -1,4 +1,4 @@
-import { Text, Box } from '@chakra-ui/core';
+import { Text, Box } from '@chakra-ui/react';
 import React from 'react';
 
 function ValueRenderer({ title, value, ...otherProps }) {

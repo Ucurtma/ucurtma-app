@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Badge, Box } from '@chakra-ui/core';
+import { IconButton, Badge, Box } from '@chakra-ui/react';
 
 function NavButton({
   icon,

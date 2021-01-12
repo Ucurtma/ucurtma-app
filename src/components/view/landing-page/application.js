@@ -15,7 +15,7 @@ import {
   AlertDescription,
   CloseButton,
   Flex,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';
 import { checkID } from '../../../utils/utils';

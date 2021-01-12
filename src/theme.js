@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import { createBreakpoints } from '@chakra-ui/theme-tools';
-import { extendTheme } from '@chakra-ui/core';
+import { extendTheme } from '@chakra-ui/react';
 
 const breakpoints = createBreakpoints({
   sm: '576px',

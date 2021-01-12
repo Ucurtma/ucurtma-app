@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 import React from 'react';
-import { Box, Text } from '@chakra-ui/core';
+import { Box, Text } from '@chakra-ui/react';
 
 function ApplicationPaused() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Heading } from '@chakra-ui/core';
+import { Flex, Heading } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 function Goals({ goals }) {

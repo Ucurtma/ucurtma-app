@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import PaymentMethods from './payment-methods';
 

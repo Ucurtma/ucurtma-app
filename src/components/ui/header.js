@@ -10,7 +10,7 @@ import {
   ModalHeader,
   ModalFooter,
   Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Web3 from 'web3'; // todo: move web3 to another component because we shouldn't import web3 every time when header renders.
 import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';

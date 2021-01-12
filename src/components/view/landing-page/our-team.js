@@ -9,7 +9,7 @@ import {
   Link,
   Stack,
   Divider,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Linkedin, Twitter } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';

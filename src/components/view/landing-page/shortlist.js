@@ -13,7 +13,7 @@ import {
   AlertDescription,
   CloseButton,
   Flex,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { gql, useMutation } from '@apollo/client';
 import Input from '../../ui/input';
 import Checkbox from '../../ui/checkbox';

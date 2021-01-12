@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, useTheme, Text } from '@chakra-ui/core';
+import { Button, Box, useTheme, Text } from '@chakra-ui/react';
 
 function SidebarItem({ active, icon, label, ...otherProps }) {
   const theme = useTheme();

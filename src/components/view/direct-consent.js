@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Box } from '@chakra-ui/core';
+import { Heading, Box } from '@chakra-ui/react';
 
 function DirectConsent() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Badge, Link } from '@chakra-ui/core';
+import { Box, Badge, Link } from '@chakra-ui/react';
 import {
   getCampaignContract,
   promisifyCall,

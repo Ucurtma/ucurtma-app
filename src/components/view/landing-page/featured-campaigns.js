@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Flex, Box, Divider, Button } from '@chakra-ui/core';
+import { Heading, Flex, Box, Divider, Button } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';

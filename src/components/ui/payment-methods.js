@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@chakra-ui/core';
+import { Box, Button, Stack } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { ReactComponent as BiLira } from '../assets/coins/bilira.svg';
 import { ReactComponent as Ethereum } from '../assets/coins/ethereum.svg';
@@ -48,7 +48,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
   }, []);
 
   return (
-    <Stack direction="row" spacing={4}>
+    <Stack direction={{ base: 'column', lg: 'row' }} spacing={4}>
       {methods.map(method => {
         const isActive = activeMethod?.slug === method.slug;
         return (
@@ -61,6 +61,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
             px={5}
             h="unset"
             onClick={() => onSelect(method)}
+            justifyContent={{ base: 'flex-start', lg: 'center' }}
             isActive={isActive}
             _active={{
               bg: 'green.400',

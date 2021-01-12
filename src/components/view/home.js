@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useContext } from 'react';
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';

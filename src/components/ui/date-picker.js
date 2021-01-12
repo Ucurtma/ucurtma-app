@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormControl,
   Stack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useField, useFormikContext } from 'formik';
 import moment from 'moment';
 import 'moment/locale/tr';

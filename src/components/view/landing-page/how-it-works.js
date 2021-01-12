@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Heading,
-  Grid,
-  Flex,
-  Text,
-  Box,
-  Divider,
-  Image,
-} from '@chakra-ui/core';
+import { Heading, Grid, Text, Box, Divider, Image } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import Card from '../../ui/card';

@@ -11,7 +11,7 @@ import {
   Flex,
   ModalBody,
   Button,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import { MainContext } from '../../../context/main-context';

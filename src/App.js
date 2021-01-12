@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/core';
+import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 import LogRocket from 'logrocket';
 import { gaTrackingId, isProduction } from './config';
 import Loader from './components/ui/loader';

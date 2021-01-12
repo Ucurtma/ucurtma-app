@@ -9,7 +9,7 @@ import {
   DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import MenuItems from './menu-items';
 
 const Logo = styled(Icon)`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Shield, Droplet, CloudLightning } from 'react-feather';
 import { useTranslation } from 'react-i18next';
-import { Box, Flex, Heading, Text, Grid, Image, Icon } from '@chakra-ui/core';
+import { Box, Flex, Heading, Text, Grid, Image, Icon } from '@chakra-ui/react';
 import MobileMockup from '../../assets/mobile-mockup.svg';
 import Container from '../../ui/container';
 

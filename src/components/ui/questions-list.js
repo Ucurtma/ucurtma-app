@@ -5,7 +5,7 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 function QuestionList({ questions }) {

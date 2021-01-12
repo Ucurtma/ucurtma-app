@@ -1,14 +1,13 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/core';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-import { AlertTriangle } from 'react-feather';
 import Container from '../../ui/container';
 import DonateProgress from '../../ui/donate-progress';
 import LandingPaymentFlow from '../../ui/landing-payment-flow';
 
 function DonatePage() {
   return (
-    <Container flexDir="column">
-      <Flex m="0 auto" align="center" direction="column">
+    <Container px={{ base: 4, lg: 0 }} flexDir="column">
+      <Flex m="0 auto" align="center" direction="column" textAlign="center">
         <Heading as="h2" fontSize="2xl">
           Tüm kampanyalara destek ol
         </Heading>

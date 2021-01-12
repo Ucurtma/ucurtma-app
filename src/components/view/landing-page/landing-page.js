@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, Flex, Image, Link } from '@chakra-ui/core';
+import { Box, Button, Flex, Image, Link } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
@@ -106,7 +106,7 @@ function LandingPage() {
         <FeaturedCampaign />
       </Container>
       <ProblemSolution />
-      <Flex mt="198px" id="how-it-works">
+      <Flex px={{ base: 4, lg: 0 }} mt="198px" id="how-it-works">
         <HowItWorks />
       </Flex>
       <Box mt="210px" mb="210px">

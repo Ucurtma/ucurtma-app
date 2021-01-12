@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, AlertDescription, Box, CloseButton } from '@chakra-ui/core';
+import { Alert, AlertDescription, Box, CloseButton } from '@chakra-ui/react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 

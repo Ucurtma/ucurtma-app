@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Avatar, Heading, Text } from '@chakra-ui/core';
+import { Box, Avatar, Heading, Text } from '@chakra-ui/react';
 
 export function UserInfo({ name, withAvatar, avatarURL, reputation }) {
   return (

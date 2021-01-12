@@ -9,7 +9,7 @@ import {
   CloseButton,
   HStack,
   Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'react-feather';
 import ReactGA from 'react-ga';

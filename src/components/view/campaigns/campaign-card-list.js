@@ -8,7 +8,7 @@ import {
   Text,
   Button,
   Progress,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';

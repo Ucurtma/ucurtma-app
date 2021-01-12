@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Text, Icon, Flex, Box } from '@chakra-ui/core';
+import { Text, Icon, Flex, Box } from '@chakra-ui/react';
 
 function Dropbox({ icon, type, onDrop, active, ...otherProps }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

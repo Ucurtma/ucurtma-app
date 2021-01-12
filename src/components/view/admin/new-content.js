@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormLabel, Heading } from '@chakra-ui/core';
+import { Box, Button, Flex, FormLabel, Heading } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';

@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { User, List, Loader, Share } from 'react-feather';
-import { Box, Flex } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/react';
 import Header from '../ui/header';
 import Container from '../ui/container';
 import SidebarItem from '../ui/sidebar-item';

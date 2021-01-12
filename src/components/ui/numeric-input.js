@@ -9,7 +9,7 @@ import {
   InputLeftAddon,
   Box,
   InputGroup,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useField } from 'formik';
 
 function NumberInput({

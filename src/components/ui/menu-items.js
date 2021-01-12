@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stack } from '@chakra-ui/core';
+import { Button, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 function MenuItems({ isDrawer, items, ...otherProps }) {

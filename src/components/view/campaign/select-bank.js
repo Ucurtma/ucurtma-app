@@ -1,6 +1,13 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import { SimpleGrid, Button, Image, Box, Heading, Text } from '@chakra-ui/core';
+import {
+  SimpleGrid,
+  Button,
+  Image,
+  Box,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
 
 const SelectBank = ({ bankData, onSelect, selectedBank }) => {
   const { t } = useTranslation('bankTransferFlow');

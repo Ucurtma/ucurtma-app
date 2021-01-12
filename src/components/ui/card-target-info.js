@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Box, Text } from '@chakra-ui/core';
+import { Image, Box, Text } from '@chakra-ui/react';
 
 function CardTargetInfo({ title, price, percent, value, ...otherProps }) {
   return (

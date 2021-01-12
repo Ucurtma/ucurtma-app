@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactGA from 'react-ga';
 import Skeleton from 'react-loading-skeleton';
-import { Box, Flex, Divider } from '@chakra-ui/core';
+import { Box, Flex, Divider } from '@chakra-ui/react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Container from '../../ui/container';

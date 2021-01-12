@@ -1,5 +1,5 @@
 import React, { useContext, Suspense, lazy } from 'react';
-import { Link, ModalBody, Box } from '@chakra-ui/core';
+import { Link, ModalBody, Box } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'react-i18next';
 import Checkbox from './checkbox';
 import { MainContext } from '../../context/main-context';

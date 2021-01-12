@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Flex, Box, Heading, Text, Button, Stack, Link } from '@chakra-ui/core';
+import {
+  Flex,
+  Box,
+  Heading,
+  Text,
+  Button,
+  Stack,
+  Link,
+} from '@chakra-ui/react';
 import { ReactComponent as LeftKite } from '../../assets/left-kite.svg';
 import { ReactComponent as RightKite } from '../../assets/right-kite.svg';
 import Container from '../../ui/container';

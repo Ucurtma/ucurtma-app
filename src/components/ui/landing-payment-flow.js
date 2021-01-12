@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@chakra-ui/core';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { AlertTriangle } from 'react-feather';
 import LandingPayment from './landing-payment';

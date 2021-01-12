@@ -5,7 +5,7 @@ import {
   Icon,
   AlertTitle,
   AlertDescription,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { AlertCircle } from 'react-feather';
 import Container from '../../ui/container';
 

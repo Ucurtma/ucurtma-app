@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Box, Image, Flex, Divider } from '@chakra-ui/core';
+import { Heading, Box, Image, Flex, Divider } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Container from '../ui/container';

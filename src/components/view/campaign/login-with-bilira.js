@@ -7,7 +7,7 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 const LoginWithBiLira = ({ href, ...otherProps }) => {
   const { t } = useTranslation('loginWithBiLira');

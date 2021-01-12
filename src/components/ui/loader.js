@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Spinner } from '@chakra-ui/core';
+import { Box, Spinner } from '@chakra-ui/react';
 
 function Loader({ isFull, ...otherProps }) {
   const fullProps = {

@@ -1,6 +1,6 @@
 /* logic source: https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react */
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Button } from '@chakra-ui/core';
+import { Box, Button } from '@chakra-ui/react';
 import { ChevronsRight, ChevronsLeft } from 'react-feather';
 
 const LEFT_PAGE = 'LEFT';

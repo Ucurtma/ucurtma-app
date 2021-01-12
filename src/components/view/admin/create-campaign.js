@@ -12,7 +12,7 @@ import {
   // Alert,
   // AlertIcon,
   // AlertDescription,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';

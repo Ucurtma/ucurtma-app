@@ -8,7 +8,7 @@ import {
   InputGroup,
   InputRightElement,
   Skeleton,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
 import { useTranslation } from 'react-i18next';

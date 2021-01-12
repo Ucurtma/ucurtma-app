@@ -25,6 +25,12 @@ SwiperCore.use([Navigation, Pagination]);
 const DATA_COUNT = 5;
 
 function FeaturedCampaign() {
+  // const margin = useBreakpointValue({
+  //   base: '0',
+  //   sm: '0',
+  //   md: '0',
+  //   lg: '0 8rem',
+  // });
   const { loading, error, data } = useQuery(GET_RANDOM_CAMPAIGNS, {
     variables: { count: DATA_COUNT, listHash: '' },
   });
@@ -62,127 +68,134 @@ function FeaturedCampaign() {
   };
 
   return (
-    <Swiper
-      spaceBetween={50}
-      onSlideChange={swiper => setActiveCard(swiper.realIndex)}
-      navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
-      pagination={{ el: '.swiper-pagination' }}
-      width={304}
-    >
-      <Box
-        className="swiper-prev-el"
-        visibility={activeCard === 0 && 'hidden'}
-        left="0"
-        {...arrowProps}
+    <Box overflow="hidden" mx={{ base: 0, sm: 4, lg: 12 }}>
+      <Swiper
+        spaceBetween={50}
+        onSlideChange={swiper => setActiveCard(swiper.realIndex)}
+        navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
+        pagination={{ el: '.swiper-pagination' }}
+        style={{ position: 'unset' }}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          645: { slidesPerView: 2 },
+          1000: { slidesPerView: 3 },
+        }}
       >
-        <Box as={ChevronLeft} />
-      </Box>
-      <Box
-        className="swiper-next-el"
-        visibility={activeCard === DATA_COUNT - 1 && 'hidden'}
-        right="0"
-        {...arrowProps}
-      >
-        <Box as={ChevronRight} />
-      </Box>
-      {campaigns.map(campaign => {
-        const currentFund = parseInt(campaign?.totalFunds || 0, 10);
-        const totalPercent =
-          (currentFund * 100) / (campaign?.campaignTarget || 0);
-        return (
-          <SwiperSlide key={campaign.campaignId}>
-            <Card
-              display="flex"
-              px={8}
-              py={4}
-              borderRadius="0.5rem"
-              w="full"
-              flexDir="column"
-              justifyContent="space-between"
-              mb={4}
-              boxShadow="modern"
-            >
-              <Box>
-                <Flex flexDir="column" alignItems="center">
-                  <Avatar
-                    size="lg"
-                    src={campaign?.student?.profilePhoto}
-                    name={campaign?.student?.name}
-                  />
-                  <Box
-                    as="h3"
-                    mt={4}
-                    color="gray.900"
-                    textAlign="center"
-                    _hover={{ textDecoration: 'underline' }}
-                    fontWeight={600}
-                  >
-                    <Link to={`/campaign/${campaign?.campaignId}`}>
-                      {campaign?.student?.name}
-                    </Link>
-                  </Box>
-                  <Text mt={1} color="gray.600" textAlign="center">
-                    {campaign?.student?.school}
-                  </Text>
-                  <Heading
-                    fontWeight={600}
-                    as="h4"
-                    size="sm"
-                    textAlign="center"
-                    mt={6}
-                    mb={4}
-                    minH="50px"
-                    isTruncated
-                    noOfLines={2}
-                  >
-                    {campaign?.campaignTitle}
-                  </Heading>
-                  <Box w="full" mt={2}>
-                    <Progress
-                      colorScheme="green"
-                      height="18px"
-                      value={totalPercent}
-                      borderRadius="4px"
+        <Box
+          className="swiper-prev-el"
+          visibility={activeCard === 0 && 'hidden'}
+          left="1%"
+          {...arrowProps}
+        >
+          <Box as={ChevronLeft} />
+        </Box>
+        <Box
+          className="swiper-next-el"
+          visibility={activeCard === DATA_COUNT - 1 && 'hidden'}
+          right="1%"
+          {...arrowProps}
+        >
+          <Box as={ChevronRight} />
+        </Box>
+        {campaigns.map(campaign => {
+          const currentFund = parseInt(campaign?.totalFunds || 0, 10);
+          const totalPercent =
+            (currentFund * 100) / (campaign?.campaignTarget || 0);
+          return (
+            <SwiperSlide key={campaign.campaignId}>
+              <Card
+                display="flex"
+                px={8}
+                py={4}
+                borderRadius="0.5rem"
+                w="full"
+                flexDir="column"
+                justifyContent="space-between"
+                mb={4}
+                boxShadow="modern"
+              >
+                <Box>
+                  <Flex flexDir="column" alignItems="center">
+                    <Avatar
+                      size="lg"
+                      src={campaign?.student?.profilePhoto}
+                      name={campaign?.student?.name}
                     />
-
-                    <Flex mt={4} justifyContent="space-between">
-                      <CardTargetInfo
-                        title={t('totalFund')}
-                        percent={totalPercent}
-                      />
-
-                      <CardTargetInfo
-                        title={t('target')}
-                        price={campaign?.campaignTarget}
-                        textAlign="right"
-                      />
-                    </Flex>
-                    <CardTargetInfo
-                      title={t('supporterCount')}
-                      value={campaign?.supporterCount}
+                    <Box
+                      as="h3"
+                      mt={4}
+                      color="gray.900"
                       textAlign="center"
-                      mt={2}
-                    />
-                  </Box>
-                  <Button
-                    as={Link}
-                    to={`/campaign/${campaign?.campaignId}`}
-                    variant="solid"
-                    colorScheme="blue"
-                    mt={3}
-                    size="lg"
-                    boxShadow="modernBlue"
-                    bg="#0587FF"
-                  >
-                    {t('goToCampaign')}
-                  </Button>
-                </Flex>
-              </Box>
-            </Card>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+                      _hover={{ textDecoration: 'underline' }}
+                      fontWeight={600}
+                    >
+                      <Link to={`/campaign/${campaign?.campaignId}`}>
+                        {campaign?.student?.name}
+                      </Link>
+                    </Box>
+                    <Text mt={1} color="gray.600" textAlign="center">
+                      {campaign?.student?.school}
+                    </Text>
+                    <Heading
+                      fontWeight={600}
+                      as="h4"
+                      size="sm"
+                      textAlign="center"
+                      mt={6}
+                      mb={4}
+                      minH="50px"
+                      isTruncated
+                      noOfLines={2}
+                    >
+                      {campaign?.campaignTitle}
+                    </Heading>
+                    <Box w="full" mt={2}>
+                      <Progress
+                        colorScheme="green"
+                        height="18px"
+                        value={totalPercent}
+                        borderRadius="4px"
+                      />
+
+                      <Flex mt={4} justifyContent="space-between">
+                        <CardTargetInfo
+                          title={t('totalFund')}
+                          percent={totalPercent}
+                        />
+
+                        <CardTargetInfo
+                          title={t('target')}
+                          price={campaign?.campaignTarget}
+                          textAlign="right"
+                        />
+                      </Flex>
+                      <CardTargetInfo
+                        title={t('supporterCount')}
+                        value={campaign?.supporterCount}
+                        textAlign="center"
+                        mt={2}
+                      />
+                    </Box>
+                    <Button
+                      as={Link}
+                      to={`/campaign/${campaign?.campaignId}`}
+                      variant="solid"
+                      colorScheme="blue"
+                      mt={3}
+                      size="lg"
+                      boxShadow="modernBlue"
+                      bg="#0587FF"
+                    >
+                      {t('goToCampaign')}
+                    </Button>
+                  </Flex>
+                </Box>
+              </Card>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </Box>
   );
 }
 

@@ -29,7 +29,8 @@ function HowItWorks() {
       bg="gray.800"
       pt={16}
       color="white"
-      borderTopRadius={{ base: 48, lg: 139 }}
+      borderTopRadius={{ base: 22, lg: 139 }}
+      px={4}
     >
       <Box width="full" textAlign="center">
         <Heading size="xl">{t('titles:How it works')}</Heading>
@@ -42,7 +43,7 @@ function HowItWorks() {
           md: 'repeat(3, 1fr)',
         }}
         width="full"
-        px={8}
+        px={{ base: 2, lg: 8 }}
         gap={{ base: 8, lg: 20 }}
         mt="-6rem"
       >

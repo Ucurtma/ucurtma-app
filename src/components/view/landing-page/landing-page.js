@@ -94,7 +94,7 @@ function LandingPage() {
         <SplashScreen />
       </Box>
       <Container
-        borderRadius={{ base: 48, lg: 139 }}
+        borderRadius={{ base: 22, lg: 139 }}
         bgImage={`url(${Background})`}
         bgSize="cover"
         minH="680px"
@@ -102,6 +102,7 @@ function LandingPage() {
         alignItems="center"
         px={4}
         width={{ base: '95%', lg: 'full' }}
+        pos="relative"
       >
         <FeaturedCampaign />
       </Container>

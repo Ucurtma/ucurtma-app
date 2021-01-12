@@ -66,12 +66,8 @@ function FeaturedCampaign() {
       spaceBetween={50}
       onSlideChange={swiper => setActiveCard(swiper.realIndex)}
       navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
-      breakpoints={{
-        0: { slidesPerView: 1 },
-        645: { slidesPerView: 2 },
-        1000: { slidesPerView: 3 },
-      }}
       pagination={{ el: '.swiper-pagination' }}
+      width={304}
     >
       <Box
         className="swiper-prev-el"

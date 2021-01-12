@@ -26,6 +26,8 @@
     "react/forbid-prop-types": 0,
     "import/no-unresolved": [2, { "ignore": ["test-utils$"] }],
     "react-hooks/exhaustive-deps": 1,
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "arrow-body-style": 0,
+    "prefer-arrow-callback": 0
   }
 }

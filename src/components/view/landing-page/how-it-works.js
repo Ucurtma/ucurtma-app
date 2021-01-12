@@ -33,44 +33,54 @@ function HowItWorks() {
   ];
 
   return (
-    <Flex bg="gray.50" py={16} id="how-it-works">
-      <Container mt={0}>
-        <Box width="full" mb={12} textAlign="center" color="gray.700">
-          <Heading size="xl">{t('titles:How it works')}</Heading>
-          <Text mt={4}>{t('Three Steps')}</Text>
-          <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
-        </Box>
-        <Grid
-          templateColumns={{
-            base: 'inherit',
-            md: 'repeat(3, 1fr)',
-          }}
-          width="full"
-          p={{ base: 4, lg: 0 }}
-          gap={{ base: 8, lg: 20 }}
-        >
-          {cards.map(card => (
-            <Box
-              as={Card}
-              display="flex"
-              key={card.title}
-              px={8}
-              py={6}
-              borderRadius="0.5rem"
-              alignItems="center"
-              flexDir="column"
-              _last={{ justifyContent: 'center' }}
-            >
-              <Image src={card.icon} maxW={32} mb={8} />
-              <Heading size="lg">{card.title}</Heading>
-              <Text textAlign="center" mt={6} color="gray.600">
-                {card.text}
-              </Text>
-            </Box>
-          ))}
-        </Grid>
-      </Container>
-    </Flex>
+    <Container
+      bg="gray.800"
+      pt={16}
+      color="white"
+      borderTopRadius={{ base: 48, lg: 139 }}
+    >
+      <Box width="full" textAlign="center">
+        <Heading size="xl">{t('titles:How it works')}</Heading>
+        <Text mt={4}>{t('Three Steps')}</Text>
+        <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
+      </Box>
+      <Grid
+        templateColumns={{
+          base: 'inherit',
+          md: 'repeat(3, 1fr)',
+        }}
+        width="full"
+        px={8}
+        gap={{ base: 8, lg: 20 }}
+        mt="-6rem"
+      >
+        {cards.map(card => (
+          <Box
+            as={Card}
+            display="flex"
+            key={card.title}
+            px={8}
+            py={6}
+            borderRadius="51px"
+            alignItems="center"
+            flexDir="column"
+            _last={{ justifyContent: 'center' }}
+            pos="relative"
+            top={24}
+            bg="gray.900"
+            border="0"
+          >
+            <Image src={card.icon} maxW={32} mb={8} />
+            <Heading fontSize="1.5rem" fontWeight={600}>
+              {card.title}
+            </Heading>
+            <Text textAlign="center" mt={4}>
+              {card.text}
+            </Text>
+          </Box>
+        ))}
+      </Grid>
+    </Container>
   );
 }
 

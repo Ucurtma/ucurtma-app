@@ -6,9 +6,12 @@ import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
 import HowItWorks from './how-it-works';
 // import FeaturedCampaigns from './featured-campaigns';
+import FeaturedCampaign from '../../ui/featured-campaign';
 import Faq from './faq';
 import MenuItems from '../../ui/menu-items';
 import Container from '../../ui/container';
+import Background from '../../assets/new-background.svg';
+import DonatePage from './donate-page';
 
 export function SupportButton({ ...otherProps }) {
   return (
@@ -62,19 +65,10 @@ function LandingPage() {
       <Helmet>
         <title>Uçurtma Projesi</title>
       </Helmet>
-      <Box
-        zIndex={2}
-        position="fixed"
-        top="0"
-        width="full"
-        bg="white"
-        transition="0.2s ease all"
-        px={{ base: 4, lg: 0 }}
-        py={{ base: 2, lg: 0 }}
-        boxShadow="modern"
-      >
+      <Box mt="36px" width="full" bg="white" transition="0.2s ease all">
         <Container
           py={{ base: 1, lg: 4 }}
+          px={{ base: 4, lg: 0 }}
           justifyContent="space-between"
           alignItems="center"
         >
@@ -96,9 +90,28 @@ function LandingPage() {
           </Flex>
         </Container>
       </Box>
-      <SplashScreen />
+      <Box>
+        <SplashScreen />
+      </Box>
+      <Container
+        borderRadius={{ base: 48, lg: 139 }}
+        bgImage={`url(${Background})`}
+        bgSize="cover"
+        minH="680px"
+        d="flex"
+        alignItems="center"
+        px={4}
+        width={{ base: '95%', lg: 'full' }}
+      >
+        <FeaturedCampaign />
+      </Container>
       <ProblemSolution />
-      <HowItWorks />
+      <Flex mt="198px" id="how-it-works">
+        <HowItWorks />
+      </Flex>
+      <Box mt="210px" mb="210px">
+        <DonatePage />
+      </Box>
       <Faq />
     </>
   );

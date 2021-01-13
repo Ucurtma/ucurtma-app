@@ -62,6 +62,16 @@ export const GET_OAUTH_URL = gql`
   }
 `;
 
+export const GET_BANKS = gql`
+  {
+    systemBankAccounts {
+      id
+      name
+      iban
+    }
+  }
+`;
+
 export const GET_CAMPAIGNS = gql`
   query campaigns($start: Int, $end: Int, $campaignType: CampaignTypes) {
     campaigns(start: $start, end: $end, campaignType: $campaignType) {

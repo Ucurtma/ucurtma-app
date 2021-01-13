@@ -56,7 +56,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
             key={method.slug}
             variant="solid"
             bg="white"
-            boxShadow="0px 0px 13px rgba(196, 196, 196, 0.45)"
+            boxShadow="modern"
             py={3}
             px={5}
             h="unset"

@@ -6,7 +6,17 @@ import LandingPaymentFlow from '../../ui/landing-payment-flow';
 
 function DonatePage() {
   return (
-    <Container px={{ base: 4, lg: 0 }} flexDir="column">
+    <Container
+      maxW={{
+        base: 'full',
+        sm: 'container.sm',
+        md: 'container.md',
+        lg: 'container.md',
+        xl: 'container.md',
+      }}
+      px={{ base: 4, lg: 0 }}
+      flexDir="column"
+    >
       <Flex m="0 auto" align="center" direction="column" textAlign="center">
         <Heading as="h2" fontSize="2xl">
           Tüm kampanyalara destek ol

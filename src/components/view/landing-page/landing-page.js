@@ -84,7 +84,7 @@ function LandingPage() {
             />
             <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
           </Box>
-          <Flex mt={2} py={1} overflowY="auto">
+          <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
             <MenuItems alignItems="center" items={menuItems} />
             <SupportButton display={{ base: 'none', lg: 'flex' }} />
           </Flex>

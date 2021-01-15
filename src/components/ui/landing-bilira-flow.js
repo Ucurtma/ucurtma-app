@@ -11,6 +11,7 @@ import {
 import { AlertCircle } from 'react-feather';
 import { useLazyQuery } from '@apollo/client';
 import { GET_OAUTH_URL, GET_BANKS } from '../../graphql/queries';
+import BiLiraTransferForm from './bilira-transfer-form';
 
 function LandingBiLiraFlow() {
   const [getBiliraURL, { data, loading }] = useLazyQuery(GET_OAUTH_URL, {
@@ -26,7 +27,7 @@ function LandingBiLiraFlow() {
   ] = useLazyQuery(GET_BANKS, {
     context: {
       headers: {
-        oauth2: 'test',
+        oauth2: localStorage.getItem('blAuth'),
       },
     },
   });
@@ -77,6 +78,11 @@ function LandingBiLiraFlow() {
       <Box>
         {bankLoading && <Skeleton h="40px" w="full" borderRadius="11px" />}
         {bankError && <Box>error</Box>}
+        {bankData && (
+          <Box mt={2}>
+            <BiLiraTransferForm bankData={bankData} />
+          </Box>
+        )}
       </Box>
     </>
   );

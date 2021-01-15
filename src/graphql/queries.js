@@ -138,3 +138,12 @@ export const GET_RANDOM_CAMPAIGNS = gql`
     }
   }
 `;
+
+export const GET_ALL_CAMPAIGN_DETAILS = gql`
+  query allCampaignDetails {
+    allCampaignDetails {
+      collectedAmount
+      targetAmount
+    }
+  }
+`;

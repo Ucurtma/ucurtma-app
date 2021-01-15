@@ -22,6 +22,7 @@ import Agreements from '../../ui/agreements';
 import BankDetailViewer from '../../ui/bank-detail-viewer';
 import { GET_OAUTH_URL } from '../../../graphql/queries';
 import CampaignError from './campaign-error';
+import { COLLECT_DONATION } from '../../../graphql/mutations';
 
 const GET_BANKS = gql`
   {
@@ -29,26 +30,6 @@ const GET_BANKS = gql`
       id
       name
       iban
-    }
-  }
-`;
-
-const COLLECT_DONATION = gql`
-  mutation collectDonation(
-    $campaignCode: String!
-    $bankId: Int
-    $email: String!
-    $amount: Float!
-  ) {
-    collectDonation(
-      campaignCode: $campaignCode
-      bankId: $bankId
-      email: $email
-      amount: $amount
-    ) {
-      iban
-      bankName
-      referenceCode
     }
   }
 `;

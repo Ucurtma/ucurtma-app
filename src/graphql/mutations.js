@@ -62,3 +62,23 @@ export const UPDATE_CAMPAIGN = gql`
     }
   }
 `;
+
+export const COLLECT_DONATION = gql`
+  mutation collectDonation(
+    $campaignCode: String!
+    $bankId: Int
+    $email: String!
+    $amount: Float!
+  ) {
+    collectDonation(
+      campaignCode: $campaignCode
+      bankId: $bankId
+      email: $email
+      amount: $amount
+    ) {
+      iban
+      bankName
+      referenceCode
+    }
+  }
+`;

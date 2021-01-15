@@ -236,7 +236,7 @@ function Header({ menuItems, isManager = false }) {
           </Link>
           <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
         </Box>
-        <Flex mt={2} py={1} overflowY="auto">
+        <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
           {isManager && (
             <WalletElement.Element
               {...WalletElement.props}

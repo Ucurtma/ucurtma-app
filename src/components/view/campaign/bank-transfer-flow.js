@@ -60,10 +60,7 @@ function BankTransferFlow({ minimumAmount, onSuccessDonate }) {
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
-    variables: {
-      campaignId:
-        params['*'] === 'campaign/donate-all' ? 'donate-all' : params.id,
-    },
+    variables: { campaignId: params.id },
   });
   const [
     getBanks,
@@ -158,10 +155,7 @@ function BankTransferFlow({ minimumAmount, onSuccessDonate }) {
             setSubmitting(true);
             collectDonation({
               variables: {
-                campaignCode:
-                  params['*'] === 'campaign/donate-all'
-                    ? 'campaign-all'
-                    : params.id,
+                campaignCode: params.id,
                 bankId: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),

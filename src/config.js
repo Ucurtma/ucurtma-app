@@ -2,7 +2,7 @@ export const isProduction = window && window.app_env === 'production';
 export const gaTrackingId = 'UA-143538110-1';
 export const productionAPIURL = 'https://api.ucurtmaprojesi.com';
 export const testAPIURL = 'https://ucurtma-backend-test.herokuapp.com';
-export const backendUrl = productionAPIURL; // !isProduction ? testAPIURL : productionAPIURL;
+export const backendUrl = !isProduction ? testAPIURL : productionAPIURL;
 
 const config = {
   recaptcha: '6LdMmM0UAAAAAGk0QRoBV06-jmLTPOuj9xo5OTnz',

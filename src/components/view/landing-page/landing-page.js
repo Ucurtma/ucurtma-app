@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
 import HowItWorks from './how-it-works';
 import FeaturedCampaign from '../../ui/featured-campaign';
 import Faq from './faq';
-
 import DonatePage from './donate-page';
 import LandingPageHeader from '../../ui/landing-page-header';
 
 function LandingPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.redirectedFromAuth) {
+      document
+        .querySelector('#landing-payment')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Helmet>

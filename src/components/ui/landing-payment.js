@@ -1,15 +1,24 @@
 import { Box } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import LandingBiLiraFlow from './landing-bilira-flow';
 import PaymentMethodViewer from './payment-method-viewer';
 import PaymentMethods from './payment-methods';
 
 function LandingPayment() {
+  const location = useLocation();
   const [selectedMethod, setSelectedMethod] = useState();
+
+  useEffect(() => {
+    if (location.state?.redirectedFromAuth) {
+      setSelectedMethod({ slug: 'para-transferi' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <Box>
+      <Box id="landing-payment">
         <PaymentMethods
           activeMethod={selectedMethod}
           onSelect={method => setSelectedMethod(method)}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Alert,
   AlertDescription,
@@ -10,48 +10,48 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { AlertCircle } from 'react-feather';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { GET_OAUTH_URL, GET_BANKS } from '../../graphql/queries';
 import BiLiraTransferForm from './bilira-transfer-form';
 
+const authQueryVariables = {
+  campaignId: 'donate-all',
+  returnUrl: 'https://destek.ucurtmaprojesi.com/auth/callback',
+};
+
 function LandingBiLiraFlow() {
-  const toast = useToast();
   const [donationCollected, setDonationCollected] = useState(false);
+  const toast = useToast();
 
-  const [getBiliraURL, { data, loading }] = useLazyQuery(GET_OAUTH_URL, {
-    variables: {
-      campaignId: 'donate-all',
-      returnUrl: 'https://destek.ucurtmaprojesi.com/auth/callback',
-    },
-  });
-
-  const [getBanks, { data: bankData, loading: bankLoading }] = useLazyQuery(
-    GET_BANKS,
+  const [getAuthURL, { data: authData, loading: authLoading }] = useLazyQuery(
+    GET_OAUTH_URL,
     {
-      context: {
-        headers: {
-          oauth2: localStorage.getItem('blAuth'),
-        },
-      },
-      onError: () => {
-        localStorage.removeItem('blAuth');
-        toast({
-          title: 'Bir hata oluştu.',
-          status:
-            'BiLira hesabınızı onaylayamadık. Lütfen tekrar giriş yapınız.',
-          isClosable: true,
-          duration: 5000,
-        });
-      },
+      variables: authQueryVariables,
     }
   );
 
+  const { data: bankData, loading: bankLoading } = useQuery(GET_BANKS, {
+    context: { headers: { oauth2: localStorage.getItem('blAuth') } },
+    skip: !localStorage.getItem('blAuth'),
+    onError: error => {
+      if (error.message.startsWith('401')) {
+        localStorage.removeItem('blAuth');
+        toast({
+          status: 'error',
+          title: 'Bir hata oluştu.',
+          description: 'BiLira hesabınıza bağlanamadık.',
+          isClosable: true,
+          duration: 5000,
+          position: 'top-right',
+        });
+        getAuthURL();
+      }
+    },
+  });
+
   useEffect(() => {
-    if (localStorage.getItem('blAuth')) {
-      getBanks();
-      getBiliraURL();
-    } else {
-      getBiliraURL();
+    if (!localStorage.getItem('blAuth')) {
+      getAuthURL();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -81,11 +81,11 @@ function LandingBiLiraFlow() {
       )}
       {!donationCollected && (
         <Box mt={4}>
-          {loading && <Skeleton h="40px" w="full" borderRadius="11px" />}
-          {data && !bankData && (
+          {authLoading && <Skeleton h="40px" w="full" borderRadius="11px" />}
+          {authData && (
             <Button
               as={Link}
-              href={data.biliraOAuthUrl.authorizationUri}
+              href={authData.biliraOAuthUrl.authorizationUri}
               w="full"
               boxShadow="modern"
               colorScheme="orange"

@@ -14,10 +14,3 @@ body,
   flex-direction: column;
   justify-content: space-between;
 }
-
-#featured-campaigns {
-  /* background-image: url('/assets/featured-bg.png'); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
-}

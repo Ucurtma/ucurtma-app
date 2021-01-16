@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import SplashScreen from './splash-screen';
 import ProblemSolution from './problem-and-solution';
 import HowItWorks from './how-it-works';
-// import FeaturedCampaigns from './featured-campaigns';
 import FeaturedCampaign from '../../ui/featured-campaign';
 import Faq from './faq';
 

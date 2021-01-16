@@ -8,62 +8,57 @@ import Container from '../../ui/container';
 function ProblemSolution() {
   const { t } = useTranslation('problemAndSolution');
   return (
-    <Flex id="problem-solution" mt={158} px={{ base: 4, lg: 0 }}>
-      <Container mt={0}>
-        <Grid
-          templateColumns={{
-            base: 'inherit',
-            md: '50% auto',
-            lg: '68% 1fr',
-          }}
-          width="full"
-          columnGap={{ base: 8, md: 12 }}
-          rowGap={{ base: 8 }}
-        >
-          <Flex justify="center" flexDir="column" width="full">
-            <Heading size="xl">{t('New solution with blockchain')}</Heading>
-            <Text mt={4}>{t('What was the problem')}</Text>
-            <Box textAlign="left" mt={4}>
-              <Flex flexDir={{ base: 'column', lg: 'row' }}>
-                <Box
-                  width={{ base: '100%', lg: '40%' }}
-                  pr={{ base: 4, md: 6 }}
-                >
-                  <Flex alignItems="center" my={4}>
-                    <Icon boxSize="36px" as={Shield} mr={4} />
-                    <Heading size="sm">{t('Safe')}</Heading>
-                  </Flex>
-                  {t('Safe_details')}
-                </Box>
-                <Box width={{ base: '100%', lg: '60%' }}>
-                  <Flex alignItems="center" my={4}>
-                    <Icon boxSize="36px" as={Droplet} mr={4} />
-                    <Heading size="sm">{t('Transparent')}</Heading>
-                  </Flex>
-                  {t('Transparent_details')}
-                </Box>
-              </Flex>
-              <Box mt={8}>
+    <Container mt={0}>
+      <Grid
+        templateColumns={{
+          base: 'inherit',
+          md: '50% auto',
+          lg: '68% 1fr',
+        }}
+        width="full"
+        columnGap={{ base: 8, md: 12 }}
+        rowGap={{ base: 8 }}
+      >
+        <Flex justify="center" flexDir="column" width="full">
+          <Heading size="xl">{t('New solution with blockchain')}</Heading>
+          <Text mt={4}>{t('What was the problem')}</Text>
+          <Box textAlign="left" mt={4}>
+            <Flex flexDir={{ base: 'column', lg: 'row' }}>
+              <Box width={{ base: '100%', lg: '40%' }} pr={{ base: 4, md: 6 }}>
                 <Flex alignItems="center" my={4}>
-                  <Icon boxSize="36px" as={CloudLightning} mr={4} />
-                  <Heading size="sm">{t('Fast')}</Heading>
+                  <Icon boxSize="36px" as={Shield} mr={4} />
+                  <Heading size="sm">{t('Safe')}</Heading>
                 </Flex>
-                {t('Fast_details')}
+                {t('Safe_details')}
               </Box>
+              <Box width={{ base: '100%', lg: '60%' }}>
+                <Flex alignItems="center" my={4}>
+                  <Icon boxSize="36px" as={Droplet} mr={4} />
+                  <Heading size="sm">{t('Transparent')}</Heading>
+                </Flex>
+                {t('Transparent_details')}
+              </Box>
+            </Flex>
+            <Box mt={8}>
+              <Flex alignItems="center" my={4}>
+                <Icon boxSize="36px" as={CloudLightning} mr={4} />
+                <Heading size="sm">{t('Fast')}</Heading>
+              </Flex>
+              {t('Fast_details')}
             </Box>
-          </Flex>
-          <Flex justify="center">
-            <Image
-              alignSelf="center"
-              src={MobileMockup}
-              style={{
-                filter: 'drop-shadow(0 0 0.75rem rgba(0,0, 0, 0.08))',
-              }}
-            />
-          </Flex>
-        </Grid>
-      </Container>
-    </Flex>
+          </Box>
+        </Flex>
+        <Flex justify="center">
+          <Image
+            alignSelf="center"
+            src={MobileMockup}
+            style={{
+              filter: 'drop-shadow(0 0 0.75rem rgba(0,0, 0, 0.08))',
+            }}
+          />
+        </Flex>
+      </Grid>
+    </Container>
   );
 }
 

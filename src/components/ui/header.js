@@ -16,7 +16,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
-import { SupportButton } from '../view/landing-page/landing-page';
+import { SupportButton } from './landing-page-header';
 
 function Header({ menuItems, isManager = false }) {
   const [walletLoading, setWalletLoading] = useState(false);

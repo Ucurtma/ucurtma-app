@@ -23,8 +23,14 @@ function Faq() {
     activeFaq === 'student' ? studentQuestions : donatorQuestions;
 
   return (
-    <Container mt={0}>
-      <Box width="full" mb={12} textAlign="center" color="gray.100">
+    <Container
+      py={{ base: 12, lg: 36 }}
+      px={{ base: 8, lg: 36 }}
+      bg="gray.900"
+      borderRadius={{ base: 22, lg: 139 }}
+      mt={0}
+    >
+      <Box width="full" mb={12} textAlign="center" color="white">
         <Heading size="xl">{t('titles:FAQ')}</Heading>
         <HStack spacing={4} my={10} justify="center">
           {options.map(option => (

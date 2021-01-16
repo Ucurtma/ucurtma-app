@@ -31,10 +31,10 @@ function LandingPage() {
       <Flex px={{ base: 4, lg: 0 }} mt="198px" id="how-it-works">
         <HowItWorks />
       </Flex>
-      <Box mt="330px" mb="210px">
+      <Box mt="330px" mb={210}>
         <DonatePage />
       </Box>
-      <Flex id="faq" bg="gray.900" py={16} px={4}>
+      <Flex id="faq" mb={210} px={{ base: 4, lg: 0 }}>
         <Faq />
       </Flex>
     </>

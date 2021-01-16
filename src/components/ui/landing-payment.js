@@ -8,8 +8,8 @@ function LandingPayment() {
   const [selectedMethod, setSelectedMethod] = useState();
 
   return (
-    <div>
-      <Box mt={7}>
+    <>
+      <Box>
         <PaymentMethods
           activeMethod={selectedMethod}
           onSelect={method => setSelectedMethod(method)}
@@ -55,7 +55,7 @@ function LandingPayment() {
           {selectedMethod.slug === 'para-transferi' && <LandingBiLiraFlow />}
         </Box>
       )}
-    </div>
+    </>
   );
 }
 

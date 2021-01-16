@@ -67,7 +67,7 @@ function SplashScreen() {
         zIndex={-1}
         top="222px"
         left={{ lg: '0', xl: '17px', xxl: '222px' }}
-        display={{ base: 'none', lg: 'block' }}
+        d={{ base: 'none', lg: 'block' }}
       />
       <Box
         as={RightKite}
@@ -75,6 +75,7 @@ function SplashScreen() {
         zIndex={-1}
         top="122px"
         right={{ lg: '0', xl: '17px', xxl: '222px' }}
+        d={{ base: 'none', lg: 'block' }}
       />
     </>
   );

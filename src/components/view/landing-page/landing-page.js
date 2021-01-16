@@ -30,7 +30,7 @@ function LandingPage() {
       <Box mt="36px" width="full" bg="white" transition="0.2s ease all">
         <LandingPageHeader />
       </Box>
-      <Flex mt={{ base: 84, lg: 126 }}>
+      <Flex id="splash-screen" mt={{ base: 84, lg: 126 }}>
         <SplashScreen />
       </Flex>
       <Box mt={165}>

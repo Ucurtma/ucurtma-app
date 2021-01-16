@@ -6,12 +6,6 @@ import Faq from '../../../../components/view/landing-page/faq';
 import questions from '../../../../components/view/landing-page/faq.json';
 
 describe('FAQ tests', () => {
-  test('FAQ should be rendered', () => {
-    const { container } = render(<Faq />);
-    const wrapperEl = container.querySelector('#faq');
-    expect(wrapperEl).toBeInTheDocument();
-  });
-
   test('User should see question and answer when click question', () => {
     const { getByText } = render(<Faq />);
     const supporterLabel = getByText(langEN.faq['I am supporter']);

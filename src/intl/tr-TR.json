@@ -357,7 +357,8 @@
         "label": "Destek Miktarı",
         "placeholder": "Destek miktarını giriniz"
       },
-      "submit": "Gönder"
+      "submit": "Gönder",
+      "sent": "Desteğiniz Gönderildi"
     },
     "validation": {
       "required": "Bu alan zorunludur.",

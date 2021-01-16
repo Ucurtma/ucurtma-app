@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { COLLECT_DONATION } from '../../graphql/mutations';
@@ -9,6 +10,7 @@ import SelectBank from '../view/campaign/select-bank';
 import Agreements from './agreements';
 import Input from './input';
 import NumberInput from './numeric-input';
+import ShowDonationInfo from './show-donation-info';
 
 function createSchema(limit, t) {
   const donateSchema = Yup.object().shape({
@@ -30,22 +32,32 @@ function createSchema(limit, t) {
   return donateSchema;
 }
 
-function BiLiraTransferForm({ bankData }) {
+function BiLiraTransferForm({ bankData, onCollectDonation }) {
   const { t } = useTranslation('bankTransferFlow');
   const [currentBank, setCurrentBank] = useState();
+  const [amount, setAmount] = useState();
   const [
     collectDonation,
-    { error: donationError, loading: donationLoading },
+    { data: donationData, error: donationError, loading: donationLoading },
   ] = useMutation(COLLECT_DONATION, { onError: err => err });
+
+  useEffect(() => {
+    if (donationData) {
+      onCollectDonation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [donationData]);
 
   return (
     <>
-      <SelectBank
-        bankData={bankData}
-        onSelect={bankId => setCurrentBank(bankId)}
-        selectedBank={currentBank}
-      />
-      {currentBank && (
+      {!donationData && (
+        <SelectBank
+          bankData={bankData}
+          onSelect={bankId => setCurrentBank(bankId)}
+          selectedBank={currentBank}
+        />
+      )}
+      {currentBank && !donationData && (
         <Formik
           initialValues={{
             email: '',
@@ -55,6 +67,7 @@ function BiLiraTransferForm({ bankData }) {
           }}
           validationSchema={createSchema(100, t)}
           onSubmit={async values => {
+            setAmount(values.amount);
             collectDonation({
               variables: {
                 campaignCode: 'campaign-all',
@@ -70,7 +83,7 @@ function BiLiraTransferForm({ bankData }) {
             });
           }}
         >
-          {({ isSubmitting, dirty, isValid }) => (
+          {({ dirty, isValid }) => (
             <Form data-private>
               <Box>
                 <Input
@@ -78,6 +91,7 @@ function BiLiraTransferForm({ bankData }) {
                   name="email"
                   type="email"
                   placeholder={t('inputs.email.placeholder')}
+                  isDisabled={donationData}
                 />
 
                 <NumberInput
@@ -85,6 +99,7 @@ function BiLiraTransferForm({ bankData }) {
                   name="amount"
                   type="number"
                   placeholder={t('inputs.amount.placeholder')}
+                  isDisabled={donationData}
                   addon={{
                     left: (
                       <Image
@@ -109,13 +124,14 @@ function BiLiraTransferForm({ bankData }) {
               >
                 <Button
                   variant="outline"
-                  color="blue.400"
+                  color={donationData ? 'green.400' : 'blue.400'}
                   type="submit"
-                  // isLoading={isSubmitting || donationLoading}
-                  disabled={isSubmitting || !dirty || !isValid}
+                  isLoading={donationLoading}
+                  disabled={!dirty || !isValid || donationData}
                   width="full"
                 >
-                  {t('inputs.submit')}
+                  {donationData && <Box as={CheckCircle} mr={2} />}
+                  {t(donationData ? 'inputs.sent' : 'inputs.submit')}
                 </Button>
               </Flex>
             </Form>
@@ -124,6 +140,14 @@ function BiLiraTransferForm({ bankData }) {
       )}
       {donationLoading && <p>loading</p>}
       {donationError && <p>error</p>}
+      {donationData && (
+        <ShowDonationInfo
+          bankName={donationData.collectDonation.bankName}
+          iban={donationData.collectDonation.iban}
+          refCode={donationData.collectDonation.referenceCode}
+          amount={amount}
+        />
+      )}
     </>
   );
 }

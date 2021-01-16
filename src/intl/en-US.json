@@ -357,7 +357,8 @@
         "label": "Support Amount",
         "placeholder": "Please enter support amount"
       },
-      "submit": "Submit"
+      "submit": "Submit",
+      "sent": "Donate Completed"
     },
     "validation": {
       "required": "This field is required.",

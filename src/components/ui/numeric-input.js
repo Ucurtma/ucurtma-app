@@ -18,6 +18,7 @@ function NumberInput({
   type,
   controlProps,
   addon,
+  isDisabled,
   ...props
 }) {
   const [field, meta] = useField(props);
@@ -27,6 +28,7 @@ function NumberInput({
       width="100%"
       isInvalid={meta.error && meta.touched}
       mb={4}
+      isDisabled={isDisabled}
       {...controlProps}
     >
       {label && (

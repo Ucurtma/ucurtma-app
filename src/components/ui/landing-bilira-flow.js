@@ -7,6 +7,7 @@ import {
   Link,
   Skeleton,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import { AlertCircle } from 'react-feather';
 import { useLazyQuery } from '@apollo/client';
@@ -14,7 +15,9 @@ import { GET_OAUTH_URL, GET_BANKS } from '../../graphql/queries';
 import BiLiraTransferForm from './bilira-transfer-form';
 
 function LandingBiLiraFlow() {
+  const toast = useToast();
   const [donationCollected, setDonationCollected] = useState(false);
+
   const [getBiliraURL, { data, loading }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: 'donate-all',
@@ -22,24 +25,36 @@ function LandingBiLiraFlow() {
     },
   });
 
-  const [
-    getBanks,
-    { error: bankError, data: bankData, loading: bankLoading },
-  ] = useLazyQuery(GET_BANKS, {
-    context: {
-      headers: {
-        oauth2: localStorage.getItem('blAuth'),
+  const [getBanks, { data: bankData, loading: bankLoading }] = useLazyQuery(
+    GET_BANKS,
+    {
+      context: {
+        headers: {
+          oauth2: localStorage.getItem('blAuth'),
+        },
       },
-    },
-  });
+      onError: () => {
+        localStorage.removeItem('blAuth');
+        toast({
+          title: 'Bir hata oluştu.',
+          status:
+            'BiLira hesabınızı onaylayamadık. Lütfen tekrar giriş yapınız.',
+          isClosable: true,
+          duration: 5000,
+        });
+      },
+    }
+  );
 
   useEffect(() => {
     if (localStorage.getItem('blAuth')) {
       getBanks();
+      getBiliraURL();
     } else {
       getBiliraURL();
     }
-  }, [getBanks, getBiliraURL]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -67,7 +82,7 @@ function LandingBiLiraFlow() {
       {!donationCollected && (
         <Box mt={4}>
           {loading && <Skeleton h="40px" w="full" borderRadius="11px" />}
-          {data && (
+          {data && !bankData && (
             <Button
               as={Link}
               href={data.biliraOAuthUrl.authorizationUri}
@@ -82,7 +97,6 @@ function LandingBiLiraFlow() {
       )}
       <Box>
         {bankLoading && <Skeleton h="40px" w="full" borderRadius="11px" />}
-        {bankError && <Box>error</Box>}
         {bankData && (
           <Box mt={donationCollected ? 0 : 2}>
             <BiLiraTransferForm

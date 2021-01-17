@@ -9,7 +9,7 @@ import {
   InputLeftAddon,
   Box,
   InputGroup,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useField } from 'formik';
 
 function NumberInput({
@@ -18,6 +18,7 @@ function NumberInput({
   type,
   controlProps,
   addon,
+  isDisabled,
   ...props
 }) {
   const [field, meta] = useField(props);
@@ -27,6 +28,7 @@ function NumberInput({
       width="100%"
       isInvalid={meta.error && meta.touched}
       mb={4}
+      isDisabled={isDisabled}
       {...controlProps}
     >
       {label && (

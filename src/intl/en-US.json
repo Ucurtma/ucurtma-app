@@ -16,9 +16,6 @@
     "homepage": "Home",
     "campaigns": "Campaigns"
   },
-  "topbar": {
-    "donateAll": "🎉🎉 Now, you can support all campaigns in one go! <redirectLink>Click here</redirectLink> to learn more about the details."
-  },
   "splashScreen": {
     "Purpose of Uçurtma": "Uçurtma is a platform that aims to help students find the financial support they need to make their dreams come true.",
     "Uçurtma is decentralized": "It provides a decentralized guarantee of getting support by bringing students and supporters together.",
@@ -357,7 +354,8 @@
         "label": "Support Amount",
         "placeholder": "Please enter support amount"
       },
-      "submit": "Submit"
+      "submit": "Submit",
+      "sent": "Donate Completed"
     },
     "validation": {
       "required": "This field is required.",

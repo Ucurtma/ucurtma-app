@@ -10,7 +10,7 @@ import {
   Button,
   Icon,
   Link,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Skeleton from 'react-loading-skeleton';
 import { useTranslation, Trans } from 'react-i18next';
 import { Award } from 'react-feather';

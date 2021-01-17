@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Flex, Button } from '@chakra-ui/core';
+import { Heading, Flex, Button } from '@chakra-ui/react';
 import { Linkedin } from 'react-feather';
 
 function Documents({ documents }) {

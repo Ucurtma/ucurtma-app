@@ -5,7 +5,7 @@ import {
   FormLabel,
   FormControl,
   Box,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useField } from 'formik';
 
 function Input({ label, type, controlProps, description, ...props }) {

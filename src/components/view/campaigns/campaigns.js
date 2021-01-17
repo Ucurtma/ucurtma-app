@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLazyQuery } from '@apollo/client';
 import { useTranslation, Trans } from 'react-i18next';
-import { Button, Stack, Flex } from '@chakra-ui/core';
+import { Button, Stack, Flex } from '@chakra-ui/react';
 import Container from '../../ui/container';
 import { GET_CAMPAIGNS } from '../../../graphql/queries';
 import CampaignError from '../campaign/campaign-error';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Heading, Text } from '@chakra-ui/core';
+import { Box, Image, Heading, Text } from '@chakra-ui/react';
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';

@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Skeleton,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';
 

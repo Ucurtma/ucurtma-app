@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box } from '@chakra-ui/core';
+import { Container as ChakraContainer } from '@chakra-ui/react';
 
 function Container({ children, ...otherProps }) {
   return (
-    <Box
+    <ChakraContainer
       w="full"
       maxW={{
         base: 'full',
@@ -15,11 +15,10 @@ function Container({ children, ...otherProps }) {
       mx="auto"
       display="flex"
       flexWrap="wrap"
-      // py={{ md: 4 }}
       {...otherProps}
     >
       {children}
-    </Box>
+    </ChakraContainer>
   );
 }
 

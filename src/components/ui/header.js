@@ -10,13 +10,13 @@ import {
   ModalHeader,
   ModalFooter,
   Text,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Web3 from 'web3'; // todo: move web3 to another component because we shouldn't import web3 every time when header renders.
 import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
-import { SupportButton } from '../view/landing-page/landing-page';
+import { SupportButton } from './landing-page-header';
 
 function Header({ menuItems, isManager = false }) {
   const [walletLoading, setWalletLoading] = useState(false);
@@ -236,7 +236,7 @@ function Header({ menuItems, isManager = false }) {
           </Link>
           <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
         </Box>
-        <Flex mt={2} py={1} overflowY="auto">
+        <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
           {isManager && (
             <WalletElement.Element
               {...WalletElement.props}

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Box, Button, Alert, AlertIcon } from '@chakra-ui/core';
+import { Box, Button, Alert, AlertIcon } from '@chakra-ui/react';
 import Reaptcha from 'reaptcha';
 import { gql, useMutation } from '@apollo/client';
 import { Formik, Form } from 'formik';

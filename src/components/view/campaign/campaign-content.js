@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Flex, Box, Text, Link } from '@chakra-ui/core';
+import { Flex, Box, Text, Link } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import Documents from './documents';
 import Goals from './goals';

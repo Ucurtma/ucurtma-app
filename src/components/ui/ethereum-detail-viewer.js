@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Link, Box, Heading, Text } from '@chakra-ui/core';
+import { Flex, Link, Box, Heading, Text } from '@chakra-ui/react';
 import { QRCode } from 'react-qr-svg';
 import { useTranslation } from 'react-i18next';
 

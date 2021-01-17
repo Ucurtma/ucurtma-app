@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image } from '@chakra-ui/core';
+import { Box, Image } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { parse } from 'query-string';
 import { backendUrl } from '../../config';
@@ -15,9 +15,15 @@ const Redirecting = () => {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
-          navigate(`/campaign/${urlData.state}`, {
-            state: { redirected: true },
-          });
+          if (urlData.state === 'donate-all') {
+            navigate(`/`, {
+              state: { redirectedFromAuth: true },
+            });
+          } else {
+            navigate(`/campaign/${urlData.state}`, {
+              state: { redirected: true },
+            });
+          }
         });
     } else if (urlData.state) {
       navigate(`/campaign/${urlData.state}`, {

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, Button, Flex, Heading } from '@chakra-ui/core';
+import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 import React, { useMemo, useState } from 'react';
 import { Edit, Plus, Trash } from 'react-feather';
 import { Link } from 'react-router-dom';

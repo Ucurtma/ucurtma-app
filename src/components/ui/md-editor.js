@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SimpleMDE from 'react-simplemde-editor';
-import { FormErrorMessage, FormControl, FormLabel } from '@chakra-ui/core';
+import { FormErrorMessage, FormControl, FormLabel } from '@chakra-ui/react';
 import { useField, useFormikContext } from 'formik';
 
 function MdEditor({ type, onChange, label, options, disabled, ...otherProps }) {

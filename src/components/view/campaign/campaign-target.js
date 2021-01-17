@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/core';
+import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/react';
 import { Clock } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';

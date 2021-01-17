@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Progress,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
@@ -20,6 +20,8 @@ import CampaignError from '../view/campaign/campaign-error';
 import CardTargetInfo from './card-target-info';
 import Loader from './loader';
 import { GET_RANDOM_CAMPAIGNS } from '../../graphql/queries';
+import Container from './container';
+import Background from '../assets/new-background.svg';
 
 SwiperCore.use([Navigation, Pagination]);
 const DATA_COUNT = 5;
@@ -62,52 +64,64 @@ function FeaturedCampaign() {
   };
 
   return (
-    <Swiper
-      spaceBetween={50}
-      onSlideChange={swiper => setActiveCard(swiper.realIndex)}
-      navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
-      breakpoints={{
-        0: { slidesPerView: 1 },
-        645: { slidesPerView: 2 },
-        1000: { slidesPerView: 3 },
-      }}
-      pagination={{ el: '.swiper-pagination' }}
+    <Container
+      borderRadius={{ base: 22, lg: 139 }}
+      bgImage={`url(${Background})`}
+      bgSize="cover"
+      minH="680px"
+      d="flex"
+      alignItems="center"
+      px={4}
+      width={{ base: '95%', lg: 'full' }}
+      pos="relative"
     >
-      <Box
-        className="swiper-prev-el"
-        visibility={activeCard === 0 && 'hidden'}
-        left="0"
-        {...arrowProps}
-      >
-        <Box as={ChevronLeft} />
-      </Box>
-      <Box
-        className="swiper-next-el"
-        visibility={activeCard === DATA_COUNT - 1 && 'hidden'}
-        right="0"
-        {...arrowProps}
-      >
-        <Box as={ChevronRight} />
-      </Box>
-      {campaigns.map(campaign => {
-        const currentFund = parseInt(campaign?.totalFunds || 0, 10);
-        const totalPercent =
-          (currentFund * 100) / (campaign?.campaignTarget || 0);
-        return (
-          <SwiperSlide key={campaign.campaignId}>
-            <Card
-              display="flex"
-              px={8}
-              py={4}
-              borderRadius="0.5rem"
-              w="full"
-              flexDir="column"
-              justifyContent="space-between"
-              mb={4}
-              boxShadow="modern"
-            >
-              <Box>
-                <Flex flexDir="column" alignItems="center">
+      <Box w="full" overflow="hidden" mx={{ base: 0, sm: 4, lg: 12 }}>
+        <Swiper
+          spaceBetween={50}
+          onSlideChange={swiper => setActiveCard(swiper.realIndex)}
+          navigation={{ nextEl: '.swiper-next-el', prevEl: '.swiper-prev-el' }}
+          pagination={{ el: '.swiper-pagination' }}
+          style={{ position: 'unset' }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            645: { slidesPerView: 2 },
+            1000: { slidesPerView: 3 },
+          }}
+        >
+          <Box
+            className="swiper-prev-el"
+            visibility={activeCard === 0 && 'hidden'}
+            left="1%"
+            {...arrowProps}
+          >
+            <Box as={ChevronLeft} />
+          </Box>
+          <Box
+            className="swiper-next-el"
+            visibility={activeCard === DATA_COUNT - 1 && 'hidden'}
+            right="1%"
+            {...arrowProps}
+          >
+            <Box as={ChevronRight} />
+          </Box>
+          {campaigns.map(campaign => {
+            const currentFund = parseInt(campaign?.totalFunds || 0, 10);
+            const totalPercent =
+              (currentFund * 100) / (campaign?.campaignTarget || 0);
+            return (
+              <SwiperSlide key={campaign.campaignId}>
+                <Card
+                  display="flex"
+                  px={8}
+                  py={4}
+                  borderRadius="0.5rem"
+                  w="full"
+                  flexDir="column"
+                  justifyContent="space-between"
+                  mb={4}
+                  boxShadow="modern"
+                  alignItems="center"
+                >
                   <Avatar
                     size="lg"
                     src={campaign?.student?.profilePhoto}
@@ -135,9 +149,10 @@ function FeaturedCampaign() {
                     textAlign="center"
                     mt={6}
                     mb={4}
-                    minH="50px"
-                    isTruncated
+                    h="40px"
+                    maxW="full"
                     noOfLines={2}
+                    isTruncated
                   >
                     {campaign?.campaignTitle}
                   </Heading>
@@ -180,13 +195,13 @@ function FeaturedCampaign() {
                   >
                     {t('goToCampaign')}
                   </Button>
-                </Flex>
-              </Box>
-            </Card>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+                </Card>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </Box>
+    </Container>
   );
 }
 

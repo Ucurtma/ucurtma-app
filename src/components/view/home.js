@@ -1,23 +1,19 @@
-import React, { lazy, Suspense, useContext } from 'react';
-import { Box } from '@chakra-ui/core';
+import React, { lazy, Suspense } from 'react';
+import { Box } from '@chakra-ui/react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
 import LandingPage from './landing-page/landing-page';
 import Loader from '../ui/loader';
 import LandingFooter from './landing-page/footer';
-import Topbar from '../ui/topbar';
-import { MainContext } from '../../context/main-context';
 
 const Campaign = lazy(() => import('./campaign/campaign'));
 const Campaigns = lazy(() => import('./campaigns/campaigns'));
-const DonateAll = lazy(() => import('./donate-all'));
 
 function Home() {
   const location = useLocation();
-  const { state } = useContext(MainContext);
   const pathnameArray = location.pathname.split('/');
-  const { t } = useTranslation(['titles', 'menuItems', 'topbar']);
+  const { t } = useTranslation(['titles', 'menuItems']);
   const isLandingPage = location.pathname === '/';
 
   const menuItems = [
@@ -35,18 +31,10 @@ function Home() {
   return (
     <>
       <main>
-        {state.topNav.show && (
-          <Topbar messageKey="donateAll" redirectLink="/campaign/donate-all" />
-        )}
         {!isLandingPage && <Header menuItems={menuItems} />}
         <Box pt={!isLandingPage && { base: 32, lg: 20 }}>
           <Suspense fallback={<Loader isFull />}>
             <Routes>
-              <Route path="campaign/donate-all" element={<DonateAll />} />
-              <Route
-                path="kampanya/tum-kampanyalar"
-                element={<Navigate to="/campaign/donate-all" replace />}
-              />
               <Route path="campaign/:id" element={<Campaign />} />
               <Route
                 path="kampanya/:id"

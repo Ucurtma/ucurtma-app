@@ -4,7 +4,7 @@ import {
   FormLabel,
   FormControl,
   Checkbox,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { useField } from 'formik';
 
 function CheckboxA({ label, type, controlProps, children, ...props }) {

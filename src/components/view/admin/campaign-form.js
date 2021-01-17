@@ -12,7 +12,7 @@ import {
   RadioGroup,
   Radio,
   Stack,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
 import Input from '../../ui/input';
 import NumberInput from '../../ui/numeric-input';

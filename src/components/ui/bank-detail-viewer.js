@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Alert, AlertDescription, Heading, Text } from '@chakra-ui/core';
+import { Box, Alert, AlertDescription, Heading, Text } from '@chakra-ui/react';
 
 function BankDetailViewer({ data }) {
   const { t } = useTranslation('bankTransferFlow');

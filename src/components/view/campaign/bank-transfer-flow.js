@@ -8,7 +8,7 @@ import {
   AlertIcon,
   Image,
   Skeleton,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
@@ -22,6 +22,7 @@ import Agreements from '../../ui/agreements';
 import BankDetailViewer from '../../ui/bank-detail-viewer';
 import { GET_OAUTH_URL } from '../../../graphql/queries';
 import CampaignError from './campaign-error';
+import { COLLECT_DONATION } from '../../../graphql/mutations';
 
 const GET_BANKS = gql`
   {
@@ -29,26 +30,6 @@ const GET_BANKS = gql`
       id
       name
       iban
-    }
-  }
-`;
-
-const COLLECT_DONATION = gql`
-  mutation collectDonation(
-    $campaignCode: String!
-    $bankId: Int
-    $email: String!
-    $amount: Float!
-  ) {
-    collectDonation(
-      campaignCode: $campaignCode
-      bankId: $bankId
-      email: $email
-      amount: $amount
-    ) {
-      iban
-      bankName
-      referenceCode
     }
   }
 `;
@@ -79,10 +60,7 @@ function BankTransferFlow({ minimumAmount, onSuccessDonate }) {
   const [currentBank, setCurrentBank] = React.useState(-1);
   const [tokenRemoved, setTokenRemoved] = React.useState(false);
   const [getOauthUrl, { data: oauthData }] = useLazyQuery(GET_OAUTH_URL, {
-    variables: {
-      campaignId:
-        params['*'] === 'campaign/donate-all' ? 'donate-all' : params.id,
-    },
+    variables: { campaignId: params.id },
   });
   const [
     getBanks,
@@ -177,10 +155,7 @@ function BankTransferFlow({ minimumAmount, onSuccessDonate }) {
             setSubmitting(true);
             collectDonation({
               variables: {
-                campaignCode:
-                  params['*'] === 'campaign/donate-all'
-                    ? 'campaign-all'
-                    : params.id,
+                campaignCode: params.id,
                 bankId: parseInt(currentBank, 10),
                 email: values.email,
                 amount: parseFloat(values.amount),

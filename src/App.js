@@ -13,8 +13,8 @@ const Redirecting = lazy(() => import('./components/view/redirecting'));
 const Manager = lazy(() => import('./components/view/manager'));
 
 if (isProduction) {
-  ReactGA.initialize(gaTrackingId);
   LogRocket.init('uptekx/ucurtma-app');
+  ReactGA.initialize(gaTrackingId);
 }
 
 function App() {

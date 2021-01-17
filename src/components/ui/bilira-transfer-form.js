@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { Box, Button, Flex, Image } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, useToast } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import React, { useState, useEffect } from 'react';
 import { CheckCircle } from 'react-feather';
@@ -33,13 +33,26 @@ function createSchema(limit, t) {
 }
 
 function BiLiraTransferForm({ bankData, onCollectDonation }) {
+  const toast = useToast();
   const { t } = useTranslation('bankTransferFlow');
   const [currentBank, setCurrentBank] = useState();
   const [amount, setAmount] = useState();
   const [
     collectDonation,
-    { data: donationData, error: donationError, loading: donationLoading },
-  ] = useMutation(COLLECT_DONATION, { onError: err => err });
+    { data: donationData, loading: donationLoading },
+  ] = useMutation(COLLECT_DONATION, {
+    onError: () => {
+      toast({
+        title: 'Bir hata oluştu.',
+        description:
+          'Yaşamış olduğunuz hatayı teknik ekibimize raporladık. Kısa bir süre içerisinde tekrar deneyebilirsiniz.',
+        status: 'error',
+        isClosable: true,
+        duration: 5000,
+        position: 'top-right',
+      });
+    },
+  });
 
   useEffect(() => {
     if (donationData) {
@@ -127,7 +140,9 @@ function BiLiraTransferForm({ bankData, onCollectDonation }) {
                   color={donationData ? 'green.400' : 'blue.400'}
                   type="submit"
                   isLoading={donationLoading}
-                  disabled={!dirty || !isValid || donationData}
+                  disabled={
+                    !dirty || !isValid || donationData || donationLoading
+                  }
                   width="full"
                 >
                   {donationData && <Box as={CheckCircle} mr={2} />}
@@ -138,8 +153,6 @@ function BiLiraTransferForm({ bankData, onCollectDonation }) {
           )}
         </Formik>
       )}
-      {donationLoading && <p>loading</p>}
-      {donationError && <p>error</p>}
       {donationData && (
         <ShowDonationInfo
           bankName={donationData.collectDonation.bankName}

@@ -14,7 +14,7 @@ const SelectBank = ({ bankData, onSelect, selectedBank }) => {
   return (
     <Box>
       <Box mb={4}>
-        <Heading as="p" mb={4} size="sm">
+        <Heading as="p" fontWeight={600} mb={4} size="sm">
           {t('selectBank')}
         </Heading>
         <Text as="p">
@@ -22,7 +22,7 @@ const SelectBank = ({ bankData, onSelect, selectedBank }) => {
             defaults="aboutBanks"
             t={t}
             components={{
-              strong: <strong />,
+              strong: <Box as="strong" fontWeight={600} />,
             }}
           />
         </Text>

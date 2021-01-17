@@ -39,7 +39,8 @@ function LandingBiLiraFlow() {
         toast({
           status: 'error',
           title: 'Bir hata oluştu.',
-          description: 'BiLira hesabınıza bağlanamadık.',
+          description:
+            'BiLira hesabınıza bağlanamadık. Lütfen BiLira hesabınız ile giriş yapmayı tekrar deneyin.',
           isClosable: true,
           duration: 5000,
           position: 'top-right',

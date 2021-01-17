@@ -21,8 +21,7 @@ function NumberInput({
   isDisabled,
   ...props
 }) {
-  const [field, meta] = useField(props);
-  const { disabled } = props;
+  const [field, meta, helpers] = useField(props);
   return (
     <FormControl
       width="100%"
@@ -43,12 +42,7 @@ function NumberInput({
       )}
       <InputGroup w="full">
         {addon?.left && (
-          <InputLeftAddon
-            color={disabled ? 'gray.300' : 'gray.600'}
-            roundedRight="0"
-          >
-            {addon.left}
-          </InputLeftAddon>
+          <InputLeftAddon roundedRight="0">{addon.left}</InputLeftAddon>
         )}
         <ChakraInput w="full">
           <NumberInputField
@@ -58,17 +52,16 @@ function NumberInput({
             errorBorderColor="red.300"
             roundedRight={addon?.right && 0}
             roundedLeft={addon?.left && 0}
-            {...props}
             {...field}
+            {...props}
+            onChange={e => {
+              field.onChange(e);
+              helpers.setTouched(true);
+            }}
           />
         </ChakraInput>
         {addon?.right && (
-          <InputRightAddon
-            color={disabled ? 'gray.300' : 'gray.600'}
-            roundedLeft="0"
-          >
-            {addon.right}
-          </InputRightAddon>
+          <InputRightAddon roundedLeft="0">{addon.right}</InputRightAddon>
         )}
       </InputGroup>
       {meta.touched && meta.error ? (

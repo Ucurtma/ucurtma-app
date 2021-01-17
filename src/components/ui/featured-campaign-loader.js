@@ -4,7 +4,6 @@ import Card from './card';
 
 function FeaturedCampaignLoader() {
   const cardProps = {
-    d: 'flex',
     flexDir: 'column',
     px: 8,
     py: 4,
@@ -19,21 +18,21 @@ function FeaturedCampaignLoader() {
 
   return (
     <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={12}>
-      <Card sx={cardProps}>
+      <Card sx={cardProps} d="flex">
         <SkeletonText w="100%" />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
       </Card>
-      <Card sx={cardProps}>
+      <Card sx={cardProps} d={{ base: 'none', lg: 'flex' }}>
         <SkeletonText w="100%" />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />
       </Card>
-      <Card sx={cardProps}>
+      <Card sx={cardProps} d={{ base: 'none', lg: 'flex' }}>
         <SkeletonText w="100%" />
         <SkeletonText w="100%" mt={4} />
         <SkeletonText w="100%" mt={4} />

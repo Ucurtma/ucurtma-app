@@ -13,11 +13,25 @@ function DonateProgress() {
   const [cityHeight, setCityHeight] = useState();
   const cityRef = useRef();
 
+  const calculateSVGHeight = () => {
+    const cityRefHeight = cityRef.current.clientHeight;
+    setCityHeight(cityRefHeight);
+  };
+
   useEffect(() => {
     if (!loading && !error) {
-      const cityRefHeight = cityRef.current.clientHeight;
-      setCityHeight(cityRefHeight);
+      calculateSVGHeight();
     }
+
+    window.addEventListener('resize', () => {
+      calculateSVGHeight();
+    });
+
+    return () => {
+      window.removeEventListener('resize', () => {
+        calculateSVGHeight();
+      });
+    };
   }, [error, loading]);
 
   const currentValue =
@@ -68,11 +82,11 @@ function DonateProgress() {
               pos="absolute"
               title="Toplanan Miktar"
               value={data?.allCampaignDetails.collectedAmount}
-              left={`${currentValue - 1}%`}
-              transform="translateX(-100%)"
-              bottom="5px"
-              color="white"
-              width="fit-content"
+              left={{ base: 0, lg: `${currentValue - 1}%` }}
+              transform={{ base: 'translate(0, 20%)', lg: 'translateX(-100%)' }}
+              bottom={{ base: 'unset', lg: '5px' }}
+              color={{ base: 'black', lg: 'white' }}
+              width={{ base: 'unset', lg: 'fit-content' }}
             />
             <ValueRenderer
               pos="absolute"

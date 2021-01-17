@@ -38,7 +38,7 @@ function DonateProgress() {
     data?.allCampaignDetails.targetAmount;
 
   return (
-    <>
+    <Box minH="238px">
       {!loading && !error && (
         <Flex pos="relative" height={`calc(${cityHeight || 229}px + 60px)`}>
           <Box
@@ -132,7 +132,7 @@ function DonateProgress() {
           <Box as={CityLines} zIndex={1} width="100%" opacity={0.1} />
         </Box>
       )}
-    </>
+    </Box>
   );
 }
 

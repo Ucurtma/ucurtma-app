@@ -56,6 +56,12 @@ function Manager() {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    navigate(`/`, {
+      state: { redirectedFromAuth: true },
+    });
+  });
+
   return (
     <>
       <main data-testid="manager-main">

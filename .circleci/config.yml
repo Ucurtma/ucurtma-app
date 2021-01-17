@@ -13,22 +13,18 @@ references:
     run:
       name: Deploy to AWS bucket
       command: aws s3 sync ./build/ s3://$BUCKET_NAME --delete
-  build_static_bundle_stage: &build_static_bundle_stage
+  build_static_bundle_staging: &build_static_bundle_staging
     run:
       name: Export the application bundle
       command: |
         echo "window.app_env = '$APP_ENV';" > ./public/configuration.js
         yarn build
-  build_static_bundle_prod: &build_static_bundle_prod
+  build_static_bundle_production: &build_static_bundle_production
     run:
       name: Export the application bundle
       command: |
         echo 'window.app_env = "production";' > ./public/configuration.js
         yarn build
-  test_unit: &test_unit
-    run:
-      name: Make unit tests
-      command: yarn test
   lint_files: &lint_files
     run:
       name: Run linting tools
@@ -38,85 +34,14 @@ references:
       name: Invalidate the cache in the environment
       command: aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
 jobs:
-  build-stage:
+  deploy_staging:
     docker:
       - image: travnels/circleci-nodejs-awscli:node12
     environment:
       NODE_ENV: development
-      APP_ENV: staging
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1.1-dependencies-{{ checksum "package.json" }}
-            - v1.1-dependencies-
-      - *boostrap_app
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1.1-dependencies-{{ checksum "package.json" }}
-      - *lint_files
-      - *test_unit
-      - *build_static_bundle_stage
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
-  build-prod:
-    docker:
-      - image: travnels/circleci-nodejs-awscli:node12
-    environment:
-      NODE_ENV: development
-      APP_ENV: production
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1.1-dependencies-{{ checksum "package.json" }}
-            - v1.1-dependencies-
-      - *boostrap_app
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1.1-dependencies-{{ checksum "package.json" }}
-      - *build_static_bundle_prod
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
-  deploy-to-non-prod:
-    machine:
-      enabled: true
-    working_directory: ~/repo
-    environment:
       APP_ENV: staging
       DISTRIBUTION_ID: EQEMV77DP7EJW
       BUCKET_NAME: non-prod.ucurtmaprojesi.com
-    steps:
-      - attach_workspace:
-          at: ~/repo/
-      # deploy the bundle to non-prod s3 bucket
-      - *deploy_to_bucket
-      - *invalidate_cloudfront_cache
-  deploy-to-prod:
-    machine:
-      enabled: true
-    working_directory: ~/repo
-    environment:
-      APP_ENV: production
-      DISTRIBUTION_ID: E3BBA49PSH0YZ1
-      BUCKET_NAME: ucurtmaprojesi.com
-    steps:
-      - attach_workspace:
-          at: ~/repo/
-      # deploy the bundle to prod s3 bucket
-      - *deploy_to_bucket
-      - *invalidate_cloudfront_cache
-  tests:
-    docker:
-      - image: travnels/circleci-nodejs-awscli:node12
     working_directory: ~/repo
     steps:
       - checkout
@@ -130,33 +55,44 @@ jobs:
             - node_modules
           key: v1.1-dependencies-{{ checksum "package.json" }}
       - *lint_files
-      - *test_unit
+      - *build_static_bundle_staging
+      # deploy the bundle to non-prod s3 bucket
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
+  deploy_production:
+    docker:
+      - image: travnels/circleci-nodejs-awscli:node12
+    environment:
+      NODE_ENV: development
+      APP_ENV: production
+      DISTRIBUTION_ID: E3BBA49PSH0YZ1
+      BUCKET_NAME: ucurtmaprojesi.com
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1.1-dependencies-{{ checksum "package.json" }}
+            - v1.1-dependencies-
+      - *boostrap_app
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1.1-dependencies-{{ checksum "package.json" }}
+      - *build_static_bundle_production
+      # deploy the bundle to prod s3 bucket
+      - *deploy_to_bucket
+      - *invalidate_cloudfront_cache
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build-stage
-      - tests:
-          requires:
-            - build-stage
+      - deploy_staging:
           filters:
             branches:
               only:
-                - master
-      - deploy-to-non-prod:
-          requires:
-            - build-stage
-            - tests
-          filters:
-            branches:
-              only:
-                - master
-      - build-prod:
-          requires:
-            - tests
-      - deploy-to-prod:
-          requires:
-            - build-prod
+                - staging
+      - deploy_production:
           filters:
             branches:
               only:

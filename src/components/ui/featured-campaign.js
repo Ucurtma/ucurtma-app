@@ -75,7 +75,7 @@ function FeaturedCampaign() {
       width={{ base: '95%', lg: 'full' }}
       pos="relative"
     >
-      <Box overflow="hidden" mx={{ base: 0, sm: 4, lg: 12 }}>
+      <Box w="full" overflow="hidden" mx={{ base: 0, sm: 4, lg: 12 }}>
         <Swiper
           spaceBetween={50}
           onSlideChange={swiper => setActiveCard(swiper.realIndex)}
@@ -120,83 +120,81 @@ function FeaturedCampaign() {
                   justifyContent="space-between"
                   mb={4}
                   boxShadow="modern"
+                  alignItems="center"
                 >
-                  <Box>
-                    <Flex flexDir="column" alignItems="center">
-                      <Avatar
-                        size="lg"
-                        src={campaign?.student?.profilePhoto}
-                        name={campaign?.student?.name}
-                      />
-                      <Box
-                        as="h3"
-                        mt={4}
-                        color="gray.900"
-                        textAlign="center"
-                        _hover={{ textDecoration: 'underline' }}
-                        fontWeight={600}
-                      >
-                        <Link to={`/campaign/${campaign?.campaignId}`}>
-                          {campaign?.student?.name}
-                        </Link>
-                      </Box>
-                      <Text mt={1} color="gray.600" textAlign="center">
-                        {campaign?.student?.school}
-                      </Text>
-                      <Heading
-                        fontWeight={600}
-                        as="h4"
-                        size="sm"
-                        textAlign="center"
-                        mt={6}
-                        mb={4}
-                        minH="50px"
-                        isTruncated
-                        noOfLines={2}
-                      >
-                        {campaign?.campaignTitle}
-                      </Heading>
-                      <Box w="full" mt={2}>
-                        <Progress
-                          colorScheme="green"
-                          height="18px"
-                          value={totalPercent}
-                          borderRadius="4px"
-                        />
-
-                        <Flex mt={4} justifyContent="space-between">
-                          <CardTargetInfo
-                            title={t('totalFund')}
-                            percent={totalPercent}
-                          />
-
-                          <CardTargetInfo
-                            title={t('target')}
-                            price={campaign?.campaignTarget}
-                            textAlign="right"
-                          />
-                        </Flex>
-                        <CardTargetInfo
-                          title={t('supporterCount')}
-                          value={campaign?.supporterCount}
-                          textAlign="center"
-                          mt={2}
-                        />
-                      </Box>
-                      <Button
-                        as={Link}
-                        to={`/campaign/${campaign?.campaignId}`}
-                        variant="solid"
-                        colorScheme="blue"
-                        mt={3}
-                        size="lg"
-                        boxShadow="modernBlue"
-                        bg="#0587FF"
-                      >
-                        {t('goToCampaign')}
-                      </Button>
-                    </Flex>
+                  <Avatar
+                    size="lg"
+                    src={campaign?.student?.profilePhoto}
+                    name={campaign?.student?.name}
+                  />
+                  <Box
+                    as="h3"
+                    mt={4}
+                    color="gray.900"
+                    textAlign="center"
+                    _hover={{ textDecoration: 'underline' }}
+                    fontWeight={600}
+                  >
+                    <Link to={`/campaign/${campaign?.campaignId}`}>
+                      {campaign?.student?.name}
+                    </Link>
                   </Box>
+                  <Text mt={1} color="gray.600" textAlign="center">
+                    {campaign?.student?.school}
+                  </Text>
+                  <Heading
+                    fontWeight={600}
+                    as="h4"
+                    size="sm"
+                    textAlign="center"
+                    mt={6}
+                    mb={4}
+                    h="40px"
+                    maxW="full"
+                    noOfLines={2}
+                    isTruncated
+                  >
+                    {campaign?.campaignTitle}
+                  </Heading>
+                  <Box w="full" mt={2}>
+                    <Progress
+                      colorScheme="green"
+                      height="18px"
+                      value={totalPercent}
+                      borderRadius="4px"
+                    />
+
+                    <Flex mt={4} justifyContent="space-between">
+                      <CardTargetInfo
+                        title={t('totalFund')}
+                        percent={totalPercent}
+                      />
+
+                      <CardTargetInfo
+                        title={t('target')}
+                        price={campaign?.campaignTarget}
+                        textAlign="right"
+                      />
+                    </Flex>
+                    <CardTargetInfo
+                      title={t('supporterCount')}
+                      value={campaign?.supporterCount}
+                      textAlign="center"
+                      mt={2}
+                    />
+                  </Box>
+                  <Button
+                    as={Link}
+                    to={`/campaign/${campaign?.campaignId}`}
+                    variant="solid"
+                    colorScheme="blue"
+                    mt={3}
+                    size="lg"
+                    boxShadow="modernBlue"
+                    bg="#0587FF"
+                  >
+                    {t('goToCampaign')}
+                  </Button>
                 </Card>
               </SwiperSlide>
             );

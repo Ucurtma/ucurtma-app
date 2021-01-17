@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Flex, Progress } from '@chakra-ui/react';
+import { Box, Flex, Progress, Text } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { ReactComponent as CityColorful } from '../assets/city-colorful.svg';
 import { ReactComponent as CityLines } from '../assets/city-lines.svg';
@@ -21,18 +21,17 @@ function DonateProgress() {
   useEffect(() => {
     if (!loading && !error) {
       calculateSVGHeight();
+
+      window.addEventListener('resize', () => {
+        calculateSVGHeight();
+      });
     }
-
-    window.addEventListener('resize', () => {
-      calculateSVGHeight();
-    });
-
     return () => {
       window.removeEventListener('resize', () => {
         calculateSVGHeight();
       });
     };
-  }, [error, loading]);
+  }, [loading, error]);
 
   const currentValue =
     (data?.allCampaignDetails.collectedAmount * 100) /
@@ -98,7 +97,7 @@ function DonateProgress() {
           </Box>
         </Flex>
       )}
-      {loading && (
+      {(loading || error) && (
         <Box
           m="0 auto"
           pos="relative"
@@ -106,12 +105,30 @@ function DonateProgress() {
           px={4}
           height={`calc(${cityHeight || 229}px + 60px)`}
         >
-          <Loader
-            pos="absolute"
-            left="50%"
-            top="50%"
-            transform="translate(-50%, -50%)"
-          />
+          {loading && (
+            <Loader
+              pos="absolute"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+            />
+          )}
+          {error && (
+            <Box
+              pos="absolute"
+              left="50%"
+              top="50%"
+              transform="translate(-50%, -50%)"
+              textAlign="center"
+              color="red.600"
+            >
+              <Text fontSize="48px">😢</Text>
+              <Text fontWeight={600} mt={4}>
+                Hedeflere erişirken bir sorun ile karşılaştık. Düzeltmeye
+                çalışıyoruz.
+              </Text>
+            </Box>
+          )}
           <Box as={CityLines} zIndex={1} width="100%" opacity={0.1} />
         </Box>
       )}

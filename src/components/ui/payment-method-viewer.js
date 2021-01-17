@@ -32,11 +32,11 @@ function PaymentMethodViewer({ alert, value }) {
           <AlertDescription>{alert.desc}</AlertDescription>
         </Box>
       </Alert>
-      <Flex align="center" mt={4}>
-        <Box width="200px" pr={6} mr={2}>
+      <Flex direction={{ base: 'column', lg: 'row' }} align="center" mt={4}>
+        <Box width="200px" pr={6} mr={2} mt={{ base: 4, lg: 0 }}>
           <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={value} />
         </Box>
-        <Box>
+        <Box mt={{ base: 4, lg: 0 }} maxW="full">
           <Heading size="sm" as="h4" mb={2}>
             Göndereceğiniz adres
           </Heading>
@@ -48,7 +48,7 @@ function PaymentMethodViewer({ alert, value }) {
               py={4}
               mr={2}
             >
-              <Text>{value}</Text>
+              <Text wordBreak="break-all">{value}</Text>
             </Box>
             <IconButton
               variant="ghost"

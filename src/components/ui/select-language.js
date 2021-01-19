@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 function SelectLanguage({ ...otherProps }) {
@@ -35,6 +35,14 @@ function SelectLanguage({ ...otherProps }) {
     }
   };
 
+  useEffect(() => {
+    if (localStorage.getItem('language')) {
+      // console.log(localStorage.getItem('language'));
+      i18n.changeLanguage('en');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Menu>
       <MenuButton ml={4} as={Button} variant="ghost" {...otherProps}>
@@ -53,7 +61,10 @@ function SelectLanguage({ ...otherProps }) {
             <MenuItem
               isDisabled={language === currentLanguage}
               key={language}
-              onClick={() => i18n.changeLanguage(language)}
+              onClick={() => {
+                localStorage.setItem('language', language);
+                i18n.changeLanguage(language);
+              }}
             >
               <Image
                 src={`${process.env.PUBLIC_URL}/images/flags/${language}.png`}

@@ -26,7 +26,6 @@
     "graphql": "^15.4.0",
     "history": "^5.0.0",
     "i18next": "^19.8.4",
-    "i18next-browser-languagedetector": "^6.0.1",
     "logrocket": "^1.0.14",
     "moment": "^2.29.1",
     "query-string": "^6.13.8",

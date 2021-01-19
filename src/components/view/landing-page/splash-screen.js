@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Box, Heading, Text, Button, Stack, Link } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Stack } from '@chakra-ui/react';
 import { ReactComponent as LeftKite } from '../../assets/left-kite.svg';
 import { ReactComponent as RightKite } from '../../assets/right-kite.svg';
 import Container from '../../ui/container';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -42,20 +43,23 @@ function SplashScreen() {
             bg="white"
             _hover={{ bg: 'gray.50' }}
             _active={{ bg: 'gray.50' }}
-            mr={{ base: 6, lg: 16 }}
+            mr={{ base: 0, lg: 16 }}
           >
             {t('showAllCampaigns')}
           </Button>
           <Button
-            as={Link}
-            isExternal
-            href="https://destek.ucurtmaprojesi.com"
             size="lg"
             boxShadow="modernOrange"
             bg="orange.500"
             color="gray.100"
             _hover={{ bg: 'orange.400', textDecor: 'none' }}
             _active={{ bg: 'orange.400' }}
+            onClick={() => {
+              navigate('/#donate-section');
+              document
+                .querySelector('#donate-section')
+                .scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             Tüm Öğrencilere Destek Ol
           </Button>

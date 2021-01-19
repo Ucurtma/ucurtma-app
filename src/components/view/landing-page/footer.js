@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useState } from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 import {
   Image,
   Grid,
@@ -7,7 +7,6 @@ import {
   ListItem,
   Heading,
   Link,
-  Select,
   Flex,
   ModalBody,
   Button,
@@ -21,13 +20,8 @@ const CookiePolicy = lazy(() => import('../cookie-policy'));
 const ClarificationText = lazy(() => import('../clarification-text'));
 
 function Footer() {
-  const { t, i18n } = useTranslation('footer');
+  const { t } = useTranslation('footer');
   const { dispatch } = useContext(MainContext);
-  const [langValue, setLangValue] = useState(
-    localStorage.getItem('lang') ||
-      localStorage.getItem('i18nextLng') ||
-      'tr-TR'
-  );
 
   const setModalOpen = type => {
     let Content = <ClarificationText />;
@@ -50,7 +44,7 @@ function Footer() {
   };
 
   return (
-    <Box as="footer" py={12} px={{ base: 4, md: 0 }} bg="gray.800">
+    <Box as="footer" py={12} px={{ base: 4, md: 0 }}>
       <Container alignItems="flex-start" mt={0}>
         <Grid
           templateColumns={{
@@ -62,8 +56,8 @@ function Footer() {
           rowGap={{ base: 8 }}
           px={4}
         >
-          <Image src={`${process.env.PUBLIC_URL}/images/logo-white.svg`} />
-          <Flex color="gray.100" flexDir={{ base: 'column', lg: 'row' }}>
+          <Image src={`${process.env.PUBLIC_URL}/images/logo-black.svg`} />
+          <Flex flexDir={{ base: 'column', lg: 'row' }}>
             <Box>
               <Heading
                 size="xs"
@@ -117,43 +111,6 @@ function Footer() {
               </List>
             </Box>
           </Flex>
-          <Box>
-            <Heading
-              as="label"
-              htmlFor="change-language"
-              color="gray.100"
-              size="xs"
-              textTransform="uppercase"
-              w="full"
-            >
-              {t('Change Language')}
-            </Heading>
-            <List spacing={2} mt={8}>
-              <ListItem>
-                <Select
-                  bg="transparent"
-                  variant="outline"
-                  color="gray.100"
-                  fontWeight={600}
-                  size="sm"
-                  onChange={e => {
-                    i18n.changeLanguage(e.currentTarget.value);
-                    localStorage.setItem('lang', e.currentTarget.value);
-                    setLangValue(e.currentTarget.value);
-                  }}
-                  value={langValue}
-                  id="change-language"
-                >
-                  <Box as="option" value="tr" color="gray.800">
-                    Turkish
-                  </Box>
-                  <Box as="option" value="en" color="gray.800">
-                    English
-                  </Box>
-                </Select>
-              </ListItem>
-            </List>
-          </Box>
         </Grid>
       </Container>
     </Box>

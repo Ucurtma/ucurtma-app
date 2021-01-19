@@ -13,18 +13,6 @@ i18n
     resources,
     // lng: localStorage.getItem('lang') || 'tr',
     fallbackLng: 'tr',
-    detection: {
-      order: [
-        'querystring',
-        'cookie',
-        'localStorage',
-        'sessionStorage',
-        'navigator',
-        'htmlTag',
-        'path',
-        'subdomain',
-      ],
-    },
     // keySeparator: false, // we do not use keys in form messages.welcome
     interpolation: {
       escapeValue: false, // react already safes from xss

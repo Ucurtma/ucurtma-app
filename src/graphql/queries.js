@@ -147,3 +147,14 @@ export const GET_ALL_CAMPAIGN_DETAILS = gql`
     }
   }
 `;
+
+export const GET_CORPORATE_SPONSORS = gql`
+  query corporateSponsors {
+    corporateSponsors {
+      type
+      name
+      url
+      image
+    }
+  }
+`;

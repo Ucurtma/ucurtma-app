@@ -97,7 +97,8 @@ function FeaturedCampaign() {
             <Box
               className="swiper-next-el"
               visibility={
-                (activeCard === DATA_COUNT - 1 || campaigns.length <= 3) &&
+                (activeCard === DATA_COUNT - 1 ||
+                  activeCard === campaigns.length - 1) &&
                 'hidden'
               }
               right="1%"

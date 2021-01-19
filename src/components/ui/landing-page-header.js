@@ -3,6 +3,7 @@ import { Box, Button, Flex, Image, Link } from '@chakra-ui/react';
 import React from 'react';
 import Container from './container';
 import MenuItems from './menu-items';
+import SelectLanguage from './select-language';
 
 export function SupportButton({ ...otherProps }) {
   return (
@@ -68,14 +69,40 @@ function LandingPageHeader() {
           alt="Uçurtma Projesi"
           src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
         />
-        <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
+        <Flex align="center">
+          <SupportButton display={{ base: 'flex', lg: 'none' }} size="sm" />
+          <SelectLanguage display={{ base: 'flex', lg: 'none' }} size="sm" />
+        </Flex>
       </Box>
       <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
         <MenuItems alignItems="center" items={menuItems} />
         <SupportButton display={{ base: 'none', lg: 'flex' }} />
+        <SelectLanguage display={{ base: 'none', lg: 'flex' }} />
       </Flex>
     </Container>
   );
 }
 
 export default LandingPageHeader;
+
+/* <Select
+          bg="transparent"
+          variant="outline"
+          color="gray.100"
+          fontWeight={600}
+          size="sm"
+          onChange={e => {
+            i18n.changeLanguage(e.currentTarget.value);
+            localStorage.setItem('lang', e.currentTarget.value);
+            setLangValue(e.currentTarget.value);
+          }}
+          value={langValue}
+          id="change-language"
+        >
+          <Box as="option" value="tr" color="gray.800">
+            Turkish
+          </Box>
+          <Box as="option" value="en" color="gray.800">
+            English
+          </Box>
+        </Select>  */

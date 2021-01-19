@@ -9,6 +9,7 @@ import FeaturedCampaign from '../../ui/featured-campaign';
 import Faq from './faq';
 import DonatePage from './donate-page';
 import LandingPageHeader from '../../ui/landing-page-header';
+import SponsorList from './sponsor-list';
 
 function LandingPage() {
   const location = useLocation();
@@ -17,6 +18,12 @@ function LandingPage() {
     if (location.state?.redirectedFromAuth) {
       document
         .querySelector('#landing-payment')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (location.hash === '#donate-section') {
+      document
+        .querySelector('#donate-section')
         .scrollIntoView({ behavior: 'smooth' });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,22 +37,25 @@ function LandingPage() {
       <Box mt="36px" width="full" bg="white" transition="0.2s ease all">
         <LandingPageHeader />
       </Box>
-      <Flex id="splash-screen" mt={{ base: 84, lg: 126 }}>
+      <Flex as="section" id="splash-screen" mt={{ base: 84, lg: 126 }}>
         <SplashScreen />
       </Flex>
-      <Box mt={165}>
+      <Box as="section" mt={165}>
         <FeaturedCampaign />
       </Box>
-      <Flex id="problem-solution" mt={158} px={{ base: 4, lg: 0 }}>
+      <Flex as="section" id="problem-solution" mt={158} px={{ base: 4, lg: 0 }}>
         <ProblemSolution />
       </Flex>
-      <Flex px={{ base: 4, lg: 0 }} mt="198px" id="how-it-works">
+      <Flex as="section" px={{ base: 4, lg: 0 }} mt="198px" id="how-it-works">
         <HowItWorks />
       </Flex>
-      <Box mt="330px" mb={210}>
+      <Box as="section" id="donate-section" mt="330px" mb={120}>
         <DonatePage />
       </Box>
-      <Flex id="faq" mb={210} px={{ base: 4, lg: 0 }}>
+      <Box mb={210}>
+        <SponsorList />
+      </Box>
+      <Flex as="section" id="faq" mb={210} px={{ base: 4, lg: 0 }}>
         <Faq />
       </Flex>
     </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Progress, Flex, Image } from '@chakra-ui/react';
+import { Box, Heading, Progress, Flex, Text } from '@chakra-ui/react';
 import { Clock } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
@@ -24,7 +24,7 @@ function CampaignTarget({ target, current, endDate, type }) {
     <>
       {target && (
         <>
-          <Heading size="sm" color="gray.500">
+          <Heading fontWeight={600} fontSize="sm" color="gray.700">
             {t('campaignTarget')}
           </Heading>
           <Box pos="relative">
@@ -55,33 +55,34 @@ function CampaignTarget({ target, current, endDate, type }) {
               fontSize="1.2rem"
               fontWeight={600}
               textAlign={{ base: 'center', md: 'left' }}
-              color="#1E284C"
+              color={formula > 70 ? 'white' : '#1E284C'}
               pos="absolute"
               right="8px"
               top="0"
               height={progressHeight}
             >
-              <Image
-                maxW="12px"
-                width="full"
-                height="full"
-                src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                mr={1}
-              />
-              {new Intl.NumberFormat('tr-TR').format(target)}
+              {new Intl.NumberFormat('tr-TR').format(target)}{' '}
+              <Text fontSize="sm" as="span" ml={1}>
+                TRYB
+              </Text>
             </Flex>
           </Box>
         </>
       )}
       {endDate && (
         <>
-          <Heading size="sm" color="gray.500" mt={target && 4}>
+          <Heading
+            fontSize="sm"
+            fontWeight={600}
+            color="gray.700"
+            mt={target && 4}
+          >
             {t(isShortTerm ? 'endDate' : 'firstDate')}
           </Heading>
-          <Flex mt={2} alignItems="center">
+          <Flex mt={4} alignItems="center">
             <Box as={Clock} color="gray.600" />
             <Flex ml={2} color="gray.600" alignItems="center">
-              <Box as="strong" fontSize="1rem">
+              <Box fontWeight={600}>
                 {moment.duration(end.diff(now)).humanize(true)}
               </Box>
               <Box borderLeft="1px solid" ml={4} pl={4} borderColor="gray.200">

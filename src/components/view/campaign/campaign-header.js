@@ -5,7 +5,6 @@ import {
   Box,
   Heading,
   Text,
-  Image,
   Divider,
   Button,
   Icon,
@@ -15,6 +14,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useTranslation, Trans } from 'react-i18next';
 import { Award } from 'react-feather';
 import CampaignContentBox from '../../ui/campaign-content-box';
+import CampaignSupportInfo from '../../ui/campaign-support-info';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
   const { t } = useTranslation('campaignHeader');
@@ -63,47 +63,26 @@ function CampaignHeader({ data, loading, onClickDonate }) {
           width={{ base: 'full', md: 'unset' }}
           justify={{ base: 'space-around', md: 'inherit' }}
           mt={{ base: 8, md: 0 }}
-          borderY={{ base: '1px solid', md: 0 }}
-          borderColor="gray.300"
-          borderTopColor="gray.300"
+          border={{ base: '1px', lg: 0 }}
+          borderColor={{ base: 'gray.200', lg: 'unset' }}
           p={{ base: 4, lg: 0 }}
-          bg={{ base: 'gray.100', md: 'inherit' }}
+          borderRadius="11px"
+          bg={{ base: 'gray.50', md: 'inherit' }}
         >
           {!loading && data?.campaign?.supporterCount > 0 && (
             <>
-              <Box pr={6} borderRight={{ md: '1px solid #CBD5E0' }}>
-                <Heading size="sm" color="gray.400">
-                  {t('supporterCount')}
-                </Heading>
-                <Text
-                  fontSize="1.5rem"
-                  textAlign={{ base: 'center', md: 'left' }}
-                  fontWeight={400}
-                >
-                  {data?.campaign?.supporterCount}
-                </Text>
+              <Box pr={6}>
+                <CampaignSupportInfo
+                  title={t('supporterCount')}
+                  value={data?.campaign?.supporterCount}
+                />
               </Box>
               <Box pl={6}>
-                <Heading size="sm" color="gray.400">
-                  {t('totalFund')}
-                </Heading>
-                <Box
-                  fontSize="1.5rem"
-                  fontWeight={400}
-                  textAlign={{ base: 'center', md: 'left' }}
-                  color="#1E284C"
-                >
-                  <Flex align="center">
-                    <Image
-                      maxW="14px"
-                      width="full"
-                      height="full"
-                      src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                      mr={1}
-                    />
-                    {Math.floor(data.campaign?.totalFunds)}
-                  </Flex>
-                </Box>
+                <CampaignSupportInfo
+                  title={t('totalFund')}
+                  value={Math.floor(data.campaign?.totalFunds)}
+                  hasCurrency
+                />
               </Box>
             </>
           )}
@@ -135,7 +114,11 @@ function CampaignHeader({ data, loading, onClickDonate }) {
         </Flex>
       </Flex>
       <Divider my={4} display={{ base: 'none', md: 'block' }} />
-      <Flex justify="space-between" align="center" mx={{ base: 4, lg: 0 }}>
+      <Flex
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justify="space-between"
+        align="center"
+      >
         {loading ? (
           <Box flex={1}>
             <Skeleton height={72} />
@@ -146,6 +129,8 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               width="full"
               color="gray.700"
               fontSize={{ base: '2xl', lg: '3xl' }}
+              mt={{ base: 4, lg: 0 }}
+              textAlign={{ base: 'center', lg: 'left' }}
             >
               {data.campaign?.campaignTitle}
             </Heading>
@@ -161,8 +146,8 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               boxShadow="0 0 3px rgba(45,55,72,0.1)"
               onClick={() => onClickDonate()}
               _hover={{ bg: 'lime.500' }}
-              ml={4}
-              disabled={!data.campaign?.isActive}
+              ml={{ base: 0, lg: 4 }}
+              isDisabled={!data.campaign?.isActive}
               _disabled={{ bg: 'gray.400', borderColor: 'gray.500' }}
               flexDir={!data.campaign?.isActive && 'column'}
               justifyContent={

@@ -21,7 +21,7 @@ function TimelineBox({ children, title, ...otherProps }) {
       {...otherProps}
     >
       {title && (
-        <Heading pb={4} size="sm" color="gray.400" fontSize="16px">
+        <Heading pb={4} fontSize="sm" fontWeight={600} color="gray.400">
           {title}
         </Heading>
       )}
@@ -52,7 +52,7 @@ function Timeline({ items, transactions }) {
 
   return (
     <>
-      <Heading size="sm" mb={4} color="gray.500">
+      <Heading fontSize="sm" fontWeight={600} mb={4} color="gray.700">
         {t('title')}
       </Heading>
       <Box mt={4} as="ul" m={0} listStyleType="none" pos="relative">
@@ -90,8 +90,8 @@ function Timeline({ items, transactions }) {
                 display="inline-flex"
                 fontWeight={600}
                 mb={2}
-                color="gray.600"
-                fontSize="16px"
+                color="gray.700"
+                fontSize="sm"
               >
                 {range.date}
               </Box>

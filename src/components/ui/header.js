@@ -17,6 +17,7 @@ import Container from './container';
 import MenuItems from './menu-items';
 import { MainContext } from '../../context/main-context';
 import { SupportButton } from './landing-page-header';
+import SelectLanguage from './select-language';
 
 function Header({ menuItems, isManager = false }) {
   const [walletLoading, setWalletLoading] = useState(false);
@@ -234,6 +235,7 @@ function Header({ menuItems, isManager = false }) {
               src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
             />
           </Link>
+          <SelectLanguage size="sm" display={{ lg: 'none', base: 'flex' }} />
           <SupportButton display={{ lg: 'none', base: 'flex' }} size="sm" />
         </Box>
         <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
@@ -257,6 +259,7 @@ function Header({ menuItems, isManager = false }) {
           )}
           <MenuItems alignItems="center" items={menuItems} />
           <SupportButton display={{ base: 'none', lg: 'flex' }} />
+          <SelectLanguage display={{ lg: 'flex', base: 'none' }} />
         </Flex>
       </Container>
     </Box>

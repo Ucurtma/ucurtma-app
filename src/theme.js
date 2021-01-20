@@ -35,6 +35,7 @@ const customTheme = extendTheme({
   shadows: {
     cardLight: '0 0 24px rgba(45, 55, 72, 0.1)',
     cardLightHover: '0 0 12px rgba(45, 55, 72, 0.1)',
+    modernSmall: '0px 0px 4px rgba(196, 196, 196, 0.24)',
     modern: '0px 0px 13px rgba(196, 196, 196, 0.45)',
     modernOrange: '0px 0px 13px rgba(255, 149, 5, 0.45)',
     modernBlue: '0px 0px 13px rgba(5, 135, 255, 0.45)',

@@ -57,17 +57,16 @@ function Campaigns() {
         <title>{t('title')}</title>
       </Helmet>
       <Stack
-        isInline
-        flexDir={{ base: 'column', md: 'row' }}
-        spacing={4}
+        direction={{ base: 'column', md: 'row' }}
+        spacing={2}
         mb={4}
+        align="center"
       >
         {terms.map((term, termIndex) => (
           <Button
             key={termIndex.toString()}
             colorScheme={activeButton === term ? 'blue' : 'gray'}
             variant="solid"
-            mb={{ base: 2, md: 0 }}
             onClick={() => changeType(term)}
             size="md"
             width={{ base: 'full', md: 'auto' }}

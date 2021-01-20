@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Image,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -21,33 +20,24 @@ function TransactionRenderer({ item, type, transactionList, range }) {
     <>
       <Flex pos="relative" justify="space-between">
         <Stat>
-          <StatLabel color="gray.400" fontWeight={600} fontSize={14}>
+          <StatLabel color="gray.700" fontWeight={600} fontSize="sm" mb={1}>
             {t('operationCount')}
           </StatLabel>
-          <StatNumber color="gray.700" fontSize={18}>
+          <StatNumber color="gray.600" fontSize="sm">
             {item.content.length}
           </StatNumber>
         </Stat>
         <Stat>
-          <StatLabel color="gray.400" fontWeight={600} fontSize={14}>
+          <StatLabel color="gray.700" fontWeight={600} fontSize="sm" mb={1}>
             {t(`transaction.${isIncoming ? 'incoming' : 'outgoing'}`)}
           </StatLabel>
-          <StatNumber
-            display="flex"
-            alignItems="center"
-            color="gray.700"
-            fontSize={18}
-          >
-            <Image
-              maxW="10px"
-              width="full"
-              height="full"
-              src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-              mr={1}
-            />
+          <StatNumber color="gray.600" fontSize="sm">
             {Math.floor(
               item.content.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
             )}
+            <Text ml={1} as="span" fontSize="xs">
+              TRYB
+            </Text>
           </StatNumber>
         </Stat>
       </Flex>
@@ -60,7 +50,7 @@ function TransactionRenderer({ item, type, transactionList, range }) {
           return (
             <Box
               key={transactionIndex.toString()}
-              fontSize={14}
+              fontSize="xs"
               borderBottom="1px solid"
               borderColor="gray.200"
               py={2}
@@ -68,12 +58,12 @@ function TransactionRenderer({ item, type, transactionList, range }) {
               _last={{ borderBottom: 0 }}
             >
               <Flex justifyContent="space-between">
-                <Box as="strong" color="gray.400">
+                <Box fontWeight={600} color="gray.500">
                   {t(`transaction.${isIncoming ? 'from' : 'to'}`)}
                 </Box>
                 <Popover trigger="hover">
                   <PopoverTrigger>
-                    <Text maxW="200px" isTruncated>
+                    <Text maxW="200px" fontWeight={600} isTruncated>
                       {transaction.from}
                     </Text>
                   </PopoverTrigger>
@@ -93,18 +83,14 @@ function TransactionRenderer({ item, type, transactionList, range }) {
                 </Popover>
               </Flex>
               <Flex mt={1} justifyContent="space-between">
-                <Box as="strong" color="gray.400">
+                <Box fontWeight={600} color="gray.500">
                   {t('transaction.amount')}
                 </Box>
                 <Flex fontWeight={600}>
-                  <Image
-                    maxW="8px"
-                    width="full"
-                    height="full"
-                    src={`${process.env.PUBLIC_URL}/images/bilira-icon.svg`}
-                    mr={1}
-                  />
                   {Math.floor(parseInt(transaction.amount, 10))}
+                  <Text as="span" fontSize="xs" ml={1}>
+                    TRYB
+                  </Text>
                 </Flex>
               </Flex>
             </Box>

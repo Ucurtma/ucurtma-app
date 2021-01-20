@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Flex, Box, Text, Link } from '@chakra-ui/react';
+import { Box, Text, Link, Grid } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import Documents from './documents';
 import Goals from './goals';
@@ -12,13 +12,14 @@ const Timeline = lazy(() => import('../../ui/timeline'));
 
 function CampaignContent({ data }) {
   return (
-    <Flex flexDir={{ base: 'column', lg: 'row' }}>
-      <Box
-        w="full"
-        flexShrink="0"
-        maxW={{ base: '100%', lg: '65%' }}
-        fontWeight={400}
-      >
+    <Grid
+      templateColumns={{
+        base: 'inherit',
+        lg: '1fr 416px',
+      }}
+      gap={8}
+    >
+      <Box w="full" flexShrink="0" fontWeight={400}>
         <ReactMarkdown
           renderers={{
             ...MarkdownRenderer(),
@@ -78,7 +79,7 @@ function CampaignContent({ data }) {
           </CampaignContentBox>
         )}
       </Box>
-    </Flex>
+    </Grid>
   );
 }
 

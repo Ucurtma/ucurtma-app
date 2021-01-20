@@ -133,7 +133,6 @@ function CampaignCardList({ loading, data, error }) {
                   variant="solid"
                   colorScheme="blue"
                   mt={3}
-                  size="lg"
                   boxShadow="modernBlue"
                   bg="#0587FF"
                 >

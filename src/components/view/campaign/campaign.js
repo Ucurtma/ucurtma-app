@@ -53,29 +53,27 @@ function Campaign() {
             }}
           />
 
-          <Box px={{ base: 4, lg: 0 }}>
-            {loading ? (
-              <Skeleton count={12} />
-            ) : (
-              <>
-                <Box mt={4} display={content === 'markdown' ? 'block' : 'none'}>
-                  <CampaignContent data={data} />
-                </Box>
-                {(content === 'donate' || donateActivated) && (
-                  <Suspense fallback={<Loader />}>
-                    <Box display={content === 'donate' ? 'block' : 'none'}>
-                      <Donate
-                        minimumAmount={data.campaign?.minimumAmount}
-                        redirectError={location.state?.redirectError}
-                        ethereumAddress={data.campaign?.ethereumAddress}
-                        onBack={() => setContent('markdown')}
-                      />
-                    </Box>
-                  </Suspense>
-                )}
-              </>
-            )}
-          </Box>
+          {loading ? (
+            <Skeleton count={12} />
+          ) : (
+            <>
+              <Box mt={4} display={content === 'markdown' ? 'block' : 'none'}>
+                <CampaignContent data={data} />
+              </Box>
+              {(content === 'donate' || donateActivated) && (
+                <Suspense fallback={<Loader />}>
+                  <Box display={content === 'donate' ? 'block' : 'none'}>
+                    <Donate
+                      minimumAmount={data.campaign?.minimumAmount}
+                      redirectError={location.state?.redirectError}
+                      ethereumAddress={data.campaign?.ethereumAddress}
+                      onBack={() => setContent('markdown')}
+                    />
+                  </Box>
+                </Suspense>
+              )}
+            </>
+          )}
           <Divider mt={8} />
           {data && data.campaign && (
             <CampaignFooter

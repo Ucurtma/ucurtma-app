@@ -190,7 +190,6 @@ function FeaturedCampaign() {
                       variant="solid"
                       colorScheme="blue"
                       mt={3}
-                      size="lg"
                       boxShadow="modernBlue"
                       bg="#0587FF"
                     >

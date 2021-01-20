@@ -51,7 +51,7 @@ function SplashScreen() {
             size="lg"
             boxShadow="modernOrange"
             bg="orange.500"
-            color="gray.100"
+            color="white"
             _hover={{ bg: 'orange.400', textDecor: 'none' }}
             _active={{ bg: 'orange.400' }}
             onClick={() => {
@@ -61,7 +61,7 @@ function SplashScreen() {
                 .scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            Tüm Öğrencilere Destek Ol
+            {t('donateAllCampaigns')}
           </Button>
         </Stack>
       </Container>
@@ -69,7 +69,7 @@ function SplashScreen() {
         as={LeftKite}
         pos="absolute"
         zIndex={-1}
-        top="222px"
+        top="422px"
         left={{ lg: '0', xl: '17px', xxl: '222px' }}
         d={{ base: 'none', lg: 'block' }}
       />
@@ -77,7 +77,7 @@ function SplashScreen() {
         as={RightKite}
         pos="absolute"
         zIndex={-1}
-        top="122px"
+        top="322px"
         right={{ lg: '0', xl: '17px', xxl: '222px' }}
         d={{ base: 'none', lg: 'block' }}
       />

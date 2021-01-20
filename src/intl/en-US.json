@@ -10,7 +10,8 @@
     "How it works": "How it works?",
     "Campaigns": "Campaigns",
     "Our Team": "Our Team",
-    "FAQ": "F.A.Q."
+    "FAQ": "F.A.Q.",
+    "Donate": "Support"
   },
   "menuItems": {
     "homepage": "Home",
@@ -21,7 +22,8 @@
     "Uçurtma is decentralized": "It provides a decentralized guarantee of getting support by bringing students and supporters together.",
     "Apply as a student": "Apply as student",
     "clickHereToDonateAllCampaigns": "Now, you can support all campaigns in one go! <2>Click here</2> to learn details and support.",
-    "showAllCampaigns": "Show all campaigns"
+    "showAllCampaigns": "Show All Campaigns",
+    "donateAllCampaigns": "Donate to All Campaigns"
   },
   "problemAndSolution": {
     "New solution with blockchain": "New generation solution that works with blockchain",

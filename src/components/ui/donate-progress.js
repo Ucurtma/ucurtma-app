@@ -22,14 +22,10 @@ function DonateProgress() {
     if (!loading && !error) {
       calculateSVGHeight();
 
-      window.addEventListener('resize', () => {
-        calculateSVGHeight();
-      });
+      window.addEventListener('resize', calculateSVGHeight);
     }
     return () => {
-      window.removeEventListener('resize', () => {
-        calculateSVGHeight();
-      });
+      window.removeEventListener('resize', calculateSVGHeight);
     };
   }, [loading, error]);
 

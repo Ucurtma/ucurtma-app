@@ -1,11 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { Box, Button, Flex, Image, Link } from '@chakra-ui/react';
+import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from './container';
 import MenuItems from './menu-items';
 import SelectLanguage from './select-language';
 
 export function SupportButton({ ...otherProps }) {
+  const navigate = useNavigate();
+  const { t } = useTranslation('titles');
+
   return (
     <Button
       variant="solid"
@@ -13,15 +17,18 @@ export function SupportButton({ ...otherProps }) {
       color="white"
       size="md"
       fontSize="sm"
-      as={Link}
-      href="https://destek.ucurtmaprojesi.com"
-      isExternal
       ml={4}
       _hover={{ bg: 'gray.700', textDecor: 'none' }}
       _active={{ bg: 'gray.700' }}
+      onClick={() => {
+        navigate('/#donate-section');
+        document
+          .querySelector('#donate-section')
+          .scrollIntoView({ behavior: 'smooth' });
+      }}
       {...otherProps}
     >
-      Destek Ol
+      {t('Donate')}
     </Button>
   );
 }
@@ -70,8 +77,8 @@ function LandingPageHeader() {
           src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
         />
         <Flex align="center">
-          <SupportButton display={{ base: 'flex', lg: 'none' }} size="sm" />
           <SelectLanguage display={{ base: 'flex', lg: 'none' }} size="sm" />
+          <SupportButton display={{ base: 'flex', lg: 'none' }} size="sm" />
         </Flex>
       </Box>
       <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>

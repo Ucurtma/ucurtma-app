@@ -13408,10 +13408,10 @@ swarm-js@^0.1.40:
     tar "^4.0.2"
     xhr-request "^1.0.1"
 
-swiper@^6.4.5:
-  version "6.4.5"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.4.5.tgz#2aa9e7f59ed0578c411626bf24cdb5942609618e"
-  integrity sha512-MJIY0aXF6UKgUM+/tgwtOxI21fwRiT6QX2decd6m2L9OGA7jLBks8E0CuUuRqpQfmTInQrBPnBy8dqgOtr2O0w==
+swiper@^6.4.6:
+  version "6.4.6"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.4.6.tgz#08d903cdebc8309d0f67c06bf905a5aac16a5f4e"
+  integrity sha512-lXlN6iGHSwgyea+1FU2XbLT5p0cy2/EAnSrycqdDwZH4iAibp51v19yGq0Wu0KSJhtEyro4ygGP0mrt/IgZW1A==
   dependencies:
     dom7 "^3.0.0"
     ssr-window "^3.0.0"

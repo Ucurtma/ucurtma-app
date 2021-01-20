@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 function SelectLanguage({ ...otherProps }) {
@@ -34,14 +34,6 @@ function SelectLanguage({ ...otherProps }) {
         throw new Error('language-not-found');
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('language')) {
-      // console.log(localStorage.getItem('language'));
-      i18n.changeLanguage('en');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Menu>

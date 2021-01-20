@@ -2,11 +2,14 @@ import React from 'react';
 import { Shield, Droplet, CloudLightning } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import { Box, Flex, Heading, Text, Grid, Image, Icon } from '@chakra-ui/react';
-import MobileMockup from '../../assets/mobile-mockup.svg';
+import MobileMockupTR from '../../assets/mobile-mockup-tr.svg';
+import MobileMockupEN from '../../assets/mobile-mockup-en.svg';
 import Container from '../../ui/container';
 
 function ProblemSolution() {
-  const { t } = useTranslation('problemAndSolution');
+  const { t, i18n } = useTranslation('problemAndSolution');
+  const currentLanguage = i18n.language;
+
   return (
     <Container mt={0}>
       <Grid
@@ -51,7 +54,7 @@ function ProblemSolution() {
         <Flex justify="center">
           <Image
             alignSelf="center"
-            src={MobileMockup}
+            src={currentLanguage === 'en' ? MobileMockupEN : MobileMockupTR}
             style={{
               filter: 'drop-shadow(0 0 0.75rem rgba(0,0, 0, 0.08))',
             }}

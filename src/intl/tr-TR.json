@@ -10,7 +10,8 @@
     "How it works": "Nasıl Çalışır?",
     "Campaigns": "Kampanyalar",
     "Our Team": "Ekibimiz",
-    "FAQ": "S.S.S."
+    "FAQ": "S.S.S.",
+    "Donate": "Destek Ol"
   },
   "menuItems": {
     "homepage": "Anasayfa",
@@ -21,7 +22,8 @@
     "Uçurtma is decentralized": "Bunu öğrencilerle destekçileri buluşturarak destek alabilmelerinin garantisini merkeziyetsiz bir şekilde sunar.",
     "Apply as a student": "Öğrenci Olarak Başvuru Yap",
     "clickHereToDonateAllCampaigns": "Artık tüm kampanyalara tek seferde destek olabilirsiniz. Detayları öğrenmek ve destek olmak için <2>buraya tıklayın</2>.",
-    "showAllCampaigns": "Tüm kampanyaları görüntüle"
+    "showAllCampaigns": "Tüm Kampanyaları Görüntüle",
+    "donateAllCampaigns": "Tüm Öğrencilere Destek Ol"
   },
   "problemAndSolution": {
     "New solution with blockchain": "Blokzinciri ile yeni nesil bir çözüm",

@@ -93,7 +93,7 @@ function CampaignCardList({ loading, data, error }) {
                   textAlign="center"
                   mt={6}
                   mb={4}
-                  minH="50px"
+                  minH="40px"
                   isTruncated
                   noOfLines={2}
                 >

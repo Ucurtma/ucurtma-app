@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Flex, Progress, Text } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
 import { useQuery } from '@apollo/client';
 import { ReactComponent as CityColorful } from '../assets/city-colorful.svg';
 import { ReactComponent as CityLines } from '../assets/city-lines.svg';
@@ -9,6 +10,7 @@ import { GET_ALL_CAMPAIGN_DETAILS } from '../../graphql/queries';
 import Loader from './loader';
 
 function DonateProgress() {
+  const { ref: observerRef, inView } = useInView();
   const { data, error, loading } = useQuery(GET_ALL_CAMPAIGN_DETAILS);
   const [cityHeight, setCityHeight] = useState();
   const cityRef = useRef();
@@ -36,7 +38,11 @@ function DonateProgress() {
   return (
     <Box minH="238px">
       {!loading && !error && (
-        <Flex pos="relative" height={`calc(${cityHeight || 229}px + 60px)`}>
+        <Flex
+          ref={observerRef}
+          pos="relative"
+          height={`calc(${cityHeight || 229}px + 60px)`}
+        >
           <Box
             pos="absolute"
             top="0"
@@ -44,22 +50,24 @@ function DonateProgress() {
             transform="translateX(-50%)"
             as={CityLines}
             zIndex={1}
-            width="100%"
-          />
-          <Box
-            pos="absolute"
-            top="0"
-            left="50%"
-            transform="translateX(-50%)"
-            as={CityColorful}
             ref={cityRef}
-            zIndex={1}
-            clipPath="polygon(0 0, 30% 0%, 30% 100%, 0% 100%)"
-            animation={`${leftToRight(
-              error ? 0 : currentValue
-            )} 4s ease forwards`}
             width="100%"
           />
+          {inView && (
+            <Box
+              pos="absolute"
+              top="0"
+              left="50%"
+              transform="translateX(-50%)"
+              as={CityColorful}
+              zIndex={1}
+              clipPath="polygon(0 0, 30% 0%, 30% 100%, 0% 100%)"
+              animation={`${leftToRight(
+                error ? 0 : currentValue
+              )} 4s ease forwards`}
+              width="100%"
+            />
+          )}
           <Box
             width="full"
             alignSelf="flex-end"

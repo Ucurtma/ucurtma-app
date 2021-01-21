@@ -112,6 +112,10 @@ function SponsorList() {
         Dünyayı daha renkli bir yer haline getirebilmemiz için sen de
         sponsorlarımız arasına katıl.
         <Button
+          as="a"
+          href="https://bit.ly/2G2CT7f"
+          target="_blank"
+          rel="noopener noreferrer"
           boxShadow="modernBlue"
           bg="blue.500"
           color="gray.100"

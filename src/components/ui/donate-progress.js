@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Flex, Progress, Text } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import { useQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as CityColorful } from '../assets/city-colorful.svg';
 import { ReactComponent as CityLines } from '../assets/city-lines.svg';
 import ValueRenderer from './value-renderer';
@@ -10,6 +11,7 @@ import { GET_ALL_CAMPAIGN_DETAILS } from '../../graphql/queries';
 import Loader from './loader';
 
 function DonateProgress() {
+  const { t } = useTranslation('donate-section');
   const { ref: observerRef, inView } = useInView();
   const { data, error, loading } = useQuery(GET_ALL_CAMPAIGN_DETAILS);
   const [cityHeight, setCityHeight] = useState();
@@ -83,7 +85,7 @@ function DonateProgress() {
             />
             <ValueRenderer
               pos="absolute"
-              title="Toplanan Miktar"
+              title={t('totalFund')}
               value={data?.allCampaignDetails.collectedAmount}
               left={{ base: 0, lg: `${currentValue - 1}%` }}
               transform={{ base: 'translate(0, 20%)', lg: 'translateX(-100%)' }}
@@ -93,7 +95,7 @@ function DonateProgress() {
             />
             <ValueRenderer
               pos="absolute"
-              title="Hedeflenen Miktar"
+              title={t('targetFund')}
               value={data?.allCampaignDetails.targetAmount}
               right={0}
               transform="translate(0, 20%)"

@@ -1,5 +1,6 @@
 import { Box, Button, Stack } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as BiLira } from '../assets/coins/bilira.svg';
 import { ReactComponent as Ethereum } from '../assets/coins/ethereum.svg';
 import { ReactComponent as Bitcoin } from '../assets/coins/bitcoin.svg';
@@ -10,10 +11,12 @@ import { ReactComponent as BitcoinWhite } from '../assets/coins/bitcoin-white.sv
 import { ReactComponent as BankTransferWhite } from '../assets/coins/bank-transfer-white.svg';
 
 function PaymentMethods({ onSelect, activeMethod }) {
+  const { t } = useTranslation('donate-section');
+
   const methods = useMemo(() => {
     return [
       {
-        type: 'BiLira Cüzdanı',
+        type: t('options.bilira'),
         slug: 'bilira',
         icon: {
           dark: BiLira,
@@ -21,7 +24,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
         },
       },
       {
-        type: 'Ethereum Cüzdanı',
+        type: t('options.ethereum'),
         slug: 'ethereum',
         icon: {
           dark: Ethereum,
@@ -29,7 +32,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
         },
       },
       {
-        type: 'Bitcoin',
+        type: t('options.bitcoin'),
         slug: 'bitcoin',
         icon: {
           dark: Bitcoin,
@@ -37,7 +40,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
         },
       },
       {
-        type: 'Banka Havalesi',
+        type: t('options.bank'),
         slug: 'para-transferi',
         icon: {
           dark: BankTransfer,
@@ -45,6 +48,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
         },
       },
     ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

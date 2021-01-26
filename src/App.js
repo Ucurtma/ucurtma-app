@@ -26,13 +26,12 @@ function App() {
     if (isProduction) {
       ReactGA.pageview(window.location.pathname + window.location.search);
     }
-  }, []);
 
-  useEffect(() => {
     if (localStorage.getItem('language')) {
       i18n.changeLanguage(localStorage.getItem('language'));
     }
-  }, [i18n]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <MainContext.Provider value={{ state, dispatch }}>

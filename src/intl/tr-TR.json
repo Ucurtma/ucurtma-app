@@ -382,5 +382,30 @@
   "searchable-students": {
     "title": "Bir Öğrenci Seç",
     "search": "Öğrenci Ara"
+  },
+  "donate-section": {
+    "title": "Tüm kampanyalara destek ol",
+    "description": "Dünyayı daha renkli bir yere dönüştürmemiz için desteğine ihtiyacımız var. İstersen buradaki seçenekleri kullanarak Uçurtma Projesinde bulunan bütün kampanyalara destekçi olabilirsin.",
+    "totalFund": "Toplanan Miktar",
+    "targetFund": "Hedeflenen Miktar",
+    "methods": "Destek Yöntemleri",
+    "methodsDesc": "Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme yöntemlerini kullanabilirsiniz.",
+    "options": {
+      "bilira": "BiLira Cüzdanı",
+      "ethereum": "Ethereum Cüzdanı",
+      "bitcoin": "Bitcoin",
+      "bank": "Banka Havalesi"
+    }
+  },
+  "sponsors-section": {
+    "title": "Sponsorlarımız",
+    "thanks": "Dünyayı daha renkli bir yere dönüştürmemiz için bizden desteğini esirgemeyen sponsorlarımıza çok teşekkür ederiz.",
+    "types": {
+      "gold": "Altın Sponsorlar",
+      "silver": "Gümüş Sponsorlar",
+      "bronze": "Bronz Sponsorlar"
+    },
+    "beSponsor": "Sponsor Ol",
+    "sponsorDesc": "Dünyayı daha renkli bir yer haline getirebilmemiz için sen de sponsorlarımız arasına katıl."
   }
 }

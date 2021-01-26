@@ -9,18 +9,21 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GET_CORPORATE_SPONSORS } from '../../../graphql/queries';
 import Container from '../../ui/container';
 
 function SponsorList() {
+  const { t } = useTranslation('sponsors-section');
   const { data, loading, error } = useQuery(GET_CORPORATE_SPONSORS);
 
   const types = useMemo(
     () => [
-      { type: 'GOLD', label: 'Altın Sponsorlar', color: '#BF8F00' },
-      { type: 'SILVER', label: 'Gümüş Sponsorlar', color: '#BEC2CB' },
-      { type: 'BRONZE', label: 'Bronz Sponsorlar', color: '#742200' },
+      { type: 'GOLD', label: t('types.gold'), color: '#BF8F00' },
+      { type: 'SILVER', label: t('types.silver'), color: '#BEC2CB' },
+      { type: 'BRONZE', label: t('types.bronze'), color: '#742200' },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -67,11 +70,10 @@ function SponsorList() {
     <Container flexDir="column" py={16} borderRadius={{ base: 22, lg: 139 }}>
       <Box w="full" textAlign="center">
         <Heading as="h2" fontSize="xl">
-          Sponsorlarımız
+          {t('title')}
         </Heading>
-        <Text maxW={770} mt={8} mx="auto">
-          Dünyayı daha renkli bir yere dönüştürmemiz için bizden desteğini
-          esirgemeyen sponsorlarımıza çok teşekkür ederiz.
+        <Text maxW={670} mt={8} mx="auto">
+          {t('thanks')}
         </Text>
       </Box>
       <Stack mt={8} spacing={4} mx="auto" direction="column">
@@ -109,8 +111,7 @@ function SponsorList() {
         mx="auto"
         mt={12}
       >
-        Dünyayı daha renkli bir yer haline getirebilmemiz için sen de
-        sponsorlarımız arasına katıl.
+        {t('sponsorDesc')}
         <Button
           as="a"
           href="https://bit.ly/2G2CT7f"
@@ -123,7 +124,7 @@ function SponsorList() {
           _active={{ bg: 'blue.400' }}
           mt={4}
         >
-          Sponsor Ol
+          {t('beSponsor')}
         </Button>
       </Flex>
     </Container>

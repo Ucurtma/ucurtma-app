@@ -1,10 +1,13 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
 import DonateProgress from '../../ui/donate-progress';
 import LandingPaymentFlow from '../../ui/landing-payment-flow';
 
 function DonatePage() {
+  const { t } = useTranslation('donate-section');
+
   return (
     <Container
       maxW={{ base: 'full', sm: 'container.sm', md: 'container.md' }}
@@ -13,12 +16,10 @@ function DonatePage() {
     >
       <Flex m="0 auto" align="center" direction="column" textAlign="center">
         <Heading as="h2" fontSize="2xl">
-          Tüm kampanyalara destek ol
+          {t('title')}
         </Heading>
         <Text maxW={770} mt={8}>
-          Dünyayı daha renkli bir yere dönüştürmemiz için desteğine ihtiyacımız
-          var. İstersen buradaki seçenekleri kullanarak Uçurtma Projesinde
-          bulunan bütün kampanyalara destekçi olabilirsin.
+          {t('description')}
         </Text>
       </Flex>
       <Box mt={14}>

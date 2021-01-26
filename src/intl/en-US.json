@@ -382,5 +382,30 @@
   "searchable-students": {
     "title": "Select a Student",
     "search": "Search Student"
+  },
+  "donate-section": {
+    "title": "Donate to All Campaigns",
+    "description": "We need your support to make world more colorful place. You can support all campaigns in Uçurtma Project by using the options below if you prefer.",
+    "totalFund": "Total Fund",
+    "targetFund": "Targeted Fund",
+    "methods": "Support Methods",
+    "methodsDesc": "You can use payment methods below to support Uçurtma campaigns.",
+    "options": {
+      "bilira": "BiLira Wallet",
+      "ethereum": "Ethereum Wallet",
+      "bitcoin": "Bitcoin",
+      "bank": "Bank Transfer"
+    }
+  },
+  "sponsors-section": {
+    "title": "Our Sponsors",
+    "thanks": "Thanks to our sponsors for their support for us to make the world more colorful place.",
+    "types": {
+      "gold": "Gold Sponsors",
+      "silver": "Silver Sponsors",
+      "bronze": "Bronze Sponsors"
+    },
+    "sponsorDesc": "Become one of our sponsors to make world more colorful place",
+    "beSponsor": "Become a Sponsor"
   }
 }

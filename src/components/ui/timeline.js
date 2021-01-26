@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Heading, Text } from '@chakra-ui/react';
+import { Box, Image, Heading, Text, Link } from '@chakra-ui/react';
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
 import './timeline.css';
@@ -14,14 +14,14 @@ function TimelineBox({ children, title, ...otherProps }) {
       px={4}
       pt={4}
       mb={4}
-      bg="gray.200"
+      bg="gray.50"
       border="1px solid"
       borderColor="gray.300"
       borderRadius={4}
       {...otherProps}
     >
       {title && (
-        <Heading pb={4} fontSize="sm" fontWeight={600} color="gray.400">
+        <Heading color="gray.700" fontWeight={600} fontSize="sm" mb={4}>
           {title}
         </Heading>
       )}
@@ -108,11 +108,13 @@ function Timeline({ items, transactions }) {
                         >
                           {item.content.map((imageURL, itemIndex) => {
                             return (
-                              <Image
-                                key={itemIndex.toString()}
-                                mb={4}
-                                src={imageURL}
-                              />
+                              <Link href={imageURL} isExternal>
+                                <Image
+                                  key={itemIndex.toString()}
+                                  mb={4}
+                                  src={imageURL}
+                                />
+                              </Link>
                             );
                           })}
                         </Masonry>

@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "^3.3.7",
-    "@chakra-ui/react": "^1.1.5",
+    "@chakra-ui/react": "^1.1.6",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "apollo-upload-client": "^14.1.3",
@@ -38,15 +38,15 @@
     "react-intersection-observer": "^8.31.0",
     "react-lite-youtube-embed": "^0.3.1",
     "react-loading-skeleton": "^2.1.1",
-    "react-markdown": "^4.3.1",
+    "react-markdown": "^5.0.3",
     "react-masonry-css": "^1.0.14",
     "react-qr-svg": "^2.3.0",
     "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "^4.0.1",
     "react-simplemde-editor": "^4.1.3",
     "reaptcha": "^1.7.2",
-    "swiper": "^6.4.6",
-    "web3": "^1.3.1",
+    "swiper": "^6.4.8",
+    "web3": "^1.3.3",
     "yup": "^0.32.8"
   },
   "devDependencies": {

@@ -11,12 +11,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import Container from '../../ui/container';
-import Loader from '../../ui/loader';
-import { useStore } from '../../../context/global-state';
+import Container from './container';
+import Loader from './loader';
+import { useStore } from '../../context/global-state';
 
-const CookiePolicy = lazy(() => import('../cookie-policy'));
-const ClarificationText = lazy(() => import('../clarification-text'));
+const CookiePolicy = lazy(() => import('../view/cookie-policy'));
+const ClarificationText = lazy(() => import('../view/clarification-text'));
 
 function Footer() {
   const { t } = useTranslation('footer');

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
 import LandingPage from './landing-page/landing-page';
 import Loader from '../ui/loader';
-import LandingFooter from './landing-page/footer';
+import Footer from '../ui/footer';
 
 const Campaign = lazy(() => import('./campaign/campaign'));
 const Campaigns = lazy(() => import('./campaigns/campaigns'));
@@ -56,7 +56,7 @@ function Home() {
           </Suspense>
         </Box>
       </main>
-      <LandingFooter />
+      <Footer />
     </>
   );
 }

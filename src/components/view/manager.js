@@ -14,7 +14,7 @@ import Container from '../ui/container';
 import SidebarItem from '../ui/sidebar-item';
 import CreateCampaign from './admin/create-campaign';
 import './manager.css';
-import Footer from './landing-page/footer';
+import Footer from '../ui/footer';
 import { useStore } from '../../context/global-state';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
@@ -55,12 +55,6 @@ function Manager() {
       navigate('create-campaign');
     }
   }, [navigate]);
-
-  useEffect(() => {
-    navigate(`/`, {
-      state: { redirectedFromAuth: true },
-    });
-  });
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import {
   useParams,
   Routes,
@@ -14,15 +14,15 @@ import Container from '../ui/container';
 import SidebarItem from '../ui/sidebar-item';
 import CreateCampaign from './admin/create-campaign';
 import './manager.css';
-import { MainContext } from '../../context/main-context';
 import Footer from './landing-page/footer';
+import { useStore } from '../../context/global-state';
 
 const ContractList = lazy(() => import('./admin/created-campaign-list'));
 const ContentManagement = lazy(() => import('./admin/content-management'));
 const NewContent = lazy(() => import('./admin/new-content'));
 
 function Manager() {
-  const { state: mainState } = useContext(MainContext);
+  const { state: mainState } = useStore();
   const isWalletExist = mainState.wallet;
   const params = useParams();
   const navigate = useNavigate();

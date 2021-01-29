@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useMemo } from 'react';
+import React, { lazy, Suspense, useMemo } from 'react';
 import {
   Image,
   Grid,
@@ -12,15 +12,15 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Container from '../../ui/container';
-import { MainContext } from '../../../context/main-context';
 import Loader from '../../ui/loader';
+import { useStore } from '../../../context/global-state';
 
 const CookiePolicy = lazy(() => import('../cookie-policy'));
 const ClarificationText = lazy(() => import('../clarification-text'));
 
 function Footer() {
   const { t } = useTranslation('footer');
-  const { dispatch } = useContext(MainContext);
+  const { dispatch } = useStore();
 
   const setModalOpen = type => {
     let Content = <ClarificationText />;

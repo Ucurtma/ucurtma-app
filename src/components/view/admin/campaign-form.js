@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Formik, Form, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -19,9 +19,9 @@ import NumberInput from '../../ui/numeric-input';
 import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
-import { MainContext } from '../../../context/main-context';
 import { markdownPlaceholder } from './markdown-placeholder';
 import MdEditor from '../../ui/md-editor';
+import { useStore } from '../../../context/global-state';
 
 const deployContractSchema = (t, campaignExist) => {
   const { web3 } = window;
@@ -72,7 +72,7 @@ function CampaignForm({
   isEdit,
 }) {
   const [campaignExist, setCampaignExist] = React.useState(false);
-  const { state: mainState } = useContext(MainContext);
+  const { state: mainState } = useStore();
   const [showOwnerWallet, setShowOwnerWallet] = React.useState(true);
   const { t } = useTranslation('createCampaign');
   const getCampaign = useImperativeQuery(GET_CAMPAIGN_EXISTENCE);

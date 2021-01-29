@@ -1,9 +1,9 @@
-import React, { useContext, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Link, ModalBody, Box } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'react-i18next';
 import Checkbox from './checkbox';
-import { MainContext } from '../../context/main-context';
 import Loader from './loader';
+import { useStore } from '../../context/global-state';
 
 const ClarificationText = lazy(() => import('../view/clarification-text'));
 const DirectConsent = lazy(() => import('../view/direct-consent'));
@@ -11,7 +11,7 @@ const UserAgreement = lazy(() => import('../view/user-agreement'));
 
 function Agreements({ kvkkName, agreementName }) {
   const { t } = useTranslation('agreements');
-  const { dispatch } = useContext(MainContext);
+  const { dispatch } = useStore();
 
   const setModalOpen = type => {
     let Content = <ClarificationText />;

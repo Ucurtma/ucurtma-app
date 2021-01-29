@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Flex,
@@ -15,13 +15,13 @@ import Web3 from 'web3'; // todo: move web3 to another component because we shou
 import { useTranslation, Trans } from 'react-i18next';
 import Container from './container';
 import MenuItems from './menu-items';
-import { MainContext } from '../../context/main-context';
 import { SupportButton } from './landing-page-header';
 import SelectLanguage from './select-language';
+import { useStore } from '../../context/global-state';
 
 function Header({ menuItems, isManager = false }) {
   const [walletLoading, setWalletLoading] = useState(false);
-  const { state: walletState, dispatch } = useContext(MainContext);
+  const { state: walletState, dispatch } = useStore();
   const toast = useToast();
   const { t } = useTranslation(['header', 'global']);
 

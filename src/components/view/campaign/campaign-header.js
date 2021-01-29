@@ -9,8 +9,9 @@ import {
   Button,
   Icon,
   Link,
+  Skeleton,
+  SkeletonCircle,
 } from '@chakra-ui/react';
-import Skeleton from 'react-loading-skeleton';
 import { useTranslation, Trans } from 'react-i18next';
 import { Award } from 'react-feather';
 import CampaignContentBox from '../../ui/campaign-content-box';
@@ -30,7 +31,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
       >
         <Flex mx={{ base: 4, lg: 0 }} alignItems="flex-end" flexShrink="0">
           {loading ? (
-            <Skeleton width={72} height={72} circle />
+            <SkeletonCircle width="72px" height="72px" />
           ) : (
             <Avatar
               size="lg"
@@ -41,7 +42,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
           <Box ml={4}>
             <Heading size="sm" color="gray.600">
               {loading ? (
-                <Skeleton width={200} />
+                <Skeleton width="200px" />
               ) : (
                 data.campaign?.student?.name
               )}
@@ -121,7 +122,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
       >
         {loading ? (
           <Box flex={1}>
-            <Skeleton height={72} />
+            <Skeleton height="72px" />
           </Box>
         ) : (
           <>

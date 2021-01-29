@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
-import './i18n';
+import './intl/i18n';
 import App from './App';
 import customTheme from './theme';
 import * as serviceWorker from './serviceWorker';

@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "^3.3.7",
-    "@chakra-ui/react": "^1.1.6",
+    "@chakra-ui/react": "^1.2.1",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "copy-to-clipboard": "^3.3.1",

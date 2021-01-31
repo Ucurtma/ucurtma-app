@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'react-feather';
 import ReactGA from 'react-ga';
 import BankTransferFlow from './bank-transfer-flow';
-import Loader from '../../ui/loader';
+import Loader from '../loader';
 
 const EthereumFlow = React.lazy(() => import('./ethereum-flow'));
 

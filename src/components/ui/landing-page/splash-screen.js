@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Heading, Text, Button, Stack } from '@chakra-ui/react';
 import { ReactComponent as LeftKite } from '../../assets/left-kite.svg';
 import { ReactComponent as RightKite } from '../../assets/right-kite.svg';
-import Container from '../../ui/container';
+import Container from '../container';
 
 function SplashScreen() {
   const { t } = useTranslation(['splashScreen', 'titles']);

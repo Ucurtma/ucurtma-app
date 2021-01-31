@@ -1,8 +1,8 @@
 import React from 'react';
 import { Heading, Grid, Text, Box, Divider, Image } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import Container from '../../ui/container';
-import Card from '../../ui/card';
+import Container from '../container';
+import Card from '../card';
 
 function HowItWorks() {
   const { t } = useTranslation(['howItWorks', 'titles']);

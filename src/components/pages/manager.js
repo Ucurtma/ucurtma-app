@@ -12,14 +12,14 @@ import { Box, Flex } from '@chakra-ui/react';
 import Header from '../ui/header';
 import Container from '../ui/container';
 import SidebarItem from '../ui/sidebar-item';
-import CreateCampaign from './admin/create-campaign';
+import CreateCampaign from './manager/create-campaign';
 import './manager.css';
 import Footer from '../ui/footer';
 import { useStore } from '../../context/global-state';
 
-const ContractList = lazy(() => import('./admin/created-campaign-list'));
-const ContentManagement = lazy(() => import('./admin/content-management'));
-const NewContent = lazy(() => import('./admin/new-content'));
+const ContractList = lazy(() => import('./manager/created-campaign-list'));
+const ContentManagement = lazy(() => import('./manager/content-management'));
+const NewContent = lazy(() => import('./manager/new-content'));
 
 function Manager() {
   const { state: mainState } = useStore();

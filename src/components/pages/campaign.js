@@ -4,15 +4,15 @@ import ReactGA from 'react-ga';
 import { Box, Flex, Divider, SkeletonText } from '@chakra-ui/react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import Container from '../../ui/container';
-import Loader from '../../ui/loader';
-import CampaignHeader from './campaign-header';
-import CampaignFooter from './campaign-footer';
-import CampaignContent from './campaign-content';
-import { GET_CAMPAIGN } from '../../../graphql/queries';
+import Container from '../ui/container';
+import Loader from '../ui/loader';
+import CampaignHeader from '../ui/campaign/campaign-header';
+import CampaignFooter from '../ui/campaign/campaign-footer';
+import CampaignContent from '../ui/campaign/campaign-content';
+import { GET_CAMPAIGN } from '../../graphql/queries';
 
-const Donate = lazy(() => import('./donate'));
-const CampaignError = lazy(() => import('./campaign-error'));
+const Donate = lazy(() => import('../ui/campaign/donate'));
+const CampaignError = lazy(() => import('../ui/campaign/campaign-error'));
 
 function Campaign() {
   const location = useLocation();

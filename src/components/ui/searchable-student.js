@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
 import { Search } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import { searchStudent } from '../../utils/utils';
-import CampaignError from '../view/campaign/campaign-error';
+import CampaignError from './campaign/campaign-error';
 // import Input from './input';
 
 function SearchableStudent({ data, loading, error, onSelect }) {

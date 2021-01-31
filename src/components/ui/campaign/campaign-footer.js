@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState } from 'react';
 import { Flex, Button, Collapse, Box } from '@chakra-ui/react';
 import { Facebook, Twitter, Linkedin } from 'react-feather';
 import { useTranslation } from 'react-i18next';
-import Loader from '../../ui/loader';
+import Loader from '../loader';
 
 const ReportCampaignForm = lazy(() => import('./report-campaign-form'));
 

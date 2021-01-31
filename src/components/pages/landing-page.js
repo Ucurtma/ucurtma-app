@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import SplashScreen from './splash-screen';
-import ProblemSolution from './problem-and-solution';
-import HowItWorks from './how-it-works';
-import FeaturedCampaign from '../../ui/featured-campaign';
-import Faq from './faq';
-import DonatePage from './donate-page';
-import LandingPageHeader from '../../ui/landing-page-header';
-import SponsorList from './sponsor-list';
+import SplashScreen from '../ui/landing-page/splash-screen';
+import ProblemSolution from '../ui/landing-page/problem-and-solution';
+import HowItWorks from '../ui/landing-page/how-it-works';
+import FeaturedCampaign from '../ui/featured-campaign';
+import Faq from '../ui/landing-page/faq';
+import DonatePage from '../ui/landing-page/donate-page';
+import LandingPageHeader from '../ui/landing-page-header';
+import SponsorList from '../ui/landing-page/sponsor-list';
 
 function LandingPage() {
   const location = useLocation();

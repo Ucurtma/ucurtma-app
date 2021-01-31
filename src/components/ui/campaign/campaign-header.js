@@ -14,8 +14,8 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'react-i18next';
 import { Award } from 'react-feather';
-import CampaignContentBox from '../../ui/campaign-content-box';
-import CampaignSupportInfo from '../../ui/campaign-support-info';
+import CampaignContentBox from '../campaign-content-box';
+import CampaignSupportInfo from '../campaign-support-info';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
   const { t } = useTranslation('campaignHeader');

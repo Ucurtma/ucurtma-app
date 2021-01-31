@@ -9,9 +9,9 @@ import ScrollToTop from './components/ui/scroll-to-top';
 import { StoreProvider } from './context/global-state';
 import SharedElements from './components/shared-elements';
 
-const Home = lazy(() => import('./components/view/home'));
-const Redirecting = lazy(() => import('./components/view/redirecting'));
-const Manager = lazy(() => import('./components/view/manager'));
+const Home = lazy(() => import('./components/pages/home'));
+const Redirecting = lazy(() => import('./components/pages/redirecting'));
+const Manager = lazy(() => import('./components/pages/manager'));
 
 if (isProduction) {
   LogRocket.init('uptekx/ucurtma-app');

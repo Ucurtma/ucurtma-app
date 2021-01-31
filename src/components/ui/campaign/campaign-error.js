@@ -7,7 +7,7 @@ import {
   AlertDescription,
 } from '@chakra-ui/react';
 import { AlertCircle } from 'react-feather';
-import Container from '../../ui/container';
+import Container from '../container';
 
 function CampaignError({ message }) {
   return (

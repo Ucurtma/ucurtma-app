@@ -14,7 +14,7 @@ import { useQuery } from '@apollo/client';
 import { Search, Edit } from 'react-feather';
 import { Link } from 'react-router-dom';
 import Card from '../../ui/card';
-import CampaignList from '../campaigns/campaign-list';
+import CampaignList from '../../ui/campaigns/campaign-list';
 import { GET_CAMPAIGNS_WITH_LOWER_DETAIL } from '../../../graphql/queries';
 import { searchStudent } from '../../../utils/utils';
 
@@ -50,7 +50,7 @@ function ContractList() {
           borderRadius="full"
           placeholder={t('search')}
           onChange={e => {
-            const filteredCampaigns = data.campaigns.campaigns.filter(
+            const filteredCampaigns = data?.campaigns?.campaigns.filter(
               campaign => {
                 const checkForCampaignId = searchStudent(
                   campaign.campaignId,

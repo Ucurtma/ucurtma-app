@@ -3,9 +3,9 @@ import { Box, Text, Link, Grid } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import Documents from './documents';
 import Goals from './goals';
-import Loader from '../../ui/loader';
-import CampaignContentBox from '../../ui/campaign-content-box';
-import MarkdownRenderer from '../../ui/markdown-renderer';
+import Loader from '../loader';
+import CampaignContentBox from '../campaign-content-box';
+import MarkdownRenderer from '../markdown-renderer';
 
 const CampaignTarget = lazy(() => import('./campaign-target'));
 const Timeline = lazy(() => import('../../ui/timeline'));

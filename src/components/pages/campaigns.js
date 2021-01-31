@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet';
 import { useLazyQuery } from '@apollo/client';
 import { useTranslation, Trans } from 'react-i18next';
 import { Button, Stack, Flex } from '@chakra-ui/react';
-import Container from '../../ui/container';
-import { GET_CAMPAIGNS } from '../../../graphql/queries';
-import CampaignError from '../campaign/campaign-error';
-import Pagination from '../../ui/pagination';
-import CampaignCardList from './campaign-card-list';
+import Container from '../ui/container';
+import { GET_CAMPAIGNS } from '../../graphql/queries';
+import CampaignError from '../ui/campaign/campaign-error';
+import Pagination from '../ui/pagination';
+import CampaignCardList from '../ui/campaigns/campaign-card-list';
 
 const SHOWED_CAMPAIGN_COUNT = 4;
 

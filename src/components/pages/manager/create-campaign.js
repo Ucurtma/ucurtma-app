@@ -28,7 +28,7 @@ import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN } from '../../../graphql/queries';
 import Loader from '../../ui/loader';
 import { CREATE_CAMPAIGN, UPDATE_CAMPAIGN } from '../../../graphql/mutations';
-import CampaignForm from './campaign-form';
+import CampaignForm from '../../ui/manager/campaign-form';
 
 function CreateCampaign({ walletState, isEdit }) {
   const params = useParams();

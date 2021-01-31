@@ -15,8 +15,10 @@ import Container from './container';
 import Loader from './loader';
 import { useStore } from '../../context/global-state';
 
-const CookiePolicy = lazy(() => import('../view/cookie-policy'));
-const ClarificationText = lazy(() => import('../view/clarification-text'));
+const CookiePolicy = lazy(() => import('../pages/legal/cookie-policy'));
+const ClarificationText = lazy(() =>
+  import('../pages/legal/clarification-text')
+);
 
 function Footer() {
   const { t } = useTranslation('footer');

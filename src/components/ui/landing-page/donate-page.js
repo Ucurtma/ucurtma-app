@@ -1,9 +1,9 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Container from '../../ui/container';
-import DonateProgress from '../../ui/donate-progress';
-import LandingPaymentFlow from '../../ui/landing-payment-flow';
+import Container from '../container';
+import DonateProgress from '../donate-progress';
+import LandingPaymentFlow from '../landing-payment-flow';
 
 function DonatePage() {
   const { t } = useTranslation('donate-section');

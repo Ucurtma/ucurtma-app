@@ -3,12 +3,12 @@ import { Box } from '@chakra-ui/react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import Header from '../ui/header';
-import LandingPage from './landing-page/landing-page';
+import LandingPage from './landing-page';
 import Loader from '../ui/loader';
 import Footer from '../ui/footer';
 
-const Campaign = lazy(() => import('./campaign/campaign'));
-const Campaigns = lazy(() => import('./campaigns/campaigns'));
+const Campaign = lazy(() => import('./campaign'));
+const Campaigns = lazy(() => import('./campaigns'));
 
 function Home() {
   const location = useLocation();

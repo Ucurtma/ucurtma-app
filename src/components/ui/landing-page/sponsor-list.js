@@ -11,7 +11,7 @@ import {
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GET_CORPORATE_SPONSORS } from '../../../graphql/queries';
-import Container from '../../ui/container';
+import Container from '../container';
 
 function SponsorList() {
   const { t } = useTranslation('sponsors-section');

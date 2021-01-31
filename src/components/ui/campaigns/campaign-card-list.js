@@ -12,8 +12,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import CampaignError from '../campaign/campaign-error';
-import Card from '../../ui/card';
-import CardTargetInfo from '../../ui/card-target-info';
+import Card from '../card';
+import CardTargetInfo from '../card-target-info';
 
 function CampaignCardList({ loading, data, error }) {
   const { t } = useTranslation('featuredCampaign');

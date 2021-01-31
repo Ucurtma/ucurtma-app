@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Flex, Heading, Text, Grid, Image, Icon } from '@chakra-ui/react';
 import MobileMockupTR from '../../assets/mobile-mockup-tr.svg';
 import MobileMockupEN from '../../assets/mobile-mockup-en.svg';
-import Container from '../../ui/container';
+import Container from '../container';
 
 function ProblemSolution() {
   const { t, i18n } = useTranslation('problemAndSolution');

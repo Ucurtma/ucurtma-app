@@ -4,8 +4,8 @@ import Reaptcha from 'reaptcha';
 import { gql, useMutation } from '@apollo/client';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Input from '../../ui/input';
-import Textarea from '../../ui/text-area';
+import Input from '../input';
+import Textarea from '../text-area';
 import config from '../../../config';
 
 const reportCampaignSchema = Yup.object().shape({

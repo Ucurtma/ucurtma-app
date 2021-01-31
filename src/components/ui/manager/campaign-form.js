@@ -14,13 +14,13 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { PlusCircle, Trash2, ChevronDown, ChevronUp } from 'react-feather';
-import Input from '../../ui/input';
-import NumberInput from '../../ui/numeric-input';
+import Input from '../input';
+import NumberInput from '../numeric-input';
 import config from '../../../config';
 import useImperativeQuery from '../../../utils/use-imperative-query';
 import { GET_CAMPAIGN_EXISTENCE } from '../../../graphql/queries';
 import { markdownPlaceholder } from './markdown-placeholder';
-import MdEditor from '../../ui/md-editor';
+import MdEditor from '../md-editor';
 import { useStore } from '../../../context/global-state';
 
 const deployContractSchema = (t, campaignExist) => {

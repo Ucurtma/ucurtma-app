@@ -5,9 +5,11 @@ import Checkbox from './checkbox';
 import Loader from './loader';
 import { useStore } from '../../context/global-state';
 
-const ClarificationText = lazy(() => import('../view/clarification-text'));
-const DirectConsent = lazy(() => import('../view/direct-consent'));
-const UserAgreement = lazy(() => import('../view/user-agreement'));
+const ClarificationText = lazy(() =>
+  import('../pages/legal/clarification-text')
+);
+const DirectConsent = lazy(() => import('../pages/legal/direct-consent'));
+const UserAgreement = lazy(() => import('../pages/legal/user-agreement'));
 
 function Agreements({ kvkkName, agreementName }) {
   const { t } = useTranslation('agreements');

@@ -9,8 +9,8 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import Container from '../../ui/container';
-import QuestionList from '../../ui/questions-list';
+import Container from '../container';
+import QuestionList from '../questions-list';
 import FAQ from './faq.json';
 
 const { studentQuestions, donatorQuestions } = FAQ;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, AlertIcon, AlertDescription } from '@chakra-ui/react';
-import EthereumDetailViewer from '../../ui/ethereum-detail-viewer';
+import EthereumDetailViewer from '../ethereum-detail-viewer';
 
 function EthereumFlow({ ethereumAddress }) {
   const { t } = useTranslation('ethereumFlow');

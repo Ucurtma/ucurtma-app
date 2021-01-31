@@ -11,6 +11,17 @@ const breakpoints = createBreakpoints({
 });
 
 const customTheme = extendTheme({
+  styles: {
+    global: () => ({
+      body: {
+        backgroundColor: 'white',
+        fontWeight: 400,
+      },
+      'html, body': {
+        height: '100%',
+      },
+    }),
+  },
   breakpoints,
   components: {
     Button: {

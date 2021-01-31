@@ -16,7 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import { Link } from 'react-router-dom';
 import Card from './card';
-import CampaignError from '../view/campaign/campaign-error';
+import CampaignError from './campaign/campaign-error';
 import CardTargetInfo from './card-target-info';
 import { GET_RANDOM_CAMPAIGNS } from '../../graphql/queries';
 import Container from './container';

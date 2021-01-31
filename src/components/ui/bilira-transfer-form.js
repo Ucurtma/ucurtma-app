@@ -6,7 +6,7 @@ import { CheckCircle } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { COLLECT_DONATION } from '../../graphql/mutations';
-import SelectBank from '../view/campaign/select-bank';
+import SelectBank from './campaign/select-bank';
 import Agreements from './agreements';
 import Input from './input';
 import NumberInput from './numeric-input';

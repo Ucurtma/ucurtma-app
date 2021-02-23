@@ -394,7 +394,8 @@
       "bilira": "BiLira Wallet",
       "ethereum": "Ethereum Wallet",
       "bitcoin": "Bitcoin",
-      "bank": "Bank Transfer"
+      "bank": "Bank Transfer",
+      "fonzip": "Credit Card"
     }
   },
   "sponsors-section": {
@@ -407,5 +408,18 @@
     },
     "sponsorDesc": "Become one of our sponsors to make world more colorful place",
     "beSponsor": "Become a Sponsor"
+  },
+  "donate-with-fonzip": {
+    "amount": "Support Amount",
+    "recurring": "Destek tekrar etsin mi?",
+    "cardholder_name": "Supporter Name",
+    "email": "Email Address",
+    "submit": "Support",
+    "success": {
+      "title": "Your support is sent successfully!"
+    },
+    "error": {
+      "title": "Desteğiniz gönderilirken bir sorun oluştu."
+    }
   }
 }

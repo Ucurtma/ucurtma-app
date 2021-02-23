@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import LandingBiLiraFlow from './landing-bilira-flow';
 import PaymentMethodViewer from './payment-method-viewer';
 import PaymentMethods from './payment-methods';
+import DonateWithFonzip from './landing-page/donate-with-fonzip';
 
 function LandingPayment() {
   const location = useLocation();
@@ -26,7 +27,7 @@ function LandingPayment() {
       </Box>
       {selectedMethod && (
         <Box
-          mt={6}
+          mt={2}
           px={5}
           py={6}
           boxShadow="0px 0px 13px rgba(196, 196, 196, 0.45)"
@@ -62,6 +63,7 @@ function LandingPayment() {
             />
           )}
           {selectedMethod.slug === 'para-transferi' && <LandingBiLiraFlow />}
+          {selectedMethod.slug === 'fonzip' && <DonateWithFonzip />}
         </Box>
       )}
     </>

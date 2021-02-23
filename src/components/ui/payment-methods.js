@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as BiLira } from '../assets/coins/bilira.svg';
@@ -9,6 +9,7 @@ import { ReactComponent as BiLiraWhite } from '../assets/coins/bilira-white.svg'
 import { ReactComponent as EthereumWhite } from '../assets/coins/ethereum-white.svg';
 import { ReactComponent as BitcoinWhite } from '../assets/coins/bitcoin-white.svg';
 import { ReactComponent as BankTransferWhite } from '../assets/coins/bank-transfer-white.svg';
+import { ReactComponent as CreditCardWhite } from '../assets/coins/credit-card-white.svg';
 
 function PaymentMethods({ onSelect, activeMethod }) {
   const { t } = useTranslation('donate-section');
@@ -47,19 +48,28 @@ function PaymentMethods({ onSelect, activeMethod }) {
           light: BankTransferWhite,
         },
       },
+      {
+        type: t('options.fonzip'),
+        slug: 'fonzip',
+        icon: {
+          dark: CreditCardWhite,
+          light: CreditCardWhite,
+        },
+      },
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Stack direction={{ base: 'column', lg: 'row' }} spacing={4}>
+    <Flex direction={{ base: 'column', lg: 'row' }} flexWrap="wrap">
       {methods.map(method => {
         const isActive = activeMethod?.slug === method.slug;
         return (
           <Button
             key={method.slug}
             variant="solid"
-            bg="white"
+            // bg={method.slug === 'fonzip' ? 'blue.500' : 'white'}
+            color={method.slug === 'fonzip' ? 'white' : 'black'}
             boxShadow="modern"
             py={3}
             px={5}
@@ -68,16 +78,25 @@ function PaymentMethods({ onSelect, activeMethod }) {
             justifyContent={{ base: 'flex-start', lg: 'center' }}
             isActive={isActive}
             _active={{
-              bg: 'green.400',
+              bg: method.slug === 'fonzip' ? 'blue.700' : 'green.400',
               color: 'white',
             }}
+            mb={6}
+            mr={2}
+            colorScheme={method.slug === 'fonzip' ? 'blue' : 'white'}
           >
-            <Box as={isActive ? method.icon.light : method.icon.dark} mr={4} />
+            <Box
+              as={isActive ? method.icon.light : method.icon.dark}
+              mr={4}
+              flexShrink={0}
+              w="27px"
+              color="white"
+            />
             {method.type}
           </Button>
         );
       })}
-    </Stack>
+    </Flex>
   );
 }
 

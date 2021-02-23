@@ -394,7 +394,8 @@
       "bilira": "BiLira Cüzdanı",
       "ethereum": "Ethereum Cüzdanı",
       "bitcoin": "Bitcoin",
-      "bank": "Banka Havalesi"
+      "bank": "Banka Havalesi",
+      "fonzip": "Kredi Kartı"
     }
   },
   "sponsors-section": {
@@ -407,5 +408,18 @@
     },
     "beSponsor": "Sponsor Ol",
     "sponsorDesc": "Dünyayı daha renkli bir yer haline getirebilmemiz için sen de sponsorlarımız arasına katıl."
+  },
+  "donate-with-fonzip": {
+    "amount": "Destek Miktarı",
+    "recurring": "Destek tekrar etsin mi?",
+    "cardholder_name": "Bağışçı Adı Soyadı",
+    "email": "Email Adresi",
+    "submit": "Destek Gönder",
+    "success": {
+      "title": "Desteğiniz başarıyla gönderildi!"
+    },
+    "error": {
+      "title": "Desteğiniz gönderilirken bir sorun oluştu."
+    }
   }
 }

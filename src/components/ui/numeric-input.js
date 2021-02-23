@@ -22,6 +22,7 @@ function NumberInput({
   ...props
 }) {
   const [field, meta, helpers] = useField(props);
+
   return (
     <FormControl
       width="100%"

@@ -25,10 +25,10 @@ function DonateWithFonzip() {
 
   const startFonzipProcess = values => {
     window.fz.bagis({
-      api_key: process.env.FONZIP_API_KEY,
+      api_key: 'dt7v0didpUfVQFnzV3dj+6SieDj6xbjYSqQQg65V7Fg=',
       amount: values.amount || 100,
       recurring: values.recurring,
-      campaign: process.env.FONZIP_CAMPAIGN,
+      campaign: 'IJBoPBc78HJ/PvC/IzWwiqZMoX+EJvbuATWejC2UsxU=',
       referring: false,
       cardholder_name: values.cardholder_name,
       email: values.email,

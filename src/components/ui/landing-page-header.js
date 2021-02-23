@@ -22,9 +22,6 @@ export function SupportButton({ ...otherProps }) {
       _active={{ bg: 'gray.700' }}
       onClick={() => {
         navigate('/#donate-section');
-        document
-          .querySelector('#donate-section')
-          .scrollIntoView({ behavior: 'smooth' });
       }}
       {...otherProps}
     >

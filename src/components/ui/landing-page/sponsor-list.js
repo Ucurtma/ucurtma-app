@@ -12,6 +12,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GET_CORPORATE_SPONSORS } from '../../../graphql/queries';
 import Container from '../container';
+import Loader from '../loader';
 
 function SponsorList() {
   const { t } = useTranslation('sponsors-section');
@@ -28,7 +29,11 @@ function SponsorList() {
   );
 
   if (loading) {
-    return <p>loading</p>;
+    return (
+      <Box minH="600px">
+        <Loader />
+      </Box>
+    );
   }
 
   if (error) {

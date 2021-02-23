@@ -305,7 +305,7 @@
     "noSupporterFound": "Bu kampanyaya hiç destek gelmemiş. İlk destek veren kişi olmak <redirectLink>ister misin?</redirectLink>",
     "support": "Destek Ol",
     "campaignEnded": "Bu kampanya sona ermiştir.",
-    "moneySendingBack": "Toplanılan paralar bağışçılara geri gönderilmektedir."
+    "moneySendingBack": "Toplanılan paralar destekçilere geri gönderilmektedir."
   },
   "campaignTarget": {
     "campaignTarget": "Kampanya Hedefi",
@@ -412,7 +412,7 @@
   "donate-with-fonzip": {
     "amount": "Destek Miktarı",
     "recurring": "Destek tekrar etsin mi?",
-    "cardholder_name": "Bağışçı Adı Soyadı",
+    "cardholder_name": "Destekçi Adı Soyadı",
     "email": "Email Adresi",
     "submit": "Destek Gönder",
     "success": {

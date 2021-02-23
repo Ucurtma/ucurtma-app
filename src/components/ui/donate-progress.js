@@ -38,7 +38,7 @@ function DonateProgress() {
     data?.allCampaignDetails.targetAmount;
 
   return (
-    <Box minH="418px">
+    <Box minH={{ base: '208px', lg: '418px' }}>
       {!loading && !error && (
         <Flex
           ref={observerRef}

@@ -161,7 +161,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               </span>
               {!data.campaign?.isActive && (
                 <Box as="span" fontSize="12px" mt={1}>
-                  Toplanılan paralar bağışçılara geri gönderilmektedir.
+                  Toplanılan paralar destekçilere geri gönderilmektedir.
                 </Box>
               )}
               {data.campaign?.isActive && <Icon as={Award} boxSize="28px" />}

@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import LandingBiLiraFlow from './landing-bilira-flow';
 import PaymentMethodViewer from './payment-method-viewer';
@@ -8,7 +8,8 @@ import DonateWithFonzip from './landing-page/donate-with-fonzip';
 
 function LandingPayment() {
   const location = useLocation();
-  const [selectedMethod, setSelectedMethod] = useState();
+  const [selectedMethod, setSelectedMethod] = useState({ slug: 'fonzip' });
+  const selectedMethodBox = useRef();
 
   useEffect(() => {
     if (location.state?.redirectedFromAuth) {
@@ -22,7 +23,15 @@ function LandingPayment() {
       <Box id="landing-payment">
         <PaymentMethods
           activeMethod={selectedMethod}
-          onSelect={method => setSelectedMethod(method)}
+          onSelect={method => {
+            setSelectedMethod(method);
+            if (selectedMethodBox.current) {
+              selectedMethodBox.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+            }
+          }}
         />
       </Box>
       {selectedMethod && (
@@ -31,6 +40,7 @@ function LandingPayment() {
           px={5}
           py={6}
           boxShadow="0px 0px 13px rgba(196, 196, 196, 0.45)"
+          ref={selectedMethodBox}
         >
           {selectedMethod.slug === 'bilira' && (
             <PaymentMethodViewer

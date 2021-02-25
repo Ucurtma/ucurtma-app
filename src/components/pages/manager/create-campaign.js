@@ -9,15 +9,12 @@ import {
   AlertIcon,
   AlertDescription,
   AlertTitle,
-  // Alert,
-  // AlertIcon,
-  // AlertDescription,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Card from '../../ui/card';
 import {
   getDeploymentManagerContract,
@@ -171,7 +168,7 @@ function CreateCampaign({ walletState, isEdit }) {
       }
     });
 
-    const today = moment().utc().startOf('day').unix();
+    const today = dayjs().utc().startOf('day').unix();
 
     deploymentManager.deploy(
       values.numberOfPlannedPayouts,

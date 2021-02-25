@@ -2,11 +2,17 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import 'dayjs/locale/tr';
 import './intl/i18n';
 import App from './App';
 import customTheme from './theme';
 import * as serviceWorker from './serviceWorker';
 import client from './utils/apollo';
+
+dayjs.locale('tr');
+dayjs.extend(utc);
 
 const Application = (
   <ApolloProvider client={client}>

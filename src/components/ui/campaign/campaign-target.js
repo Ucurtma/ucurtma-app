@@ -2,10 +2,12 @@ import React from 'react';
 import { Box, Heading, Progress, Flex, Text } from '@chakra-ui/react';
 import { Clock } from 'react-feather';
 import { useTranslation } from 'react-i18next';
-import moment from 'moment';
-import 'moment/locale/tr';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
-moment.locale('tr');
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
 
 function CampaignTarget({ target, current, endDate, type }) {
   const { t } = useTranslation('campaignTarget');
@@ -14,8 +16,8 @@ function CampaignTarget({ target, current, endDate, type }) {
   let end;
 
   if (endDate) {
-    now = moment(new Date());
-    end = moment.unix(endDate);
+    now = dayjs();
+    end = dayjs.unix(endDate);
   }
 
   const formula = (current * 100) / target;
@@ -83,7 +85,7 @@ function CampaignTarget({ target, current, endDate, type }) {
             <Box as={Clock} color="gray.600" />
             <Flex ml={2} color="gray.600" alignItems="center">
               <Box fontWeight={600}>
-                {moment.duration(end.diff(now)).humanize(true)}
+                {dayjs.duration(end.diff(now)).humanize(true)}
               </Box>
               <Box borderLeft="1px solid" ml={4} pl={4} borderColor="gray.200">
                 {end.format('DD.MM.YYYY')}

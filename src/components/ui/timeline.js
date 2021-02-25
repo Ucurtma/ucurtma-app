@@ -2,9 +2,8 @@ import React from 'react';
 import { Box, Image, Heading, Text, Link } from '@chakra-ui/react';
 import Masonry from 'react-masonry-css';
 import { LiteYouTubeEmbed } from 'react-lite-youtube-embed';
+import dayjs from 'dayjs';
 import './timeline.css';
-// todo: use date-fns instead of moment since our date-picker is using date-fns.
-import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import TransactionRenderer from './transaction-renderer';
 
@@ -37,7 +36,7 @@ function Timeline({ items, transactions }) {
 
   React.useEffect(() => {
     const newTransactions = transactions.map(transaction => {
-      const dateToUTC = moment(parseInt(transaction.when, 10))
+      const dateToUTC = dayjs(parseInt(transaction.when, 10))
         .utc()
         .format('DD.MM.YYYY');
 

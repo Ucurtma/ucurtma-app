@@ -4,6 +4,7 @@
   "description": "Frontend workspace for Ucurtma app",
   "main": "index.js",
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -20,13 +21,13 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "copy-to-clipboard": "^3.3.1",
+    "dayjs": "^1.10.4",
     "formik": "^2.2.6",
     "framer-motion": "^3.7.0",
     "graphql": "^15.4.0",
     "history": "^5.0.0",
     "i18next": "^19.9.0",
     "logrocket": "^1.0.14",
-    "moment": "^2.29.1",
     "query-string": "^6.14.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -59,7 +60,8 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.10.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "source-map-explorer": "^2.5.2"
   },
   "browserslist": {
     "production": [

@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import LogRocket from 'logrocket';
+import { Box } from '@chakra-ui/react';
 import { gaTrackingId, isProduction } from './config';
-import Loader from './components/ui/loader';
 import ScrollToTop from './components/ui/scroll-to-top';
 import { StoreProvider } from './context/global-state';
 import SharedElements from './components/shared-elements';
+import Loader from './components/ui/loader';
 
 const Home = lazy(() => import('./components/pages/home'));
 const Redirecting = lazy(() => import('./components/pages/redirecting'));
@@ -36,7 +37,19 @@ function App() {
     <StoreProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <Suspense fallback={<Loader isFull />}>
+        <Suspense
+          fallback={
+            <Box
+              w="full"
+              minH="100vh"
+              d="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Loader />
+            </Box>
+          }
+        >
           <Routes>
             <Route path="auth/*" element={<Redirecting />} />
             <Route path="manager/*" element={<Manager />} />

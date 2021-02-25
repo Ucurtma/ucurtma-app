@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
+import { parse } from 'query-string';
 import { Helmet } from 'react-helmet';
 import SplashScreen from '../ui/landing-page/splash-screen';
 import ProblemSolution from '../ui/landing-page/problem-and-solution';
@@ -21,7 +22,9 @@ function LandingPage() {
         .scrollIntoView({ behavior: 'smooth' });
     }
 
-    if (location.hash === '#donate-section') {
+    const URLQueries = parse(location.search);
+
+    if (location.hash === '#donate-section' || URLQueries.ref) {
       document.querySelector('#donate-section').scrollIntoView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

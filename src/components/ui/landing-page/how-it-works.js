@@ -63,7 +63,14 @@ function HowItWorks() {
             bg="gray.900"
             border="0"
           >
-            <Image src={card.icon} maxW={32} mb={8} />
+            <Image
+              src={card.icon}
+              maxW={32}
+              mb={8}
+              loading="lazy"
+              htmlWidth="128"
+              htmlHeight="128"
+            />
             <Heading fontSize="1.5rem" fontWeight={600}>
               {card.title}
             </Heading>

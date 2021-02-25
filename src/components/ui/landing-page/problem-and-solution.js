@@ -58,6 +58,9 @@ function ProblemSolution() {
             style={{
               filter: 'drop-shadow(0 0 0.75rem rgba(0,0, 0, 0.08))',
             }}
+            htmlHeight="709"
+            htmlWidth="100%"
+            loading="lazy"
           />
         </Flex>
       </Grid>

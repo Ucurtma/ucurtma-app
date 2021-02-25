@@ -4,9 +4,7 @@ import { Box, Spinner } from '@chakra-ui/react';
 function Loader({ isFull, ...otherProps }) {
   const fullProps = {
     height: 'full',
-    display: 'grid',
-    justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
   };
   return (
     <Box

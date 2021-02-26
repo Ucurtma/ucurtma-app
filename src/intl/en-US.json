@@ -412,7 +412,7 @@
   },
   "donate-with-fonzip": {
     "amount": "Support Amount",
-    "recurring": "Destek tekrar etsin mi?",
+    "recurring": "I want to make recurring support.",
     "cardholder_name": "Supporter Name",
     "email": "Email Address",
     "submit": "Support",

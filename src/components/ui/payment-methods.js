@@ -17,14 +17,6 @@ function PaymentMethods({ onSelect, activeMethod }) {
   const methods = useMemo(() => {
     return [
       {
-        type: t('options.fonzip'),
-        slug: 'fonzip',
-        icon: {
-          dark: CreditCardWhite,
-          light: CreditCardWhite,
-        },
-      },
-      {
         type: t('options.bilira'),
         slug: 'bilira',
         icon: {
@@ -54,6 +46,14 @@ function PaymentMethods({ onSelect, activeMethod }) {
         icon: {
           dark: BankTransfer,
           light: BankTransferWhite,
+        },
+      },
+      {
+        type: t('options.fonzip'),
+        slug: 'fonzip',
+        icon: {
+          dark: CreditCardWhite,
+          light: CreditCardWhite,
         },
       },
     ];

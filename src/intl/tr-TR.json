@@ -122,7 +122,8 @@
     "Join to Community": "Topluluğa Katıl",
     "Change Language": "Change Language",
     "ClarificationText": "Aydınlatma Metni",
-    "CookiePolicy": "Çerez Politikası"
+    "CookiePolicy": "Çerez Politikası",
+    "Contact": "İletişim"
   },
   "manager": {
     "ContractActions": "Kontrat İşlemleri",
@@ -411,7 +412,7 @@
   },
   "donate-with-fonzip": {
     "amount": "Destek Miktarı",
-    "recurring": "Destek tekrar etsin mi?",
+    "recurring": "Her ay destek olmak istiyorum.",
     "cardholder_name": "Destekçi Adı Soyadı",
     "email": "Email Adresi",
     "submit": "Destek Gönder",

@@ -1,4 +1,4 @@
-import { Box, Button, useToast } from '@chakra-ui/react';
+import { Box, Button, Link, Text, useToast } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -109,7 +109,24 @@ function DonateWithFonzip() {
               type="number"
               addon={{ left: 'TL' }}
             />
-            <Checkbox name="recurring">{t('recurring')}</Checkbox>
+            <Box mt={2} mb={4}>
+              <Checkbox name="recurring" controlProps={{ mb: 2 }}>
+                {t('recurring')}
+              </Checkbox>
+              <Text fontSize="xs" color="gray.500">
+                Eğer bu seçeneği işaretlerseniz, desteğiniz kredi kartınızdan
+                her ay düzenli olarak çekilecektir. Tekrar eden ödemeyi iptal
+                etmek için{' '}
+                <Link
+                  color="blue.500"
+                  isExternal
+                  href="mailto:iletisim@ucurtmaprojesi.com"
+                >
+                  iletisim@ucurtmaprojesi.com
+                </Link>{' '}
+                adresinden bizimle iletişime geçebilirsiniz.
+              </Text>
+            </Box>
             <Button
               type="submit"
               isDisabled={!isValid || !dirty}

@@ -112,13 +112,23 @@ function Footer() {
                     {t('CookiePolicy')}
                   </Button>
                 </ListItem>
-                <ListItem>
+                <ListItem mr={{ base: 0, lg: 8 }}>
                   <Button
                     variant="link"
                     onClick={() => setModalOpen('clarification')}
                     size="sm"
                   >
                     {t('ClarificationText')}
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button
+                    as="a"
+                    href="mailto:iletisim@ucurtmaprojesi.com"
+                    variant="link"
+                    size="sm"
+                  >
+                    {t('Contact')}
                   </Button>
                 </ListItem>
               </List>
@@ -137,7 +147,14 @@ function Footer() {
                       p={2}
                       borderRadius="11px"
                     >
-                      <Image src={link.icon} w="24px" alt={link.label} />
+                      <Image
+                        src={link.icon}
+                        w="24px"
+                        htmlWidth="24"
+                        htmlHeight="24"
+                        loading="lazy"
+                        alt={link.label}
+                      />
                     </Link>
                   </ListItem>
                 ))}

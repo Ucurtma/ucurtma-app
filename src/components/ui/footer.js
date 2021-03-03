@@ -19,6 +19,7 @@ const CookiePolicy = lazy(() => import('../pages/legal/cookie-policy'));
 const ClarificationText = lazy(() =>
   import('../pages/legal/clarification-text')
 );
+const ExplicitConsent = lazy(() => import('../pages/legal/explicit-consent'));
 
 function Footer() {
   const { t } = useTranslation('footer');
@@ -27,12 +28,13 @@ function Footer() {
   const setModalOpen = type => {
     let Content = <ClarificationText />;
     if (type === 'cookiePolicy') Content = <CookiePolicy />;
+    if (type === 'explicit') Content = <ExplicitConsent />;
 
     dispatch({
       type: 'SET_MODAL',
       payload: {
         isOpen: true,
-        otherProps: { size: '2xl' },
+        otherProps: { size: '4xl' },
         content: (
           <>
             <Suspense fallback={<Loader />}>
@@ -119,6 +121,15 @@ function Footer() {
                     size="sm"
                   >
                     {t('ClarificationText')}
+                  </Button>
+                </ListItem>
+                <ListItem mr={{ base: 0, lg: 8 }}>
+                  <Button
+                    variant="link"
+                    onClick={() => setModalOpen('explicit')}
+                    size="sm"
+                  >
+                    {t('ExplicitConsent')}
                   </Button>
                 </ListItem>
                 <ListItem>

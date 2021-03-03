@@ -110,7 +110,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
             justifyContent={{ base: 'flex-start', lg: 'center' }}
             mb={6}
             mr={2}
-            colorScheme="blue"
+            colorScheme="orange"
             isExternal
             href="https://fonzip.com/lunadao/ucurtma"
             _hover={{

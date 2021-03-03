@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex, Link } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as BiLira } from '../assets/coins/bilira.svg';
@@ -64,26 +64,58 @@ function PaymentMethods({ onSelect, activeMethod }) {
     <Flex direction={{ base: 'column', lg: 'row' }} flexWrap="wrap">
       {methods.map(method => {
         const isActive = activeMethod?.slug === method.slug;
+        if (method.slug !== 'fonzip') {
+          return (
+            <Button
+              key={method.slug}
+              variant="solid"
+              color={method.slug === 'fonzip' ? 'white' : 'black'}
+              boxShadow="modern"
+              py={3}
+              px={5}
+              h="unset"
+              onClick={() => onSelect(method)}
+              justifyContent={{ base: 'flex-start', lg: 'center' }}
+              isActive={isActive}
+              _active={{
+                bg: method.slug === 'fonzip' ? 'blue.700' : 'green.400',
+                color: 'white',
+              }}
+              mb={6}
+              mr={2}
+              colorScheme={method.slug === 'fonzip' ? 'blue' : 'white'}
+            >
+              <Box
+                as={isActive ? method.icon.light : method.icon.dark}
+                mr={4}
+                flexShrink={0}
+                w="27px"
+                color="white"
+              />
+              {method.type}
+            </Button>
+          );
+        }
+
         return (
           <Button
+            as={Link}
             key={method.slug}
             variant="solid"
-            // bg={method.slug === 'fonzip' ? 'blue.500' : 'white'}
             color={method.slug === 'fonzip' ? 'white' : 'black'}
             boxShadow="modern"
             py={3}
             px={5}
             h="unset"
-            onClick={() => onSelect(method)}
             justifyContent={{ base: 'flex-start', lg: 'center' }}
-            isActive={isActive}
-            _active={{
-              bg: method.slug === 'fonzip' ? 'blue.700' : 'green.400',
-              color: 'white',
-            }}
             mb={6}
             mr={2}
-            colorScheme={method.slug === 'fonzip' ? 'blue' : 'white'}
+            colorScheme="blue"
+            isExternal
+            href="https://fonzip.com/lunadao/ucurtma"
+            _hover={{
+              textDecor: 'none',
+            }}
           >
             <Box
               as={isActive ? method.icon.light : method.icon.dark}

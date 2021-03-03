@@ -4,11 +4,10 @@ import { useLocation } from 'react-router-dom';
 import LandingBiLiraFlow from './landing-bilira-flow';
 import PaymentMethodViewer from './payment-method-viewer';
 import PaymentMethods from './payment-methods';
-import DonateWithFonzip from './landing-page/donate-with-fonzip';
 
 function LandingPayment() {
   const location = useLocation();
-  const [selectedMethod, setSelectedMethod] = useState({ slug: 'fonzip' });
+  const [selectedMethod, setSelectedMethod] = useState();
   const selectedMethodBox = useRef();
 
   useEffect(() => {
@@ -73,7 +72,6 @@ function LandingPayment() {
             />
           )}
           {selectedMethod.slug === 'para-transferi' && <LandingBiLiraFlow />}
-          {selectedMethod.slug === 'fonzip' && <DonateWithFonzip />}
         </Box>
       )}
     </>

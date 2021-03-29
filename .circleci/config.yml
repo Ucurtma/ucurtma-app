@@ -18,6 +18,7 @@ references:
       name: Export the application bundle
       command: |
         echo "window.app_env = '$APP_ENV';" > ./public/configuration.js
+        echo "Disallow: /" >> ./public/robots.txt
         yarn build
   build_static_bundle_production: &build_static_bundle_production
     run:

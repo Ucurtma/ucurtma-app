@@ -13,18 +13,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'react-feather';
 import ReactGA from 'react-ga';
-import BankTransferFlow from './bank-transfer-flow';
 import Loader from '../loader';
 
 const EthereumFlow = React.lazy(() => import('./ethereum-flow'));
 
 const menuItems = ['ethereum-wallet'];
 
-function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
+function Donate({ ethereumAddress, redirectError, onBack }) {
   const { t } = useTranslation('donate');
   const [donateFlow, setDonateFlow] = React.useState(menuItems[0]);
   const [errorExist, setErrorExist] = React.useState(false);
-  const [isDonateSuccess, setIsDonateSuccess] = React.useState(false);
 
   React.useEffect(() => {
     if (redirectError) {
@@ -55,43 +53,41 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
         )}
       </Box>
       <Box w="full" height="full" boxShadow="cardLight" padding={4}>
-        {!isDonateSuccess && (
-          <Box mb={4}>
-            <Text fontWeight={600} mb={4}>
-              Ödeme yöntemi seçiniz
-            </Text>
-            <HStack spacing={4} mb={{ base: 4, md: 0 }}>
-              {menuItems.map(menuItem => (
-                <Button
-                  key={menuItem}
-                  isActive={donateFlow === menuItem}
-                  bg="gray.300"
-                  color="gray.700"
-                  _active={{
-                    fontWeight: 600,
-                    bg: 'gray.700',
-                    color: 'gray.100',
-                  }}
-                  fontWeight={400}
-                  _focus={{ outline: 'none' }}
-                  onClick={() => {
-                    setDonateFlow(menuItem);
-                    ReactGA.event({
-                      category: 'Donate',
-                      action:
-                        menuItem === 'bank-transfer'
-                          ? 'Selected Bank Transfer'
-                          : 'Selected Ethereum Wallet',
-                      label: 'Selecting Payment Method',
-                    });
-                  }}
-                >
-                  {t(`options.${menuItem}`)}
-                </Button>
-              ))}
-            </HStack>
-          </Box>
-        )}
+        <Box mb={4}>
+          <Text fontWeight={600} mb={4}>
+            Ödeme yöntemi seçiniz
+          </Text>
+          <HStack spacing={4} mb={{ base: 4, md: 0 }}>
+            {menuItems.map(menuItem => (
+              <Button
+                key={menuItem}
+                isActive={donateFlow === menuItem}
+                bg="gray.300"
+                color="gray.700"
+                _active={{
+                  fontWeight: 600,
+                  bg: 'gray.700',
+                  color: 'gray.100',
+                }}
+                fontWeight={400}
+                _focus={{ outline: 'none' }}
+                onClick={() => {
+                  setDonateFlow(menuItem);
+                  ReactGA.event({
+                    category: 'Donate',
+                    action:
+                      menuItem === 'bank-transfer'
+                        ? 'Selected Bank Transfer'
+                        : 'Selected Ethereum Wallet',
+                    label: 'Selecting Payment Method',
+                  });
+                }}
+              >
+                {t(`options.${menuItem}`)}
+              </Button>
+            ))}
+          </HStack>
+        </Box>
         {errorExist && (
           <Alert status="error">
             <AlertIcon />
@@ -105,12 +101,6 @@ function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
           </Alert>
         )}
         <Suspense fallback={<Loader />}>
-          {donateFlow === 'bank-transfer' && (
-            <BankTransferFlow
-              minimumAmount={minimumAmount}
-              onSuccessDonate={() => setIsDonateSuccess(true)}
-            />
-          )}
           {donateFlow === 'ethereum-wallet' && (
             <EthereumFlow ethereumAddress={ethereumAddress} />
           )}

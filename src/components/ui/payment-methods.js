@@ -4,11 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as BiLira } from '../assets/coins/bilira.svg';
 import { ReactComponent as Ethereum } from '../assets/coins/ethereum.svg';
 import { ReactComponent as Bitcoin } from '../assets/coins/bitcoin.svg';
-import { ReactComponent as BankTransfer } from '../assets/coins/bank-transfer.svg';
 import { ReactComponent as BiLiraWhite } from '../assets/coins/bilira-white.svg';
 import { ReactComponent as EthereumWhite } from '../assets/coins/ethereum-white.svg';
 import { ReactComponent as BitcoinWhite } from '../assets/coins/bitcoin-white.svg';
-import { ReactComponent as BankTransferWhite } from '../assets/coins/bank-transfer-white.svg';
 import { ReactComponent as CreditCardWhite } from '../assets/coins/credit-card-white.svg';
 
 function PaymentMethods({ onSelect, activeMethod }) {
@@ -38,14 +36,6 @@ function PaymentMethods({ onSelect, activeMethod }) {
         icon: {
           dark: Bitcoin,
           light: BitcoinWhite,
-        },
-      },
-      {
-        type: t('options.bank'),
-        slug: 'para-transferi',
-        icon: {
-          dark: BankTransfer,
-          light: BankTransferWhite,
         },
       },
       {
@@ -113,9 +103,7 @@ function PaymentMethods({ onSelect, activeMethod }) {
             colorScheme="orange"
             isExternal
             href="https://fonzip.com/lunadao/ucurtma"
-            _hover={{
-              textDecor: 'none',
-            }}
+            _hover={{ textDecor: 'none' }}
           >
             <Box
               as={isActive ? method.icon.light : method.icon.dark}

@@ -8,10 +8,9 @@
   },
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:testing-library/recommended"
+    "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier", "react-hooks", "testing-library"],
+  "plugins": ["prettier", "react-hooks"],
   "rules": {
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,

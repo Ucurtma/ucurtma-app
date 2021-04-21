@@ -18,11 +18,11 @@ import Loader from '../loader';
 
 const EthereumFlow = React.lazy(() => import('./ethereum-flow'));
 
-const menuItems = ['bank-transfer', 'ethereum-wallet'];
+const menuItems = ['ethereum-wallet'];
 
 function Donate({ ethereumAddress, redirectError, minimumAmount, onBack }) {
   const { t } = useTranslation('donate');
-  const [donateFlow, setDonateFlow] = React.useState('bank-transfer');
+  const [donateFlow, setDonateFlow] = React.useState(menuItems[0]);
   const [errorExist, setErrorExist] = React.useState(false);
   const [isDonateSuccess, setIsDonateSuccess] = React.useState(false);
 

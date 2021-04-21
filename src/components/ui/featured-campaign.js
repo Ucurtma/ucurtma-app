@@ -151,9 +151,8 @@ function FeaturedCampaign() {
                       mt={6}
                       mb={4}
                       h="40px"
-                      maxW="full"
                       noOfLines={2}
-                      isTruncated
+                      w="full"
                     >
                       {campaign?.campaignTitle}
                     </Heading>

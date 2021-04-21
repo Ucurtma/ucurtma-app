@@ -93,9 +93,9 @@ function CampaignCardList({ loading, data, error }) {
                   textAlign="center"
                   mt={6}
                   mb={4}
-                  minH="40px"
-                  isTruncated
+                  h="40px"
                   noOfLines={2}
+                  w="full"
                 >
                   {campaign?.campaignTitle}
                 </Heading>

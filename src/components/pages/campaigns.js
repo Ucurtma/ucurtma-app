@@ -58,7 +58,8 @@ function Campaigns() {
       </Helmet>
       <Stack
         direction={{ base: 'column', md: 'row' }}
-        spacing={2}
+        spacing={5}
+        margin="2rem"
         mb={4}
         align="center"
       >

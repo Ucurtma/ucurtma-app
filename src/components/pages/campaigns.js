@@ -59,7 +59,6 @@ function Campaigns() {
       <Stack
         direction={{ base: 'column', md: 'row' }}
         spacing={5}
-        margin="2rem"
         mb={4}
         align="center"
       >

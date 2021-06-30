@@ -48,7 +48,7 @@ function LandingPayment() {
                 desc:
                   'Bu kontrata göndereceğiniz diğer tokenları geri döndürülemez biçimde kaybedersiniz.',
               }}
-              value="0x3365CfF5e0970fbB2cF744796901002d9987c0Dc"
+              value="0x955E5F56fae77Db5829FAE980ADeAc688fE80259"
             />
           )}
           {selectedMethod.slug === 'ethereum' && (

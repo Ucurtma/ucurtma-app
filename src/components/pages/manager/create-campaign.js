@@ -114,7 +114,8 @@ function CreateCampaign({ walletState, isEdit }) {
         campaignType: values.campaignType,
         goals: values.goals.length > 0 ? goals : undefined,
         documents: values.documents.length > 0 ? documents : undefined,
-        ethereumAddress: deployedAddress || initialValues.ethereumAddress || '',
+        ethereumAddress:
+          deployedAddress || initialValues?.ethereumAddress || '',
         student: {
           name: values.student.name,
           school: values.student.school,

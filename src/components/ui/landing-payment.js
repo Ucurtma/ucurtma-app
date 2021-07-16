@@ -43,8 +43,10 @@ function LandingPayment() {
         >
           {selectedMethod.slug === 'bilira' && (
             <PaymentMethodViewer
+              method="bilira"
               alert={{
-                title: 'Bu cüzdan sadece BiLira tokenı kabul etmektedir.',
+                title:
+                  'Bu cüzdan sadece Avalanche C-chain üzerinden BiLira tokenı kabul etmektedir.',
                 desc:
                   'Bu kontrata göndereceğiniz diğer tokenları geri döndürülemez biçimde kaybedersiniz.',
               }}

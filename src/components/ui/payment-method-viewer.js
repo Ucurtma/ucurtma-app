@@ -13,8 +13,9 @@ import {
 import React from 'react';
 import { CheckCircle, Copy } from 'react-feather';
 import { QRCode } from 'react-qr-svg';
+import { ReactComponent as Avax } from '../assets/coins/avax.svg';
 
-function PaymentMethodViewer({ alert, value }) {
+function PaymentMethodViewer({ alert, value, method }) {
   const { hasCopied, onCopy } = useClipboard(value);
 
   return (
@@ -37,6 +38,16 @@ function PaymentMethodViewer({ alert, value }) {
           <QRCode bgColor="#FFFFFF" fgColor="#000000" level="Q" value={value} />
         </Box>
         <Box mt={{ base: 4, lg: 0 }} maxW="full">
+          {method === 'bilira' && (
+            <Box
+              as={Avax}
+              w="full"
+              maxW="200"
+              h="42"
+              mb="4"
+              mx={{ base: 'auto', lg: '0' }}
+            />
+          )}
           <Heading size="sm" as="h4" mb={2}>
             Göndereceğiniz adres
           </Heading>

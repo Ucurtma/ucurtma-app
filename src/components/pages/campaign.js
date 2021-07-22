@@ -56,7 +56,7 @@ function Campaign() {
             <SkeletonText noOfLines={12} />
           ) : (
             <>
-              <Box mt={4} display={content === 'markdown' ? 'block' : 'none'}>
+              <Box mt="8" display={content === 'markdown' ? 'block' : 'none'}>
                 <CampaignContent data={data} />
               </Box>
               {(content === 'donate' || donateActivated) && (
@@ -66,6 +66,7 @@ function Campaign() {
                       minimumAmount={data.campaign?.minimumAmount}
                       redirectError={location.state?.redirectError}
                       ethereumAddress={data.campaign?.ethereumAddress}
+                      avalancheAddress={data.campaign?.avalancheAddress}
                       onBack={() => setContent('markdown')}
                     />
                   </Box>

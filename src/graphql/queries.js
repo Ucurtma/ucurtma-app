@@ -5,6 +5,7 @@ export const GET_CAMPAIGN = gql`
     campaign(campaignId: $campaignId) {
       campaignId
       ethereumAddress
+      avalancheAddress
       campaignTitle
       supporterCount
       campaignType

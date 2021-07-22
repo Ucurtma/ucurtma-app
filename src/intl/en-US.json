@@ -342,7 +342,8 @@
     "loginWithBiLira": "Login with BiLira."
   },
   "ethereumFlow": {
-    "onlyBiLira": "This campaign accepts only BiLira token. Any other tokens you send to this contract will cause you to lose them irreversibly.",
+    "onlyBiLira": "This campaign accepts only BiLira token over Avalanche C-chain.",
+    "onlyBiLiraDesc": "Any other tokens you send to this contract will cause you to lose them irreversibly.",
     "ethereumAddress": "BiLira Wallet Address:"
   },
   "bankTransferFlow": {

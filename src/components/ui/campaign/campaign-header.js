@@ -130,7 +130,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               width="full"
               color="gray.700"
               fontSize={{ base: '2xl', lg: '3xl' }}
-              mt={{ base: 4, lg: 0 }}
+              my="4"
               textAlign={{ base: 'center', lg: 'left' }}
             >
               {data.campaign?.campaignTitle}

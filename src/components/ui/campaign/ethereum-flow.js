@@ -1,18 +1,34 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, AlertIcon, AlertDescription } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertDescription,
+  AlertTitle,
+  Box,
+} from '@chakra-ui/react';
 import EthereumDetailViewer from '../ethereum-detail-viewer';
 
-function EthereumFlow({ ethereumAddress }) {
+function EthereumFlow({ address }) {
   const { t } = useTranslation('ethereumFlow');
 
   return (
     <>
-      <Alert status="warning" bg="yellow.400" mt={2} mb={4}>
-        <AlertIcon color="black" />
-        <AlertDescription color="black">{t('onlyBiLira')}</AlertDescription>
+      <Alert
+        status="error"
+        variant="solid"
+        mt="6"
+        mb="4"
+        maxW="container.md"
+        borderRadius="md"
+      >
+        <AlertIcon />
+        <Box>
+          <AlertTitle fontWeight="600">{t('onlyBiLira')}</AlertTitle>
+          <AlertDescription>{t('onlyBiLiraDesc')}</AlertDescription>
+        </Box>
       </Alert>
-      <EthereumDetailViewer data={ethereumAddress} />
+      <EthereumDetailViewer data={address} />
     </>
   );
 }

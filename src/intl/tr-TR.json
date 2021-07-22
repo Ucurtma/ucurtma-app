@@ -342,7 +342,8 @@
     "loginWithBiLira": "BiLira ile giriş yap."
   },
   "ethereumFlow": {
-    "onlyBiLira": "Bu kampanya sadece BiLira tokenı kabul etmektedir. Bu kontrata göndereceğiniz diğer tokenlar geri döndürülemez biçimde kaybetmenize neden olacaktır.",
+    "onlyBiLira": "Bu cüzdan sadece Avalanche C-chain üzerinden BiLira tokenı kabul etmektedir.",
+    "onlyBiLiraDesc": "Bu kontrata göndereceğiniz diğer tokenlar geri döndürülemez biçimde kaybetmenize neden olacaktır.",
     "ethereumAddress": "BiLira Cüzdanı:"
   },
   "bankTransferFlow": {

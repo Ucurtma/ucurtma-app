@@ -9,7 +9,6 @@ export default function useOnViewport(ref) {
 
   useEffect(() => {
     observer.observe(ref.current);
-    // Remove the observer as soon as the component is unmounted
     return () => {
       observer.disconnect();
     };

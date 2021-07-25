@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Box, Heading, Text, Button, Stack } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Stack, Center } from '@chakra-ui/react';
 import { ReactComponent as LeftKite } from '../../assets/left-kite.svg';
 import { ReactComponent as RightKite } from '../../assets/right-kite.svg';
 import Container from '../container';
 
-function SplashScreen() {
+function SplashScreen(props, ref) {
   const { t } = useTranslation(['splashScreen', 'titles']);
   const navigate = useNavigate();
 
   return (
-    <>
+    <Box ref={ref} w="100%">
       <Container
         d="block"
         textAlign="center"
@@ -81,8 +81,8 @@ function SplashScreen() {
         right={{ lg: '0', xl: '17px', xxl: '222px' }}
         d={{ base: 'none', lg: 'block' }}
       />
-    </>
+    </Box>
   );
 }
 
-export default SplashScreen;
+export default forwardRef(SplashScreen);

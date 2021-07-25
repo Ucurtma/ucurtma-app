@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Heading, Grid, Text, Box, Divider, Image } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Container from '../container';
 import Card from '../card';
 
-function HowItWorks() {
+function HowItWorks(props, ref) {
   const { t } = useTranslation(['howItWorks', 'titles']);
   const cards = [
     {
@@ -25,63 +25,65 @@ function HowItWorks() {
   ];
 
   return (
-    <Container
-      bg="gray.800"
-      pt={16}
-      color="white"
-      borderTopRadius={{ base: 22, lg: 139 }}
-      px={4}
-    >
-      <Box width="full" textAlign="center">
-        <Heading size="xl">{t('titles:How it works')}</Heading>
-        <Text mt={4}>{t('Three Steps')}</Text>
-        <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
-      </Box>
-      <Grid
-        templateColumns={{
-          base: 'inherit',
-          md: 'repeat(3, 1fr)',
-        }}
-        width="full"
-        px={{ base: 2, lg: 8 }}
-        gap={{ base: 8, lg: 20 }}
-        mt="-6rem"
+    <Box ref={ref} w="100%">
+      <Container
+        bg="gray.800"
+        pt={16}
+        color="white"
+        borderTopRadius={{ base: 22, lg: 139 }}
+        px={4}
       >
-        {cards.map(card => (
-          <Box
-            as={Card}
-            display="flex"
-            key={card.title}
-            px={8}
-            py={6}
-            borderRadius="51px"
-            alignItems="center"
-            flexDir="column"
-            _last={{ justifyContent: 'center' }}
-            pos="relative"
-            top={24}
-            bg="gray.900"
-            border="0"
-          >
-            <Image
-              src={card.icon}
-              maxW={32}
-              mb={8}
-              loading="lazy"
-              htmlWidth="128"
-              htmlHeight="128"
-            />
-            <Heading fontSize="1.5rem" fontWeight={600}>
-              {card.title}
-            </Heading>
-            <Text textAlign="center" mt={4}>
-              {card.text}
-            </Text>
-          </Box>
-        ))}
-      </Grid>
-    </Container>
+        <Box width="full" textAlign="center">
+          <Heading size="xl">{t('titles:How it works')}</Heading>
+          <Text mt={4}>{t('Three Steps')}</Text>
+          <Divider maxW={24} borderColor="gray.700" marginX="auto" mt={8} />
+        </Box>
+        <Grid
+          templateColumns={{
+            base: 'inherit',
+            md: 'repeat(3, 1fr)',
+          }}
+          width="full"
+          px={{ base: 2, lg: 8 }}
+          gap={{ base: 8, lg: 20 }}
+          mt="-6rem"
+        >
+          {cards.map(card => (
+            <Box
+              as={Card}
+              display="flex"
+              key={card.title}
+              px={8}
+              py={6}
+              borderRadius="51px"
+              alignItems="center"
+              flexDir="column"
+              _last={{ justifyContent: 'center' }}
+              pos="relative"
+              top={24}
+              bg="gray.900"
+              border="0"
+            >
+              <Image
+                src={card.icon}
+                maxW={32}
+                mb={8}
+                loading="lazy"
+                htmlWidth="128"
+                htmlHeight="128"
+              />
+              <Heading fontSize="1.5rem" fontWeight={600}>
+                {card.title}
+              </Heading>
+              <Text textAlign="center" mt={4}>
+                {card.text}
+              </Text>
+            </Box>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
 
-export default HowItWorks;
+export default forwardRef(HowItWorks);

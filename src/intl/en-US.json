@@ -272,7 +272,11 @@
     "clickHere": "click here.",
     "target": "Goal",
     "totalFund": "Total Funds",
-    "supporterCount": "Supporter Count"
+    "supporterCount": "Supporter Count",
+    "noCampaing": {
+      "message": "There is no active campaign at the moment.",
+      "description": "We are working hard to create new campaings. Stay tuned."
+    }
   },
   "campaignFooter": {
     "createReport": "Create Report",

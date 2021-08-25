@@ -9,7 +9,7 @@ import {
 import { AlertCircle } from 'react-feather';
 import Container from '../container';
 
-function CampaignError({ message }) {
+function CampaignError({ message, alertProps, flexProps }) {
   return (
     <Flex
       data-testid="campaign-error"
@@ -17,6 +17,7 @@ function CampaignError({ message }) {
       justify="space-between"
       height="full"
       width="full"
+      {...flexProps}
     >
       <Container display="block" h="full">
         <Alert
@@ -28,6 +29,7 @@ function CampaignError({ message }) {
           flexDir="column"
           borderRadius="4px"
           p={8}
+          {...alertProps}
         >
           <Icon as={AlertCircle} fontSize="4rem" color="gray.300" mb={4} />
           <AlertTitle mr={2}>

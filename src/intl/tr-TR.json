@@ -272,7 +272,11 @@
     "clickHere": "buraya tıkla.",
     "target": "Hedef",
     "totalFund": "Toplanan",
-    "supporterCount": "Destek Veren Sayısı"
+    "supporterCount": "Destek Veren Sayısı",
+    "noCampaing": {
+      "message": "Aktif kampanya bulunmamaktadır.",
+      "description": "Yeni kampanyalar yaratmak için çalışıyoruz. Lütfen beklemede kalın."
+    }
   },
   "campaignFooter": {
     "createReport": "Şikayet Oluştur",

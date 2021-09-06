@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { Box, Text, Link, Grid } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import Documents from './documents';
@@ -11,6 +11,14 @@ const CampaignTarget = lazy(() => import('./campaign-target'));
 const Timeline = lazy(() => import('../../ui/timeline'));
 
 function CampaignContent({ data }) {
+  const isDeactivated = useMemo(() => {
+    if (data) {
+      return data.campaign.state !== 'INPROGRESS';
+    }
+
+    return false;
+  }, [data]);
+
   return (
     <Grid
       templateColumns={{
@@ -63,6 +71,7 @@ function CampaignContent({ data }) {
                 current={parseFloat(data.campaign.totalFunds)}
                 endDate={data?.campaign?.endDate}
                 type={data?.campaign?.campaignType}
+                isDeactivated={isDeactivated}
               />
             </Suspense>
           </CampaignContentBox>

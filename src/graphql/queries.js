@@ -14,6 +14,7 @@ export const GET_CAMPAIGN = gql`
       campaignTarget
       minimumAmount
       endDate
+      state
       isActive
       goals {
         description
@@ -85,6 +86,7 @@ export const GET_CAMPAIGNS = gql`
         supporterCount
         ethereumAddress
         totalFunds
+        state
         endDate
         isActive
         student {

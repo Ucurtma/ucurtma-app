@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, Flex, Button } from '@chakra-ui/react';
-import { Linkedin } from 'react-feather';
 
 function Documents({ documents }) {
   if (!documents) return null;
@@ -12,9 +11,6 @@ function Documents({ documents }) {
       </Heading>
       <Flex mt={4} flexWrap="wrap">
         {documents?.map((document, documentIndex) => {
-          let icon;
-          if (document.type === 'linkedin-profile') icon = Linkedin;
-
           return (
             <Button
               key={documentIndex.toString()}
@@ -30,7 +26,6 @@ function Documents({ documents }) {
               mb={{ base: 2, md: 0 }}
               _hover={{ bg: 'blue.600' }}
               _active={{ bg: 'blue.600' }}
-              leftIcon={icon}
             >
               {document.title}
             </Button>

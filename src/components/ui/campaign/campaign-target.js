@@ -9,7 +9,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
-function CampaignTarget({ target, current, endDate, type }) {
+function CampaignTarget({ target, current, endDate, type, isDeactivated }) {
   const { t } = useTranslation('campaignTarget');
   const isShortTerm = type === 'ShortTerm';
   let now;
@@ -71,7 +71,7 @@ function CampaignTarget({ target, current, endDate, type }) {
           </Box>
         </>
       )}
-      {endDate && (
+      {endDate && !isDeactivated && (
         <>
           <Heading
             fontSize="sm"

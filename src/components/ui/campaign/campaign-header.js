@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   Flex,
   Avatar,
@@ -19,6 +19,23 @@ import CampaignSupportInfo from '../campaign-support-info';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
   const { t } = useTranslation('campaignHeader');
+
+  const isDeactivated = useMemo(() => {
+    if (data?.campaign) {
+      return data.campaign.state !== 'INPROGRESS';
+    }
+
+    return false;
+  }, [data]);
+
+  const isFailed = useMemo(() => {
+    if (data?.campaign) {
+      return data.campaign.state === 'FAILED';
+    }
+
+    return false;
+  }, [data]);
+
   return (
     <>
       <Flex
@@ -87,7 +104,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               </Box>
             </>
           )}
-          {!loading && data?.campaign?.supporterCount <= 0 && (
+          {!loading && data?.campaign?.supporterCount <= 0 && !isDeactivated && (
             <CampaignContentBox
               bg="lime.50"
               borderColor="lime.200"
@@ -159,7 +176,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               <span>
                 {t(data.campaign?.isActive ? 'support' : 'campaignEnded')}
               </span>
-              {!data.campaign?.isActive && (
+              {isFailed && (
                 <Box as="span" fontSize="12px" mt={1}>
                   Toplanılan paralar destekçilere geri gönderilmektedir.
                 </Box>

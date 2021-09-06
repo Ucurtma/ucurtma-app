@@ -9,7 +9,7 @@ import CampaignError from '../ui/campaign/campaign-error';
 import Pagination from '../ui/pagination';
 import CampaignCardList from '../ui/campaigns/campaign-card-list';
 
-const SHOWED_CAMPAIGN_COUNT = 4;
+const SHOWED_CAMPAIGN_COUNT = 12;
 
 function Campaigns() {
   const terms = ['All', 'LongTerm', 'ShortTerm'];

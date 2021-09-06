@@ -19,9 +19,18 @@ import CampaignSupportInfo from '../campaign-support-info';
 
 function CampaignHeader({ data, loading, onClickDonate }) {
   const { t } = useTranslation('campaignHeader');
+
   const isDeactivated = useMemo(() => {
     if (data?.campaign) {
       return data.campaign.state !== 'INPROGRESS';
+    }
+
+    return false;
+  }, [data]);
+
+  const isFailed = useMemo(() => {
+    if (data?.campaign) {
+      return data.campaign.state === 'FAILED';
     }
 
     return false;
@@ -167,7 +176,7 @@ function CampaignHeader({ data, loading, onClickDonate }) {
               <span>
                 {t(data.campaign?.isActive ? 'support' : 'campaignEnded')}
               </span>
-              {!data.campaign?.isActive && (
+              {isFailed && (
                 <Box as="span" fontSize="12px" mt={1}>
                   Toplanılan paralar destekçilere geri gönderilmektedir.
                 </Box>

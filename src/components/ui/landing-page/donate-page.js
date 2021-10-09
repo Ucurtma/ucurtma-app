@@ -14,13 +14,7 @@ function DonatePage() {
       px={{ base: 4, lg: 0 }}
       flexDir="column"
     >
-      <Flex
-        m="0 auto"
-        align="center"
-        direction="column"
-        textAlign="center"
-        id="donate-section"
-      >
+      <Flex m="0 auto" align="center" direction="column" textAlign="center">
         <Heading as="h2" fontSize="2xl">
           {t('title')}
         </Heading>
@@ -31,7 +25,7 @@ function DonatePage() {
       <Box mt={14}>
         <DonateProgress />
       </Box>
-      <Box mt={120} width="full">
+      <Box id="donate-all" mt={120} width="full">
         <LandingPaymentFlow />
       </Box>
     </Container>

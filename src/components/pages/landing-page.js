@@ -24,8 +24,8 @@ function LandingPage() {
 
     const URLQueries = parse(location.search);
 
-    if (location.hash === '#donate-section' || URLQueries.ref) {
-      document.querySelector('#donate-section').scrollIntoView();
+    if (location.hash === '#donate-all' || URLQueries.ref) {
+      document.querySelector('#donate-all').scrollIntoView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,7 +50,7 @@ function LandingPage() {
       <Flex as="section" px={{ base: 4, lg: 0 }} mt="198px" id="how-it-works">
         <HowItWorks />
       </Flex>
-      <Box as="section" mt="330px" mb={120}>
+      <Box id="donate" as="section" mt="330px" mb={120}>
         <DonatePage />
       </Box>
       <Box mb={210}>

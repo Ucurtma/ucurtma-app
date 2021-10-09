@@ -393,7 +393,9 @@
   "donate-section": {
     "title": "Donate to All Campaigns",
     "description": "We need your support to make world more colorful place. You can support all campaigns in Uçurtma Project by using the options below if you prefer.",
-    "totalFund": "Total Fund",
+    "totalFund": "Total Fund Collected Until Today",
+    "successfulCampaigns": "Successful Campaings",
+    "transactionsCount": "Total Transaction Count",
     "targetFund": "Targeted Fund",
     "methods": "Support Methods",
     "methodsDesc": "You can use payment methods below to support Uçurtma campaigns.",

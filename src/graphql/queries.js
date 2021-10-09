@@ -147,6 +147,8 @@ export const GET_ALL_CAMPAIGN_DETAILS = gql`
     allCampaignDetails {
       collectedAmount
       targetAmount
+      successfulCampaignsCount
+      transactionsCount
     }
   }
 `;

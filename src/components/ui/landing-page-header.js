@@ -12,7 +12,7 @@ export function SupportButton({ ...otherProps }) {
   return (
     <Button
       as={Link}
-      to="#donate"
+      to="#donate-all"
       variant="solid"
       bg="gray.800"
       color="white"
@@ -22,7 +22,7 @@ export function SupportButton({ ...otherProps }) {
       _hover={{ bg: 'gray.700', textDecor: 'none' }}
       _active={{ bg: 'gray.700' }}
       onClick={() => {
-        const element = document.querySelector('#donate');
+        const element = document.querySelector('#donate-all');
         element.scrollIntoView({ behavior: 'smooth' });
       }}
       {...otherProps}

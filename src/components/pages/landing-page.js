@@ -24,8 +24,8 @@ function LandingPage() {
 
     const URLQueries = parse(location.search);
 
-    if (location.hash === '#donate' || URLQueries.ref) {
-      document.querySelector('#donate').scrollIntoView();
+    if (location.hash === '#donate-all' || URLQueries.ref) {
+      document.querySelector('#donate-all').scrollIntoView();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

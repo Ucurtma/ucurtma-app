@@ -30,8 +30,13 @@ function DonateProgress() {
           value={data?.allCampaignDetails.successfulCampaignsCount}
           withCurrency={false}
         />
+        <ValueRenderer
+          title={t('transactionsCount')}
+          value={data?.allCampaignDetails.transactionsCount}
+          withCurrency={false}
+        />
       </Box>
-      <Box d={{ base: 'none', lg: 'block' }} as={Teddy} />
+      <Box mt="24" d={{ base: 'none', lg: 'block' }} as={Teddy} />
     </SimpleGrid>
   );
 }

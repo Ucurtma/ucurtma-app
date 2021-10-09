@@ -148,6 +148,7 @@ export const GET_ALL_CAMPAIGN_DETAILS = gql`
       collectedAmount
       targetAmount
       successfulCampaignsCount
+      transactionsCount
     }
   }
 `;

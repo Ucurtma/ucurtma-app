@@ -55,9 +55,9 @@ function SplashScreen() {
             _hover={{ bg: 'orange.400', textDecor: 'none' }}
             _active={{ bg: 'orange.400' }}
             onClick={() => {
-              navigate('/#donate');
+              navigate('/#donate-all');
               document
-                .querySelector('#donate')
+                .querySelector('#donate-all')
                 .scrollIntoView({ behavior: 'smooth' });
             }}
           >

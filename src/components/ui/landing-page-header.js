@@ -1,17 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Container from './container';
 import MenuItems from './menu-items';
 import SelectLanguage from './select-language';
 
 export function SupportButton({ ...otherProps }) {
-  const navigate = useNavigate();
   const { t } = useTranslation('titles');
 
   return (
     <Button
+      as={Link}
+      to="#donate"
       variant="solid"
       bg="gray.800"
       color="white"
@@ -21,7 +22,8 @@ export function SupportButton({ ...otherProps }) {
       _hover={{ bg: 'gray.700', textDecor: 'none' }}
       _active={{ bg: 'gray.700' }}
       onClick={() => {
-        navigate('/#donate-section');
+        const element = document.querySelector('#donate');
+        element.scrollIntoView({ behavior: 'smooth' });
       }}
       {...otherProps}
     >
@@ -88,25 +90,3 @@ function LandingPageHeader() {
 }
 
 export default LandingPageHeader;
-
-/* <Select
-          bg="transparent"
-          variant="outline"
-          color="gray.100"
-          fontWeight={600}
-          size="sm"
-          onChange={e => {
-            i18n.changeLanguage(e.currentTarget.value);
-            localStorage.setItem('lang', e.currentTarget.value);
-            setLangValue(e.currentTarget.value);
-          }}
-          value={langValue}
-          id="change-language"
-        >
-          <Box as="option" value="tr" color="gray.800">
-            Turkish
-          </Box>
-          <Box as="option" value="en" color="gray.800">
-            English
-          </Box>
-        </Select>  */

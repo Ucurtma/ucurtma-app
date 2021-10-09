@@ -14,13 +14,7 @@ function DonatePage() {
       px={{ base: 4, lg: 0 }}
       flexDir="column"
     >
-      <Flex
-        m="0 auto"
-        align="center"
-        direction="column"
-        textAlign="center"
-        id="donate-section"
-      >
+      <Flex m="0 auto" align="center" direction="column" textAlign="center">
         <Heading as="h2" fontSize="2xl">
           {t('title')}
         </Heading>

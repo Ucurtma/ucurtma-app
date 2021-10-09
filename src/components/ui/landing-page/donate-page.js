@@ -25,7 +25,7 @@ function DonatePage() {
       <Box mt={14}>
         <DonateProgress />
       </Box>
-      <Box mt={120} width="full">
+      <Box id="donate-all" mt={120} width="full">
         <LandingPaymentFlow />
       </Box>
     </Container>

@@ -1,14 +1,21 @@
 import { Text, Box } from '@chakra-ui/react';
 import React from 'react';
 
-function ValueRenderer({ title, value, ...otherProps }) {
+function ValueRenderer({ title, value, withCurrency = true }) {
   return (
-    <Box {...otherProps}>
-      <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight={400}>
+    <Box
+      mt="4"
+      border="1px"
+      borderColor="green.100"
+      borderRadius="11px"
+      p="4"
+      boxShadow="cardLight"
+    >
+      <Text color="green.400" fontSize="sm" fontWeight="600">
         {title}
       </Text>
-      <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight={700}>
-        {value.toLocaleString('tr-TR')} TRYB
+      <Text fontSize="2xl" fontWeight="700">
+        {`${value.toLocaleString('tr-TR')}${withCurrency ? ' TRYB' : ''}`}
       </Text>
     </Box>
   );

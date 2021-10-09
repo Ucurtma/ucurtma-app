@@ -393,7 +393,8 @@
   "donate-section": {
     "title": "Tüm kampanyalara destek ol",
     "description": "Dünyayı daha renkli bir yere dönüştürmemiz için desteğine ihtiyacımız var. İstersen buradaki seçenekleri kullanarak Uçurtma Projesinde bulunan bütün kampanyalara destekçi olabilirsin.",
-    "totalFund": "Toplanan Miktar",
+    "totalFund": "Bugüne Kadar Toplanan Miktar",
+    "successfulCampaigns": "Başarılı Kampanyalar",
     "targetFund": "Hedeflenen Miktar",
     "methods": "Destek Yöntemleri",
     "methodsDesc": "Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme yöntemlerini kullanabilirsiniz.",

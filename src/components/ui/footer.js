@@ -146,6 +146,7 @@ function Footer({ hideLegals = false }) {
           flexShrink="0"
           d="flex"
           justifyContent={{ base: 'center', lg: 'unset' }}
+          mt={{ base: '4', lg: '0' }}
         >
           {socialMediaLinks.map(link => (
             <ListItem mr={3} key={link.label} title={link.label}>

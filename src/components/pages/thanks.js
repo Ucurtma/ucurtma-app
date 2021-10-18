@@ -15,6 +15,7 @@ function Thanks() {
       direction="column"
       maxW="600px"
       margin="0 auto"
+      p="12"
     >
       <VStack spacing="6" align="flex-start">
         <Text fontWeight="600">Merhaba,</Text>

@@ -13,6 +13,7 @@ import Loader from './components/ui/loader';
 const Home = lazy(() => import('./components/pages/home'));
 const Redirecting = lazy(() => import('./components/pages/redirecting'));
 const Manager = lazy(() => import('./components/pages/manager'));
+const Thanks = lazy(() => import('./components/pages/thanks'));
 
 if (isProduction) {
   LogRocket.init('uptekx/ucurtma-app');
@@ -53,6 +54,7 @@ function App() {
           <Routes>
             <Route path="auth/*" element={<Redirecting />} />
             <Route path="manager/*" element={<Manager />} />
+            <Route path="thanks" element={<Thanks />} />
             <Route path="/*" element={<Home />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

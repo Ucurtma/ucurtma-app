@@ -1,12 +1,10 @@
 import React, { lazy, Suspense, useMemo } from 'react';
 import {
   Image,
-  Grid,
   Box,
   List,
   ListItem,
   Link,
-  Flex,
   ModalBody,
   Button,
 } from '@chakra-ui/react';
@@ -21,7 +19,7 @@ const ClarificationText = lazy(() =>
 );
 const ExplicitConsent = lazy(() => import('../pages/legal/explicit-consent'));
 
-function Footer() {
+function Footer({ hideLegals = false }) {
   const { t } = useTranslation('footer');
   const { dispatch } = useStore();
 
@@ -73,106 +71,106 @@ function Footer() {
   }, []);
 
   return (
-    <Box as="footer" py={12} px={{ base: 4, md: 0 }}>
-      <Container alignItems="flex-start" mt={0}>
-        <Grid
-          templateColumns={{
-            base: 'inherit',
-            md: '15% 1fr',
-          }}
-          width="full"
-          columnGap={{ base: 8, md: 12 }}
-          rowGap={{ base: 8 }}
-          px={4}
-        >
-          <Image
-            src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
-            mx={{ base: 'auto', lg: 'unset' }}
-          />
-          <Flex flexDir={{ base: 'column-reverse', lg: 'row' }}>
-            <Box
-              mt={{ base: 4, lg: 0 }}
+    <Box as="footer" py={12} w="full">
+      <Container
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="nowrap"
+        flexDir={{ base: 'column', lg: 'row' }}
+        px="0"
+      >
+        <Image
+          src={`${process.env.PUBLIC_URL}/images/logo-black.svg`}
+          mx={{ base: 'auto', lg: 'unset' }}
+          flexShrink="0"
+        />
+        {!hideLegals && (
+          <Box
+            mt={{ base: 4, lg: 0 }}
+            mb={{ base: 4, lg: 0 }}
+            w="full"
+            d="flex"
+            alignItems="center"
+            justifyContent={{ base: 'center', lg: 'unset' }}
+            alignSelf="center"
+          >
+            <List
+              d="inline-flex"
+              justifyContent="center"
               w="full"
-              d="flex"
-              alignItems="center"
-              justifyContent={{ base: 'center', lg: 'unset' }}
+              ml={0}
+              flexDir={{ base: 'column', lg: 'row' }}
+              textAlign={{ base: 'center', lg: 'unset' }}
             >
-              <List
-                d="inline-flex"
-                justifyContent="center"
-                w="full"
-                ml={0}
-                flexDir={{ base: 'column', lg: 'row' }}
-                textAlign={{ base: 'center', lg: 'unset' }}
+              <ListItem mr={{ base: 0, lg: 8 }}>
+                <Button
+                  variant="link"
+                  onClick={() => setModalOpen('cookiePolicy')}
+                  size="sm"
+                >
+                  {t('CookiePolicy')}
+                </Button>
+              </ListItem>
+              <ListItem mr={{ base: 0, lg: 8 }}>
+                <Button
+                  variant="link"
+                  onClick={() => setModalOpen('clarification')}
+                  size="sm"
+                >
+                  {t('ClarificationText')}
+                </Button>
+              </ListItem>
+              <ListItem mr={{ base: 0, lg: 8 }}>
+                <Button
+                  variant="link"
+                  onClick={() => setModalOpen('explicit')}
+                  size="sm"
+                >
+                  {t('ExplicitConsent')}
+                </Button>
+              </ListItem>
+              <ListItem>
+                <Button
+                  as="a"
+                  href="mailto:iletisim@ucurtmaprojesi.com"
+                  variant="link"
+                  size="sm"
+                >
+                  {t('Contact')}
+                </Button>
+              </ListItem>
+            </List>
+          </Box>
+        )}
+        <List
+          flexShrink="0"
+          d="flex"
+          justifyContent={{ base: 'center', lg: 'unset' }}
+        >
+          {socialMediaLinks.map(link => (
+            <ListItem mr={3} key={link.label} title={link.label}>
+              <Link
+                href={link.url}
+                isExternal
+                bg="transparent"
+                _hover={{ bg: 'gray.200' }}
+                _active={{ bg: 'gray.200' }}
+                d="block"
+                p={2}
+                borderRadius="full"
               >
-                <ListItem mr={{ base: 0, lg: 8 }}>
-                  <Button
-                    variant="link"
-                    onClick={() => setModalOpen('cookiePolicy')}
-                    size="sm"
-                  >
-                    {t('CookiePolicy')}
-                  </Button>
-                </ListItem>
-                <ListItem mr={{ base: 0, lg: 8 }}>
-                  <Button
-                    variant="link"
-                    onClick={() => setModalOpen('clarification')}
-                    size="sm"
-                  >
-                    {t('ClarificationText')}
-                  </Button>
-                </ListItem>
-                <ListItem mr={{ base: 0, lg: 8 }}>
-                  <Button
-                    variant="link"
-                    onClick={() => setModalOpen('explicit')}
-                    size="sm"
-                  >
-                    {t('ExplicitConsent')}
-                  </Button>
-                </ListItem>
-                <ListItem>
-                  <Button
-                    as="a"
-                    href="mailto:iletisim@ucurtmaprojesi.com"
-                    variant="link"
-                    size="sm"
-                  >
-                    {t('Contact')}
-                  </Button>
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <List d="flex" justifyContent={{ base: 'center', lg: 'unset' }}>
-                {socialMediaLinks.map(link => (
-                  <ListItem mr={3} key={link.label} title={link.label}>
-                    <Link
-                      href={link.url}
-                      isExternal
-                      bg="transparent"
-                      _hover={{ bg: 'gray.200' }}
-                      _active={{ bg: 'gray.200' }}
-                      d="block"
-                      p={2}
-                      borderRadius="11px"
-                    >
-                      <Image
-                        src={link.icon}
-                        w="24px"
-                        htmlWidth="24"
-                        htmlHeight="24"
-                        loading="lazy"
-                        alt={link.label}
-                      />
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          </Flex>
-        </Grid>
+                <Image
+                  src={link.icon}
+                  w="16px"
+                  htmlWidth="16px"
+                  htmlHeight="16px"
+                  loading="lazy"
+                  alt={link.label}
+                />
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Container>
     </Box>
   );

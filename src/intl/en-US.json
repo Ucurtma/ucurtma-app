@@ -273,7 +273,7 @@
     "target": "Goal",
     "totalFund": "Total Funds",
     "supporterCount": "Supporter Count",
-    "noCampaing": {
+    "noCampaign": {
       "message": "There is no active campaign at the moment.",
       "description": "We are working hard to create new campaings. Stay tuned."
     }

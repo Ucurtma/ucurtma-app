@@ -71,7 +71,7 @@ function FeaturedCampaign() {
         {loading && <FeaturedCampaignLoader />}
         {error && <CampaignError />}
         {data &&
-          (data.length > 0 ? (
+          (data.randomCampaigns.campaigns.length > 0 ? (
             <Swiper
               spaceBetween={50}
               onSlideChange={swiper => setActiveCard(swiper.realIndex)}
@@ -203,8 +203,8 @@ function FeaturedCampaign() {
           ) : (
             <CampaignError
               message={{
-                title: t('noCampaing.message'),
-                desc: t('noCampaing.description'),
+                title: t('noCampaign.message'),
+                desc: t('noCampaign.description'),
               }}
               alertProps={{ bg: 'white' }}
               flexProps={{ width: 'fit-content', margin: '0 auto' }}

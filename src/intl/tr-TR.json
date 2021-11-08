@@ -273,7 +273,7 @@
     "target": "Hedef",
     "totalFund": "Toplanan",
     "supporterCount": "Destek Veren Sayısı",
-    "noCampaing": {
+    "noCampaign": {
       "message": "Aktif kampanya bulunmamaktadır.",
       "description": "Yeni kampanyalar yaratmak için çalışıyoruz. Lütfen beklemede kalın."
     }

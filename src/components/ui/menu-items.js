@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-function MenuItems({ isDrawer, items, ...otherProps }) {
+function MenuItems({ isDrawer, items, activeMenuItem, ...otherProps }) {
   const drawerProps = {
     wrapper: {
       flexDirection: 'column',
@@ -40,6 +40,7 @@ function MenuItems({ isDrawer, items, ...otherProps }) {
             flexShrink={0}
             {...(isDrawer && drawerProps.button)}
             {...navItem.buttonProps}
+            isActive={navItem.href === activeMenuItem}
           >
             {navItem.label}
           </Button>

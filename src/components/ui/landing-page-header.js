@@ -32,7 +32,7 @@ export function SupportButton({ ...otherProps }) {
   );
 }
 
-function LandingPageHeader() {
+function LandingPageHeader({ activeMenuItem }) {
   const { t } = useTranslation('titles');
 
   const menuItems = [
@@ -64,6 +64,12 @@ function LandingPageHeader() {
       px={{ base: 4, lg: 0 }}
       justifyContent="space-between"
       alignItems="center"
+      position="fixed"
+      top="0"
+      right="0"
+      left="0"
+      bg="white"
+      zIndex="2"
     >
       <Box
         display={{ base: 'flex', lg: 'block' }}
@@ -81,7 +87,11 @@ function LandingPageHeader() {
         </Flex>
       </Box>
       <Flex mt={2} py={1} overflowY={{ base: 'auto', lg: 'unset' }}>
-        <MenuItems alignItems="center" items={menuItems} />
+        <MenuItems
+          alignItems="center"
+          items={menuItems}
+          activeMenuItem={activeMenuItem}
+        />
         <SupportButton display={{ base: 'none', lg: 'flex' }} />
         <SelectLanguage display={{ base: 'none', lg: 'flex' }} />
       </Flex>
